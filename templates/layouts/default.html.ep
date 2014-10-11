@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><%= title %> - The Children's Reflexology Programme</title>
+        <link rel="shortcut icon" href="<%= url_for '/favicon.ico' %>">
+        <link rel="apple-touch-icon-precomposed" href="<%= url_for '/favicon/favicon-152.png' %>">
+        <meta name="msapplication-TileColor" content="#FFFFFF">
+        <meta name="msapplication-TileImage" content="<%= url_for '/favicon/favicon-144.png' %>">
+    </head>
+    <body><%= content %></body>
+</html>

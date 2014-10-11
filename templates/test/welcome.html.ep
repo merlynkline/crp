@@ -1,0 +1,8 @@
+% layout 'default';
+% title 'Test - development mode';
+<h1>Internal test page</h1>
+Various test facilities:
+<ul>
+<li><a href="/test/template/not_found.production">Test production 404 page</a></li>
+</ul>
+
