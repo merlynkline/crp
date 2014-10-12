@@ -1,0 +1,49 @@
+%#<!DOCTYPE html>
+% layout 'default', extra_header_templates => 'parts/location_input';
+% title 'Information for carers';
+% include 'parts/inputs';
+<h1>Information for carers</h1>
+
+<form method="post" action="<%= url_for '/main/register_interest' %>">
+    To find out if there's a course happening near you, enter your location here:<br />
+    <input type='text' name="location" id="location-input-location" onblur="locationInputCodeAddress()" value="London"/>
+    <input type="button" value="check" onclick="locationInputCodeAddress()"><br />
+    <input type="hidden" name="latitude" id="location-input-latitude" />
+    <input type="hidden" name="longitude" id="location-input-longitude" />
+    <div style="height: 300px; width: 450px;">
+        <div id="location-input-map-canvas"></div>
+    </div>
+    The map shows how we understand the location you have entered. To make sure
+    we've understood it properly, click the 'check' button.
+    <br />
+    <br />
+    If you would also like us to notify you automatically when courses become available
+    near you in the future, please enter some details below. We will send you a
+    confirmation email before we make use of any of these details and you will be
+    able to change or delete this information whenever you wish.
+    <table>
+        <tr>
+            <td>Email address (we won't share your email address with anyone without asking you first)</td>
+            <td><%= include 'parts/error_message', possible_errors => 'NO_EMAIL' %>
+                <input type="text" name="email" /></td>
+        </tr>
+        <tr>
+            <td>You can also tell us your name if you like</td>
+            <td><input type="text" name="name" /></td>
+        </tr>
+        <tr>
+            <td>Would you like us to pass on these details to any tutors who run courses near you in the future?</td>
+            <td><input type="checkbox" name="tell_tutors" /></td>
+        </tr>
+        <tr>
+            <td>Would you like to receive an occasional newsletter from us?</td>
+            <td><input type="checkbox" name="newsletter" /></td>
+        </tr>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td><input type="submit" value="Go" />
+        </tr>
+    </table>
+</form>
+

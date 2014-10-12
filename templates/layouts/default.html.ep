@@ -6,6 +6,14 @@
         <link rel="apple-touch-icon-precomposed" href="<%= url_for '/favicon/favicon-152.png' %>">
         <meta name="msapplication-TileColor" content="#FFFFFF">
         <meta name="msapplication-TileImage" content="<%= url_for '/favicon/favicon-144.png' %>">
+        <meta charset="utf-8">
+% foreach my $extra_template (@{stash_list 'extra_header_templates'}) {
+%=   include $extra_template
+% }
     </head>
-    <body><%= content %></body>
+    <body>
+        [<a href="<%= url_for '/' %>">Home</a>] (Some sort of nav here. And login.)
+        <hr />
+        <%= content %>
+    </body>
 </html>

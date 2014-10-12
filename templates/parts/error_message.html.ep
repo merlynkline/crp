@@ -1,0 +1,15 @@
+%#<!DOCTYPE html>
+%# Render an error message for each error code in 'errors' if it is any of 'possible_errors'
+% use List::MoreUtils;
+% my %ERROR_MESSAGE = (
+%   NO_EMAIL    => 'Please enter an email address',
+% );
+% my $error_format = (stash 'error_format') // 'default';
+% my $possible_errors = stash_list 'possible_errors';
+% foreach my $error (@{stash_list 'errors'}) {
+%     if(List::MoreUtils::any { $_ eq $error } @$possible_errors) {
+<font color='#a00'>
+    %= $ERROR_MESSAGE{$error} // "Unrecognised error code '$error'"
+</font><br />
+%     }
+% }

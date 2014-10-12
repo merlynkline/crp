@@ -1,0 +1,49 @@
+%#<!DOCTYPE html>
+%# Google location API support in page header
+    <style>
+      #location-input-map-canvas {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <script>
+        var locationInputGeocoder;
+        var locationInputMap;
+        var locationInputMarker;
+
+        function locationInputInitialize() {
+          locationInputGeocoder = new google.maps.Geocoder();
+          var latlng = new google.maps.LatLng(51.5, -0.13);
+          var mapOptions = {
+              zoom: 8,
+          }
+          locationInputMap = new google.maps.Map(document.getElementById('location-input-map-canvas'), mapOptions);
+          locationInputCodeAddress();
+        }
+
+        function locationInputCodeAddress() {
+          var address = document.getElementById('location-input-location').value;
+          locationInputGeocoder.geocode( { 'address': address}, function(results, status) {
+              if (status == google.maps.GeocoderStatus.OK) {
+                  var loc = results[0].geometry.location;
+                  var element = document.getElementById('location-input-latitude');
+                  if (element) { element.value = loc.lat(); }
+                  var element = document.getElementById('location-input-longitude');
+                  if (element) { element.value = loc.lng(); }
+                  //locationInputMap.setCenter(loc);
+                  locationInputMap.panTo(loc);
+                  if(locationInputMarker) { locationInputMarker.setMap(null); }
+                  locationInputMarker = new google.maps.Marker({
+                      map: locationInputMap,
+                      position: loc
+                  });
+              }
+          });
+        }
+
+        google.maps.event.addDomListener(window, 'load', locationInputInitialize);
+
+    </script>
+

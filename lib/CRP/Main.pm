@@ -15,4 +15,16 @@ sub page {
   $self->render(template => "main/pages/$page");
 }
 
+sub register_interest {
+  my $self = shift;
+
+  my $email = $self->param('email');
+
+  $self->stash('page', 'carers');
+  $self->stash('errors', 'NO_EMAIL');
+  return $self->page;
+
+
+}
+
 1;
