@@ -7,6 +7,10 @@
         <meta name="msapplication-TileColor" content="#FFFFFF">
         <meta name="msapplication-TileImage" content="<%= url_for '/favicon/favicon-144.png' %>">
         <meta charset="utf-8">
+        <style>
+            input.field-with-error { background-color: #fd9e7e }
+            .field-error-message { color: #dd7e5e }
+        </style>
 % foreach my $extra_template (@{stash_list 'extra_header_templates'}) {
 %=   include $extra_template
 % }

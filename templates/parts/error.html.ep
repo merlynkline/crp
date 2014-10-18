@@ -1,0 +1,10 @@
+%#<!DOCTYPE html>
+%# Render an error message for a given field
+
+% if(my $error = validation->error($field)) {
+    <div class='field-error-message'>
+    %= 'Please fill in this field'      if $error->[0] eq 'required'
+    %= 'Please enter a valid answer'    if $error->[0] eq 'like'
+    </div>
+%}
+

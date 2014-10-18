@@ -1,4 +1,4 @@
-package CRP::Test;
+package CRP::Controller::Test;
 use Mojo::Base 'Mojolicious::Controller';
 
 sub authenticate {
