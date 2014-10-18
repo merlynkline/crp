@@ -5,6 +5,8 @@ use Mojo::Base 'Mojolicious';
 sub startup {
   my $self = shift;
 
+  push @{$self->app->commands->namespaces}, 'CRP::Command';
+
   my $config = $self->plugin('Config');
 
   $self->secrets([$config->{secret}]);
