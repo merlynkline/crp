@@ -21,7 +21,6 @@ sub register_interest {
   $c->stash('page', 'carers');
   my $validation = $c->validation;
   $validation->required('email')->like(qr{^.+@.+[.].+});
-use Data::Dumper; warn Dumper([ $validation->error('email') ]);
   return $c->page if($validation->has_error);
 
   my $email = $c->param('email');

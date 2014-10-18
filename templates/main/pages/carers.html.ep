@@ -5,10 +5,10 @@
 
 <form method="post" action="<%= url_for '/main/register_interest' %>">
     To find out if there's a course happening near you, enter your location here:<br />
-    %= text_field 'location' => 'London', onblur => 'locationInputCodeAddress()', id => 'location-input-location'
-    <input type="button" value="check" onclick="locationInputCodeAddress()" /><br />
-    %= hidden_field 'latitude' => '', id => "location-input-latitude"
-    %= hidden_field 'longitude' => '', id => "location-input-longitude"
+    %= text_field 'location' => '', onblur => 'locationInputHandler.codeAddress()', id => 'location-input-location'
+    <input type="button" value="check" onclick="locationInputHandler.codeAddress()" /><br />
+    %= hidden_field 'latitude' => param('latitude'), id => "location-input-latitude"
+    %= hidden_field 'longitude' => param('longitude'), id => "location-input-longitude"
     <div style="height: 300px; width: 450px;">
         <div id="location-input-map-canvas"></div>
     </div>
