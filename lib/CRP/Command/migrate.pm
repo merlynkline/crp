@@ -26,7 +26,7 @@ sub run {
     GetOptions('init' => \$init);
 
     $ENV{DBIC_MIGRATION_SCHEMA_CLASS} = 'CRP::Model::Schema';
-    $ENV{DBIC_MIGRATION_TARGET_DIR}   = "share/deploy";
+    $ENV{DBIC_MIGRATION_TARGET_DIR}   = 'share/deploy';
 
     my $dsn = CRP::Model::Schema::build_dsn($config);
 
@@ -37,8 +37,6 @@ sub run {
             $config->{password}
         );
         $schema->deploy;
-        my $admin = do "share/deploy/fixtures/1/all_tables/users/1.fix";
-        $schema->resultset('User')->create($admin);
     }
     else {
         unshift @ARGV, (
