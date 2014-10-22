@@ -159,3 +159,16 @@
     - Successful login sends re-direct (with cookie) to logged-in home
     - Logged-in home (and all protected pages) checks for cookie and redirects to 'must have cookies' page.
  
+ Workflow notes
+ --------------
+ - DB changes:
+    - Modify lib/CRP/Model/Schema/Result/*
+    - Update version number in lib/CRP/Model/Schema.pm
+    - run: ./script/crp migrate prepare
+    - check new autosql files like: share/deploy/migrations/PostgreSQL/upgrade/1-2/001-auto.sql
+    - if any tweaks are needed:
+        - copy new autosql to one or more numbered sql files in the same directory
+        - tweak as required
+        - remove 001-auto.sql
+    - run: ./script/crp migrate upgrade
+

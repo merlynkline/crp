@@ -27,7 +27,7 @@ __PACKAGE__->add_columns(
     },
     create_date => {
         data_type           => 'timestamp',
-        default_value       => \'SYSDATE',
+        default_value       => \'now()',
         is_nullable         => 0,
     },
     suspend_date => {
@@ -62,6 +62,16 @@ __PACKAGE__->add_columns(
 
 __PACKAGE__->set_primary_key('id');
 __PACKAGE__->add_unique_constraint('enquiry_email_key', ['email']);
+
+sub sqlt_deploy_hook {
+    my ($self, $sqlt_table) = @_;
+
+    foreach my $column (qw(suspend_date latitude longitude)) {
+        $sqlt_table->add_index(name => "enquiry_${column}_idx", fields => [$column]);
+    }
+}
+
+
 
 1;
 
