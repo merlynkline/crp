@@ -1,0 +1,161 @@
+
+- Main landing page
+    - Welcome and brief overview
+    - Link to tutors' area
+    - Link to carers' area
+    - Link to administrators' area
+    - General contact form
+    - Log in/out for tutors/admins
+        - Persistent login option for private computers
+        - Password recovery (security questions, time-limited OTP email)
+- Carers' area
+    - More information about CRP
+    - Information about what you get if you do the course
+    - Register interest / find course
+        - Finds upcoming courses in local area
+        - Optionally stores information for notifications:
+            - Creates a 'suspended' record and sends a confirmation email with an activation link
+            - Notify carer about new courses that come up in the area (that they aren't registered for)
+            - Notify tutors about carers interested in courses they register
+            - General newsletter - immediately composes and sends a current one (see below) when record is activated
+        - Facility to manage notifications
+            - Simple, no password, linked to from all emails sent out
+            - Shows a list of notifications and lets you opt in/out of any/all
+            - Lets you change other stored information
+                - Name
+                - Email
+                    - suspends record and re-sends confirmation with activation link
+                    - notifies tutors of any current/future courses that have the old email address
+                - Location
+                - Courses of interest
+            - Lets you delete the record completely
+            - Any change to stored information sends a confirmation email to the address
+        - Suspended records are deleted when they get too old
+    - Carers' forums
+    - Submit (an idea for) a newsletter article
+    - Shop
+        - Books
+        - Squeezy feet?
+        - Merchandise
+    - Carer's contact form (for contacting CRP as a carer)
+    - For each course registered by a tutor there will be a page describing that course that the tutor can link to
+        - Sensible static URL so Google can index it
+        - Courses that have already started (or finsished) will still show up but will be clearly marked
+        - Cancelled courses will still show up but will be clearly marked
+        - Online booking form for the course (with Ts&Cs)
+        - Link to PDF booking form for the course
+    - A list of registered future/current courses (possibly hidden a bit - this is really for Google)
+    - For each registered tutor there will be an automatically generated page with their details and a list of upcoming courses
+    - A list of registered tutors (possibly hidden a bit - this is really for Google)
+- Tutors' area
+    - More information about teaching CRP to carers
+    - Information about the course
+        - Content
+        - Pricing and timing
+        - Details of what you get if you do the course
+    - Shop
+        - Anyone can browse but you need a tutor's account to buy
+        - Sells student packs, extra course notes, posters, etc, etc
+    - Signed-up tutors area
+        - Needs an account created by an administrator (happens when they do the course)
+        - Edit profile
+            - Change stored details
+                - Name
+                - email
+                - Telephone
+                - Optional web address
+                - Public postal address
+                - Optional photo / logo
+                - Personal blurb (paragraph or so)
+                - Security questions
+                - Password
+            - Admins notified of changes by email (to prevent generating PDFs for others)
+            - Generates tutor's page in carers' area of site
+        - Messages shown on login (from admins/system)
+        - Get a list of carers that have expressed interest near a particular place
+        - Record details of a course
+            - Stores details:
+                - General location to identify nearby carers (e.g. 'Exeter')
+                - Location description for paperwork (e.g. 'Cowick Library')
+                - Start date
+                - Time
+                - Type (toddlers/newborn/etc)
+                - Opt-out for marketing (email notifications, newsletter, web page)
+            - Record details of a carer attending a course
+                - Do we really want to do this? Could be privacy issues
+                - Records name, child's name, telephone, email54
+                - Allows generation of better registers
+                - Generate a record in the interest database so that newsletters will go out
+            - Shows list of interested carers nearby
+            - Generates a course page in the carers' area of the site
+        - Change details of a course
+            - Does not re-send notifications to nearby interested carers
+            - Option to cancel completely
+            - Updates course page in carers' area
+        - Generate peronalised PDFs:
+            - All PDFs are personalised with tutor's contact details
+            - Various documents are available, some with extra details added:
+                - Completion certificate: (could have carer's and child's names, perhaps entered when generated)
+                - Booking form: Course type/location/day of week/start date/time
+                - Register: Course type/location/day of week/start date/time (plus attendees' details?)
+                - Generic flyer
+                - Generic poster
+                - Course flyer: Course type/location/day of week/start date/time
+                - Course poster: Course type/location/day of week/start date/time
+                - Business cards
+            - QR codes for web pages?
+        - Signed-up tutor's contact form (for contacting admins)
+        - Submit (an idea for) a newsletter article
+        - Tutors' forum using same login
+        - Link to shop
+    - General tutors' contact form (for contacting CRP as a potential tutor)
+    - Log out
+- Administrators' area
+    - Requires login
+    - Access to stats of various sorts
+    - Admin user account admin
+        - Add new accounts
+        - Manage permissions for different parts
+    - Profile change
+        - Name
+        - Password
+    - Search carers' records and link to the notification management facility for them
+    - Clean out old suspended carer notification records
+    - Shop management facilities
+    - Manage signed-up tutors
+        - Create an account
+        - Search for tutor's account and log in as them for support purposes
+        - Revoke tutor accounts
+        - Send message to individual tutors or groups of them
+            - Messages sent in email
+            - Messages also appear in tutors' accounts when they log in
+    - Get a list of carers that have expressed interest near a particular place
+    - Newsletters
+        - Create and edit articles where each one has, in addition to content:
+            - Categorisation tags
+            - Location relevance (centre, radius) or 'all' (presets for major geographical areas)
+            - Creation date
+            - Expiry date (e.g. for articles about courses - expire when the course starts)
+            - Date last sent to mailing list (could be many, one per mailing list)
+            - Importance - makes it appear higher or lower in the newsletter
+            - Cut-down version for repeating as padding in later newsletters
+            - Newsletter types this article is suitable for (carer/tutor/etc)
+        - Search for articles
+        - Delete (retire?) articles
+        - A newsletter can be composed for carer based on their location and whether articles have already been sent
+        - A web page can be generated for each news letter - maybe several, geographically split, or a universal one
+        - An index of newsletters will allow Google to find them
+        - Each new article can also be a new blog post
+        - Articles are not necessarily directly CRP related
+        - Similar approach for generating and maintaining tutors' newsletters
+    - Log out
+ 
+ Implementation notes
+ --------------------
+ 
+ - Do we need cookies on the non-logged-in site?
+    - Don't send a cookie until log-in
+    - Cookie advice on login page
+    - Successful login sends re-direct (with cookie) to logged-in home
+    - Logged-in home (and all protected pages) checks for cookie and redirects to 'must have cookies' page.
+ 
