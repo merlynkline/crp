@@ -1,31 +1,58 @@
 package CRP::Controller::Main;
 use Mojo::Base 'Mojolicious::Controller';
+use DateTime;
+use Try::Tiny;
 
 sub welcome {
-  my $c = shift;
+    my $c = shift;
 
-  $c->render;
+    $c->render;
 }
 
 sub page {
-  my $c = shift;
+    my $c = shift;
 
-  my $page = $c->stash('page');
+    my $page = shift // $c->stash('page');
 
-  $c->render(template => "main/pages/$page");
+    $c->render(template => "main/pages/$page");
 }
 
 sub register_interest {
-  my $c = shift;
+    my $c = shift;
 
-  $c->stash('page', 'carers');
-  my $validation = $c->validation;
-  $validation->required('email')->like(qr{^.+@.+[.].+});
-  return $c->page if($validation->has_error);
+    my $validation = $c->validation;
+    $validation->required('email')->like(qr{^.+@.+[.].+});
+    return $c->page('carers') if($validation->has_error);
+    my $record = {
+        name                => $c->param('name'),
+        email               => $c->param('email'),
+        suspend_date        => DateTime->now(),
+        location            => $c->param('location'),
+        latitude            => _number_or_null($c->param('latitude')),
+        longitude           => _number_or_null($c->param('longitude')),
+        notify_new_courses  => $c->param('notify'),
+        notify_tutors       => $c->param('tell_tutors'),
+        send_newsletter     => $c->param('newsletter'),
+    };
+    my $error;
+    my $new_record;
+    try {
+        $new_record = $c->crp_model('Enquiry')->create($record);
+    }
+    catch {
+        warn "Adding new enquiry: $_";
+        $validation->error(_general => ['create_record']);
+    };
+    return $c->page('carers') if($validation->has_error);
 
-  my $email = $c->param('email');
+    $c->redirect_to('/page/carers');
+}
 
+sub _number_or_null {
+    my($number) = @_;
 
+    $number = undef unless $number =~ m{^-?\d+\.?\d*$};
+    return $number;
 }
 
 1;

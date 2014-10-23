@@ -19,18 +19,23 @@
 
             codeAddress: function() {
                 var that = locationInputHandler;
-                var address = document.getElementById('location-input-location').value || 'London';
-                that.geocoder.geocode( {address: address}, function(results, status) {
+                var address = document.getElementById('location-input-location').value;
+                address = address.replace(/\w\S*/g, function(txt) {
+                    return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+                });
+                that.geocoder.geocode( {address: address || 'London'}, function(results, status) {
                     if (status == google.maps.GeocoderStatus.OK) {
                         var loc = results[0].geometry.location;
-                        that.latElement().value = loc.lat();
-                        that.lngElement().value = loc.lng();
+                        that.latElement().value = address ? loc.lat() : '';
+                        that.lngElement().value = address ? loc.lng() : '';
                         that.map.panTo(loc);
                         if(that.marker) { that.marker.setMap(null); }
-                        that.marker = new google.maps.Marker({
-                            map: that.map,
-                            position: loc
-                        });
+                        if(address) {
+                            that.marker = new google.maps.Marker({
+                                map: that.map,
+                                position: loc
+                            });
+                        }
                     }
                 });
             },

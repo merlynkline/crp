@@ -9,7 +9,7 @@ use base 'DBIx::Class::Core';
 __PACKAGE__->load_components(qw(InflateColumn::DateTime));
 __PACKAGE__->table('enquiry');
 __PACKAGE__->add_columns(
-    'id' => {
+    id => {
         data_type           => 'integer',
         is_auto_increment   => 1,
         is_nullable         => 0,
@@ -21,7 +21,7 @@ __PACKAGE__->add_columns(
         data_type           => 'text',
         is_nullable         => 1,
     },
-    'email' => {
+    email => {
         data_type           => 'text',
         is_nullable         => 0,
     },
@@ -49,14 +49,17 @@ __PACKAGE__->add_columns(
     notify_new_courses => {
         data_type           => 'boolean',
         is_nullable         => 1,
+        accessor            => '_notify_new_courses',
     },
     notify_tutors => {
         data_type           => 'boolean',
         is_nullable         => 1,
+        accessor            => '_notify_tutors',
     },
     send_newsletter => {
         data_type           => 'boolean',
         is_nullable         => 1,
+        accessor            => '_send_newsletter',
     },
 );
 
@@ -71,6 +74,17 @@ sub sqlt_deploy_hook {
     }
 }
 
+sub _boolean_accessor {
+    my $self = shift;
+    my $column = '_' . shift;
+
+    $self->$column(shift() ? 't' : 'f') if @_;
+    return $self->$column() eq 't';
+}
+
+sub notify_new_courses  { return shift->_boolean_accessor('notify_new_courses', @_); }
+sub notify_tutors       { return shift->_boolean_accessor('notify_tutors',      @_); }
+sub send_newsletter     { return shift->_boolean_accessor('send_newsletter',    @_); }
 
 
 1;

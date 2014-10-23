@@ -1,4 +1,12 @@
 
+- Next:
+    - Fix boolean column accessors (fail when tickboxes ticked)
+    - Add code to en/decode number in word bases
+    - add update page
+    - add explicit check for duplicate email address
+    - tests!!
+
+
 - Main landing page
     - Welcome and brief overview
     - Link to tutors' area

@@ -40,7 +40,7 @@
         </tr>
         <tr>
             <td>&nbsp;</td>
-            <td><%= submit_button 'Go'%>
+            <td><%= include 'parts/error', field => '_general' %><%= submit_button 'Go'%>
         </tr>
     </table>
 </form>

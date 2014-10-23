@@ -1,10 +1,14 @@
 %#<!DOCTYPE html>
 %# Render an error message for a given field
-
+% my $error_message = {
+%    required       => 'Please fill in this field',
+%    like           => 'Please enter a valid answer',
+%    create_record  => "Sorry - we couldn't record your information. Please try again.",
+% };
 % if(my $error = validation->error($field)) {
+%   $error = $error->[0];
     <div class='field-error-message'>
-    %= 'Please fill in this field'      if $error->[0] eq 'required'
-    %= 'Please enter a valid answer'    if $error->[0] eq 'like'
+        %= $$error_message{$error} // "Unrecognised error code: '$error'"
     </div>
 %}
 

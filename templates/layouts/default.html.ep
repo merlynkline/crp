@@ -11,7 +11,7 @@
             input.field-with-error { background-color: #fd9e7e }
             .field-error-message { color: #dd7e5e }
         </style>
-% foreach my $extra_template (@{stash_list 'extra_header_templates'}) {
+% foreach my $extra_template (@{crp_stash_list 'extra_header_templates'}) {
 %=   include $extra_template
 % }
     </head>
