@@ -8,6 +8,7 @@ sub startup {
     my $self = shift;
 
     my $config = $self->plugin('Config');
+    $self->plugin(mail => $config->{mail});
 
     push @{$self->app->commands->namespaces}, 'CRP::Command';
 
@@ -40,7 +41,8 @@ sub crp_add_helpers {
             return [] unless $var_value;
             $var_value = [ $var_value ] unless ref $var_value;
             return $var_value;
-        });
+        }
+    );
 
     # database connection prefork-safe with DBIx::Connector
     my $connector = CRP::Model::Schema::build_connector($config->{database});

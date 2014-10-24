@@ -2,6 +2,7 @@ package CRP::Controller::Main;
 use Mojo::Base 'Mojolicious::Controller';
 use DateTime;
 use Try::Tiny;
+use CRP::Util:Wordnumber;
 
 sub welcome {
     my $c = shift;
@@ -45,7 +46,13 @@ sub register_interest {
     };
     return $c->page('carers') if($validation->has_error);
 
-    $c->redirect_to('/page/carers');
+    my $identifier = CRP::Util:Wordnumber::encode_number($new_record->{id});
+    $c->mail(
+        to          => $new_record->{email},
+        template    => 'main/email/enquiry_confirmation',
+    );
+
+    $c->redirect_to('/page/registered');
 }
 
 sub _number_or_null {
