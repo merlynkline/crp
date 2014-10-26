@@ -99,7 +99,7 @@ sub update_registration {
         $c->stash(confirmed => 1);
     }
 
-    if($c->param('do_update') eq 'Y') {
+    if($c->param('do_update')) {
         $record->$_($c->param($_)) foreach (qw(name location notify_new_courses notify_tutors send_newsletter));
         $record->$_(_number_or_null($c->param($_))) foreach (qw(latitude longitude));
         $c->stash(updated => 1);
