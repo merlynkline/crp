@@ -4,12 +4,14 @@ use DateTime;
 use Try::Tiny;
 use CRP::Util::WordNumber;
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 sub welcome {
     my $c = shift;
 
     $c->render;
 }
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 sub page {
     my $c = shift;
 
@@ -18,6 +20,7 @@ sub page {
     $c->render(template => "main/pages/$page");
 }
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 sub register_interest {
     my $c = shift;
 
@@ -48,7 +51,7 @@ sub register_interest {
     }
     catch {
         if(m{duplicate key .+enquiry_email}) {
-            $validation->error(_general => ['duplicate_email']);
+            $validation->error(email => ['duplicate_email']);
         }
         else {
             warn "Adding new enquiry: $_";
@@ -57,7 +60,23 @@ sub register_interest {
     };
     return $c->page('carers') if($validation->has_error);
 
-    my $identifier = CRP::Util::WordNumber::encode_number($new_record->id);
+    $c->_send_confirmation_email($new_record->id, $record);
+
+    $c->redirect_to($c->url_for('/page/registered')->query(email => $record->{email}));
+}
+
+sub _number_or_null {
+    my($number) = @_;
+
+    $number = undef unless $number =~ m{^-?\d+\.?\d*$};
+    return $number;
+}
+
+sub _send_confirmation_email {
+    my $c = shift;
+    my($id, $record) = @_;
+
+    my $identifier = CRP::Util::WordNumber::encode_number($id);
     my $email_info = {
         identifier              => $identifier,
         confirm_page            => $c->url_for('/update_registration')->query(id => $identifier)->to_abs(),
@@ -71,17 +90,22 @@ sub register_interest {
         template    => 'main/email/enquiry_confirmation',
         info        => $email_info,
     );
-
-    $c->redirect_to($c->url_for('/page/registered')->query(email => $record->{email}));
 }
 
-sub _number_or_null {
-    my($number) = @_;
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub resend_confirmation {
+    my($c) = @_;
 
-    $number = undef unless $number =~ m{^-?\d+\.?\d*$};
-    return $number;
+    my $email = $c->param('email');
+    return $c->redirect_to('/') unless $email;
+
+    my $record = $c->crp_model('Enquiry')->find({email => $email});
+    $c->_send_confirmation_email($record->id, {$record->get_inflated_columns}) if($record);
+
+    return $c->page('registered');
 }
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 sub update_registration {
     my($c) = @_;
 

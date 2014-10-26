@@ -21,8 +21,9 @@ sub startup {
     my $r = $self->routes;
 
     $r->get('/')->to('main#welcome');
-    $r->any('/main/register_interest')->to('main#register_interest');
     $r->any('/update_registration')->to('main#update_registration');
+    $r->any('/main/register_interest')->to('main#register_interest');
+    $r->any('/main/resend_confirmation')->to('main#resend_confirmation');
     $r->get('/page/*page')->to('main#page');
 
     my $tests=$r->under('/test')->to('test#authenticate');

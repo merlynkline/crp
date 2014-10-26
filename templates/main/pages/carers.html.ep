@@ -23,7 +23,13 @@
     <table>
         <tr>
             <td>Email address (we won't share your email address with anyone without asking you first)</td>
-            <td><%= include 'parts/error', field => 'email' %><%= email_field 'email' %>
+            <td><%= include 'parts/error', field => 'email' %>
+                % my $email_error = validation->error('email');
+                % if($email_error && $email_error->[0] eq 'duplicate_email') {
+                <small><a href="<%= url_for('/main/resend_confirmation')->query(email => param('email')) %>">Click here to re-send the confirmation email so you can change the saved details.</a></small>
+                % }
+                <%= email_field 'email' %>
+            </td>
         </tr>
         <tr>
             <td>You can also tell us your name if you like</td>
@@ -40,7 +46,7 @@
         </tr>
         <tr>
             <td>&nbsp;</td>
-            <td><%= include 'parts/error', field => '_general' %><%= submit_button 'Go'%>
+            <td><%= include 'parts/error', field => '_general' %><%= submit_button 'Go'%></td>
         </tr>
     </table>
 </form>
