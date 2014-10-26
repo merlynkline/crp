@@ -1,6 +1,7 @@
 
 - Next:
-    + Add workflow to actually show nearby courses without registering
+    + Clear old suspended records when adding/editing registrations
+    + On edit, suspend and send confirmation email? Would need to track dates so as not to happen on repeated edits or on first edit after unsuspending.
     + tests!!
 
 
