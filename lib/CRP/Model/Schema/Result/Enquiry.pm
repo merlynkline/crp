@@ -27,7 +27,7 @@ __PACKAGE__->add_columns(
     },
     create_date => {
         data_type           => 'timestamp',
-        default_value       => \'now()',
+        default_value       => \'(now())',
         is_nullable         => 0,
     },
     suspend_date => {
