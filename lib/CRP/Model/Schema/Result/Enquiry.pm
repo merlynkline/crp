@@ -85,6 +85,5 @@ sub notify_new_courses  { return shift->_boolean_accessor('notify_new_courses', 
 sub notify_tutors       { return shift->_boolean_accessor('notify_tutors',      @_); }
 sub send_newsletter     { return shift->_boolean_accessor('send_newsletter',    @_); }
 
-
 1;
 

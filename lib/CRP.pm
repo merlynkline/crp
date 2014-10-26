@@ -72,6 +72,19 @@ sub crp_add_helpers {
         }
     );
 
+    # Trimmed CGI parameter
+    $self->helper(
+        crp_trimmed_param => sub {
+            my $self = shift;
+            my($param) = @_;
+
+            my $value = $self->param($param);
+            $value =~ s{^\s+|\s+$}{}g if defined $value;
+            return $value;
+        }
+    );
+
+
 }
 
 1;

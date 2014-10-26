@@ -28,36 +28,40 @@ sub register_interest {
     $validation->required('email')->like(qr{^.+@.+[.].+});
     return $c->page('carers') if($validation->has_error);
     my $record = {
-        name                => $c->param('name'),
-        email               => $c->param('email'),
+        name                => $c->crp_trimmed_param('name'),
+        email               => $c->crp_trimmed_param('email'),
         suspend_date        => DateTime->now(),
-        location            => $c->param('location'),
+        location            => $c->crp_trimmed_param('location'),
         latitude            => _number_or_null($c->param('latitude')),
         longitude           => _number_or_null($c->param('longitude')),
         notify_new_courses  => 1,
         notify_tutors       => $c->param('tell_tutors'),
         send_newsletter     => $c->param('newsletter'),
     };
-    my $error;
     my $new_record;
-    try {
-        # DBIx::Class::ResultSet::create apparently doesn't call our custom accessors so
-        # use new_result and then call the accessors, then insert the new record.
-        my $row = $c->crp_model('Enquiry')->new_result($record);
-        foreach my $column (keys %$record) {
-            $row->$column($record->{$column});
-        }
-        $new_record = $row->insert;
+    if($c->_case_insensitive_enquiry_email_find($record->{email})) {
+        $validation->error(email => ['duplicate_email']);
     }
-    catch {
-        if(m{duplicate key .+enquiry_email}) {
-            $validation->error(email => ['duplicate_email']);
+    else {
+        try {
+            # DBIx::Class::ResultSet::create apparently doesn't call our custom accessors so
+            # use new_result and then call the accessors, then insert the new record.
+            my $row = $c->crp_model('Enquiry')->new_result($record);
+            foreach my $column (keys %$record) {
+                $row->$column($record->{$column});
+            }
+            $new_record = $row->insert;
         }
-        else {
-            warn "Adding new enquiry: $_";
-            $validation->error(_general => ['create_record']);
-        }
-    };
+        catch {
+            if(m{duplicate key .+enquiry_email}) {
+                $validation->error(email => ['duplicate_email']);
+            }
+            else {
+                warn "Adding new enquiry: $_";
+                $validation->error(_general => ['create_record']);
+            }
+        };
+    }
     return $c->page('carers') if($validation->has_error);
 
     $c->_send_confirmation_email($new_record->id, $record);
@@ -92,6 +96,13 @@ sub _send_confirmation_email {
     );
 }
 
+sub _case_insensitive_enquiry_email_find {
+    my $c = shift;
+    my($email) = @_;
+
+    return $c->crp_model('Enquiry')->find({'lower(me.email)' => lc $email});
+}
+
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 sub resend_confirmation {
     my($c) = @_;
@@ -99,7 +110,7 @@ sub resend_confirmation {
     my $email = $c->param('email');
     return $c->redirect_to('/') unless $email;
 
-    my $record = $c->crp_model('Enquiry')->find({email => $email});
+    my $record = $c->_case_insensitive_enquiry_email_find($email);
     $c->_send_confirmation_email($record->id, {$record->get_inflated_columns}) if($record);
 
     return $c->page('registered');
