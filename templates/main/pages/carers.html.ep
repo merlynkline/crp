@@ -27,15 +27,15 @@
         </tr>
         <tr>
             <td>You can also tell us your name if you like</td>
-            <td><%= text_field 'name' => '' %></td>
+            <td><%= text_field 'name' %></td>
         </tr>
         <tr>
             <td>Would you like us to pass on these details to any tutors who run courses near you in the future?</td>
-            <td><%= check_box 'tell_tutors' %></td>
+            <td><%= check_box tell_tutors => 'Y' %></td>
         </tr>
         <tr>
             <td>Would you like to receive an occasional newsletter from us?</td>
-            <td><%= check_box 'newsletter' %></td>
+            <td><%= check_box newsletter => 'Y' %></td>
         </tr>
         </tr>
         <tr>

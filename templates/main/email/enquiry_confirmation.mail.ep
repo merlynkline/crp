@@ -1,0 +1,41 @@
+%# Email sent when a carer registers interest
+%#
+%# stash 'info' is a hash of:
+%#     identifier           ID string for this stration
+%#     confirm_page         URL to go to to confirm registration
+%#     general_confirm_page URL to go to if the confirmation page link doesn't work
+%#     name
+%#     location
+%#     notify_new_courses
+%#     notify_tutors
+%#     send_newsletter
+%#
+% stash subject => "Enquiry confirmation from The Children's Reflexology Programme";
+%#
+% layout 'default';
+% my $info = stash('info');
+% if($info->{name}) {
+<p>Dear <%= $info->{name} %>,</p>
+% }
+<p>Thank you for your enquiry. Please confirm your registration by following the link to this address:</p>
+<p>&nbsp;&nbsp;&nbsp;<a href="<%= $info->{confirm_page} %>"><%= $info->{confirm_page} %></a></p>
+<p>You can use this link at any time to update your information.</p>
+<p>Thanks again for your interest - we look forward to helping you and the children you care for.</p>
+<p>&nbsp;</p>
+<p>The Children's Reflexology Programme</p>
+<p><small>P.S.</small></p>
+<p><small>If you have difficulty following the link, please copy and paste the confirmation page address shown
+below into your web browser (e.g. Internet Explorer, Chrome, FireFox, Safari) and then enter the confirmation
+code when requested.</small></p>
+<table border=0>
+    <tr>
+        <td>&nbsp;</td>
+        <td valign="top"><small><i>Address</i></td>
+        <td nowrap="nowrap"><small><%= $info->{general_confirm_page} %><small></td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td valign="top"><small><i>Code</i></td>
+        <td nowrap="nowrap"><small><%= $info->{identifier} %></small></td>
+    </tr>
+</table>

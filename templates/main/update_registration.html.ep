@@ -1,0 +1,70 @@
+%#<!DOCTYPE html>
+%# Registration confirmation and details editor.
+%# Stash variables:
+%#  confirmed           Flag: email address was confirmed
+%#  updated             Flag: Record was updated
+%#  confirmation_code   Pass this back in id
+%#  email               Email address these details are associated with
+%#
+%#  param() entries for registration details:
+%#      name
+%#      email
+%#      location
+%#      notify_new_courses  'Y' or ''
+%#      notify_tutors       'Y' or ''
+%#      send_newsletter     'Y' or ''
+% layout 'default', extra_header_templates => 'parts/location_input';
+% title 'Confirm registration';
+% my $info = stash('info');
+<h1>Confirm registration</h1>
+
+% if(stash 'confirmed') {
+<p>Thank you - your email address has been confirmed.<p>
+% }
+% if(stash 'updated') {
+<p>Your information has been updated.</p>
+% }
+
+<p>
+The details for your email address <%= stash 'email' %> are shown below.
+You can change any of the details and click the update button if you wish.
+</p>
+
+<form action="/update_registration" method="post">
+    %= hidden_field id => stash('confirmation_code');
+    %= hidden_field do_update => 'Y';
+    Location:
+    %= text_field 'location' => $info->{location}, onblur => 'locationInputHandler.codeAddress()', id => 'location-input-location'
+    <input type="button" value="check" onclick="locationInputHandler.codeAddress()" /><br />
+    %= hidden_field 'latitude' => param('latitude'), id => "location-input-latitude";
+    %= hidden_field 'longitude' => param('longitude'), id => "location-input-longitude";
+    <div style="height: 300px; width: 450px;">
+        <div id="location-input-map-canvas"></div>
+    </div>
+    The map shows how we understand the location you have entered. To make sure
+    we've understood it properly, click the 'check' button.
+    <table>
+        <tr>
+            <td>Your name</td>
+            <td><%= text_field 'name', value => $info->{name} %></td>
+        </tr>
+        <tr>
+            <td>Would you like us to notify you of new courses near you in the future?</td>
+            <td><%= check_box notify_new_courses => 'Y' %></td>
+        </tr>
+        <tr>
+            <td>Would you like us to pass on these details to any tutors who run courses near you in the future?</td>
+            <td><%= check_box notify_tutors => 'Y' %></td>
+        </tr>
+        <tr>
+            <td>Would you like to receive an occasional newsletter from us?</td>
+            <td><%= check_box send_newsletter => 'Y' %></td>
+        </tr>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td><%= submit_button 'Update'%>
+        </tr>
+    </table>
+</form>
+

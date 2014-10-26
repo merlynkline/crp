@@ -77,9 +77,8 @@ sub sqlt_deploy_hook {
 sub _boolean_accessor {
     my $self = shift;
     my $column = '_' . shift;
-
-    $self->$column(shift() ? 't' : 'f') if @_;
-    return $self->$column() eq 't';
+    $self->$column(shift() ? '1' : '0') if @_;
+    return $self->$column();
 }
 
 sub notify_new_courses  { return shift->_boolean_accessor('notify_new_courses', @_); }

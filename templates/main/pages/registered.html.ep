@@ -1,0 +1,20 @@
+%#<!DOCTYPE html>
+% layout 'default';
+% title 'Thank you for your enquiry';
+<h1>Thank you for your enquiry</h1>
+
+<p>
+We have sent a confirmation email to
+<%= param('email') || 'the address you entered' =%>.
+You must follow the link in the email to confirm your email address or
+<a href="/update_registration">click here and enter the confirmation code from the email</a>.
+Once your email address is confirmed we will send you automatic notifications of any
+new courses starting near you.
+</p>
+
+<p>
+If you wish to stop receiving notifications at any time, or change any of the other
+information you entered, you can use the same link in the email you will receive
+or you can come back to this web site and register the same email address again.
+</p>
+

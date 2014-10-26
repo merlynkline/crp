@@ -1,9 +1,10 @@
 %#<!DOCTYPE html>
 %# Render an error message for a given field
 % my $error_message = {
-%    required       => 'Please fill in this field',
-%    like           => 'Please enter a valid answer',
-%    create_record  => "Sorry - we couldn't record your information. Please try again.",
+%   required        => 'Please fill in this field.',
+%   like            => 'Please enter a valid answer.',
+%   create_record   => "Sorry - we couldn't record your information. Please try again.",
+%   duplicate_email => 'That email address is already registered.',
 % };
 % if(my $error = validation->error($field)) {
 %   $error = $error->[0];

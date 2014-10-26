@@ -1,12 +1,9 @@
 
 - Next:
-    - Fix boolean column accessors (fail when tickboxes ticked)
-    - Send confirmation email with link leading to update page
-    - add update page
-        - Includes message saying "enquiry confirmed" if the enquiry was suspended
-    - add explicit check for duplicate email address
-        - Offer to re-send the activation mail
-    - tests!!
+    + Add workflow to actually show nearby courses without registering
+    ~ add explicit check for duplicate email address
+        + Offer to re-send the activation mail
+    + tests!!
 
 
 - Main landing page

@@ -13,7 +13,7 @@ sub build_connector {
     my($config) = @_;
 
     my $dsn = build_dsn($config);
-    return DBIx::Connector->new($dsn, $config->{username}, $config->{password});
+    return DBIx::Connector->new($dsn, $config->{username}, $config->{password}, {pg_enable_utf8 => 1});
 }
 
 sub build_dsn {

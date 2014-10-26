@@ -22,6 +22,7 @@ sub startup {
 
     $r->get('/')->to('main#welcome');
     $r->any('/main/register_interest')->to('main#register_interest');
+    $r->any('/update_registration')->to('main#update_registration');
     $r->get('/page/*page')->to('main#page');
 
     my $tests=$r->under('/test')->to('test#authenticate');
@@ -51,6 +52,22 @@ sub crp_add_helpers {
             my ($self, $resultset) = @_;
             my $dbh = CRP::Model::Schema->connect(sub {return $connector->dbh});
             return $resultset ? $dbh->resultset($resultset) : $dbh;
+        }
+    );
+
+    # Email address to send email to
+    $self->helper(
+        crp_email_to => sub {
+            my $self = shift;
+            my($email, $name) = @_;
+
+            $name ||= '';
+            if($self->app->mode eq 'development') {
+                $name .= " (Was to: $email)";
+                $email = $self->app->config->{test}->{email};
+            }
+            $email = " <$email>" if $name;
+            return "$name$email";
         }
     );
 
