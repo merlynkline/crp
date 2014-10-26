@@ -135,7 +135,9 @@ sub update_registration {
     }
 
     if($c->param('do_update')) {
-        $record->$_($c->param($_)) foreach (qw(name location notify_new_courses notify_tutors send_newsletter));
+        $record->$_($c->crp_trimmed_param($_)) foreach (qw(
+            name location notify_new_courses notify_tutors send_newsletter
+        ));
         $record->$_(_number_or_null($c->param($_))) foreach (qw(latitude longitude));
         $c->stash(updated => 1);
     }

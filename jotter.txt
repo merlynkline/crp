@@ -1,8 +1,6 @@
 
 - Next:
     + Add workflow to actually show nearby courses without registering
-    ~ add explicit check for duplicate email address
-        + Offer to re-send the activation mail
     + tests!!
 
 
