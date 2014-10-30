@@ -15,7 +15,7 @@ sub startup {
     $self->secrets([$config->{secret}]);
     $self->sessions->cookie_name($config->{session_cookie_name});
 
-    $self->crp_add_helpers($config);
+    $self->crp_add_helpers();
 
     # Router
     my $r = $self->routes;
@@ -33,7 +33,6 @@ sub startup {
 
 sub crp_add_helpers {
     my $self = shift;
-    my($config) = @_;
 
     # Get a value from the stash, always returning a listref
     $self->helper(
@@ -47,7 +46,7 @@ sub crp_add_helpers {
     );
 
     # database connection prefork-safe with DBIx::Connector
-    my $connector = CRP::Model::Schema::build_connector($config->{database});
+    my $connector = CRP::Model::Schema::build_connector($self->app->config->{database});
     $self->helper(
         crp_model => sub {
             my ($self, $resultset) = @_;

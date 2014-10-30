@@ -67,6 +67,8 @@ sub register_interest {
     $c->_send_confirmation_email($new_record->id, $record);
 
     $c->redirect_to($c->url_for('/page/registered')->query(email => $record->{email}));
+
+    $c->_enquiry_housekeeping();
 }
 
 sub _number_or_null {
@@ -101,6 +103,16 @@ sub _case_insensitive_enquiry_email_find {
     my($email) = @_;
 
     return $c->crp_model('Enquiry')->find({'lower(me.email)' => lc $email});
+}
+
+sub _enquiry_housekeeping {
+    my $c = shift;
+
+    my $days = $c->app->config->{enquiry}->{max_suspended_period_days} || 30;
+    my $dtf = $c->crp_model('Enquiry')->result_source->schema->storage->datetime_parser;
+    $c->crp_model('Enquiry')->search(
+        { suspend_date => {'<', $dtf->format_datetime(DateTime->now()->subtract(days => $days))} }
+    )->delete;
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -149,6 +161,8 @@ sub update_registration {
     $c->param($_, $record->$_()) foreach(qw(name location));
     $c->param($_, $record->$_() ? 'Y' : '') foreach(qw(notify_new_courses notify_tutors send_newsletter));
     $c->render(template => "main/update_registration");
+
+    $c->_enquiry_housekeeping();
 }
 
 1;

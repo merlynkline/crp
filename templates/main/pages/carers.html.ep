@@ -26,7 +26,7 @@
             <td><%= include 'parts/error', field => 'email' %>
                 % my $email_error = validation->error('email');
                 % if($email_error && $email_error->[0] eq 'duplicate_email') {
-                <small><a href="<%= url_for('/main/resend_confirmation')->query(email => param('email')) %>">Click here to re-send the confirmation email so you can change the saved details.</a></small>
+                <small><a href="<%= url_for('/main/resend_confirmation')->query(email => param('email')) %>">Click here to re-send the confirmation email so you can change the saved details.</a><br /></small>
                 % }
                 <%= email_field 'email' %>
             </td>

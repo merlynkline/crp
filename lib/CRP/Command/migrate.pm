@@ -21,7 +21,7 @@ sub run {
     # Options
     local @ARGV = @_;
 
-    my $config = $self->app->plugin('Config')->{database};
+    my $config = $self->app->config->{database};
     my $init = 0;
     GetOptions('init' => \$init);
 
