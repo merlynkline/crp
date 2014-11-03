@@ -1,0 +1,157 @@
+body {
+    padding:        0;
+    margin:         0;
+    font-family:    sans-serif;
+    line-height:    140%;
+    background-color: #ddd;
+}
+#main-body-container {
+    width:          976px;
+    border-style:   solid;
+    border-width:   0 1px;
+    border-color:   black;
+    color:          #354;
+    margin:         0 auto;
+    background:     white url('/images/OtterFooter.jpg') no-repeat bottom;
+}
+#footrow {
+    width:          100%;
+    height:         100px;
+    background:     white url('/images/FootRow.jpg') repeat-x center;
+}
+#content-container {
+    vertical-align: top;
+    width:          100%;
+}
+#content {
+    width:          100%;
+}
+#left-nav-container {
+    vertical-align: top;
+    white-space:    nowrap;
+}
+#left-nav {
+    padding:        8px;
+    margin:         8px;
+}
+#left-nav img {
+    display:        block;
+    margin:         25px auto;
+}
+#left-nav ul {
+    padding:        0;
+    margin:         0;
+    border-color:   inherit;
+    border-style:   solid;
+    border-width:   0 0 1px 0;
+}
+#left-nav li {
+    list-style:     none;
+    margin:         0px;
+    padding:        4px;
+    border-color:   inherit;
+    border-style:   solid;
+    border-width:   1px 0 0 0;
+    font-weight:    bold;
+}
+#left-nav li.selected {
+    background:     #fed;
+}
+#left-nav li:hover {
+    background:     #edc;
+}
+#left-nav a {
+    color:          inherit;
+    text-decoration:    none;
+}
+#left-nav a:hover {
+    text-decoration:    underline;
+}
+#corner-mouse {
+    position:       fixed;
+    margin-left:   855px;
+    bottom:         -15px;
+}
+#corner-logo {
+    position:       fixed;
+    padding-left:   10px;
+    right:          auto;
+    bottom:         15px;
+}
+h1#heading {
+    font-size:      30px;
+    text-align:     center;
+    padding:        12px;
+    margin:         0;
+}
+#bottom-spacer {
+    width:          0;
+    height:         310px;
+    clear:          left;
+}
+#bottom-nav {
+    height:         50px;
+    clear:          left;
+    margin:         0 0 0 10px;
+}
+#sq-logo {
+    vertical-align:     text-bottom;
+}
+#bottom-nav ul {
+    display:        inline;
+    padding:        0;
+    margin:         0 0 0 40px;
+}
+#bottom-nav li {
+    display:        inline;
+    list-style:     none;
+    font-size:      12px;
+    margin:         0 0 20px 0;
+    padding:        0 20px;
+}
+#bottom-nav li:hover {
+    background:     #edc;
+}
+#review-container {
+    vertical-align: top;
+}
+#review-heading {
+    padding:        8px 0;
+    font-weight:    bold;
+}
+#reviews {
+    border:         3px solid #589;
+    background:     #acd;
+    border-radius:  8px;
+    padding:        8px;
+    margin:         8px;
+    line-height:    120%;
+}
+#review-list {
+    height:         350px;
+    width:          200px;
+    overflow:       hidden;
+    font-size:      12px;
+}
+#review-list ul {
+    padding:        0;
+    margin:         0;
+}
+#review-list li {
+    list-style:     none;
+    margin:         0px;
+    padding:        4px;
+    border-color:   inherit;
+    border-style:   solid;
+    border-width:   1px 0 0 0;
+}
+#review-list div {
+    text-align:     right;
+    font-style:     italic;
+}
+input.field-with-error {
+    background-color: #fd9e7e;
+}
+.field-error-message {
+    color: #dd7e5e;
+}

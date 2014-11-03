@@ -1,6 +1,10 @@
 
 + Next:
+    + Get layout working on the various existing pages
+    + create & connect some blank pages to fill menus
     + tests!!
+    + Re-factor helpers by writing a plugin, per Ian's example
+    + Move validation to a plug-in, similarly?
 
 
 + Main landing page
@@ -159,11 +163,11 @@
  Implementation notes
  --------------------
  
- + Do we need cookies on the non-logged-in site?
-    + Don't send a cookie until log-in
+ ~ Do we need cookies on the non-logged-in site? => No!
+    ~ Don't send a cookie until log-in
     + Cookie advice on login page
     + Successful login sends re-direct (with cookie) to logged-in home
-    + Logged-in home (and all protected pages) checks for cookie and redirects to 'must have cookies' page.
+    + Logged-in home (and all protected pages) checks for cookie and redirects to 'login' page with cookie warning.
  
  Workflow notes
  --------------
@@ -178,3 +182,14 @@
         + remove 001-auto.sql
     + run: ./script/crp migrate upgrade
 
+
+
+
+Formulae to find a long and lat a given distance and bearing from another:
+    - LAT2 = asin( sin LAT1 * cos Ad + cos LAT1 * sin Ad * cos BRNG )
+    - LONG2 = LONG1 + atan2( sin BRNG * sin Ad * cos LAT1, cos Ad - sin LAT1 * sin LAT2 )
+    - Ad is angular distance travelled = distance / earth's radius = distance(km)/6371
+    - BRNG is the bearing, clockwise from north
+    - We're interested in vertical and horizontal distances only so special cases of these formulae.
+    - Care needed near the poles where vertical displacment may crss over and horizontal may wrap.
+    
