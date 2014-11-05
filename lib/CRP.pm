@@ -22,6 +22,7 @@ sub startup {
 
     $r->get('/')->to('main#welcome');
     $r->any('/update_registration')->to('main#update_registration');
+    $r->any('/main/contact')->to('main#contact');
     $r->any('/main/register_interest')->to('main#register_interest');
     $r->any('/main/resend_confirmation')->to('main#resend_confirmation');
     $r->get('/page/*page')->to('main#page');
@@ -55,6 +56,17 @@ sub crp_add_helpers {
         }
     );
 
+    # Email address decorated with name if given
+    $self->helper(
+        crp_email_decorated => sub {
+            my $self = shift;
+            my($email, $name) = @_;
+
+            $email = " <$email>" if $name;
+            return "$name$email";
+        }
+    );
+
     # Email address to send email to
     $self->helper(
         crp_email_to => sub {
@@ -66,8 +78,7 @@ sub crp_add_helpers {
                 $name .= " (Was to: $email)";
                 $email = $self->app->config->{test}->{email};
             }
-            $email = " <$email>" if $name;
-            return "$name$email";
+            return $self->crp_email_decorated($email, $name);
         }
     );
 

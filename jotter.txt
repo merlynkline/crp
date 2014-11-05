@@ -1,5 +1,7 @@
 
 + Next:
+    + Contact emails lose linebreaks - fix
+    + add some decoration to the contact form andf the thank you page
     + Get layout working on the various existing pages
     + create & connect some blank pages to fill menus
     + tests!!

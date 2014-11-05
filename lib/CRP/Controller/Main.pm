@@ -21,6 +21,24 @@ sub page {
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub contact {
+    my $c = shift;
+
+    my $validation = $c->validation;
+    $validation->required('email')->like(qr{^.+@.+[.].+});
+    $validation->required('message');
+    return $c->page('contact') if($validation->has_error);
+
+    $c->mail(
+        from        => $c->crp_email_decorated($c->crp_trimmed_param('email'), $c->crp_trimmed_param('name')),
+        to          => $c->crp_email_to($c->app->config->{contact}->{to}),
+        template    => 'main/email/contact_form',
+        info        => {message => $c->param('message')},
+    );
+    $c->redirect_to($c->url_for('/page/contacted'));
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 sub register_interest {
     my $c = shift;
 

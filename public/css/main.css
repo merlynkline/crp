@@ -1,3 +1,6 @@
+html, body {
+    height:         100%;
+}
 body {
     padding:        0;
     margin:         0;
@@ -13,6 +16,8 @@ body {
     color:          #354;
     margin:         0 auto;
     background:     white url('/images/OtterFooter.jpg') no-repeat bottom;
+    min-height:     100%;
+    position:       relative;
 }
 #footrow {
     width:          100%;
@@ -86,13 +91,15 @@ h1#heading {
 }
 #bottom-spacer {
     width:          0;
-    height:         310px;
+    height:         385px;
     clear:          left;
 }
 #bottom-nav {
     height:         50px;
     clear:          left;
     margin:         0 0 0 10px;
+    position:       absolute;
+    bottom:         0;
 }
 #sq-logo {
     vertical-align:     text-bottom;
@@ -119,12 +126,23 @@ h1#heading {
     padding:        8px 0;
     font-weight:    bold;
 }
-#reviews {
+#reviews, fieldset, legend {
     border:         3px solid #589;
     background:     #acd;
     border-radius:  8px;
-    padding:        8px;
     margin:         8px;
+}
+legend {
+    padding:        2px 4px;
+    border-width:   2px;
+    border-radius:  6px;
+    border-bottom:  none;
+    margin-bottom:  2px;
+}
+#reviews, fieldset {
+    padding:        8px;
+}
+#reviews {
     line-height:    120%;
 }
 #review-list {
@@ -149,9 +167,37 @@ h1#heading {
     text-align:     right;
     font-style:     italic;
 }
-input.field-with-error {
-    background-color: #fd9e7e;
+label {
+    padding:        8px 0;
+    width:          25%;
+    float:          left;
+    text-align:     right;
+    clear:          left;
+    display:        block;
+}
+input, textarea {
+    border:         2px solid #589;
+    border-radius:  4px;
+    margin:         0 4px;
+    font-size:      16px;
+    padding:        4px;
+    font-weight:    bold;
+    font-family:    inherit;
+    color:          inherit;
+}
+.input-container {
+    float:          left;
+    margin-top:     4px;
+}
+.field-with-error {
+    background-color: #fde;
 }
 .field-error-message {
-    color: #dd7e5e;
+    color:          #d44;
+    font-size:      10px;
+    clear:          left;
+    margin:         0 10px;
+}
+a img {
+    border:         none;
 }

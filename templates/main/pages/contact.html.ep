@@ -1,0 +1,30 @@
+%#<!DOCTYPE html>
+% layout 'default', page_id => 'contact', heading => 'Contact us';
+% title 'Contact us';
+
+<p>Please get in contact with us using the form below. We will get back to you as soon as we can.</p>
+<form method="post" action="<%= url_for '/main/contact' %>">
+    <fieldset>
+        <legend>Contact form</legend>
+        <label for="name">Your name:</label>
+        <div class="input-container">
+            <%= text_field 'name', size => '30', id => 'name', autofocus => "autofocus" =%>
+            <%= include 'parts/error', field => 'name' =%>
+        </div>
+        <label for="email">Your email address:</label>
+        <div class="input-container">
+            <%= text_field 'email', size => '30', id => 'email', required => "required" =%>
+            <%= include 'parts/error', field => 'email' =%>
+        </div>
+        <label for="message">Message:</label>
+        <div class="input-container">
+            <%= text_area 'message', rows => '10', cols => '55', id => 'message', required => "required" =%>
+            <%= include 'parts/error', field => 'message' =%>
+        </div>
+        <label>&nbsp;</label>
+        <div class="input-container">
+            <input type="submit" value="Send" />
+        </div>
+    </fieldset>
+</form>
+

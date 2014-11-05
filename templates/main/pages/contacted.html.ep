@@ -1,0 +1,12 @@
+%#<!DOCTYPE html>
+% layout 'default', heading => 'Your message has been sent';
+% title 'Message sent';
+<h1>Thank you for your enquiry</h1>
+
+<p>Thank you for taking the time to contact us.</p>
+
+<p>
+Your message has been sent and we will respond as soon as we possibly can.
+In the meantime please explore our web site to find out more about The Children's Reflexology Programme.
+</p>
+

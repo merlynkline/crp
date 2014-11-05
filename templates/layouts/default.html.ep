@@ -11,32 +11,39 @@
 % foreach my $extra_template (@{crp_stash_list 'extra_header_templates'}) {
 %=   include $extra_template
 % }
+%#---------------------------------------------------------------------------
 % my $menu_entry = sub {
 %   my($page_id, $href, $desc) = @_;
-                                <%
-if(stash('page_id') eq $page_id) {  =%>
+%   my $this_page = (stash('page_id') || '') eq ($page_id || '');
+<% if($this_page) { =%>
 <li class="selected">&bull;&nbsp;<%
-} else {                            =%>
+} else { =%>
 <li>&nbsp;&nbsp;<%
-}                                   =%>
-<a href="<%= url_for $href %>"><%= $desc %></a></li>
+} =%>
+<% if(!$this_page) { =%><a href="<%= url_for $href %>"><% } =%>
+<%= $desc =%>
+<% if(!$this_page) { =%></a><% } =%>
+</li>
 % };
+%#---------------------------------------------------------------------------
     </head>
     <body class="page-body">
         <div id="main-body-container">
-            <h1 id="heading"><img src="<%= url_for '/images/CRPLogoSmall.png' %>" /> The Children's Reflexology Programme</h1>
+            <h1 id="heading"><img src="<%= url_for '/images/CRPLogoSmall.png' %>" />
+                <%= stash('heading') || "The Children's Reflexology Programme" =%>
+            </h1>
             <div id="footrow"></div>
             <table>
                 <tr>
                     <td id="left-nav-container">
                         <div id="left-nav">
                             <ul>
-% &$menu_entry('home',      '/', 'Home');
-% &$menu_entry('book',      '/', 'Book');
-% &$menu_entry('programme', '/', 'Programme');
-% &$menu_entry('courses',   '/', 'Courses');
-% &$menu_entry('tutors',    '/', 'Tutors');
-% &$menu_entry('contact',   '/', 'Contact');
+                                % $menu_entry->('home',      '/', 'Home');
+                                % $menu_entry->('book',      '/', 'Book');
+                                % $menu_entry->('programme', '/', 'Programme');
+                                % $menu_entry->('courses',   '/', 'Courses');
+                                % $menu_entry->('tutors',    '/', 'Tutors');
+                                % $menu_entry->('contact',   '/page/contact', 'Contact');
                             </ul>
                             <img src="<%= url_for '/images/Pokers.png' %>">
                         </div>
@@ -50,7 +57,7 @@ if(stash('page_id') eq $page_id) {  =%>
             </table>
             <div id="bottom-spacer"></div>
             <div id="bottom-nav">
-                <a href="http://www.susanquayle.co.uk/"><img src="images/SQCHLogoSmall.png" id="sq-logo" /></a>
+                <a href="http://www.susanquayle.co.uk/"><img src="/images/SQCHLogoSmall.png" id="sq-logo" /></a>
                 <ul>
                     <li>copyright</li>
                     <li>copyright</li>
@@ -58,7 +65,7 @@ if(stash('page_id') eq $page_id) {  =%>
                     <li>copyright</li>
                 </ul>
             </div>
-            <img src="images/CornerMouse.png" id="corner-mouse" />
+            <img src="/images/CornerMouse.png" id="corner-mouse" />
         </div>
     </body>
 </html>

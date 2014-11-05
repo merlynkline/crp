@@ -1,0 +1,10 @@
+%# Email sent when the contact form is filled in
+%#
+%# stash 'info' is a hash of:
+%#     message      Message to send
+%#
+% stash subject => "Website contact form: The Children's Reflexology Programme";
+%#
+% layout 'default';
+
+%= stash('info')->{message}
