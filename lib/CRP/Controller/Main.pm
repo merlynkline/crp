@@ -1,5 +1,6 @@
 package CRP::Controller::Main;
 use Mojo::Base 'Mojolicious::Controller';
+use Mojo::Util;
 use DateTime;
 use Try::Tiny;
 use CRP::Util::WordNumber;
@@ -29,11 +30,13 @@ sub contact {
     $validation->required('message');
     return $c->page('contact') if($validation->has_error);
 
+    my $message = Mojo::Util::xml_escape($c->param('message'));
+    $message =~ s{\n}{<br \\>\n}g;
     $c->mail(
         from        => $c->crp_email_decorated($c->crp_trimmed_param('email'), $c->crp_trimmed_param('name')),
         to          => $c->crp_email_to($c->app->config->{contact}->{to}),
         template    => 'main/email/contact_form',
-        info        => {message => $c->param('message')},
+        info        => {message => $message},
     );
     $c->redirect_to($c->url_for('/page/contacted'));
 }
