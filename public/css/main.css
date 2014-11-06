@@ -185,6 +185,9 @@ input, textarea {
     font-family:    inherit;
     color:          inherit;
 }
+input[type="submit"]:hover {
+    background:     #bbb;
+}
 .input-container {
     float:          left;
     margin-top:     4px;
