@@ -8,8 +8,8 @@
 % };
 % if(my $error = validation->error($field)) {
 %   $error = $error->[0];
-<span class='field-error-message'><br>&nbsp;&nbsp;&nbsp;
+<div class='field-error-message'>
     %= $$error_message{$error} // "Unrecognised error code: '$error'"
-</span>
+</div>
 %}
 

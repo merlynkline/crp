@@ -18,7 +18,7 @@
         </div>
         <label for="message">Message:</label>
         <div class="input-container">
-            <%= text_area 'message', rows => '10', cols => '55', id => 'message', required => "required" =%>
+            <%= text_area 'message', rows => '10', cols => '45', id => 'message', required => "required" =%>
             <%= include 'parts/error', field => 'message' =%>
         </div>
         <label>&nbsp;</label>

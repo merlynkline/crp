@@ -4,50 +4,71 @@
 <h1>Information for carers</h1>
 
 <form method="post" action="<%= url_for '/main/register_interest' %>">
-    To find out if there's a course happening near you, enter your location here:<br />
-    %= text_field 'location' => '', onblur => 'locationInputHandler.codeAddress()', id => 'location-input-location'
-    <input type="button" value="check" onclick="locationInputHandler.codeAddress()" /><br />
-    %= hidden_field 'latitude' => param('latitude'), id => "location-input-latitude"
-    %= hidden_field 'longitude' => param('longitude'), id => "location-input-longitude"
-    <div style="height: 300px; width: 450px;">
-        <div id="location-input-map-canvas"></div>
-    </div>
-    The map shows how we understand the location you have entered. To make sure
-    we've understood it properly, click the 'check' button.
-    <br />
-    <br />
     If you would also like us to notify you automatically when courses become available
     near you in the future, please enter some details below. We will send you a
     confirmation email before we make use of any of these details and you will be
     able to change or delete this information whenever you wish.
-    <table>
-        <tr>
-            <td>Email address (we won't share your email address with anyone without asking you first)</td>
-            <td><%= include 'parts/error', field => 'email' %>
-                % my $email_error = validation->error('email');
-                % if($email_error && $email_error->[0] eq 'duplicate_email') {
-                <small><a href="<%= url_for('/main/resend_confirmation')->query(email => param('email')) %>">Click here to re-send the confirmation email so you can change the saved details.</a><br /></small>
-                % }
-                <%= email_field 'email' %>
-            </td>
-        </tr>
-        <tr>
-            <td>You can also tell us your name if you like</td>
-            <td><%= text_field 'name' %></td>
-        </tr>
-        <tr>
-            <td>Would you like us to pass on these details to any tutors who run courses near you in the future?</td>
-            <td><%= check_box tell_tutors => 'Y' %></td>
-        </tr>
-        <tr>
-            <td>Would you like to receive an occasional newsletter from us?</td>
-            <td><%= check_box newsletter => 'Y' %></td>
-        </tr>
-        </tr>
-        <tr>
-            <td>&nbsp;</td>
-            <td><%= include 'parts/error', field => '_general' %><%= submit_button 'Go'%></td>
-        </tr>
-    </table>
+    <fieldset>
+        <legend>Find a course</legend>
+
+        <label for="location-input-location">Location:</label>
+        <div class="input-container">
+            %= text_field 'location' => '', onblur => 'locationInputHandler.codeAddress()', id => 'location-input-location', autofocus => 'autofocus';
+            <input type="button" value="check" onclick="locationInputHandler.codeAddress()" /><br />
+        </div>
+        %= hidden_field 'latitude' => param('latitude'), id => "location-input-latitude"
+        %= hidden_field 'longitude' => param('longitude'), id => "location-input-longitude"
+
+        <label>
+            <div class="field-extra-info">
+                The map shows how we understand the location you have entered. To make sure
+                we've understood it properly, click the <b>check</b> button. You may need to
+                enter more details in the location if we don't get it right first time.
+            </div>
+        </label>
+        <div id="location-input-map-container"><div id="location-input-map-canvas"></div></div>
+
+        <label for="email">Email address:
+            <div class="field-extra-info">We won't share your email address with anyone without asking you first.</div>
+        </label>
+        <div class="input-container">
+            %= email_field 'email', id => 'email'
+            <%= include 'parts/error', field => 'email' %>
+            % my $email_error = validation->error('email');
+            % if($email_error && $email_error->[0] eq 'duplicate_email') {
+            &nbsp;&nbsp;
+            <small><a href="<%= url_for('/main/resend_confirmation')->query(email => param('email')) %>">Click here to re-send the confirmation email so you can change the saved details.</a></small>
+            % }
+        </div>
+
+        <label for="name">Name:
+            <div class="field-extra-info">Tell us your name if you would like to.</div>
+        </label>
+        <div class="input-container">
+            %= text_field 'name', id => 'name';
+        </div>
+
+        <label for="tell_tutors">Tell tutors?
+            <div class="field-extra-info">
+                Would you like us to pass on these details to any tutors who run courses near you in the future?
+            </div>
+        </label>
+        <div class="input-container">
+            %= check_box tell_tutors => 'Y', id => 'tell_tutors';
+        </div>
+
+        <label for="newsletter">Subscribe to newsletter?
+            <div class="field-extra-info">Would you like to receive an occasional newsletter from us?</div>
+        </label>
+        <div class="input-container">
+            %= check_box newsletter => 'Y', id => 'newsletter';
+        </div>
+
+        <label>&nbsp;</label>
+        <div class="input-container">
+            %= submit_button 'Go'
+            <%= include 'parts/error', field => '_general' %>
+        </div>
+    </fieldset>
 </form>
 
