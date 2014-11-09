@@ -1,0 +1,7 @@
+%#<!DOCTYPE html>
+% layout 'default', heading => "The Children's Reflexology Programme";
+% title "The programme";
+
+<h1>How the programme works</h1>
+
+<p>All about the programme</p>

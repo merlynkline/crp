@@ -1,0 +1,7 @@
+%#<!DOCTYPE html>
+% layout 'default', heading => "The Mouse's House";
+% title "The Mouse's House";
+
+<h1>The Mouse's House</h1>
+
+<p>All about the book: The Mouse's House.<p>

@@ -1,7 +1,7 @@
 %#<!DOCTYPE html>
 % layout 'default', extra_header_templates => 'parts/location_input';
-% title 'Information for carers';
-<h1>Information for carers</h1>
+% title 'Course enquiry';
+<h1>Find a course near you</h1>
 
 <form method="post" action="<%= url_for '/main/register_interest' %>">
     If you would also like us to notify you automatically when courses become available

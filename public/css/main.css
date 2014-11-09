@@ -8,6 +8,15 @@ body {
     line-height:    140%;
     background-color: #ddd;
 }
+a {
+    color:          inherit;
+}
+a img {
+    border:         none;
+}
+a:visited   {
+    color:          inherit;
+}
 #main-body-container {
     width:          976px;
     border-style:   solid;
@@ -15,7 +24,7 @@ body {
     border-color:   black;
     color:          #354;
     margin:         0 auto;
-    background:     white url('/images/OtterFooter.jpg') no-repeat bottom;
+    background:     white url('/images/Animals/OtterFooter.jpg') no-repeat bottom;
     min-height:     100%;
     position:       relative;
 }
@@ -65,11 +74,10 @@ body {
 #left-nav li:hover {
     background:     #edc;
 }
-#left-nav a {
-    color:          inherit;
+#bottom-nav a, #left-nav a {
     text-decoration:    none;
 }
-#left-nav a:hover {
+#bottom-nav a:hover, #left-nav a:hover {
     text-decoration:    underline;
 }
 #corner-mouse {
@@ -91,7 +99,7 @@ h1#heading {
 }
 #bottom-spacer {
     width:          0;
-    height:         385px;
+    height:         335px;
     clear:          left;
 }
 #bottom-nav {
@@ -230,10 +238,16 @@ input[type="checkbox"] {
     margin:         0;
     padding:        0;
 }
-a img {
-    border:         none;
+.horizontal-divider-small {
+    margin:         4px auto;
+    width:          409px;
+    height:         41px;
+    background:     url('/images/Plants/LavenderHorizontal2.png');
 }
-a:visited   {
-    color:          inherit;
+.page-text-terminator {
+    margin:         4px auto;
+    width:          77px;
+    height:         67px;
+    background:     url('/images/Plants/Strawberry.png');
 }
 

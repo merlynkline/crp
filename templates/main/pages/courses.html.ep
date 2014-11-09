@@ -1,0 +1,9 @@
+%#<!DOCTYPE html>
+% layout 'default', heading => "Courses for parents and carers";
+% title "Courses";
+
+<h1>Courses for parents and carers</h1>
+
+<p>All about the courses.</p>
+<p>To find a course near you, <a href="<%= url_for "/page/enquiry" %>">click here</a>.</p>
+

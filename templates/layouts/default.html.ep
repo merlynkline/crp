@@ -14,7 +14,7 @@
 %#---------------------------------------------------------------------------
 % my $menu_entry = sub {
 %   my($page_id, $href, $desc) = @_;
-%   my $this_page = (stash('page_id') || '') eq ($page_id || '');
+%   my $this_page = (stash('page_id') || stash('page') || '') eq ($page_id || '');
 <% if($this_page) { =%>
 <li class="selected">&bull;&nbsp;<%
 } else { =%>
@@ -26,6 +26,7 @@
 </li>
 % };
 %#---------------------------------------------------------------------------
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     </head>
     <body class="page-body">
         <div id="main-body-container">
@@ -38,14 +39,14 @@
                     <td id="left-nav-container">
                         <div id="left-nav">
                             <ul>
-                                % $menu_entry->('home',      '/', 'Home');
-                                % $menu_entry->('book',      '/', 'Book');
-                                % $menu_entry->('programme', '/', 'Programme');
-                                % $menu_entry->('courses',   '/', 'Courses');
-                                % $menu_entry->('tutors',    '/', 'Tutors');
-                                % $menu_entry->('contact',   '/page/contact', 'Contact');
+                                % $menu_entry->('home',      '/',               'Home');
+                                % $menu_entry->('book',      '/page/book',      'Book');
+                                % $menu_entry->('programme', '/page/programme', 'Programme');
+                                % $menu_entry->('courses',   '/page/courses',   'Courses');
+                                % $menu_entry->('tutors',    '/page/tutors',    'Tutors');
+                                % $menu_entry->('contact',   '/page/contact',   'Contact');
                             </ul>
-                            <img src="<%= url_for '/images/Pokers.png' %>">
+                            <img src="<%= url_for '/images/Plants/Pokers.png' %>">
                         </div>
                     </td>
                     <td id="content-container">
@@ -59,13 +60,12 @@
             <div id="bottom-nav">
                 <a href="http://www.susanquayle.co.uk/"><img src="/images/SQCHLogoSmall.png" id="sq-logo" /></a>
                 <ul>
-                    <li>copyright</li>
-                    <li>copyright</li>
-                    <li>copyright</li>
-                    <li>copyright</li>
+                    <li><a href="<%= url_for '/page/copyright' %>">Copyright &copy; 2014</a></li>
+                    <li><a href="<%= url_for '/page/privacy' %>">Privacy policy</a></li>
+                    <li><a href="<%= url_for '/page/contact' %>">Contact us</a></li>
                 </ul>
             </div>
-            <img src="/images/CornerMouse.png" id="corner-mouse" />
+            <img src="/images/Animals/CornerMouse.png" id="corner-mouse" />
         </div>
     </body>
 </html>

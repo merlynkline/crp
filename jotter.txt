@@ -1,8 +1,8 @@
 
 + Next:
-    + add some decoration to the contact form andf the thank you page
-    + Get layout working on the various existing pages
-    + create & connect some blank pages to fill menus
+    + add some decoration to the contact form and the thank you page
+    + Fix up the internal test page to link to all the unreachable pages
+    + Fix the internal 404 page
     + tests!!
     + Re-factor helpers by writing a plugin, per Ian's example
     + Move validation to a plug-in, similarly?

@@ -11,8 +11,15 @@ Once the code has been entered you will be able to update your details at any ti
 % }
 
 <form method="get" action ="/update_registration">
-    Confirmation code:
-    %= text_field id => stash('confirmation_code')
-    %= submit_button 'Go'
+    <fieldset>
+        <legend>Confirmation form</legend>
+        <label for="id">Confirmation code:</label>
+        <div class="input-container">
+            <%= text_field id => stash('confirmation_code'), id => 'id', autofocus => "autofocus" =%>
+        </div>
+        <label>&nbsp;</label>
+        <div class="input-container">
+            <%= submit_button 'Go' =%>
+        </div>
+    </fieldset>
 </form>
-

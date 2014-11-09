@@ -17,6 +17,7 @@ sub page {
     my $c = shift;
 
     my $page = shift // $c->stash('page');
+    $c->stash('page', $page);
 
     $c->render(template => "main/pages/$page");
 }
@@ -47,7 +48,7 @@ sub register_interest {
 
     my $validation = $c->validation;
     $validation->required('email')->like(qr{^.+@.+[.].+});
-    return $c->page('carers') if($validation->has_error);
+    return $c->page('enquiry') if($validation->has_error);
     my $record = {
         name                => $c->crp_trimmed_param('name'),
         email               => $c->crp_trimmed_param('email'),
@@ -83,7 +84,7 @@ sub register_interest {
             }
         };
     }
-    return $c->page('carers') if($validation->has_error);
+    return $c->page('enquiry') if($validation->has_error);
 
     $c->_send_confirmation_email($new_record->id, $record);
 

@@ -1,0 +1,24 @@
+%#<!DOCTYPE html>
+% layout 'default', heading => "Privacy Policy";
+% title "Privacy";
+
+<p>We take your privacy very seriously.</p>
+<p>We collect and store only the minimum details necessary for us to conduct business with you.</p>
+<p>
+We will never pass any of your details on to any third party without
+obtaining your explicit consent except when we are required to do so
+by a legal instrument such as a court order.
+</p>
+<div class="horizontal-divider-small"></div>
+<p>
+We do not store cookies on your computer unless it is strictly necessary
+for the functions of the website you have chosen to use. In those cases
+we will still not store cookies on your computer without informing you
+first and giving you the opportunity to avoid having us do so. When
+we do store a cookie on your computer it will contain only the minimum
+information necessary for the operation of the site, typically an
+anonymous identifier and some information used for automatic login if
+you have requested that feature.
+</p>
+<div class="page-text-terminator"></div>
+

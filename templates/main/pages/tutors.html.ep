@@ -1,0 +1,7 @@
+%#<!DOCTYPE html>
+% layout 'default', heading => "Information for tutors";
+% title "Tutors";
+
+<h1>Become a certified practitioner</h1>
+
+<p>Information for tutors.</p>

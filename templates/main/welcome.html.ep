@@ -22,7 +22,6 @@ From here you can find a TCRP registered course in your area where you can enrol
                                     <li>Review six:  quite a lot of text in here, just to see what happens. quite a lot of text in here, just to see what happens. quite a lot of text in here, just to see what happens.<div>Fredwina</div></li>
                                 </ul>
                             </div>
-                            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
                             <script src="<%= url_for '/js/ScrollBox.js' %>"></script>
                             <script>
                                 $('#review-list').scrollbox({

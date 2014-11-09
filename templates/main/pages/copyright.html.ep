@@ -1,0 +1,23 @@
+%#<!DOCTYPE html>
+% layout 'default', heading => "Copyright notices";
+% title "Copyright";
+
+<p>
+Except where otherwise noted, the material on this web site and
+the content of all the courses, books and other published material
+associated with Children's Reflexology Programme are all copyright
+&copy; 2014 Susan Quayle. All rights are reserved.
+</p>
+<div class="horizontal-divider-small"></div>
+<p>
+The drawings of the animal characters are copyright &copy; 2014
+Melissa Muldoon - see <a href="http://www.melissamuldoon.co.uk">www.melissamuldoon.co.uk</a>.
+</p>
+<div class="horizontal-divider-small"></div>
+<p>
+The Children's Reflexology Programme is delivered only by Susan
+Quayle or by specially trained and qualified practitioners who
+have acquired and maintain appropriate certification. All such
+practitioners are listed on this web site.
+</p>
+<div class="page-text-terminator"></div>
