@@ -1,8 +1,11 @@
 % layout 'default';
 % title 'Test - development mode';
 <h1>Internal test page</h1>
-Various test facilities:
+Various pages that aren't directly reachable:
 <ul>
-<li><a href="/test/template/not_found.production">Test production 404 page</a></li>
+<li><a href="/test/template/not_found.production">Production 404 page</a></li>
+<li><a href="/update_registration">Enquiry registration update code entry</a></li>
+<li><a href="/update_registration?id=60-my-long-green-boys-shoes">Enquiry registration update</a></li>
+<li><a href="/page/contacted">Contact form acknowledgement</a></li>
 </ul>
 

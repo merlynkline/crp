@@ -1,8 +1,6 @@
 
 + Next:
     + add some decoration to the contact form and the thank you page
-    + Fix up the internal test page to link to all the unreachable pages
-    + Fix the internal 404 page
     + tests!!
     + Re-factor helpers by writing a plugin, per Ian's example
     + Move validation to a plug-in, similarly?
@@ -193,4 +191,33 @@ Formulae to find a long and lat a given distance and bearing from another:
     - BRNG is the bearing, clockwise from north
     - We're interested in vertical and horizontal distances only so special cases of these formulae.
     - Care needed near the poles where vertical displacment may crss over and horizontal may wrap.
-    
+
+- Tutor DB tables
+    - Tutor accounts
+        - ID
+        - create date
+        - last login date
+        - email
+        - password hash
+        - OTP hash
+        - OTP expiry
+        - Admin flag
+    - Tutor profiles
+        - TutorID
+        - security question
+        - security answer
+        - Name
+        - Address
+        - Telephone
+        - Postcode
+        - Photo
+        - Blurb
+    - Sessions
+        - ID
+        - TutorID
+        - Last access timestamp
+        - Data
+    - Courses
+    - Attendees
+    - Audit
+
