@@ -16,9 +16,9 @@
 %   my($page_id, $href, $desc) = @_;
 %   my $this_page = (stash('page_id') || stash('page') || '') eq ($page_id || '');
 <% if($this_page) { =%>
-<li class="selected">&bull;&nbsp;<%
+<li class="selected"><%
 } else { =%>
-<li>&nbsp;&nbsp;<%
+<li><%
 } =%>
 <% if(!$this_page) { =%><a href="<%= url_for $href %>"><% } =%>
 <%= $desc =%>

@@ -190,7 +190,9 @@ Formulae to find a long and lat a given distance and bearing from another:
     - Ad is angular distance travelled = distance / earth's radius = distance(km)/6371
     - BRNG is the bearing, clockwise from north
     - We're interested in vertical and horizontal distances only so special cases of these formulae.
-    - Care needed near the poles where vertical displacment may crss over and horizontal may wrap.
+    - Care needed near the poles where vertical displacment may cross over and horizontal may wrap.
+    - There are 111.045km per degree of latitude
+    - There are cos(lat)*111.045km per degree of longitude
 
 - Tutor DB tables
     - Tutor accounts

@@ -61,15 +61,23 @@ a:visited   {
 }
 #left-nav li {
     list-style:     none;
-    margin:         0px;
-    padding:        4px;
+    margin:         0;
+    padding:        0;
     border-color:   inherit;
     border-style:   solid;
     border-width:   1px 0 0 0;
     font-weight:    bold;
 }
+#left-nav li a {
+    display:        block;
+    padding:        4px 8px 4px 14px;
+}
+#left-nav li.selected:before {
+    content: "> ";
+}
 #left-nav li.selected {
     background:     #fed;
+    padding:        4px 8px 4px 0;
 }
 #left-nav li:hover {
     background:     #edc;
