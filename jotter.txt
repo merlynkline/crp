@@ -1,9 +1,8 @@
 
 + Next:
-    + add some decoration to the contact form and the thank you page
+    + add some decoration to the contact form and the thank you page (etc etc)
     + tests!!
-    + Re-factor helpers by writing a plugin, per Ian's example
-    + Move validation to a plug-in, similarly?
+    + Move validation to a plug-in?
 
 
 + Main landing page

@@ -34,8 +34,8 @@ sub contact {
     my $message = Mojo::Util::xml_escape($c->param('message'));
     $message =~ s{\n}{<br \\>\n}g;
     $c->mail(
-        from        => $c->crp_email_decorated($c->crp_trimmed_param('email'), $c->crp_trimmed_param('name')),
-        to          => $c->crp_email_to($c->app->config->{contact}->{to}),
+        from        => $c->crp->email_decorated($c->crp->trimmed_param('email'), $c->crp->trimmed_param('name')),
+        to          => $c->crp->email_to($c->app->config->{contact}->{to}),
         template    => 'main/email/contact_form',
         info        => {message => $message},
     );
@@ -50,10 +50,10 @@ sub register_interest {
     $validation->required('email')->like(qr{^.+@.+[.].+});
     return $c->page('enquiry') if($validation->has_error);
     my $record = {
-        name                => $c->crp_trimmed_param('name'),
-        email               => $c->crp_trimmed_param('email'),
+        name                => $c->crp->trimmed_param('name'),
+        email               => $c->crp->trimmed_param('email'),
         suspend_date        => DateTime->now(),
-        location            => $c->crp_trimmed_param('location'),
+        location            => $c->crp->trimmed_param('location'),
         latitude            => _number_or_null($c->param('latitude')),
         longitude           => _number_or_null($c->param('longitude')),
         notify_new_courses  => 1,
@@ -68,7 +68,7 @@ sub register_interest {
         try {
             # DBIx::Class::ResultSet::create apparently doesn't call our custom accessors so
             # use new_result and then call the accessors, then insert the new record.
-            my $row = $c->crp_model('Enquiry')->new_result($record);
+            my $row = $c->crp->model('Enquiry')->new_result($record);
             foreach my $column (keys %$record) {
                 $row->$column($record->{$column});
             }
@@ -114,7 +114,7 @@ sub _send_confirmation_email {
         location notify_new_courses notify_tutors send_newsletter name
     ));
     $c->mail(
-        to          => $c->crp_email_to(@$record{qw(email name)}),
+        to          => $c->crp->email_to(@$record{qw(email name)}),
         template    => 'main/email/enquiry_confirmation',
         info        => $email_info,
     );
@@ -124,15 +124,15 @@ sub _case_insensitive_enquiry_email_find {
     my $c = shift;
     my($email) = @_;
 
-    return $c->crp_model('Enquiry')->find({'lower(me.email)' => lc $email});
+    return $c->crp->model('Enquiry')->find({'lower(me.email)' => lc $email});
 }
 
 sub _enquiry_housekeeping {
     my $c = shift;
 
     my $days = $c->app->config->{enquiry}->{max_suspended_period_days} || 30;
-    my $dtf = $c->crp_model('Enquiry')->result_source->schema->storage->datetime_parser;
-    $c->crp_model('Enquiry')->search(
+    my $dtf = $c->crp->model('Enquiry')->result_source->schema->storage->datetime_parser;
+    $c->crp->model('Enquiry')->search(
         { suspend_date => {'<', $dtf->format_datetime(DateTime->now()->subtract(days => $days))} }
     )->delete;
 }
@@ -159,7 +159,7 @@ sub update_registration {
     my $record;
     if($confirmation_code) {
         my $id = CRP::Util::WordNumber::decode_number($confirmation_code);
-        $record = $c->crp_model('Enquiry')->find({id => $id}) if $id && length $id < 10;
+        $record = $c->crp->model('Enquiry')->find({id => $id}) if $id && length $id < 10;
     }
     return $c->render(template => "main/update_registration_retry") unless $record;
 
@@ -169,7 +169,7 @@ sub update_registration {
     }
 
     if($c->param('do_update')) {
-        $record->$_($c->crp_trimmed_param($_)) foreach (qw(
+        $record->$_($c->crp->trimmed_param($_)) foreach (qw(
             name location notify_new_courses notify_tutors send_newsletter
         ));
         $record->$_(_number_or_null($c->param($_))) foreach (qw(latitude longitude));
