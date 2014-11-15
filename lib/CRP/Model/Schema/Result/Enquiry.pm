@@ -1,4 +1,3 @@
-use utf8;
 package CRP::Model::Schema::Result::Enquiry;
 
 use strict;
@@ -26,12 +25,14 @@ __PACKAGE__->add_columns(
         is_nullable         => 0,
     },
     create_date => {
-        data_type           => 'timestamp',
+        data_type           => 'timestamptz',
+        timezone            => 'UTC',
         default_value       => \'(now())',
         is_nullable         => 0,
     },
     suspend_date => {
-        data_type           => 'timestamp',
+        data_type           => 'timestamptz',
+        timezone            => 'UTC',
         is_nullable         => 1,
     },
     location => {
@@ -49,17 +50,14 @@ __PACKAGE__->add_columns(
     notify_new_courses => {
         data_type           => 'boolean',
         is_nullable         => 1,
-        accessor            => '_notify_new_courses',
     },
     notify_tutors => {
         data_type           => 'boolean',
         is_nullable         => 1,
-        accessor            => '_notify_tutors',
     },
     send_newsletter => {
         data_type           => 'boolean',
         is_nullable         => 1,
-        accessor            => '_send_newsletter',
     },
 );
 
@@ -74,16 +72,6 @@ sub sqlt_deploy_hook {
     }
 }
 
-sub _boolean_accessor {
-    my $self = shift;
-    my $column = '_' . shift;
-    $self->$column(shift() ? '1' : '0') if @_;
-    return $self->$column();
-}
-
-sub notify_new_courses  { return shift->_boolean_accessor('notify_new_courses', @_); }
-sub notify_tutors       { return shift->_boolean_accessor('notify_tutors',      @_); }
-sub send_newsletter     { return shift->_boolean_accessor('send_newsletter',    @_); }
 
 1;
 

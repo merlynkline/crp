@@ -173,6 +173,7 @@
  + DB changes:
     + Modify lib/CRP/Model/Schema/Result/*
     + Update version number in lib/CRP/Model/Schema.pm
+    + check status - run: ./script/crp migrate prepare
     + run: ./script/crp migrate prepare
     + check new autosql files like: share/deploy/migrations/PostgreSQL/upgrade/1-2/001-auto.sql
     + if any tweaks are needed:
@@ -204,6 +205,7 @@ Formulae to find a long and lat a given distance and bearing from another:
         - OTP hash
         - OTP expiry
         - Admin flag
+        - Autologin requested
     - Tutor profiles
         - TutorID
         - security question
@@ -221,5 +223,11 @@ Formulae to find a long and lat a given distance and bearing from another:
         - Data
     - Courses
     - Attendees
-    - Audit
+    - Audit\
+        - ID
+        - Timestamp
+        - TutorID (or NULL)
+        - Event class
+        - Event type
+        - Details
 
