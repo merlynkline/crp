@@ -37,7 +37,7 @@ sub register {
             my($email, $name) = @_;
 
             $email = " <$email>" if $name;
-            return "$name$email";
+            return ($name // '') . $email;
         }
     );
 
