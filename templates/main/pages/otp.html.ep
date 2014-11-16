@@ -1,7 +1,7 @@
 %#<!DOCTYPE html>
 % layout 'default';
-% title 'Enter your temporary password';
-<h1>Temporary password login</h1>
+% title 'Temporary password log-in';
+<h1>Temporary password log-in</h1>
 
 % if(param 'email' || param 'sent') {
 <p>
@@ -11,6 +11,8 @@ We have sent a temporary password to
 %}
 <p>
 Please click the link in your temporary password email or enter the code from the email below to continue.
+Note that temporary passwords have limited life - if you are having difficulty getting yours to work then
+you can request a new one from the <a href="<%= url_for '/page/login' %>">log-in page</a>.
 </p>
 
 <form method="post" action="<%= url_for '/otp' %>">
