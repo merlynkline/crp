@@ -1,0 +1,34 @@
+%# Email sent when a tutor requests an OTP
+%#
+%# stash 'info' is a hash of:
+%#     identifier           ID string for this OTP
+%#     otp_page             URL to go to to log in with this OTP
+%#     general_otp_page     URL to go to if the link doesn't work
+%#     hours                Number of hours this OTP is valid for
+%#
+% stash subject => "Temporary password from The Children's Reflexology Programme";
+%#
+% layout 'default';
+% my $info = stash('info');
+<p>We're sorry to hear you are having trouble logging in to The Children's Reflexology Programme. As requested, we have set up a temporary password. You can log in with this password by following the link to this address:</p>
+<p>&nbsp;&nbsp;&nbsp;<a href="<%= $info->{otp_page} %>"><%= $info->{otp_page} %></a></p>
+<p>Please note that this password replaces any previously issued temporary password. It will only work for <%= $info->{hours} %> hours from the date of this message and may only be used once.</p>
+<p>If you're still not able to log in please use the contact form on the site to ask for further help.</p>
+<p>&nbsp;</p>
+<p><i>The Children's Reflexology Programme</i></p>
+<p><small>P.S.</small></p>
+<p><small>If you have difficulty following the link, please copy and paste the log in page address shown
+below into your web browser (e.g. Internet Explorer, Chrome, FireFox, Safari) and then enter the log in
+code when requested.</small></p>
+<table border=0>
+    <tr>
+        <td>&nbsp;</td>
+        <td valign="top"><small><i>Address</i></td>
+        <td nowrap="nowrap"><small><%= $info->{general_otp_page} %><small></td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td valign="top"><small><i>Code</i></td>
+        <td nowrap="nowrap"><small><%= $info->{identifier} %></small></td>
+    </tr>
+</table>

@@ -25,7 +25,10 @@ sub startup {
     $r->any('/main/contact')->to('main#contact');
     $r->any('/main/register_interest')->to('main#register_interest');
     $r->any('/main/resend_confirmation')->to('main#resend_confirmation');
+    $r->any('/main/login')->to('main#login');
     $r->get('/page/*page')->to('main#page');
+    $r->any('/otp')->to('main#otp');
+    $r->get('/otp/*otp')->to('main#otp');
 
     my $tests=$r->under('/test')->to('test#authenticate');
     $tests->get('/')->to('test#welcome');

@@ -1,5 +1,6 @@
 
 + Next:
+    + Get login working - see TODOs in code
     + add some decoration to the contact form and the thank you page (etc etc)
     + tests!!
     + Move validation to a plug-in?

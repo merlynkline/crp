@@ -139,7 +139,7 @@ sub _enquiry_housekeeping {
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 sub resend_confirmation {
-    my($c) = @_;
+    my $c = shift;
 
     my $email = $c->param('email');
     return $c->redirect_to('/') unless $email;
@@ -152,7 +152,7 @@ sub resend_confirmation {
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 sub update_registration {
-    my($c) = @_;
+    my $c = shift;
 
     my $confirmation_code = $c->param('id');
 
@@ -185,6 +185,98 @@ sub update_registration {
     $c->render(template => "main/update_registration");
 
     $c->_enquiry_housekeeping();
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub login {
+    my $c = shift;
+
+    my $email       = $c->crp->trimmed_param('email');
+    my $password    = $c->crp->trimmed_param('password');
+    my $auto_login  = $c->param('auto_login');
+    my $forgotten   = $c->param('forgotten');
+
+    my $validation = $c->validation;
+    $validation->required('email')->like(qr{^.+@.+[.].+});
+    my $login_record = $c->_case_insensitive_login_email_find($email);
+    $validation->error(email => ['no_such_email']) unless $login_record;
+    return $c->page('login') if($validation->has_error);
+
+    return $c->_send_otp($login_record) if $forgotten;
+
+    $validation->required('password');
+    unless($validation->has_error) {
+#TODO: validate the password here
+        $validation->error(password => ['incorrect_password']);
+        sleep 3;
+    }
+    return $c->page('login') if $validation->has_error;
+
+#TODO: Handle actual login logic
+    die "eeek";
+}
+
+sub _case_insensitive_login_email_find {
+    my $c = shift;
+    my($email) = @_;
+
+    return $c->crp->model('Login')->find({'lower(me.email)' => lc $email});
+}
+
+sub _send_otp {
+    my $c = shift;
+    my($login_record) = @_;
+
+    my $identifier = CRP::Util::WordNumber::encode_number($login_record->id);
+    my $otp = unpack "H32", Mojo::Util::md5_bytes CRP::Util::WordNumber::encode_number(int rand() * 100000);
+    my $hours = $c->app->config->{login}->{otp_lifetime};
+    my $email_info = {
+        identifier          => "$identifier/$otp",
+        otp_page            => $c->url_for("/otp/$identifier/$otp")->to_abs(),
+        general_otp_page    => $c->url_for('/otp')->to_abs(),
+        lifetime            => $hours,
+    };
+    $c->mail(
+        to          => $c->crp->email_to($login_record->email),
+        template    => 'main/email/otp',
+        info        => $email_info,
+    );
+
+    $login_record->otp_expiry_date(DateTime->now()->add(hours => $hours));
+    $login_record->otp_hash($otp);
+    $login_record->update();
+
+    $c->redirect_to($c->url_for('/otp')->query(email => $login_record->email));
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub otp {
+    my $c = shift;
+
+    my $otp = $c->stash('otp') || $c->crp->trimmed_param('otp');
+    return $c->page('otp') unless $otp;
+
+    my $validation = $c->validation;
+    $validation->error(otp => ['like']) unless $otp =~ m{[a-z0-9-]+/[a-f0-9]{32,32}}i;
+    return $c->page('otp') if($validation->has_error);
+
+    my($identifier, $hash) = split '/', $otp;
+    my $id = CRP::Util::WordNumber::decode_number($identifier);
+    my $login_record = $c->crp->model('Login')->find($id);
+    unless($login_record
+      && $login_record->otp_hash eq $hash
+      && $login_record->otp_expiry_date > DateTime->now) {
+        $validation->error(otp => ['incorrect_password']);
+        sleep 3;
+    }
+    return $c->page('otp') if($validation->has_error);
+    
+    $login_record->otp_expiry_date(undef);
+    $login_record->otp_hash(undef);
+    $login_record->update();
+
+#TODO: Handle actual login logic
+    die "eeek";
 }
 
 1;

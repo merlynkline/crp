@@ -45,6 +45,7 @@
                                 % $menu_entry->('courses',   '/page/courses',   'Courses');
                                 % $menu_entry->('tutors',    '/page/tutors',    'Tutors');
                                 % $menu_entry->('contact',   '/page/contact',   'Contact');
+                                % $menu_entry->('login',     '/page/login',     'Log in');
                             </ul>
                             <img src="<%= url_for '/images/Plants/Pokers.png' %>">
                         </div>

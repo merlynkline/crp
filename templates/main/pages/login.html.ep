@@ -1,0 +1,56 @@
+%#<!DOCTYPE html>
+% layout 'default', heading => "Tutor log-in";
+% title "Log in";
+
+<h1>Tutor log-in</h1>
+% if(stash('message') eq 'SESSION_EXPIRED') {
+<p>
+Sorry - your session has expired. Please log in below to continue.
+</p>
+%}
+% if(stash('message') eq 'LOGIN_REQUIRED') {
+<p>
+Sorry - you must be logged in to access that page. Please log in below to continue.
+</p>
+%}
+
+<form method="post" action="<%= url_for '/main/login' %>">
+    <fieldset>
+        <legend>Tutor log-in</legend>
+        <label for="email">Email address:</label>
+        <div class="input-container">
+            <%= text_field 'email', size => '30', id => 'email', required => "required" =%>
+            <%= include 'parts/error', field => 'email' =%>
+        </div>
+        <label for="password">Password:
+            <div class="field-extra-info">
+                If you've forgotten your password enter just your email address
+                and click <b>Forgotten password</b>.
+            </div>
+        </label>
+        <div class="input-container">
+            <%= password_field 'password', size => '30', id => 'password' =%>
+            <%= include 'parts/error', field => 'password' =%>
+        </div>
+        <label for="auto-login">Remember me:
+            <div class="field-extra-info">
+                Choose this option to be remembered on this computer for a longer
+                period. Do not choose this option on a public computer such as in
+                a library.
+            </div>
+        </label>
+        <div class="input-container">
+            <%= check_box auto_login => 'Y', id => 'auto-login' =%>
+        </div>
+        <label></label>
+        <div class="input-container">
+            <%= submit_button 'Log in', name => 'login' =%>
+            <%= submit_button 'Forgotten password', name => 'forgotten' =%>
+        </div>
+        <div class="field-extra-info">
+            When you log in to this service we will set a cookie on your computer
+            so that we can identify you. For more information see our
+            <a href="<%= url_for '/page/privacy' =%>">privacy policy</a>.
+        </div>
+    </fieldset>
+</form>

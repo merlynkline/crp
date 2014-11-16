@@ -1,0 +1,29 @@
+%#<!DOCTYPE html>
+% layout 'default';
+% title 'Enter your temporary password';
+<h1>Temporary password login</h1>
+
+% if(param 'email' || param 'sent') {
+<p>
+We have sent a temporary password to
+<%= param('email') || 'the address you entered' =%>.
+</p>
+%}
+<p>
+Please click the link in your temporary password email or enter the code from the email below to continue.
+</p>
+
+<form method="post" action="<%= url_for '/otp' %>">
+    <fieldset>
+        <legend>Temporary password</legend>
+        <label for="id">Code from email:</label>
+        <div class="input-container">
+            <%= text_field 'otp', id => 'id', autofocus => "autofocus", required => "required" =%>
+            <%= include 'parts/error', field => 'otp' =%>
+        </div>
+        <label>&nbsp;</label>
+        <div class="input-container">
+            <%= submit_button 'Log in' =%>
+        </div>
+    </fieldset>
+</form>

@@ -23,7 +23,7 @@
         </div>
         <label>&nbsp;</label>
         <div class="input-container">
-            <input type="submit" value="Send" />
+            <%= submit_button 'Send', name => 'send' %>
         </div>
     </fieldset>
 </form>
