@@ -9,6 +9,7 @@ my $home_page_text = "the children's reflexology programme";
 $t->get_ok('/')->status_is(200)->content_like(qr/$home_page_text/i);
 
 $t->get_ok('/page/__should__not__exist')->status_is(404);
-$t->get_ok('/page/carers')->status_is(200);
+$t->get_ok('/page/book')->status_is(200);
+$t->get_ok('/page/programme')->status_is(200);
 
 done_testing();
