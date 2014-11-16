@@ -1,14 +1,15 @@
 %#<!DOCTYPE html>
 % layout 'default', heading => "Tutor log-in";
 % title "Log in";
+% my $message = stash('message') || '';
 
 <h1>Tutor log-in</h1>
-% if(stash('message') eq 'SESSION_EXPIRED') {
+% if($message eq 'SESSION_EXPIRED') {
 <p>
 Sorry - your session has expired. Please log in below to continue.
 </p>
 %}
-% if(stash('message') eq 'LOGIN_REQUIRED') {
+% if($message eq 'LOGIN_REQUIRED') {
 <p>
 Sorry - you must be logged in to access that page. Please log in below to continue.
 </p>
