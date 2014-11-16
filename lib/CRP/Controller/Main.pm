@@ -264,7 +264,7 @@ sub otp {
     my $id = CRP::Util::WordNumber::decode_number($identifier);
     my $login_record = $c->crp->model('Login')->find($id);
     unless($login_record
-      && $login_record->otp_hash eq $hash
+      && ($login_record->otp_hash // '') eq $hash
       && $login_record->otp_expiry_date > DateTime->now) {
         $validation->error(otp => ['incorrect_password']);
         sleep 3;
