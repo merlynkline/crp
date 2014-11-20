@@ -68,6 +68,16 @@ sub register {
         }
     );
 
+    # Session stored in DB
+    my $session;
+    $app->helper(
+        'crp.session' => sub {
+            my $self = shift;
+
+            $session = shift if @_;
+            return $session;
+        }
+    );
 
 }
 

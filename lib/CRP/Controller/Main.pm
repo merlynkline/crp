@@ -4,6 +4,18 @@ use Mojo::Util;
 use DateTime;
 use Try::Tiny;
 use CRP::Util::WordNumber;
+use CRP::Util::Session;
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub get_session {
+    my $c = shift;
+
+    my $crp_session = CRP::Util::Session->new(mojo => $c);
+    $c->stash('crp_session', $crp_session);
+    return 1;
+}
+
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 sub welcome {
@@ -275,8 +287,17 @@ sub otp {
     $login_record->otp_hash(undef);
     $login_record->update();
 
-#TODO: Handle actual login logic
-    die "eeek";
+    $c->_do_login($login_record->id);
+    $c->redirect_to($c->url_for('/'));
+}
+
+sub _do_login {
+    my $c = shift;
+    my($instructor_id) = @_;
+
+    my $crp_session = $c->stash('crp_session');
+    $crp_session->create_new;
+    $crp_session->instructor_id($instructor_id);
 }
 
 1;

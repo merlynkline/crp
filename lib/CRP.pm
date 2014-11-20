@@ -4,6 +4,7 @@ use DBIx::Connector;
 
 use CRP::Helper::Main;
 use CRP::Model::Schema;
+use CRP::Util::Session;
 
 # This method will run once at server start
 sub startup {
@@ -13,12 +14,14 @@ sub startup {
     $self->plugin('CRP::Helper::Main');
     $self->plugin(mail => $config->{mail});
     $self->secrets([$config->{secret}]);
-    $self->sessions->cookie_name($config->{session_cookie_name});
+    $self->sessions->cookie_name($config->{session}->{cookie_name});
 
     push @{$self->app->commands->namespaces}, 'CRP::Command';
 
     # Router
-    my $r = $self->routes;
+    my $r1 = $self->routes;
+
+    my $r = $r1->under('/')->to('main#get_session');
 
     $r->get('/')->to('main#welcome');
     $r->any('/update_registration')->to('main#update_registration');
@@ -30,11 +33,11 @@ sub startup {
     $r->any('/otp')->to('main#otp');
     $r->get('/otp/*otp')->to('main#otp');
 
-    my $tests=$r->under('/test')->to('test#authenticate');
+    my $tests = $r->under('/test')->to('test#authenticate');
     $tests->get('/')->to('test#welcome');
     $tests->get('/template/*template')->to('test#template');
-}
 
+}
 
 1;
 

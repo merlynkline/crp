@@ -1,9 +1,45 @@
 
+
+- Cookie session contains:
+    - CRP Session ID
+    - Auto-login instructor ID (if any)
+    - Last access date
+- Cookie expires after session expiry time or auto-login expiry time if it has auto-login
+- On logout
+    - Delete the CRP session
+    - Set the CRP session ID in the session cookie to null
+    - If there's no auto-login, set $c->session(expires => 1) to delete the session cookie
+
+
+session:
+    new($c): discard existing session and create a new one. if there's a cookie, attempt to retrieve a session from it.
+    set(attribute, value): set or delete an attribute. Set dirty flag as required.
+
+
+
+
+
 + Next:
     + Get login working - see TODOs in code
     + add some decoration to the contact form and the thank you page (etc etc)
     + tests!!
     + Move validation to a plug-in?
+	+ change do-not-reply address
+
+- Verified login:
+    - Get or create session
+    - Recover stored redirect URL from session
+    - Set up cookie: session ID, userid for auto login, expiry date (depending on auto-login)
+    - Clear session
+    - Set up session: user ID
+    - redirect to stored page or default
+ - Log-out
+    - Destroy session
+    - Remove session ID from cookie or delete it if auto-login not set
+    - redirect to home page
+
+(add protocols to back of register with boxes to enter week numbers)
+(name labels PDF)
 
 
 + Main landing page
@@ -55,6 +91,8 @@
     + A list of registered future/current courses (possibly hidden a bit - this is really for Google)
     + For each registered tutor there will be an automatically generated page with their details and a list of upcoming courses
     + A list of registered tutors (possibly hidden a bit - this is really for Google)
+    + Gallery
+    + Success stories
 + Tutors' area
     + More information about teaching CRP to carers
     + Information about the course
@@ -117,6 +155,7 @@
         + Tutors' forum using same login
         + Link to shop
 		+ Course costing calculator(s) - JS versions of the spreadsheets
+        + External resources: bibliography
     + General tutors' contact form (for contacting CRP as a potential tutor)
     + Log out
 + Administrators' area
@@ -216,6 +255,7 @@ Formulae to find a long and lat a given distance and bearing from another:
         - Postcode
         - Photo
         - Blurb
+        - web page slug
     - Sessions
         - ID
         - TutorID
@@ -223,7 +263,7 @@ Formulae to find a long and lat a given distance and bearing from another:
         - Data
     - Courses
     - Attendees
-    - Audit\
+    - Audit
         - ID
         - Timestamp
         - TutorID (or NULL)

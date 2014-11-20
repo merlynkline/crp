@@ -48,6 +48,7 @@
                                 % $menu_entry->('login',     '/page/login',     'Log in');
                             </ul>
                             <img src="<%= url_for '/images/Plants/Pokers.png' %>">
+% stash('crp_session')->{_mojo}=''; warn dumper(stash('crp_session'));
                         </div>
                     </td>
                     <td id="content-container">
