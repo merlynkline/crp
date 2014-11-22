@@ -19,9 +19,7 @@ sub startup {
     push @{$self->app->commands->namespaces}, 'CRP::Command';
 
     # Router
-    my $r1 = $self->routes;
-
-    my $r = $r1->under('/')->to('main#get_session');
+    my $r = $self->routes;
 
     $r->get('/')->to('main#welcome');
     $r->any('/update_registration')->to('main#update_registration');
@@ -33,10 +31,27 @@ sub startup {
     $r->any('/otp')->to('main#otp');
     $r->get('/otp/*otp')->to('main#otp');
 
+    my $logged_in = $r->under('/instructor')->to('logged_in#authenticate');
+    $logged_in->get('/')->to('logged_in#welcome');
+
     my $tests = $r->under('/test')->to('test#authenticate');
     $tests->get('/')->to('test#welcome');
     $tests->get('/template/*template')->to('test#template');
 
+    $self->app->hook(before_dispatch => \&_before_dispatch);
+    $self->app->hook(after_dispatch => \&_after_dispatch);
+}
+
+sub _before_dispatch {
+    my $c = shift;
+
+    $c->stash('crp_session', CRP::Util::Session->new());
+}
+
+sub _after_dispatch {
+    my $c = shift;
+
+    $c->stash('crp_session')->write($c);
 }
 
 1;

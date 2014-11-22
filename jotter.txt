@@ -1,9 +1,13 @@
 
 
+- lazy-load the db session
+- call the session writer on after_dispatch but only do anything if it's been lazy-loaded
+
 - Cookie session contains:
-    - CRP Session ID
-    - Auto-login instructor ID (if any)
-    - Last access date
+    - id: CRP Session ID
+    - auto_login_id: Auto-login instructor ID (if any)
+    - instructor_id: Logged in instructor id
+    - last_access: Last access date (epoch)
 - Cookie expires after session expiry time or auto-login expiry time if it has auto-login
 - On logout
     - Delete the CRP session

@@ -8,16 +8,6 @@ use CRP::Util::Session;
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-sub get_session {
-    my $c = shift;
-
-    my $crp_session = CRP::Util::Session->new(mojo => $c);
-    $c->stash('crp_session', $crp_session);
-    return 1;
-}
-
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 sub welcome {
     my $c = shift;
 
@@ -91,7 +81,6 @@ sub register_interest {
                 $validation->error(email => ['duplicate_email']);
             }
             else {
-                warn "Adding new enquiry: $_";
                 $validation->error(_general => ['create_record']);
             }
         };
@@ -296,8 +285,8 @@ sub _do_login {
     my($instructor_id) = @_;
 
     my $crp_session = $c->stash('crp_session');
-    $crp_session->create_new;
-    $crp_session->instructor_id($instructor_id);
+    $crp_session->create_new($c);
+    $crp_session->variable($c, instructor_id => $instructor_id);
 }
 
 1;

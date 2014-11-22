@@ -1,91 +1,164 @@
 package CRP::Util::Session;
 use Moose;
 
+use Carp;
 use Mojo::JSON qw(decode_json encode_json);
 use DateTime;
 
-has _mojo           => ( is => 'ro', isa => 'Mojolicious::Controller', init_arg => 'mojo');
-
+has _mojo           => ( is => 'rw', isa => 'Mojolicious::Controller', init_arg => 'mojo', init_arg => undef);
 has _id             => ( is => 'rw', isa => 'Int', default => 0, init_arg => undef);
 has expired         => ( is => 'ro', isa => 'Bool', writer => '_set_expired', default => 1, init_arg => undef);
-has instructor_id   => ( is => 'rw', isa => 'Int', default => 0, init_arg => undef);
 has _data           => ( is => 'ro', isa => 'HashRef', default => sub { {} }, init_arg => undef);
+has _loaded         => ( is => 'rw', isa => 'Bool', default => 0, init_arg => undef);
+has _dirty          => ( is => 'rw', isa => 'Bool', default => 0, init_arg => undef);
+
+my %_COOKIE_SESSION_VARIABLE = (
+    instructor_id   => 1,
+    auto_login_id   => 1,
+);
 
 
-sub BUILD {
+sub _load_or_create {
     my $self = shift;
-    my $c = $self->_mojo;
 
-    if($c->cookie($c->config->{session}->{cookie_name})) {
-        my $mojo_session = $c->session;
-    }
+    $self->_debug('_load_or_create: loaded=' . ($self->_loaded ? 'Y' : 'N'));
+    return if $self->_loaded;
+    my $c = $self->_mojo;
+    die "No session cookie" unless $c->cookie($c->config->{session}->{cookie_name});
+    my $row = $c->crp->model('Session')->find_or_create($c->session('id'));
+    $self->_id($row->id);
+    $c->session(id => $row->id);
+    $self->_data(decode_json($row->data));
+    $self->_loaded(1);
+    $self->_dirty(0);
+    $self->_debug('_load_or_create: done: id=' . $row->id);
 }
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 sub create_new {
     my $self = shift;
+    $self->_debug('create_new: ' . ref $_[0]);
+    $self->_save_mojo(shift);
 
-    $self->clear;
+    $self->_debug('create_new');
     my $c = $self->_mojo;
+    $self->clear($c);
     my $row = $c->crp->model('Session')->create({});
     $self->_id($row->id);
-    $c->session->{id} = $row->id;
-    $c->session->{auto_login_id} = 0;
-    $c->session(expiration => 0);
-    $c->session(expires => $c->config->{session}->{default_expiry} || 3600);
+    $self->_loaded(1);
+    $c->session(id => $row->id);
+    $c->session(auto_login_id => 0);
+    $c->session(expires => time + ($c->config->{session}->{default_expiry} || 3600));
+    $c->session(last_access => time);
+    $self->_debug('create_new: done: id=' . $row->id);
 }
 
-sub DEMOLISH {
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub write {
     my $self = shift;
+    $self->_save_mojo(shift);
    
-warn "DEMOLISH";
-    if($self->_id) {
-warn "DEMOLISH: ",$self->_id;
+    $self->_debug('write: dirty=' . ($self->_dirty ? 'Y' : 'N') . ', loaded=' . ($self->_loaded ? 'Y' : 'N'));
+    return unless $self->_dirty;
+    if($self->_loaded && $self->dirty) {
         $self->_mojo->crp->model('Session')->find($self->_id)->update(
             {
-                instructor_id       => $self->instructor_id,
                 last_access_date    => DateTime->now,
                 data                => encode_json($self->_data),
             }
         );
     }
+    $self->_dirty(0);
+    $self->_debug('write: done');
 }
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 sub variable {
+    my $self = shift;
+    $self->_save_mojo(shift);
+    my $variable = shift;
+
+    $self->_debug('variable: var=$variable, set = ' . (@_ ? 'Y' : 'N'));
+    my $value;
+    if($_COOKIE_SESSION_VARIABLE{$variable}) {
+        $value = $self->_cookie_session_variable($variable, @_);
+    }
+    else {
+        $value = $self->_db_session_variable($variable, @_);
+    }
+    $self->_mojo->session(last_access => time);
+    $self->_debug("variable: done: $value");
+    return $value;
+}
+
+sub _db_session_variable {
     my $self = shift;
     my $variable = shift;
 
     if(@_) {
         my $value = shift;
 
+        $self->_load_or_create;
         if(defined $value) {
+            $self->_dirty(
+                ! exists $self->_data->{$variable}
+                || ref $self->_data->{$variable}
+                || ref $value
+                || $value ne $self->_data->{$variable}
+            );
             $self->_data->{$variable} = $value;
         }
         else {
+            $self->_dirty(exists $self->_data->{$variable});
             delete $self->_data->{$variable};
         }
     }
     return exists $self->_data->{$variable} ? $self->_data->{$variable} : undef;
 }
 
+sub _cookie_session_variable {
+    my $self = shift;
+    my $variable = shift;
+
+    my $c = $self->_mojo;
+    if(@_) {
+        $c->session($variable => shift);
+        return $c->session($variable) // undef;
+    }
+    return $c->session($variable) // undef if $c->cookie($c->config->{session}->{cookie_name});
+    return undef;
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 sub clear {
     my $self = shift;
+    $self->_save_mojo(shift);
 
-    $self->_delete_record;
+    $self->_debug("clear");
+    $self->_mojo->crp->model('Session')->find($self->_id)->delete if $self->_id;
     $self->_set_expired(1);
     $self->_id(0);
     my $c = $self->_mojo;
-    $c->session->{id} = 0;
-    $c->session->{auto_login_id} = 0;
-    $c->session(expiration => 0);
+    $c->session(id => 0);
+    $c->session(auto_login_id => 0);
     $c->session(expires => 1);
+    $c->session(last_access => time);
+    $self->_loaded(0);
+    $self->_dirty(0);
 }
 
-sub _delete_record {
+sub _save_mojo {
     my $self = shift;
 
-    if($self->_id) {
-        $self->_mojo->crp->model('Session')->find($self->_id)->delete;
-    }
+    croak 'You must supply a Mojolicious controller as the first parameter'
+        unless ref $_[0] && $_[0]->isa('Mojolicious::Controller');
+    $self->_mojo(shift);
+}
+
+sub _debug {
+    my $self = shift;
+
+    warn @_;
 }
 
 no Moose;
