@@ -277,7 +277,7 @@ sub otp {
     $login_record->update();
 
     $c->_do_login($login_record->id);
-    $c->redirect_to($c->url_for('/'));
+    $c->redirect_to($c->url_for('logged_in_default'));
 }
 
 sub _do_login {

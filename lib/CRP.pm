@@ -32,7 +32,7 @@ sub startup {
     $r->get('/otp/*otp')->to('main#otp');
 
     my $logged_in = $r->under('/instructor')->to('logged_in#authenticate');
-    $logged_in->get('/')->to('logged_in#welcome');
+    $logged_in->get('/')->to('logged_in#welcome')->name('logged_in_default');
 
     my $tests = $r->under('/test')->to('test#authenticate');
     $tests->get('/')->to('test#welcome');

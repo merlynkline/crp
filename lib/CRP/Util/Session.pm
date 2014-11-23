@@ -78,7 +78,7 @@ sub variable {
     $self->_save_mojo(shift);
     my $variable = shift;
 
-    $self->_debug('variable: var=$variable, set = ' . (@_ ? 'Y' : 'N'));
+    $self->_debug("variable: var=$variable, set = " . (@_ ? 'Y' : 'N'));
     my $value;
     if($_COOKIE_SESSION_VARIABLE{$variable}) {
         $value = $self->_cookie_session_variable($variable, @_);
