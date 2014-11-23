@@ -5,7 +5,7 @@ use Carp;
 use Mojo::JSON qw(decode_json encode_json);
 use DateTime;
 
-has _mojo           => ( is => 'rw', isa => 'Mojolicious::Controller', init_arg => 'mojo', init_arg => undef);
+has _mojo           => ( is => 'rw', isa => 'Mojolicious::Controller', init_arg => 'mojo');
 has _id             => ( is => 'rw', isa => 'Int', default => 0, init_arg => undef);
 has expired         => ( is => 'ro', isa => 'Bool', writer => '_set_expired', default => 1, init_arg => undef);
 has _data           => ( is => 'rw', isa => 'HashRef', default => sub { {} }, init_arg => undef);
@@ -24,8 +24,13 @@ sub _load_or_create {
     $self->_debug('_load_or_create: loaded=' . ($self->_loaded ? 'Y' : 'N'));
     return if $self->_loaded;
     my $c = $self->_mojo;
-    die "No session cookie" unless $c->cookie($c->config->{session}->{cookie_name});
-    my $row = $c->crp->model('Session')->find_or_create({id => $c->session('id')});
+    my $row;
+    if($c->session('id')) {
+        $row = $c->crp->model('Session')->find_or_create({id => $c->session('id')});
+    }
+    else {
+        $row = $c->crp->model('Session')->create({});
+    }
     $self->_id($row->id);
     $c->session(id => $row->id);
     $self->_data($row->data ? decode_json($row->data) : {});
@@ -38,7 +43,6 @@ sub _load_or_create {
 sub create_new {
     my $self = shift;
     $self->_debug('create_new: ' . ref $_[0]);
-    $self->_save_mojo(shift);
 
     $self->_debug('create_new');
     my $c = $self->_mojo;
@@ -56,7 +60,6 @@ sub create_new {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 sub write {
     my $self = shift;
-    $self->_save_mojo(shift);
    
     $self->_debug('write: dirty=' . ($self->_dirty ? 'Y' : 'N') . ', loaded=' . ($self->_loaded ? 'Y' : 'N'));
     return unless $self->_dirty;
@@ -75,7 +78,6 @@ sub write {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 sub variable {
     my $self = shift;
-    $self->_save_mojo(shift);
     my $variable = shift;
 
     $self->_debug("variable: var=$variable, set = " . (@_ ? 'Y' : 'N'));
@@ -132,7 +134,6 @@ sub _cookie_session_variable {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 sub clear {
     my $self = shift;
-    $self->_save_mojo(shift);
 
     $self->_debug("clear");
     $self->_mojo->crp->model('Session')->find($self->_id)->delete if $self->_id;
@@ -145,14 +146,6 @@ sub clear {
     $c->session(last_access => time);
     $self->_loaded(0);
     $self->_dirty(0);
-}
-
-sub _save_mojo {
-    my $self = shift;
-
-    croak 'You must supply a Mojolicious controller as the first parameter'
-        unless ref $_[0] && $_[0]->isa('Mojolicious::Controller');
-    $self->_mojo(shift);
 }
 
 sub _debug {

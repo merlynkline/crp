@@ -46,13 +46,13 @@ sub startup {
 sub _before_dispatch {
     my $c = shift;
 
-    $c->stash('crp_session', CRP::Util::Session->new());
+    $c->stash('crp_session', CRP::Util::Session->new(mojo => $c));
 }
 
 sub _after_dispatch {
     my $c = shift;
 
-    $c->stash('crp_session')->write($c);
+    $c->stash('crp_session')->write();
 }
 
 1;

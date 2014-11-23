@@ -285,8 +285,8 @@ sub _do_login {
     my($instructor_id) = @_;
 
     my $crp_session = $c->stash('crp_session');
-    $crp_session->create_new($c);
-    $crp_session->variable($c, instructor_id => $instructor_id);
+    $crp_session->create_new();
+    $crp_session->variable(instructor_id => $instructor_id);
 }
 
 1;

@@ -4,7 +4,7 @@ use Mojo::Base 'Mojolicious::Controller';
 sub authenticate {
     my $self = shift;
 
-    my $logged_in_id = $self->stash('crp_session')->variable($self, 'instructor_id');
+    my $logged_in_id = $self->stash('crp_session')->variable('instructor_id');
     if($logged_in_id) {
         my $login_record = $self->crp->model('Login')->find($logged_in_id);
         if($login_record) {
@@ -21,7 +21,7 @@ sub _show_interstitial {
     my $self = shift;
     my($url, $session_vars) = @_;
 
-    my $destination = $self->stash('crp_session')->variable($self, 'interstitial_destination');
+    my $destination = $self->stash('crp_session')->variable('interstitial_destination');
     unless($destination) {
         if($self->req->method eq 'GET') {
             $destination = $self->req->url->to_string;
@@ -29,12 +29,12 @@ sub _show_interstitial {
         else {
             $destination = 'crp.logged_in_default';
         }
-        $self->stash('crp_session')->variable($self, 'interstitial_destination', $destination);
+        $self->stash('crp_session')->variable('interstitial_destination', $destination);
     }
 
     if($session_vars) {
         while(my($var, $value) = each %$session_vars) {
-            $self->stash('crp_session')->variable($self, $var, $value);
+            $self->stash('crp_session')->variable($var, $value);
         }
     }
 
@@ -58,7 +58,7 @@ sub _check_if_interstitial_needed {
 sub welcome {
     my $self = shift;
 
-    $self->render(text => 'Logged in: id=' . $self->stash('crp_session')->variable($self, 'instructor_id'));
+    $self->render(text => 'Logged in: id=' . $self->stash('crp_session')->variable('instructor_id'));
 }
 
 1;
