@@ -1,26 +1,26 @@
 %#<!DOCTYPE html>
 % layout 'default', heading => "Tutor log-in";
 % title "Log in";
-% my $message = stash('message') || '';
+% my $reason = stash('reason') || '';
 
 <h1>Tutor log-in</h1>
-% if($message eq 'SESSION_EXPIRED') {
+% if($reason eq 'SESSION_EXPIRED') {
 <p>
 Sorry - your session has expired. Please log in below to continue.
 </p>
 %}
-% if($message eq 'LOGIN_REQUIRED') {
+% if($reason eq 'LOGIN_REQUIRED') {
 <p>
 Sorry - you must be logged in to access that page. Please log in below to continue.
 </p>
 %}
 
-<form method="post" action="<%= url_for '/main/login' %>">
+<form method="post" action="<%= url_for 'crp.login' %>">
     <fieldset>
         <legend>Tutor log-in</legend>
         <label for="email">Email address:</label>
         <div class="input-container">
-            <%= text_field 'email', size => '30', id => 'email', required => "required" =%>
+            <%= text_field 'email', size => '30', id => 'email', autofocus => "autofocus", required => "required" =%>
             <%= include 'parts/error', field => 'email' =%>
         </div>
         <label for="password">Password:

@@ -7,6 +7,8 @@
 %   like                => 'Please enter a valid answer',
 %   no_such_email       => 'Sorry - that email address is not recorded on our system',
 %   required            => 'Please fill in this field',
+%   password_bad        => 'Sorry - that password is not secure enough',
+%   password_mismatch   => 'The two passwords must be identical',
 % };
 % if(my $error = validation->error($field)) {
 %   $error = $error->[0];

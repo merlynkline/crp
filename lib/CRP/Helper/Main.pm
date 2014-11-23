@@ -6,14 +6,14 @@ use warnings;
 use base 'Mojolicious::Plugin';
 
 sub register {
-    my $self = shift;
+    my $c = shift;
     my($app) = @_;
 
     # Get a value from the stash, always returning a listref
     $app->helper(
         'crp.stash_list' => sub {
-            my $self = shift;
-            my $var_value = $self->stash($_[0]);
+            my $c = shift;
+            my $var_value = $c->stash($_[0]);
             return [] unless $var_value;
             $var_value = [ $var_value ] unless ref $var_value;
             return $var_value;
@@ -24,7 +24,7 @@ sub register {
     my $connector = CRP::Model::Schema::build_connector($app->config->{database});
     $app->helper(
         'crp.model' => sub {
-            my ($self, $resultset) = @_;
+            my ($c, $resultset) = @_;
             my $dbh = CRP::Model::Schema->connect(sub {return $connector->dbh});
             return $resultset ? $dbh->resultset($resultset) : $dbh;
         }
@@ -33,7 +33,7 @@ sub register {
     # Email address decorated with name if given
     $app->helper(
         'crp.email_decorated' => sub {
-            my $self = shift;
+            my $c = shift;
             my($email, $name) = @_;
 
             $email = " <$email>" if $name;
@@ -44,27 +44,40 @@ sub register {
     # Email address to send email to
     $app->helper(
         'crp.email_to' => sub {
-            my $self = shift;
+            my $c = shift;
             my($email, $name) = @_;
 
             $name ||= '';
-            if($self->app->mode eq 'development') {
+            if($c->app->mode eq 'development') {
                 $name .= " (Was to: $email)";
-                $email = $self->app->config->{test}->{email};
+                $email = $c->app->config->{test}->{email};
             }
-            return $self->crp->email_decorated($email, $name);
+            return $c->crp->email_decorated($email, $name);
         }
     );
 
     # Trimmed CGI parameter
     $app->helper(
         'crp.trimmed_param' => sub {
-            my $self = shift;
+            my $c = shift;
             my($param) = @_;
 
-            my $value = $self->param($param);
+            my $value = $c->param($param);
             $value =~ s{^\s+|\s+$}{}g if defined $value;
             return $value;
+        }
+    );
+
+    # CSRF check
+    $app->helper(
+        'crp.csrf_fail' => sub {
+            my $c = shift;
+
+            if($c->validation->csrf_protect->has_error('csrf_token')) {
+                $c->render(text => 'Bad CSRF token!', status => 403);
+                return 1;
+            }
+            return 0;
         }
     );
 

@@ -1,4 +1,6 @@
 
++ handle auto-login flag
+
 
 - Cookie session contains:
     - id: CRP Session ID
@@ -29,6 +31,7 @@ session:
     + Login/auth logic from spreadsheet
     + Log out
     + Session table housekeeping
+    + Get rid of all references to Tutor/practitioner
     + Login routes: from logged out, from logged out via interstitial, from already logged in, from already logged in via interstitial
     + add some decoration to the contact form and the thank you page (etc etc)
     + tests!!

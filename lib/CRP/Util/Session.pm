@@ -97,10 +97,11 @@ sub _db_session_variable {
     my $self = shift;
     my $variable = shift;
 
+    $self->_debug("_db_session_variable: var=$variable ");
+    $self->_load_or_create;
     if(@_) {
         my $value = shift;
 
-        $self->_load_or_create;
         if(defined $value) {
             $self->_dirty(
                 ! exists $self->_data->{$variable}

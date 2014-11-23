@@ -26,14 +26,15 @@ sub startup {
     $r->any('/main/contact')->to('main#contact');
     $r->any('/main/register_interest')->to('main#register_interest');
     $r->any('/main/resend_confirmation')->to('main#resend_confirmation');
-    $r->any('/main/login')->to('main#login');
+    $r->any('/login')->to('logged_in#login')->name('crp.login');;
     $r->get('/page/*page')->to('main#page');
-    $r->any('/otp')->to('main#otp');
-    $r->get('/otp/*otp')->to('main#otp');
+    $r->any('/otp')->to('logged_in#otp');
+    $r->get('/otp/*otp')->to('logged_in#otp');
 
     my $logged_in = $r->under('/instructor')->to('logged_in#authenticate');
     $logged_in->get('/')->to('logged_in#welcome')->name('crp.logged_in_default');
-    $logged_in->get('/set_password')->to('logged_in#set_password')->name('crp.set_password');
+    $logged_in->any('/set_password')->to('logged_in#set_password')->name('crp.set_password');
+    $logged_in->get('/account')->to('logged_in#account')->name('crp.account_details');
 
     my $tests = $r->under('/test')->to('test#authenticate');
     $tests->get('/')->to('test#welcome');
