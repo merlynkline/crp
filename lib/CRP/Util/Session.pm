@@ -142,8 +142,11 @@ sub clear {
     $self->_id(0);
     my $c = $self->_mojo;
     $c->session(id => 0);
-    $c->session(auto_login_id => 0);
-    $c->session(expires => 1);
+    my $expiry_time = 1;
+    if($c->session('auto_login_id')) {
+        $expiry_time = $c->config->{session}->{default_expiry} || 3600 * 24 * 7 * 4;
+    }
+    $c->session(expires => $expiry_time);
     $c->session(last_access => time);
     $self->_loaded(0);
     $self->_dirty(0);

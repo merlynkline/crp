@@ -40,17 +40,7 @@
                         <div id="left-nav">
                             <ul>
                                 % $menu_entry->('home',      '/',               'Home');
-                                % $menu_entry->('book',      '/page/book',      'Book');
-                                % $menu_entry->('programme', '/page/programme', 'Programme');
-                                % $menu_entry->('courses',   '/page/courses',   'Courses');
-                                % $menu_entry->('tutors',    '/page/tutors',    'Tutors');
-                                % $menu_entry->('contact',   '/page/contact',   'Contact');
-                                % if(stash 'logged_in') {
                                 % $menu_entry->('logout',    '/logout',         'Log out');
-                                % $menu_entry->('members',   '/instructor',     'Members');
-                                % } else {
-                                % $menu_entry->('login',     '/login',          'Log in');
-                                % }
                             </ul>
                             <img src="<%= url_for '/images/Plants/Pokers.png' %>">
                         </div>

@@ -1,5 +1,8 @@
 
++ Move the members area to a separate controller (currently only the welcome page)
 + handle auto-login flag
++ make includes for common parts of layout templates
++ use named paths in menus (and elswhere in templates)
 
 
 - Cookie session contains:

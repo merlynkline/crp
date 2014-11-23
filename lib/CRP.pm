@@ -27,6 +27,7 @@ sub startup {
     $r->any('/main/register_interest')->to('main#register_interest');
     $r->any('/main/resend_confirmation')->to('main#resend_confirmation');
     $r->any('/login')->to('logged_in#login')->name('crp.login');;
+    $r->any('/logout')->to('logged_in#logout')->name('crp.logout');;
     $r->get('/page/*page')->to('main#page');
     $r->any('/otp')->to('logged_in#otp');
     $r->get('/otp/*otp')->to('logged_in#otp');
@@ -47,7 +48,8 @@ sub startup {
 sub _before_dispatch {
     my $c = shift;
 
-    $c->stash('crp_session', CRP::Util::Session->new(mojo => $c));
+    $c->stash(crp_session => CRP::Util::Session->new(mojo => $c));
+    $c->stash(logged_in => $c->stash('crp_session')->variable('instructor_id'));
 }
 
 sub _after_dispatch {

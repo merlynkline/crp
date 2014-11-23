@@ -1,0 +1,6 @@
+% layout 'member_default', page_id => 'member-home';
+% title 'Control panel';
+<p>
+Here is your control panel
+</p>
+

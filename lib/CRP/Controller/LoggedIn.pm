@@ -191,7 +191,7 @@ sub _do_login {
 sub welcome {
     my $c = shift;
 
-    $c->render(text => 'Logged in: id=' . $c->stash('crp_session')->variable('instructor_id'));
+    $c->render;
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -243,6 +243,14 @@ sub _password_hash {
     return unpack "H32", Mojo::Util::md5_bytes $key;
 }
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub logout {
+    my $c = shift;
+
+    my $crp_session = $c->stash('crp_session');
+    $crp_session->clear();
+    $c->redirect_to($c->url_for('/'));
+}
 
 1;
 
