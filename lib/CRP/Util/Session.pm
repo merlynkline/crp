@@ -8,7 +8,7 @@ use DateTime;
 has _mojo           => ( is => 'rw', isa => 'Mojolicious::Controller', init_arg => 'mojo', init_arg => undef);
 has _id             => ( is => 'rw', isa => 'Int', default => 0, init_arg => undef);
 has expired         => ( is => 'ro', isa => 'Bool', writer => '_set_expired', default => 1, init_arg => undef);
-has _data           => ( is => 'ro', isa => 'HashRef', default => sub { {} }, init_arg => undef);
+has _data           => ( is => 'rw', isa => 'HashRef', default => sub { {} }, init_arg => undef);
 has _loaded         => ( is => 'rw', isa => 'Bool', default => 0, init_arg => undef);
 has _dirty          => ( is => 'rw', isa => 'Bool', default => 0, init_arg => undef);
 
@@ -25,10 +25,10 @@ sub _load_or_create {
     return if $self->_loaded;
     my $c = $self->_mojo;
     die "No session cookie" unless $c->cookie($c->config->{session}->{cookie_name});
-    my $row = $c->crp->model('Session')->find_or_create($c->session('id'));
+    my $row = $c->crp->model('Session')->find_or_create({id => $c->session('id')});
     $self->_id($row->id);
     $c->session(id => $row->id);
-    $self->_data(decode_json($row->data));
+    $self->_data($row->data ? decode_json($row->data) : {});
     $self->_loaded(1);
     $self->_dirty(0);
     $self->_debug('_load_or_create: done: id=' . $row->id);
@@ -60,7 +60,7 @@ sub write {
    
     $self->_debug('write: dirty=' . ($self->_dirty ? 'Y' : 'N') . ', loaded=' . ($self->_loaded ? 'Y' : 'N'));
     return unless $self->_dirty;
-    if($self->_loaded && $self->dirty) {
+    if($self->_loaded && $self->_dirty) {
         $self->_mojo->crp->model('Session')->find($self->_id)->update(
             {
                 last_access_date    => DateTime->now,
@@ -87,7 +87,7 @@ sub variable {
         $value = $self->_db_session_variable($variable, @_);
     }
     $self->_mojo->session(last_access => time);
-    $self->_debug("variable: done: $value");
+    $self->_debug('variable: done: ' . (defined $ value ? $value : '<UNDEF>'));
     return $value;
 }
 
@@ -158,7 +158,7 @@ sub _save_mojo {
 sub _debug {
     my $self = shift;
 
-    warn @_;
+    # warn @_;
 }
 
 no Moose;

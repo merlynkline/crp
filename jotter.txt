@@ -1,8 +1,5 @@
 
 
-- lazy-load the db session
-- call the session writer on after_dispatch but only do anything if it's been lazy-loaded
-
 - Cookie session contains:
     - id: CRP Session ID
     - auto_login_id: Auto-login instructor ID (if any)
@@ -24,7 +21,15 @@ session:
 
 
 + Next:
+    + Password editor
     + Get login working - see TODOs in code
+    + Interstitial to force login
+        + Add 'login_reason' session-var handler to /login
+    + Check if session methodss really need to have $c as first param
+    + Login/auth logic from spreadsheet
+    + Log out
+    + Session table housekeeping
+    + Login routes: from logged out, from logged out via interstitial, from already logged in, from already logged in via interstitial
     + add some decoration to the contact form and the thank you page (etc etc)
     + tests!!
     + Move validation to a plug-in?
