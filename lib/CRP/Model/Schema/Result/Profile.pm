@@ -74,5 +74,13 @@ sub sqlt_deploy_hook {
     }
 }
 
+
+
+sub is_complete {
+    my $self = shift;
+
+    return $self->name && ($self->telephone || $self->mobile) && $self->postcode && $self->blurb;
+}
+
 1;
 

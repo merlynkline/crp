@@ -86,7 +86,7 @@ You can change any of the details and click the update button if you wish.
             %= submit_button 'Update'
             <%= include 'parts/error', field => '_general' %>
 % if(stash 'updated') {
-<p class="hide-on-load">Your information has been updated.</p>
+            <%= include 'parts/temporary_message', msg => 'registration_update' %>
 % }
         </div>
 

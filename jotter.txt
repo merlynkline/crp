@@ -1,5 +1,6 @@
 
 + Trying to visit the profile page when logged out requested login but then went to the main control panel page
++ Use flash for message at top of member's control panel, instead of query param (so reload/back behave better)
 + Cookie doesn't get deleted on log-out
 + Move the members area to a separate controller (currently only the welcome page)
 + handle auto-login flag

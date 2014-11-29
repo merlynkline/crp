@@ -7,6 +7,8 @@ use Mojo::Util;
 sub welcome {
     my $c = shift;
 
+    my $profile = $c->_load_profile;
+    $c->stash(incomplete_profile => ! $profile->is_complete);
     $c->render;
 }
 
@@ -26,7 +28,27 @@ sub profile {
 
     my $profile = $c->_load_profile;
 
-    $c->_update_profile if $c->req->method eq 'POST';
+    if($c->req->method eq 'POST') {
+        my $validation = $c->validation;
+
+        foreach my $field (qw(name address postcode telephone mobile blurb)) {
+            eval { $profile->$field($c->param($field)); };
+            my $error = $@;
+            if($error =~ m{^CRP::Util::Types::(.+?) }) {
+                $validation->error($field => ["invalid_column_$1"]);
+            }
+            else {
+                die $error if $error;
+            }
+        }
+        if($validation->has_error) {
+            $c->stash(msg => 'fix_errors');
+        }
+        else {
+            $profile->update;
+            $c->stash(msg => 'profile_update');
+        }
+    }
 
     $c->render;
 }

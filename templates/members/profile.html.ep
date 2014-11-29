@@ -1,6 +1,7 @@
 %#<!DOCTYPE html>
 % layout 'member_default', heading => "Profile", page_id => 'member-home';
 % title 'Control panel';
+% my $profile = stash 'profile_record';
 <h1>Update your profile</h1>
 
 <form method="post" action="<%= url_for 'crp.members.profile' %>">
@@ -13,7 +14,7 @@
             <div class="field-extra-info">Enter your name as you prefer it to be displayed.</div>
         </label>
         <div class="input-container">
-            %= text_field 'name', id => 'name', autofocus => 'autofocus';
+            %= text_field 'name', id => 'name', autofocus => 'autofocus', required => 'required', value => $profile->name;
             <%= include 'parts/error', field => 'name' %>
         </div>
 
@@ -21,28 +22,28 @@
             <div class="field-extra-info">Note that the postcode is separate, below.</div>
         </label>
         <div class="input-container">
-           %= text_area 'address', rows => '3', cols => '45', id => 'address';
+            %= text_area 'address' => $profile->address, rows => '3', cols => '45', id => 'address';
             <%= include 'parts/error', field => 'address' %>
         </div>
 
         <label for="postcode">Postcode:
         </label>
         <div class="input-container">
-            %= text_field 'postcode', id => 'postcode', size => 8;
+            %= text_field 'postcode', id => 'postcode', size => 8, required => 'required', value => $profile->postcode;
             <%= include 'parts/error', field => 'postcode' %>
         </div>
 
         <label for="telephone">Telephone:
         </label>
         <div class="input-container">
-            %= text_field 'telephone', id => 'telephone', size => 10;
+            %= text_field 'telephone', id => 'telephone', size => 10, value => $profile->telephone;
             <%= include 'parts/error', field => 'telephone' %>
         </div>
 
         <label for="mobile">Mobile:
         </label>
         <div class="input-container">
-            %= text_field 'mobile', id => 'mobile', size => 10;
+            %= text_field 'mobile', id => 'mobile', size => 10, value => $profile->mobile;
             <%= include 'parts/error', field => 'mobile' %>
         </div>
 
@@ -50,7 +51,7 @@
             <div class="field-extra-info">Enter a short paragraph to describe yourself on your web page.</div>
         </label>
         <div class="input-container">
-           %= text_area 'blurb', rows => '8', cols => '45', id => 'blurb';
+            %= text_area 'blurb' => $profile->blurb, rows => '8', cols => '45', id => 'blurb';
             <%= include 'parts/error', field => 'blurb' %>
         </div>
 
@@ -58,7 +59,10 @@
         <div class="input-container">
             %= submit_button 'Save'
             <%= include 'parts/error', field => '_general' %>
+            <%= include 'parts/temporary_message', msg => stash 'msg' %>
         </div>
     </fieldset>
 </form>
+<script>$(".hide-on-load").delay(2000).slideUp(1000);</script>
+
 

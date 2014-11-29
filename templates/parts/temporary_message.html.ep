@@ -1,0 +1,13 @@
+%#<!DOCTYPE html>
+%# Render a temporary message identified in $msg
+% my $message = {
+%   profile_update          => 'Your profile has been updated',
+%   registration_update     => 'Your information has been updated',
+%   fix_errors              => 'Please fix the errors shown above',
+% };
+% if($msg) {
+<div class='temporary-message hide-on-load'>
+    <%= $message->{$msg} // "Unrecognised message code: '$msg'" =%>
+</div>
+%}
+

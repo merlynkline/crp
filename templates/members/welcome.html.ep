@@ -10,7 +10,10 @@
 </div>
 % }
 <p>
-Here is your control panel
+Here is your control panel.
+% if(stash 'incomplete_profile') {
+<p>Your profile is not complete - please <a href="<%= url_for 'crp.members.profile' %>">update it here</a>.</p>
+% }
 <ul>
     <li><a href="<%= url_for 'crp.members.profile' %>">Profile</a></li>
     <li><a href="<%= url_for 'crp.set_password' %>">Change password</a></li>
