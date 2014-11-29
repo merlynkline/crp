@@ -31,6 +31,14 @@ a:visited   {
     min-height:     100%;
     position:       relative;
 }
+#logged_in_indicator {
+    position:       absolute;
+    font-size:      12px;
+    text-align:     right;
+    width:          100%;
+    line-height:    100%;
+    padding:        2px 0;
+}
 #footrow {
     width:          100%;
     height:         100px;
@@ -104,7 +112,7 @@ a:visited   {
 }
 h1#heading {
     font-size:      30px;
-    text-align:     center;
+    text-align:     left;
     padding:        12px;
     margin:         0;
 }
@@ -145,11 +153,15 @@ h1#heading {
     padding:        8px 0;
     font-weight:    bold;
 }
-#reviews, fieldset, legend {
+#reviews, fieldset, legend, #message {
     border:         3px solid #589;
     background:     #bde;
     border-radius:  8px;
     margin:         20px;
+}
+#message {
+    padding:        8px;
+    font-weight:    bold;
 }
 legend {
     padding:        2px 4px;

@@ -15,6 +15,7 @@ has _dirty          => ( is => 'rw', isa => 'Bool', default => 0, init_arg => un
 my %_COOKIE_SESSION_VARIABLE = (
     instructor_id   => 1,
     auto_login_id   => 1,
+    email           => 1,
 );
 
 
@@ -144,7 +145,7 @@ sub clear {
     $c->session(id => 0);
     my $expiry_time = 1;
     if($c->session('auto_login_id')) {
-        $expiry_time = $c->config->{session}->{default_expiry} || 3600 * 24 * 7 * 4;
+        $expiry_time = time + ($c->config->{session}->{default_expiry} || 3600 * 24 * 7 * 4);
     }
     $c->session(expires => $expiry_time);
     $c->session(last_access => time);

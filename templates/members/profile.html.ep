@@ -1,0 +1,64 @@
+%#<!DOCTYPE html>
+% layout 'member_default', heading => "Profile", page_id => 'member-home';
+% title 'Control panel';
+<h1>Update your profile</h1>
+
+<form method="post" action="<%= url_for '/main/register_interest' %>">
+    Please update your profile details. The information here is used on your
+    personalised stationery and web pages so it will be publically visible.
+    <fieldset>
+        <legend>Profile</legend>
+
+        <label for="name">Name:
+            <div class="field-extra-info">Enter your name as you prefer it to be displayed.</div>
+        </label>
+        <div class="input-container">
+            %= text_field 'name', id => 'name', autofocus => 'autofocus';
+            <%= include 'parts/error', field => 'name' %>
+        </div>
+
+        <label for="address">Address:
+            <div class="field-extra-info">Note that the postcode is separate, below.</div>
+        </label>
+        <div class="input-container">
+           %= text_area 'address', rows => '3', cols => '45', id => 'address';
+            <%= include 'parts/error', field => 'address' %>
+        </div>
+
+        <label for="postcode">Postcode:
+        </label>
+        <div class="input-container">
+            %= text_field 'postcode', id => 'postcode', size => 8;
+            <%= include 'parts/error', field => 'postcode' %>
+        </div>
+
+        <label for="telephone">Telephone:
+        </label>
+        <div class="input-container">
+            %= text_field 'telephone', id => 'telephone', size => 10;
+            <%= include 'parts/error', field => 'telephone' %>
+        </div>
+
+        <label for="mobile">Mobile:
+        </label>
+        <div class="input-container">
+            %= text_field 'mobile', id => 'mobile', size => 10;
+            <%= include 'parts/error', field => 'mobile' %>
+        </div>
+
+        <label for="blurb">Description:
+            <div class="field-extra-info">Enter a short paragraph to describe yourself on your web page.</div>
+        </label>
+        <div class="input-container">
+           %= text_area 'blurb', rows => '8', cols => '45', id => 'blurb';
+            <%= include 'parts/error', field => 'blurb' %>
+        </div>
+
+        <label>&nbsp;</label>
+        <div class="input-container">
+            %= submit_button 'Save'
+            <%= include 'parts/error', field => '_general' %>
+        </div>
+    </fieldset>
+</form>
+

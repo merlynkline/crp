@@ -1,8 +1,11 @@
 
++ Trying to visit the profile page when logged out requested login but then went to the main control panel page
++ Cookie doesn't get deleted on log-out
 + Move the members area to a separate controller (currently only the welcome page)
 + handle auto-login flag
 + make includes for common parts of layout templates
 + use named paths in menus (and elswhere in templates)
++ First visit to enquiry page is slow to load: jquery? gmaps?
 
 
 - Cookie session contains:
@@ -261,6 +264,15 @@ Formulae to find a long and lat a given distance and bearing from another:
         - Admin flag
         - Autologin requested
     - Tutor profiles
+        - instructor_id
+        - name
+        - address
+        - postcode
+        - telephone
+        - mobile
+        - photo
+        - blurb
+    web_page_slug => {
         - TutorID
         - security question
         - security answer

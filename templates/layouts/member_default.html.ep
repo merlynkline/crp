@@ -30,6 +30,7 @@
     </head>
     <body class="page-body">
         <div id="main-body-container">
+            %= include 'parts/logged_in_indicator'
             <h1 id="heading"><img src="<%= url_for '/images/CRPLogoSmall.png' %>" />
                 <%= stash('heading') || "The Children's Reflexology Programme" =%>
             </h1>
@@ -39,7 +40,8 @@
                     <td id="left-nav-container">
                         <div id="left-nav">
                             <ul>
-                                % $menu_entry->('home',      '/',               'Home');
+                                % $menu_entry->('members',   '/instructor',     'Members');
+                                % $menu_entry->('home',      '/',               'Main site');
                                 % $menu_entry->('logout',    '/logout',         'Log out');
                             </ul>
                             <img src="<%= url_for '/images/Plants/Pokers.png' %>">

@@ -30,6 +30,7 @@
     </head>
     <body class="page-body">
         <div id="main-body-container">
+            %= include 'parts/logged_in_indicator'
             <h1 id="heading"><img src="<%= url_for '/images/CRPLogoSmall.png' %>" />
                 <%= stash('heading') || "The Children's Reflexology Programme" =%>
             </h1>
@@ -46,7 +47,6 @@
                                 % $menu_entry->('tutors',    '/page/tutors',    'Tutors');
                                 % $menu_entry->('contact',   '/page/contact',   'Contact');
                                 % if(stash 'logged_in') {
-                                % $menu_entry->('logout',    '/logout',         'Log out');
                                 % $menu_entry->('members',   '/instructor',     'Members');
                                 % } else {
                                 % $menu_entry->('login',     '/login',          'Log in');

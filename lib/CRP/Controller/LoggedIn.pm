@@ -98,7 +98,7 @@ sub login {
     }
     return $c->_show_login if $validation->has_error;
 
-    $c->_do_login($login_record->id, $auto_login);
+    $c->_do_login($login_record, $auto_login);
 }
 
 sub _show_login {
@@ -169,17 +169,18 @@ sub otp {
     $login_record->otp_hash(undef);
     $login_record->update();
 
-    $c->_do_login($login_record->id);
+    $c->_do_login($login_record);
 }
 
 sub _do_login {
     my $c = shift;
-    my($instructor_id, $auto_login) = @_;
+    my($login_record, $auto_login) = @_;
 
 # TODO: handle auto-login flag
     my $crp_session = $c->stash('crp_session');
     $crp_session->create_new();
-    $crp_session->variable(instructor_id => $instructor_id);
+    $crp_session->variable(instructor_id => $login_record->id);
+    $crp_session->variable(email => $login_record->email);
     $crp_session->variable(login_reason => undef);
     $c->_redirect_to_interstitial_continuation_or_url(
         $c->url_for('crp.logged_in_default')
@@ -221,7 +222,7 @@ sub set_password {
     $login_record->update();
 
     $c->_redirect_to_interstitial_continuation_or_url(
-        $c->url_for('crp.account_details')->query(msg => 'password_set')
+        $c->url_for('crp.logged_in_default')->query(msg => 'password_set')
     );
 }
 

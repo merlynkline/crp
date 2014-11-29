@@ -33,9 +33,9 @@ sub startup {
     $r->get('/otp/*otp')->to('logged_in#otp');
 
     my $logged_in = $r->under('/instructor')->to('logged_in#authenticate');
-    $logged_in->get('/')->to('logged_in#welcome')->name('crp.logged_in_default');
+    $logged_in->get('/')->to('members#welcome')->name('crp.logged_in_default');
     $logged_in->any('/set_password')->to('logged_in#set_password')->name('crp.set_password');
-    $logged_in->get('/account')->to('logged_in#account')->name('crp.account_details');
+    $logged_in->any('/profile')->to('members#profile')->name('crp.members.profile');
 
     my $tests = $r->under('/test')->to('test#authenticate');
     $tests->get('/')->to('test#welcome');
