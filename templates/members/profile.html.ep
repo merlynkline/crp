@@ -3,7 +3,7 @@
 % title 'Control panel';
 <h1>Update your profile</h1>
 
-<form method="post" action="<%= url_for '/main/register_interest' %>">
+<form method="post" action="<%= url_for 'crp.members.profile' %>">
     Please update your profile details. The information here is used on your
     personalised stationery and web pages so it will be publically visible.
     <fieldset>
