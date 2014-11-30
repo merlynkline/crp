@@ -1,0 +1,1 @@
+Hello <%= stash('site_profile')->name %>

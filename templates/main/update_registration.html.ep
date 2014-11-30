@@ -27,7 +27,7 @@ The details for your email address <%= stash 'email' %> are shown below.
 You can change any of the details and click the update button if you wish.
 </p>
 
-<form action="/update_registration" method="post">
+%= form_for '/update_registration' => (method => 'POST') => begin
     <fieldset>
         <legend>Registration details</legend>
         %= hidden_field id => stash('confirmation_code');
@@ -91,7 +91,7 @@ You can change any of the details and click the update button if you wish.
         </div>
 
     </fieldset>
-</form>
+% end
 <script>$(".hide-on-load").delay(2000).slideUp(1000);</script>
 
 

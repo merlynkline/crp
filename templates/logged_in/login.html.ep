@@ -15,7 +15,7 @@ Sorry - you must be logged in to access that page. Please log in below to contin
 </p>
 %}
 
-<form method="post" action="<%= url_for 'crp.login' %>">
+%= form_for 'crp.login' => (method => 'POST') => begin
     <fieldset>
         <legend>Tutor log-in</legend>
         <label for="email">Email address:</label>
@@ -54,4 +54,5 @@ Sorry - you must be logged in to access that page. Please log in below to contin
             <a href="<%= url_for '/page/privacy' =%>">privacy policy</a>.
         </div>
     </fieldset>
-</form>
+% end
+

@@ -10,7 +10,7 @@ Once the code has been entered you will be able to update your details at any ti
 <p>Sorry - we couldn't recognise that confirmation code.</p>
 % }
 
-<form method="get" action="<%= url_for '/update_registration' %>">
+%= form_for '/update_registration' => (method => 'POST') => begin
     <fieldset>
         <legend>Confirmation form</legend>
         <label for="id">Confirmation code:</label>
@@ -22,4 +22,4 @@ Once the code has been entered you will be able to update your details at any ti
             <%= submit_button 'Go' =%>
         </div>
     </fieldset>
-</form>
+% end

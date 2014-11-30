@@ -68,19 +68,6 @@ sub register {
         }
     );
 
-    # CSRF check
-    $app->helper(
-        'crp.csrf_fail' => sub {
-            my $c = shift;
-
-            if($c->validation->csrf_protect->has_error('csrf_token')) {
-                $c->render(text => 'Bad CSRF token!', status => 403);
-                return 1;
-            }
-            return 0;
-        }
-    );
-
 }
 
 1;

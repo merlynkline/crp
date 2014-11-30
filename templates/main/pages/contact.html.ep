@@ -3,7 +3,7 @@
 % title 'Contact us';
 
 <p>Please get in contact with us using the form below. We will get back to you as soon as we can.</p>
-<form method="post" action="<%= url_for '/main/contact' %>">
+%= form_for '/main/contact' => (method => 'POST') => begin
     <fieldset>
         <legend>Contact form</legend>
         <label for="name">Your name:</label>
@@ -16,9 +16,9 @@
             <%= text_field 'email', size => '30', id => 'email', required => "required" =%>
             <%= include 'parts/error', field => 'email' =%>
         </div>
-        <label for="message">Message:</label>
+        <label for="field_message">Message:</label>
         <div class="input-container">
-            <%= text_area 'message', rows => '10', cols => '45', id => 'message', required => "required" =%>
+            <%= text_area 'message', rows => '10', cols => '45', id => 'field_message', required => "required" =%>
             <%= include 'parts/error', field => 'message' =%>
         </div>
         <label>&nbsp;</label>
@@ -26,5 +26,5 @@
             <%= submit_button 'Send', name => 'send' %>
         </div>
     </fieldset>
-</form>
+% end
 

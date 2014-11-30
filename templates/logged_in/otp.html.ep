@@ -15,7 +15,7 @@ Note that temporary passwords have limited life - if you are having difficulty g
 you can request a new one from the <a href="<%= url_for '/page/login' %>">log-in page</a>.
 </p>
 
-<form method="post" action="<%= url_for '/otp' %>">
+%= form_for '/otp' => (method => 'POST') => begin
     <fieldset>
         <legend>Temporary password</legend>
         <label for="id">Code from email:</label>
@@ -28,4 +28,5 @@ you can request a new one from the <a href="<%= url_for '/page/login' %>">log-in
             <%= submit_button 'Log in' =%>
         </div>
     </fieldset>
-</form>
+% end
+

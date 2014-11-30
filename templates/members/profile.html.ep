@@ -4,7 +4,7 @@
 % my $profile = stash 'profile_record';
 <h1>Update your profile</h1>
 
-<form method="post" action="<%= url_for 'crp.members.profile' %>">
+%= form_for 'crp.members.profile' => (method => 'POST') => begin
     Please update your profile details. The information here is used on your
     personalised stationery and web pages so it will be publically visible.
     <fieldset>
@@ -62,7 +62,7 @@
             <%= include 'parts/temporary_message', msg => stash 'msg' %>
         </div>
     </fieldset>
-</form>
+% end
 <script>$(".hide-on-load").delay(2000).slideUp(1000);</script>
 
 

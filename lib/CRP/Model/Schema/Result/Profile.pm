@@ -60,6 +60,7 @@ sub set_column {
     my($column, $value) = @_;
 
     CRP::Util::Types::type_check($TYPE{$column}, $value) if exists $TYPE{$column};
+    $self->web_page_slug($self->_generate_slug($value)) if $column eq 'name';
 
     $self->SUPER::set_column($column, $value);
 }
@@ -74,8 +75,34 @@ sub sqlt_deploy_hook {
     }
 }
 
+sub _generate_slug {
+    my $self = shift;
+    my($name) = @_;
 
+    my $slug = lc $name;
+    $slug =~ s{\s+}{-}g;
+    $slug =~ s{[^a-z -]}{}g;
+    $slug =~ s{^-+|-+$}{}g;
+    $slug =~ s{--+}{-}g;
+    my $dup_exists = 1;
+    while($dup_exists) {
+        my $dup_row = $self->result_source->resultset->find({web_page_slug => $slug});
+        $dup_exists = $dup_row && $dup_row->instructor_id != $self->instructor_id;
+        $slug = _de_dup_slug($slug) if $dup_exists;
+    }
 
+    return $slug;
+}
+
+sub _de_dup_slug {
+    my($str) = @_;
+
+    $str = $1 if $str =~ m{^(.+)-\d+$};
+    $str .= '-' . int rand 10000;
+    return $str;
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 sub is_complete {
     my $self = shift;
 

@@ -9,6 +9,7 @@ sub authenticate {
 
     my $logged_in_id = $c->stash('crp_session')->variable('instructor_id');
     if($logged_in_id) {
+
         my $login_record = $c->crp->model('Login')->find($logged_in_id);
         if($login_record) {
             $c->stash('login_record', $login_record);
@@ -205,8 +206,6 @@ sub set_password {
         $c->stash('reason', $reason);
         return $c->render(template => "logged_in/pages/set_password");
     }
-
-    return 1 if $c->crp->csrf_fail;
 
     my $validation = $c->validation;
     my $pass1 = $c->crp->trimmed_param('pass1') // '';
