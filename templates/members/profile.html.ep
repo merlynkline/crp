@@ -1,5 +1,5 @@
 %#<!DOCTYPE html>
-% layout 'member_default', heading => "Profile", page_id => 'member-home';
+% layout 'member_default', heading => "Profile", page_id => 'member-home', extra_header_templates => 'parts/yellow_text_style';
 % title 'Control panel';
 % my $profile = stash 'profile_record';
 <h1>Update your profile</h1>
@@ -63,6 +63,17 @@
         </div>
     </fieldset>
 % end
-<script>$(".hide-on-load").delay(2000).slideUp(1000);</script>
+<script src="<%= url_for '/js/yellow-text.min.js' %>"></script>
+<script>
+    $(".hide-on-load").delay(2000).slideUp(1000);
+    $('#blurb').YellowText({
+        height:             "200px",
+        width:              "450px",
+        defaultFont:        "sans-serif",
+        defaultFontSize:    "16px",
+        defaultFontColor:   "#354",
+        defaultActions:     ["bold", "underline", "italic", "strikethrough", "align-left", "align-center", "align-right", "unordered-list", "ordered-list", "link"]
+    });
+</script>
 
 

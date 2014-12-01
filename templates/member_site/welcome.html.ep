@@ -1,1 +1,5 @@
-Hello <%= stash('site_profile')->name %>
+%#<!DOCTYPE html>
+% layout 'default', page_id => 'member.home', heading => stash('site_profile')->name;
+% title 'Welcome';
+% use Mojo::ByteStream 'b';
+<%= b(stash('site_profile')->blurb) %>

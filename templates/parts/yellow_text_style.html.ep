@@ -1,0 +1,3 @@
+%#<!DOCTYPE html>
+        <link rel="stylesheet" href="<%= url_for '/css/yellow_text.css' %>">
+

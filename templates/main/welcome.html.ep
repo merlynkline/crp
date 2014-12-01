@@ -1,3 +1,4 @@
+%#<!DOCTYPE html>
 % layout 'default', page_id => 'home';
 % title 'Welcome';
 <p>Welcome to The Children's Reflexology Programme, home of The Mouse's House.</p>
