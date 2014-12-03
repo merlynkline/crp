@@ -1,6 +1,7 @@
 package CRP;
 use Mojo::Base 'Mojolicious';
 use Mojolicious::Plugin::CSRFProtect;
+use Mojolicious::Plugin::RenderFile;
 use DBIx::Connector;
 
 use CRP::Helper::Main;
@@ -14,6 +15,7 @@ sub startup {
     my $config = $self->plugin('Config');
     $self->plugin('CSRFProtect');
     $self->plugin('CRP::Helper::Main');
+    $self->plugin('RenderFile');
     $self->plugin(mail => $config->{mail});
     $self->secrets([$config->{secret}]);
     $self->sessions->cookie_name($config->{session}->{cookie_name});
@@ -38,7 +40,9 @@ sub startup {
     $logged_in->get('/')->to('members#welcome')->name('crp.logged_in_default');
     $logged_in->any('/set_password')->to('logged_in#set_password')->name('crp.set_password');
     $logged_in->any('/profile')->to('members#profile')->name('crp.members.profile');
-
+    $logged_in->any('page/*page')->to('members#page')->name('crp.members.page');
+    $logged_in->any('get_pdf/:pdf')->to('members#get_pdf')->name('crp.members.get_pdf');
+    
     my $member_site = $r->under('/me/:slug')->to('member_site#identify');
     $member_site->any('/')->to('/')->to('member_site#welcome')->name('crp.membersite.home');
 

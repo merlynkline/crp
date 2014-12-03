@@ -67,6 +67,28 @@ sub _load_profile {
     return $profile;
 }
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+use CRP::Util::PDF;
+sub get_pdf {
+    my $c = shift;
+
+    my $pdf = shift // $c->stash('pdf');
+    $pdf = $c->app->home->rel_file("pdfs/members/$pdf.pdf");
+    return $c->render(status => 404) unless -r $pdf;
+
+    my $pdf_doc = CRP::Util::PDF::fill_template(
+        $pdf,
+        {
+            profile => $c->_load_profile,
+        }
+    );
+
+    $c->render_file(
+        data                => $pdf_doc,
+        format              => 'pdf',
+        content_disposition => $c->param('download') ? 'attachment' : 'inline',
+    );
+}
 
 1;
 

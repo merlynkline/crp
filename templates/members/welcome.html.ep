@@ -17,6 +17,7 @@ Here is your control panel.
 <ul>
     <li><a href="<%= url_for 'crp.members.profile' %>">Profile</a></li>
     <li><a href="<%= url_for 'crp.set_password' %>">Change password</a></li>
+    <li><a href="<%= url_for 'crp.members.page', page => 'pdf' %>">PDFs</a></li>
 </ul>
 </p>
 <script>$(".hide-on-load").delay(4000).slideUp(1000);</script>

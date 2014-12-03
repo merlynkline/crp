@@ -1,12 +1,17 @@
 
++ PDF field substitution doesn't seem to like some things (e.g. SQFBy)
++ Can we improve PDF field substitution, e.g. for centred text
 + Trying to visit the profile page when logged out requested login but then went to the main control panel page
 + Use flash for message at top of member's control panel, instead of query param (so reload/back behave better)
++ Standardise the display of flash messages (form save confirmation)
++ Move the "updated" and "please fix errors" messages to top of pages, matching the "password changed" (?) message
 + Cookie doesn't get deleted on log-out
 + Move the members area to a separate controller (currently only the welcome page)
 + handle auto-login flag
 + make includes for common parts of layout templates
-+ use named paths in menus (and elswhere in templates)
++ use named paths in menus (and elsewhere)
 + First visit to enquiry page is slow to load: jquery? gmaps?
++ Change email address: sends a confirmation link in email to the new address and a deny link in email to the old address. The confirmation email will work once, within a short period. The deny email will work for a longer period and still works even after the confirmation link has been used, and prevents the confirmation link from working.
 
 
 - Cookie session contains:

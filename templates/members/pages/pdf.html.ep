@@ -1,0 +1,9 @@
+%#<!DOCTYPE html>
+% layout 'member_default', heading => "Personalised stationery", page_id => 'member-pdfs';
+% title 'Personalised stationery';
+<p>
+You can download personalised stationery for use in the programme here.
+<ul>
+    <li><a href="<%= url_for('crp.members.get_pdf', pdf => 'booking_form') %>">Booking form</a></li>
+</ul>
+</p>
