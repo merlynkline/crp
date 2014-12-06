@@ -1,6 +1,5 @@
 
-+ PDF field substitution doesn't seem to like some things (e.g. SQFBy)
-+ Can we improve PDF field substitution, e.g. for centred text
++ Booking from PDF has payment details on it
 + Trying to visit the profile page when logged out requested login but then went to the main control panel page
 + Use flash for message at top of member's control panel, instead of query param (so reload/back behave better)
 + Standardise the display of flash messages (form save confirmation)

@@ -1,0 +1,34 @@
+[
+        {
+            action  => 'text',
+            text    => '[% name %], [% one_line_address %], [% postcode %]',
+            x       => 122,
+            y       => 87,
+            size    => 9,
+        },
+        {
+            action  => 'text',
+            text    => '[% telephone %]',
+            x       => 300,
+            y       => 51,
+            size    => 10,
+            align   => 'center',
+        },
+        {
+            action  => 'text',
+            text    => '[% url %]',
+            x       => 300,
+            y       => 39,
+            size    => 10,
+            align   => 'center',
+        },
+        {
+            action  => 'text',
+            text    => '[% email %]',
+            x       => 300,
+            y       => 27,
+            size    => 10,
+            align   => 'center',
+        },
+]
+

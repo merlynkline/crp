@@ -76,10 +76,15 @@ sub get_pdf {
     $pdf = $c->app->home->rel_file("pdfs/members/$pdf.pdf");
     return $c->render(status => 404) unless -r $pdf;
 
+    my $profile = $c->_load_profile;
+    my $url = $c->url_for('crp.membersite.home', slug => $profile->web_page_slug)->to_abs;
+    $url =~ s{.+?://}{};
     my $pdf_doc = CRP::Util::PDF::fill_template(
         $pdf,
         {
-            profile => $c->_load_profile,
+            profile => $profile,
+            url     => $url,
+            email   => $c->stash('crp_session')->variable('email'),
         }
     );
 
