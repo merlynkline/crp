@@ -49,6 +49,8 @@ sub startup {
     my $tests = $r->under('/test')->to('test#authenticate');
     $tests->get('/')->to('test#welcome');
     $tests->get('/template/*template')->to('test#template');
+    $tests->get('/list_pdfs')->to('test#list_pdfs');
+    $tests->get('/pdf/*pdf')->to('test#pdf');
 
     $self->app->hook(before_dispatch => \&_before_dispatch);
     $self->app->hook(after_dispatch => \&_after_dispatch);

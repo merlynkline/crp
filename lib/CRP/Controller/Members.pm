@@ -74,7 +74,7 @@ sub get_pdf {
 
     my $pdf = shift // $c->stash('pdf');
     $pdf = $c->app->home->rel_file("pdfs/members/$pdf.pdf");
-    return $c->render(status => 404) unless -r $pdf;
+    return $c->reply->not_found unless -r $pdf;
 
     my $profile = $c->_load_profile;
     my $url = $c->url_for('crp.membersite.home', slug => $profile->web_page_slug)->to_abs;

@@ -8,7 +8,7 @@
         },
         {
             action  => 'text',
-            text    => '[% telephone %]',
+            text    => '[% phone_numbers %]',
             x       => 300,
             y       => 51,
             size    => 10,

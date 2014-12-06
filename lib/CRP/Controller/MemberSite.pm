@@ -21,7 +21,8 @@ sub identify {
         $profile = $c->crp->model('Profile')->find({web_page_slug => $slug});
     }
     unless($profile) {
-        return $c->render(satus => 404);
+        $c->reply->not_found;
+        return 0;
     }
 
     $c->stash(site_profile => $profile);

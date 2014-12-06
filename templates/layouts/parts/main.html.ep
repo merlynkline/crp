@@ -63,6 +63,9 @@
                     <li><a href="<%= url_for '/page/copyright' %>">Copyright &copy; 2014</a></li>
                     <li><a href="<%= url_for '/page/privacy' %>">Privacy policy</a></li>
                     <li><a href="<%= url_for '/page/contact' %>">Contact us</a></li>
+% if(app->mode eq 'development') {
+                    <li><a href="<%= url_for '/test' %>">Testing</a></li>
+% }
                 </ul>
             </div>
             <img src="/images/Animals/CornerMouse.png" id="corner-mouse" />

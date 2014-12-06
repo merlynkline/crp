@@ -1,0 +1,16 @@
+%#<!DOCTYPE html>
+% layout 'default';
+% title 'Test - development mode';
+<h1>PDF test page</h1>
+<p>
+These are all the dynamic PDFs the system can generate. The fields will be filled
+by their names in double suqare brackets (like <i>[[ name ]]</i>) so you can see
+what fields are available and where they go. Search the PDF for "[[" to find them.
+</p>
+Available PDFs:
+<ul>
+% foreach my $pdf_path (@{stash('pdflist_members')}) {
+<li><a href="/test/pdf/<%= $pdf_path %>"><%= $pdf_path %></a></li>
+% }
+</ul>
+
