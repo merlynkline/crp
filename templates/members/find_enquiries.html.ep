@@ -37,7 +37,7 @@ details. The search finds enquiries within about <%= config('enquiry_search_dist
 % my $enquiries_list = stash('enquiries_list');
 % if($enquiries_list) {
 %    if(@$enquiries_list) {
-<h1>Search results</h1>
+<h2>Enquiries near <em><%= param('location') %></em></h2>
 <table>
     <tr>
         <th>Name</th>
