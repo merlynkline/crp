@@ -95,5 +95,26 @@ sub get_pdf {
     );
 }
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub find_enquiries {
+    my $c = shift;
+
+    $c->_load_profile;
+    my $latitude = $c->param('latitude') // '';
+    my $longitude = $c->param('longitude') // '';
+    if($latitude ne '' && $longitude ne '') {
+        my $enquiries_list = [
+            $c->crp->model('Enquiry')->search_near_location(
+                $latitude,
+                $longitude,
+                $c->config->{'enquiry_search_distance'},
+                { notify_tutors => 1 },
+            )
+        ];
+        $c->stash(enquiries_list => $enquiries_list);
+    }
+    $c->render(template => 'members/find_enquiries');
+}
+
 1;
 

@@ -12,6 +12,7 @@
 + First visit to enquiry page is slow to load: jquery? gmaps?
 + Change email address: sends a confirmation link in email to the new address and a deny link in email to the old address. The confirmation email will work once, within a short period. The deny email will work for a longer period and still works even after the confirmation link has been used, and prevents the confirmation link from working.
 + production error 500 page
++ Improve csrf error handling
 
 
 - Cookie session contains:
@@ -35,7 +36,6 @@ session:
 
 
 + Next:
-    + Password editor
     + Get login working - see TODOs in code
     + Interstitial to force login
         + Add 'login_reason' session-var handler to /login

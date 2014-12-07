@@ -42,6 +42,7 @@ sub startup {
     $logged_in->any('/profile')->to('members#profile')->name('crp.members.profile');
     $logged_in->any('page/*page')->to('members#page')->name('crp.members.page');
     $logged_in->any('get_pdf/:pdf')->to('members#get_pdf')->name('crp.members.get_pdf');
+    $logged_in->any('find_enquiries')->to('members#find_enquiries')->name('crp.members.find_enquiries');
     
     my $member_site = $r->under('/me/:slug')->to('member_site#identify');
     $member_site->any('/')->to('/')->to('member_site#welcome')->name('crp.membersite.home');
