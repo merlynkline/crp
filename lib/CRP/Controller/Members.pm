@@ -27,6 +27,7 @@ sub profile {
     my $c = shift;
 
     my $profile = $c->_load_profile;
+    $c->stash(site_profile => $profile);
 
     if($c->req->method eq 'POST') {
         my $validation = $c->validation;

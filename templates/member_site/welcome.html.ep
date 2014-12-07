@@ -1,4 +1,5 @@
 %#<!DOCTYPE html>
 % layout 'default', page_id => 'member.home', heading => stash('site_profile')->name;
 % title 'Welcome';
-<%= b(stash('site_profile')->blurb) %>
+<br />
+<%= include 'member_site/parts/blurb' %>

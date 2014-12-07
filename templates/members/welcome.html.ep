@@ -1,11 +1,13 @@
 %#<!DOCTYPE html>
 % layout 'member_default', heading => "Control panel", page_id => 'member-home';
 % title 'Control panel';
+% my $personal_url = url_for('crp.membersite.home', slug => stash('profile_record')->web_page_slug)->to_abs;
 % if(param('msg')) {
 <%= include 'parts/message_box', msg => param('msg'), auto_hide => 1 %>
 % }
 <p>
-Here is your control panel.
+Here is your control panel.<br />
+Your personal web site is at <a href="<%= $personal_url %>"><%= $personal_url %></a>.
 % if(stash 'incomplete_profile') {
 <p>Your profile is not complete - please <a href="<%= url_for 'crp.members.profile' %>">update it here</a>.</p>
 % }

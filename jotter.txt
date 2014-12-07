@@ -1,17 +1,12 @@
 
-+ Booking from PDF has payment details on it
++ Booking form PDF has payment details on it
 + Trying to visit the profile page when logged out requested login but then went to the main control panel page
 + Text gets too close to right edge of main body container. Padding won't fix because of decorations. See profile updatepage for example.
 + Use flash for message at top of member's control panel, instead of query param (so reload/back behave better)
-+ Standardise the display of flash messages (form save confirmation)
-+ Move the "updated" and "please fix errors" messages to top of pages, matching the "password changed" (?) message
 + Cookie doesn't get deleted on log-out
-+ Move the members area to a separate controller (currently only the welcome page)
 + handle auto-login flag
-+ make includes for common parts of layout templates
 + use named paths in menus (and elsewhere)
 + First visit to enquiry page is slow to load: jquery? gmaps?
-+ Change email address: sends a confirmation link in email to the new address and a deny link in email to the old address. The confirmation email will work once, within a short period. The deny email will work for a longer period and still works even after the confirmation link has been used, and prevents the confirmation link from working.
 + production error 500 page
 + Improve csrf error handling
 
@@ -37,19 +32,15 @@ session:
 
 
 + Next:
-    + Get login working - see TODOs in code
-    + Interstitial to force login
-        + Add 'login_reason' session-var handler to /login
-    + Check if session methodss really need to have $c as first param
+    + Check if session methods really need to have $c as first param
     + Login/auth logic from spreadsheet
-    + Log out
-    + Session table housekeeping
+    + Session table housekeeping (see enquiry housekeeping)
     + Get rid of all references to Tutor/practitioner
-    + Login routes: from logged out, from logged out via interstitial, from already logged in, from already logged in via interstitial
+    + Login routes to test: from logged out, from logged out via interstitial, from already logged in, from already logged in via interstitial
     + add some decoration to the contact form and the thank you page (etc etc)
     + tests!!
     + Move validation to a plug-in?
-	+ change do-not-reply address
+	+ change do-not-reply address so it doesn't show up as "Do" in gmail inbox
 
 - Verified login:
     - Get or create session
@@ -132,7 +123,6 @@ session:
         + Edit profile
             + Change stored details
                 + Name
-                + email
                 + Telephone
                 + Optional web address
                 + Public postal address
@@ -141,7 +131,8 @@ session:
                 + Security questions
                 + Password
             + Admins notified of changes by email (to prevent generating PDFs for others)
-            + Generates tutor's page in carers' area of site
+            ~ Generates tutor's page in carers' area of site
+        + Change email address: sends a confirmation link in email to the new address and a deny link in email to the old address. The confirmation email will work once, within a short period. The deny email will work for a longer period and still works even after the confirmation link has been used, and prevents the confirmation link from working.
         + Messages shown on login (from admins/system)
         + Get a list of carers that have expressed interest near a particular place
         + Record details of a course
@@ -174,6 +165,7 @@ session:
                 + Course flyer: Course type/location/day of week/start date/time
                 + Course poster: Course type/location/day of week/start date/time
                 + Business cards
+                + Name labels for carers
             + QR codes for web pages?
         + Signed-up tutor's contact form (for contacting admins)
         + Submit (an idea for) a newsletter article
@@ -229,9 +221,9 @@ session:
  
  ~ Do we need cookies on the non-logged-in site? => No!
     ~ Don't send a cookie until log-in
-    + Cookie advice on login page
-    + Successful login sends re-direct (with cookie) to logged-in home
-    + Logged-in home (and all protected pages) checks for cookie and redirects to 'login' page with cookie warning.
+    ~ Cookie advice on login page
+    ~ Successful login sends re-direct (with cookie) to logged-in home
+    ~ Logged-in home (and all protected pages) checks for cookie and redirects to 'login' page with cookie warning.
  
  Workflow notes
  --------------

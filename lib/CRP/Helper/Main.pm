@@ -5,6 +5,8 @@ use warnings;
 
 use base 'Mojolicious::Plugin';
 
+use CRP::Util::WordNumber;
+
 sub register {
     my $c = shift;
     my($app) = @_;
@@ -68,6 +70,18 @@ sub register {
         }
     );
 
+    # Instructor photo URL
+    $app->helper(
+        'crp.url_for_instructor_photo' => sub {
+            my $c = shift;
+
+            my($id) = @_;
+            my $path = $c->app->home->rel_file("public/images/instructor/photo");
+            my $file = CRP::Util::WordNumber::encode_number($id) . '.jpg';
+            $file = 'default.jpg' unless -r "$path/$file";
+            return $c->url_for("/images/Instructors/photos/$file");
+        }
+    );
 }
 
 1;

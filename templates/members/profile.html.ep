@@ -56,6 +56,19 @@
             <%= include 'parts/error', field => 'blurb' %>
         </div>
 
+        <label for="photo">Photo:
+            <div class="field-extra-info">
+                Upload a .jpg or .png file. Your photo will be re-sized to fit into
+                <%= config('instructor_photo')->{width} %> by <%= config('instructor_photo')->{height} %> pixels.
+                See below for an example of how this will look.
+            </div>
+        </label>
+        <div class="input-container">
+            <div class="instructor-photo" style="margin-top: 0; border-width: 2px; border-radius: 4px;"><img src="<%= $c->crp->url_for_instructor_photo(stash('site_profile')->instructor_id) %>" style="max-width: <%= int(config('instructor_photo')->{width} / 4 + 0.5) - 1 %>px; max-height: <%= int(config('instructor_photo')->{height} / 4 + 0.5) - 1 %>px;" /></div>
+            %= file_field 'photo', id => 'photo';
+            <%= include 'parts/error', field => 'photo' %>
+        </div>
+
         <label>&nbsp;</label>
         <div class="input-container">
             %= submit_button 'Save'
@@ -63,13 +76,18 @@
             <%= include 'parts/temporary_message', msg => stash 'msg' %>
         </div>
     </fieldset>
+<div style="text-align: center; border-bottom: 1px solid black;">
+    Below is a preview of how the information in your profile looks on your personal web page.
+</div>
+<br />
+<%= include 'member_site/parts/blurb' %>
 % end
 <script src="<%= url_for '/js/yellow-text.min.js' %>"></script>
 <script>
     $(".hide-on-load").delay(2000).slideUp(1000);
     $('#blurb').YellowText({
-        height:             "200px",
-        width:              "450px",
+        height:             "260px",
+        width:              "500px",
         defaultFont:        "sans-serif",
         defaultFontSize:    "16px",
         defaultFontColor:   "#354",

@@ -274,3 +274,18 @@ input[type="checkbox"] {
     background:     url('/images/Plants/Strawberry.png');
 }
 
+.instructor-photo {
+    border:         3px solid #589;
+    border-radius:  8px;
+    float:          right;
+    margin:         4px;
+}
+.instructor-photo > img {
+    vertical-align: bottom;
+}
+
+.yellow-text-edited > p {
+    margin: 0; /* Because the yellow-text RTE puts <br>s between <p>s */
+}
+
+
