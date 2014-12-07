@@ -2,12 +2,7 @@
 % layout 'member_default', heading => "Control panel", page_id => 'member-home';
 % title 'Control panel';
 % if(param('msg')) {
-<div id="message" class="hide-on-load">
-    % my $message = {
-    %   password_set => "Your password has been updated",
-    % }->{param('msg')} // "Unrecognised message code: '" . param('msg') . "'";
-    %= $message . '.';
-</div>
+<%= include 'parts/message_box', msg => param('msg'), auto_hide => 1 %>
 % }
 <p>
 Here is your control panel.

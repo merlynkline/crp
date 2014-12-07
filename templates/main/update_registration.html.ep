@@ -27,6 +27,7 @@ The details for your email address <%= stash 'email' %> are shown below.
 You can change any of the details and click the update button if you wish.
 </p>
 
+<%= include 'parts/message_box', msg => 'registration_update', auto_hide => 1 %>
 %= form_for '/update_registration' => (method => 'POST') => begin
     <fieldset>
         <legend>Registration details</legend>

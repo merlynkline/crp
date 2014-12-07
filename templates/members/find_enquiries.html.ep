@@ -54,13 +54,7 @@ details. The search finds enquiries within about <%= config('enquiry_search_dist
 </table>
 %    }
 %    else {
-<div id="message">
-    Sorry - there are no enquiries near <em><%= param('location') =%></em> in our records
-    at the moment. We get new enquiries all the time though, so please check again in
-    the future.
-    <br clear="left" />
-    <img src="<%= url_for '/images/Plants/LavenderHorizontal2.png' %>" style="display: block; margin: 0 auto;" />
-</div>
+%= include 'parts/message_box', msg => 'no_enquiries_found', auto_hide => 0;
 %    }
 % }
 % end

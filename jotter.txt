@@ -1,6 +1,7 @@
 
 + Booking from PDF has payment details on it
 + Trying to visit the profile page when logged out requested login but then went to the main control panel page
++ Text gets too close to right edge of main body container. Padding won't fix because of decorations. See profile updatepage for example.
 + Use flash for message at top of member's control panel, instead of query param (so reload/back behave better)
 + Standardise the display of flash messages (form save confirmation)
 + Move the "updated" and "please fix errors" messages to top of pages, matching the "password changed" (?) message

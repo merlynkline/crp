@@ -153,13 +153,13 @@ h1#heading {
     padding:        8px 0;
     font-weight:    bold;
 }
-#reviews, fieldset, legend, #message {
+#reviews, fieldset, legend, .message-box {
     border:         3px solid #589;
     background:     #bde;
     border-radius:  8px;
     margin:         20px;
 }
-#message {
+.message-box {
     padding:        8px;
     font-weight:    bold;
 }

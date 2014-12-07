@@ -4,6 +4,7 @@
 % my $profile = stash 'profile_record';
 <h1>Update your profile</h1>
 
+<%= include 'parts/message_box', msg => stash('msg'), auto_hide => 1 %>
 %= form_for 'crp.members.profile' => (method => 'POST') => begin
     Please update your profile details. The information here is used on your
     personalised stationery and web pages so it will be publically visible.

@@ -1,0 +1,10 @@
+%#<!DOCTYPE html>
+%# Render a message identified in $msg, inside a message box
+% if($msg) {
+<div class="message-box<%= $auto_hide ? ' hide-on-load' : '' %>">
+    %= include 'parts/message_text', msg => $msg;
+    <br clear="left" />
+    <img src="<%= url_for '/images/Plants/LavenderHorizontal2.png' %>" style="display: block; margin: 0 auto;" />
+</div>
+%}
+
