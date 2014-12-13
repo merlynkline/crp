@@ -5,7 +5,7 @@
 <h1>Update your profile</h1>
 
 <%= include 'parts/message_box', msg => stash('msg'), auto_hide => 1 %>
-%= form_for 'crp.members.profile' => (method => 'POST') => begin
+%= form_for 'crp.members.profile' => (method => 'POST', enctype => 'multipart/form-data') => begin
     Please update your profile details. The information here is used on your
     personalised stationery and web pages so it will be publically visible.
     <fieldset>
@@ -84,7 +84,7 @@
 % end
 <script src="<%= url_for '/js/yellow-text.min.js' %>"></script>
 <script>
-    $(".hide-on-load").delay(2000).slideUp(1000);
+    $(".hide-on-load").delay(4000).slideUp(1000);
     $('#blurb').YellowText({
         height:             "260px",
         width:              "500px",

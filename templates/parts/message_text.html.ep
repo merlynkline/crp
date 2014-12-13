@@ -2,7 +2,7 @@
 %# Render a temporary message identified in $msg
 % use Mojo::Util 'xml_escape';
 % my $message = {
-%   fix_errors              => 'Please fix the errors shown above.',
+%   fix_errors              => 'Please fix the errors shown on the form.',
 %   no_enquiries_found      => 'Sorry - there are no enquiries near <em>' . xml_escape(param('location') // '') . '</em> in our records at the moment. We get new enquiries all the time though, so please check again in the future.',
 %   password_set            => 'Your password has been updated.',
 %   profile_update          => 'Your profile has been updated.',

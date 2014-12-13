@@ -223,6 +223,7 @@ input, textarea {
     font-weight:    bold;
     font-family:    inherit;
     color:          inherit;
+    background:     white;
 }
 input[type="submit"]:hover, input[type="button"]:hover {
     background:     #bbb;

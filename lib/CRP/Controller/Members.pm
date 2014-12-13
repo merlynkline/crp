@@ -1,6 +1,9 @@
 package CRP::Controller::Members;
+
 use Mojo::Base 'Mojolicious::Controller';
 use Mojo::Util;
+
+use Try::Tiny;
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -32,6 +35,7 @@ sub profile {
     if($c->req->method eq 'POST') {
         my $validation = $c->validation;
 
+        $c->_process_uploaded_photo;
         foreach my $field (qw(name address postcode telephone mobile blurb)) {
             eval { $profile->$field($c->param($field)); };
             my $error = $@;
@@ -54,9 +58,35 @@ sub profile {
     $c->render;
 }
 
-sub _update_profile {
+use CRP::Util::Graphics;
+sub _process_uploaded_photo {
     my $c = shift;
 
+    my $photo = $c->req->upload('photo');
+    return unless $photo->size;
+
+    use File::Temp;
+    my($fh, $filename) = tmpnam();
+    close $fh;
+
+    my $error;
+    try {
+        $photo->move_to($filename);
+        if(CRP::Util::Graphics::resize(
+                $filename,
+                $c->config->{instructor_photo}->{width},
+                $c->config->{instructor_photo}->{height},
+            )) {
+        }
+        else {
+            $c->validation->error(photo => ['invalid_image_file']);
+        }
+    }
+    catch {
+        $error = $_;
+    };
+    unlink $filename;
+    die $error if $error;
 }
 
 sub _load_profile {

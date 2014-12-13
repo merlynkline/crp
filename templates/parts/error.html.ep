@@ -11,6 +11,7 @@
 %   password_mismatch       => 'The two passwords must be identical',
 %   invalid_column_MinLen   => 'Please enter a longer value in this field',
 %   invalid_column_MaxLen   => 'Please enter a shorter value in this field',
+%   invalid_image_file      => "Sorry - we couldn't understand that image file. Please use .jpg or .png",
 % };
 % if(my $error = validation->error($field)) {
 %   $error = $error->[0];
