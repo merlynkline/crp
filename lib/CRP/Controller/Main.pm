@@ -41,7 +41,7 @@ sub contact {
         template    => 'main/email/contact_form',
         info        => {message => $message},
     );
-    $c->redirect_to($c->url_for('/page/contacted'));
+    $c->redirect_to('/page/contacted');
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
