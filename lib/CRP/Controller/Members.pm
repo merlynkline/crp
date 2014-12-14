@@ -51,7 +51,8 @@ sub profile {
         }
         else {
             $profile->update;
-            $c->stash(msg => 'profile_update');
+            $c->flash(msg => 'profile_update');
+            return $c->redirect_to('crp.members.profile');
         }
     }
 

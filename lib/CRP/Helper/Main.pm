@@ -119,6 +119,18 @@ sub register {
         }
     );
 
+    # Instructor photo URL with cachebuster
+    $app->helper(
+        'crp.cachebuster_url_for_instructor_photo' => sub {
+            my $c = shift;
+
+            my($id) = @_;
+            my $name = $c->crp->name_for_instructor_photo($id);
+            $name = 'default.jpg' unless -r $c->crp->path_for_public_file($c->crp->instructor_photo_location . $name);
+            return $c->url_for($c->crp->instructor_photo_location . $name)->query(cb => time);
+        }
+    );
+
     # Logged-in instructor ID or 0
     $app->helper(
         'crp.logged_in_instructor_id' => sub {

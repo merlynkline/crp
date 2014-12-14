@@ -2,4 +2,4 @@
 % layout 'default', page_id => 'member.home', heading => stash('site_profile')->name;
 % title 'Welcome';
 <br />
-<%= include 'member_site/parts/blurb' %>
+<%= include 'member_site/parts/blurb', cachebuster => 0 %>

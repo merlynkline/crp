@@ -4,7 +4,7 @@
 % my $profile = stash 'profile_record';
 <h1>Update your profile</h1>
 
-<%= include 'parts/message_box', msg => stash('msg'), auto_hide => 1 %>
+<%= include 'parts/message_box', msg => flash('msg') || stash('msg'), auto_hide => 1 %>
 %= form_for 'crp.members.profile' => (method => 'POST', enctype => 'multipart/form-data') => begin
     Please update your profile details. The information here is used on your
     personalised stationery and web pages so it will be publically visible.
@@ -64,7 +64,7 @@
             </div>
         </label>
         <div class="input-container">
-            <div class="instructor-photo" style="margin-top: 0; border-width: 2px; border-radius: 4px;"><img src="<%= $c->crp->url_for_instructor_photo(stash('site_profile')->instructor_id) %>" style="max-width: <%= int(config('instructor_photo')->{width} / 4 + 0.5) - 1 %>px; max-height: <%= int(config('instructor_photo')->{height} / 4 + 0.5) - 1 %>px;" /></div>
+            <div class="instructor-photo" style="margin-top: 0; border-width: 2px; border-radius: 4px;"><img src="<%= $c->crp->cachebuster_url_for_instructor_photo(stash('site_profile')->instructor_id) %>" style="max-width: <%= int(config('instructor_photo')->{width} / 4 + 0.5) - 1 %>px; max-height: <%= int(config('instructor_photo')->{height} / 4 + 0.5) - 1 %>px;" /></div>
             %= file_field 'photo', id => 'photo';
             <%= include 'parts/error', field => 'photo' %>
         </div>
@@ -73,14 +73,14 @@
         <div class="input-container">
             %= submit_button 'Save'
             <%= include 'parts/error', field => '_general' %>
-            <%= include 'parts/temporary_message', msg => stash 'msg' %>
+            <%= include 'parts/temporary_message', msg => flash 'msg' %>
         </div>
     </fieldset>
 <div style="text-align: center; border-bottom: 1px solid black;">
     Below is a preview of how the information in your profile looks on your personal web page.
 </div>
 <br />
-<%= include 'member_site/parts/blurb' %>
+<%= include 'member_site/parts/blurb', cachebuster => 1 %>
 % end
 <script src="<%= url_for '/js/yellow-text.min.js' %>"></script>
 <script>

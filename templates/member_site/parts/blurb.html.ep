@@ -1,4 +1,13 @@
 %#<!DOCTYPE html>
-<div class="instructor-photo"><img src="<%= $c->crp->url_for_instructor_photo(stash('site_profile')->instructor_id) %>" /></div>
+<div class="instructor-photo"><img src="<%=
+    do {
+        if($cachebuster) {
+            $c->crp->cachebuster_url_for_instructor_photo(stash('site_profile')->instructor_id) 
+        }
+        else {
+            $c->crp->url_for_instructor_photo(stash('site_profile')->instructor_id) 
+        }
+    }
+%>"/></div>
 <div class="yellow-text-edited"><%= b(stash('site_profile')->blurb) %></div>
 
