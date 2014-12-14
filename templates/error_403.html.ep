@@ -1,0 +1,14 @@
+%#<!DOCTYPE html>
+<%= include 'parts/error_page',
+title => "Access forbidden",
+code => 403,
+error => "Access forbidden owing to CSRF violation",
+message => <<"EOT"
+I can't show you that page at the moment. This is usually
+caused by your session timing out after a long period of inactivity
+or by clicking on a link or bookmark for a page that you need to be
+logged in to the right account to see. Try using the menu on this page
+to log out of your account (if you're logged in) and then log in
+again and find the page you're looking for.
+EOT
+%>

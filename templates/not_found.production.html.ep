@@ -1,20 +1,11 @@
 %#<!DOCTYPE html>
-% layout 'default', heading => "Page not found";
-% title "Page not found";
-
-<h1>Something went wrong!</h1>
-<img src="<%= url_for '/images/Animals/Mole.jpg' %>" align="left" />
-<p>
-I'm sorry! I've looked everywhere and I just can't find the page
+<%= include 'parts/error_page',
+title => "Page not found",
+code => 404,
+error => "Page not found",
+message => <<"EOT"
+I've looked everywhere and I just can't find the page
 you've requested. Please use the menu on this page to explore the
 site and see if you can do better than me.
-<p>
-
-<p>
-If you're interested in the technical details, this is an error
-code 404 - page not found. There's nothing more I can do I'm afraid.
-</p>
-
-<br clear="left">
-
-<img src="<%= url_for '/images/Plants/Thistle.png' %>" style="display: block; margin: 50px auto;" />
+EOT
+%>

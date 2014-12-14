@@ -13,7 +13,7 @@ sub startup {
     my $self = shift;
 
     my $config = $self->plugin('Config');
-    $self->plugin('CSRFProtect');
+    $self->plugin('CSRFProtect', on_error => \&_csrf_error_handler);
     $self->plugin('CRP::Helper::Main');
     $self->plugin('RenderFile');
     $self->plugin(mail => $config->{mail});
@@ -68,6 +68,12 @@ sub _after_dispatch {
     my $c = shift;
 
     $c->stash('crp_session')->write();
+}
+
+sub _csrf_error_handler {
+    my $c = shift;
+
+    $c->render(template => 'error_403', status => 403 );
 }
 
 1;

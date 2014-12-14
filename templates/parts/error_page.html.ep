@@ -1,0 +1,19 @@
+%#<!DOCTYPE html>
+% layout 'default', heading => "Error: $title";
+% title "Error: $title";
+
+<div style="text-align: center; padding: 0px 80px;">
+<img src="<%= url_for '/images/Animals/Mole.jpg' %>" style="display: block; margin: 30px auto 0;" />
+<br clear="left" />
+<h1>I'm sorry!</h1>
+<p><%= $message %></p>
+<p>There's nothing more I can do I'm afraid.</p>
+<p style="font-size: 75%">
+If you're interested in the technical details this is an error code
+<b><%= $code %></b> - <i><%= $error %></i>.
+</p>
+</div>
+
+<br clear="left" />
+
+<img src="<%= url_for '/images/Plants/Thistle.png' %>" style="display: block; margin: 50px auto;" />

@@ -4,7 +4,7 @@
 <h1>PDF test page</h1>
 <p>
 These are all the dynamic PDFs the system can generate. The fields will be filled
-by their names in double suqare brackets (like <i>[[ name ]]</i>) so you can see
+by their names in double square brackets (like <i>[[ name ]]</i>) so you can see
 what fields are available and where they go. Search the PDF for "[[" to find them.
 </p>
 Available PDFs:
