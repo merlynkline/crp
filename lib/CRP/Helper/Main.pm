@@ -70,16 +70,61 @@ sub register {
         }
     );
 
+    # Absolute path to public file
+    $app->helper(
+        'crp.path_for_public_file' => sub {
+            my $c = shift;
+
+            my($path) = @_;
+            return $c->app->home->rel_file("public/$path");
+        }
+    );
+
+    # Instructor photo file location within public files
+    $app->helper(
+        'crp.instructor_photo_location' => sub {
+            return '/images/Instructors/photos/';
+        }
+    );
+
+    # Name of an instructor's photo file
+    $app->helper(
+        'crp.name_for_instructor_photo' => sub {
+            my $c = shift;
+
+            my($id) = @_;
+            return CRP::Util::WordNumber::encode_number($id) . '.jpg';
+        }
+    );
+
+    # Instructor photo file path
+    $app->helper(
+        'crp.path_for_instructor_photo' => sub {
+            my $c = shift;
+
+            my($id) = @_;
+            return $c->crp->path_for_public_file($c->crp->instructor_photo_location . $c->crp->name_for_instructor_photo($id));
+        }
+    );
+
     # Instructor photo URL
     $app->helper(
         'crp.url_for_instructor_photo' => sub {
             my $c = shift;
 
             my($id) = @_;
-            my $path = $c->app->home->rel_file("public/images/instructor/photo");
-            my $file = CRP::Util::WordNumber::encode_number($id) . '.jpg';
-            $file = 'default.jpg' unless -r "$path/$file";
-            return $c->url_for("/images/Instructors/photos/$file");
+            my $name = $c->crp->name_for_instructor_photo($id);
+            $name = 'default.jpg' unless -r $c->crp->path_for_public_file($c->crp->instructor_photo_location . $name);
+            return $c->url_for($c->crp->instructor_photo_location . $name);
+        }
+    );
+
+    # Logged-in instructor ID or 0
+    $app->helper(
+        'crp.logged_in_instructor_id' => sub {
+            my $c = shift;
+
+            return $c->stash('crp_session')->variable('instructor_id') || 0;
         }
     );
 }

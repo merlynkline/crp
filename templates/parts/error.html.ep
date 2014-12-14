@@ -3,6 +3,7 @@
 % my $error_message = {
 %   create_record           => "Sorry - we couldn't record your information. Please try again",
 %   duplicate_email         => 'That email address is already registered',
+%   file_too_large          => 'Sorry - that file is too large. Please choose another',
 %   incorrect_password      => "Sorry - that's the wrong password",
 %   like                    => 'Please enter a valid answer',
 %   no_such_email           => 'Sorry - that email address is not recorded on our system',

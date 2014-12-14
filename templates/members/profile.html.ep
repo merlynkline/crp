@@ -1,6 +1,6 @@
 %#<!DOCTYPE html>
 % layout 'member_default', heading => "Profile", page_id => 'member-home', extra_header_templates => 'parts/yellow_text_style';
-% title 'Control panel';
+% title 'Profile';
 % my $profile = stash 'profile_record';
 <h1>Update your profile</h1>
 

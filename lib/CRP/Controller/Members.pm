@@ -65,18 +65,26 @@ sub _process_uploaded_photo {
     my $photo = $c->req->upload('photo');
     return unless $photo->size;
 
+    if($photo->size > ($c->config->{instructor_photo}->{max_size} || 10_000_000)) {
+        $c->validation->error(photo => ['file_too_large']);
+        return;
+    }
+
     use File::Temp;
-    my($fh, $filename) = tmpnam();
+    my($fh, $temp_file) = tmpnam();
     close $fh;
 
     my $error;
     try {
-        $photo->move_to($filename);
+        $photo->move_to($temp_file);
         if(CRP::Util::Graphics::resize(
-                $filename,
+                $temp_file,
                 $c->config->{instructor_photo}->{width},
                 $c->config->{instructor_photo}->{height},
             )) {
+            use File::Copy;
+            my $target = $c->crp->path_for_instructor_photo($c->crp->logged_in_instructor_id);
+            move $temp_file, $target or die "Failed to move '$temp_file' to '$target': $!";
         }
         else {
             $c->validation->error(photo => ['invalid_image_file']);
@@ -85,14 +93,14 @@ sub _process_uploaded_photo {
     catch {
         $error = $_;
     };
-    unlink $filename;
+    unlink $temp_file;
     die $error if $error;
 }
 
 sub _load_profile {
     my $c = shift;
 
-    my $instructor_id = $c->stash('crp_session')->variable('instructor_id');
+    my $instructor_id = $c->crp->logged_in_instructor_id or die "Not logged in";
     my $profile = $c->crp->model('Profile')->find_or_create({instructor_id => $instructor_id});
     $c->stash('profile_record', $profile);
     return $profile;

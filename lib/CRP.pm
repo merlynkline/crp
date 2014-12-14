@@ -61,7 +61,7 @@ sub _before_dispatch {
     my $c = shift;
 
     $c->stash(crp_session => CRP::Util::Session->new(mojo => $c));
-    $c->stash(logged_in => $c->stash('crp_session')->variable('instructor_id'));
+    $c->stash(logged_in => $c->crp->logged_in_instructor_id);
 }
 
 sub _after_dispatch {

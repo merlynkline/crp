@@ -225,8 +225,11 @@ input, textarea {
     color:          inherit;
     background:     white;
 }
+input[type="submit"], input[type="button"] {
+    background-image: linear-gradient(#fff, #ddd);
+}
 input[type="submit"]:hover, input[type="button"]:hover {
-    background:     #bbb;
+    background-image: linear-gradient(#ccc, #eee);
 }
 input[type="checkbox"] {
     width:          20px;

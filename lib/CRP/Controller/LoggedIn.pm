@@ -7,7 +7,7 @@ use CRP::Util::WordNumber;
 sub authenticate {
     my $c = shift;
 
-    my $logged_in_id = $c->stash('crp_session')->variable('instructor_id');
+    my $logged_in_id = $c->crp->logged_in_instructor_id;
     if($logged_in_id) {
 
         my $login_record = $c->crp->model('Login')->find($logged_in_id);
@@ -217,7 +217,7 @@ sub set_password {
     return $c->render(template => "logged_in/pages/set_password") if($validation->has_error);
 
     my $login_record = $c->stash('login_record');
-    $login_record->password_hash($c->_password_hash($pass1, $c->stash('crp_session')->variable('instructor_id')));
+    $login_record->password_hash($c->_password_hash($pass1, $c->crp->logged_in_instructor_id));
     $login_record->update();
 
     $c->_redirect_to_interstitial_continuation_or_url(
