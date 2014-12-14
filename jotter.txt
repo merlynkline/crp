@@ -10,7 +10,6 @@
 + use named paths in menus (and elsewhere)
 + First visit to enquiry page is slow to load: jquery? gmaps?
 + production error 500 page
-+ Improve csrf error handling
 + Need a better method for cachebusting profile images
 
 
