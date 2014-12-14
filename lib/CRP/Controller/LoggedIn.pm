@@ -65,7 +65,7 @@ sub _redirect_to_interstitial_continuation_or_url {
     my $destination = $c->stash('crp_session')->variable('interstitial_destination');
     if($destination) {
         $c->stash('crp_session')->variable('interstitial_destination', undef);
-        $url = $c->url_for($destination);
+        $url = $destination;
     }
 
     return $c->redirect_to($url);
@@ -179,13 +179,13 @@ sub _do_login {
 
 # TODO: handle auto-login flag
     my $crp_session = $c->stash('crp_session');
+    my $destination = $crp_session->variable('interstitial_destination');
     $crp_session->create_new();
     $crp_session->variable(instructor_id => $login_record->id);
     $crp_session->variable(email => $login_record->email);
     $crp_session->variable(login_reason => undef);
-    $c->_redirect_to_interstitial_continuation_or_url(
-        $c->url_for('crp.logged_in_default')
-    );
+    $crp_session->variable(interstitial_destination => $destination) if $destination;
+    $c->_redirect_to_interstitial_continuation_or_url('crp.logged_in_default');
 }
 
 
@@ -249,7 +249,7 @@ sub logout {
 
     my $crp_session = $c->stash('crp_session');
     $crp_session->clear();
-    $c->redirect_to($c->url_for('/'));
+    $c->redirect_to('/');
 }
 
 1;
