@@ -73,7 +73,7 @@ sub _after_dispatch {
 sub _csrf_error_handler {
     my $c = shift;
 
-    $c->render(template => 'error_403', status => 403 );
+    $c->render(template => 'csrf_violation', status => 403 );
 }
 
 1;

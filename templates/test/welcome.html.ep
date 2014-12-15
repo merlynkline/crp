@@ -7,7 +7,7 @@
     <li>Various pages that aren't directly reachable:</li>
     <ul>
         <li><a href="/test/template/not_found.production">Production 404 page</a></li>
-        <li><a href="/test/template/error_403">CSRF violation page</a></li>
+        <li><a href="/test/template/csrf_violation">CSRF violation page</a></li>
         <li><a href="/update_registration">Enquiry registration update code entry</a></li>
         <li><a href="/page/registered">Enquiry registration acknowledgement thanks</a></li>
         <li><a href="/update_registration?id=60-my-long-green-boys-shoes">Enquiry registration update</a></li>

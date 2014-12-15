@@ -1,7 +1,6 @@
 
 
-
-
++ Improve the find enquiries page for instructors. Format the results better. Include enquiry date. Sort by someting or other. Handle missing names (etc) elegantly. Include CSV export?
 + Booking form PDF has payment details on it
 + Text gets too close to right edge of main body container. Padding won't fix because of decorations. See profile updatepage for example.
 + Use flash for message at top of member's control panel, instead of query param (so reload/back behave better)
@@ -150,7 +149,7 @@ session:
                 + Records name, child's name, telephone, email54
                 + Allows generation of better registers
                 + Generate a record in the interest database so that newsletters will go out
-            + Shows list of interested carers nearby
+            + Shows list of interested carers enquiries nearby
             + Generates a course page in the carers' area of the site
         + Change details of a course
             + Does not re-send notifications to nearby interested carers
