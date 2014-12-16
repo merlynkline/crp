@@ -2,13 +2,11 @@
 
 + Booking form PDF has payment details on it
 + Text gets too close to right edge of main body container. Padding won't fix because of decorations. See profile updatepage for example.
-+ Use flash for message at top of member's control panel, instead of query param (so reload/back behave better)
 + Cookie doesn't get deleted on log-out
 + handle auto-login flag
 + use named paths in menus (and elsewhere)
 + First visit to enquiry page is slow to load: jquery? gmaps?
 + production error 500 page
-+ Need a better method for cachebusting profile images
 
 
 - Cookie session contains:

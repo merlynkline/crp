@@ -49,7 +49,7 @@ is($crp_helper->trimmed_param('test'), undef, "trimmed_parami for undef");
 is($crp_helper->path_for_public_file("test/test"), $c->app->home->rel_file("public/test/test"), "public file path");
 
 # Instructor photo file location within public files
-my $instructor_photo_path = '/images/Instructors/photos/';
+my $instructor_photo_path = 'images/Instructors/photos/';
 is($crp_helper->instructor_photo_location, $instructor_photo_path, 'Instructor photo file location');
 
 foreach my $fixture (
@@ -62,7 +62,7 @@ foreach my $fixture (
     is($crp_helper->name_for_instructor_photo($fixture->[0]), $fixture->[1], "Instructors photo name #$fixture->[0]");
     # Instructor photo file path
     is($crp_helper->path_for_instructor_photo($fixture->[0]),
-        $c->app->home->rel_file("/public$instructor_photo_path/$fixture->[1]"),
+        $c->app->home->rel_file("/public/$instructor_photo_path/$fixture->[1]"),
         "Instructor photo file path #$fixture->[0]"
     );
 }

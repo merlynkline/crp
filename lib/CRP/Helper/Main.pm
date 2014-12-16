@@ -79,7 +79,7 @@ sub register {
     # Instructor photo file location within public files
     $app->helper(
         'crp.instructor_photo_location' => sub {
-            return '/images/Instructors/photos/';
+            return 'images/Instructors/photos/';
         }
     );
 
@@ -99,7 +99,8 @@ sub register {
             my $c = shift;
 
             my($id) = @_;
-            return $c->crp->path_for_public_file($c->crp->instructor_photo_location . $c->crp->name_for_instructor_photo($id));
+            my $path = '/'. $c->crp->instructor_photo_location;
+            return $c->crp->path_for_public_file($path . $c->crp->name_for_instructor_photo($id));
         }
     );
 
@@ -109,9 +110,10 @@ sub register {
             my $c = shift;
 
             my($id) = @_;
+            my $path = '/'. $c->crp->instructor_photo_location;
             my $name = $c->crp->name_for_instructor_photo($id);
-            $name = 'default.jpg' unless -r $c->crp->path_for_public_file($c->crp->instructor_photo_location . $name);
-            return $c->url_for($c->crp->instructor_photo_location . $name);
+            $name = 'default.jpg' unless -r $c->crp->path_for_public_file("$path$name");
+            return $c->url_for("$path$name");
         }
     );
 
@@ -121,9 +123,11 @@ sub register {
             my $c = shift;
 
             my($id) = @_;
+            my $path = $c->crp->instructor_photo_location;
             my $name = $c->crp->name_for_instructor_photo($id);
-            $name = 'default.jpg' unless -r $c->crp->path_for_public_file($c->crp->instructor_photo_location . $name);
-            return $c->url_for($c->crp->instructor_photo_location . $name)->query(cb => time);
+            $name = 'default.jpg' unless -r $c->crp->path_for_public_file("$path$name");
+            my $cachebuster = CRP::Util::WordNumber::encode_number(time % 100_000);
+            return $c->url_for('crp.fresh', cachebuster => $cachebuster, path => "$path$name");
         }
     );
 

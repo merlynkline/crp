@@ -188,5 +188,12 @@ sub update_registration {
     $c->_enquiry_housekeeping();
 }
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub fresh {
+    my $c = shift;
+
+    return $c->reply->static($c->stash('path'));
+}
+
 1;
 
