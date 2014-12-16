@@ -1,6 +1,7 @@
 % $c->res->headers->content_disposition('attachment; filename="CRP Enquiries near ' . stash('file_name_location') . '.csv";');
 % my $csv_field = sub {
 %    my($data) = @_;
+%    $data //= '';
 %    $data =~ s{"}{""}g;
 %    $data = "\"$data\"" if $data =~ m{[",]};
 %    return $data;
