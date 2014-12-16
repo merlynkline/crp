@@ -1,0 +1,12 @@
+% $c->res->headers->content_disposition('attachment; filename="CRP Enquiries near ' . stash('file_name_location') . '.csv";');
+% my $csv_field = sub {
+%    my($data) = @_;
+%    $data =~ s{"}{""}g;
+%    $data = "\"$data\"" if $data =~ m{[",]};
+%    return $data;
+% };
+Name,Email,Location,Enquiry date
+% foreach my $enquiry (@$enquiries_list) {
+<%== $csv_field->($enquiry->name) %>,<%== $csv_field->($enquiry->email) %>,<%== $csv_field->($enquiry->location) %>,<%== $csv_field->($c->crp->format_date($enquiry->create_date, 'csv')) %>
+% }
+

@@ -11,7 +11,7 @@ use constant PI => 3.141592654;
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 sub search_near_location {
     my $self = shift;
-    my($latitude, $longitude, $distance, $condition) = (shift, shift, shift, shift);
+    my($latitude, $longitude, $distance) = (shift, shift, shift);
 
     return if $latitude < -90 || $latitude > 90 || $longitude <= -180 || $longitude >= 180;
     my $latitude_offset = $distance / KM_PER_DEGREE_LATITUDE;
@@ -30,7 +30,7 @@ sub search_near_location {
         ]
     ];
     $nearby_resultset = $nearby_resultset->search($location_condition);
-    return $nearby_resultset->search($condition);
+    return $nearby_resultset->search(@_);
 }
 
 1;

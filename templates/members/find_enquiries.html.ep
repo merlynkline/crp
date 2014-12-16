@@ -13,7 +13,7 @@ details. The search finds enquiries within about <%= config('enquiry_search_dist
 
     <label for="location-input-location">Location:</label>
     <div class="input-container">
-        %= text_field 'location' => stash('profile_record')->postcode, onblur => 'locationInputHandler.codeAddress()', id => 'location-input-location', autofocus => 'autofocus';
+        %= text_field 'location' => stash('profile_record')->postcode, id => 'location-input-location', autofocus => 'autofocus';
         <input type="button" value="check" onclick="locationInputHandler.codeAddress()" /><br />
     </div>
     %= hidden_field 'latitude' => param('latitude'), id => "location-input-latitude"
@@ -38,20 +38,30 @@ details. The search finds enquiries within about <%= config('enquiry_search_dist
 % if($enquiries_list) {
 %    if(@$enquiries_list) {
 <h2>Enquiries near <em><%= param('location') %></em></h2>
-<table>
+<table class="list1">
     <tr>
         <th>Name</th>
         <th>Email</th>
         <th>Location</th>
+        <th>Enquiry date</th>
     </tr>
     % foreach my $enquiry (@$enquiries_list) {
     <tr>
         <td><%= $enquiry->name %></td>
         <td><%= $enquiry->email %></td>
         <td><%= $enquiry->location %></td>
+        <td><%= $c->crp->format_date($enquiry->create_date, 'short') %></td>
     </tr>
     % }
 </table>
+You can
+<a href="<%=
+    url_for('crp.members.find_enquiries', format => 'csv')
+    ->query(latitude => param('latitude'),
+            longitude => param('longitude'),
+            location => stash('file_name_location')
+) %>">download these results as a CSV file here</a>
+if you wish.
 %    }
 %    else {
 %= include 'parts/message_box', msg => 'no_enquiries_found', auto_hide => 0;

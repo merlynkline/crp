@@ -55,6 +55,14 @@
                 }
                 that.map = new google.maps.Map(document.getElementById('location-input-map-canvas'), mapOptions);
                 that.codeAddress();
+                var address = document.getElementById('location-input-location').value;
+                address.onblur = that.codeAddress;
+                $('#location-input-location').keypress(function(ev){
+                    if(ev.keyCode == 13) {
+                        that.codeAddress();
+                        return false;
+                    }
+                });
             }
         };
 

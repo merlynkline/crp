@@ -27,7 +27,8 @@ sub _show_interstitial {
 
     my $destination = $c->stash('crp_session')->variable('interstitial_destination');
     unless($destination) {
-        if($c->req->method eq 'GET') {
+        my $format = $c->stash('format') || 'html';
+        if($c->req->method eq 'GET' && $format eq 'html') {
             $destination = $c->req->url->to_string;
         }
         else {

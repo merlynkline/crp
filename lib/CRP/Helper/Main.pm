@@ -139,6 +139,17 @@ sub register {
             return $c->stash('crp_session')->variable('instructor_id') || 0;
         }
     );
+
+    # Format a date using one of the named formats in the config
+    $app->helper(
+        'crp.format_date' => sub {
+            my $c = shift;
+            my($date, $format_name) = @_;
+
+            my $format = $app->config->{date_format}->{$format_name} || '%d%b%Y';
+            return $date->strftime($format);
+        }
+    );
 }
 
 1;

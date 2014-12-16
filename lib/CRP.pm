@@ -22,6 +22,8 @@ sub startup {
 
     push @{$self->app->commands->namespaces}, 'CRP::Command';
 
+    $self->app->types->type(csv => 'text/csv;charset=UTF-8');
+
     # Router
     my $r = $self->routes;
 

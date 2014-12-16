@@ -142,6 +142,9 @@ sub find_enquiries {
     $c->_load_profile;
     my $latitude = $c->param('latitude') // '';
     my $longitude = $c->param('longitude') // '';
+    my $file_name_location = $c->param('location') // '';
+    $file_name_location =~ s{[^a-z0-9\s]}{}gi;
+    $c->stash(file_name_location => substr($file_name_location, 0, 20));
     if($latitude ne '' && $longitude ne '') {
         my $enquiries_list = [
             $c->crp->model('Enquiry')->search_near_location(
@@ -149,6 +152,7 @@ sub find_enquiries {
                 $longitude,
                 $c->config->{'enquiry_search_distance'},
                 { notify_tutors => 1 },
+                { order_by => {-desc => 'create_date'} },
             )
         ];
         $c->stash(enquiries_list => $enquiries_list);
