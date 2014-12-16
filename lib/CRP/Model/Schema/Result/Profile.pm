@@ -48,6 +48,11 @@ __PACKAGE__->add_columns(
     },
 );
 
+__PACKAGE__->set_primary_key('instructor_id');
+__PACKAGE__->add_unique_constraint('web_page_slug_key', ['web_page_slug']);
+
+
+
 my %TYPE = (
     name        => {MinLen => 1, MaxLen => 150},
     address     => {MaxLen => 300},
@@ -64,8 +69,6 @@ sub set_column {
 
     $self->SUPER::set_column($column, $value);
 }
-
-__PACKAGE__->set_primary_key('instructor_id');
 
 sub sqlt_deploy_hook {
     my ($self, $sqlt_table) = @_;

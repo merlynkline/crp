@@ -13,11 +13,17 @@ sub authenticate {
         my $login_record = $c->crp->model('Login')->find($logged_in_id);
         if($login_record) {
             $c->stash('login_record', $login_record);
-            return $c->_check_if_interstitial_needed if $login_record;
+            return 0 if $c->_show_disabled_account_page;
+            my $interstitial = $c->_check_if_interstitial_needed;
+            if($interstitial) {
+                $c->_show_interstitial($interstitial);
+                return 0;
+            }
+            return 1;
         }
     }
 
-    $c->_show_interstitial($c->url_for('crp.login'), {login_reason => 'LOGIN_REQUIRED'});
+    $c->_show_interstitial('crp.login', {login_reason => 'LOGIN_REQUIRED'});
     return 0;
 }
 
@@ -27,13 +33,7 @@ sub _show_interstitial {
 
     my $destination = $c->stash('crp_session')->variable('interstitial_destination');
     unless($destination) {
-        my $format = $c->stash('format') || 'html';
-        if($c->req->method eq 'GET' && $format eq 'html') {
-            $destination = $c->req->url->to_string;
-        }
-        else {
-            $destination = 'crp.logged_in_default';
-        }
+        $destination = $c->_get_post_interstitial_destination;
         $c->stash('crp_session')->variable('interstitial_destination', $destination);
     }
 
@@ -46,17 +46,28 @@ sub _show_interstitial {
     $c->redirect_to($url);
 }
 
+sub _get_post_interstitial_destination {
+    my $c = shift;
+
+    my $destination;
+    my $format = $c->stash('format') || 'html';
+    if($c->req->method eq 'GET' && $format eq 'html') {
+        $destination = $c->req->url->to_string;
+    }
+    else {
+        $destination = 'crp.logged_in_default';
+    }
+    return $destination;
+}
+
 sub _check_if_interstitial_needed {
     my $c = shift;
 
-    if( ! $c->stash('login_record')->password_hash
-        && $c->current_route ne 'crp.set_password'
-    ) {
-        $c->_show_interstitial($c->url_for('crp.set_password'));
-        return 0;
+    if( ! $c->stash('login_record')->password_hash && $c->current_route ne 'crp.set_password') {
+        return 'crp.set_password';
     }
 
-    return 1;
+    return;
 }
 
 sub _redirect_to_interstitial_continuation_or_url {
@@ -70,6 +81,14 @@ sub _redirect_to_interstitial_continuation_or_url {
     }
 
     return $c->redirect_to($url);
+}
+
+sub _show_disabled_account_page {
+    my $c = shift;
+
+    return 0 unless $c->stash('login_record')->disabled_date;
+    $c->render(template => 'account_disabled', status => 403);
+    return 1;
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 

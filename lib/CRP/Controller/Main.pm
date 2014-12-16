@@ -195,5 +195,11 @@ sub fresh {
     return $c->reply->static($c->stash('path'));
 }
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub tutor_list {
+    my $c = shift;
+#    my $profile = $c->crp->model('Profile')->find_or_create({instructor_id => $instructor_id});
+
+}
 1;
 

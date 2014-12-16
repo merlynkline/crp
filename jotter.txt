@@ -1,5 +1,6 @@
 
 
++ List of instructors: account for disabled flag
 + Booking form PDF has payment details on it
 + Text gets too close to right edge of main body container. Padding won't fix because of decorations. See profile updatepage for example.
 + Cookie doesn't get deleted on log-out
@@ -228,7 +229,7 @@ session:
  + DB changes:
     + Modify lib/CRP/Model/Schema/Result/*
     + Update version number in lib/CRP/Model/Schema.pm
-    + check status - run: ./script/crp migrate prepare
+    + check status - run: ./script/crp migrate status
     + run: ./script/crp migrate prepare
     + check new autosql files like: share/deploy/migrations/PostgreSQL/upgrade/1-2/001-auto.sql
     + if any tweaks are needed:

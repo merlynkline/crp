@@ -1,0 +1,11 @@
+%#<!DOCTYPE html>
+<%= include 'parts/error_page',
+title => "Account disabled",
+code => 403,
+error => "Access forbidden owing to disabled account",
+message => <<"EOT"
+This account has been disabled by the site administrators.
+Please use the contact form available from the menu to contact
+us for more details.
+EOT
+%>

@@ -32,11 +32,12 @@ sub startup {
     $r->any('/main/contact')->to('main#contact');
     $r->any('/main/register_interest')->to('main#register_interest');
     $r->any('/main/resend_confirmation')->to('main#resend_confirmation');
-    $r->any('/login')->to('logged_in#login')->name('crp.login');;
-    $r->any('/logout')->to('logged_in#logout')->name('crp.logout');;
-    $r->get('/page/*page')->to('main#page');
+    $r->any('/login')->to('logged_in#login')->name('crp.login');
+    $r->any('/logout')->to('logged_in#logout')->name('crp.logout');
+    $r->get('/page/*page')->to('main#page')->name('crp.page');
     $r->any('/otp')->to('logged_in#otp');
     $r->get('/otp/*otp')->to('logged_in#otp');
+    $r->get('/tutor_list')->to('main#tutor_list')->name('crp.tutor_list');
     $r->get('/fresh/:cachebuster/*path')->to('main#fresh')->name('crp.fresh');
 
     my $logged_in = $r->under('/instructor')->to('logged_in#authenticate');
@@ -76,7 +77,7 @@ sub _after_dispatch {
 sub _csrf_error_handler {
     my $c = shift;
 
-    $c->render(template => 'csrf_violation', status => 403 );
+    $c->render(template => 'csrf_violation', status => 403);
 }
 
 1;

@@ -1,0 +1,490 @@
+---
+schema:
+  procedures: {}
+  tables:
+    enquiry:
+      constraints:
+        - deferrable: 1
+          expression: ''
+          fields:
+            - id
+          match_type: ''
+          name: ''
+          on_delete: ''
+          on_update: ''
+          options: []
+          reference_fields: []
+          reference_table: ''
+          type: PRIMARY KEY
+        - deferrable: 1
+          expression: ''
+          fields:
+            - email
+          match_type: ''
+          name: enquiry_email_key
+          on_delete: ''
+          on_update: ''
+          options: []
+          reference_fields: []
+          reference_table: ''
+          type: UNIQUE
+      fields:
+        create_date:
+          data_type: timestamptz
+          default_value: !!perl/ref
+            =: (now())
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: create_date
+          order: 4
+          size:
+            - 0
+        email:
+          data_type: text
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 1
+          name: email
+          order: 3
+          size:
+            - 0
+        id:
+          data_type: integer
+          default_value: ~
+          is_auto_increment: 1
+          is_nullable: 0
+          is_primary_key: 1
+          is_unique: 0
+          name: id
+          order: 1
+          size:
+            - 0
+        latitude:
+          data_type: real
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: latitude
+          order: 7
+          size:
+            - 0
+        location:
+          data_type: text
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: location
+          order: 6
+          size:
+            - 0
+        longitude:
+          data_type: real
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: longitude
+          order: 8
+          size:
+            - 0
+        name:
+          data_type: text
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: name
+          order: 2
+          size:
+            - 0
+        notify_new_courses:
+          data_type: boolean
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: notify_new_courses
+          order: 9
+          size:
+            - 0
+        notify_tutors:
+          data_type: boolean
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: notify_tutors
+          order: 10
+          size:
+            - 0
+        send_newsletter:
+          data_type: boolean
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: send_newsletter
+          order: 11
+          size:
+            - 0
+        suspend_date:
+          data_type: timestamptz
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: suspend_date
+          order: 5
+          size:
+            - 0
+      indices:
+        - fields:
+            - suspend_date
+          name: enquiry_suspend_date_idx
+          options: []
+          type: NORMAL
+        - fields:
+            - latitude
+          name: enquiry_latitude_idx
+          options: []
+          type: NORMAL
+        - fields:
+            - longitude
+          name: enquiry_longitude_idx
+          options: []
+          type: NORMAL
+      name: enquiry
+      options: []
+      order: 1
+    login:
+      constraints:
+        - deferrable: 1
+          expression: ''
+          fields:
+            - id
+          match_type: ''
+          name: ''
+          on_delete: ''
+          on_update: ''
+          options: []
+          reference_fields: []
+          reference_table: ''
+          type: PRIMARY KEY
+        - deferrable: 1
+          expression: ''
+          fields:
+            - email
+          match_type: ''
+          name: login_email_key
+          on_delete: ''
+          on_update: ''
+          options: []
+          reference_fields: []
+          reference_table: ''
+          type: UNIQUE
+      fields:
+        auto_login:
+          data_type: boolean
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: auto_login
+          order: 9
+          size:
+            - 0
+        create_date:
+          data_type: timestamptz
+          default_value: !!perl/ref
+            =: (now())
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: create_date
+          order: 3
+          size:
+            - 0
+        email:
+          data_type: text
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 1
+          name: email
+          order: 2
+          size:
+            - 0
+        id:
+          data_type: integer
+          default_value: ~
+          is_auto_increment: 1
+          is_nullable: 0
+          is_primary_key: 1
+          is_unique: 0
+          name: id
+          order: 1
+          size:
+            - 0
+        is_administrator:
+          data_type: boolean
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: is_administrator
+          order: 8
+          size:
+            - 0
+        last_login_date:
+          data_type: timestamptz
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: last_login_date
+          order: 4
+          size:
+            - 0
+        otp_expiry_date:
+          data_type: timestamptz
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: otp_expiry_date
+          order: 7
+          size:
+            - 0
+        otp_hash:
+          data_type: text
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: otp_hash
+          order: 6
+          size:
+            - 0
+        password_hash:
+          data_type: text
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: password_hash
+          order: 5
+          size:
+            - 0
+      indices: []
+      name: login
+      options: []
+      order: 2
+    profile:
+      constraints:
+        - deferrable: 1
+          expression: ''
+          fields:
+            - instructor_id
+          match_type: ''
+          name: ''
+          on_delete: ''
+          on_update: ''
+          options: []
+          reference_fields: []
+          reference_table: ''
+          type: PRIMARY KEY
+        - deferrable: 1
+          expression: ''
+          fields:
+            - web_page_slug
+          match_type: ''
+          name: web_page_slug_key
+          on_delete: ''
+          on_update: ''
+          options: []
+          reference_fields: []
+          reference_table: ''
+          type: UNIQUE
+      fields:
+        address:
+          data_type: text
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: address
+          order: 3
+          size:
+            - 0
+        blurb:
+          data_type: text
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: blurb
+          order: 8
+          size:
+            - 0
+        instructor_id:
+          data_type: integer
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 1
+          is_unique: 0
+          name: instructor_id
+          order: 1
+          size:
+            - 0
+        mobile:
+          data_type: text
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: mobile
+          order: 6
+          size:
+            - 0
+        name:
+          data_type: text
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: name
+          order: 2
+          size:
+            - 0
+        photo:
+          data_type: text
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: photo
+          order: 7
+          size:
+            - 0
+        postcode:
+          data_type: text
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: postcode
+          order: 4
+          size:
+            - 0
+        telephone:
+          data_type: text
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: telephone
+          order: 5
+          size:
+            - 0
+        web_page_slug:
+          data_type: text
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 1
+          name: web_page_slug
+          order: 9
+          size:
+            - 0
+      indices:
+        - fields:
+            - web_page_slug
+          name: profile_web_page_slug_idx
+          options: []
+          type: NORMAL
+      name: profile
+      options: []
+      order: 3
+    session:
+      constraints:
+        - deferrable: 1
+          expression: ''
+          fields:
+            - id
+          match_type: ''
+          name: ''
+          on_delete: ''
+          on_update: ''
+          options: []
+          reference_fields: []
+          reference_table: ''
+          type: PRIMARY KEY
+      fields:
+        data:
+          data_type: text
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: data
+          order: 3
+          size:
+            - 0
+        id:
+          data_type: integer
+          default_value: ~
+          is_auto_increment: 1
+          is_nullable: 0
+          is_primary_key: 1
+          is_unique: 0
+          name: id
+          order: 1
+          size:
+            - 0
+        instructor_id:
+          data_type: integer
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: instructor_id
+          order: 2
+          size:
+            - 0
+        last_access_date:
+          data_type: timestamptz
+          default_value: !!perl/ref
+            =: (now())
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: last_access_date
+          order: 4
+          size:
+            - 0
+      indices: []
+      name: session
+      options: []
+      order: 4
+  triggers: {}
+  views: {}
+translator:
+  add_drop_table: 0
+  filename: ~
+  no_comments: 0
+  parser_args:
+    sources:
+      - Enquiry
+      - Login
+      - Profile
+      - Session
+  parser_type: SQL::Translator::Parser::DBIx::Class
+  producer_args: {}
+  producer_type: SQL::Translator::Producer::YAML
+  show_warnings: 0
+  trace: 0
+  version: 0.11020
