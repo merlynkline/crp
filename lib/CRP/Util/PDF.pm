@@ -82,7 +82,7 @@ sub _extract_crp_data {
 
     my $phone_numbers = $profile->telephone;
     $phone_numbers .= ' / ' if $phone_numbers && $profile->mobile;
-    $phone_numbers .= $profile->mobile;
+    $phone_numbers .= $profile->mobile // '';
     $data->{phone_numbers} = $phone_numbers;
 
     my $one_line_address = $profile->address;
