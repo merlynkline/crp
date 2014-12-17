@@ -140,22 +140,20 @@ session:
         + Anyone can browse but you need a tutor's account to buy and see prices
         + Sells student packs, extra course notes, posters, stuff from carers' shop etc, etc
     + Signed-up tutors area
-        + Needs an account created by an administrator (happens when they do the course)
-        + Edit profile
-            + Change stored details
-                + Name
-                + Telephone
-                + Optional web address
-                + Public postal address
-                + Optional photo / logo
-                + Personal blurb (paragraph or so)
-                + Security questions
-                + Password
-            + Admins notified of changes by email (to prevent generating PDFs for others)
+        ~ Needs an account created by an administrator (happens when they do the course)
+        ~ Edit profile
+            ~ Change stored details
+                ~ Name
+                ~ Telephone
+                ~ Public postal address
+                ~ Photo / logo
+                ~ Personal blurb (paragraph or so)
+            ~ Admins notified of changes by email (to prevent generating PDFs for others)
             ~ Generates tutor's page in carers' area of site
+        ~ Change assword
         + Change email address: sends a confirmation link in email to the new address and a deny link in email to the old address. The confirmation email will work once, within a short period. The deny email will work for a longer period and still works even after the confirmation link has been used, and prevents the confirmation link from working.
         + Messages shown on login (from admins/system)
-        + Get a list of carers that have expressed interest near a particular place
+        ~ Get a list of carers that have expressed interest near a particular place
         + Record details of a course
             + Stores details:
                 + General location to identify nearby carers (e.g. 'Exeter')

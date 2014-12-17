@@ -21,8 +21,6 @@
 <p>&nbsp;&nbsp;&nbsp;<a href="<%= $info->{confirm_page} %>"><%= $info->{confirm_page} %></a></p>
 <p>You can use this link at any time to update your information.</p>
 <p>Thanks again for your interest - we look forward to helping you and the children you care for.</p>
-<p>&nbsp;</p>
-<p><i>The Children's Reflexology Programme</i></p>
 <p><small>P.S.</small></p>
 <p><small>If you have difficulty following the link, please copy and paste the confirmation page address shown
 below into your web browser (e.g. Internet Explorer, Chrome, FireFox, Safari) and then enter the confirmation
@@ -39,3 +37,5 @@ code when requested.</small></p>
         <td nowrap="nowrap"><small><%= $info->{identifier} %></small></td>
     </tr>
 </table>
+%= include 'parts/email_signature';
+

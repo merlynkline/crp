@@ -1,0 +1,26 @@
+%# Email sent when a member changes their profile
+%#
+%# stash 'info' is a hash of:
+%#  changes => hash of field => new_value
+%#  id      => instuctor ID
+%#  url     => link to member's personal page
+%#
+% stash subject => "Member profile update notification: The Children's Reflexology Programme";
+%#
+% layout 'default';
+% my $info = stash('info');
+<p>
+CRP member ID <%= $info->{id} %> has updated important information in their profile.
+The new values are shown below. You can visit their personal CRP web page at
+<a href="<%= $info->{url} %>"><%= $info->{url} %></a>.
+<table border="0">
+% for my $field (keys %{$info->{changes}}) {
+    <tr>
+        <td valign="top">&nbsp;&nbsp;&nbsp;<%= $field %>:&nbsp;&nbsp;</td>
+        <td valign="top"><%= $info->{changes}->{$field} %></td>
+    </tr>
+% }
+</table>
+</p>
+%= include 'parts/email_signature';
+

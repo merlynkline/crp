@@ -37,7 +37,7 @@ sub contact {
     $message =~ s{\n}{<br \\>\n}g;
     $c->mail(
         from        => $c->crp->email_decorated($c->crp->trimmed_param('email'), $c->crp->trimmed_param('name')),
-        to          => $c->crp->email_to($c->app->config->{contact}->{to}),
+        to          => $c->crp->email_to($c->app->config->{email_addresses}->{contact_form}),
         template    => 'main/email/contact_form',
         info        => {message => $message},
     );

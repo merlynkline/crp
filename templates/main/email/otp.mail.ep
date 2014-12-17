@@ -14,8 +14,6 @@
 <p>&nbsp;&nbsp;&nbsp;<a href="<%= $info->{otp_page} %>"><%= $info->{otp_page} %></a></p>
 <p>Please note that this password replaces any previously issued temporary password. It will only work for <%= $info->{hours} %> hours from the date of this message and may only be used once.</p>
 <p>If you're still not able to log in please use the contact form on the site to ask for further help.</p>
-<p>&nbsp;</p>
-<p><i>The Children's Reflexology Programme</i></p>
 <p><small>P.S.</small></p>
 <p><small>If you have difficulty following the link, please copy and paste the log in page address shown
 below into your web browser (e.g. Internet Explorer, Chrome, FireFox, Safari) and then enter the log in
@@ -32,3 +30,4 @@ code when requested.</small></p>
         <td nowrap="nowrap"><small><%= $info->{identifier} %></small></td>
     </tr>
 </table>
+%= include 'parts/email_signature';

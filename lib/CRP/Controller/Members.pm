@@ -50,6 +50,7 @@ sub profile {
             $c->stash(msg => 'fix_errors');
         }
         else {
+            $c->_notify_admins_of_changes($profile);
             $profile->update;
             $c->flash(msg => 'profile_update');
             return $c->redirect_to('crp.members.profile');
@@ -97,6 +98,29 @@ sub _process_uploaded_photo {
     unlink $temp_file;
     die $error if $error;
 }
+
+sub _notify_admins_of_changes {
+    my $c = shift;
+    my($profile) = @_;
+
+    my %changes = $profile->get_dirty_columns;
+    my %important_changes;
+    foreach my $important_column (qw(name address telephone)) {
+        $important_changes{$important_column} = $changes{$important_column} if exists $changes{$important_column};
+    }
+    if(%important_changes) {
+        $c->mail(
+            to          => $c->crp->email_to($c->app->config->{email_addresses}->{user_admin}),
+            template    => 'members/email/profile_update',
+            info        => {
+                changes => \%important_changes,
+                id      => $profile->instructor_id,
+                url     => $c->url_for('crp.membersite.home', slug => $profile->instructor_id)->to_abs,
+            },
+        );
+    }
+}
+
 
 sub _load_profile {
     my $c = shift;
