@@ -47,6 +47,7 @@ a:visited   {
 #content-container {
     vertical-align: top;
     width:          100%;
+    padding:        1px 8px 1px 1px;
 }
 #content {
     width:          100%;
@@ -325,6 +326,11 @@ table.list1 {
     top:            20px;
     left:           -9999px;
     float:          left;
+}
+.supplementary-info {
+    color:          #acb;
+    font-size:      75%;
+    line-height:    130%;
 }
 
 

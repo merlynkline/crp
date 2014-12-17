@@ -1,7 +1,6 @@
 
 
 + Booking form PDF has payment details on it
-+ Text gets too close to right edge of main body container. Padding won't fix because of decorations. See profile updatepage for example.
 + Cookie doesn't get deleted on log-out
 + handle auto-login flag
 + use named paths in menus (and elsewhere)
@@ -87,7 +86,7 @@ session:
     + General contact form
     + Log in/out for tutors/admins
         + Persistent login option for private computers
-        + Password recovery (security questions, time-limited OTP email)
+        ~ Password recovery (time-limited OTP email)
 + Carers' area
     + More information about CRP
     + Information about what you get if you do the course
@@ -150,7 +149,7 @@ session:
                 ~ Personal blurb (paragraph or so)
             ~ Admins notified of changes by email (to prevent generating PDFs for others)
             ~ Generates tutor's page in carers' area of site
-        ~ Change assword
+        ~ Change password
         + Change email address: sends a confirmation link in email to the new address and a deny link in email to the old address. The confirmation email will work once, within a short period. The deny email will work for a longer period and still works even after the confirmation link has been used, and prevents the confirmation link from working.
         + Messages shown on login (from admins/system)
         ~ Get a list of carers that have expressed interest near a particular place
