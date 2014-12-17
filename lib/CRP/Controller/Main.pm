@@ -198,8 +198,15 @@ sub fresh {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 sub tutor_list {
     my $c = shift;
-#    my $profile = $c->crp->model('Profile')->find_or_create({instructor_id => $instructor_id});
 
+    my $tutor_list = $c->crp->model('Profile')->search(
+        {'login.disabled_date' => undef},
+        {join => 'login'},
+    );
+#    return $c->render(text => $c->dumper($tutor_list->all));
+    $c->stash(tutor_list => [$tutor_list->all]);
+    return $c->page('tutor_list');
 }
+
 1;
 

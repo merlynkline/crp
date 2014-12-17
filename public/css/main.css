@@ -313,6 +313,19 @@ table.list1 {
 .list1 > tbody > tr:nth-child(odd) {
     background: #cef;
 }
+.low-key {
+    border:         2px solid #ddd;
+    background:     #eee;
+    border-radius:  8px;
+    margin:         2px;
+    padding:        2px 8px;
+    font-size:      8px;
+    color:          #ccc;
+    position:       relative;
+    top:            20px;
+    left:           -9999px;
+    float:          left;
+}
 
 
 

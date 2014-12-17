@@ -1,6 +1,5 @@
 
 
-+ List of instructors: account for disabled flag
 + Booking form PDF has payment details on it
 + Text gets too close to right edge of main body container. Padding won't fix because of decorations. See profile updatepage for example.
 + Cookie doesn't get deleted on log-out
@@ -56,7 +55,30 @@ session:
 (add protocols to back of register with boxes to enter week numbers)
 (name labels PDF)
 
+++ Handle accounts for unqualified instructors (with no current certificate record) - what are the restrictions?
+    + No certificates
+    + Can't add a course
+    + Can't use the shop?
+    + Can't get (most?) PDFs
+    + Not included in CRP::Controller::Main::tutor_list 
+    + Others?
 
++ Certificate management
+    + Database table with: certificate_id, instructor_id, issue_date, life_time, type, version, issuer_id, instructors_name, revocation_date, revoker_id
+        - Type is for course certificates and renewal certificates (and maybe others at some point)
+        - Version is so we can have different PDFs over time and reprints will still use the originals
+        - issuer_id is for the trainer that issued the certificate and is duplicated for automatic renewal. NULL means Sue!
+        - instructors_name is recorded in case it changes after issue, so the original certificate can be reproduced
+    + When an instructor qualifies or they qualify for certificate renewal, add a row to the certificate table.
+    + Facility to produce a PDF of the certificate with an electronic signature encoding the certificate_id, including a QRcode, with or without scan of issuer's manual signature
+    + Development system marks certificate as sample
+    + Certificates can be checked easily by going to a URL that includes the certificate's electronic signature
+        - Page shows certificate details (or message saying it's not valid)
+        - Link to instructor's personal page
+    + Instructors can easily get a PDF copy of their most recent renewal certificate by a link in their control panel
+    + Administrators can create and revoke certificates
+    + Administrators can get PDFs of certificates without the scanned issuer's manual signature, for the issuer to actually sign
+    
 + Main landing page
     + Welcome and brief overview
     + Link to tutors' area
