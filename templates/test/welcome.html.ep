@@ -14,6 +14,8 @@
         <li><a href="/page/contacted">Contact form acknowledgement</a></li>
         <li><a href="/otp">OTP entry</a></li>
         <li><a href="/tutor_list">List of qualified instructors</a></li>
+        <li><a href="/me/1">Member's home page</a></li>
+        <li><a href="/me/1/certificate">Member's certificate</a></li>
     </ul>
 </ul>
 

@@ -334,27 +334,31 @@ table.list1 {
 }
 .certificate-container {
     text-align:             center;
-    font-style:             italic;
+    font-family:            'Tangerine', cursive;
     background:             url('/images/MouseInBed.png');
+    font-size:              25px;
     background-repeat:      no-repeat;
     background-position:    center;
+    line-height:            120%;
     color:                  black;
 }
 .certificate-overlay {
-    background-color:       white;
-    opacity:                0.8;
+    background-color:       rgba(255,255,255,0.8);
     padding:                20px 180px;
 }
-.certificate-emphasised {
-    font-size:              26px;
+.certificate-emphasised, .certificate-writing {
+    font-size:              50px;
     font-weight:            bold;
 }
 .certificate-writing {
-    font-size:              26px;
-    font-weight:            bold;
-    color:                  blue;
+    color:                  #34a;
+    border-bottom:          1px dashed black;
 }
 .certificate-extra {
     font-size:              10px;
+    font-family:            sans-serif;
+    font-style:             normal;
+    line-height:            130%;
+    color:                  #aaa;
 }
 
