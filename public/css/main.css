@@ -332,6 +332,29 @@ table.list1 {
     font-size:      75%;
     line-height:    130%;
 }
-
-
+.certificate-container {
+    text-align:             center;
+    font-style:             italic;
+    background:             url('/images/MouseInBed.png');
+    background-repeat:      no-repeat;
+    background-position:    center;
+    color:                  black;
+}
+.certificate-overlay {
+    background-color:       white;
+    opacity:                0.8;
+    padding:                20px 180px;
+}
+.certificate-emphasised {
+    font-size:              26px;
+    font-weight:            bold;
+}
+.certificate-writing {
+    font-size:              26px;
+    font-weight:            bold;
+    color:                  blue;
+}
+.certificate-extra {
+    font-size:              10px;
+}
 

@@ -36,5 +36,15 @@ sub welcome {
     $c->render;
 }
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub certificate {
+    my $c = shift;
+
+    my $profile = $c->stash('site_profile');
+    $c->stash(signature_id => '-' . CRP::Util::WordNumber::encipher($profile->instructor_id));
+    $c->stash(today => $c->crp->format_date(DateTime->now(), 'long'));
+    $c->render(template => 'member_site/certificate');
+}
+
 1;
 
