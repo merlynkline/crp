@@ -71,9 +71,9 @@ session:
     + When an instructor qualifies or they qualify for certificate renewal, add a row to the certificate table.
     + Facility to produce a PDF of the certificate with an electronic signature encoding the certificate_id, including a QRcode, with or without scan of issuer's manual signature
     + Development system marks certificate as sample
-    + Certificates can be checked easily by going to a URL that includes the certificate's electronic signature
-        - Page shows certificate details (or message saying it's not valid)
-        - Link to instructor's personal page
+    ~ Certificates can be checked easily by going to a URL that includes the certificate's electronic signature
+        ~ Page shows certificate details (or message saying it's not valid)
+        ~ Link to instructor's personal page
     + Instructors can easily get a PDF copy of their most recent renewal certificate by a link in their control panel
     + Administrators can create and revoke certificates
     + Administrators can get PDFs of certificates without the scanned issuer's manual signature, for the issuer to actually sign
@@ -315,3 +315,12 @@ Formulae to find a long and lat a given distance and bearing from another:
         - Event type
         - Details
 
+
+- New things to me:
+    - Mojolicious
+    - DBIx::Class
+    - Google maps API
+    - Perl library: Imager
+    - Perl library: PDF::API2
+    - CSS3
+    - HTML5

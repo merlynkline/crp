@@ -21,7 +21,7 @@ sub page {
     my $page = shift // $c->stash('page');
     $c->stash('page', $page);
 
-    $c->render(template => "main/pages/$page");
+    $c->render(template => "main/pages/$page", @_);
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -199,13 +199,45 @@ sub fresh {
 sub tutor_list {
     my $c = shift;
 
-    my $tutor_list = $c->crp->model('Profile')->search(
-        {'login.disabled_date' => undef},
-        {join => 'login'},
-    );
-#    return $c->render(text => $c->dumper($tutor_list->all));
+    my $tutor_list = $c->crp->model('Profile')->search_live_profiles();
     $c->stash(tutor_list => [$tutor_list->all]);
     return $c->page('tutor_list');
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub instructor_search {
+    my $c = shift;
+
+    my $matches;
+    if($c->req->method eq 'POST') {
+        my $validation = $c->validation;
+        $validation->required('name');
+        my $name = $c->crp->trimmed_param('name');
+        $name =~ s{^ [%\s]+ | [\s%]+ $}{}gsmx; # Prevent match-all searches
+        $validation->error(name => ['like']) unless $name;
+        if( ! $validation->has_error) {
+            if($name =~ m{^-?(\d+)$}) {
+                return $c->redirect_to('crp.membersite.certificate', slug => "-$1");
+            }
+            else {
+                $c->stash(search_key => $name);
+                $matches = $c->_find_instructors($name);
+            }
+        }
+    }
+    return $c->page('tutors', matches => $matches);
+}
+
+sub _find_instructors {
+    my $c = shift;
+    my($search_key) = @_;
+
+    my @matches = $c->crp->model('Profile')->search_live_profiles(
+        {'lower(name)' => { like => lc "%$search_key%"}},
+        {order_by => {-asc => 'lower(name)'}},
+    );
+    return \@matches if @matches;
+    return;
 }
 
 1;

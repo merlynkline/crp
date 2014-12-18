@@ -5,7 +5,7 @@
 %   duplicate_email         => 'That email address is already registered',
 %   file_too_large          => 'Sorry - that file is too large. Please choose another',
 %   incorrect_password      => "Sorry - that's the wrong password",
-%   like                    => 'Please enter a valid answer',
+%   like                    => 'Please enter something sensible',
 %   no_such_email           => 'Sorry - that email address is not recorded on our system',
 %   required                => 'Please fill in this field',
 %   password_bad            => 'Sorry - that password is not secure enough',

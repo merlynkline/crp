@@ -39,6 +39,7 @@ sub startup {
     $r->get('/otp/*otp')->to('logged_in#otp');
     $r->get('/tutor_list')->to('main#tutor_list')->name('crp.tutor_list');
     $r->get('/fresh/:cachebuster/*path')->to('main#fresh')->name('crp.fresh');
+    $r->any('main/instructor_search')->to('main#instructor_search')->name('crp.instructor_search');
 
     my $logged_in = $r->under('/instructor')->to('logged_in#authenticate');
     $logged_in->get('/')->to('members#welcome')->name('crp.logged_in_default');

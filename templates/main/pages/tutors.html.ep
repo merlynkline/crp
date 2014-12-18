@@ -1,8 +1,68 @@
 %#<!DOCTYPE html>
-% layout 'default', heading => "Information for instructors";
-% title "iInstrucors";
+% layout 'default', heading => "Certified instructors";
+% title "Certified instructors";
 
+<p>
+The Childrens's Refloxolgy Programme is delivered only by qualified instructors
+who have received the required training and use the official course materials.
+You can use the search form below to find out more about a specific instructor.
+</p>
+%= form_for  'crp.instructor_search' => (method => 'POST') => begin
+    <fieldset>
+        <legend>Search for instructors</legend>
+        <label for="name">Name:
+            <div class="field-extra-info">
+                Enter a part of the name if you are not sure of spelling etc.
+                You can also enter an electronic signature from a certificate
+                if you have one.
+            </div>
+        </label>
+        <div class="input-container">
+            <%= text_field 'name', size => '30', id => 'name', autofocus => "autofocus", required => "required" =%>
+            <%= include 'parts/error', field => 'name' =%>
+        </div>
+        <label>&nbsp;</label>
+        <div class="input-container">
+            <%= submit_button 'Search', name => 'search' %>
+        </div>
+    </fieldset>
+% end
+% if(stash('search_key')) {
+    % if(defined stash('matches')) {
+        <h3>Instructors matching '<%= stash('search_key') %>'</h3>
+        <p>To see more information about any instructor click on their name.</p>
+        <table class="list1">
+            <tr>
+                <th>Name</th>
+                <th>Telephone</th>
+                <th>Mobile</th>
+                <th>Postcode</th>
+            </tr>
+            % for my $instructor (@{stash('matches')}) {
+            %   my $url = url_for('crp.membersite.home', slug => $instructor->web_page_slug)->to_abs;
+            <tr>
+                <td><a href="<%= $url %>"><%= $instructor->name // '' %></a></td>
+                <td><%= $instructor->telephone // '' %></td>
+                <td><%= $instructor->mobile // '' %></td>
+                <td><%= $instructor->postcode // '' %></td>
+            </tr>
+            % }
+        </table>
+    % }
+    % else {
+        %= include 'parts/message_box', msg => 'no_instructors_found', auto_hide => 1;
+    % }
+% }
 <h1>Become a certified instructor</h1>
+<p>
+If you would like to become a certified instructor yourself you can enroll in
+the special training course which will qualify you to deliver The Children's
+Reflexology Programme and provide you with all the materials you need to give
+parents and carers the best possible experience. You will also gain access to
+the members-only areas of this site which provide all sorts of supporting
+material and help you to advertise yourself and your courses when you're ready
+to start.
+</p>
+<script>$(".hide-on-load").delay(9000).slideUp(1000);</script>
 
-<p>Information for instructors.</p>
 
