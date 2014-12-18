@@ -21,7 +21,7 @@ sub identify {
         $profile = $c->crp->model('Profile')->find({web_page_slug => $slug});
     }
     unless($profile) {
-        $c->reply->not_found;
+        $c->render(template => 'member_site/member_not_found', status => 404);
         return 0;
     }
 

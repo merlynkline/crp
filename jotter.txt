@@ -122,7 +122,7 @@ session:
         + Sensible static URL so Google can index it
         + Courses that have already started (or finsished) will still show up but will be clearly marked
         + Cancelled courses will still show up but will be clearly marked
-        + Online booking form for the course (with Ts&Cs)
+        + Online booking form for the course if it's in the future (with Ts&Cs)
         + Link to PDF booking form for the course
     + A list of registered future/current courses (possibly hidden a bit - this is really for Google)
     + For each registered tutor there will be an automatically generated page with their details and a list of upcoming courses
@@ -160,7 +160,6 @@ session:
                 + Start date
                 + Time
                 + Type (toddlers/newborn/etc)
-                + Opt-out for marketing (email notifications, newsletter, web page)
             + Record details of a carer attending a course
                 + Do we really want to do this? Could be privacy issues
                 + Records name, child's name, telephone, email54

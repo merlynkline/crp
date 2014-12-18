@@ -48,9 +48,9 @@
             %= text_field 'name', id => 'name';
         </div>
 
-        <label for="tell_tutors">Tell tutors?
+        <label for="tell_tutors">Tell instructors?
             <div class="field-extra-info">
-                Would you like us to pass on these details to any tutors who run courses near you in the future?
+                Would you like us to pass on these details to any instructors who run courses near you in the future?
             </div>
         </label>
         <div class="input-container">

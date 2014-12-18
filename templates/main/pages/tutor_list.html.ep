@@ -1,12 +1,12 @@
 %#<!DOCTYPE html>
-% layout 'default', heading => "Qualified tutors";
-% title "Qualified tutors";
+% layout 'default', heading => "Qualified instructors";
+% title "Qualified instructors";
 
-<h1>Qualified tutors</h1>
+<h1>Qualified instructors</h1>
 <p>
-The Childrens's Refloxolgy Programme can only be delivered by qualified tutors
+The Childrens's Refloxolgy Programme can only be delivered by qualified instructors
 who have received the required training and use the official course materials.
-Here is a simple list of all the qualified tutors currently registered.
+Here is a simple list of all the qualified instructors currently registered.
 </p>
 <p>
 If you want to find out whether The Children's Reflexology Programme is
@@ -18,10 +18,10 @@ to find out.
     <tr>
         <th>Name</th>
     </tr>
-    % for my $tutor (@$tutor_list) {
-    %   my $url = url_for('crp.membersite.home', slug => $tutor->web_page_slug)->to_abs;
+    % for my $instructor (@$tutor_list) {
+    %   my $url = url_for('crp.membersite.home', slug => $instructor->web_page_slug)->to_abs;
     <tr>
-        <td><a href="<%= $url %>"><%= $tutor->name // '' %></a></td>
+        <td><a href="<%= $url %>"><%= $instructor->name // '' %></a></td>
     </tr>
     % }
 </table>

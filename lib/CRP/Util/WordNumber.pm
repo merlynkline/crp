@@ -59,6 +59,7 @@ sub encode_number {
 sub decode_number {
     my($string) = @_;
 
+    return decipher($string) if $string =~ m{^\d+$};
     my @parts = split '-', $string;
     my $multiplier = 1;
     my $place = $#$DIGITS;

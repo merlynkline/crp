@@ -1,4 +1,4 @@
-%# Email sent when a tutor requests an OTP
+%# Email sent when an instructor requests an OTP
 %#
 %# stash 'info' is a hash of:
 %#     identifier           ID string for this OTP

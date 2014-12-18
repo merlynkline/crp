@@ -1,8 +1,8 @@
 %#<!DOCTYPE html>
-% layout 'default', heading => "Information for tutors";
-% title "Tutors";
+% layout 'default', heading => "Information for instructors";
+% title "iInstrucors";
 
-<h1>Become a certified practitioner</h1>
+<h1>Become a certified instructor</h1>
 
-<p>Information for tutors.</p>
+<p>Information for instructors.</p>
 

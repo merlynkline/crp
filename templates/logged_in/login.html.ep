@@ -1,9 +1,9 @@
 %#<!DOCTYPE html>
-% layout 'default', heading => "Tutor log-in";
+% layout 'default', heading => "Instructor log-in";
 % title "Log in";
 % my $reason = stash('reason') || '';
 
-<h1>Tutor log-in</h1>
+<h1>Instructor log-in</h1>
 % if($reason eq 'SESSION_EXPIRED') {
 <p>
 Sorry - your session has expired. Please log in below to continue.
@@ -17,7 +17,7 @@ Sorry - you must be logged in to access that page. Please log in below to contin
 
 %= form_for 'crp.login' => (method => 'POST') => begin
     <fieldset>
-        <legend>Tutor log-in</legend>
+        <legend>Instructor log-in</legend>
         <label for="email">Email address:</label>
         <div class="input-container">
             <%= text_field 'email', size => '30', id => 'email', autofocus => "autofocus", required => "required" =%>

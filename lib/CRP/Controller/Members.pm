@@ -109,13 +109,14 @@ sub _notify_admins_of_changes {
         $important_changes{$important_column} = $changes{$important_column} if exists $changes{$important_column};
     }
     if(%important_changes) {
+        my $slug = '-' . CRP::Util::WordNumber::encipher($profile->instructor_id);
         $c->mail(
             to          => $c->crp->email_to($c->app->config->{email_addresses}->{user_admin}),
             template    => 'members/email/profile_update',
             info        => {
                 changes => \%important_changes,
                 id      => $profile->instructor_id,
-                url     => $c->url_for('crp.membersite.home', slug => $profile->instructor_id)->to_abs,
+                url     => $c->url_for('crp.membersite.home', slug => $slug)->to_abs,
             },
         );
     }

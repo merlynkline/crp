@@ -5,10 +5,14 @@
 <div style="text-align: center; padding: 0px 80px;">
 <img src="<%= url_for '/images/Animals/Mole.jpg' %>" style="display: block; margin: 30px auto 0;" />
 <br clear="left" />
-<h1>I'm sorry!</h1>
+<h1>I'm really sorry!</h1>
 <p><%= $message %></p>
 <p>There's nothing more I can do I'm afraid.</p>
-<p style="font-size: 75%">
+<p>
+You can use the <a href="<%= url_for('crp.page', page => 'contact') %>">contact form</a>
+if you'd like to ask for further help.
+</p>
+<p class="supplementary-info">
 If you're interested in the technical details this is an error code
 <b><%= $code %></b> - <i><%= $error %></i>.
 </p>

@@ -5,7 +5,7 @@
         ['book',      '/page/book',      'Book'],
         ['programme', '/page/programme', 'Programme'],
         ['courses',   '/page/courses',   'Courses'],
-        ['tutors',    '/page/tutors',    'Tutors'],
+        ['tutors',    '/page/tutors',    'Instructors'],
         ['contact',   '/page/contact',   'Contact'],
     ];
     if(stash 'logged_in') {
