@@ -2,22 +2,19 @@
 % layout 'default', heading => "Error: $title";
 % title "Error: $title";
 
-<div style="text-align: center; padding: 0px 80px;">
-<img src="<%= url_for '/images/Animals/Mole.jpg' %>" style="display: block; margin: 30px auto 0;" />
-<br clear="left" />
-<h1>I'm really sorry!</h1>
-<p><%= $message %></p>
-<p>There's nothing more I can do I'm afraid.</p>
-<p>
-You can use the <a href="<%= url_for('crp.page', page => 'contact') %>">contact form</a>
-if you'd like to ask for further help.
-</p>
-<p class="supplementary-info">
-If you're interested in the technical details this is an error code
-<b><%= $code %></b> - <i><%= $error %></i>.
-</p>
+<div style="text-align: left; padding: 0px 80px;">
+    <br /><img src="<%= url_for '/images/Animals/Snake.jpg' %>" />
+    <h1>I'm really sorry!</h1>
+    <p><%= $message %></p>
+    <p>There's nothing more I can do I'm afraid.</p>
+    <p>
+    You can use the <a href="<%= url_for('crp.page', page => 'contact') %>">contact form</a>
+    if you'd like to ask for further help.
+    </p>
+    <p class="supplementary-info">
+    If you're interested in the technical details this is an error code
+    <b><%= $code %></b> - <i><%= $error %></i>.
+    </p>
+    <img src="<%= url_for '/images/Plants/Thistle.png' %>" style="display: block; margin: 20px auto;" />
 </div>
 
-<br clear="left" />
-
-<img src="<%= url_for '/images/Plants/Thistle.png' %>" style="display: block; margin: 50px auto;" />
