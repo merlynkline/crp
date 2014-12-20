@@ -6,6 +6,7 @@ use strict;
 use Carp;
 
 use Imager;
+use Imager::QRCode;
 
 sub resize {
     my($filename, $width, $height) = @_;
@@ -26,6 +27,18 @@ sub _resize_or_return_error_code {
         return 'WRITE_FAIL';
     }
     return;
+}
+
+sub qr_code_link_jpeg_tmp_file {
+    my($url) = @_;
+
+    use File::Temp;
+    my $qrcode = Imager::QRCode->new;
+    my $img = $qrcode->plot($url);
+    my($fh, $temp_file) = tmpnam();
+    $img->write(fh => $fh, type => 'jpeg') or die "Image write to '$temp_file' failed: " . $img->errstr;
+    close $fh;
+    return $temp_file;
 }
 
 1;

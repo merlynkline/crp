@@ -1,5 +1,6 @@
 
 
+
 + Booking form PDF has payment details on it
 + Cookie doesn't get deleted on log-out
 + handle auto-login flag
@@ -80,14 +81,15 @@ session:
     
 + Main landing page
     + Welcome and brief overview
-    + Link to tutors' area
+    + Link to instructors' area
     + Link to carers' area
     + Link to administrators' area
     + General contact form
-    + Log in/out for tutors/admins
+    + Log in/out for instructors/admins
         + Persistent login option for private computers
         ~ Password recovery (time-limited OTP email)
 + Carers' area
+    + Search for instructors by location
     + More information about CRP
     + Information about what you get if you do the course
     + Register interest / find course
@@ -95,7 +97,7 @@ session:
         ~ Optionally stores information for notifications:
             ~ Creates a 'suspended' record and sends a confirmation email with an activation link
             ~ Notify carer about new courses that come up in the area (that they aren't registered for)
-            ~ Notify tutors about carers interested in courses they register
+            ~ Notify instructors about carers interested in courses they register
             ~ General newsletter - immediately composes and sends a current one (see below) when record is activated
         + Facility to manage notifications
             ~ Simple, no password, linked to from all emails sent out
@@ -104,7 +106,7 @@ session:
                 ~ Name
                 + Email
                     + suspends record and re-sends confirmation with activation link
-                    + notifies tutors of any current/future courses that have the old email address
+                    + notifies instructors of any current/future courses that have the old email address
                 ~ Location
                 X Courses of interest => not recording this - too difficult to acquire accurately
             + Lets you delete the record completely
@@ -118,27 +120,27 @@ session:
         + Merchandise
 		+ Colouring books
     + Carer's contact form (for contacting CRP as a carer)
-    + For each course registered by a tutor there will be a page describing that course that the tutor can link to
+    + For each course registered by a instructor there will be a page describing that course that the instructor can link to
         + Sensible static URL so Google can index it
         + Courses that have already started (or finsished) will still show up but will be clearly marked
         + Cancelled courses will still show up but will be clearly marked
         + Online booking form for the course if it's in the future (with Ts&Cs)
         + Link to PDF booking form for the course
     + A list of registered future/current courses (possibly hidden a bit - this is really for Google)
-    + For each registered tutor there will be an automatically generated page with their details and a list of upcoming courses
-    + A list of registered tutors (possibly hidden a bit - this is really for Google)
+    + For each registered instructor there will be an automatically generated page with their details and a list of upcoming courses
+    + A list of registered instructors (possibly hidden a bit - this is really for Google)
     + Gallery
     + Success stories
-+ Tutors' area
++ Instructors' area
     + More information about teaching CRP to carers
     + Information about the course
         + Content
         + Pricing and timing
         + Details of what you get if you do the course
     + Shop
-        + Anyone can browse but you need a tutor's account to buy and see prices
+        + Anyone can browse but you need a instructor's account to buy and see prices
         + Sells student packs, extra course notes, posters, stuff from carers' shop etc, etc
-    + Signed-up tutors area
+    + Signed-up instructors area
         ~ Needs an account created by an administrator (happens when they do the course)
         ~ Edit profile
             ~ Change stored details
@@ -148,7 +150,7 @@ session:
                 ~ Photo / logo
                 ~ Personal blurb (paragraph or so)
             ~ Admins notified of changes by email (to prevent generating PDFs for others)
-            ~ Generates tutor's page in carers' area of site
+            ~ Generates instructor's page in carers' area of site
         ~ Change password
         + Change email address: sends a confirmation link in email to the new address and a deny link in email to the old address. The confirmation email will work once, within a short period. The deny email will work for a longer period and still works even after the confirmation link has been used, and prevents the confirmation link from working.
         + Messages shown on login (from admins/system)
@@ -172,7 +174,7 @@ session:
             + Option to cancel completely
             + Updates course page in carers' area
         + Generate peronalised PDFs:
-            + All PDFs are personalised with tutor's contact details
+            + All PDFs are personalised with instructor's contact details
             + Various documents are available, some with extra details added:
                 + Completion certificate: (could have carer's and child's names, perhaps entered when generated)
                 + Booking form: Course type/location/day of week/start date/time
@@ -184,13 +186,13 @@ session:
                 + Business cards
                 + Name labels for carers
             + QR codes for web pages?
-        + Signed-up tutor's contact form (for contacting admins)
+        + Signed-up instructor's contact form (for contacting admins)
         + Submit (an idea for) a newsletter article
-        + Tutors' forum using same login
+        + instructors' forum using same login
         + Link to shop
 		+ Course costing calculator(s) - JS versions of the spreadsheets
         + External resources: bibliography
-    + General tutors' contact form (for contacting CRP as a potential tutor)
+    + General instructors' contact form (for contacting CRP as a potential instructor)
     + Log out
 + Administrators' area
     + Requires login
@@ -205,13 +207,13 @@ session:
     + Search carers' records and link to the notification management facility for them
     + Clean out old suspended carer notification records
     + Shop management facilities
-    + Manage signed-up tutors
+    + Manage signed-up instructors
         + Create an account
-        + Search for tutor's account and log in as them for support purposes
-        + Revoke tutor accounts
-        + Send message to individual tutors or groups of them
+        + Search for instructor's account and log in as them for support purposes
+        + Revoke instructor accounts
+        + Send message to individual instructors or groups of them
             + Messages sent in email
-            + Messages also appear in tutors' accounts when they log in
+            + Messages also appear in instructors' accounts when they log in
     + Get a list of carers that have expressed interest near a particular place
     + Newsletters
         + Create and edit articles where each one has, in addition to content:
@@ -222,7 +224,7 @@ session:
             + Date last sent to mailing list (could be many, one per mailing list)
             + Importance - makes it appear higher or lower in the newsletter
             + Cut-down version for repeating as padding in later newsletters
-            + Newsletter types this article is suitable for (carer/tutor/etc)
+            + Newsletter types this article is suitable for (carer/instructor/etc)
         + Search for articles
         + Delete (retire?) articles
         + A newsletter can be composed for carer based on their location and whether articles have already been sent
@@ -230,7 +232,7 @@ session:
         + An index of newsletters will allow Google to find them
         + Each new article can also be a new blog post
         + Articles are not necessarily directly CRP related
-        + Similar approach for generating and maintaining tutors' newsletters
+        + Similar approach for generating and maintaining instructors' newsletters
     + Log out
  
  Implementation notes

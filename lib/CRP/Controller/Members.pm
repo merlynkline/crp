@@ -133,7 +133,7 @@ sub _load_profile {
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-use CRP::Util::PDF;
+use CRP::Util::PDFMarkUp;
 sub get_pdf {
     my $c = shift;
 
@@ -144,17 +144,14 @@ sub get_pdf {
     my $profile = $c->_load_profile;
     my $url = $c->url_for('crp.membersite.home', slug => $profile->web_page_slug)->to_abs;
     $url =~ s{.+?://}{};
-    my $pdf_doc = CRP::Util::PDF::fill_template(
-        $pdf,
-        {
-            profile => $profile,
-            url     => $url,
-            email   => $c->stash('crp_session')->variable('email'),
-        }
-    );
-
+    my $pdf_doc = CRP::Util::PDFMarkUp->new(file_path => $pdf);
+    my $data = {
+        profile => $profile,
+        url     => $url,
+        email   => $c->stash('crp_session')->variable('email'),
+    };
     $c->render_file(
-        data                => $pdf_doc,
+        data                => $pdf_doc->fill_template($data),
         format              => 'pdf',
         content_disposition => $c->param('download') ? 'attachment' : 'inline',
     );

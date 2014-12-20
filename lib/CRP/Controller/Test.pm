@@ -30,18 +30,22 @@ sub list_pdfs {
     my $c = shift;
 
     my @files;
-    my $dir = $c->app->home->rel_file('pdfs/members/');
-    opendir my $dirh, $dir or die "Can't open directory '$dir': $!";
-    while (my $file = readdir $dirh) {
-        push @files, "members/$file" if $file =~ m{^[^.].*\.pdf$};
-    }
-    closedir $dirh;
+    use File::Find;
+    my $base_dir = $c->app->home->rel_file('pdfs');
+    find({ wanted => sub {
+                s{^$base_dir}{};
+                push @files, $_ if m{^[^.].*\.pdf$};
+            },
+            no_chdir => 1,
+        },
+        $base_dir
+    );
     $c->stash(pdflist_members => \@files);
     return $c->template('test/list_pdfs');
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-use CRP::Util::PDF;
+use CRP::Util::PDFMarkUp;
 sub pdf {
     my $c = shift;
 
@@ -49,9 +53,9 @@ sub pdf {
     $pdf = $c->app->home->rel_file("pdfs/$pdf");
     return $c->reply->not_found unless -r $pdf;
 
-    my $pdf_doc = CRP::Util::PDF::fill_template($pdf);
+    my $pdf_doc = CRP::Util::PDFMarkUp->new(file_path => $pdf);
     $c->render_file(
-        data                => $pdf_doc,
+        data                => $pdf_doc->fill_template,
         format              => 'pdf',
         content_disposition => $c->param('download') ? 'attachment' : 'inline',
     );
