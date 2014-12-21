@@ -36,7 +36,7 @@ sub profile {
         my $validation = $c->validation;
 
         $c->_process_uploaded_photo;
-        foreach my $field (qw(name address postcode telephone mobile blurb)) {
+        foreach my $field (qw(name address postcode telephone mobile blurb location latitude longitude)) {
             eval { $profile->$field($c->param($field)); };
             my $error = $@;
             if($error =~ m{^CRP::Util::Types::(.+?) }) {
@@ -105,7 +105,7 @@ sub _notify_admins_of_changes {
 
     my %changes = $profile->get_dirty_columns;
     my %important_changes;
-    foreach my $important_column (qw(name address telephone)) {
+    foreach my $important_column (qw(name address telephone location)) {
         $important_changes{$important_column} = $changes{$important_column} if exists $changes{$important_column};
     }
     if(%important_changes) {
