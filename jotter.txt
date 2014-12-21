@@ -7,6 +7,7 @@
 + use named paths in menus (and elsewhere)
 + First visit to enquiry page is slow to load: jquery? gmaps?
 + production error 500 page
++ Adding a new enquiry should notify instructors of nearby courses if requested
 
 
 - Cookie session contains:

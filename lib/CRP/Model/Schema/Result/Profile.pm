@@ -46,6 +46,18 @@ __PACKAGE__->add_columns(
         data_type           => 'text',
         is_nullable         => 1,
     },
+    location => {
+        data_type           => 'text',
+        is_nullable         => 1,
+    },
+    latitude => {
+        data_type           => 'real',
+        is_nullable         => 1,
+    },
+    longitude => {
+        data_type           => 'real',
+        is_nullable         => 1,
+    },
 );
 
 __PACKAGE__->set_primary_key('instructor_id');
@@ -74,7 +86,7 @@ sub set_column {
 sub sqlt_deploy_hook {
     my ($self, $sqlt_table) = @_;
 
-    foreach my $column (qw(web_page_slug)) {
+    foreach my $column (qw(web_page_slug latitude longitude)) {
         $sqlt_table->add_index(name => "profile_${column}_idx", fields => [$column]);
     }
 }
