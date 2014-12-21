@@ -10,7 +10,7 @@ what fields are available and where they go. Search the PDF for "[[" to find the
 Available PDFs:
 <ul>
 % foreach my $pdf_path (@{stash('pdflist_members')}) {
-<li><a href="/test/pdf/<%= $pdf_path %>"><%= $pdf_path %></a></li>
+<li><a href="/test/pdf<%= $pdf_path %>"><%= $pdf_path %></a></li>
 % }
 </ul>
 

@@ -53,7 +53,7 @@ sub pdf {
     $pdf = $c->app->home->rel_file("pdfs/$pdf");
     return $c->reply->not_found unless -r $pdf;
 
-    my $pdf_doc = CRP::Util::PDFMarkUp->new(file_path => $pdf);
+    my $pdf_doc = CRP::Util::PDFMarkUp->new(file_path => $pdf, test_mode => 1);
     $c->render_file(
         data                => $pdf_doc->fill_template,
         format              => 'pdf',

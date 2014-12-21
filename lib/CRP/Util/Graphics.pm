@@ -32,12 +32,16 @@ sub _resize_or_return_error_code {
 sub qr_code_link_jpeg_tmp_file {
     my($url) = @_;
 
+    croak "No url supplied for " . __PACKAGE__ . "::qr_code_link_jpeg_tmp_file()" unless $url;
     use File::Temp;
     my $qrcode = Imager::QRCode->new;
     my $img = $qrcode->plot($url);
     my($fh, $temp_file) = tmpnam();
     $img->write(fh => $fh, type => 'jpeg') or die "Image write to '$temp_file' failed: " . $img->errstr;
     close $fh;
+    if(wantarray) {
+        return($temp_file, $img->getwidth, $img->getheight);
+    }
     return $temp_file;
 }
 
