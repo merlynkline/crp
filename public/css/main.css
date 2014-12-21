@@ -352,7 +352,11 @@ table.list1 {
 }
 .certificate-writing {
     color:                  #34a;
+    font-family:            'Georgia', cursive;
     border-bottom:          1px dashed black;
+    font-size:              30px;
+    font-weight:            bold;
+    font-style:             italic;
 }
 .certificate-extra {
     font-size:              10px;
