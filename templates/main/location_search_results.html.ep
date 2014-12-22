@@ -1,0 +1,40 @@
+%#<!DOCTYPE html>
+% layout 'default', extra_header_templates => 'parts/location_input';
+% title 'Location search';
+<h1>Courses and instructors near '<em><%= param('location') %></em>'</h1>
+% my $instructors_list = stash('instructors_list') || [];
+% my $courses_list = stash('courses_list') || [];
+% if(@$instructors_list || @$courses_list) {
+Nearby
+<%= @$instructors_list ? 'instructors' : '' %>
+<%= @$instructors_list && @$courses_list ? 'and' : '' %>
+<%= @$courses_list ? 'courses' : '' %>
+are shown below.
+% }
+% else {
+Sorry - we couldn't find any nearby courses or instructors in our records.
+% }
+If you would also like us to notify you automatically when courses become
+available near you in the future, please
+<a href="<%= url_for('crp.register_interest') %>"> register with us here</a>.
+% if(@$instructors_list) {
+    <h3>Nearby instructors</h3>
+    <p>To see more information about any instructor click on their name.</p>
+    <table class="list1">
+        <tr>
+            <th>Name</th>
+            <th>Telephone</th>
+            <th>Mobile</th>
+            <th>Postcode</th>
+        </tr>
+        % for my $instructor (@$instructors_list) {
+        %   my $url = url_for('crp.membersite.home', slug => $instructor->web_page_slug)->to_abs;
+        <tr>
+            <td><a href="<%= $url %>"><%= $instructor->name // '' %></a></td>
+            <td><%= $instructor->telephone // '' %></td>
+            <td><%= $instructor->mobile // '' %></td>
+            <td><%= $instructor->postcode // '' %></td>
+        </tr>
+        % }
+    </table>
+% }

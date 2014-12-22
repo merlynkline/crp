@@ -166,7 +166,7 @@ sub find_enquiries {
     my $longitude = $c->param('longitude') // '';
     my $file_name_location = $c->param('location') // '';
     $file_name_location =~ s{[^a-z0-9\s]}{}gi;
-    $c->stash(file_name_location => substr($file_name_location, 0, 20));
+    $c->stash(file_name_location => substr($file_name_location, 0, 20)); # For CSV filename
     if($latitude ne '' && $longitude ne '') {
         my $enquiries_list = [
             $c->crp->model('Enquiry')->search_near_location(

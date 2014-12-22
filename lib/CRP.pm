@@ -30,7 +30,7 @@ sub startup {
     $r->get('/')->to('main#welcome');
     $r->any('/update_registration')->to('main#update_registration');
     $r->any('/main/contact')->to('main#contact');
-    $r->any('/main/register_interest')->to('main#register_interest');
+    $r->any('/main/register_interest')->to('main#register_interest')->name('crp.register_interest');
     $r->any('/main/resend_confirmation')->to('main#resend_confirmation');
     $r->any('/login')->to('logged_in#login')->name('crp.login');
     $r->any('/logout')->to('logged_in#logout')->name('crp.logout');
@@ -40,6 +40,7 @@ sub startup {
     $r->get('/tutor_list')->to('main#tutor_list')->name('crp.tutor_list');
     $r->get('/fresh/:cachebuster/*path')->to('main#fresh')->name('crp.fresh');
     $r->any('main/instructor_search')->to('main#instructor_search')->name('crp.instructor_search');
+    $r->any('main/location_search')->to('main#location_search')->name('crp.location_search');
 
     my $logged_in = $r->under('/instructor')->to('logged_in#authenticate');
     $logged_in->get('/')->to('members#welcome')->name('crp.logged_in_default');

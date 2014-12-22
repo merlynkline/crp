@@ -240,5 +240,25 @@ sub _find_instructors {
     return;
 }
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub location_search {
+    my $c = shift;
+
+    my $latitude  = _number_or_null($c->param('latitude'));
+    my $longitude = _number_or_null($c->param('longitude'));
+    return $c->redirect_to('crp.page', page => 'location_search') unless defined $latitude && defined $longitude;
+
+    my @instructors_list = $c->crp->model('Profile')->search_near_location(
+        $latitude,
+        $longitude,
+        $c->config->{'instructor_search_distance'},
+        {},
+        { order_by => {-asc => 'lower(name)'} },
+    );
+
+    $c->stash(instructors_list => \@instructors_list);
+    $c->render(template => 'main/location_search_results');
+}
+
 1;
 
