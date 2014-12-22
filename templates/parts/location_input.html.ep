@@ -6,6 +6,8 @@
             geocoder:   null,
             map:        null,
             marker:     null,
+            waitCount:  0,
+            ready:      false,
 
             latElement: function() { return(document.getElementById('location-input-latitude')); },
             lngElement: function() { return(document.getElementById('location-input-longitude')); },
@@ -16,6 +18,8 @@
                 address = address.replace(/\w\S*/g, function(txt) {
                     return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
                 });
+                that.waitCount = 0;
+                that.ready = false;
                 that.geocoder.geocode( {address: address || 'London'}, function(results, status) {
                     if (status == google.maps.GeocoderStatus.OK) {
                         var loc = results[0].geometry.location;
@@ -30,7 +34,33 @@
                             });
                         }
                     }
+                    that.ready = true;
                 });
+            },
+
+            submitWhenReady: function() {
+                var that = locationInputHandler;
+                if(that.waitCount > 10 || that.ready) {
+                    var locationInput = document.getElementById('location-input-location');
+                    locationInput.form.onsubmit = null;
+                    locationInput.form.submit();
+                }
+                else {
+                    that.waitCount++;
+                    setTimeout(that.submitWhenReady, 50);
+                }
+                return false;
+            },
+
+            keyPressHandler: function(ev) {
+                var that = locationInputHandler;
+                var keyCode = ('charCode' in ev) ? ev.charCode : ev.keyCode;
+                if(keyCode == 13) {
+                    that.codeAddress();
+                    that.submitWhenReady();
+                    return false;
+                }
+                return true;
             },
 
             init: function() {
@@ -46,7 +76,6 @@
                     lng = -0.13;
                 }
                 var latlng = new google.maps.LatLng(lat, lng);
-                console.log(latlng);
                 var mapOptions = {
                     center: latlng,
                     draggable: false,
@@ -55,14 +84,10 @@
                 }
                 that.map = new google.maps.Map(document.getElementById('location-input-map-canvas'), mapOptions);
                 that.codeAddress();
-                var address = document.getElementById('location-input-location').value;
-                address.onblur = that.codeAddress;
-                $('#location-input-location').keypress(function(ev){
-                    if(ev.keyCode == 13) {
-                        that.codeAddress();
-                        return false;
-                    }
-                });
+                var locationInput = document.getElementById('location-input-location');
+                locationInput.onblur = that.codeAddress;
+                locationInput.form.onsubmit = that.submitWhenReady;
+                locationInput.onkeypress = that.keyPressHandler;
             }
         };
 
