@@ -1,6 +1,7 @@
 
 
 
++ JS needs better form submission. Refactor templates to further generalise location input.
 + Booking form PDF has payment details on it
 + Cookie doesn't get deleted on log-out
 + handle auto-login flag

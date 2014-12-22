@@ -222,10 +222,13 @@ sub instructor_search {
             else {
                 $c->stash(search_key => $name);
                 $matches = $c->_find_instructors($name);
+                if($matches && @$matches == 1) {
+                    return $c->redirect_to('crp.membersite.home', slug => $matches->[0]->web_page_slug);
+                }
             }
         }
     }
-    return $c->page('tutors', matches => $matches);
+    return $c->page('instructor_search', matches => $matches);
 }
 
 sub _find_instructors {

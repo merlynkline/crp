@@ -3,8 +3,12 @@
 % title 'Location search';
 <h1>Find courses and instructors near you</h1>
 
+<p>
+The Childrens' Reflexolgy Programme is delivered only by qualified instructors
+who have received the required training and use the official course materials.
+You can use the search form below to find courses and instructors near you.
+</p>
 %= form_for  'crp.location_search' => (method => 'POST') => begin
-    To find courses and instructors near you please enter your location below.
     <fieldset>
         <legend>Find courses and instructors</legend>
 
@@ -32,4 +36,5 @@
         </div>
     </fieldset>
 % end
+<p>You can <a href="<%= url_for 'crp.instructor_search' %>">search for a specific instructor here</a>.
 
