@@ -1,5 +1,5 @@
 %#<!DOCTYPE html>
-% layout 'default', extra_header_templates => 'parts/location_input';
+% layout 'default';
 % title 'Location search';
 <h1>Courses and instructors near '<em><%= param('location') %></em>'</h1>
 % my $instructors_list = stash('instructors_list') || [];
