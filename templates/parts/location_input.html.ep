@@ -13,14 +13,15 @@
             lngElement: function() { return(document.getElementById('location-input-longitude')); },
 
             codeAddress: function() {
-                var that = locationInputHandler;
                 var address = document.getElementById('location-input-location').value;
+                // GMaps seems to return some odd results when weverythin is lowercase
                 address = address.replace(/\w\S*/g, function(txt) {
                     return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
                 });
-                that.waitCount = 0;
-                that.ready = false;
-                that.geocoder.geocode( {address: address || 'London'}, function(results, status) {
+                this.waitCount  = 0;
+                this.ready      = false;
+                var that = this;
+                this.geocoder.geocode( {address: address || 'London'}, function(results, status) {
                     if (status == google.maps.GeocoderStatus.OK) {
                         var loc = results[0].geometry.location;
                         that.latElement().value = address ? loc.lat() : '';
@@ -29,8 +30,8 @@
                         if(that.marker) { that.marker.setMap(null); }
                         if(address) {
                             that.marker = new google.maps.Marker({
-                                map: that.map,
-                                position: loc
+                                map:        that.map,
+                                position:   loc
                             });
                         }
                     }
@@ -39,59 +40,59 @@
             },
 
             submitWhenReady: function() {
-                var that = locationInputHandler;
-                if(that.waitCount > 10 || that.ready) {
+                if(this.waitCount > 10 || this.ready) {
                     var locationInput = document.getElementById('location-input-location');
                     locationInput.form.onsubmit = null;
                     locationInput.form.submit();
                 }
                 else {
-                    that.waitCount++;
-                    setTimeout(that.submitWhenReady, 50);
+                    this.waitCount++;
+                    var that = this;
+                    setTimeout(function() { that.submitWhenReady(); }, 50);
                 }
                 return false;
             },
 
             keyPressHandler: function(ev) {
-                var that = locationInputHandler;
                 var keyCode = ('charCode' in ev) ? ev.charCode : ev.keyCode;
                 if(keyCode == 13) {
-                    that.codeAddress();
-                    that.submitWhenReady();
+                    this.codeAddress();
+                    this.submitWhenReady();
                     return false;
                 }
                 return true;
             },
 
             init: function() {
-                var that = locationInputHandler;
-                that.geocoder = new google.maps.Geocoder();
+                this.geocoder = new google.maps.Geocoder();
                 var lat, lng;
-                if(that.latElement().value) {
-                    lat = that.latElement().value;
-                    lng = that.lngElement().value;
+                if(this.latElement().value) {
+                    lat = this.latElement().value;
+                    lng = this.lngElement().value;
                 }
                 else {
+                    // London
                     lat = 51.5;
                     lng = -0.13;
                 }
                 var latlng = new google.maps.LatLng(lat, lng);
                 var mapOptions = {
-                    center: latlng,
-                    draggable: false,
-                    zoom: 8,
-                    streetViewControl: false
+                    center:             latlng,
+                    draggable:          false,
+                    zoom:               8,
+                    streetViewControl:  false
                 }
-                that.map = new google.maps.Map(document.getElementById('location-input-map-canvas'), mapOptions);
-                that.codeAddress();
+                this.map = new google.maps.Map(document.getElementById('location-input-map-canvas'), mapOptions);
+                this.codeAddress();
                 var locationInput = document.getElementById('location-input-location');
-                locationInput.onblur = that.codeAddress;
-                locationInput.form.onsubmit = that.submitWhenReady;
-                locationInput.onkeypress = that.keyPressHandler;
+                var that = this;
+                locationInput.onblur        = function() { that.codeAddress(); };
+                locationInput.form.onsubmit = function() { that.submitWhenReady(); };
+                locationInput.onkeypress    = function(ev) { that.keyPressHandler(ev); };
             }
         };
 
-        google.maps.event.addDomListener(window, 'load', locationInputHandler.init);
+        google.maps.event.addDomListener(window, 'load', function() { locationInputHandler.init(); });
 
     </script>
 
