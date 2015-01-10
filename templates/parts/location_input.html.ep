@@ -14,7 +14,7 @@
 
             codeAddress: function() {
                 var address = document.getElementById('location-input-location').value;
-                // GMaps seems to return some odd results when weverythin is lowercase
+                // GMaps seems to return some odd results when everything is lowercase
                 address = address.replace(/\w\S*/g, function(txt) {
                     return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
                 });
