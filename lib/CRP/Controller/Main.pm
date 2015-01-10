@@ -97,7 +97,7 @@ sub register_interest {
 sub _number_or_null {
     my($number) = @_;
 
-    $number = undef unless $number =~ m{^-?\d+\.?\d*$};
+    $number = undef unless defined $number && $number =~ m{^-?\d+\.?\d*$};
     return $number;
 }
 
