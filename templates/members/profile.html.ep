@@ -71,7 +71,7 @@
 
         <label for="location-input-location">Location:</label>
         <div class="input-container">
-            %= text_field 'location' => stash('profile_record')->location, onblur => 'locationInputHandler.codeAddress()', id => 'location-input-location';
+            %= text_field 'location' => $profile->location, onblur => 'locationInputHandler.codeAddress()', id => 'location-input-location';
             <input type="button" value="check" onclick="locationInputHandler.codeAddress()" /><br />
         </div>
         %= hidden_field 'latitude' => param('latitude'), id => "location-input-latitude"

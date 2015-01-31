@@ -3,11 +3,14 @@
 % use Mojo::Util 'xml_escape';
 % my $message = {
 %   fix_errors              => 'Please fix the errors shown on the form.',
+%   no_advertised_courses   => 'There are no advertised courses.',
+%   no_draft_courses        => 'There are no draft courses.',
 %   no_enquiries_found      => 'Sorry - there are no enquiries near <em>' . xml_escape(param('location') // '') . '</em> in our records at the moment. We get new enquiries all the time though, so please check again in the future.',
 %   no_instructors_found    => "Sorry - there are no instructors matching <em>'" . xml_escape(stash('search_key') // '') . "'</em> in our records at the moment. Try entering a smaller part of the name to match more records or try a different spelling.",
 %   password_set            => 'Your password has been updated.',
 %   profile_update          => 'Your profile has been updated.',
 %   registration_update     => 'Your information has been updated.',
+%   course_update           => 'Your course has been updated.',
 % };
 % if($msg) {
 <%= b($message->{$msg} // "[Unrecognised message code: '$msg']") =%>

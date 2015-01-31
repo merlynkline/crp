@@ -63,7 +63,7 @@ __PACKAGE__->add_columns(
 __PACKAGE__->set_primary_key('instructor_id');
 __PACKAGE__->add_unique_constraint('web_page_slug_key', ['web_page_slug']);
 __PACKAGE__->belongs_to('login' => 'CRP::Model::Schema::Result::Login', 'instructor_id');
-
+__PACKAGE__->has_many('courses' => 'CRP::Model::Schema::Result::Course', 'instructor_id');
 
 
 my %TYPE = (

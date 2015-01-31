@@ -1,0 +1,98 @@
+%#<!DOCTYPE html>
+% layout 'member_default', heading => "Course", page_id => 'member-home', extra_header_templates => 'parts/location_input';
+% my $course = stash('course_record');
+% title 'Course';
+<h1>Enter course details</h1>
+<%= include 'parts/message_box', msg => flash('msg') || stash('msg'), auto_hide => 1 %>
+%= form_for 'crp.members.course' => (method => 'POST') => begin
+    Please enter the course details below.
+    <fieldset>
+        <legend>Course details</legend>
+
+        <label for="venue">Venue:
+            <div class="field-extra-info">Enter a short recognisable name such as 'Borchester library community room' or 'Ambridge village hall'.</div>
+        </label>
+        <div class="input-container">
+            %= text_field 'venue', id => 'venue', autofocus => 'autofocus', required => 'required', value => $course->{venue};
+            <%= include 'parts/error', field => 'venue' %>
+        </div>
+
+        <label for="location-input-location">Location:</label>
+        <div class="input-container">
+            %= text_field 'location' => $course->{location}, onblur => 'locationInputHandler.codeAddress()', id => 'location-input-location';
+            <input type="button" value="check" onclick="locationInputHandler.codeAddress()" /><br />
+        </div>
+        %= hidden_field 'latitude' => $course->{latitude}, id => "location-input-latitude"
+        %= hidden_field 'longitude' => $course->{longitude}, id => "location-input-longitude"
+
+        <label>
+            <div class="field-extra-info">
+                This is a general location that is never shown to anyone else.
+                It is used when people search for courses in a particular place
+                so choose somewhere as close as possible to the venue.
+                <br /><br />
+                The map shows how we understand the location you have entered. To make sure
+                we've understood it properly, click the <b>check</b> button. You may need to
+                enter more details in the location if we don't get it right first time.
+            </div>
+        </label>
+        <div id="location-input-map-container"><div id="location-input-map-canvas"></div></div>
+
+        <label for="address">Description:
+            <div class="field-extra-info">Enter a short description of the course such as 'Toddler group' or 'Tuesday newborns class'.</div>
+        </label>
+        <div class="input-container">
+            %= text_field 'description', id => 'description', required => 'required', value => $course->{description};
+            <%= include 'parts/error', field => 'description' %>
+        </div>
+
+        <label for="start_date">Start date:
+            <div class="field-extra-info">Enter the date of the first session.</div>
+        </label>
+        <div class="input-container">
+            %= date_field 'start_date', id => 'start_date', size => 8, required => 'required', value => $course->{start_date};
+            <%= include 'parts/error', field => 'start_date' %>
+        </div>
+
+        <label for="time">Start time:
+            <div class="field-extra-info">Enter the start time of the sessions. This can be text like 'mid-day' or 'straight after school'.</div>
+        </label>
+        <div class="input-container">
+            %= text_field 'time', id => 'time', size => 20, required => 'required', value => $course->{time};
+            <%= include 'parts/error', field => 'time' %>
+        </div>
+
+        <label for="price">Price:
+            <div class="field-extra-info">Enter the price of the course. This is free text so you can enter things like '£10 per session'.</div>
+        </label>
+        <div class="input-container">
+            %= text_field 'price', id => 'price', size => 20, required => 'required', value => $course->{price};
+            <%= include 'parts/error', field => 'price' %>
+        </div>
+
+        <label for="session_duration">Session length:
+            <div class="field-extra-info">Enter the expected duration of each session, e.g. '1 hour'.</div>
+        </label>
+        <div class="input-container">
+            %= text_field 'session_duration', id => 'session_duration', size => 20, required => 'required', value => $course->{session_duration};
+            <%= include 'parts/error', field => 'session_duration' %>
+        </div>
+
+        <label for="course_duration">Course length:
+            <div class="field-extra-info">Enter the length of the course, e.g. '6 weeks'.</div>
+        </label>
+        <div class="input-container">
+            %= text_field 'course_duration', id => 'course_duration', size => 20, required => 'required', value => $course->{course_duration};
+            <%= include 'parts/error', field => 'course_duration' %>
+        </div>
+
+        <label>&nbsp;</label>
+        <label>Make sure you save your changes:</label>
+        <div class="input-container">
+            %= submit_button 'Save'
+            <%= include 'parts/error', field => '_general' %>
+            <%= include 'parts/temporary_message', msg => flash 'msg' %>
+        </div>
+    </fieldset>
+% end
+

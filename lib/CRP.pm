@@ -12,6 +12,8 @@ use CRP::Util::Session;
 sub startup {
     my $self = shift;
 
+    warn "Starting\n" if $self->mode eq 'development';
+
     my $config = $self->plugin('Config');
     $self->plugin('CSRFProtect', on_error => \&_csrf_error_handler);
     $self->plugin('CRP::Helper::Main');
@@ -49,6 +51,8 @@ sub startup {
     $logged_in->any('page/*page')->to('members#page')->name('crp.members.page');
     $logged_in->any('get_pdf/:pdf')->to('members#get_pdf')->name('crp.members.get_pdf');
     $logged_in->any('find_enquiries')->to('members#find_enquiries')->name('crp.members.find_enquiries');
+    $logged_in->any('courses')->to('members#courses')->name('crp.members.courses');
+    $logged_in->any('course')->to('members#course')->name('crp.members.course');
     
     my $member_site = $r->under('/me/:slug')->to('member_site#identify');
     $member_site->any('/')->to('member_site#welcome')->name('crp.membersite.home');

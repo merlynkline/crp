@@ -30,7 +30,7 @@ use PDF::API2;
 
 use CRP::Util::Graphics;
 
-sub DESTROY {
+sub DEMOLISH {
     my $self = shift;
 
     foreach my $temp_file ($self->_temp_files) {
@@ -171,6 +171,8 @@ sub _add_qr_code_link {
     return($width, $height);
 }
 
+no Moose;
+__PACKAGE__->meta->make_immutable;
 1;
 
 

@@ -172,7 +172,7 @@ sub find_enquiries {
             $c->crp->model('Enquiry')->search_near_location(
                 $latitude,
                 $longitude,
-                $c->config->{'enquiry_search_distance'},
+                $c->config->{enquiry_search_distance},
                 { notify_tutors => 1 },
                 { order_by => {-desc => 'create_date'} },
             )
@@ -180,6 +180,91 @@ sub find_enquiries {
         $c->stash(enquiries_list => $enquiries_list);
     }
     $c->render(template => 'members/find_enquiries');
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub courses {
+    my $c = shift;
+
+    my $profile = $c->_load_profile;
+    my $dtf = $c->crp->model('Course')->result_source->schema->storage->datetime_parser;
+    my $days = $c->config->{course}->{age_when_advert_expires_days} || 14;
+    my $advertised_list = [ $profile->courses(
+        {
+            published   => 1,
+            canceled    => 0,
+            start_date  => {'>', $dtf->format_datetime(DateTime->now()->subtract(days => $days))},
+        },
+        { order_by => {-asc => 'start_date'} },
+    ) ];
+    $c->stash(advertised_list => $advertised_list);
+    my $draft_list = [ $profile->courses(
+        { published   => 0 },
+        { order_by => {-asc => 'start_date'} },
+    ) ];
+    $c->stash(draft_list => $draft_list);
+    $c->render(template => 'members/courses');
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub course {
+    my $c = shift;
+
+    my $profile = $c->_load_profile;
+    $c->stash(site_profile => $profile);
+
+    my $record = {
+        location            => $profile->location,
+        session_duration    => $c->config->{course}->{default_session_duration},
+        course_duration     => $c->config->{course}->{default_course_duration},
+    };
+    if($c->req->method eq 'POST') {
+        my $validation = $c->validation;
+
+        $record = {
+            instructor_id       => $profile->instructor_id,
+            location            => $c->crp->trimmed_param('location'),
+            latitude            => _number_or_null($c->param('latitude')),
+            longitude           => _number_or_null($c->param('longitude')),
+            venue               => $c->crp->trimmed_param('venue'),
+            description         => $c->crp->trimmed_param('description'),
+            start_date          => undef, # TODO
+            time                => $c->crp->trimmed_param('time'),
+            price               => $c->crp->trimmed_param('price'),
+            session_duration    => $c->crp->trimmed_param('session_duration'),
+            course_duration     => $c->crp->trimmed_param('course_duration'),
+        };
+        my $course_id = $c->param('course_id');
+        my $course;
+        if($course_id) {
+            $course = $c->crp->model('Course')->find({id => $course_id});
+            die "Invalid course" unless $course && $course->instructor_id == $profile->instructor_id;
+        }
+        else {
+            $course = $c->crp->model('Enquiry')->create({instructor_id => $profile->instructor_id});
+        }
+        foreach my $column (keys %$record) {
+            eval { $course->$column($record->{$column}); };
+            my $error = $@;
+            if($error =~ m{^CRP::Util::Types::(.+?) }) {
+                $validation->error($column => ["invalid_column_$1"]);
+            }
+            else {
+                die $error if $error;
+            }
+        }
+        if($validation->has_error) {
+            $c->stash(msg => 'fix_errors');
+        }
+        else {
+            $course->update;
+            $c->flash(msg => 'course_update');
+            return $c->redirect_to('crp.members.courses');
+        }
+    }
+
+    $c->stash('course_record', $record);
+    $c->render;
 }
 
 1;

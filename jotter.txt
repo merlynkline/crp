@@ -1,7 +1,25 @@
 
+** List of courses needs to show the 'course updated' message sometimes: flash(msg => 'course_updated');
+Members::Course has several entry conditions:
+    - New course to create, display blank form, no course ID in params, method=GET
+    - Edit an existing course, display details, ID in params, method=GET
+    - Update a course with no errors, update course record. return to course list, method=POST, course ID and everything else in params
+    - Update a course with errors: re-display the editor (but user may cancel or leave so we end up with a bad course record in the DB)
+- Prevent editing of canceled/published courses. Have an 'is_editable' method in the model to support this.
+** templates/members/profile.html.ep gets lat/long defaults from params instead of profile. Is that right? Where else does this happen?
+
+- New materials for instructors course:
+    - Timetable?
+    - Booking form (personal details, payment).
+    - Pre-course booking acknowledgment with details of what to bring, where to come, when to arrive.
+    - Homework assignment handouts to take away during the course (colouring?).
+    - Homework assignment handouts to take away after the course.
+    - Peer/self assessment forms for microteach.
+    - Disruption cards for microteach exercise.
+    - Reflective practice log.
 
 
-+ JS needs better form submission. Refactor templates to further generalise location input.
++ Refactor templates to further generalise location input.
 + Booking form PDF has payment details on it
 + Cookie doesn't get deleted on log-out
 + handle auto-login flag
@@ -9,6 +27,14 @@
 + First visit to enquiry page is slow to load: jquery? gmaps?
 + production error 500 page
 + Adding a new enquiry should notify instructors of nearby courses if requested
++ Check if session methods really need to have $c as first param
++ Login/auth logic from spreadsheet
++ Session table housekeeping (see enquiry housekeeping)
++ Get rid of all references to Tutor/practitioner
++ Login routes to test: from logged out, from logged out via interstitial, from already logged in, from already logged in via interstitial
++ add some decoration to the contact form and the thank you page (etc etc)
++ tests!!
++ Move validation to a plug-in?
 
 
 - Cookie session contains:
@@ -31,16 +57,6 @@ session:
 
 
 
-+ Next:
-    + Check if session methods really need to have $c as first param
-    + Login/auth logic from spreadsheet
-    + Session table housekeeping (see enquiry housekeeping)
-    + Get rid of all references to Tutor/practitioner
-    + Login routes to test: from logged out, from logged out via interstitial, from already logged in, from already logged in via interstitial
-    + add some decoration to the contact form and the thank you page (etc etc)
-    + tests!!
-    + Move validation to a plug-in?
-	+ change do-not-reply address so it doesn't show up as "Do" in gmail inbox
 
 - Verified login:
     - Get or create session
@@ -187,6 +203,8 @@ session:
                 + Course poster: Course type/location/day of week/start date/time
                 + Business cards
                 + Name labels for carers
+                + Talk/presentation
+				+ Course log/diary pages
             + QR codes for web pages?
         + Signed-up instructor's contact form (for contacting admins)
         + Submit (an idea for) a newsletter article
@@ -236,6 +254,17 @@ session:
         + Articles are not necessarily directly CRP related
         + Similar approach for generating and maintaining instructors' newsletters
     + Log out
+ 
+ + Possible feature to track course assessments
+    - On intial sign-up, each new instructor must do some post-training assessments by certain dates
+    + Each assignment has a description, a response from the assessor, and a 'done' flag
+    + Instructor's home page reminds them to complete assignments
+    + Administrators can mark assignments done
+    + Administrators get warning emails when assignments are (in danger of) running late
+    + Instructors accounts are eventually disabled if assignments not completed
+    + Administrators can extend due dates on assignments
+    + Administrators can add new assignments at any time
+ 
  
  Implementation notes
  --------------------
@@ -293,31 +322,35 @@ Formulae to find a long and lat a given distance and bearing from another:
         - mobile
         - photo
         - blurb
-    web_page_slug => {
-        - TutorID
-        - security question
-        - security answer
-        - Name
-        - Address
-        - Telephone
-        - Postcode
-        - Photo
-        - Blurb
-        - web page slug
+        - web_page_slug
     - Sessions
         - ID
         - TutorID
         - Last access timestamp
         - Data
     - Courses
+        - id
+        - instructor_id
+        - location
+        - latitude
+        - longitude
+        - venue
+        - description
+        - start_date
+        - time
+        - price
+        - session_duration
+        - course_duration
+        - canceled
+        - published
     - Attendees
     - Audit
-        - ID
-        - Timestamp
-        - TutorID (or NULL)
-        - Event class
-        - Event type
-        - Details
+        - id
+        - timestamp
+        - instructor_id (or NULL)
+        - course_id (or NULL)
+        - event_type
+        - details
 
 
 - New things to me:
