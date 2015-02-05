@@ -56,8 +56,8 @@ sub register_interest {
         email               => $c->crp->trimmed_param('email'),
         suspend_date        => DateTime->now(),
         location            => $c->crp->trimmed_param('location'),
-        latitude            => _number_or_null($c->param('latitude')),
-        longitude           => _number_or_null($c->param('longitude')),
+        latitude            => $c->crp->number_or_null($c->param('latitude')),
+        longitude           => $c->crp->number_or_null($c->param('longitude')),
         notify_new_courses  => 1,
         notify_tutors       => $c->param('tell_tutors'),
         send_newsletter     => $c->param('newsletter'),
@@ -92,13 +92,6 @@ sub register_interest {
     $c->redirect_to($c->url_for('/page/registered')->query(email => $record->{email}));
 
     $c->_enquiry_housekeeping();
-}
-
-sub _number_or_null {
-    my($number) = @_;
-
-    $number = undef unless defined $number && $number =~ m{^-?\d+\.?\d*$};
-    return $number;
 }
 
 sub _send_confirmation_email {
@@ -173,7 +166,7 @@ sub update_registration {
         $record->$_($c->crp->trimmed_param($_)) foreach (qw(
             name location notify_new_courses notify_tutors send_newsletter
         ));
-        $record->$_(_number_or_null($c->param($_))) foreach (qw(latitude longitude));
+        $record->$_($c->crp->number_or_null($c->param($_))) foreach (qw(latitude longitude));
         $c->stash(updated => 1);
     }
 
@@ -247,8 +240,8 @@ sub _find_instructors {
 sub location_search {
     my $c = shift;
 
-    my $latitude  = _number_or_null($c->param('latitude'));
-    my $longitude = _number_or_null($c->param('longitude'));
+    my $latitude  = $c->crp->number_or_null($c->param('latitude'));
+    my $longitude = $c->crp->number_or_null($c->param('longitude'));
     return $c->redirect_to('crp.page', page => 'location_search') unless defined $latitude && defined $longitude;
 
     my @instructors_list = $c->crp->model('Profile')->search_near_location(

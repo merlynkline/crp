@@ -150,6 +150,17 @@ sub register {
             return $date->strftime($format);
         }
     );
+
+    $app->helper(
+        'crp.number_or_null' => sub {
+            my $c = shift;
+            my($number) = @_;
+
+            $number = undef unless defined $number && $number =~ m{^-?\d+\.?\d*$};
+            return $number;
+        }
+    );
+
 }
 
 1;
