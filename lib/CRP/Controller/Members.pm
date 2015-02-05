@@ -4,6 +4,8 @@ use Mojo::Base 'Mojolicious::Controller';
 use Mojo::Util;
 
 use Try::Tiny;
+use DateTime;
+use CRP::Util::DateParser;
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -210,61 +212,129 @@ sub courses {
 sub course {
     my $c = shift;
 
+    if($c->req->method eq 'POST') {
+        $c->_create_or_update_course;
+    }
+    else {
+        $c->_display_course_editor;
+    }
+}
+
+sub _create_or_update_course {
+    my $c = shift;
+
+    my $course = $c->_get_new_or_existing_course;
+    my $validation = $c->_load_course_from_params($course);
+    if($validation->has_error) {
+        $c->stash(msg => 'fix_errors');
+        $c->_display_course_editor_with($course);
+    }
+    else {
+        $course->insert unless $course->in_storage;
+        $c->flash(msg => 'course_update');
+        return $c->redirect_to('crp.members.courses');
+    }
+}
+
+sub _get_new_or_existing_course {
+    my $c = shift;
+
+    my $course_id = $c->param('course_id');
+    my $model = $c->crp->model('Course');
+    my $course;
+    if($course_id) {
+        $course = $model->find({id => $course_id});
+# TODO: check course is editable by logged in instructor
+    }
+    else {
+        $course = $model->new_result({});
+        $course->canceled(0);
+        $course->published(0);
+    }
+    return $course;
+}
+
+sub _load_course_from_params {
+    my $c = shift;
+    my($course) = @_;
+
     my $profile = $c->_load_profile;
-    $c->stash(site_profile => $profile);
+    my $validation = $c->validation;
 
     my $record = {
-        location            => $profile->location,
-        session_duration    => $c->config->{course}->{default_session_duration},
-        course_duration     => $c->config->{course}->{default_course_duration},
+        instructor_id       => $profile->instructor_id,
+        location            => $c->crp->trimmed_param('location'),
+        latitude            => $c->crp->number_or_null($c->param('latitude')),
+        longitude           => $c->crp->number_or_null($c->param('longitude')),
+        venue               => $c->crp->trimmed_param('venue'),
+        description         => $c->crp->trimmed_param('description'),
+        start_date          => _get_date_input($c->crp->trimmed_param('start_date')),
+        time                => $c->crp->trimmed_param('time'),
+        price               => $c->crp->trimmed_param('price'),
+        session_duration    => $c->crp->trimmed_param('session_duration'),
+        course_duration     => $c->crp->trimmed_param('course_duration'),
     };
-    if($c->req->method eq 'POST') {
-        my $validation = $c->validation;
 
-        $record = {
-            instructor_id       => $profile->instructor_id,
-            location            => $c->crp->trimmed_param('location'),
-            latitude            => _number_or_null($c->param('latitude')),
-            longitude           => _number_or_null($c->param('longitude')),
-            venue               => $c->crp->trimmed_param('venue'),
-            description         => $c->crp->trimmed_param('description'),
-            start_date          => undef, # TODO
-            time                => $c->crp->trimmed_param('time'),
-            price               => $c->crp->trimmed_param('price'),
-            session_duration    => $c->crp->trimmed_param('session_duration'),
-            course_duration     => $c->crp->trimmed_param('course_duration'),
-        };
-        my $course_id = $c->param('course_id');
-        my $course;
-        if($course_id) {
-            $course = $c->crp->model('Course')->find({id => $course_id});
-            die "Invalid course" unless $course && $course->instructor_id == $profile->instructor_id;
+    foreach my $column (keys %$record) {
+        eval { $course->$column($record->{$column}); };
+        my $error = $@;
+        if($error =~ m{^CRP::Util::Types::(.+?) }) {
+            $validation->error($column => ["invalid_column_$1"]);
         }
         else {
-            $course = $c->crp->model('Enquiry')->create({instructor_id => $profile->instructor_id});
+            die $error if $error;
         }
-        foreach my $column (keys %$record) {
-            eval { $course->$column($record->{$column}); };
-            my $error = $@;
-            if($error =~ m{^CRP::Util::Types::(.+?) }) {
-                $validation->error($column => ["invalid_column_$1"]);
-            }
-            else {
-                die $error if $error;
-            }
-        }
-        if($validation->has_error) {
-            $c->stash(msg => 'fix_errors');
-        }
-        else {
-            $course->update;
-            $c->flash(msg => 'course_update');
-            return $c->redirect_to('crp.members.courses');
-        }
+        $validation->error(start_date => ['future_date'])
+            unless $record->{start_date} && $record->{start_date} >= DateTime->now;
     }
 
-    $c->stash('course_record', $record);
+    return $validation;
+}
+
+sub _display_course_editor {
+    my $c = shift;
+
+    my $course = $c->_get_new_or_existing_course;
+    $c->_load_course_from_defaults($course) unless $course->in_storage;
+    $c->_display_course_editor_with($course);
+}
+
+sub _load_course_from_defaults {
+    my $c = shift;
+    my($course) = @_;
+
+    my $profile = $c->_load_profile;
+    my $config = $c->config->{course};
+    $course->location($profile->location);
+    $course->session_duration($config->{default_session_duration});
+    $course->course_duration($config->{default_course_duration});
+}
+
+sub _display_course_editor_with {
+    my $c = shift;
+    my($course) = @_;
+
+    my $profile = $c->_load_profile;
+    $c->stash(site_profile => $profile);
+    $c->stash('course_record', $course);
     $c->render;
+}
+
+sub _get_date_input {
+    my($date) = @_;
+
+    my $parser = CRP::Util::DateParser->new(prefer_month_first_order => 1);
+    $parser->parse($date);
+    return unless $parser->parsed_ok;
+    my $res;
+    try {
+        $res = DateTime->new(
+            year    => $parser->year,
+            month   => $parser->month,
+            day     => $parser->day,
+        );
+    };
+    return $res;
 }
 
 1;

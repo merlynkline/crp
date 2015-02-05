@@ -1,12 +1,9 @@
 
+** DBIx::Class::InflateColumn::DateTime::_pre_deflate_datetime(): You're using a floating timezone, please see the documentation of DBIx::Class::InflateColumn::DateTime for an explanation at /home/merlyn/Dev Projects/crp/crp/script/../lib/CRP/Controller/Members.pm line 279
 ** List of courses needs to show the 'course updated' message sometimes: flash(msg => 'course_updated');
-Members::Course has several entry conditions:
-    - New course to create, display blank form, no course ID in params, method=GET
-    - Edit an existing course, display details, ID in params, method=GET
-    - Update a course with no errors, update course record. return to course list, method=POST, course ID and everything else in params
-    - Update a course with errors: re-display the editor (but user may cancel or leave so we end up with a bad course record in the DB)
 - Prevent editing of canceled/published courses. Have an 'is_editable' method in the model to support this.
 ** templates/members/profile.html.ep gets lat/long defaults from params instead of profile. Is that right? Where else does this happen?
+
 
 - New materials for instructors course:
     - Timetable?

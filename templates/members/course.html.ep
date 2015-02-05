@@ -13,17 +13,17 @@
             <div class="field-extra-info">Enter a short recognisable name such as 'Borchester library community room' or 'Ambridge village hall'.</div>
         </label>
         <div class="input-container">
-            %= text_field 'venue', id => 'venue', autofocus => 'autofocus', required => 'required', value => $course->{venue};
+            %= text_field 'venue', id => 'venue', autofocus => 'autofocus', required => 'required', value => $course->venue;
             <%= include 'parts/error', field => 'venue' %>
         </div>
 
         <label for="location-input-location">Location:</label>
         <div class="input-container">
-            %= text_field 'location' => $course->{location}, onblur => 'locationInputHandler.codeAddress()', id => 'location-input-location';
+            %= text_field 'location' => $course->location, onblur => 'locationInputHandler.codeAddress()', id => 'location-input-location';
             <input type="button" value="check" onclick="locationInputHandler.codeAddress()" /><br />
         </div>
-        %= hidden_field 'latitude' => $course->{latitude}, id => "location-input-latitude"
-        %= hidden_field 'longitude' => $course->{longitude}, id => "location-input-longitude"
+        %= hidden_field 'latitude' => $course->latitude, id => "location-input-latitude"
+        %= hidden_field 'longitude' => $course->longitude, id => "location-input-longitude"
 
         <label>
             <div class="field-extra-info">
@@ -42,7 +42,7 @@
             <div class="field-extra-info">Enter a short description of the course such as 'Toddler group' or 'Tuesday newborns class'.</div>
         </label>
         <div class="input-container">
-            %= text_field 'description', id => 'description', required => 'required', value => $course->{description};
+            %= text_field 'description', id => 'description', required => 'required', value => $course->description;
             <%= include 'parts/error', field => 'description' %>
         </div>
 
@@ -50,7 +50,7 @@
             <div class="field-extra-info">Enter the date of the first session.</div>
         </label>
         <div class="input-container">
-            %= date_field 'start_date', id => 'start_date', size => 8, required => 'required', value => $course->{start_date};
+            %= date_field 'start_date', id => 'start_date', size => 8, required => 'required', value => $course->start_date;
             <%= include 'parts/error', field => 'start_date' %>
         </div>
 
@@ -58,7 +58,7 @@
             <div class="field-extra-info">Enter the start time of the sessions. This can be text like 'mid-day' or 'straight after school'.</div>
         </label>
         <div class="input-container">
-            %= text_field 'time', id => 'time', size => 20, required => 'required', value => $course->{time};
+            %= text_field 'time', id => 'time', size => 20, required => 'required', value => $course->time;
             <%= include 'parts/error', field => 'time' %>
         </div>
 
@@ -66,7 +66,7 @@
             <div class="field-extra-info">Enter the price of the course. This is free text so you can enter things like '£10 per session'.</div>
         </label>
         <div class="input-container">
-            %= text_field 'price', id => 'price', size => 20, required => 'required', value => $course->{price};
+            %= text_field 'price', id => 'price', size => 20, required => 'required', value => $course->price;
             <%= include 'parts/error', field => 'price' %>
         </div>
 
@@ -74,7 +74,7 @@
             <div class="field-extra-info">Enter the expected duration of each session, e.g. '1 hour'.</div>
         </label>
         <div class="input-container">
-            %= text_field 'session_duration', id => 'session_duration', size => 20, required => 'required', value => $course->{session_duration};
+            %= text_field 'session_duration', id => 'session_duration', size => 20, required => 'required', value => $course->session_duration;
             <%= include 'parts/error', field => 'session_duration' %>
         </div>
 
@@ -82,7 +82,7 @@
             <div class="field-extra-info">Enter the length of the course, e.g. '6 weeks'.</div>
         </label>
         <div class="input-container">
-            %= text_field 'course_duration', id => 'course_duration', size => 20, required => 'required', value => $course->{course_duration};
+            %= text_field 'course_duration', id => 'course_duration', size => 20, required => 'required', value => $course->course_duration;
             <%= include 'parts/error', field => 'course_duration' %>
         </div>
 
