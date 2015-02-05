@@ -23,8 +23,6 @@ sub parse {
 
     $self->_reset;
     my $tokens = _extract_tokens($string);
-#warn ">>",join('=',@$tokens),"\n";
-
     $self->_parse_tokens($tokens) if @$tokens >= 3;
 
     return $self->parsed_ok;
@@ -53,7 +51,6 @@ sub _parse_tokens {
 
     foreach my $token (@$tokens) {
         return unless $self->_process_token($token);
-#warn ">>>>$token<< ",$self->day//'',"/",$self->month//'',"/",$self->year//'',"(",$self->_possible_month_or_day//'',")\n";
         if($self->day && $self->month && defined $self->year) {
             $self->_parsed_ok(1);
             last;
