@@ -30,6 +30,12 @@
     </head>
     <body class="page-body">
         <div id="main-body-container">
+            <noscript>
+            <div id="js-warning">
+                WARNING: This site requires JavaScript for proper operation.
+                Please enable JavaScript in your web browser.
+            </div>
+            </noscript>
             %= include 'parts/logged_in_indicator'
             <h1 id="heading"><img src="<%= url_for '/images/CRPLogoSmall.png' %>" />
                 <%= stash('heading') || "The Children's Reflexology Programme" =%>
