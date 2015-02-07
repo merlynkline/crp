@@ -20,6 +20,9 @@ a img {
 a:visited   {
     color:          inherit;
 }
+td {
+    vertical-align: top;
+}
 #main-body-container {
     width:          976px;
     border-style:   solid;

@@ -230,8 +230,8 @@ sub _create_or_update_course {
         $c->_display_course_editor_with($course);
     }
     else {
-        $course->insert unless $course->in_storage;
-        $c->flash(msg => 'course_update');
+        $c->flash(msg => $course->in_storage ? 'course_update' : 'course_create');
+        $course->update_or_insert;
         return $c->redirect_to('crp.members.courses');
     }
 }
@@ -268,7 +268,7 @@ sub _load_course_from_params {
         longitude           => $c->crp->number_or_null($c->param('longitude')),
         venue               => $c->crp->trimmed_param('venue'),
         description         => $c->crp->trimmed_param('description'),
-        start_date          => _get_date_input($c->crp->trimmed_param('start_date')),
+        start_date          => $c->_get_date_input($c->crp->trimmed_param('start_date')),
         time                => $c->crp->trimmed_param('time'),
         price               => $c->crp->trimmed_param('price'),
         session_duration    => $c->crp->trimmed_param('session_duration'),
@@ -321,6 +321,7 @@ sub _display_course_editor_with {
 }
 
 sub _get_date_input {
+    my $c = shift;
     my($date) = @_;
 
     my $parser = CRP::Util::DateParser->new(prefer_month_first_order => 1);
@@ -329,9 +330,10 @@ sub _get_date_input {
     my $res;
     try {
         $res = DateTime->new(
-            year    => $parser->year,
-            month   => $parser->month,
-            day     => $parser->day,
+            year        => $parser->year,
+            month       => $parser->month,
+            day         => $parser->day,
+            time_zone   => 'UTC',
         );
     };
     return $res;
