@@ -205,6 +205,14 @@ sub courses {
         { order_by => {-asc => 'start_date'} },
     ) ];
     $c->stash(draft_list => $draft_list);
+    my $past_list = [ $profile->courses(
+        {
+            published   => 1,
+            start_date  => {'<=', $dtf->format_datetime(DateTime->now()->subtract(days => $days))},
+        },
+        { order_by => {-asc => 'start_date'} },
+    ) ];
+    $c->stash(past_list => $past_list);
     $c->render(template => 'members/courses');
 }
 

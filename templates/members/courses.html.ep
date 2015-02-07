@@ -1,6 +1,32 @@
 %#<!DOCTYPE html>
 % layout 'member_default';
 % title 'Your courses';
+%#
+% my $course_list_block = begin
+%  my($courses_list, $type) = @_;
+<table class="list1">
+    <tr>
+        <th>Start</th>
+        <th></th>
+        <th>Venue</th>
+        <th>Description</th>
+        <th></th>
+    </tr>
+    % foreach my $course (@$courses_list) {
+    <tr>
+        <td nowrap><%= $c->crp->format_date($course->start_date, 'short') %></td>
+        <td nowrap><%= $course->time %></td>
+        <td><%= $course->venue %></td>
+        <td><%= $course->description %></td>
+        % if($type eq 'draft') {
+        <td nowrap>
+            <a href="<%= url_for('crp.members.course')->query(course_id => $course->id) %>">Edit</a>
+        </td>
+        % }
+    </tr>
+    % }
+</table>
+% end
 <h1>Your courses</h1>
 Add new courses as draft courses and then edit them until you have the details
 right and are happy to advertise them. Click on the start date of any course
@@ -11,54 +37,30 @@ leaflets etc.
 <h2>Draft courses</h2>
 % my $courses_list = stash('draft_list');
 % if(@$courses_list) {
-<table class="list1">
-    <tr>
-        <th>Start</th>
-        <th></th>
-        <th>Venue</th>
-        <th>Description</th>
-        <th></th>
-    </tr>
-    % foreach my $course (@$courses_list) {
-    <tr>
-        <td nowrap><%= $c->crp->format_date($course->start_date, 'short') %></td>
-        <td nowrap><%= $course->time %></td>
-        <td><%= $course->venue %></td>
-        <td><%= $course->description %></td>
-        <td nowrap>
-            <a href="<%= url_for('crp.members.course')->query(course_id => $course->id) %>">Edit</a>
-        </td>
-    </tr>
-    % }
-</table>
+%= $course_list_block->($courses_list, 'draft');
 % }
 % else {
 %= include 'parts/message_box', msg => 'no_draft_courses', auto_hide => 0;
 % }
+
 You can <a href="<%= url_for('crp.members.course') %>">add a new draft course here</a>.
 
 <h2>Advertised courses</h2>
 % $courses_list = stash('advertised_list');
 % if(@$courses_list) {
-<table class="list1">
-    <tr>
-        <th>Start</th>
-        <th></th>
-        <th>Venue</th>
-        <th>Description</th>
-    </tr>
-    % foreach my $course (@$courses_list) {
-    <tr>
-        <td nowrap><%= $c->crp->format_date($course->start_date, 'short') %></td>
-        <td nowrap><%= $course->time %></td>
-        <td><%= $course->venue %></td>
-        <td><%= $course->description %></td>
-    </tr>
-    % }
-</table>
+%= $course_list_block->($courses_list, 'advertised');
 % }
 % else {
 %= include 'parts/message_box', msg => 'no_advertised_courses', auto_hide => 0;
+% }
+
+<h2>Past courses</h2>
+% $courses_list = stash('past_list');
+% if(@$courses_list) {
+%= $course_list_block->($courses_list, 'past');
+% }
+% else {
+%= include 'parts/message_box', msg => 'no_past_courses', auto_hide => 0;
 % }
 
 <script>

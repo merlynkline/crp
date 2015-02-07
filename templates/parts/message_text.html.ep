@@ -5,6 +5,7 @@
 %   fix_errors              => 'Please fix the errors shown on the form.',
 %   no_advertised_courses   => 'There are no advertised courses.',
 %   no_draft_courses        => 'There are no draft courses.',
+%   no_past_courses         => 'There are no past courses.',
 %   course_create           => 'Your new course has been added to the Draft section',
 %   course_update           => 'Your course has been updated',
 %   no_enquiries_found      => 'Sorry - there are no enquiries near <em>' . xml_escape(param('location') // '') . '</em> in our records at the moment. We get new enquiries all the time though, so please check again in the future.',

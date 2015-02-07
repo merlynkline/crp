@@ -1,5 +1,4 @@
 
-** Prevent editing of canceled/published courses. Have an 'is_editable' method in the model to support this.
 ** section for past courses
 ** draft courses need delete and publish links
 ** published courses need cancel links

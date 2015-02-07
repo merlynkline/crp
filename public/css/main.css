@@ -166,6 +166,7 @@ h1#heading {
 .message-box {
     padding:        8px;
     font-weight:    bold;
+    text-align:     center;
 }
 legend {
     padding:        2px 4px;
