@@ -103,5 +103,15 @@ sub sqlt_deploy_hook {
     }
 }
 
+sub is_editable_by_instructor {
+    my $self = shift;
+    my($instructor_id) = @_;
+
+    return 1 if $self->instructor_id == $instructor_id && ! $self->published && ! $self->canceled;
+    return;
+}
+
+
+
 1;
 

@@ -244,7 +244,8 @@ sub _get_new_or_existing_course {
     my $course;
     if($course_id) {
         $course = $model->find({id => $course_id});
-# TODO: check course is editable by logged in instructor
+        my $profile = $c->_load_profile;
+        die "You can't edit this course" unless $course->is_editable_by_instructor($profile->instructor_id);
     }
     else {
         $course = $model->new_result({});
