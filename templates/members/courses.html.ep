@@ -18,11 +18,19 @@
         <td nowrap><%= $course->time %></td>
         <td><%= $course->venue %></td>
         <td><%= $course->description %></td>
-        % if($type eq 'draft') {
         <td nowrap>
-            <a href="<%= url_for('crp.members.course')->query(course_id => $course->id) %>">Edit</a>
-        </td>
+        % if($type eq 'draft' || $type eq 'advertised') {
+            <a class="small-button" href="<%= url_for('crp.members.course')->query(course_id => $course->id) %>" title="Edit the details of this course">Edit</a>
         % }
+        % if($type eq 'draft') {
+            <a class="small-button" href="<%= url_for('crp.members.delete_course')->query(course_id => $course->id) %>" title="Delete this course">Del</a>
+            <a class="small-button" href="<%= url_for('crp.members.publish_course')->query(course_id => $course->id) %>" title="Publish this course on your personal web page">Pub</a>
+        % }
+        % if($type eq 'advertised') {
+            <a class="small-button" href="<%= url_for('crp.members.cancel_course')->query(course_id => $course->id) %>" title="Cancel this course">Cancel</a>
+        % }
+        <a class="small-button" href="<%= url_for('crp.members.find_enquiries')->query(location => $course->location, latitude => $course->latitude, longitude => $course->longitude) %>" title="Find any enquires for courses in the area of this course">Enq</a>
+        </td>
     </tr>
     % }
 </table>

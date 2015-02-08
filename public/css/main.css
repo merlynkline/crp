@@ -230,10 +230,21 @@ input, textarea {
     color:          inherit;
     background:     white;
 }
-input[type="submit"], input[type="button"] {
+.small-button {
+    border:         1px solid #589;
+    border-radius:  4px;
+    margin:         0 0 1px 1px;
+    font-size:      11px;
+    padding:        2px;
+    font-family:    inherit;
+    color:          inherit;
+    background:     white;
+    text-decoration:    none;
+}
+input[type="submit"], input[type="button"], .small-button {
     background-image: linear-gradient(#fff, #ddd);
 }
-input[type="submit"]:hover, input[type="button"]:hover {
+input[type="submit"]:hover, input[type="button"]:hover, .small-button:hover {
     background-image: linear-gradient(#ccc, #eee);
 }
 input[type="checkbox"] {

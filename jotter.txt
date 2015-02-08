@@ -1,14 +1,11 @@
 
-** section for past courses
 ** draft courses need delete and publish links
 ** published courses need cancel links
 ** published courses should be editable to some extent. Not date.
 ** publishing a course notifies enquirers
-** Link to find nearby enquires for draft/live courses
 ** Add live courses to instructor's personal page
 
 ** templates/members/profile.html.ep gets lat/long defaults from params instead of profile. Is that right? Where else does this happen?
-
 
 - New materials for instructors course:
     - Timetable?
