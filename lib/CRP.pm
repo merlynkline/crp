@@ -53,6 +53,12 @@ sub startup {
     $logged_in->any('find_enquiries')->to('members#find_enquiries')->name('crp.members.find_enquiries');
     $logged_in->any('courses')->to('members#courses')->name('crp.members.courses');
     $logged_in->any('course')->to('members#course')->name('crp.members.course');
+    $logged_in->any('cancel_course')->to('members#cancel_course')->name('crp.members.cancel_course');
+    $logged_in->any('do_cancel_course')->to('members#do_cancel_course')->name('crp.members.do_cancel_course');
+    $logged_in->any('delete_course')->to('members#delete_course')->name('crp.members.delete_course');
+    $logged_in->any('do_delete_course')->to('members#do_delete_course')->name('crp.members.do_delete_course');
+    $logged_in->any('publish_course')->to('members#publish_course')->name('crp.members.publish_course');
+    $logged_in->any('do_publish_course')->to('members#do_publish_course')->name('crp.members.do_publish_course');
     
     my $member_site = $r->under('/me/:slug')->to('member_site#identify');
     $member_site->any('/')->to('member_site#welcome')->name('crp.membersite.home');

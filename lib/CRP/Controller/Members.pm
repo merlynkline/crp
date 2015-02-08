@@ -248,18 +248,24 @@ sub _get_new_or_existing_course {
     my $c = shift;
 
     my $course_id = $c->param('course_id');
-    my $model = $c->crp->model('Course');
     my $course;
     if($course_id) {
-        $course = $model->find({id => $course_id});
-        my $profile = $c->_load_profile;
-        die "You can't edit this course" unless $course->is_editable_by_instructor($profile->instructor_id);
+        $course = $c->_load_editable_course($course_id);
     }
     else {
-        $course = $model->new_result({});
+        $course = $c->crp->model('Course')->new_result({});
         $course->canceled(0);
         $course->published(0);
     }
+    return $course;
+}
+
+sub _load_editable_course {
+    my $c = shift;
+    my($course_id) = @_;
+
+    my $course = $c->crp->model('Course')->find({id => $course_id});
+    die "You can't edit this course" unless $course && $course->is_editable_by_instructor($c->crp->logged_in_instructor_id);
     return $course;
 }
 
@@ -346,6 +352,44 @@ sub _get_date_input {
         );
     };
     return $res;
+}
+
+sub delete_course {
+    my $c = shift;
+
+    my $course_id = $c->param('course_id');
+    my $course = $c->_load_editable_course($course_id);
+    $c->stash('crp_session')->variable('course_id', $course_id);
+    $c->stash('course_record', $course);
+}
+
+sub do_delete_course {
+    my $c = shift;
+
+    my $course_id = $c->stash('crp_session')->variable('course_id');
+    my $course = $c->_load_editable_course($course_id);
+    $c->flash(msg => 'course_delete');
+    $course->delete;
+    return $c->redirect_to('crp.members.courses');
+}
+
+sub publish_course {
+    my $c = shift;
+
+    my $course_id = $c->param('course_id');
+    my $course = $c->_load_editable_course($course_id);
+    $c->stash('crp_session')->variable('course_id', $course_id);
+    $c->stash('course_record', $course);
+}
+
+sub cancel_course {
+    my $c = shift;
+
+    my $course_id = $c->param('course_id');
+    my $course = $c->crp->model('Course')->find({id => $course_id});
+    die "You can't edit this course" unless $course && $course->is_cancelable_by_instructor($c->crp->logged_in_instructor_id);
+    $c->stash('crp_session')->variable('course_id', $course_id);
+    $c->stash('course_record', $course);
 }
 
 1;

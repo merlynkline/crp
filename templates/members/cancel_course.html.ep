@@ -1,0 +1,25 @@
+%#<!DOCTYPE html>
+% layout 'member_default';
+% my $course = stash('course_record');
+% title 'Cancel course';
+<h1>Confirm cancel course</h1>
+<p>
+This will withdraw the course from your list of advertised courses so that it will no longer
+be visible on your web page nor appear in search results when enquirers search for courses
+in their area. Note that some people may already have seen the advertisement or even have
+made bookings so you should think carefully before withdrawing a course and make sure you
+contact everyone who needs to know if you decide to go ahead.
+</p>
+<fieldset>
+    <legend>Confirm cancel</legend>
+    <p>
+    Please confirm that you want to cancel the course shown below.
+    </p>
+    <div class="button-group">
+        <a class="standard-button" href="<%= url_for('crp.members.courses') %>">Keep advertised</a>
+        <a class="standard-button" href="<%= url_for('crp.members.do_cancel_course') %>">Withdraw</a>
+    </div>
+</fieldset>
+<img align="left" src="<%= url_for '/images/Animals/Snake.jpg' %>" style="margin-right: 16px" />
+%= include "parts/course_details", course => $course;
+</p>
