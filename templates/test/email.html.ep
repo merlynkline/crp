@@ -1,0 +1,14 @@
+%#<!DOCTYPE html>
+% layout 'default';
+% title 'Email test - development mode';
+<h1>Email test page</h1>
+The email ID '<%= stash 'email_id' %>' (<%= stash 'email_path' %>) is shown below.
+The exact appearance will depend on the email program used to read it and the details
+of the specific message.
+<div style="border:1px solid black; margin: 8px 8px 0 8px; padding: 4px; background: #bbb;">
+    Subject: <%= stash 'subject' %>
+</div>
+<div style="border:1px solid black; margin: 0 8px 8px 8px; padding: 4px; border-top: none; background: #ddd; line-height: 120%;">
+<%== stash 'email_html' %>
+</div>
+

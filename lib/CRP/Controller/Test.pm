@@ -61,4 +61,61 @@ sub pdf {
     );
 }
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub email {
+    my $c = shift;
+
+    my $email = shift // $c->stash('email');
+    my $email_id;
+    if($email eq 'main/email/otp') {
+        $email_id = 'Temporary password';
+        my $identifier = "IDENTIFIER";
+        my $otp = "RANDOM-PASSWORD";
+        my $info = {
+            identifier          => "$identifier/$otp",
+            otp_page            => $c->url_for("/otp/$identifier/$otp")->to_abs(),
+            general_otp_page    => $c->url_for('/otp')->to_abs(),
+            hours               => $c->app->config->{login}->{otp_lifetime},
+        };
+        $c->stash(info => $info);
+    }
+    elsif($email eq 'members/email/profile_update') {
+        $email_id = 'Admin notification of Instructor update';
+        my $info = {
+            changes => {
+                name        => 'NEW_NAME',
+                address     => 'NEW_ADDRESS',
+                telephone   => 'NEW_TELEPHONE',
+                location    => 'NEW_LOCATION',
+            },
+            id => 'INSTRUCTOR_ID',
+            url => $c->url_for('crp.membersite.home', slug => 'INSTRUCTOR_SLUG')->to_abs,
+        };
+        $c->stash(info => $info);
+    }
+    elsif($email eq 'main/email/contact_form') {
+        $email_id = 'Contact form';
+        $c->stash(info => {message => 'Message text entered on the form.'});
+    }
+    elsif($email eq 'main/email/enquiry_confirmation') {
+        $email_id = 'Enquiry email-address confirmation';
+        my $identifier = 'UNIQUE_IDENTIFIER';
+        my $info = {
+            identifier              => $identifier,
+            confirm_page            => $c->url_for('/update_registration')->query(id => $identifier)->to_abs(),
+            general_confirm_page    => $c->url_for('/update_registration')->to_abs(),
+            location                => 'LOCATION',
+            notify_new_courses      => 1,
+            notify_tutors           => 1,
+            send_newsletter         => 1,
+            name                    => 'ENQUIRER_NAME',
+        };
+        $c->stash(info => $info);
+    }
+    $c->stash(email_id => $email_id);
+    $c->stash(email_path => $email);
+    $c->stash(email_html => $c->render_to_string($email, format => 'mail'));
+}
+
 1;
+

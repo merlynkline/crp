@@ -149,7 +149,7 @@ sub _send_otp {
         identifier          => "$identifier/$otp",
         otp_page            => $c->url_for("/otp/$identifier/$otp")->to_abs(),
         general_otp_page    => $c->url_for('/otp')->to_abs(),
-        lifetime            => $hours,
+        hours               => $hours,
     };
     $c->mail(
         to          => $c->crp->email_to($login_record->email),

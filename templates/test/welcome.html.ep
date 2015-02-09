@@ -17,5 +17,12 @@
         <li><a href="/me/1">Member's home page</a></li>
         <li><a href="/me/1/certificate">Member's certificate</a></li>
     </ul>
+    <li>Emails the system can send</li>
+    <ul>
+        <li><a href="/test/email/main/email/otp">Temporary password</a></li>
+        <li><a href="/test/email/members/email/profile_update">Admin notification of Instructor update</a></li>
+        <li><a href="/test/email/main/email/contact_form">Contact form</a></li>
+        <li><a href="/test/email/main/email/enquiry_confirmation">Enquiry email-address confirmation</a></li>
+    </ul>
 </ul>
 
