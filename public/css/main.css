@@ -211,13 +211,16 @@ label {
     clear:          left;
     display:        block;
 }
-.field-extra-info {
+.field-extra-info, .extra-info {
     padding:        0;
     text-align:     left;
     font-size:      11px;
     line-height:    110%;
     clear:          left;
     text-align:     right;
+}
+.extra-info {
+    text-align:     left;
 }
 .standard-button, .small-button {
     border-radius:  4px;

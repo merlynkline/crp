@@ -62,6 +62,10 @@ You can
             location => stash('file_name_location')
 ) %>">download these results as a CSV file here</a>
 if you wish.
+<div class="extra-info">
+    CSV files are a standard format that can be used with other software such as
+    spreadsheets, word processors and databases.
+</div>
 %    }
 %    else {
 %= include 'parts/message_box', msg => 'no_enquiries_found', auto_hide => 0;
