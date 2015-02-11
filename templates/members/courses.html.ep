@@ -37,9 +37,9 @@
 % end
 <h1>Your courses</h1>
 Add new courses as draft courses and then edit them until you have the details
-right and are happy to advertise them. Click on the start date of any course
+right and are happy to advertise them. Use the buttons next to the courses
 to see all the details and take actions such as editing, advertising, printing
-leaflets etc.
+leaflets etc. (Hover the mouse over the buttons to find out more about them.)
 <%= include 'parts/message_box', msg => flash('msg') || stash('msg'), auto_hide => 1 %>
 
 <h2>Draft courses</h2>
