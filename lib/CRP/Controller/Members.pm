@@ -354,6 +354,7 @@ sub _get_date_input {
     return $res;
 }
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 sub delete_course {
     my $c = shift;
 
@@ -363,25 +364,87 @@ sub delete_course {
     $c->stash('course_record', $course);
 }
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 sub do_delete_course {
     my $c = shift;
 
-    my $course_id = $c->stash('crp_session')->variable('course_id');
+    my $course_id = $c->stash('crp_session')->remove_variable('course_id');
     my $course = $c->_load_editable_course($course_id);
     $c->flash(msg => 'course_delete');
     $course->delete;
     return $c->redirect_to('crp.members.courses');
 }
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 sub publish_course {
     my $c = shift;
 
     my $course_id = $c->param('course_id');
-    my $course = $c->_load_editable_course($course_id);
+    my $course = $c->_load_publishable_course($course_id);
     $c->stash('crp_session')->variable('course_id', $course_id);
     $c->stash('course_record', $course);
 }
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub do_publish_course {
+    my $c = shift;
+
+    my $course_id = $c->stash('crp_session')->remove_variable('course_id');
+    my $course = $c->_load_publishable_course($course_id);
+    $course->publish;
+    $c->_notify_enquirers($course);
+    $c->flash(msg => 'course_publish');
+    return $c->redirect_to('crp.members.courses');
+}
+
+sub _load_publishable_course {
+    my $c = shift;
+    my($course_id) = @_;
+
+    my $course = $c->_load_editable_course($course_id);
+    die "You can't pubish this course" unless $course->is_publishable;
+    return $course;
+}
+
+sub _notify_enquirers {
+    my $c = shift;
+    my($course) = @_;
+
+    my $latitude = $course->latitude || return;
+    my $longitude = $course->longitude || return;
+    my $enquiries_list = [
+        $c->crp->model('Enquiry')->search_near_location(
+            $latitude,
+            $longitude,
+            $c->config->{enquiry_search_distance},
+            { notify_new_courses => 1 },
+        )
+    ];
+    foreach my $enquiry (@$enquiries_list) {
+        $c->_notify_enquirer($enquiry, $course);
+    }
+}
+
+sub _notify_enquirer {
+    my $c = shift;
+    my($enquiry, $course) = @_;
+
+    return unless $enquiry->email;
+    my $identifier = CRP::Util::WordNumber::encode_number($enquiry->id);
+    my $profile = $c->_load_profile;
+    my $url = $c->url_for('crp.membersite.course', slug => $profile->web_page_slug, course => $course->id)->to_abs;
+    $c->mail(
+        to          => $c->crp->email_to($enquiry->email, $enquiry->name),
+        template    => 'members/email/course_published_to_enquirer',
+        info        => {
+            name            => $enquiry->name,
+            url             => $url,
+            confirm_page    => $c->url_for('/update_registration')->query(id => $identifier)->to_abs(),
+        },
+    );
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 sub cancel_course {
     my $c = shift;
 

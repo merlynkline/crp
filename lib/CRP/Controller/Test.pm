@@ -112,6 +112,16 @@ sub email {
         };
         $c->stash(info => $info);
     }
+    elsif($email eq 'members/email/course_published_to_enquirer') {
+        $email_id = 'Enquirer email re new course';
+        my $identifier = 'UNIQUE_IDENTIFIER';
+        my $info = {
+            confirm_page    => $c->url_for('/update_registration')->query(id => $identifier)->to_abs(),
+            name            => 'ENQUIRER_NAME',
+            url             => $c->url_for('crp.membersite.course', slug => 'INSTRUCTOR_SLUG', course => 'COURSE_ID')->to_abs,
+        };
+        $c->stash(info => $info);
+    }
     $c->stash(email_id => $email_id);
     $c->stash(email_path => $email);
     $c->stash(email_html => $c->render_to_string($email, format => 'mail'));

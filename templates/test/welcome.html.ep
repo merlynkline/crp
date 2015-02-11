@@ -23,6 +23,7 @@
         <li><a href="/test/email/members/email/profile_update">Admin notification of Instructor update</a></li>
         <li><a href="/test/email/main/email/contact_form">Contact form</a></li>
         <li><a href="/test/email/main/email/enquiry_confirmation">Enquiry email-address confirmation</a></li>
+        <li><a href="/test/email/members/email/course_published_to_enquirer">Enquirer email re new course</a></li>
     </ul>
 </ul>
 

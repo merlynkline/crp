@@ -1,7 +1,7 @@
 %# Email sent when a carer registers interest
 %#
 %# stash 'info' is a hash of:
-%#     identifier           ID string for this stration
+%#     identifier           ID string for this registration
 %#     confirm_page         URL to go to to confirm registration
 %#     general_confirm_page URL to go to if the confirmation page link doesn't work
 %#     name

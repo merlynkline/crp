@@ -1,10 +1,8 @@
 
-** publish course
-    - Set flag
-    - Notify enquirers
 ** published courses need cancel links
 ** published courses should be editable to some extent. Not date.
 ** Add live courses to instructor's personal page
+** Leaflet printing for live courses
 
 ** templates/members/profile.html.ep gets lat/long defaults from params instead of profile. Is that right? Where else does this happen?
 
@@ -18,7 +16,11 @@
     - Disruption cards for microteach exercise.
     - Reflective practice log.
 
-
++ Limit numbers in search results. Enquiries - find near location, notify_enquirers.
++ Fix up members' menu
+    + Add a suitable set of options
+    + Add IDs to the pages so that the options highlight properly
+    + Change the background or somehow make the members' area obviously different?
 + Refactor templates to further generalise location input.
 + Booking form PDF has payment details on it
 + Cookie doesn't get deleted on log-out
@@ -35,6 +37,7 @@
 + add some decoration to the contact form and the thank you page (etc etc)
 + tests!!
 + Move validation to a plug-in?
++ Publishing a course could take a long time to notify all the enquirers.
 
 
 - Cookie session contains:

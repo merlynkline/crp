@@ -134,14 +134,24 @@ sub _cookie_session_variable {
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub remove_variable {
+    my $self = shift;
+    my $variable = shift;
+
+    my $value = $self->variable($variable);
+    $self->variable($variable, undef);
+    return $value;
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 sub clear {
     my $self = shift;
 
     $self->_debug("clear");
-    $self->_mojo->crp->model('Session')->find($self->_id)->delete if $self->_id;
+    my $c = $self->_mojo;
+    $c->crp->model('Session')->find($self->_id)->delete if $self->_id;
     $self->_set_expired(1);
     $self->_id(0);
-    my $c = $self->_mojo;
     $c->session(id => 0);
     my $expiry_time = 1;
     if($c->session('auto_login_id')) {

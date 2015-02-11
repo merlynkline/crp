@@ -1,0 +1,26 @@
+%# Email sent when a course is published in an area where a carer has registered interest
+%#
+%# stash 'info' is a hash of:
+%#     confirm_page   URL to go to to change enquiry registration details
+%#     name
+%#     url            URL for the course page
+%#     
+%#
+% stash subject => "New course from The Children's Reflexology Programme";
+%#
+% layout 'default';
+% my $info = stash('info');
+% if($info->{name}) {
+<p>Dear <%= $info->{name} %>,</p>
+% }
+<p>This is just a short note to let you know that there is a new course available for
+The Children's Reflexology Programme in the area you registered an interest in.
+More details are available here:</p>
+<p>&nbsp;&nbsp;&nbsp;<a href="<%= $info->{url} %>"><%= $info->{url} %></a></p>
+<p>You were sent this email because you registered an enquiry on our web site. If
+you no longer wish to receive these emails you can change your registration details
+at any time here:</p>
+<p>&nbsp;&nbsp;&nbsp;<a href="<%= $info->{confirm_page} %>"><%= $info->{confirm_page} %></a></p>
+<p>Thanks again for your interest - we look forward to helping you and the children you care for.</p>
+%= include 'parts/email_signature';
+

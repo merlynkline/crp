@@ -5,7 +5,10 @@ use warnings;
 
 use base 'DBIx::Class::Core';
 
+use Carp;
+
 use CRP::Util::Types;
+use DateTime;
 
 __PACKAGE__->load_components(qw(InflateColumn::DateTime));
 __PACKAGE__->table('course');
@@ -119,6 +122,26 @@ sub is_cancelable_by_instructor {
     return;
 }
 
+sub is_publishable {
+    my $self = shift;
+
+    return
+        $self->start_date > DateTime->now()
+        && $self->venue
+        && $self->time
+        && $self->price
+        && $self->description
+        && $self->session_duration
+        && $self->course_duration
+        ;
+}
+
+sub publish {
+    my $self = shift;
+
+    croak "Course is not publishable" unless $self->is_publishable;
+    $self->update({published => 1, canceled => 0});
+}
 
 
 1;

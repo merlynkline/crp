@@ -24,7 +24,11 @@
         % }
         % if($type eq 'draft') {
             <a class="small-button" href="<%= url_for('crp.members.delete_course')->query(course_id => $course->id) %>" title="Delete this course">Del</a>
+            % if($course->is_publishable) {
             <a class="small-button" href="<%= url_for('crp.members.publish_course')->query(course_id => $course->id) %>" title="Publish this course on your personal web page">Pub</a>
+            % } else {
+            <span class="small-button disabled-button" title="This course can't be published - please edit the details">Pub</span>
+            % }
         % }
         % if($type eq 'advertised') {
             <a class="small-button" href="<%= url_for('crp.members.cancel_course')->query(course_id => $course->id) %>" title="Cancel this course">Cancel</a>
