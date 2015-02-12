@@ -1,4 +1,5 @@
 %#<!DOCTYPE html>
+% my $profile = stash('site_profile');
 <div class="instructor-photo"><img src="<%=
     do {
         if($cachebuster) {
@@ -8,6 +9,6 @@
             $c->crp->url_for_instructor_photo(stash('site_profile')->instructor_id) 
         }
     }
-%>"/></div>
-<div class="yellow-text-edited"><%= b(stash('site_profile')->blurb) %></div>
+    %>"/></div>
+<div class="yellow-text-edited"><%= b($profile->blurb) %></div>
 

@@ -213,7 +213,6 @@ sub courses {
         { order_by => {-asc => 'start_date'} },
     ) ];
     $c->stash(past_list => $past_list);
-    $c->render(template => 'members/courses');
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 

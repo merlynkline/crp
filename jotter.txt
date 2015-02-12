@@ -143,13 +143,13 @@ session:
     + Carer's contact form (for contacting CRP as a carer)
     + For each course registered by a instructor there will be a page describing that course that the instructor can link to
         + Sensible static URL so Google can index it
-        + Courses that have already started (or finsished) will still show up but will be clearly marked
+        + Courses that have already started (or finished) will still show up but will be clearly marked
         + Cancelled courses will still show up but will be clearly marked
         + Online booking form for the course if it's in the future (with Ts&Cs)
         + Link to PDF booking form for the course
-    + A list of registered future/current courses (possibly hidden a bit - this is really for Google)
-    + For each registered instructor there will be an automatically generated page with their details and a list of upcoming courses
-    + A list of registered instructors (possibly hidden a bit - this is really for Google)
+    ~ A list of registered future/current courses (possibly hidden a bit - this is really for Google)
+    ~ For each registered instructor there will be an automatically generated page with their details and a list of upcoming courses
+    ~ A list of registered instructors (possibly hidden a bit - this is really for Google)
     + Gallery
     + Success stories
 + Instructors' area

@@ -97,10 +97,10 @@ td {
 #left-nav li:hover {
     background:     #edc;
 }
-#bottom-nav a, #left-nav a {
+#bottom-nav a, #left-nav a, #instructor-nav a {
     text-decoration:    none;
 }
-#bottom-nav a:hover, #left-nav a:hover {
+#bottom-nav a:hover, #left-nav a:hover, #instructor-nav a:hover {
     text-decoration:    underline;
 }
 #corner-mouse {
@@ -140,7 +140,7 @@ h1#heading {
     padding:        0;
     margin:         0 0 0 40px;
 }
-#bottom-nav li {
+#bottom-nav li, #instructor-nav li {
     display:        inline;
     list-style:     none;
     font-size:      12px;
@@ -149,6 +149,18 @@ h1#heading {
 }
 #bottom-nav li:hover {
     background:     #edc;
+}
+#instructor-nav ul {
+    text-align: right;
+    display:        block;
+    padding:        0;
+    margin:         0 0 0 0;
+}
+#instructor-nav li {
+    padding: 0 14px;
+}
+#instructor-nav li:hover {
+    background:     #bde;
 }
 #review-container {
     vertical-align: top;
@@ -236,6 +248,8 @@ input, textarea, .standard-button {
     font-size:      16px;
     padding:        4px;
     font-weight:    bold;
+    font-family:    inherit;
+    color:          inherit;
 }
 .small-button {
     border:         1px solid #589;

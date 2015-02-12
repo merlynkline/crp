@@ -33,6 +33,18 @@ sub identify {
 sub welcome {
     my $c = shift;
 
+    my $profile = $c->stash('site_profile');
+    my $dtf = $c->crp->model('Course')->result_source->schema->storage->datetime_parser;
+    my $days = $c->config->{course}->{age_when_advert_expires_days} || 14;
+    my $advertised_list = [ $profile->courses(
+        {
+            published   => 1,
+            canceled    => 0,
+            start_date  => {'>', $dtf->format_datetime(DateTime->now()->subtract(days => $days))},
+        },
+        { order_by => {-asc => 'start_date'} },
+    ) ];
+    $c->stash(advertised_list => $advertised_list);
     $c->render;
 }
 

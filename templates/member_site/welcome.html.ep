@@ -1,5 +1,73 @@
 %#<!DOCTYPE html>
-% layout 'default', page_id => 'member.home', heading => stash('site_profile')->name;
+% layout 'default', page_id => 'member.home';
 % title 'Welcome';
-<br />
+% my $profile = stash('site_profile');
+% my $contact_row_block = begin
+% my($name, $value) = @_;
+% if($value) {
+<tr><td><%= $name %>:</td><td nowrap="nowrap"><%= $value %></td></tr>
+% }
+% end
+<h1><%= stash('site_profile')->name %> - Qualified Instructor</h1>
+<div id='instructor-nav'>
+    <ul>
+        <li><a href="#courses">Courses</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="<%= url_for 'crp.membersite.certificate', slug => $profile->web_page_slug %>">Certifcate</a></li>
+    </ul>
+</div>
 <%= include 'member_site/parts/blurb', cachebuster => 0 %>
+<br clear="right" />
+<h2><a name="courses"></a>Courses</a></h2>
+% if(@{stash 'advertised_list'}) {
+Here's a list of courses I've got coming up. Click on any of them to get
+more details or to book a place. If you don't see a course suitable for
+you, please contact me to see if we can arrange something.
+<table class="list1">
+    <tr>
+        <th>Start</th>
+        <th></th>
+        <th>Venue</th>
+        <th>Description</th>
+    </tr>
+    % foreach my $course (@{stash 'advertised_list'}) {
+    <tr>
+        <td nowrap><%= $c->crp->format_date($course->start_date, 'short') %></td>
+        <td nowrap><%= $course->time %></td>
+        <td><%= $course->venue %></td>
+        <td><%= $course->description %></td>
+    </tr>
+    % }
+</table>
+% } else {
+I don't have places available on courses running in the near future but please
+do contact me to find out when more courses are coming up or to see if we can
+arrange something specially for you.
+% }
+
+<h2><a name="contact"></a>Contact details</a></h2>
+Please contact me if there's anything else you'd like to know.
+<table class="list1">
+    <tr>
+        <th colspan="2">Contact me</th>
+    </tr>
+    %= $contact_row_block->('Telephone', $profile->telephone);
+    %= $contact_row_block->('Mobile', $profile->mobile);
+    % if($profile->address) {
+    <tr>
+        <td>Address:</td>
+        <td>
+            % foreach my $line(split /\s*\n\s*/, $profile->address) {
+            <%= $line %><br>
+            % }
+        </td>
+    </tr>
+    % }
+    %= $contact_row_block->('Postcode', $profile->postcode);
+    % if($profile->login->email) {
+    <tr>
+        <td>Email:</td>
+        <td><a href="mailto:<%= $profile->login->email %>"><%= $profile->login->email %></a></td>
+    </tr>
+    % }
+</table>
