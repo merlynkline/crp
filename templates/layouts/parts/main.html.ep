@@ -17,9 +17,9 @@
 %   my($page_id, $href, $desc) = @_;
 %   my $this_page = (stash('page_id') || stash('page') || '') eq ($page_id || '');
 <% if($this_page) { =%>
-<li class="selected"><%
+<li class="selected"<% if(stash 'members_area') { %> class="members-area"<% } %>><%
 } else { =%>
-<li><%
+<li<% if(stash 'members_area') { %> class="members-area"<% } %>><%
 } =%>
 <% if(!$this_page) { =%><a href="<%= url_for $href %>"><% } =%>
 <%= $desc =%>
@@ -44,7 +44,8 @@
             <table>
                 <tr>
                     <td id="left-nav-container">
-                        <div id="left-nav">
+                        <div id="left-nav"<% if(stash 'members_area') { %> class="members-area"<% } %>>
+                        <% if(stash 'members_area') { %><div id="members-area-menu-header">Member's area</div><% } %>
                             <ul>
                                 <%
                                     foreach my $menu_entry (@{stash('left_nav_menu')}) {
@@ -52,7 +53,7 @@
                                     }
                                 %>
                             </ul>
-                            <img src="<%= url_for '/images/Plants/Pokers.png' %>">
+                            <img src="<%= stash('members_area') ? url_for('/images/Plants/Strawberry.png') : url_for('/images/Plants/Pokers.png') %>">
                         </div>
                     </td>
                     <td id="content-container">

@@ -97,6 +97,19 @@ td {
 #left-nav li:hover {
     background:     #edc;
 }
+#left-nav li.members-area:hover {
+    background:     #fcb;
+}
+div.members-area {
+    background:     linear-gradient(#fdd, #fff);
+    border-color:   #955;
+}
+#members-area-menu-header {
+    color:          #955;
+    font-size:      75%;
+    line-height:    130%;
+    text-align:     center;
+}
 #bottom-nav a, #left-nav a, #instructor-nav a, a.simple-link {
     text-decoration:    none;
 }

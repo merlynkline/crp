@@ -6,4 +6,4 @@
         ['logout',    '/logout',         'Log out'],
     ];
 =%>
-%= include 'layouts/parts/main', left_nav_menu => $left_nav_menu;
+%= include 'layouts/parts/main', left_nav_menu => $left_nav_menu, members_area => 1;
