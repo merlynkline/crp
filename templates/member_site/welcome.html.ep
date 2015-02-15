@@ -2,18 +2,20 @@
 % layout 'default', page_id => 'member.home';
 % title 'Welcome';
 % my $profile = stash('site_profile');
+% my $slug = $profile->web_page_slug;
+%
 % my $contact_row_block = begin
 % my($name, $value) = @_;
 % if($value) {
 <tr><td><%= $name %>:</td><td nowrap="nowrap"><%= $value %></td></tr>
 % }
 % end
-<h1><%= stash('site_profile')->name %> - Qualified Instructor</h1>
+<h1><%= $profile->name %> - Qualified Instructor</h1>
 <div id='instructor-nav'>
     <ul>
         <li><a href="#courses">Courses</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li><a href="<%= url_for 'crp.membersite.certificate', slug => $profile->web_page_slug %>">Certifcate</a></li>
+        <li><a href="<%= url_for 'crp.membersite.certificate', slug => $slug %>">Certifcate</a></li>
     </ul>
 </div>
 <%= include 'member_site/parts/blurb', cachebuster => 0 %>
@@ -31,11 +33,12 @@ you, please contact me to see if we can arrange something.
         <th>Description</th>
     </tr>
     % foreach my $course (@{stash 'advertised_list'}) {
+    %   my $url = url_for 'crp.membersite.course', slug => $slug, course => $course->id;
     <tr>
-        <td nowrap><%= $c->crp->format_date($course->start_date, 'short') %></td>
-        <td nowrap><%= $course->time %></td>
-        <td><%= $course->venue %></td>
-        <td><%= $course->description %></td>
+        <td nowrap><a href="<%= $url %>" class="simple-link"><%= $c->crp->format_date($course->start_date, 'short') %></a></td>
+        <td nowrap><a href="<%= $url %>" class="simple-link"><%= $course->time %></a></td>
+        <td><a href="<%= $url %>" class="simple-link"><%= $course->venue %></a></td>
+        <td><a href="<%= $url %>" class="simple-link"><%= $course->description %></a></td>
     </tr>
     % }
 </table>

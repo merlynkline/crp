@@ -1,0 +1,84 @@
+%#<!DOCTYPE html>
+% layout 'default', page_id => 'member.course';
+% title 'Course';
+% my $profile = stash('site_profile');
+% my $course = stash('course');
+% my $course_available = 1;
+% $course_available = 0 if $course->canceled || stash 'past_course';
+%
+% my $warning_block = begin
+% if( ! $course_available) {
+<div style="background: #fdd; color: #b00; padding: 8px; text-align: center; border: 3px solid #b00; border-radius: 8px; margin: 8px 0;">
+    <strong>Please note that this course is
+    <%= $course->canceled ? 'CANCELLED' : 'now closed for bookings' %></strong></br />
+    You can still contact
+    <a href="<%= url_for 'crp.membersite.home' %>"><%= $profile->name %></a>
+    for further information.
+</div>
+% }
+% end
+%
+% my $course_details_block = begin
+<%= $warning_block->() =%>
+<div style="background: #ced; border: 3px solid #354; text-align: center; padding: 8px; border-radius: 8px;">
+    <strong><%= $course->description %></strong>
+    with <a href="<%= url_for 'crp.membersite.home' %>"><%= $profile->name %></a>
+    starting <%= $c->crp->format_date($course->start_date, 'short') %>, <%= $course->time %>.
+    <br />
+    This course is over <%= $course->course_duration %>
+    with each session lasting <%= $course->session_duration %>,
+    and costs <%= $course->price %>.
+    <br />
+    For more information or to book a place, please contact me:
+    <%= $profile->telephone =%>
+    <%= $profile->telephone && $profile->mobile ? ' or ' : '' =%>
+    <%= $profile->mobile =%>
+    <br />
+    You can email me on <a href="mailto:<%= $profile->login->email %>"><%= $profile->login->email %></a><% if($course_available) { %> or <a href="">download a booking form here</a><% } %>.
+</div>
+% end
+%
+%
+%
+<h1>Course at <%= $course->venue %></h1>
+%= $course_details_block->()
+<div style="
+    background: black;
+    color: white;
+    text-align: center;
+    font-size: 30px;
+    padding: 8px;
+    line-height: 120%;
+    margin: 12px 0 0 0;
+    ">
+    Would you like to learn a new way to help you and
+    your child through times of illness and distress?
+</div>
+% my $pos_image_block = begin
+% my($x, $y, $w, $file) = @_;
+<img style="position: absolute; top:  <%= $y %>px; left: <%= $x %>px; <% if($w) { %> width: <%= $w %>px; height: auto; <% } %>" src ="/images/<%= $file %>" />
+% end
+<div style="height:830px; position: relative; margin: 24px 0;">
+    %= $pos_image_block->(  0, 400, 200, 'Techniques/ThumbWalk.jpg');
+    %= $pos_image_block->(150, 240,   0, 'Animals/MouseInNest.jpg');
+    %= $pos_image_block->(  0,   0, 150, 'Animals/Owl.jpg');
+    %= $pos_image_block->(660,   0,   0, 'Animals/Hare.jpg');
+    %= $pos_image_block->(450,  70,   0, 'Animals/Mole.jpg');
+    %= $pos_image_block->(  0, 220,   0, 'Animals/Snake.jpg');
+    %= $pos_image_block->(240, 100, 150, 'Feet/DorsalComplete.jpg');
+    %= $pos_image_block->(660, 380, 150, 'Feet/PlantarComplete.jpg');
+    %= $pos_image_block->( 20, 580, 100, 'Plants/Pokers.png');
+    %= $pos_image_block->(130, 660, 200, 'Animals/Badger.jpg');
+    %= $pos_image_block->(360, 640, 120, 'Animals/Squirrel.jpg');
+    %= $pos_image_block->(510, 590, 300, 'Misc/CarerCertificate.jpg');
+    <div style="position: absolute; top: 0px; left: 175px; font-size: 30px; line-height: 120%;">
+        Help Mouse's friends to make her<br />
+        a cosy nest...
+    </div>
+    <div style="position: absolute; top: 580px; left: 220px; font-size: 30px; line-height: 120%;">
+        ...and learn to give your child<br />
+        reflexology!
+    </div>
+</div>
+%= $course_details_block->()
+

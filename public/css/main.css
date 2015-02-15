@@ -97,10 +97,10 @@ td {
 #left-nav li:hover {
     background:     #edc;
 }
-#bottom-nav a, #left-nav a, #instructor-nav a {
+#bottom-nav a, #left-nav a, #instructor-nav a, a.simple-link {
     text-decoration:    none;
 }
-#bottom-nav a:hover, #left-nav a:hover, #instructor-nav a:hover {
+#bottom-nav a:hover, #left-nav a:hover, #instructor-nav a:hover, a.simple-link:hover {
     text-decoration:    underline;
 }
 #corner-mouse {

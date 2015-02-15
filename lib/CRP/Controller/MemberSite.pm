@@ -58,5 +58,21 @@ sub certificate {
     $c->render(template => 'member_site/certificate');
 }
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub course {
+    my $c = shift;
+    my $course_id = $c->stash('course');
+
+    my $course = $c->crp->model('Course')->find($course_id);
+    return $c->reply->not_found unless
+        $course
+        && $course->instructor_id == $c->stash('site_profile')->instructor_id
+        && $course->published;
+
+    $c->stash(course => $course);
+    my $days = $c->config->{course}->{age_when_advert_expires_days} || 14;
+    $c->stash(past_course => $course->start_date < DateTime->now()->subtract(days => $days));
+}
+
 1;
 
