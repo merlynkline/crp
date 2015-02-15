@@ -1,8 +1,4 @@
 
-
-** Location search definitely goes wrong if you search for a place, click back, enter another location, hit return
-** templates/members/profile.html.ep gets lat/long defaults from params instead of profile. Is that right? Where else does this happen?
-
 ** published courses need cancel links
 ** published courses should be editable to some extent. Not date.
 ** Leaflet printing for live courses

@@ -21,6 +21,8 @@
                 this.waitCount  = 0;
                 this.ready      = false;
                 var that = this;
+                that.latElement().value = '';
+                that.lngElement().value = '';
                 this.geocoder.geocode( {address: address || 'London'}, function(results, status) {
                     if (status == google.maps.GeocoderStatus.OK) {
                         var loc = results[0].geometry.location;

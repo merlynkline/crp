@@ -74,8 +74,8 @@
             %= text_field 'location' => $profile->location, onblur => 'locationInputHandler.codeAddress()', id => 'location-input-location';
             <input type="button" value="check" onclick="locationInputHandler.codeAddress()" /><br />
         </div>
-        %= hidden_field 'latitude' => param('latitude'), id => "location-input-latitude"
-        %= hidden_field 'longitude' => param('longitude'), id => "location-input-longitude"
+        %= hidden_field 'latitude' => $profile->latitude, id => "location-input-latitude"
+        %= hidden_field 'longitude' => $profile->longitude, id => "location-input-longitude"
 
         <label>
             <div class="field-extra-info">

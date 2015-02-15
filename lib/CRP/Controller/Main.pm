@@ -242,27 +242,31 @@ sub location_search {
 
     my $latitude  = $c->crp->number_or_null($c->param('latitude'));
     my $longitude = $c->crp->number_or_null($c->param('longitude'));
-    return $c->redirect_to('crp.page', page => 'location_search') unless defined $latitude && defined $longitude;
 
-    my @courses_list = $c->crp->model('Course')->search_near_location(
-        DateTime->now()->subtract(days => $c->config->{course}->{'age_when_advert_expires_days'}),
-        $latitude,
-        $longitude,
-        $c->config->{'instructor_search_distance'},
-        {},
-        { order_by => {-asc => 'start_date'} },
-    );
+    if($latitude && $longitude) {
+        my @courses_list = $c->crp->model('Course')->search_near_location(
+            DateTime->now()->subtract(days => $c->config->{course}->{'age_when_advert_expires_days'}),
+            $latitude,
+            $longitude,
+            $c->config->{'instructor_search_distance'},
+            {},
+            { order_by => {-asc => 'start_date'} },
+        );
 
-    my @instructors_list = $c->crp->model('Profile')->search_near_location(
-        $latitude,
-        $longitude,
-        $c->config->{'instructor_search_distance'},
-        {},
-        { order_by => {-asc => 'lower(name)'} },
-    );
+        my @instructors_list = $c->crp->model('Profile')->search_near_location(
+            $latitude,
+            $longitude,
+            $c->config->{'instructor_search_distance'},
+            {},
+            { order_by => {-asc => 'lower(name)'} },
+        );
 
-    $c->stash(instructors_list => \@instructors_list);
-    $c->stash(courses_list => \@courses_list);
+        $c->stash(instructors_list => \@instructors_list);
+        $c->stash(courses_list => \@courses_list);
+    }
+    else {
+        $c->stash(bad_location => 1);
+    }
     $c->render(template => 'main/location_search_results');
 }
 
