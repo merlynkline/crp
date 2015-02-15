@@ -1,10 +1,12 @@
 
+
+** Location search definitely goes wrong if you search for a place, click back, enter another location, hit return
+** templates/members/profile.html.ep gets lat/long defaults from params instead of profile. Is that right? Where else does this happen?
+
 ** published courses need cancel links
 ** published courses should be editable to some extent. Not date.
-** Add live courses to instructor's personal page
 ** Leaflet printing for live courses
-
-** templates/members/profile.html.ep gets lat/long defaults from params instead of profile. Is that right? Where else does this happen?
+** Work out cancel/publish/delete interactions for courses. Need to show cancelled courses in various places. Cancel a published course: what happens to it?
 
 - New materials for instructors course:
     - Timetable?

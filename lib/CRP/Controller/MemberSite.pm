@@ -35,7 +35,7 @@ sub welcome {
 
     my $profile = $c->stash('site_profile');
     my $dtf = $c->crp->model('Course')->result_source->schema->storage->datetime_parser;
-    my $days = $c->config->{course}->{age_when_advert_expires_days} || 14;
+    my $days = $c->config->{course}->{age_when_advert_expires_days};
     my $advertised_list = [ $profile->courses(
         {
             published   => 1,
@@ -70,7 +70,7 @@ sub course {
         && $course->published;
 
     $c->stash(course => $course);
-    my $days = $c->config->{course}->{age_when_advert_expires_days} || 14;
+    my $days = $c->config->{course}->{age_when_advert_expires_days};
     $c->stash(past_course => $course->start_date < DateTime->now()->subtract(days => $days));
 }
 

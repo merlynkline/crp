@@ -17,9 +17,30 @@ Sorry - we couldn't find any nearby courses or instructors in our records.
 If you would also like us to notify you automatically when courses become
 available near you in the future, please
 <a href="<%= url_for('crp.register_interest') %>"> register with us here</a>.
+% if(@$courses_list) {
+    <h3><a name="courses"></a>Nearby courses</h3>
+    <p>To see more information about any course click on the details.</p>
+    <table class="list1">
+        <tr>
+            <th>Start</th>
+            <th></th>
+            <th>Venue</th>
+            <th>Description</th>
+        </tr>
+        % foreach my $course (@$courses_list) {
+        %   my $url = url_for 'crp.membersite.course', slug => $course->instructor->profile->web_page_slug, course => $course->id;
+        <tr>
+            <td nowrap><a href="<%= $url %>" class="simple-link"><%= $c->crp->format_date($course->start_date, 'short') %></a></td>
+            <td nowrap><a href="<%= $url %>" class="simple-link"><%= $course->time %></a></td>
+            <td><a href="<%= $url %>" class="simple-link"><%= $course->venue %></a></td>
+            <td><a href="<%= $url %>" class="simple-link"><%= $course->description %></a></td>
+        </tr>
+% }
+</table>
+% }
 % if(@$instructors_list) {
-    <h3>Nearby instructors</h3>
-    <p>To see more information about any instructor click on their name.</p>
+    <h3><a name="instructors"></a>Nearby instructors</h3>
+    <p>To see more information about any instructor click on their details.</p>
     <table class="list1">
         <tr>
             <th>Name</th>
@@ -30,10 +51,10 @@ available near you in the future, please
         % for my $instructor (@$instructors_list) {
         %   my $url = url_for('crp.membersite.home', slug => $instructor->web_page_slug)->to_abs;
         <tr>
-            <td><a href="<%= $url %>"><%= $instructor->name // '' %></a></td>
-            <td><%= $instructor->telephone // '' %></td>
-            <td><%= $instructor->mobile // '' %></td>
-            <td><%= $instructor->postcode // '' %></td>
+            <td><a href="<%= $url %>" class="simple-link"><%= $instructor->name // '' %></a></td>
+            <td><a href="<%= $url %>" class="simple-link"><%= $instructor->telephone // '' %></a></td>
+            <td><a href="<%= $url %>" class="simple-link"><%= $instructor->mobile // '' %></a></td>
+            <td><a href="<%= $url %>" class="simple-link"><%= $instructor->postcode // '' %></a></td>
         </tr>
         % }
     </table>
