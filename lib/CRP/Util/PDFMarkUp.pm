@@ -111,8 +111,8 @@ sub _extract_crp_data {
     my $self = shift;
     my($crp_data) = @_;
 
-    my $data = {};
-    $data->{$_} = $crp_data->{$_} // '' foreach(qw(email url date signature signature_url));
+    my $data = {%$crp_data};
+    delete $data->{profile};
 
     my $profile = $crp_data->{profile};
     $data->{$_} = $profile->$_ foreach(qw(name postcode telephone mobile));

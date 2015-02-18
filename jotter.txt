@@ -1,7 +1,7 @@
 
 ** published courses need cancel links
 ** published courses should be editable to some extent. Not date.
-** Leaflet printing for live courses
+** Leaflet (etc) printing for live courses
 ** Work out cancel/publish/delete interactions for courses. Need to show cancelled courses in various places. Cancel a published course: what happens to it?
 
 - New materials for instructors course:
@@ -14,11 +14,12 @@
     - Disruption cards for microteach exercise.
     - Reflective practice log.
 
++ Control access to the testing page when in production mode - just removing the link isn't enough.
 + Limit numbers in search results. Enquiries - find near location, notify_enquirers.
 + Fix up members' menu
     + Add a suitable set of options
     + Add IDs to the pages so that the options highlight properly
-    + Change the background or somehow make the members' area obviously different?
+    ~ Change the background or somehow make the members' area obviously different?
 + Refactor templates to further generalise location input.
 + Booking form PDF has payment details on it
 + Cookie doesn't get deleted on log-out
@@ -140,11 +141,11 @@ session:
 		+ Colouring books
     + Carer's contact form (for contacting CRP as a carer)
     + For each course registered by a instructor there will be a page describing that course that the instructor can link to
-        + Sensible static URL so Google can index it
-        + Courses that have already started (or finished) will still show up but will be clearly marked
-        + Cancelled courses will still show up but will be clearly marked
+        ~ Sensible static URL so Google can index it
+        ~ Courses that have already started (or finished) will still show up but will be clearly marked
+        ~ Cancelled courses will still show up but will be clearly marked
         + Online booking form for the course if it's in the future (with Ts&Cs)
-        + Link to PDF booking form for the course
+        ~ Link to PDF booking form for the course
     ~ A list of registered future/current courses (possibly hidden a bit - this is really for Google)
     ~ For each registered instructor there will be an automatically generated page with their details and a list of upcoming courses
     ~ A list of registered instructors (possibly hidden a bit - this is really for Google)

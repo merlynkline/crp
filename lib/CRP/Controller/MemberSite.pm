@@ -58,20 +58,51 @@ sub certificate {
     $c->render(template => 'member_site/certificate');
 }
 
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-sub course {
+sub _get_published_course {
     my $c = shift;
-    my $course_id = $c->stash('course');
+    my($course_id) = @_;
 
     my $course = $c->crp->model('Course')->find($course_id);
-    return $c->reply->not_found unless
+    return $course if
         $course
         && $course->instructor_id == $c->stash('site_profile')->instructor_id
         && $course->published;
+    return;
+}
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub course {
+    my $c = shift;
+
+    my $course = $c->_get_published_course($c->stash('course'));
+    return $c->reply->not_found unless $course;
     $c->stash(course => $course);
     my $days = $c->config->{course}->{age_when_advert_expires_days};
     $c->stash(past_course => $course->start_date < DateTime->now()->subtract(days => $days));
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+use CRP::Util::PDFMarkUp;
+sub booking_form {
+    my $c = shift;
+    my $course_id = $c->stash('course');
+
+    my $pdf = $c->app->home->rel_file('pdfs/members/booking_form.pdf');
+    my $course = $c->_get_published_course($c->stash('course'));
+    return $c->reply->not_found unless $course;
+    my $pdf_doc = CRP::Util::PDFMarkUp->new(file_path => $pdf);
+    my $data = {
+        profile     => $c->stash('site_profile'),
+        url         => $c->url_for('crp.membersite.home')->to_abs,
+        email       => $c->stash('crp_session')->variable('email'),
+        venue       => $course->venue,
+        date        => $c->crp->format_date($course->start_date, 'stroke'),
+    };
+    $c->render_file(
+        data                => $pdf_doc->fill_template($data),
+        format              => 'pdf',
+        content_disposition => $c->param('download') ? 'attachment' : 'inline',
+    );
 }
 
 1;
