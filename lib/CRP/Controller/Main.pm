@@ -265,7 +265,7 @@ sub location_search {
         $c->stash(courses_list => \@courses_list);
     }
     else {
-        $c->stash(bad_location => 1);
+        return $c->redirect_to('crp.page', page => 'location_search');
     }
     $c->render(template => 'main/location_search_results');
 }
