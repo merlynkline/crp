@@ -2,7 +2,6 @@
 % layout 'default', page_id => 'member.home';
 % title 'Welcome';
 % my $profile = stash('site_profile');
-% my $slug = $profile->web_page_slug;
 %
 % my $contact_row_block = begin
 % my($name, $value) = @_;
@@ -15,7 +14,7 @@
     <ul>
         <li><a href="#courses">Courses</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li><a href="<%= url_for 'crp.membersite.certificate', slug => $slug %>">Certifcate</a></li>
+        <li><a href="<%= url_for 'crp.membersite.certificate' %>">Certifcate</a></li>
     </ul>
 </div>
 <%= include 'member_site/parts/blurb', cachebuster => 0 %>
@@ -33,7 +32,7 @@ you, please contact me to see if we can arrange something.
         <th>Description</th>
     </tr>
     % foreach my $course (@{stash 'advertised_list'}) {
-    %   my $url = url_for 'crp.membersite.course', slug => $slug, course => $course->id;
+    %   my $url = url_for 'crp.membersite.course', course => $course->id;
     <tr>
         <td nowrap><a href="<%= $url %>" class="simple-link"><%= $c->crp->format_date($course->start_date, 'short') %></a></td>
         <td nowrap><a href="<%= $url %>" class="simple-link"><%= $course->time %></a></td>
