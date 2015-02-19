@@ -14,7 +14,6 @@ sub welcome {
 
     my $profile = $c->_load_profile;
     $c->stash(incomplete_profile => ! $profile->is_complete);
-    $c->render;
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -58,8 +57,6 @@ sub profile {
             return $c->redirect_to('crp.members.profile');
         }
     }
-
-    $c->render;
 }
 
 use CRP::Util::Graphics;
@@ -181,7 +178,6 @@ sub find_enquiries {
         ];
         $c->stash(enquiries_list => $enquiries_list);
     }
-    $c->render(template => 'members/find_enquiries');
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -334,7 +330,6 @@ sub _display_course_editor_with {
     $c->stash(site_profile => $profile);
     $c->stash('course_record', $course);
     $c->stash('edit_restriction', 'PUBLISHED') if $course->published;
-    $c->render;
 }
 
 sub _get_date_input {

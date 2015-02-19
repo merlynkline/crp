@@ -45,7 +45,6 @@ sub welcome {
         { order_by => {-asc => 'start_date'} },
     ) ];
     $c->stash(advertised_list => $advertised_list);
-    $c->render;
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -55,7 +54,6 @@ sub certificate {
     my $profile = $c->stash('site_profile');
     $c->stash(signature_id => '-' . CRP::Util::WordNumber::encipher($profile->instructor_id));
     $c->stash(today => $c->crp->format_date(DateTime->now(), 'long'));
-    $c->render(template => 'member_site/certificate');
 }
 
 sub _get_published_course {
