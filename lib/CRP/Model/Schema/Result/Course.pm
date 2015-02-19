@@ -93,6 +93,8 @@ sub set_column {
     my $self = shift;
     my($column, $value) = @_;
 
+    return if $self->published && ($column eq 'location' || $column eq 'start_date');
+
     CRP::Util::Types::type_check($TYPE{$column}, $value) if exists $TYPE{$column};
 
     $self->SUPER::set_column($column, $value);
@@ -110,7 +112,7 @@ sub is_editable_by_instructor {
     my $self = shift;
     my($instructor_id) = @_;
 
-    return 1 if $self->instructor_id == $instructor_id && ! $self->published && ! $self->canceled;
+    return 1 if $self->instructor_id == $instructor_id && ! $self->canceled;
     return;
 }
 

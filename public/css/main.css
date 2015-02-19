@@ -264,6 +264,9 @@ input, textarea, .standard-button {
     font-family:    inherit;
     color:          inherit;
 }
+input:disabled {
+    color:          #bbb;
+}
 .small-button {
     border:         1px solid #589;
     margin:         0 0 1px 1px;

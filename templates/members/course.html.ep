@@ -1,14 +1,19 @@
 %#<!DOCTYPE html>
 % layout 'member_default', heading => "Course", page_id => 'member-home', extra_header_templates => 'parts/location_input';
 % my $course = stash('course_record');
+% my $restricted = (stash('edit_restriction') // '') eq 'PUBLISHED';
+% my @disabler; push @disabler, qw(disabled disabled) if $restricted;
 % title 'Course';
 <h1>Enter course details</h1>
 <%= include 'parts/message_box', msg => flash('msg') || stash('msg'), auto_hide => 1 %>
 %= form_for 'crp.members.course' => (method => 'POST') => begin
-    %= hidden_field 'course_id' => $course->id;
-    Please enter the course details below.
+    <p>Please enter the course details below.</p>
+    % if($restricted) {
+    <p>NB: This course is already published so there are some details that you cannot edit.</p>
+    % }
     <fieldset>
         <legend>Course details</legend>
+        %= hidden_field 'course_id' => $course->id;
 
         <label for="venue">Venue:
             <div class="field-extra-info">Enter a short recognisable name such as 'Borchester library community room' or 'Ambridge village hall'.</div>
@@ -20,14 +25,19 @@
 
         <label for="location-input-location">Location:</label>
         <div class="input-container">
-            %= text_field 'location' => $course->location, onblur => 'locationInputHandler.codeAddress()', id => 'location-input-location';
-            <input type="button" value="check" onclick="locationInputHandler.codeAddress()" /><br />
+            %= text_field 'location' => $course->location, onblur => 'locationInputHandler.codeAddress()', id => 'location-input-location', @disabler;
+            % if( ! $restricted) {
+            <input type="button" value="check" onclick="locationInputHandler.codeAddress()" />
+            % }
         </div>
         %= hidden_field 'latitude' => $course->latitude, id => "location-input-latitude"
         %= hidden_field 'longitude' => $course->longitude, id => "location-input-longitude"
 
         <label>
             <div class="field-extra-info">
+                % if($restricted) {
+                You can't change the location because this course is published.
+                % } else {
                 This is a general location that is never shown to anyone else.
                 It is used when people search for courses in a particular place
                 so choose somewhere as close as possible to the venue.
@@ -35,6 +45,7 @@
                 The map shows how we understand the location you have entered. To make sure
                 we've understood it properly, click the <b>check</b> button. You may need to
                 enter more details in the location if we don't get it right first time.
+                % }
             </div>
         </label>
         <div id="location-input-map-container"><div id="location-input-map-canvas"></div></div>
@@ -48,10 +59,16 @@
         </div>
 
         <label for="start_date">Start date:
-            <div class="field-extra-info">Enter the date of the first session.</div>
+            <div class="field-extra-info">
+                % if($restricted) {
+                You can't change the start date because this course is published.
+                % } else {
+                Enter the date of the first session.
+                % }
+            </div>
         </label>
         <div class="input-container">
-            %= date_field 'start_date', id => 'start_date', maxlength => 10, required => 'required', value => $course->start_date ? $c->crp->format_date($course->start_date, 'input') : '';
+            %= date_field 'start_date', id => 'start_date', maxlength => 10, required => 'required', value => $course->start_date ? $c->crp->format_date($course->start_date, 'input') : '', @disabler;
             <%= include 'parts/error', field => 'start_date' %>
         </div>
 

@@ -1,8 +1,41 @@
 
 ** published courses need cancel links
-** published courses should be editable to some extent. Not date.
 ** Leaflet (etc) printing for live courses
 ** Work out cancel/publish/delete interactions for courses. Need to show cancelled courses in various places. Cancel a published course: what happens to it?
+
++ Control access to the testing page when in production mode - just removing the link isn't enough.
++ Limit numbers in search results. Enquiries - find near location, notify_enquirers.
++ Fix up members' menu
+    + Add a suitable set of options
+    + Add IDs to the pages so that the options highlight properly
++ Booking form PDF has payment details on it
++ Cookie doesn't get deleted on log-out
++ production error 500 page
++ Adding a new enquiry should notify the instructors of nearby courses if requested
++ Session table housekeeping (see enquiry housekeeping)
++ Get rid of all references to Tutor/practitioner
++ Login routes to test: from logged out, from logged out via interstitial, from already logged in
++ add some decoration to the contact form and the thank you page (etc etc)
++ Generate peronalised PDFs:
++ Deployment (DB etc)
++ Data backup (DB, instructors' pics)
++ Course costing calculator(s) - JS versions of the spreadsheets
++ External resources: bibliography (for instructors)
++ Finalise text/layout/design
++ Hosting
+
+----
+
++ Online booking form for the course if it's in the future (with Ts&Cs)
++ Publishing a course could take a long time to notify all the enquirers.
++ Refactor templates to further generalise location input.
++ use named paths in menus (and elsewhere)
++ handle auto-login flag
++ First visit to enquiry page is slow to load: jquery? gmaps?
++ Check if session methods really need to have $c as first param
++ Login/auth logic from spreadsheet
++ tests!!
++ Move validation to a plug-in?
 
 - New materials for instructors course:
     - Timetable?
@@ -13,31 +46,6 @@
     - Peer/self assessment forms for microteach.
     - Disruption cards for microteach exercise.
     - Reflective practice log.
-
-+ Control access to the testing page when in production mode - just removing the link isn't enough.
-+ Limit numbers in search results. Enquiries - find near location, notify_enquirers.
-+ Fix up members' menu
-    + Add a suitable set of options
-    + Add IDs to the pages so that the options highlight properly
-    ~ Change the background or somehow make the members' area obviously different?
-+ Refactor templates to further generalise location input.
-+ Booking form PDF has payment details on it
-+ Cookie doesn't get deleted on log-out
-+ handle auto-login flag
-+ use named paths in menus (and elsewhere)
-+ First visit to enquiry page is slow to load: jquery? gmaps?
-+ production error 500 page
-+ Adding a new enquiry should notify instructors of nearby courses if requested
-+ Check if session methods really need to have $c as first param
-+ Login/auth logic from spreadsheet
-+ Session table housekeeping (see enquiry housekeeping)
-+ Get rid of all references to Tutor/practitioner
-+ Login routes to test: from logged out, from logged out via interstitial, from already logged in, from already logged in via interstitial
-+ add some decoration to the contact form and the thank you page (etc etc)
-+ tests!!
-+ Move validation to a plug-in?
-+ Publishing a course could take a long time to notify all the enquirers.
-
 
 - Cookie session contains:
     - id: CRP Session ID
@@ -100,20 +108,20 @@ session:
     + Administrators can get PDFs of certificates without the scanned issuer's manual signature, for the issuer to actually sign
     
 + Main landing page
-    + Welcome and brief overview
-    + Link to instructors' area
-    + Link to carers' area
-    + Link to administrators' area
-    + General contact form
+    ~ Welcome and brief overview
+    ~ Link to instructors' area
+    ~ Link to carers' area
+    ~ Link to administrators' area
+    ~ General contact form
     + Log in/out for instructors/admins
         + Persistent login option for private computers
         ~ Password recovery (time-limited OTP email)
 + Carers' area
-    + Search for instructors by location
+    ~ Search for instructors by location
     + More information about CRP
     + Information about what you get if you do the course
     + Register interest / find course
-        + Finds upcoming courses in local area
+        ~ Finds upcoming courses in local area
         ~ Optionally stores information for notifications:
             ~ Creates a 'suspended' record and sends a confirmation email with an activation link
             ~ Notify carer about new courses that come up in the area (that they aren't registered for)
@@ -176,19 +184,19 @@ session:
         + Messages shown on login (from admins/system)
         ~ Get a list of carers that have expressed interest near a particular place
         + Record details of a course
-            + Stores details:
-                + General location to identify nearby carers (e.g. 'Exeter')
-                + Location description for paperwork (e.g. 'Cowick Library')
-                + Start date
-                + Time
-                + Type (toddlers/newborn/etc)
+            ~ Stores details:
+                ~ General location to identify nearby carers (e.g. 'Exeter')
+                ~ Location description for paperwork (e.g. 'Cowick Library')
+                ~ Start date
+                ~ Time
+                ~ Type (toddlers/newborn/etc)
             + Record details of a carer attending a course
                 + Do we really want to do this? Could be privacy issues
                 + Records name, child's name, telephone, email54
                 + Allows generation of better registers
                 + Generate a record in the interest database so that newsletters will go out
-            + Shows list of interested carers enquiries nearby
-            + Generates a course page in the carers' area of the site
+            ~ Shows list of interested carers enquiries nearby
+            ~ Generates a course page in the carers' area of the site
         + Change details of a course
             + Does not re-send notifications to nearby interested carers
             + Option to cancel completely
@@ -215,7 +223,7 @@ session:
 		+ Course costing calculator(s) - JS versions of the spreadsheets
         + External resources: bibliography
     + General instructors' contact form (for contacting CRP as a potential instructor)
-    + Log out
+    ~ Log out
 + Administrators' area
     + Requires login
     + Access to stats of various sorts

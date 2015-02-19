@@ -41,6 +41,7 @@ sub _reset {
 sub _extract_tokens {
     my($string) = @_;
 
+    $string //= '';
     return [$1, $2, $3] if $string =~ m{^\s*(\d\d\d\d)(\d\d)(\d\d)\s*$};
     return [ $string =~ m{[a-z]+|\d+}ig ];
 }

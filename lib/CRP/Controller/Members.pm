@@ -298,6 +298,8 @@ sub _load_course_from_params {
         else {
             die $error if $error;
         }
+    }
+    if( ! $course->published) {
         $validation->error(start_date => ['future_date'])
             unless $record->{start_date} && $record->{start_date} >= DateTime->now;
     }
@@ -331,6 +333,7 @@ sub _display_course_editor_with {
     my $profile = $c->_load_profile;
     $c->stash(site_profile => $profile);
     $c->stash('course_record', $course);
+    $c->stash('edit_restriction', 'PUBLISHED') if $course->published;
     $c->render;
 }
 
@@ -340,7 +343,7 @@ sub _get_date_input {
 
     my $parser = CRP::Util::DateParser->new(prefer_month_first_order => 1);
     $parser->parse($date);
-    return unless $parser->parsed_ok;
+    return undef unless $parser->parsed_ok;
     my $res;
     try {
         $res = DateTime->new(
