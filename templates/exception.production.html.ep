@@ -1,0 +1,13 @@
+%#<!DOCTYPE html>
+<%= include 'parts/error_page',
+title => "Page not found",
+code => 500,
+error => "Internal server error: " . $exception->message,
+message => <<"EOT"
+Something has gone very badly wrong!
+The site administrators have been informed and will shortly
+be in a terrible panic trying to make sure this can never happen again.
+Until then please use the menu on this page to explore the
+site and see what else it has to offer.
+EOT
+%>

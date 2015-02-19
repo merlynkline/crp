@@ -3,14 +3,13 @@
 ** Leaflet (etc) printing for live courses
 ** Work out cancel/publish/delete interactions for courses. Need to show cancelled courses in various places. Cancel a published course: what happens to it?
 
-+ Control access to the testing page when in production mode - just removing the link isn't enough.
 + Limit numbers in search results. Enquiries - find near location, notify_enquirers.
 + Fix up members' menu
     + Add a suitable set of options
     + Add IDs to the pages so that the options highlight properly
++ Fix up control panel to be useful
 + Booking form PDF has payment details on it
 + Cookie doesn't get deleted on log-out
-+ production error 500 page
 + Adding a new enquiry should notify the instructors of nearby courses if requested
 + Session table housekeeping (see enquiry housekeeping)
 + Get rid of all references to Tutor/practitioner
