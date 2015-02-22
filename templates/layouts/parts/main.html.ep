@@ -37,8 +37,8 @@
             </div>
             </noscript>
             %= include 'parts/logged_in_indicator'
-            <h1 id="heading"><img src="<%= url_for '/images/CRPLogoSmall.png' %>" />
-                <%= stash('heading') || "The Children's Reflexology Programme" =%>
+            <img src="<%= url_for '/images/CRPLogo.png' %>" id="heading-image">
+            <h1 id="heading"><%= stash('heading') || "The Children's Reflexology Programme" =%>
             </h1>
             <div id="footrow"></div>
             <table>

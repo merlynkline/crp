@@ -1,6 +1,9 @@
 %#<!DOCTYPE html>
 % layout 'default', page_id => 'home';
 % title 'Welcome';
+<div class="water-mark">
+    background:     url('/images/CRPLogoWaterMark.jpg') center 20px / 80% auto no-repeat;
+    ">
 <p>Welcome to The Children's Reflexology Programme, home of The Mouse's House.</p>
 <p>I am delighted to share my passion for reflexology with you and your children. The programme, courses and books have been created to empower parents, carers and their children at times of stress and distress throughout childhood and on into adulthood.</p>
 <p>By using this gentle non-invasive complementary therapy in childhood the child is taught a valuable tool to carry through life and the importance of taking responsibility for their own body and health. Parents are empowered to help their child when they feel particularly vulnerable and useless in the face of pain, fear and general distress. It offers all the family an opportunity to build a strong bond through the power of touch and trust, enriching the deep unconditional love that exists between parents and their children.</p>
@@ -8,6 +11,7 @@
 From here you can find a TCRP registered course in your area where you can enrole to learn how we can help you to help your child.</p>
 <p>You can also find a Practitioners Course where you can train to become a teacher in your area and teach your friends and neighbours how to become empowered.
 <p>If you are looking for more information about TCRP courses for you and your child please look here to see what other parents are saying about us.</p>
+</div>
                         </div>
                     </td>
                     <td id="review-container">

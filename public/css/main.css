@@ -127,10 +127,16 @@ div.members-area {
     right:          auto;
     bottom:         15px;
 }
-h1#heading {
+#heading-image {
+    position:       absolute;
+    margin:         2px;
+    width:          44px;
+    height:         57.5px;
+}
+#heading {
     font-size:      30px;
     text-align:     left;
-    padding:        12px;
+    padding:        20px 12px 12px 50px;;
     margin:         0;
 }
 #bottom-spacer {
@@ -427,4 +433,7 @@ table.list1 {
     padding:        4px;
     border-bottom:  1px solid black;
     background:     #f99;
+}
+.water-mark {
+    background:     url('/images/CRPLogoWaterMark.jpg') center 16px / 80% auto no-repeat;
 }
