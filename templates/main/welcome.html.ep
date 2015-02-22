@@ -2,15 +2,61 @@
 % layout 'default', page_id => 'home';
 % title 'Welcome';
 <div class="water-mark">
-    background:     url('/images/CRPLogoWaterMark.jpg') center 20px / 80% auto no-repeat;
-    ">
-<p>Welcome to The Children's Reflexology Programme, home of The Mouse's House.</p>
-<p>I am delighted to share my passion for reflexology with you and your children. The programme, courses and books have been created to empower parents, carers and their children at times of stress and distress throughout childhood and on into adulthood.</p>
-<p>By using this gentle non-invasive complementary therapy in childhood the child is taught a valuable tool to carry through life and the importance of taking responsibility for their own body and health. Parents are empowered to help their child when they feel particularly vulnerable and useless in the face of pain, fear and general distress. It offers all the family an opportunity to build a strong bond through the power of touch and trust, enriching the deep unconditional love that exists between parents and their children.</p>
-<p>For me, promoting the wonderful effects of reflexology is quite an important part of creating the programme - it's time the world knew just how amazing it really is, especially for children.
-From here you can find a TCRP registered course in your area where you can enrole to learn how we can help you to help your child.</p>
-<p>You can also find a Practitioners Course where you can train to become a teacher in your area and teach your friends and neighbours how to become empowered.
-<p>If you are looking for more information about TCRP courses for you and your child please look here to see what other parents are saying about us.</p>
+    <p class="front-page-large">
+    Helping
+    <strong>parents</strong>
+    and
+    <strong>carers</strong>
+    and
+    <strong>children</strong>
+    of all ages to
+    <strong>cope</strong>
+    better with the
+    <strong>stresses</strong>
+    of
+    <strong>illness</strong>
+    and
+    <strong>everyday life</strong>.</p>
+    <p class="front-page-medium">
+    Our
+    <a href="<%= url_for 'crp.page',  page => 'programme' %>">fun, interactive workshops</a>
+    enable
+    <strong>anybody</strong>
+    to make use of simple, gentle
+    <strong>reflexology</strong>
+    to improve
+    <strong>health</strong>
+    and strengthen
+    <strong>bonds</strong>.
+    </p>
+    <img src="<%= url_for '/images/Plants/LavenderHorizontal2.png' %>" style="display: block; margin: 0 auto; width:300px;" />
+    <p>
+    <img src="<%= url_for '/images/Animals/Hare.jpg' %>" align="left" style="width: 60px">
+    <a href="<%= url_for 'crp.page',  page => 'programme' %>">The Children's Reflexology Programme</a>
+    is a short course of fun workshops where parents, carers and children
+    get together to learn how to use a gentle non-invasive complementary therapy to empower
+    themselves in times of stress and distress throughout childhood and on
+    into adulthood. The courses run
+    <a href="<%= url_for 'crp.page', page => 'courses' %>">in many places</a>
+    using a collection of delightful rhymes and pictures of a group of
+    <img src="<%= url_for '/images/Animals/Mouse.png' %>" align="right" style="width: 60px">
+    animal friends, engaging children and teaching the simple reflexology.
+    The programme is delivered by
+    <a href="<%= url_for 'crp.page', page => 'tutors' %>">specially qualified instructors</a>
+    and is supported by high quality materials including the lovely book,
+    <a href="<%= url_for 'crp.page', page => 'book' %>">The Mouse's House</a>.
+    </p>
+    <p>
+    <img src="<%= url_for '/images/Animals/Squirrel.jpg' %>" align="left" style="width: 70px">
+    If you can't find a course near you, perhaps you should train to
+    <a href="<%= url_for 'crp.page', page => 'tutors' %>">become an instructor</a>
+    yourself! The special training is personally delivered by Susan Quayle, the founder of
+    <a href="<%= url_for 'crp.page',  page => 'programme' %>">The Children's Reflexology Programme</a>,
+    and will show you how to pass on this very special programme to
+    <img src="<%= url_for '/images/Animals/Badger.jpg' %>" align="right" style="width: 110px">
+    other parents and carers, providing you with everything you need to do so.
+    <a href="<%= url_for 'crp.page', page => 'tutors' %>">Find out more here.</a>
+    </p>
 </div>
                         </div>
                     </td>

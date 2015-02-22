@@ -1,7 +1,11 @@
 %#<!DOCTYPE html>
 % layout 'default', heading => "The Mouse's House";
 % title "The Mouse's House";
-
+<img src="<%= url_for '/images/Animals/Mouse.png' %>" align="right">
 <h1>The Mouse's House</h1>
 
 <p>All about the book: The Mouse's House.<p>
+
+The book is bublished by <a href="http://www.jkp.com/uk/the-mouse-s-house.html">Singing Dragion</a>.
+<img src="<%= url_for '/images/BookCover.jpg' %>" width="600"/>
+

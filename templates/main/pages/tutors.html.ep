@@ -1,6 +1,7 @@
 %#<!DOCTYPE html>
 % layout 'default', heading => "Certified instructors";
 % title "Certified instructors";
+<img src="<%= url_for '/images/Animals/Owl.jpg' %>" align="right">
 
 <p>
 The Childrens' Reflexolgy Programme is delivered only by qualified instructors

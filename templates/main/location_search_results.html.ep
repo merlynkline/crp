@@ -16,7 +16,7 @@ Sorry - we couldn't find any nearby courses or instructors in our records.
 % }
 If you would also like us to notify you automatically when courses become
 available near you in the future, please
-<a href="<%= url_for('crp.register_interest') %>"> register with us here</a>.
+<a href="<%= url_for('crp.page', page => 'enquiry') %>"> register with us here</a>.
 % if(@$courses_list) {
     <h3><a name="courses"></a>Nearby courses</h3>
     <p>To see more information about any course click on the details.</p>

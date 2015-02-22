@@ -1,10 +1,10 @@
 %#<!DOCTYPE html>
 % layout 'default', extra_header_templates => 'parts/location_input';
 % title 'Course enquiry';
-<h1>Find a course near you</h1>
+<h1>Register for course notifications</h1>
 
 %= form_for  '/main/register_interest' => (method => 'POST') => begin
-    If you would also like us to notify you automatically when courses become available
+    If you would like us to notify you automatically when courses become available
     near you in the future, please enter some details below. We will send you a
     confirmation email before we make use of any of these details and you will be
     able to change or delete this information whenever you wish.

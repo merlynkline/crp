@@ -213,7 +213,7 @@ legend {
     line-height:    120%;
 }
 #review-list {
-    height:         350px;
+    height:         450px;
     width:          200px;
     overflow:       hidden;
     font-size:      12px;
@@ -436,4 +436,16 @@ table.list1 {
 }
 .water-mark {
     background:     url('/images/CRPLogoWaterMark.jpg') center 16px / 80% auto no-repeat;
+}
+.front-page-large {
+    font-size:      36px;
+    line-height:    120%;
+    text-align:     center;
+    margin:         8px 0 12px 0;
+}
+.front-page-medium {
+    font-size:      24px;
+    line-height:    120%;
+    text-align:     center;
+    margin:         0 0 12px 0;
 }
