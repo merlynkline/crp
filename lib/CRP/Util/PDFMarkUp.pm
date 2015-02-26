@@ -72,6 +72,7 @@ sub _markup_pdf {
         my $action = $markup_item->{action} // 'text';
         if   ($action eq 'text')                { $self->_markup_pdf_text($markup_item); }
         elsif($action eq 'qrcode_signature')    { $self->_markup_pdf_qrcode_signature($markup_item); }
+        elsif($action eq 'qrcode')              { $self->_markup_pdf_qrcode($markup_item); }
     }
 }
 
@@ -170,6 +171,22 @@ sub _add_qr_code_link {
     $self->_add_temp_file($file_name);
     return($width, $height);
 }
+
+sub _markup_pdf_qrcode {
+    my $self = shift;
+    my($markup_item) = @_;
+
+    my $data = $self->_data;
+
+    my $string = $self->test_mode
+        ? 'http://www.kidsreflexology.co.uk/me/-175347/icourse/88' # Long enough to generate a typically sized QRCode
+        : $data->{text} // '';
+    return unless $string;
+    $self->_add_qr_code_link(
+        $string, $markup_item->{page} || 1, $markup_item->{x}, $markup_item->{y}
+    );
+}
+
 
 no Moose;
 __PACKAGE__->meta->make_immutable;
