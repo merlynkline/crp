@@ -1,4 +1,15 @@
 
+- Making PDF thumbnails
+    - Load test PDF into Chrome
+    - Zoom to 75%
+    - Snip and copy to clipboard
+    - Paste into Xara
+    - Set units to pixels and move to 0,0
+    - Cut out desired part (A4 is evidently 595x840px at 75%)
+    - Scale result to 25%
+    - Export as JPG with same name as PDF but .jpg extension
+
+
 ** published courses need cancel links
 ** Leaflet (etc) printing for live courses
 ** Work out cancel/publish/delete interactions for courses. Need to show cancelled courses in various places. Cancel a published course: what happens to it?
