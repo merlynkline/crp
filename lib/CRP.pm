@@ -59,6 +59,9 @@ sub startup {
     $logged_in->any('do_delete_course')->to('members#do_delete_course')->name('crp.members.do_delete_course');
     $logged_in->any('publish_course')->to('members#publish_course')->name('crp.members.publish_course');
     $logged_in->any('do_publish_course')->to('members#do_publish_course')->name('crp.members.do_publish_course');
+    $logged_in->any('course_docs')->to('members#course_docs')->name('crp.members.course_docs');
+    $logged_in->any('pdf_image/*name')->to('members#pdf_image')->name('crp.members.pdf_image');
+    $logged_in->any('course_pdf/:course_id/*name')->to('members#course_pdf')->name('crp.members.course_pdf');
     
     my $member_site = $r->under('/me/:slug')->to('member_site#identify');
     $member_site->any('/')->to('member_site#welcome')->name('crp.membersite.home');

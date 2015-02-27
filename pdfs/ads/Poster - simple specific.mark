@@ -45,7 +45,7 @@
         },
         {
             action  => 'text',
-            text    => '[% course _duration %] starting [% date %] at [% time %] for [% session_duration %].',
+            text    => '[% course_duration %] starting [% date %] at [% time %] for [% session_duration %].',
             x       => 297.64,
             y       => 270,
             size    => 16,

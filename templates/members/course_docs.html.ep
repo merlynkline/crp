@@ -1,0 +1,29 @@
+%#<!DOCTYPE html>
+% layout 'member_default';
+% my $course = stash('course_record');
+% title 'Course documents';
+<h1>Download course documents</h1>
+<div style="float:right">
+    %= include "parts/course_details", course => $course;
+</div>
+<p>
+Here is a collection of documents suitable for advertising
+and administration, each of which has details specific to
+you and this course included in it. Click on any of the
+previews to download the document.
+</p>
+<p>
+Note that these documents
+are in PDF format and so you may need to install a free
+version of
+<a href="http://get.adobe.com/uk/reader/" target="_blank">Adobe® Reader® software</a>
+in order to view and print them.
+</p>
+<br clear="right" />
+%= include "members/parts/course_doc", course_id => $course->id, name => 'ads/Poster - simple specific', caption => "Simple poster"
+%= include "members/parts/course_doc", course_id => $course->id, name => 'ads/Small handout specific', caption => "Small handouts, four to a sheet"
+%= include "members/parts/course_doc", course_id => $course->id, name => 'members/booking_form', caption => "Booking form for your trainees to fill in"
+%= include "members/parts/course_doc", course_id => $course->id, name => 'members/register', caption => "Register to check in trainees to each session"
+%= include "members/parts/course_doc", course_id => $course->id, name => 'members/feedback_form', caption => "Feedback form for your trainees to fill in after a course has finished"
+
+

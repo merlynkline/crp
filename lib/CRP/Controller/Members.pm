@@ -452,5 +452,57 @@ sub cancel_course {
     $c->stash('course_record', $course);
 }
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub course_docs {
+    my $c = shift;
+
+    my $course_id = $c->param('course_id');
+    my $course = $c->crp->model('Course')->find({id => $course_id});
+    die "You can't download documents for this course" unless $course && $course->instructor_id == $c->crp->logged_in_instructor_id;
+    $c->stash('crp_session')->variable('course_id', $course_id);
+    $c->stash('course_record', $course);
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub pdf_image {
+    my $c = shift;
+
+    my $name = $c->stash('name');
+    return $c->reply->not_found unless $name =~ m{\.jpg$}i;
+    $c->res->headers->content_type('image/jpg');
+    $c->reply->static("../pdfs/$name");
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+use CRP::Util::PDFMarkUp;
+sub course_pdf {
+    my $c = shift;
+
+    my $course_id = $c->stash('course_id');
+    my $name = $c->stash('name');
+    my $course = $c->crp->model('Course')->find({id => $course_id});
+    die "You can't download a PDF for this course" unless $course && $course->instructor_id == $c->crp->logged_in_instructor_id;
+    my $pdf = $c->app->home->rel_file("pdfs/${name}.pdf");
+    my $pdf_doc = CRP::Util::PDFMarkUp->new(file_path => $pdf);
+    my $data = {
+        profile             => $c->_load_profile,
+        url                 => $c->url_for('crp.membersite.home')->to_abs,
+        email               => $c->stash('crp_session')->variable('email'),
+        venue               => $course->venue,
+        date                => $c->crp->format_date($course->start_date, 'stroke'),
+        course_duration     => $course->course_duration,
+        session_duration    => $course->session_duration,
+        time                => $course->time,
+        price               => $course->price,
+        description         => $course->description,
+        course_url          => $c->url_for('crp.membersite.course', slug => $c->stash('profile_record')->web_page_slug, course => $course->id)->to_abs,
+    };
+    $c->render_file(
+        data                => $pdf_doc->fill_template($data),
+        format              => 'pdf',
+        content_disposition => $c->param('download') ? 'attachment' : 'inline',
+    );
+}
+
 1;
 

@@ -34,6 +34,7 @@
         <a class="small-button" href="<%= url_for('crp.members.cancel_course')->query(course_id => $course->id) %>" title="Cancel this course">Cancel</a>
         <a class="small-button" href="<%= url_for('crp.membersite.course', slug => stash('profile_record')->web_page_slug, course => $course->id) %>" title="See the advertisement page for this course">Adv</a>
         % }
+        <a class="small-button" href="<%= url_for('crp.members.course_docs')->query(course_id => $course->id) %>" title="Download and print PDF documents for this course (posters, booking form, register, etc)">PDF</a>
         <a class="small-button" href="<%= url_for('crp.members.find_enquiries')->query(location => $course->location, latitude => $course->latitude, longitude => $course->longitude) %>" title="Find any enquires for courses in the area of this course">Enq</a>
         </td>
     </tr>

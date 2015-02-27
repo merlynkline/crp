@@ -180,7 +180,8 @@ sub _markup_pdf_qrcode {
 
     my $string = $self->test_mode
         ? 'http://www.kidsreflexology.co.uk/me/-175347/icourse/88' # Long enough to generate a typically sized QRCode
-        : $data->{text} // '';
+        : $markup_item->{text} // '';
+    $string = $self->_replace_place_holders($string, $self->_data);
     return unless $string;
     $self->_add_qr_code_link(
         $string, $markup_item->{page} || 1, $markup_item->{x}, $markup_item->{y}
