@@ -486,7 +486,7 @@ sub course_pdf {
     my $pdf_doc = CRP::Util::PDFMarkUp->new(file_path => $pdf);
     my $data = {
         profile             => $c->_load_profile,
-        url                 => $c->url_for('crp.membersite.home')->to_abs,
+        url                 => $c->url_for('crp.membersite.home', slug => $c->stash('profile_record')->web_page_slug)->to_abs,
         email               => $c->stash('crp_session')->variable('email'),
         venue               => $course->venue,
         date                => $c->crp->format_date($course->start_date, 'stroke'),
