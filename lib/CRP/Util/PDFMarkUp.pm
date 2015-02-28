@@ -59,6 +59,7 @@ sub _load_markup {
     if(-r $file_path) {
         $markup = Mojo::Util::slurp($file_path);
         $markup = eval $markup;
+        warn "PDF Markup evaluation error in '$file_path': $@" if $@;
         $markup = [ $markup ] unless ref $markup eq 'ARRAY';
     }
     $self->_markup($markup);
