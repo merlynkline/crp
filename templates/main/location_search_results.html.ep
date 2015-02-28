@@ -25,7 +25,7 @@ available near you in the future, please
             <th>Start</th>
             <th></th>
             <th>Venue</th>
-            <th>Description</th>
+            <th>Title</th>
         </tr>
         % foreach my $course (@$courses_list) {
         %   my $url = url_for 'crp.membersite.course', slug => $course->instructor->profile->web_page_slug, course => $course->id;

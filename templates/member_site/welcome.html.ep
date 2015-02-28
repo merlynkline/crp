@@ -29,7 +29,7 @@ you, please contact me to see if we can arrange something.
         <th>Start</th>
         <th></th>
         <th>Venue</th>
-        <th>Description</th>
+        <th>Title</th>
     </tr>
     % foreach my $course (@{stash 'advertised_list'}) {
     %   my $url = url_for 'crp.membersite.course', course => $course->id;

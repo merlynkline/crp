@@ -9,7 +9,7 @@
         <th>Start</th>
         <th></th>
         <th>Venue</th>
-        <th>Description</th>
+        <th>Title</th>
         <th></th>
     </tr>
     % foreach my $course (@$courses_list) {

@@ -50,7 +50,7 @@
         </label>
         <div id="location-input-map-container"><div id="location-input-map-canvas"></div></div>
 
-        <label for="address">Description:
+        <label for="description">Title:
             <div class="field-extra-info">Enter a short description of the course such as 'Toddler group' or 'Tuesday newborns class'.</div>
         </label>
         <div class="input-container">
