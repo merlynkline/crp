@@ -47,9 +47,10 @@
         {
             action  => 'text',
             text    => '[% date %]',
-            x       => 450,
+            x       => 482,
             y       => 619,
             size    => 14,
+            align   => 'center',
         },
 ]
 

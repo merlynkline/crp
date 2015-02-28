@@ -133,22 +133,19 @@ sub _load_profile {
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 use CRP::Util::PDFMarkUp;
+use CRP::Util::CRPDataFormatter;
 sub get_pdf {
     my $c = shift;
 
     my $pdf = shift // $c->stash('pdf');
-    $pdf = $c->app->home->rel_file("pdfs/members/$pdf.pdf");
+    $pdf = $c->app->home->rel_file("pdfs/$pdf.pdf");
     return $c->reply->not_found unless -r $pdf;
 
-    my $profile = $c->_load_profile;
-    my $url = $c->url_for('crp.membersite.home', slug => $profile->web_page_slug)->to_abs;
-    $url =~ s{.+?://}{};
     my $pdf_doc = CRP::Util::PDFMarkUp->new(file_path => $pdf);
-    my $data = {
-        profile => $profile,
-        url     => $url,
-        email   => $c->stash('crp_session')->variable('email'),
-    };
+    my $data = CRP::Util::CRPDataFormatter::format_data($c, {
+            profile => $c->_load_profile,
+            email   => $c->stash('crp_session')->variable('email'),
+        });
     $c->render_file(
         data                => $pdf_doc->fill_template($data),
         format              => 'pdf',

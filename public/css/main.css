@@ -188,7 +188,7 @@ div.members-area {
     padding:        8px 0;
     font-weight:    bold;
 }
-#reviews, fieldset, legend, .message-box {
+#reviews, fieldset, legend, .message-box, .pdf-preview {
     border:         3px solid #589;
     background:     #bde;
     border-radius:  8px;
@@ -449,3 +449,14 @@ table.list1 {
     text-align:     center;
     margin:         0 0 12px 0;
 }
+.pdf-preview {
+    padding:        4px;
+    margin:         8px;
+    float:          left;
+    width:          150px;
+    height:         265px;
+    font-size:      12px;
+    line-height:    120%;
+    text-align:     center;
+}
+

@@ -49,7 +49,7 @@ sub startup {
     $logged_in->any('/set_password')->to('logged_in#set_password')->name('crp.set_password');
     $logged_in->any('/profile')->to('members#profile')->name('crp.members.profile');
     $logged_in->any('page/*page')->to('members#page')->name('crp.members.page');
-    $logged_in->any('get_pdf/:pdf')->to('members#get_pdf')->name('crp.members.get_pdf');
+    $logged_in->any('get_pdf/*pdf')->to('members#get_pdf')->name('crp.members.get_pdf');
     $logged_in->any('find_enquiries')->to('members#find_enquiries')->name('crp.members.find_enquiries');
     $logged_in->any('courses')->to('members#courses')->name('crp.members.courses');
     $logged_in->any('course')->to('members#course')->name('crp.members.course');

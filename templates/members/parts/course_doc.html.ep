@@ -2,21 +2,14 @@
 % my $name = stash('name');
 % my $caption = stash('caption');
 % my $course_id = stash('course_id');
-<div style="
-    border: 1px solid black;
-    padding: 4px;
-    margin: 8px;
-    float: left;
-    border:         3px solid #589;
-    background:     #bde;
-    border-radius:  8px;
-    width: 150px;
-    height: 265px;
-    font-size: 12px;
-    line-height:    120%;
-    text-align:     center;
-    ">
-    <a href="<%= url_for('crp.members.course_pdf', course_id => $course_id, name => $name) %>"><img src="<%= url_for('crp.members.pdf_image', name => $name) %>.jpg" />
+% my $url;
+% if($course_id eq '') {
+%   $url = url_for('crp.members.get_pdf', pdf => $name)
+% } else {
+%   $url = url_for('crp.members.course_pdf', course_id => $course_id, name => $name);
+% }
+<div class="pdf-preview">
+    <a href="<%= $url %>"><img src="<%= url_for('crp.members.pdf_image', name => $name) %>.jpg" />
     <br />
     <%= $caption %></a>
 </div>

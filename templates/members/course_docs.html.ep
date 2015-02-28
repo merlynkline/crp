@@ -13,6 +13,10 @@ you and this course included in it. Click on any of the
 previews to download the document.
 </p>
 <p>
+Further documents without specific course details are also
+<a href="<%= url_for 'crp.members.page', page => 'pdf' %>">available here</a>.
+</p>
+<p class="extra-info">
 Note that these documents
 are in PDF format and so you may need to install a free
 version of

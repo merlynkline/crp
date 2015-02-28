@@ -36,6 +36,7 @@ sub _extract_crp_profile_data {
     $data->{one_line_address} = $one_line_address;
 
     $data->{url} = $c->url_for('crp.membersite.home', slug => $profile->web_page_slug)->to_abs,
+    $data->{url} =~ s{.+?://}{};
 }
 
 sub _extract_crp_course_data {

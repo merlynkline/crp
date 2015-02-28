@@ -1,9 +1,29 @@
 %#<!DOCTYPE html>
-% layout 'member_default', heading => "Personalised stationery", page_id => 'member-pdfs';
+% layout 'member_default', page_id => 'member-pdfs';
 % title 'Personalised stationery';
+<h1>Download personalised stationery</h1>
 <p>
-You can download personalised stationery for use in the programme here.
-<ul>
-    <li><a href="<%= url_for('crp.members.get_pdf', pdf => 'booking_form') %>">Booking form</a></li>
-</ul>
+Here is a collection of documents suitable for advertising
+and administration, each of which has details specific to
+you. Click on any of the previews to download the document.
 </p>
+<p>
+Some of these documents, and various others, are also available
+with specific course details already filled in. You can download
+these through your
+<a href="<%= url_for 'crp.members.courses' %>">courses page</a>.
+</p>
+<p class="extra-info">
+Note that these documents
+are in PDF format and so you may need to install a free
+version of
+<a href="http://get.adobe.com/uk/reader/" target="_blank">Adobe® Reader® software</a>
+in order to view and print them.
+</p>
+<br clear="right" />
+%= include "members/parts/course_doc", name => 'ads/Poster - simple specific', caption => "Simple poster"
+%= include "members/parts/course_doc", name => 'ads/Small handout specific', caption => "Small handouts, four to a sheet"
+%= include "members/parts/course_doc", name => 'members/booking_form', caption => "Booking form for your trainees to fill in"
+%= include "members/parts/course_doc", name => 'members/register', caption => "Register to check in trainees to each session"
+%= include "members/parts/course_doc", name => 'members/feedback_form', caption => "Feedback form for your trainees to fill in after a course has finished"
+
