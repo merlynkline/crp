@@ -40,12 +40,12 @@
             <img src="<%= url_for '/images/CRPLogo.png' %>" id="heading-image">
             <h1 id="heading"><%= stash('heading') || "The Children's Reflexology Programme" =%>
             </h1>
-            <div id="footrow"></div>
+            <div id="footrow"<% if(stash 'members_area') { %> class="members-area"<% } %>></div>
             <table>
                 <tr>
                     <td id="left-nav-container">
                         <div id="left-nav"<% if(stash 'members_area') { %> class="members-area"<% } %>>
-                        <% if(stash 'members_area') { %><div id="members-area-menu-header">Member's area</div><% } %>
+                        <% if(stash 'members_area') { %><div id="members-area-menu-header">Members area</div><% } %>
                             <ul>
                                 <%
                                     foreach my $menu_entry (@{stash('left_nav_menu')}) {
