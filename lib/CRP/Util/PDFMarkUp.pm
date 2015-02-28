@@ -44,7 +44,7 @@ sub fill_template {
 
     $self->_pdf(PDF::API2->open($self->file_path)) or croak "Couldn't read PDF file '" . $self->file_path . "': $!";
     $self->_load_markup;
-    $self->_data($crp_data);
+    $self->_data($crp_data // {});
     $self->_markup_pdf;
     return $self->_pdf->stringify;
 }
