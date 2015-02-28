@@ -81,6 +81,7 @@ sub course {
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 use CRP::Util::PDFMarkUp;
+use CRP::Util::CRPDataFormatter;
 sub booking_form {
     my $c = shift;
     my $course_id = $c->stash('course');
@@ -89,13 +90,11 @@ sub booking_form {
     my $course = $c->_get_published_course($c->stash('course'));
     return $c->reply->not_found unless $course;
     my $pdf_doc = CRP::Util::PDFMarkUp->new(file_path => $pdf);
-    my $data = {
-        profile     => $c->stash('site_profile'),
-        url         => $c->url_for('crp.membersite.home')->to_abs,
-        email       => $c->stash('crp_session')->variable('email'),
-        venue       => $course->venue,
-        date        => $c->crp->format_date($course->start_date, 'stroke'),
-    };
+    my $data = CRP::Util::CRPDataFormatter::format_data($c, {
+            profile => $c->stash('site_profile'),
+            course  => $course,
+            email   => $c->stash('crp_session')->variable('email'),
+        });
     $c->render_file(
         data                => $pdf_doc->fill_template($data),
         format              => 'pdf',

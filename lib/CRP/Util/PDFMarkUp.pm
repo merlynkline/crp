@@ -44,7 +44,7 @@ sub fill_template {
 
     $self->_pdf(PDF::API2->open($self->file_path)) or croak "Couldn't read PDF file '" . $self->file_path . "': $!";
     $self->_load_markup;
-    $self->_extract_crp_data($crp_data) if $crp_data;
+    $self->_data($crp_data);
     $self->_markup_pdf;
     return $self->_pdf->stringify;
 }
@@ -106,29 +106,6 @@ sub _replace_place_holders {
         $text =~ s{\[%\s*(.+?)\s*%]}{$data->{$1} || ''}gsmixe;
     }
     return $text;
-}
-
-sub _extract_crp_data {
-    my $self = shift;
-    my($crp_data) = @_;
-
-    my $data = {%$crp_data};
-    delete $data->{profile};
-
-    my $profile = $crp_data->{profile};
-    $data->{$_} = $profile->$_ foreach(qw(name postcode telephone mobile));
-
-    my $phone_numbers = $profile->telephone;
-    $phone_numbers .= ' / ' if $phone_numbers && $profile->mobile;
-    $phone_numbers .= $profile->mobile // '';
-    $data->{phone_numbers} = $phone_numbers;
-
-    my $one_line_address = $profile->address;
-    $one_line_address =~ s{\s*[\r\n]+\s*}{, }gsm;
-    $one_line_address =~ s{^\s*|\s*$}{}g;
-    $data->{one_line_address} = $one_line_address;
-
-    $self->_data($data);
 }
 
 sub _markup_pdf_qrcode_signature {

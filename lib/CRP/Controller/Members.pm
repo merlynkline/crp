@@ -475,6 +475,7 @@ sub pdf_image {
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 use CRP::Util::PDFMarkUp;
+use CRP::Util::CRPDataFormatter;
 sub course_pdf {
     my $c = shift;
 
@@ -484,19 +485,11 @@ sub course_pdf {
     die "You can't download a PDF for this course" unless $course && $course->instructor_id == $c->crp->logged_in_instructor_id;
     my $pdf = $c->app->home->rel_file("pdfs/${name}.pdf");
     my $pdf_doc = CRP::Util::PDFMarkUp->new(file_path => $pdf);
-    my $data = {
-        profile             => $c->_load_profile,
-        url                 => $c->url_for('crp.membersite.home', slug => $c->stash('profile_record')->web_page_slug)->to_abs,
-        email               => $c->stash('crp_session')->variable('email'),
-        venue               => $course->venue,
-        date                => $c->crp->format_date($course->start_date, 'stroke'),
-        course_duration     => $course->course_duration,
-        session_duration    => $course->session_duration,
-        time                => $course->time,
-        price               => $course->price,
-        description         => $course->description,
-        course_url          => $c->url_for('crp.membersite.course', slug => $c->stash('profile_record')->web_page_slug, course => $course->id)->to_abs,
-    };
+    my $data = CRP::Util::CRPDataFormatter::format_data($c, {
+            profile => $c->_load_profile,
+            course  => $course,
+            email   => $c->stash('crp_session')->variable('email'),
+        });
     $c->render_file(
         data                => $pdf_doc->fill_template($data),
         format              => 'pdf',
