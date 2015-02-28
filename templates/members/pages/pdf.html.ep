@@ -20,10 +20,13 @@ version of
 <a href="http://get.adobe.com/uk/reader/" target="_blank">Adobe® Reader® software</a>
 in order to view and print them.
 </p>
-<br clear="right" />
-%= include "members/parts/course_doc", name => 'ads/Poster - simple specific', caption => "Simple poster"
-%= include "members/parts/course_doc", name => 'ads/Small handout specific', caption => "Small handouts, four to a sheet"
+%= include "members/parts/course_doc", name => 'ads/DL flyer general', caption => "Three-to-a-sheet flyer, good for mailing"
+%= include "members/parts/course_doc", name => 'ads/Tall flyer general', caption => "Larger version of the three-to-a-sheet flyer"
+%= include "members/parts/course_doc", name => 'ads/Poster - descriptive general', caption => "General purpose poster with descriptive text"
+%= include "members/parts/course_doc", name => 'ads/Poster - pictorial general', caption => "General purpose poster with pictures rather than text"
+
+<br clear="left" />
+
 %= include "members/parts/course_doc", name => 'members/booking_form', caption => "Booking form for your trainees to fill in"
 %= include "members/parts/course_doc", name => 'members/register', caption => "Register to check in trainees to each session"
 %= include "members/parts/course_doc", name => 'members/feedback_form', caption => "Feedback form for your trainees to fill in after a course has finished"
-

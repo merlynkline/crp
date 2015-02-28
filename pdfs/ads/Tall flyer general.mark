@@ -1,0 +1,41 @@
+[
+        {
+            action  => 'text',
+            text    => '[% name %]',
+            x       => 196,
+            y       => 70.8,
+            size    => 12.6,
+            align   => 'center',
+        },
+        {
+            action  => 'text',
+            text    => '[% phone_numbers %]',
+            x       => 196,
+            y       => 56.8,
+            size    => 9.8,
+            align   => 'center',
+        },
+        {
+            action  => 'text',
+            text    => '[% url %]',
+            x       => 196,
+            y       => 45.6,
+            size    => 9.8,
+            align   => 'center',
+        },
+        {
+            action  => 'text',
+            text    => '[% email %]',
+            x       => 196,
+            y       => 33,
+            size    => 9.8,
+            align   => 'center',
+        },
+        {
+            action  => 'qrcode',
+            text    => "http://[% url %]",
+            x       => 25,
+            y       => 53,
+        },
+]
+

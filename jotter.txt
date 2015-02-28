@@ -11,8 +11,12 @@
     - Export as JPG with same name as PDF but .jpg extension
 
 
-** published courses need cancel links
 ** Leaflet (etc) printing for live courses
++ Generate peronalised PDFs:
+    + Business cards
+    + Name labels for carers
+    + Talk/presentation
+    + Course log/diary pages
 ** Work out cancel/publish/delete interactions for courses. Need to show cancelled courses in various places. Cancel a published course: what happens to it?
 
 + Limit numbers in search results. Enquiries - find near location, notify_enquirers.
@@ -20,21 +24,19 @@
     + Add a suitable set of options
     + Add IDs to the pages so that the options highlight properly
 + Fix up control panel to be useful
-+ Booking form PDF has payment details on it
 + Cookie doesn't get deleted on log-out
 + Adding a new enquiry should notify the instructors of nearby courses if requested
 + Session table housekeeping (see enquiry housekeeping)
 + Get rid of all references to Tutor/practitioner
-+ Login routes to test: from logged out, from logged out via interstitial, from already logged in
 + add some decoration to the contact form and the thank you page (etc etc)
-+ Generate peronalised PDFs:
 + Deployment (DB etc, initial account setup for admin)
 + Data backup (DB, instructors' pics)
 + Course costing calculator(s) - JS versions of the spreadsheets
-+ External resources: bibliography (for instructors)
++ FAQ/External resources: bibliography (for instructors)
 + Some admin tools
 + Finalise text/layout/design
 + Hosting
++ Login routes to test: from logged out, from logged out via interstitial, from already logged in
 
 ----
 
@@ -217,17 +219,17 @@ session:
             + All PDFs are personalised with instructor's contact details
             + Various documents are available, some with extra details added:
                 + Completion certificate: (could have carer's and child's names, perhaps entered when generated)
-                + Booking form: Course type/location/day of week/start date/time
-                + Register: Course type/location/day of week/start date/time (plus attendees' details?)
-                + Generic flyer
-                + Generic poster
-                + Course flyer: Course type/location/day of week/start date/time
-                + Course poster: Course type/location/day of week/start date/time
+                ~ Booking form: Course type/location/day of week/start date/time
+                ~ Register: Course type/location/day of week/start date/time (plus attendees' details?)
+                ~ Generic flyer
+                ~ Generic poster
+                ~ Course flyer: Course type/location/day of week/start date/time
+                ~ Course poster: Course type/location/day of week/start date/time
                 + Business cards
                 + Name labels for carers
                 + Talk/presentation
 				+ Course log/diary pages
-            + QR codes for web pages?
+            ~ QR codes for web pages?
         + Signed-up instructor's contact form (for contacting admins)
         + Submit (an idea for) a newsletter article
         + instructors' forum using same login
