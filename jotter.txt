@@ -13,12 +13,12 @@
 
 ** Leaflet (etc) printing for live courses
 + Generate peronalised PDFs:
-    + Business cards
     + Name labels for carers
     + Talk/presentation
     + Course log/diary pages
 ** Work out cancel/publish/delete interactions for courses. Need to show cancelled courses in various places. Cancel a published course: what happens to it?
 
++ Pass some images through tinyjpg/tinypng
 + Limit numbers in search results. Enquiries - find near location, notify_enquirers.
 + Fix up members' menu
     + Add a suitable set of options
@@ -225,7 +225,7 @@ session:
                 ~ Generic poster
                 ~ Course flyer: Course type/location/day of week/start date/time
                 ~ Course poster: Course type/location/day of week/start date/time
-                + Business cards
+                ~ Business cards: Avery C32011, C32016, C32025, C32026, C32050, C32055, C32075  - 10 off 85*54mm
                 + Name labels for carers
                 + Talk/presentation
 				+ Course log/diary pages

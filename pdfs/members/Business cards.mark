@@ -1,0 +1,60 @@
+[
+        { action => 'text', text => '[% name %]',          x => 274, y => 753, size => 13, align => 'right', font => 'Helvetica-Bold' },
+        { action => 'text', text => '[% phone_numbers %]', x =>  50, y => 685, size => 10,                   font => 'Helvetica-Bold' },
+        { action => 'text', text => '[% email %]',         x =>  50, y => 665, size =>  7 },
+        { action => 'text', text => '[% url %]',           x =>  50, y => 656, size =>  7 },
+
+        { action => 'text', text => '[% name %]',          x => 543, y => 753, size => 13, align => 'right', font => 'Helvetica-Bold' },
+        { action => 'text', text => '[% phone_numbers %]', x => 319, y => 685, size => 10,                   font => 'Helvetica-Bold' },
+        { action => 'text', text => '[% email %]',         x => 319, y => 665, size =>  7 },
+        { action => 'text', text => '[% url %]',           x => 319, y => 656, size =>  7 },
+        
+        #-----------------------------------------------------
+
+        { action => 'text', text => '[% name %]',          x => 274, y => 600, size => 13, align => 'right', font => 'Helvetica-Bold' },
+        { action => 'text', text => '[% phone_numbers %]', x =>  50, y => 532, size => 10,                   font => 'Helvetica-Bold' },
+        { action => 'text', text => '[% email %]',         x =>  50, y => 512, size =>  7 },
+        { action => 'text', text => '[% url %]',           x =>  50, y => 503, size =>  7 },
+
+        { action => 'text', text => '[% name %]',          x => 543, y => 600, size => 13, align => 'right', font => 'Helvetica-Bold' },
+        { action => 'text', text => '[% phone_numbers %]', x => 319, y => 532, size => 10,                   font => 'Helvetica-Bold' },
+        { action => 'text', text => '[% email %]',         x => 319, y => 512, size =>  7 },
+        { action => 'text', text => '[% url %]',           x => 319, y => 503, size =>  7 },
+        
+        #-----------------------------------------------------
+
+        { action => 'text', text => '[% name %]',          x => 274, y => 447, size => 13, align => 'right', font => 'Helvetica-Bold' },
+        { action => 'text', text => '[% phone_numbers %]', x =>  50, y => 379, size => 10,                   font => 'Helvetica-Bold' },
+        { action => 'text', text => '[% email %]',         x =>  50, y => 359, size =>  7 },
+        { action => 'text', text => '[% url %]',           x =>  50, y => 350, size =>  7 },
+
+        { action => 'text', text => '[% name %]',          x => 543, y => 447, size => 13, align => 'right', font => 'Helvetica-Bold' },
+        { action => 'text', text => '[% phone_numbers %]', x => 319, y => 379, size => 10,                   font => 'Helvetica-Bold' },
+        { action => 'text', text => '[% email %]',         x => 319, y => 359, size =>  7 },
+        { action => 'text', text => '[% url %]',           x => 319, y => 350, size =>  7 },
+        
+        #-----------------------------------------------------
+
+        { action => 'text', text => '[% name %]',          x => 274, y => 294, size => 13, align => 'right', font => 'Helvetica-Bold' },
+        { action => 'text', text => '[% phone_numbers %]', x =>  50, y => 226, size => 10,                   font => 'Helvetica-Bold' },
+        { action => 'text', text => '[% email %]',         x =>  50, y => 206, size =>  7 },
+        { action => 'text', text => '[% url %]',           x =>  50, y => 197, size =>  7 },
+
+        { action => 'text', text => '[% name %]',          x => 543, y => 294, size => 13, align => 'right', font => 'Helvetica-Bold' },
+        { action => 'text', text => '[% phone_numbers %]', x => 319, y => 226, size => 10,                   font => 'Helvetica-Bold' },
+        { action => 'text', text => '[% email %]',         x => 319, y => 206, size =>  7 },
+        { action => 'text', text => '[% url %]',           x => 319, y => 197, size =>  7 },
+        
+        #-----------------------------------------------------
+
+        { action => 'text', text => '[% name %]',          x => 274, y => 141, size => 13, align => 'right', font => 'Helvetica-Bold' },
+        { action => 'text', text => '[% phone_numbers %]', x =>  50, y =>  73, size => 10,                   font => 'Helvetica-Bold' },
+        { action => 'text', text => '[% email %]',         x =>  50, y =>  53, size =>  7 },
+        { action => 'text', text => '[% url %]',           x =>  50, y =>  44, size =>  7 },
+
+        { action => 'text', text => '[% name %]',          x => 543, y => 141, size => 13, align => 'right', font => 'Helvetica-Bold' },
+        { action => 'text', text => '[% phone_numbers %]', x => 319, y =>  73, size => 10,                   font => 'Helvetica-Bold' },
+        { action => 'text', text => '[% email %]',         x => 319, y =>  53, size =>  7 },
+        { action => 'text', text => '[% url %]',           x => 319, y =>  44, size =>  7 },
+]
+
