@@ -12,8 +12,11 @@ use CRP::Util::DateParser;
 sub welcome {
     my $c = shift;
 
+    my $days = $c->config->{course}->{age_when_advert_expires_days};
     my $profile = $c->_load_profile;
-    $c->stash(incomplete_profile => ! $profile->is_complete);
+    $c->stash(incomplete_profile        => ! $profile->is_complete);
+    $c->stash(draft_courses_count       => $profile->courses->get_draft_set->count);
+    $c->stash(advertised_courses_count  => $profile->courses->get_advertised_set($days)->count);
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -182,30 +185,16 @@ sub courses {
     my $c = shift;
 
     my $profile = $c->_load_profile;
-    my $dtf = $c->crp->model('Course')->result_source->schema->storage->datetime_parser;
     my $days = $c->config->{course}->{age_when_advert_expires_days};
-    my $advertised_list = [ $profile->courses(
-        {
-            published   => 1,
-            canceled    => 0,
-            start_date  => {'>', $dtf->format_datetime(DateTime->now()->subtract(days => $days))},
-        },
-        { order_by => {-asc => 'start_date'} },
-    ) ];
-    $c->stash(advertised_list => $advertised_list);
-    my $draft_list = [ $profile->courses(
-        { published   => 0 },
-        { order_by => {-asc => 'start_date'} },
-    ) ];
-    $c->stash(draft_list => $draft_list);
-    my $past_list = [ $profile->courses(
-        {
-            published   => 1,
-            start_date  => {'<=', $dtf->format_datetime(DateTime->now()->subtract(days => $days))},
-        },
-        { order_by => {-asc => 'start_date'} },
-    ) ];
-    $c->stash(past_list => $past_list);
+    $c->stash(advertised_list   => _date_order_list(scalar $profile->courses->get_advertised_set($days)));
+    $c->stash(draft_list        => _date_order_list(scalar $profile->courses->get_draft_set));
+    $c->stash(past_list         => _date_order_list(scalar $profile->courses->get_past_set($days)));
+}
+
+sub _date_order_list {
+    my($result_set) = @_;
+
+    return [ $result_set->search(undef, { order_by => {-asc => 'start_date'} }) ];
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
