@@ -21,7 +21,6 @@
 + Pass some images through tinyjpg/tinypng
 + Limit numbers in search results. Enquiries - find near location, notify_enquirers.
 + Fix up members' menu
-    + Add a suitable set of options
     + Add IDs to the pages so that the options highlight properly
 + Fix up control panel to be useful
 + Cookie doesn't get deleted on log-out
@@ -33,6 +32,17 @@
 + Data backup (DB, instructors' pics)
 + Course costing calculator(s) - JS versions of the spreadsheets
 + FAQ/External resources: bibliography (for instructors)
+    - How to print PDFs (scaling off, double-sided, A4->A5)
+    - QR codes
+    - Business cards
+    - Amazon affiliate links for Avery labels, recommended books etc
+    - Various books (A&P, reflexology, business (Jane's book?))
+    - Affiliate link to Leoni Dawson?
+    - Other training courses
+    - Neal's Yard store
+    - Places to refer people to if they have problems of various sorts
+    - CSV filkes
+    - Geographic searches
 + Some admin tools
 + Finalise text/layout/design
 + Hosting
@@ -182,6 +192,7 @@ session:
     + Shop
         + Anyone can browse but you need a instructor's account to buy and see prices
         + Sells student packs, extra course notes, posters, stuff from carers' shop etc, etc
+    + General instructors' contact form (for contacting CRP as a potential instructor)
     + Signed-up instructors area
         ~ Needs an account created by an administrator (happens when they do the course)
         ~ Edit profile
@@ -236,8 +247,7 @@ session:
         + Link to shop
 		+ Course costing calculator(s) - JS versions of the spreadsheets
         + External resources: bibliography
-    + General instructors' contact form (for contacting CRP as a potential instructor)
-    ~ Log out
+        ~ Log out
 + Administrators' area
     + Requires login
     + Access to stats of various sorts

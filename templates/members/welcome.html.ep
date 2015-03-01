@@ -1,16 +1,18 @@
 %#<!DOCTYPE html>
-% layout 'member_default', heading => "Control panel", page_id => 'member-home';
+% layout 'member_default', page_id => 'member-home';
 % title 'Control panel';
 % my $personal_url = url_for('crp.membersite.home', slug => stash('profile_record')->web_page_slug)->to_abs;
+<h1>Members area<% if(stash('profile_record')->name) { %> for <%= stash('profile_record')->name %><% } %></h1>
 % if(param('msg')) {
 <%= include 'parts/message_box', msg => param('msg'), auto_hide => 1 %>
 % }
-<p>
-Here is your control panel.<br />
-Your personal web site is at <a href="<%= $personal_url %>"><%= $personal_url %></a>.
 % if(stash 'incomplete_profile') {
-<p>Your profile is not complete - please <a href="<%= url_for 'crp.members.profile' %>">update it here</a>.</p>
+%= include 'parts/message_box', msg => 'profile_incomplete', auto_hide => 0;
 % }
+<p>
+Draft count = <%= stash 'draft_courses_count' %><br />
+advertised count = <%= stash 'advertised_courses_count' %><br />
+Your personal web site is at <a href="<%= $personal_url %>"><%= $personal_url %></a>.
 <ul>
     <li><a href="<%= url_for 'crp.members.profile' %>">Profile</a></li>
     <li><a href="<%= url_for 'crp.set_password' %>">Change password</a></li>
