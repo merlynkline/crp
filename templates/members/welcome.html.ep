@@ -1,5 +1,5 @@
 %#<!DOCTYPE html>
-% layout 'member_default', page_id => 'member-home';
+% layout 'member_default', page_id => 'members';
 % title 'Control panel';
 % my $personal_url = url_for('crp.membersite.home', slug => stash('profile_record')->web_page_slug)->to_abs;
 <h1>Members area<% if(stash('profile_record')->name) { %> for <%= stash('profile_record')->name %><% } %></h1>

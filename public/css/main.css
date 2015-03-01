@@ -98,8 +98,11 @@ td {
     content: "> ";
 }
 #left-nav li.selected {
-    background:     #bde;
+    background:     #acd;
     padding:        4px 8px 4px 0;
+}
+#left-nav li.selected.members-area {
+    background:     #EBB;
 }
 #left-nav li:hover {
     background:     #edc;

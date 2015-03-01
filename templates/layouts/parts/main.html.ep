@@ -17,7 +17,7 @@
 %   my($page_id, $href, $desc) = @_;
 %   my $this_page = (stash('page_id') || stash('page') || '') eq ($page_id || '');
 <% if($this_page) { =%>
-<li class="selected"<% if(stash 'members_area') { %> class="members-area"<% } %>><%
+<li class="selected<% if(stash 'members_area') { %> members-area<% } %>"><%
 } else { =%>
 <li<% if(stash 'members_area') { %> class="members-area"<% } %>><%
 } =%>
