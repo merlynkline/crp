@@ -1,5 +1,5 @@
 %#<!DOCTYPE html>
-% layout 'default', heading => "Instructor log-in";
+% layout 'default', heading => "Instructor log-in", page_id => 'login';
 % title "Log in";
 % my $reason = stash('reason') || '';
 
