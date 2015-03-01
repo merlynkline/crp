@@ -30,7 +30,20 @@ Sorry - you must be logged in to access that page. Please log in below to contin
             </div>
         </label>
         <div class="input-container">
+            <script>
+                function reveal_password(id) {
+                    var el = document.getElementById(id);
+                    if(el) el.type="text";
+                }
+
+                function hide_password(id) {
+                    var el = document.getElementById(id);
+                    if(el) el.type="password";
+                }
+
+            </script>
             <%= password_field 'password', size => '30', id => 'password' =%>
+            <input type="button" value="view" title="Hold this button to reveal the entered password. Make sure nobody is looking!" onmousedown="reveal_password('password')" onmouseup="hide_password('password')" />
             <%= include 'parts/error', field => 'password' =%>
         </div>
         <label for="auto-login">Remember me:
