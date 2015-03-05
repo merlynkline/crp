@@ -395,3 +395,32 @@ Formulae to find a long and lat a given distance and bearing from another:
     - Perl library: PDF::API2
     - CSS3
     - HTML5
+
+
+
+
+
+Vultr setup:
+- 108.61.175.23
+- To do:
+    - Apache
+    - Mail forwarding?
+    - root mail
+    - postgres
+    - Carton for perl packages
+    - auto update: https://www.vultr.com/docs/how-to-set-up-unattended-upgrades-on-debian-6-7
+    - Disable root login (enable sudo for crp first!): https://www.vultr.com/docs/disable-or-restrict-root-login-via-ssh-on-linux
+- commands:
+    # useradd crp
+    # mkdir /home/crp
+    # chown crp.crp /home/crp
+    # aptitude install git
+    # aptitude install postgresql
+    # aptitude install apache2
+    # aptitude install cpanminus
+    # aptitude install make
+    # cpanm carton
+    # su - crp
+        $ mkdir crp
+        $ cd crp
+        $ git clone https://github.com/merlynkline/crp
