@@ -1,3 +1,3 @@
 
-requires: "Mojolicious", "5.50";
+requires "Mojolicious", "5.50";
 
