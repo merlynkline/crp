@@ -1,5 +1,5 @@
 %#<!DOCTYPE html>
-% layout 'member_default', extra_header_templates => 'parts/location_input';
+% layout 'member_default', extra_header_templates => 'parts/location_input', page_id => 'enquiries';
 % title 'Find enquiries';
 <h1>Find enquiries</h1>
 

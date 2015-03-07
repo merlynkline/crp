@@ -1,5 +1,5 @@
 %#<!DOCTYPE html>
-% layout 'member_default', heading => "Profile", page_id => 'member-home', extra_header_templates => ['parts/yellow_text_style','parts/location_input'];
+% layout 'member_default', heading => "Profile", page_id => 'profile', extra_header_templates => ['parts/yellow_text_style','parts/location_input'];
 % title 'Profile';
 % my $profile = stash 'profile_record';
 <h1>Update your profile</h1>

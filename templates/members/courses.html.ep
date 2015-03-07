@@ -1,5 +1,5 @@
 %#<!DOCTYPE html>
-% layout 'member_default';
+% layout 'member_default', page_id => 'courses';
 % title 'Your courses';
 %#
 % my $course_list_block = begin
