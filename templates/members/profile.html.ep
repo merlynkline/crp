@@ -109,7 +109,7 @@
     $(".hide-on-load").delay(4000).slideUp(1000);
     $('#blurb').YellowText({
         height:             "260px",
-        width:              "500px",
+        width:              "496px",
         defaultFont:        "sans-serif",
         defaultFontSize:    "16px",
         defaultFontColor:   "#354",
