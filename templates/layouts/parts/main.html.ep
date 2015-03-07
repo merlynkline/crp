@@ -15,13 +15,14 @@
 %#---------------------------------------------------------------------------
 % my $render_menu_entry = sub {
 %   my($page_id, $href, $desc) = @_;
+%   my @href = split ':', $href;
 %   my $this_page = (stash('page_id') || stash('page') || '') eq ($page_id || '');
 <% if($this_page) { =%>
 <li class="selected<% if(stash 'members_area') { %> members-area<% } %>"><%
 } else { =%>
 <li<% if(stash 'members_area') { %> class="members-area"<% } %>><%
 } =%>
-<% if(!$this_page) { =%><a href="<%= url_for $href %>"><% } =%>
+<% if(!$this_page) { =%><a href="<%= url_for @href %>"><% } =%>
 <%= $desc =%>
 <% if(!$this_page) { =%></a><% } =%>
 </li>

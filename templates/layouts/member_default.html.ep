@@ -3,13 +3,13 @@
     my $left_nav_menu = [
         ['members',   '/instructor',                'Home'],
         ['courses',   'crp.members.courses',        'Courses'],
-        ['pdfs',      '',                           'Documents'],
+        ['pdfs',      'crp.members.page:page:pdf',  'Documents'],
         ['enquiries', 'crp.members.find_enquiries', 'Enquiries'],
-        ['pdfs',      '',                           'Calculator'],
+        ['calculator','crp.members.page:page:calc', 'Calculator'],
         ['profile',   'crp.members.profile',        'Profile'],
         ['password',  'crp.set_password',           'Password'],
         ['shop',      'crp.members.shop',           'Shop'],
-        ['pdfs',      '',                           'Help/FAQs'],
+        ['faqs',      'crp.members.page:page:faqs', 'Help/FAQs'],
         ['home',      '/',                          'Main site'],
         ['logout',    '/logout',                    'Log out'],
     ];

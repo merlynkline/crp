@@ -1,0 +1,20 @@
+%#<!DOCTYPE html>
+% layout 'member_default', page_id => 'faqs';
+<h1>Help and FAQs</h1>
+<p>
+Frequently asked questions:
+<pre>
+- How to print PDFs (scaling off, double-sided, A4->A5)
+- QR codes
+- Business cards
+- Amazon affiliate links for Avery labels, recommended books etc
+- Various books (A&P, reflexology, business (Jane's book?))
+- Affiliate link to Leoni Dawson?
+- Other training courses
+- Neal's Yard store
+- Places to refer people to if they have problems of various sorts
+- CSV files
+- Geographic searches
+</pre>
+</p>
+

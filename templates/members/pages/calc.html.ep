@@ -1,0 +1,6 @@
+%#<!DOCTYPE html>
+% layout 'member_default', page_id => 'calculator';
+<h1>Course cost calculator</h1>
+<p>
+Calculate the cost of running a course so you can see what to charge.
+</p>

@@ -1,5 +1,5 @@
 %#<!DOCTYPE html>
-% layout 'member_default', page_id => 'member-pdfs';
+% layout 'member_default', page_id => 'pdfs';
 % title 'Personalised stationery';
 <h1>Download personalised stationery</h1>
 <p>

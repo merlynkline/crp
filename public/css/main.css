@@ -142,14 +142,14 @@ td {
 }
 #heading-image {
     position:       absolute;
-    margin:         2px;
+    margin:         4px 8px;
     width:          44px;
     height:         57.5px;
 }
 #heading {
     font-size:      30px;
     text-align:     left;
-    padding:        20px 12px 12px 50px;;
+    padding:        20px 12px 12px 64px;;
     margin:         0;
 }
 #bottom-spacer {
