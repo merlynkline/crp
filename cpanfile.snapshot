@@ -2437,6 +2437,14 @@ DISTRIBUTIONS
       Scalar::Util 1
       Test::More 0.47
       XSLoader 0
+  Imager-File-JPEG-0.90
+    pathname: T/TO/TONYC/Imager-File-JPEG-0.90.tar.gz
+    provides:
+      Imager::File::JPEG 0.90
+    requirements:
+      ExtUtils::MakeMaker 0
+      Imager 0.86
+      XSLoader 0
   Imager-QRCode-0.034
     pathname: K/KU/KURIHARA/Imager-QRCode-0.034.tar.gz
     provides:

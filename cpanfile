@@ -18,6 +18,7 @@ requires "PDF::API2";
 requires "Try::Tiny";
 requires "Mojolicious::Plugin::Mail";
 requires "DBD::Pg";
+requires "Imager::File::JPEG";
 
 
 
