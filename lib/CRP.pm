@@ -83,14 +83,16 @@ sub startup {
 sub _before_dispatch {
     my $c = shift;
 
-    $c->stash(crp_session => CRP::Util::Session->new(mojo => $c));
-    $c->stash(logged_in => $c->crp->logged_in_instructor_id);
+    if($c->cookie($c->config->{session}->{cookie_name})) {
+        $c->stash(crp_session => CRP::Util::Session->new(mojo => $c));
+        $c->stash(logged_in => $c->crp->logged_in_instructor_id);
+    }
 }
 
 sub _after_dispatch {
     my $c = shift;
 
-    $c->stash('crp_session')->write();
+    $c->stash('crp_session')->write() if $c->stash('crp_session');
 }
 
 sub _csrf_error_handler {

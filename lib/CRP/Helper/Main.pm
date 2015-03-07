@@ -136,6 +136,7 @@ sub register {
         'crp.logged_in_instructor_id' => sub {
             my $c = shift;
 
+            return 0 unless  $c->stash('crp_session');
             return $c->stash('crp_session')->variable('instructor_id') || 0;
         }
     );

@@ -31,6 +31,7 @@ sub _show_interstitial {
     my $c = shift;
     my($url, $session_vars) = @_;
 
+    $c->stash(crp_session => CRP::Util::Session->new(mojo => $c)) unless $c->stash('crp_session');
     my $destination = $c->stash('crp_session')->variable('interstitial_destination');
     unless($destination) {
         $destination = $c->_get_post_interstitial_destination;
@@ -125,7 +126,7 @@ sub login {
 sub _show_login {
     my $c = shift;
 
-    $c->stash('reason', $c->stash('crp_session')->variable('login_reason') // '');
+    $c->stash('reason', $c->stash('crp_session')->variable('login_reason') // '') if $c->stash('crp_session');
     $c->render(template => "logged_in/login");
 }
 

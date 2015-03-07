@@ -33,7 +33,7 @@
     - Other training courses
     - Neal's Yard store
     - Places to refer people to if they have problems of various sorts
-    - CSV filkes
+    - CSV files
     - Geographic searches
 + Some admin tools
 + Finalise text/layout/design
@@ -408,9 +408,9 @@ Formulae to find a long and lat a given distance and bearing from another:
 Vultr setup:
 - 108.61.175.23
 - To do:
-    + mail sending from contact form
-    + Mail forwarding?
-    + root mail
+    ~ mail sending from contact form
+    ~ Mail forwarding?
+    ~ root mail
     ~ postgres
     + auto update: https://www.vultr.com/docs/how-to-set-up-unattended-upgrades-on-debian-6-7
     + Disable root login (enable sudo for crp first!): https://www.vultr.com/docs/disable-or-restrict-root-login-via-ssh-on-linux
