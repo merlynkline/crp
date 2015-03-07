@@ -93,7 +93,7 @@ sub booking_form {
     my $data = CRP::Util::CRPDataFormatter::format_data($c, {
             profile => $c->stash('site_profile'),
             course  => $course,
-            email   => $c->stash('crp_session')->variable('email'),
+            email   => $c->stash('site_profile')->login->email,
         });
     $c->render_file(
         data                => $pdf_doc->fill_template($data),
