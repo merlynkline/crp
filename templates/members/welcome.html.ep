@@ -1,8 +1,15 @@
 %#<!DOCTYPE html>
 % layout 'member_default', page_id => 'members';
 % title 'Control panel';
-% my $personal_url = url_for('crp.membersite.home', slug => stash('profile_record')->web_page_slug)->to_abs;
-<h1>Members area<% if(stash('profile_record')->name) { %> for <%= stash('profile_record')->name %><% } %></h1>
+% my $profile = stash('profile_record');
+% my $personal_url = url_for('crp.membersite.home', slug => $profile_record->web_page_slug)->to_abs;
+% my $contact_row_block = begin
+% my($name, $value) = @_;
+% if($value) {
+<tr><td><%= $name %>:</td><td nowrap="nowrap"><%= $value %></td></tr>
+% }
+% end
+<h1>Member's area<% if(stash('profile_record')->name) { %> for <%= stash('profile_record')->name %><% } %></h1>
 % if(param('msg')) {
 <%= include 'parts/message_box', msg => param('msg'), auto_hide => 1 %>
 % }
@@ -10,15 +17,47 @@
 %= include 'parts/message_box', msg => 'profile_incomplete', auto_hide => 0;
 % }
 <p>
-Draft count = <%= stash 'draft_courses_count' %><br />
-advertised count = <%= stash 'advertised_courses_count' %><br />
 Your personal web site is at <a href="<%= $personal_url %>"><%= $personal_url %></a>.
-<ul>
-    <li><a href="<%= url_for 'crp.members.profile' %>">Profile</a></li>
-    <li><a href="<%= url_for 'crp.set_password' %>">Change password</a></li>
-    <li><a href="<%= url_for 'crp.members.courses' %>">Your courses</a></li>
-    <li><a href="<%= url_for 'crp.members.page', page => 'pdf' %>">PDFs</a></li>
-    <li><a href="<%= url_for 'crp.members.find_enquiries' %>">Find enquiries</a></li>
-</ul>
+</p>
+<table align="right">
+    <tr>
+        <td align="center" valign="top">
+            <table class="list1">
+                <tr>
+                    <th colspan="2">Course summary</th>
+                </tr>
+                %= $contact_row_block->('Draft', stash 'draft_courses_count' || 'None');
+                %= $contact_row_block->('Advertised', stash 'advertised_courses_count' || 'None');
+            </table>
+            <br />
+            <table class="list1">
+                <tr>
+                    <th colspan="2">Profile summary</th>
+                </tr>
+                %= $contact_row_block->('Telephone', $profile->telephone);
+                %= $contact_row_block->('Mobile', $profile->mobile);
+                % if($profile->address) {
+                <tr>
+                    <td>Address:</td>
+                    <td>
+                        % foreach my $line(split /\s*\n\s*/, $profile->address) {
+                        <%= $line %><br>
+                        % }
+                    </td>
+                </tr>
+                % }
+                %= $contact_row_block->('Postcode', $profile->postcode);
+                % if($profile->login->email) {
+                <tr>
+                    <td>Email:</td>
+                    <td><a href="mailto:<%= $profile->login->email %>"><%= $profile->login->email %></a></td>
+                </tr>
+                % }
+            </table>
+        </td>
+    </tr>
+</table>
+Welcome to the Children's Reflexology Programme Member's area.
+Please use the menu to the left to explore the site.
 </p>
 <script>$(".hide-on-load").delay(4000).slideUp(1000);</script>
