@@ -1,7 +1,7 @@
 %#<!DOCTYPE html>
 % layout 'default', heading => "Privacy Policy";
 % title "Privacy";
-
+<h1>Privacy</h1>
 <p>We take your privacy very seriously.</p>
 <p>We collect and store only the minimum details necessary for us to conduct business with you.</p>
 <p>
@@ -10,15 +10,27 @@ obtaining your explicit consent except when we are required to do so
 by a legal instrument such as a court order.
 </p>
 <div class="horizontal-divider-small"></div>
+<h1>Cookies</h1>
 <p>
-We do not store cookies on your computer unless it is strictly necessary
-for the functions of the website you have chosen to use. In those cases
-we will still not store cookies on your computer without informing you
-first and giving you the opportunity to avoid having us do so. When
-we do store a cookie on your computer it will contain only the minimum
+We do not store cookies on your device unless and until it is strictly necessary
+for the functions of the website you have chosen to use.
+When we do store a cookie on your device it will contain only the minimum
 information necessary for the operation of the site and will not contain
-anything that can identify you to any third party. Cookies are securely
+anything that can identify you to any third party. Our cookies are securely
 encrypted to further protect your privacy.
+<p>
+</p>
+We use <a href="http://www.google.com/analytics/" target="_blank">Google Analytics</a>
+to help us understand how this site is being used and provide the best
+posible services. Google Analytics will place its own cookies on your
+device for this purpose. You can learn more about
+<a href="http://www.google.com/policies/technologies/cookies/" target="_blank">Google cookies on their site, here</a>.
+Google offer a facility to
+<a href="https://tools.google.com/dlpage/gaoptout" target="_blank">stop their cookies being placed on your computer, here</a>.
+</p>
+<p>
+If you are interested, you can
+<a href="https://ico.org.uk/for-the-public/online/cookies.aspx" target="_blank">Find out more about cookies here</a>.
 </p>
 <div class="page-text-terminator"></div>
 

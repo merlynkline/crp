@@ -267,5 +267,13 @@ sub location_search {
     $c->render(template => 'main/location_search_results');
 }
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub cookies_ok {
+    my $c = shift;
+
+    $c->cookie($c->config->{cookie_check_cookie_name} => 1, {expires => time + 60 * 60 * 24 * 365 * 10});
+    $c->redirect_to('/');
+}
+
 1;
 

@@ -273,5 +273,6 @@ sub logout {
     $c->redirect_to('/');
 }
 
+
 1;
 

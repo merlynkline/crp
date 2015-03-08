@@ -37,6 +37,14 @@
                 Please enable JavaScript in your web browser.
             </div>
             </noscript>
+            % if( ! stash('cookies_accepted')) {
+            <div id="cookie-warning">
+                Please note that this site places cookies on your computer
+                in order to be able to function properly.
+                See our <a href="<%= url_for '/page/privacy' %>">Privacy Policy</a> for details.
+                <a class="small-button" href="<%= url_for 'crp.accept_cookies' %>">OK</a>
+            </div>
+            % }
             %= include 'parts/logged_in_indicator'
             <img src="<%= url_for '/images/CRPLogo.png' %>" id="heading-image">
             <h1 id="heading"><%= stash('heading') || "The Children's Reflexology Programme" =%>

@@ -43,28 +43,23 @@ Sorry - you must be logged in to access that page. Please log in below to contin
 
             </script>
             <%= password_field 'password', size => '30', id => 'password' =%>
-            <input type="button" value="view" title="Hold this button to reveal the entered password. Make sure nobody is looking!" onmousedown="reveal_password('password')" onmouseup="hide_password('password')" onmouseout="hide_password('password')" />
+            <input type="button" value="show" title="Hold this button to reveal the entered password. Make sure nobody is looking!" onmousedown="reveal_password('password')" onmouseup="hide_password('password')" onmouseout="hide_password('password')" />
             <%= include 'parts/error', field => 'password' =%>
         </div>
-        <label for="auto-login">Remember me:
-            <div class="field-extra-info">
-                Choose this option to be remembered on this computer for a longer
-                period. Do not choose this option on a public computer such as in
-                a library.
-            </div>
-        </label>
-        <div class="input-container">
-            <%= check_box auto_login => 'Y', id => 'auto-login' =%>
-        </div>
+%#        <label for="auto-login">Remember me:
+%#            <div class="field-extra-info">
+%#                Choose this option to be remembered on this computer for a longer
+%#                period. Do not choose this option on a public computer such as in
+%#                a library.
+%#            </div>
+%#        </label>
+%#        <div class="input-container">
+%#            <%= check_box auto_login => 'Y', id => 'auto-login' =%>
+%#        </div>
         <label></label>
         <div class="input-container">
             <%= submit_button 'Log in', name => 'login' =%>
             <%= submit_button 'Forgotten password', name => 'forgotten' =%>
-        </div>
-        <div class="field-extra-info">
-            When you log in to this service we will set a cookie on your computer
-            so that we can identify you. For more information see our
-            <a href="<%= url_for '/page/privacy' =%>">privacy policy</a>.
         </div>
     </fieldset>
 % end

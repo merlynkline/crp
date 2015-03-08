@@ -35,6 +35,7 @@ sub startup {
     $r->any('/main/register_interest')->to('main#register_interest')->name('crp.register_interest');
     $r->any('/main/resend_confirmation')->to('main#resend_confirmation');
     $r->any('/login')->to('logged_in#login')->name('crp.login');
+    $r->any('/cookies_ok')->to('main#cookies_ok')->name('crp.accept_cookies');
     $r->any('/logout')->to('logged_in#logout')->name('crp.logout');
     $r->get('/page/*page')->to('main#page')->name('crp.page');
     $r->any('/otp')->to('logged_in#otp');
@@ -83,6 +84,7 @@ sub startup {
 sub _before_dispatch {
     my $c = shift;
 
+    $c->stash(cookies_accepted => 1) if $c->cookie($c->config->{cookie_check_cookie_name});
     if($c->cookie($c->config->{session}->{cookie_name})) {
         $c->stash(crp_session => CRP::Util::Session->new(mojo => $c));
         $c->stash(logged_in => $c->crp->logged_in_instructor_id);

@@ -441,6 +441,14 @@ table.list1 {
     line-height:            130%;
     color:                  #aaa;
 }
+#cookie-warning {
+    text-align:     center;
+    font-family:    sans-serif;
+    font-size:      14px;
+    padding:        4px;
+    border-bottom:  1px solid black;
+    background:     #fe9;
+}
 #js-warning {
     text-align:     center;
     font-family:    sans-serif;
