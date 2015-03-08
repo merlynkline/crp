@@ -17,15 +17,10 @@
 %   my($page_id, $href, $desc) = @_;
 %   my @href = split ':', $href;
 %   my $this_page = (stash('page_id') || stash('page') || '') eq ($page_id || '');
-<% if($this_page) { =%>
-<li class="selected<% if(stash 'members_area') { %> members-area<% } %>"><%
-} else { =%>
-<li<% if(stash 'members_area') { %> class="members-area"<% } %>><%
-} =%>
-<% if(!$this_page) { =%><a href="<%= url_for @href %>"><% } =%>
+<span<% if($this_page) { %> class="selected"<% } %>><% if(!$this_page) { =%><a href="<%= url_for @href %>"><% } =%>
 <%= $desc =%>
 <% if(!$this_page) { =%></a><% } =%>
-</li>
+</span>
 % };
 %#---------------------------------------------------------------------------
     </head>
@@ -50,28 +45,14 @@
             <h1 id="heading"><%= stash('heading') || "The Children's Reflexology Programme" =%>
             </h1>
             <div id="footrow"<% if(stash 'members_area') { %> class="members-area"<% } %>></div>
-            <table>
-                <tr>
-                    <td id="left-nav-container">
-                        <div id="left-nav"<% if(stash 'members_area') { %> class="members-area"<% } %>>
-                        <% if(stash 'members_area') { %><div id="members-area-menu-header">Members area</div><% } %>
-                            <ul>
-                                <%
-                                    foreach my $menu_entry (@{stash('left_nav_menu')}) {
-                                        $render_menu_entry->(@$menu_entry);
-                                    }
-                                %>
-                            </ul>
-                            <img src="<%= stash('members_area') ? url_for('/images/Plants/Strawberry.png') : url_for('/images/Plants/Pokers.png') %>">
-                        </div>
-                    </td>
-                    <td id="content-container">
-                        <div id="content">
+            <div class="top-nav<% if(stash 'members_area') { %> members-area<% } %>">
+                % foreach my $menu_entry (@{stash('left_nav_menu')}) {
+                %     $render_menu_entry->(@$menu_entry);
+                % }
+            </div>
+            <div id="content-container">
 %= content
-                        </div>
-                    </td>
-                </tr>
-            </table>
+            </div>
             <div id="bottom-spacer"></div>
             <div id="bottom-nav">
                 <a href="http://www.susanquayle.co.uk/"><img src="/images/SQCHLogoSmall.png" id="sq-logo" /></a>

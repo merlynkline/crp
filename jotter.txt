@@ -15,7 +15,6 @@
 + Fix up members' menu
     + Add IDs to the pages so that the options highlight properly
 + Fix up control panel to be useful
-+ Cookie doesn't get deleted on log-out
 + Adding a new enquiry should notify the instructors of nearby courses if requested
 + Session table housekeeping (see enquiry housekeeping)
 + Get rid of all references to Tutor/practitioner
@@ -39,7 +38,51 @@
 + Finalise text/layout/design
 + Hosting
 + Login routes to test: from logged out, from logged out via interstitial, from already logged in
-+ Sends cookies even when not logged in (and no DB available)
+
+
+- Instructor's booking form:
+    - Filled in by student:
+        - Name
+        - Address
+        - Telephone numbers
+        - email to be used on the website
+        - deposit sent
+    - Filled in by us:
+        - Date of course
+        - Location 
+        - Total due
+        - Minimum deposit
+    - Other info
+        - Return address
+        - Other contact details
+        - Payment details (BACS data etc)
+        - Payment schedule
+- Instructor's booking acknowledgment
+    - Welcoming cover letter
+    - Details of remaining payment schedule (if any)
+    - Confirmation of date of course
+    - Full details of location (how to find it)
+    - Additional location info (e.g. places to stay)
+    - Attendance instructions
+        - Time to arrive
+        - What to bring (pen, pad, coloured pencils, towel, manual if it's been sent out)
+        - Come prepared to give and receive reflexology
+- Internal student tracking sheet:
+    - Attach to booking form so details are to hand
+    - Before the course:
+        - List of payments received (date, amount, outstanding)
+        - Checkbox: acknowledgment sent out
+        - Checkbox: manual sent out
+    - After the course:
+        - Checkbox: web site account created
+        - Homework tracking, for each piece:
+            - Date received
+            - Mark
+            - Comments
+            - Checkbox: Feedback sent
+        - Checkbox: certificates sent
+
+
 
 ----
 

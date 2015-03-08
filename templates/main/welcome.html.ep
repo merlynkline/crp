@@ -2,6 +2,7 @@
 % layout 'default', page_id => 'home';
 % title 'Welcome';
 <div class="water-mark">
+    <br />
     <p class="front-page-large">
     Helping
     <strong>parents</strong>
@@ -29,9 +30,14 @@
     and strengthen
     <strong>bonds</strong>.
     </p>
-    <img src="<%= url_for '/images/Plants/LavenderHorizontal2.png' %>" style="display: block; margin: 0 auto; width:300px;" />
-    <p>
-    <img src="<%= url_for '/images/Animals/Hare.jpg' %>" align="left" style="width: 60px">
+
+    %= include 'main/parts/reviews'
+
+    <p class="front-page-normal">
+
+    <img src="<%= url_for '/images/Animals/Hare.jpg' %>" align="left" style="width: 60px; margin-right: 8px;">
+    <img src="<%= url_for '/images/Animals/Mouse.png' %>" align="right" style="width: 60px; margin-left: 8px;">
+
     <a href="<%= url_for 'crp.page',  page => 'programme' %>">The Children's Reflexology Programme</a>
     is a short course of fun workshops where parents, carers and children
     get together to learn how to use a gentle non-invasive complementary therapy to empower
@@ -39,46 +45,29 @@
     into adulthood. The courses run
     <a href="<%= url_for 'crp.page', page => 'courses' %>">in many places</a>
     using a collection of delightful rhymes and pictures of a group of
-    <img src="<%= url_for '/images/Animals/Mouse.png' %>" align="right" style="width: 60px">
     animal friends, engaging children and teaching the simple reflexology.
     The programme is delivered by
     <a href="<%= url_for 'crp.page', page => 'tutors' %>">specially qualified instructors</a>
     and is supported by high quality materials including the lovely book,
     <a href="<%= url_for 'crp.page', page => 'book' %>">The Mouse's House</a>.
     </p>
-    <p>
-    <img src="<%= url_for '/images/Animals/Squirrel.jpg' %>" align="left" style="width: 70px">
-    If you can't find a course near you, perhaps you should train to
+
+    <img src="<%= url_for '/images/Plants/LavenderHorizontal2.png' %>" style="display: block; margin: 0 auto; width:300px;" />
+
+    <p class="front-page-normal">
+
+    <img src="<%= url_for '/images/Animals/Squirrel.jpg' %>" align="left" style="width: 70px; margin-right: 8px;">
+    <img src="<%= url_for '/images/Animals/Badger.jpg' %>" align="right" style="width: 110px; margin-left: 8px;">
+
+    If you can't
+    <a href="<%= url_for 'crp.location_search' %>">find a course near you</a>,
+    perhaps you should train to
     <a href="<%= url_for 'crp.page', page => 'tutors' %>">become an instructor</a>
     yourself! The special training is personally delivered by Susan Quayle, the founder of
     <a href="<%= url_for 'crp.page',  page => 'programme' %>">The Children's Reflexology Programme</a>,
     and will show you how to pass on this very special programme to
-    <img src="<%= url_for '/images/Animals/Badger.jpg' %>" align="right" style="width: 110px">
     other parents and carers, providing you with everything you need to do so.
     <a href="<%= url_for 'crp.page', page => 'tutors' %>">Find out more here.</a>
     </p>
 </div>
-                        </div>
-                    </td>
-                    <td id="review-container">
-                        <div id="reviews">
-                            <div id="review-heading">What people are saying...</div>
-                            <div id="review-list" class="scroll-text">
-                                <ul>
-                                    <li>I just had to tell you before I forgot... I just caught my daughter teaching her Daddy how to do reflexology on her baby dolls feet!! "No daddy not like that, like this" as she showed him how to caterpillar her fingers up the toes!!! I tried getting a picy but couldn't get the camera to work fast enough!! Just have to say reflexology and she says do my feet!!! Loves it!! And it's working we're getting full nights again!! Xx<br />Plus may I add she's been asking where you are and when you're coming back!! Let's hope she holds true to form for Wednesday!! Xx<div>Fredwina</div></li>
-                                    <li>I did the digestion one on my son today as he's constipated and yesterday in class it worked a treat (sceptical me wondered if it was a coincidence) and it worked again. Good stuff!<br />Three times now it's worked Susan !!! X<div>Fredwina</div></li>
-                                    <li>Review three:  quite a lot of text in here, just to see what happens. quite a lot of text in here, just to see what happens. quite a lot of text in here, just to see what happens.<div>Fredwina</div></li>
-                                    <li>Review four:  quite a lot of text in here, just to see what happens. quite a lot of text in here, just to see what happens. quite a lot of text in here, just to see what happens.<div>Fredwina</div></li>
-                                    <li>Review five:  quite a lot of text in here, just to see what happens. quite a lot of text in here, just to see what happens. quite a lot of text in here, just to see what happens.<div>Fredwina</div></li>
-                                    <li>Review six:  quite a lot of text in here, just to see what happens. quite a lot of text in here, just to see what happens. quite a lot of text in here, just to see what happens.<div>Fredwina</div></li>
-                                </ul>
-                            </div>
-                            <div class="low-key"><a href="/tutor_list">List of qualified instructors</a></div>
-                            <script src="<%= url_for '/js/ScrollBox.js' %>"></script>
-                            <script>
-                                $('#review-list').scrollbox({
-                                      step: 1,
-                                      delay: 10,
-                                      speed: 40
-                                });
-                            </script>
+<div class="low-key"><a href="/tutor_list">List of qualified instructors</a></div>

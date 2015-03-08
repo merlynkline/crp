@@ -1,0 +1,71 @@
+%#<!DOCTYPE html>
+<div id="reviews">
+    <div id="review-list" class="scroll-text">
+        <ul>
+            <li><b>Testimonials:</b></li>
+            <li>Review three:  not a lot of text in here, just to see what happens.
+            <span>Fredwina</span>
+            </li>
+            <li>Review three:  not a lot of text in here, just to see what happens.
+            <span>Fredwina</span>
+            </li>
+            <li>Review three:  not a lot of text in here, just to see what happens.
+            <span>Fredwina</span>
+            </li>
+            <li>Review three:  not a lot of text in here, just to see what happens.
+            <span>Fredwina</span>
+            </li>
+            <li>Review three:  quite a lot of text in here, just to see what happens. quite
+            a lot of text in here, just to see what happens. quite a lot of text in here,
+            just to see what happens.
+            <span>Fredwina</span>
+            </li>
+            <li>I did the digestion one on my son today as he's constipated and yesterday in
+            class it worked a treat (sceptical me wondered if it was a coincidence) and it
+            worked again. Good stuff! Three times now it's worked Susan !!! X
+            <span>Fredwina</span>
+            </li>
+            <li>
+            I just had to tell you before I forgot... I just caught my daughter teaching her
+            Daddy how to do reflexology on her baby dolls feet!! "No daddy not like that, like
+            this" as she showed him how to caterpillar her fingers up the toes!!! I tried
+            getting a picy but couldn't get the camera to work fast enough!! Just have to
+            say reflexology and she says do my feet!!! Loves it!! And it's working we're
+            getting full nights again!! Xx Plus may I add she's been asking where you
+            are and when you're coming back!! Let's hope she holds true to form for Wednesday!! Xx
+            <span>Fredwina</span>
+            </li>
+            <li>Review three:  quite a lot of text in here, just to see what happens. quite
+            a lot of text in here, just to see what happens. quite a lot of text in here,
+            just to see what happens.
+            <span>Fredwina</span>
+            </li>
+            <li>Review three:  quite a lot of text in here, just to see what happens. quite
+            a lot of text in here, just to see what happens. quite a lot of text in here,
+            just to see what happens.
+            <span>Fredwina</span>
+            </li>
+            <li>Review three:  quite a lot of text in here, just to see what happens. quite
+            a lot of text in here, just to see what happens. quite a lot of text in here,
+            just to see what happens.
+            <span>Fredwina</span>
+            </li>
+            <li>Review three:  quite a lot of text in here, just to see what happens. quite
+            a lot of text in here, just to see what happens. quite a lot of text in here,
+            just to see what happens.
+            <span>Fredwina</span>
+            </li>
+        </ul>
+    </div>
+    <script src="<%= url_for '/js/ScrollBox.js' %>"></script>
+    <script>
+        $('#review-list').scrollbox({
+            step:   1,
+            delay:  0,
+            speed: 15,
+            linear: 1,
+            direction: 'h'
+
+        });
+    </script>
+</div>

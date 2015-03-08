@@ -55,67 +55,31 @@ td {
 }
 #content-container {
     vertical-align: top;
-    width:          100%;
-    padding:        1px 8px 1px 1px;
+    padding:        1px 8px 1px 8px;
 }
-#content {
-    width:          100%;
-}
-#left-nav-container {
-    vertical-align: top;
-    white-space:    nowrap;
-    padding:        0 8px 0 0;
-}
-#left-nav {
-    padding:        16px 8px 8px 16px;
-    margin:         0px 8px 8px 0x;
-}
-#left-nav img {
-    display:        block;
-    margin:         25px auto;
-}
-#left-nav ul {
+.top-nav {
+    text-align:     center;
+    background:     #bde;
     padding:        0;
-    margin:         0;
-    border-color:   inherit;
-    border-style:   solid;
-    border-width:   0 0 1px 0;
 }
-#left-nav li {
-    list-style:     none;
-    margin:         0;
-    padding:        0;
-    border-color:   inherit;
-    border-style:   solid;
-    border-width:   1px 0 0 0;
-    font-weight:    bold;
+.top-nav.members-area {
+    background:     #fdd;
 }
-#left-nav li a {
-    display:        block;
-    padding:        4px 8px 4px 14px;
+.top-nav span {
+    display:        inline-block;
+    border:         1px solid;
+    border-bottom:  0px;
+    padding:        2px 8px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 8px;
+    background:     linear-gradient(#acd, #bde);
 }
-#left-nav li.selected:before {
-    content: "> ";
+.top-nav.members-area span {
+    background:     linear-gradient(#ecc, #fdd);
 }
-#left-nav li.selected {
-    background:     #acd;
-    padding:        4px 8px 4px 0;
-}
-#left-nav li.selected.members-area {
-    background:     #EBB;
-}
-#left-nav li:hover {
-    background:     #edc;
-}
-#left-nav li.members-area:hover {
-    background:     #fcb;
-}
-#left-nav {
-    background:     linear-gradient(#bde, #fff);
-}
-#left-nav.members-area {
-    background:     linear-gradient(#fdd, #fff);
-    border-color:   #955;
+.top-nav span.selected {
+    background:     #fff;
+    background:     linear-gradient(#eee, #fff);
 }
 #members-area-menu-header {
     color:          #955;
@@ -123,10 +87,10 @@ td {
     line-height:    130%;
     text-align:     center;
 }
-#bottom-nav a, #left-nav a, #instructor-nav a, a.simple-link {
+#bottom-nav a, #instructor-nav a, a.simple-link, .top-nav a {
     text-decoration:    none;
 }
-#bottom-nav a:hover, #left-nav a:hover, #instructor-nav a:hover, a.simple-link:hover {
+#bottom-nav a:hover, #instructor-nav a:hover, a.simple-link:hover, .top-nav a:hover {
     text-decoration:    underline;
 }
 #corner-mouse {
@@ -194,14 +158,11 @@ td {
 #instructor-nav li:hover {
     background:     #bde;
 }
-#review-container {
-    vertical-align: top;
-}
 #review-heading {
     padding:        8px 0;
     font-weight:    bold;
 }
-#reviews, fieldset, legend, .message-box, .pdf-preview {
+fieldset, legend, .message-box, .pdf-preview {
     border:         3px solid #589;
     background:     #bde;
     border-radius:  8px;
@@ -224,28 +185,31 @@ legend {
 }
 #reviews {
     line-height:    120%;
+    height:         30px;
 }
 #review-list {
-    height:         450px;
-    width:          200px;
     overflow:       hidden;
-    font-size:      12px;
+    width:          100%;
+    font-size:      16px;
+    height:         32px;
 }
 #review-list ul {
     padding:        0;
     margin:         0;
+    width:          20000px;
 }
 #review-list li {
+    display:        inline-block;
     list-style:     none;
-    margin:         0px;
+    margin:         0 8px;
     padding:        4px;
     border-color:   inherit;
     border-style:   solid;
-    border-width:   1px 0 0 0;
+    border-width:   1px 0 1px 0;
 }
-#review-list div {
-    text-align:     right;
+#review-list span {
     font-style:     italic;
+    font-size:      12px;
 }
 label {
     padding:        8px 0 0;
@@ -458,7 +422,7 @@ table.list1 {
     background:     #f99;
 }
 .water-mark {
-    background:     url('/images/CRPLogoWaterMark.jpg') center 16px / 80% auto no-repeat;
+    background:     url('/images/CRPLogoWaterMark.jpg') center 16px / 40% auto no-repeat;
 }
 .front-page-large {
     font-size:      36px;

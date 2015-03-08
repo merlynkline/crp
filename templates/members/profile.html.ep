@@ -98,18 +98,19 @@
             <%= include 'parts/temporary_message', msg => flash 'msg' %>
         </div>
     </fieldset>
+% end
 <div style="text-align: center; border-bottom: 1px solid black;">
     Below is a preview of how the information in your profile looks on your personal web page.
 </div>
 <br />
 <%= include 'member_site/parts/blurb', cachebuster => 1 %>
-% end
+<br clear="all"/>
 <script src="<%= url_for '/js/yellow-text.min.js' %>"></script>
 <script>
     $(".hide-on-load").delay(4000).slideUp(1000);
     $('#blurb').YellowText({
         height:             "260px",
-        width:              "496px",
+        width:              "580px",
         defaultFont:        "sans-serif",
         defaultFontSize:    "16px",
         defaultFontColor:   "#354",
