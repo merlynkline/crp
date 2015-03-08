@@ -26,8 +26,8 @@ Your personal web site is at <a href="<%= $personal_url %>"><%= $personal_url %>
                 <tr>
                     <th colspan="2">Course summary</th>
                 </tr>
-                %= $contact_row_block->('Draft', stash 'draft_courses_count' || 'None');
-                %= $contact_row_block->('Advertised', stash 'advertised_courses_count' || 'None');
+                %= $contact_row_block->('Draft', stash('draft_courses_count') || 'None');
+                %= $contact_row_block->('Advertised', stash('advertised_courses_count') || 'None');
             </table>
             <br />
             <table class="list1">
