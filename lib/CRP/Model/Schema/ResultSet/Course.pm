@@ -12,10 +12,10 @@ sub search_live_courses {
     my $self = shift;
     my $earliest_date = shift;
 
-    my $live_resultset = $self->search(
-        {published => 1},
-        {start_date => {'>', $earliest_date}},
-    );
+    my $live_resultset = $self->search({
+        published => 1,
+        start_date => {'>', $self->_format_datetime($earliest_date)},
+    });
     return $live_resultset->search(@_);
 }
 
@@ -65,9 +65,20 @@ sub _date_from_age_days {
     my $self = shift;
     my($age_days) = @_;
 
-    my $dtf = $self->result_source->schema->storage->datetime_parser;
-    return $dtf->format_datetime(DateTime->now()->subtract(days => $age_days));
+    return $self->_format_datetime(DateTime->now()->subtract(days => $age_days));
 }
+
+sub _format_datetime {
+    my $self = shift;
+    my($date) = @_;
+
+    if(ref $date) {
+        my $dtf = $self->result_source->schema->storage->datetime_parser;
+        $date = $dtf->format_datetime($date);
+    }
+    return $date;
+}
+
 
 1;
 
