@@ -51,10 +51,20 @@ you can get plenty of help and practice from a qualified instructor, meeting oth
 like-minded parents &amp; carers, socialising and perhaps even finding inspiration
 to become an instructor yourself. This programme is about empowerment on all levels.
 </p>
-
+<br />
 <p>
+<center>
 <span class="highlight-box">
     Looking for a course?
     <a class="standard-button" href="<%= url_for 'crp.location_search' %>">Find a course near you</a>
 </span>
+<center>
 </p>
+<br />
+<p>
+<center>
+    <img src="<%= url_for '/images/Photos/Course3.jpg' %>" style="display: block; margin: 8px auto; width: 400px; border: 1px solid grey;">
+    <i>Successful students showing off their certificates!</i>
+<center>
+</p>
+
