@@ -55,7 +55,7 @@ td {
 }
 #content-container {
     vertical-align: top;
-    padding:        1px 8px 1px 8px;
+    padding:        1px 16px 1px 16px;
 }
 .top-nav {
     text-align:     center;
@@ -172,6 +172,19 @@ fieldset, legend, .message-box, .pdf-preview {
     padding:        8px;
     font-weight:    bold;
     text-align:     center;
+}
+.highlight-box {
+    padding:        12px;
+    font-weight:    bold;
+    text-align:     center;
+    border:         3px dotted #589;
+    background:     #bde;
+    border-radius:  8px;
+    margin:         8px 0;
+}
+.centered-image {
+    margin:         8px auto;
+    display:        block;
 }
 legend {
     padding:        2px 4px;
@@ -425,10 +438,14 @@ table.list1 {
     background:     url('/images/CRPLogoWaterMark.jpg') center 16px / 40% auto no-repeat;
 }
 .front-page-large {
-    font-size:      36px;
+    border:         4px dotted;
+    padding:        12px;
+    font-size:      32px;
+    border-radius:  12px;
     line-height:    120%;
     text-align:     center;
-    margin:         8px 0 12px 0;
+    margin:         8px 20px 12px 20px;
+    background:     #eef;
 }
 .front-page-medium {
     font-size:      24px;
@@ -445,5 +462,9 @@ table.list1 {
     font-size:      12px;
     line-height:    120%;
     text-align:     center;
+}
+.page-logo {
+    margin:         4px;
+    float:          right;
 }
 

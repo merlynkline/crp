@@ -30,6 +30,15 @@
     and strengthen
     <strong>bonds</strong>.
     </p>
+    <p>
+    <center>
+        <span class="highlight-box">
+            <a class="standard-button" href="<%= url_for 'crp.location_search' %>">Find a course near you</a>
+            or
+            <a class="standard-button" href="<%= url_for '/page/tutors' %>">Become an instructor</a>
+        </span>
+    </center>
+    </p>
 
     %= include 'main/parts/reviews'
 

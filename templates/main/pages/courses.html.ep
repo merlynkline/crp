@@ -1,11 +1,60 @@
 %#<!DOCTYPE html>
 % layout 'default', heading => "Courses for parents and carers";
 % title "Courses";
-<img src="<%= url_for '/images/Animals/Squirrel.jpg' %>" align="right">
+<img src="<%= url_for '/images/Animals/Squirrel.jpg' %>" class="page-logo">
 <h1>Courses for parents and carers</h1>
+<p>
+<span class="highlight-box">
+    Looking for a course?
+    <a class="standard-button" href="<%= url_for 'crp.location_search' %>">Find a course near you</a>
+</span>
+</p>
 
-<p>All about the courses.</p>
-<p>To find a course near you, <a href="<%= url_for 'crp.location_search' %>">click here</a>.</p>
+<p>
+The Children's Reflexology Programme is typically delivered as a simple course
+of six, one-hour sessions,  spread over six weeks. It is taught by fully trained
+and insured instructors. It empowers parents and carers to be able to offer their
+children a non-invasive complementary therapy at home at any time of the day or night,
+from someone they love and feel safe with. The therapy is suitable for helping to
+cope with the ordinary stresses of evereday life by strengthening the bonds between
+carers and children, as well as targeting common childhood illnesses.
+</p>
+<p>
+<img src="<%= url_for '/images/Photos/Course1.jpg' %>" style="float: left; margin: 0 8px 8px 0; width: 200px; border: 1px solid grey;">
+The course shows you how to treat specific conditions of childhood and includes a
+series of handouts in the form of mini booklets that can be used by a parent or carer.
+A carefully designed series of rhymes, pictures and stories is used to engage the
+child and to help you to learn and remember the reflexology.
+</p>
+<p>
+All the courses are arranged by age groups, e.g newborns, crawlers, toddlers,
+pre-schoolers, mums of kids at school and so on. This is to relieve the stress of
+parents with young children and to enable the instructor to teach the appropriate
+course materials to the entire group.
+A special course is available for pregnant women in their third trimester to learn
+to give reflexology to their baby as soon as it is born. 
+There is also a course for grandparents who don't have their grandchildren with them
+but would like to learn the treatments for when they come to stay. This may be a
+good course to arrange for your WI or similar group.
+</p>
+<p>
+<img src="<%= url_for '/images/Photos/Course2.jpg' %>" style="float: right; margin: 0 0 8px 8px; width: 300px; border: 1px solid grey;">
+The Children's Reflexology Programme really is for everyone and anyone who spends
+any time with children and would like to learn these wonderful techniques to use on
+the children they love in their lives.
+The cost of the courses will vary in each area but all will provide you with
+comprehensive, clear handouts - which is your medicine cabinet for empowerment whenever
+you need it, a certificate of attendance and a copy of the book
+<a href="<%= url_for '/page/book' %>">The Mouse's House</a>.
+As well as all this you will get the wonderful benefit of coming to class where
+you can get plenty of help and practice from a qualified instructor, meeting other
+like-minded parents &amp; carers, socialising and perhaps even finding inspiration
+to become an instructor yourself. This programme is about empowerment on all levels.
+</p>
 
-<i>This should describe the courses for parents and carers - how long they last, what the content is like, the grouping into similar age-groups, the fact that you get the book and the handouts, etc.</i>
-
+<p>
+<span class="highlight-box">
+    Looking for a course?
+    <a class="standard-button" href="<%= url_for 'crp.location_search' %>">Find a course near you</a>
+</span>
+</p>

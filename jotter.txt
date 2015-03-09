@@ -5,6 +5,7 @@
     + Name labels for carers
     + Talk/presentation
     + Course log/diary pages
+	+ Membership certificate
 ** Work out cancel/publish/delete interactions for courses. Need to show cancelled courses in various places. Cancel a published course: what happens to it?
 + Review config file
 + Basic shop page to order packs, book
@@ -34,6 +35,7 @@
     - Places to refer people to if they have problems of various sorts
     - CSV files
     - Geographic searches
+	- Balens insurance
 + Some admin tools
 + Finalise text/layout/design
 + Hosting

@@ -60,4 +60,5 @@ Your personal web site is at <a href="<%= $personal_url %>"><%= $personal_url %>
 Welcome to the Children's Reflexology Programme Member's area.
 Please use the menu to the left to explore the site.
 </p>
+<br clear="right" />
 <script>$(".hide-on-load").delay(4000).slideUp(1000);</script>

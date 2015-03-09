@@ -1,25 +1,50 @@
 %#<!DOCTYPE html>
 % layout 'default', heading => "Certified instructors";
 % title "Certified instructors";
-<img src="<%= url_for '/images/Animals/Owl.jpg' %>" align="right">
+<img src="<%= url_for '/images/Animals/Owl.jpg' %>" class="page-logo">
 
 <p>
-The Childrens' Reflexolgy Programme is delivered only by qualified instructors
-who have received the required training and use the official course materials.
+<strong>
+    The Childrens' Reflexolgy Programme is delivered only by qualified instructors
+    who have received the required training and use the official course materials.
+</strong>
 </p>
-<p>You can <a href="<%= url_for 'crp.location_search' %>">search for instructors and courses near you here</a>.</p>
-<p>You can <a href="<%= url_for 'crp.instructor_search' %>">search for a specific instructor here</a>.
+<p>
+<span class="highlight-box">
+    Looking for an instructor?
+    <a class="standard-button" href="<%= url_for 'crp.location_search' %>">Find an instructor near you</a>
+    or
+    <a class="standard-button" href="<%= url_for 'crp.instructor_search' %>">Find a specific instructor</a>
+</span>
+</p>
+<br />
 <h1>Become a certified instructor</h1>
 <p>
+<strong>
+    Would you like to run your own business empowering parents and carers to help themselves and their children?
+    It is now possible to become a fully qualified Children's Reflexology Programme Instructor without having to train as a reflexologist.
+</strong>
+</p>
+<p>
+<center>
+<span class="highlight-box">
+    Interested in becoming an instructor?
+    <a class="standard-button" href="<%= url_for '/page/contact' %>">Contact us now</a>
+</span>
+</center>
+</p>
+<p>
+The Children's Reflexology Programme Instructor course has been specially created to empower mums, dads, grandparents and carers to run their own businesses teaching infant reflexology to other parents and carers. Written specifically to empower women with children who may find it difficult to go back to work or secure a job because they have a child as well as older women who are pushed aside once they reach a certain age, this offers you the chance to run your own business with a freedom to suit you.
+</p>
 If you would like to become a certified instructor yourself you can enroll in
 the special training course which will qualify you to deliver The Children's
 Reflexology Programme and provide you with all the materials you need to give
 parents and carers the best possible experience. You will also gain access to
-the members-only areas of this site which provide all sorts of supporting
-material and help you to advertise yourself and your courses when you're ready
+the members-only areas of this site which provides all sorts of supporting
+material and helps you to advertise yourself and your courses when you're ready
 to start.
 </p>
-<img src="/images/Photos/InstructorPack.JPG" width="800" height="313" />
+<img src="/images/Photos/InstructorPack.JPG" width="800" height="313" class="centered-image" />
 <p>
 The course is delivered over three days of intensive training and covers
 the content of The Children's Reflexology Programme in depth, how to teach
@@ -33,6 +58,14 @@ programme to the world! The course includes a comprehensive course manual
 and everything you need to teach the Programme, as shown above, plus
 a full set of parent packs for your first course, like the one shown below.
 </p>
-<img src="/images/Photos/ParentPack.JPG" width="800" height="417" />
+<p>
+<center>
+<span class="highlight-box">
+    Interested in becoming an instructor?
+    <a class="standard-button" href="<%= url_for '/page/contact' %>">Contact us now</a>
+</span>
+</center>
+</p>
+<img src="/images/Photos/ParentPack.JPG" width="800" height="417" class="centered-image" />
 
 <script>$(".hide-on-load").delay(9000).slideUp(1000);</script>
