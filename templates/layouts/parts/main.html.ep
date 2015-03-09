@@ -41,7 +41,7 @@
             </div>
             % }
             %= include 'parts/logged_in_indicator'
-            <img src="<%= url_for '/images/CRPLogo.png' %>" id="heading-image">
+            <a href="/"><img src="<%= url_for '/images/CRPLogo.png' %>" id="heading-image"></a>
             <h1 id="heading"><%= stash('heading') || "The Children's Reflexology Programme" =%>
             </h1>
             <div id="footrow"<% if(stash 'members_area') { %> class="members-area"<% } %>></div>
