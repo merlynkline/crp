@@ -3,58 +3,43 @@
     <div id="review-list" class="scroll-text">
         <ul>
             <li><b>Testimonials:</b></li>
-            <li>Review three:  not a lot of text in here, just to see what happens.
-            <span>Fredwina</span>
-            </li>
-            <li>Review three:  not a lot of text in here, just to see what happens.
-            <span>Fredwina</span>
-            </li>
-            <li>Review three:  not a lot of text in here, just to see what happens.
-            <span>Fredwina</span>
-            </li>
-            <li>Review three:  not a lot of text in here, just to see what happens.
-            <span>Fredwina</span>
-            </li>
-            <li>Review three:  quite a lot of text in here, just to see what happens. quite
-            a lot of text in here, just to see what happens. quite a lot of text in here,
-            just to see what happens.
-            <span>Fredwina</span>
-            </li>
-            <li>I did the digestion one on my son today as he's constipated and yesterday in
-            class it worked a treat (sceptical me wondered if it was a coincidence) and it
-            worked again. Good stuff! Three times now it's worked Susan !!! X
-            <span>Fredwina</span>
-            </li>
+
             <li>
-            I just had to tell you before I forgot... I just caught my daughter teaching her
-            Daddy how to do reflexology on her baby dolls feet!! "No daddy not like that, like
-            this" as she showed him how to caterpillar her fingers up the toes!!! I tried
-            getting a picy but couldn't get the camera to work fast enough!! Just have to
-            say reflexology and she says do my feet!!! Loves it!! And it's working we're
-            getting full nights again!! Xx Plus may I add she's been asking where you
-            are and when you're coming back!! Let's hope she holds true to form for Wednesday!! Xx
-            <span>Fredwina</span>
+            I've had a text from C this evening saying her five year old had an after school
+            melt down and she calmly got hold of her feet away from being kick and gently
+            pressed on her solar plexus reflex and she instantly calmed down and accepted a cuddle!!
+            She was very excited that already she could put what she learned to good use!!
+            We're all looking forward to next week!!
+            <span>Kerri</span>
             </li>
-            <li>Review three:  quite a lot of text in here, just to see what happens. quite
-            a lot of text in here, just to see what happens. quite a lot of text in here,
-            just to see what happens.
-            <span>Fredwina</span>
+
+            <li>
+            Z doesn't sleep if he doesn't use his potty before he goes to bed, he wakes every hour
+            because he needs to use the potty but won't. I thought I'd try the technique I had
+            learnt from my first Infant Reflexology class. So while he was playing I followed 
+            him around and worked his feet in a way that he didn't even realise I was doing it.
+            The effect was immediate, he shouted “potty, potty, potty” and subsequently slept
+            right through the night. Very happy that the course has been beneficial after only one session.
+            <span>Maria</span>
             </li>
-            <li>Review three:  quite a lot of text in here, just to see what happens. quite
-            a lot of text in here, just to see what happens. quite a lot of text in here,
-            just to see what happens.
-            <span>Fredwina</span>
+
+            <li>
+            I just had to tell you before I forgot... I just caught J teaching her Daddy how to do
+            reflexology on her baby dolls feet!! "No daddy not like that, like this" as she showed him
+            how to caterpillar her fingers up the toes!!! ...
+            Just have to say reflexology and she says do my feet!!!
+            Loves it!! And it's working we're getting full nights again!! Xx
+            Plus may I add she's been asking where you are and when you're coming back!!
+            Let's hope she holds true to form for Wednesday!! Xx
+            <span>Kerri</span>
             </li>
-            <li>Review three:  quite a lot of text in here, just to see what happens. quite
-            a lot of text in here, just to see what happens. quite a lot of text in here,
-            just to see what happens.
-            <span>Fredwina</span>
+
+            <li>
+            I did the digestion one on R today as he's constipated and yesterday in class it
+            worked a treat (sceptical me wondered if it was a coincidence) and it worked again. Good stuff!
+            <span>Emma</span>
             </li>
-            <li>Review three:  quite a lot of text in here, just to see what happens. quite
-            a lot of text in here, just to see what happens. quite a lot of text in here,
-            just to see what happens.
-            <span>Fredwina</span>
-            </li>
+
         </ul>
     </div>
     <script src="<%= url_for '/js/ScrollBox.js' %>"></script>
