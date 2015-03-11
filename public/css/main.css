@@ -162,10 +162,12 @@ td {
     padding:        8px 0;
     font-weight:    bold;
 }
-fieldset, legend, .message-box, .pdf-preview {
+fieldset, legend, .message-box, .pdf-preview, .highlight-box, .instructor-photo, table.list1 {
     border:         3px solid #589;
     background:     #bde;
     border-radius:  8px;
+}
+fieldset, legend, .message-box, .pdf-preview {
     margin:         20px;
 }
 .message-box {
@@ -177,9 +179,6 @@ fieldset, legend, .message-box, .pdf-preview {
     padding:        12px;
     font-weight:    bold;
     text-align:     center;
-    border:         3px dotted #589;
-    background:     #bde;
-    border-radius:  8px;
     margin:         8px 0;
 }
 .centered-image {
@@ -331,8 +330,6 @@ input[type="checkbox"] {
 }
 
 .instructor-photo {
-    border:         3px solid #589;
-    border-radius:  8px;
     float:          right;
     margin:         4px;
 }
@@ -347,9 +344,6 @@ table {
     border-spacing: 0;
 }
 table.list1 {
-    border:         3px solid #589;
-    background:     #bde;
-    border-radius:  8px;
     margin:         20px;
     padding:        0;
 }
@@ -438,7 +432,7 @@ table.list1 {
     background:     url('/images/CRPLogoWaterMark.jpg') center 16px / 40% auto no-repeat;
 }
 .front-page-large {
-    border:         4px dotted;
+    border:         4px solid;
     padding:        12px;
     font-size:      32px;
     border-radius:  12px;
@@ -446,6 +440,7 @@ table.list1 {
     text-align:     center;
     margin:         8px 20px 12px 20px;
     background:     #eef;
+    border-color:   #dde;
 }
 .front-page-medium {
     font-size:      24px;
