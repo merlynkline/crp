@@ -16,8 +16,7 @@ The Children's Reflexology Programme and is published by
 <a href="http://www.jkp.com/uk/the-mouse-s-house.html" target="_blank">Singing Dragon, an imprint of Jessica Kingsley Publishers</a>.
 </p>
 <p>
-<br clear="right">
-<a href="http://www.jkp.com/uk/the-mouse-s-house.html" target="_blank"><img src="<%= url_for '/images/BookCover.jpg' %>" class="centered-image" style="width: 600px; border: 1px solid black;"/></a>
+<a href="http://www.jkp.com/uk/the-mouse-s-house.html" target="_blank"><img src="<%= url_for '/images/BookCover.jpg' %>" class="centered-image" style="float: left; width: 460px; border: 1px solid black; margin: 0 16px 4px 0;"/></a>
 </p>
 <p>
 I specialise in maternity reflexology, which includes newborns, and came up
