@@ -2,18 +2,12 @@
 % layout 'default', heading => "Courses for parents and carers";
 % title "Courses";
 <img src="<%= url_for '/images/Animals/Squirrel.jpg' %>" class="page-logo">
-<h1>Courses for parents and carers</h1>
+<%= include 'main/parts/find-course-button' %>
 <p>
-<span class="highlight-box">
-    Looking for a course?
-    <a class="standard-button" href="<%= url_for 'crp.location_search' %>">Find a course near you</a>
-</span>
-</p>
-
-<p>
-The Children's Reflexology Programme is typically delivered as a simple course
-of six, one-hour sessions,  spread over six weeks. It is taught by fully trained
-and insured instructors. It empowers parents and carers to be able to offer their
+<br />
+<strong>The Children's Reflexology Programme is typically delivered as a simple course
+of six, one-hour sessions, spread over six weeks and is taught by fully trained
+and insured instructors.</strong> It empowers parents and carers to be able to offer their
 children a non-invasive complementary therapy at home at any time of the day or night,
 from someone they love and feel safe with. The therapy is suitable for helping to
 cope with the ordinary stresses of everyday life by strengthening the bonds between
@@ -46,20 +40,13 @@ The cost of the courses will vary in each area but all will provide you with
 comprehensive, clear handouts - which is your medicine cabinet for empowerment whenever
 you need it, a certificate of attendance and a copy of the book
 <a href="<%= url_for '/page/book' %>">The Mouse's House</a>.
-As well as all this you will get the wonderful benefit of coming to class where
+As well as all this you will get the wonderful benefit of coming to a class where
 you can get plenty of help and practice from a qualified instructor, meeting other
 like-minded parents &amp; carers, socialising and perhaps even finding inspiration
 to become an instructor yourself. This programme is about empowerment on all levels.
 </p>
 <br />
-<p>
-<center>
-<span class="highlight-box">
-    Looking for a course?
-    <a class="standard-button" href="<%= url_for 'crp.location_search' %>">Find a course near you</a>
-</span>
-<center>
-</p>
+<%= include 'main/parts/find-course-button' %>
 <br />
 <p>
 <center>

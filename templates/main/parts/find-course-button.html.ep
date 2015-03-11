@@ -1,0 +1,11 @@
+%#<!DOCTYPE html>
+<p>
+<center>
+<span class="highlight-box">
+    Looking for a course?
+    <a class="standard-button" href="<%= url_for 'crp.location_search' %>">Find a course near you</a>
+    &nbsp;
+    <img src="/images/Plants/Pokers.png" style="width: 30px; position: relative; top: 14px;">
+</span>
+</center>
+</p>

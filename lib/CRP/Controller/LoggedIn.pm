@@ -126,7 +126,10 @@ sub login {
 sub _show_login {
     my $c = shift;
 
-    $c->stash('reason', $c->stash('crp_session')->variable('login_reason') // '') if $c->stash('crp_session');
+    if($c->stash('crp_session')) {
+        $c->stash('reason', $c->stash('crp_session')->variable('login_reason') // '');
+        $c->stash('crp_session')->variable('login_reason', undef);
+    }
     $c->render(template => "logged_in/login");
 }
 

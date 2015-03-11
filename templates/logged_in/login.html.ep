@@ -3,7 +3,6 @@
 % title "Log in";
 % my $reason = stash('reason') || '';
 
-<h1>Instructor log-in</h1>
 % if($reason eq 'SESSION_EXPIRED') {
 <p>
 Sorry - your session has expired. Please log in below to continue.

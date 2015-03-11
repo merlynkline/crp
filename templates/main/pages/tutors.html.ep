@@ -4,18 +4,22 @@
 <img src="<%= url_for '/images/Animals/Owl.jpg' %>" class="page-logo">
 
 <p>
+<center>
 <strong>
     The Childrens' Reflexolgy Programme is delivered only by qualified instructors
     who have received the required training and use the official course materials.
 </strong>
+</center>
 </p>
 <p>
+<center>
 <span class="highlight-box">
     Looking for an instructor?
     <a class="standard-button" href="<%= url_for 'crp.location_search' %>">Find an instructor near you</a>
     or
     <a class="standard-button" href="<%= url_for 'crp.instructor_search' %>">Find a specific instructor</a>
 </span>
+</center>
 </p>
 <br />
 <h1>Become a certified instructor</h1>
