@@ -1,0 +1,6 @@
+#!/bin/sh
+
+git pull;
+authbind --deep carton exec hypnotoad script/crp daemon
+
+
