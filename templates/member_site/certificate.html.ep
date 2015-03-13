@@ -19,7 +19,7 @@
             </p>
             <p class="certificate-extra">
             The signature ID for this certificate is '<%= stash('signature_id') %>'.<br />
-            <a href="<%= url_for('crp.membersite.home', slug => stash('signature_id')) %>">More information on <%= stash('site_profile')->name %> is available here.</a>
+            <a href="<%= url_for('crp.membersite.home', slug => stash('site_profile')->web_page_slug) %>">More information on <%= stash('site_profile')->name %> is available here.</a>
             </p>
         </div>
     </div>
