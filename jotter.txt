@@ -1,6 +1,5 @@
 
 
-- top level kidsreflex.co.uk
 
 + add some decoration to the contact form and the thank you page (etc etc)
 + Finalise text/layout/design
@@ -10,7 +9,6 @@
     + Name labels for carers
     + Talk/presentation
     + Course log/diary pages
-	+ Membership certificate
 ** Work out cancel/publish/delete interactions for courses. Need to show cancelled courses in various places. Cancel a published course: what happens to it?
 + Basic shop page to order packs, book
 + The instructor's 'search for enquiries' page should start with location rather than postcode
@@ -69,7 +67,6 @@
 
 ----
 
-+ Online booking form for the course if it's in the future (with Ts&Cs)
 + Publishing a course could take a long time to notify all the enquirers.
 + Refactor templates to further generalise location input.
 + use named paths in menus (and elsewhere)
@@ -441,7 +438,7 @@ Vultr setup:
     + auto update: https://www.vultr.com/docs/how-to-set-up-unattended-upgrades-on-debian-6-7
     + Disable root login (enable sudo for crp first!): https://www.vultr.com/docs/disable-or-restrict-root-login-via-ssh-on-linux
     ~ Remove apache
-    + handle top level: http://kidsreflex.co.uk/
+    ~ handle top level: http://kidsreflex.co.uk/
     + log rotation (mail/postgres/mojo)
     ~ Carton for perl packages
 - commands:
@@ -458,7 +455,6 @@ Vultr setup:
     # su - postgres -c "psql -U postgres -d postgres -c \"alter user crp with password 'cr12114';\""
     # su - postgres -c "psql -U postgres -c \"create database crp with owner = crp;\""
     # # Create initial account like: su - postgres -c "psql -U crp -c \"insert into login (email) values ('sue@susanquayle.co.uk');\""
-    #### aptitude install apache2
     # aptitude install cpanminus
     # aptitude install make
     # aptitude install gcc

@@ -31,3 +31,7 @@ in order to view and print them.
 %= include "members/parts/course_doc", name => 'members/register', caption => "Register to check in trainees to each session"
 %= include "members/parts/course_doc", name => 'members/feedback_form', caption => "Feedback form for your trainees to fill in after a course has finished"
 %= include "members/parts/course_doc", name => 'members/Business cards', caption => "Business cards suitable for Avery C32011, C32016, and similar card stock"
+
+<br clear="left" />
+
+%= include "members/parts/course_doc", name => 'membership_certificate', caption => "Your current membership certificate"

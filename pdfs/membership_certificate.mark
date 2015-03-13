@@ -30,7 +30,7 @@
         },
         {
             action  => 'text',
-            text    => '[% date %]',
+            text    => '[% signature_date %]',
             x       => 372,
             y       => 184,
             align   => 'left',

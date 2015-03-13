@@ -3,6 +3,9 @@ package CRP::Util::CRPDataFormatter;
 use strict;
 use warnings;
 
+use DateTime;
+use CRP::Util::WordNumber;
+
 sub format_data {
     my($c, $crp_data) = @_;
 
@@ -37,6 +40,19 @@ sub _extract_crp_profile_data {
 
     $data->{url} = $c->url_for('crp.membersite.home', slug => $profile->web_page_slug)->to_abs,
     $data->{url} =~ s{.+?://}{};
+
+    my $signature = '-' . CRP::Util::WordNumber::encipher($profile->id);
+    $data->{signature} = $signature;
+    $data->{signature_url} = $c->url_for('crp.membersite.certificate', slug => $signature)->to_abs;
+    $data->{signature_date} = $c->crp->format_date(_certificate_date($profile->login->create_date), 'cert');
+}
+
+sub _certificate_date {
+    my($signup_date) = @_;
+
+    my $earliest = DateTime->now()->subtract(years => 1);
+    $signup_date = $signup_date->add(years => 1) while $signup_date < $earliest;
+    return $signup_date;
 }
 
 sub _extract_crp_course_data {
