@@ -5,22 +5,22 @@
 <div class="certificate-container">
     <div class="certificate-overlay">
         <div style="opacity: 1.0;">
-        <img src="<%= url_for '/images/Plants/LavenderHorizontal2.png' %>" style="display: block; margin: 0 auto;" />
-        <p class="certificate-emphasised">This page certifies that</p>
-        <p class="certificate-writing"><%= stash('site_profile')->name %></p>
-        <p>
-        Has completed the official training course and
-        the required professional development to remain a
-        </p>
-        <p class="certificate-emphasised">Qualified Instructor</p>
-        <p>
-        in The Children's Reflexology Programme<br />
-        as of today, <%= stash('today') %>.
-        </p>
-        <p class="certificate-extra">
-        The signature ID for this certificate is '<%= stash('signature_id') %>'.<br />
-        <a href="<%= url_for('crp.membersite.home', slug => stash('signature_id')) %>">More information on <%= stash('site_profile')->name %> is available here.</a>
-        </p>
-    </div>
+            <img src="<%= url_for '/images/Plants/LavenderHorizontal2.png' %>" style="display: block; margin: 0 auto;" />
+            <p class="certificate-emphasised">This page certifies that</p>
+            <p class="certificate-writing"><%= stash('site_profile')->name %></p>
+            <p>
+            Has completed the official training course and
+            the required professional development to remain a
+            </p>
+            <p class="certificate-emphasised">Qualified Instructor</p>
+            <p>
+            in The Children's Reflexology Programme<br />
+            as of today, <%= stash('today') %>.
+            </p>
+            <p class="certificate-extra">
+            The signature ID for this certificate is '<%= stash('signature_id') %>'.<br />
+            <a href="<%= url_for('crp.membersite.home', slug => stash('signature_id')) %>">More information on <%= stash('site_profile')->name %> is available here.</a>
+            </p>
+        </div>
     </div>
 </div>

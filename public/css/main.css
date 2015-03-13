@@ -388,6 +388,8 @@ table.list1 {
     background-position:    center;
     line-height:            120%;
     color:                  black;
+    width:                  800px;
+    margin:                 20px auto;
 }
 .certificate-overlay {
     background-color:       rgba(255,255,255,0.8);
