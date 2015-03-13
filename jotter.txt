@@ -1,7 +1,5 @@
 
 
-- Certificate page is too wide
-- Amazon affiliate link for the book
 - top level kidsreflex.co.uk
 
 + add some decoration to the contact form and the thank you page (etc etc)
