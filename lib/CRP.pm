@@ -89,6 +89,17 @@ sub _before_dispatch {
         $c->stash(crp_session => CRP::Util::Session->new(mojo => $c));
         $c->stash(logged_in => $c->crp->logged_in_instructor_id);
     }
+
+    if($c->app->mode eq 'production') {
+        my $url  = $c->req->url->to_abs;
+        my $path = $c->req->url->path;
+
+        return if $url->host =~ /^www\./;
+
+        $url->host('www.' . $url->host);
+        $c->res->code(301);
+        $c->redirect_to($url->to_string);
+    }
 }
 
 sub _after_dispatch {
