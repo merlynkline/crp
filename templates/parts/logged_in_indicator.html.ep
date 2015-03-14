@@ -2,7 +2,7 @@
 % if(stash 'logged_in') {
 <div id="logged_in_indicator">
     Logged in as <%= stash('crp_session')->variable('email') %>&nbsp;&nbsp;<br />
-    <a href="<%= url_for 'instructor' %>">Members area</a>&nbsp;
-    <a href="<%= url_for '/logout' %>">Log out</a>&nbsp;&nbsp;
+    <a href="<%= url_for 'crp.logged_in_default' %>">Members area</a>&nbsp;
+    <a href="<%= url_for 'crp.logout' %>">Log out</a>&nbsp;&nbsp;
 </div>
 % }
