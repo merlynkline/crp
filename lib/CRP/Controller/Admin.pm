@@ -21,7 +21,10 @@ sub authenticate {
 sub welcome {
     my $c = shift;
 
-#    $profile->courses->get_draft_set->count
+    my $days = $c->config->{course}->{age_when_advert_expires_days};
+    $c->stash(instructor_count          => $c->crp->model('Profile')->search_live_profiles->count);
+    $c->stash(draft_courses_count       => $c->crp->model('Course')->get_draft_set->count);
+    $c->stash(advertised_courses_count  => $c->crp->model('Course')->get_advertised_set($days)->count);
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
