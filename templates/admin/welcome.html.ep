@@ -1,0 +1,35 @@
+%#<!DOCTYPE html>
+% layout 'member_default', heading => 'Administrative tools', page_id => 'admin';
+% title 'Admin tools';
+
+%= form_for 'crp.admin.find_account' => (method => 'GET') => begin
+    <fieldset>
+        <legend>Find an account</legend>
+        <label for="email">Name/email address/signature:</label>
+        <div class="input-container">
+            <%= text_field 'query', size => '30', id => 'query', required => "required", autofocus => "autofocus"  =%>
+            <%= include 'parts/error', field => 'query' =%>
+        </div>
+        <label>&nbsp;</label>
+        <div class="input-container">
+            <%= submit_button 'Search', name => 'search' %>
+        </div>
+    </fieldset>
+% end
+
+%= form_for 'crp.admin..create_account' => (method => 'POST') => begin
+    <fieldset>
+        <legend>Create a new account</legend>
+        <label for="email">New email address:</label>
+        <div class="input-container">
+            <%= text_field 'email', size => '30', id => 'email', required => "required", autofocus => "autofocus"  =%>
+            <%= include 'parts/error', field => 'email' =%>
+        </div>
+        <label>&nbsp;</label>
+        <div class="input-container">
+            <%= submit_button 'Create', name => 'create' %>
+        </div>
+    </fieldset>
+% end
+
+<script>$(".hide-on-load").delay(4000).slideUp(1000);</script>
