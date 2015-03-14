@@ -4,23 +4,22 @@
 + add some decoration to the contact form and the thank you page (etc etc)
 + Finalise text/layout/design
 
-** Leaflet (etc) printing for live courses
 + Generate peronalised PDFs:
     + Name labels for carers
     + Talk/presentation
     + Course log/diary pages
-** Work out cancel/publish/delete interactions for courses. Need to show cancelled courses in various places. Cancel a published course: what happens to it?
+    + Business card with QR code?
++ Fix up control panel to be useful
++ Work out cancel/publish/delete interactions for courses. Need to show cancelled courses in various places. Cancel a published course: what happens to it?
 + Basic shop page to order packs, book
++ Course costing calculator(s) - JS versions of the spreadsheets
 + The instructor's 'search for enquiries' page should start with location rather than postcode
-** Should the postcode in the profile be mandatory?
++ Should the postcode in the profile be mandatory?
 + Pass some images through tinyjpg/tinypng
 + Limit numbers in search results. Enquiries - find near location, notify_enquirers.
-+ Fix up control panel to be useful
 + Adding a new enquiry should notify the instructors of nearby courses if requested
 + Session table housekeeping (see enquiry housekeeping)
-+ Get rid of all references to Tutor/practitioner
 + Data backup (DB, instructors' pics)
-+ Course costing calculator(s) - JS versions of the spreadsheets
 + FAQ/External resources: bibliography (for instructors)
     - How to print PDFs (scaling off, double-sided, A4->A5)
     - QR codes
@@ -34,7 +33,15 @@
     - CSV files
     - Geographic searches
 	- Balens insurance
++ Get rid of all references to Tutor/practitioner
 + Some admin tools
+    + Create account
+    + Find account
+        + Print certificate
+        + Change email address
+        + Send temporary password
+        + Suspend
+    + Some stats on courses, instructors
 + Login routes to test: from logged out, from logged out via interstitial, from already logged in
 
 

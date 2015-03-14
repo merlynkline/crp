@@ -63,6 +63,9 @@ sub startup {
     $logged_in->any('course_docs')->to('members#course_docs')->name('crp.members.course_docs');
     $logged_in->any('pdf_image/*name')->to('members#pdf_image')->name('crp.members.pdf_image');
     $logged_in->any('course_pdf/:course_id/*name')->to('members#course_pdf')->name('crp.members.course_pdf');
+
+    my $admin = $logged_in->under('/admin')->to('admin#authenticate');
+    $admin->get('/')->to('admin#welcome')->name('crp.admin_default');
     
     my $member_site = $r->under('/me/:slug')->to('member_site#identify');
     $member_site->any('/')->to('member_site#welcome')->name('crp.membersite.home');

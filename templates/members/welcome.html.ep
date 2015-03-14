@@ -16,9 +16,6 @@
 % if(stash 'incomplete_profile') {
 %= include 'parts/message_box', msg => 'profile_incomplete', auto_hide => 0;
 % }
-<p>
-Your personal web site is at <a href="<%= $personal_url %>"><%= $personal_url %></a>.
-</p>
 <table align="right">
     <tr>
         <td align="center" valign="top">
@@ -29,7 +26,13 @@ Your personal web site is at <a href="<%= $personal_url %>"><%= $personal_url %>
                 %= $contact_row_block->('Draft', stash('draft_courses_count') || 'None');
                 %= $contact_row_block->('Advertised', stash('advertised_courses_count') || 'None');
             </table>
+            % if (stash 'is_administrator') {
+            <span class="highlight-box">
+                You are an admin:
+                <a class="standard-button" href="<%= url_for 'crp.admin_default' %>">Admin tools</a>
+            </span>
             <br />
+            % }
             <table class="list1">
                 <tr>
                     <th colspan="2">Profile summary</th>
@@ -57,6 +60,9 @@ Your personal web site is at <a href="<%= $personal_url %>"><%= $personal_url %>
         </td>
     </tr>
 </table>
+<p>
+Your personal web site is at <a href="<%= $personal_url %>"><%= $personal_url %></a>.
+</p>
 Welcome to the Children's Reflexology Programme Member's area.
 Please use the menu above to explore the site.
 </p>
