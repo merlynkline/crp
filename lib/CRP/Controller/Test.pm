@@ -3,10 +3,15 @@ use Mojo::Base 'Mojolicious::Controller';
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 sub authenticate {
-    my $self = shift;
+    my $c = shift;
 
-    return 1 if $self->app->mode eq 'development';
-    $self->reply->not_found;
+    return 1 if
+        $c->app->mode eq 'development' ||
+        (
+            $c->crp->logged_in_instructor_id
+            && $c->crp->model('Login')->find($c->crp->logged_in_instructor_id)->is_administrator
+        );
+    $c->reply->not_found;
     return 0;
 }
 
