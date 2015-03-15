@@ -78,16 +78,17 @@ sub _find_acounts {
     my $c = shift;
     my($search_key) = @_;
 
-    my @matches = $c->crp->model('Profile')->search(
+    my @matches = $c->crp->model('Login')->search(
         [
-            {'lower(name)' => { like => lc "%$search_key%"}},
-            {'lower(login.email)' => { like => lc "%$search_key%"}},
+            {'lower(profile.name)' => { like => lc "%$search_key%"}},
+            {'lower(email)' => { like => lc "%$search_key%"}},
         ],
         {
-            join => 'login',
-            order_by => {-asc => 'lower(name)'}
+            join => 'profile',
+            order_by => {-asc => 'lower(email)'}
         },
     );
+
     return \@matches if @matches;
     return;
 }
@@ -96,15 +97,38 @@ sub _find_acounts {
 sub show_account {
     my $c = shift;
 
-    my $id = $c->param('id') || return $c->welcome;
-    my $profile = $c->crp->model('Profile')->find($id) || return $c->welcome;
+    my $id = $c->param('id') || shift || return $c->welcome;
+    my $login = $c->crp->model('Login')->find($id) || return $c->welcome;
     my $days = $c->config->{course}->{age_when_advert_expires_days};
-    $c->stash(
-        profile_record            => $profile,
-        draft_courses_count       => $profile->courses->get_draft_set->count,
-        advertised_courses_count  => $profile->courses->get_advertised_set($days)->count,
-        past_courses_count        => $profile->courses->get_past_set($days)->count,
-    );
+    my $profile = $login->profile;
+    $c->stash(login => $login);
+    if($profile) {
+        $c->stash(
+            profile_record            => $profile,
+            draft_courses_count       => $profile->courses->get_draft_set->count,
+            advertised_courses_count  => $profile->courses->get_advertised_set($days)->count,
+            past_courses_count        => $profile->courses->get_past_set($days)->count,
+        );
+    }
+    return $c->page('show_account');
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub create_account {
+    my $c = shift;
+
+    if($c->req->method eq 'POST') {
+        my $email = $c->crp->trimmed_param('email') || return $c->welcome;
+        my $validation = $c->validation;
+        $validation->required('email')->like(qr{^.+@.+[.].+});
+        my $login_record;
+        $login_record = $c->crp->model('Login')->find({'lower(me.email)' => lc $email}) unless $validation->has_error;
+        $validation->error(email => ['duplicate_email']) if $login_record;
+        return $c->welcome if $validation->has_error;
+
+        $login_record = $c->crp->model('Login')->create({email => $email});
+        return $c->show_account($login_record->id);
+    }
     return $c->page('show_account');
 }
 

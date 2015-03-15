@@ -1,16 +1,15 @@
 %#<!DOCTYPE html>
 % layout 'member_default';
 % title 'Account record';
-% my $profile = stash('profile_record');
-% my $login = $profile->login;
-% my $personal_url = url_for('crp.membersite.home', slug => $profile_record->web_page_slug);
+% my $login = stash('login');
+% my $profile = $login->profile;
 % my $contact_row_block = begin
 % my($name, $value) = @_;
 % if($value) {
 <tr><td><%= $name %>:</td><td nowrap="nowrap"><%= $value %></td></tr>
 % }
 % end
-<h1>Account record for <%= $profile->name ? $profile->name : '(anon)' %></h1>
+<h1>Account record for <%= ($profile && $profile->name) ? $profile->name : '(anonymous)' %></h1>
 <table align="right">
     <tr>
         <td align="center" valign="top">
@@ -22,6 +21,7 @@
             </table>
             <table class="list1">
                 <tr><th colspan="2">Profile summary</th></tr>
+                % if($profile) {
                 %= $contact_row_block->('Telephone', $profile->telephone);
                 %= $contact_row_block->('Mobile', $profile->mobile);
                 % if($profile->address) {
@@ -35,6 +35,7 @@
                 </tr>
                 % }
                 %= $contact_row_block->('Postcode', $profile->postcode);
+                % }
                 % if($login->email) {
                 <tr>
                     <td>Email:</td>
@@ -46,6 +47,9 @@
     </tr>
 </table>
 <p>
+% if($profile) {
+% my $personal_url = url_for('crp.membersite.home', slug => $profile->web_page_slug);
 Personal web site: <a href="<%= $personal_url %>" target="_blank"><%= $personal_url %></a>.
+% }
 </p>
 <script>$(".hide-on-load").delay(4000).slideUp(1000);</script>

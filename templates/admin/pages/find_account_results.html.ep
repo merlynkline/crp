@@ -13,17 +13,18 @@
         <th>Last login</th>
         <th>Disabled</th>
     </tr>
-    % for my $instructor (@{stash('matches')}) {
-    %   my $url = url_for('crp.admin.show_account')->query(id => $instructor->login->id)->to_abs;
-    %   my $disabled = $instructor->login->disabled_date;
+    % for my $login (@{stash('matches')}) {
+    %   my $instructor = $login->profile;
+    %   my $url = url_for('crp.admin.show_account')->query(id => $login->id)->to_abs;
+    %   my $disabled = $login->disabled_date;
     %   $disabled = $disabled ? $c->crp->format_date($disabled, 'short') : 'No';
-    %   my $last_login = $instructor->login->last_login_date;
+    %   my $last_login = $login->last_login_date;
     %   $last_login = $last_login ? $c->crp->format_date($last_login, 'short') : '';
     <tr>
-        <td><a href="<%= $url %>"><%= $instructor->name // '(anonymous)' %></a></td>
-        <td><%= $instructor->login->email // '' %></td>
-        <td><%= $instructor->postcode // '' %></td>
-        <td><%= $c->crp->format_date($instructor->login->create_date, 'short') %></td>
+        <td><a href="<%= $url %>"><%= ($instructor && $instructor->name) // '(anonymous)' %></a></td>
+        <td><%= $login->email // '' %></td>
+        <td><%= ($instructor && $instructor->postcode) // '' %></td>
+        <td><%= $c->crp->format_date($login->create_date, 'short') %></td>
         <td><%= $last_login %></td>
         <td><%= $disabled %></td>
     </tr>
