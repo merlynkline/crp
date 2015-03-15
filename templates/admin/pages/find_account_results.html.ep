@@ -20,7 +20,7 @@
     %   my $last_login = $instructor->login->last_login_date;
     %   $last_login = $last_login ? $c->crp->format_date($last_login, 'short') : '';
     <tr>
-        <td><a href="<%= $url %>"><%= $instructor->name // '' %></a></td>
+        <td><a href="<%= $url %>"><%= $instructor->name // '(anonymous)' %></a></td>
         <td><%= $instructor->login->email // '' %></td>
         <td><%= $instructor->postcode // '' %></td>
         <td><%= $c->crp->format_date($instructor->login->create_date, 'short') %></td>
