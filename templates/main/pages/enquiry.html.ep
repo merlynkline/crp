@@ -9,7 +9,7 @@
     confirmation email before we make use of any of these details and you will be
     able to change or delete this information whenever you wish.
     <fieldset>
-        <legend>Find a course</legend>
+        <legend>Register with us</legend>
 
         <label for="location-input-location">Location:</label>
         <div class="input-container">
