@@ -35,9 +35,9 @@
 	- Balens insurance
 + Get rid of all references to Tutor/practitioner
 + Some admin tools
-    + Create account
+    ~ Create account
     ~ Find account
-        + Print certificate
+        ~ Print certificate
         + Change email address
         + Send temporary password
         + Suspend

@@ -134,5 +134,30 @@ sub create_account {
     return $c->page('show_account');
 }
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+use CRP::Util::PDFMarkUp;
+use CRP::Util::CRPDataFormatter;
+sub certificate {
+    my $c = shift;
+
+    my $id = $c->param('id') || shift || return $c->welcome;
+    my $login = $c->crp->model('Login')->find($id) || return $c->welcome;
+    my $pdf = $c->app->home->rel_file("pdfs/instructor_certificate.pdf");
+    return $c->reply->not_found unless -r $pdf;
+
+    my $pdf_doc = CRP::Util::PDFMarkUp->new(file_path => $pdf);
+    my $signature = '-' . CRP::Util::WordNumber::encipher($login->id);
+    my $data = {
+        signature       => $signature,
+        signature_url   => $c->url_for('crp.membersite.certificate', slug => $signature)->to_abs,
+    };
+    $c->render_file(
+        data                => $pdf_doc->fill_template($data),
+        format              => 'pdf',
+        content_disposition => $c->param('download') ? 'attachment' : 'inline',
+    );
+}
+
+
 1;
 

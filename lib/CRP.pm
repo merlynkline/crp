@@ -68,7 +68,8 @@ sub startup {
     $admin->get('/')->to('admin#welcome')->name('crp.admin_default');
     $admin->post('/find_account')->to('admin#find_account')->name('crp.admin.find_account');
     $admin->any('/show_account')->to('admin#show_account')->name('crp.admin.show_account');
-    $admin->any('/create_account')->to('admin#create_account')->name('crp.admin.create_account');
+    $admin->any('/certificate')->to('admin#certificate')->name('crp.admin.certificate');
+
     
     my $member_site = $r->under('/me/:slug')->to('member_site#identify');
     $member_site->any('/')->to('member_site#welcome')->name('crp.membersite.home');

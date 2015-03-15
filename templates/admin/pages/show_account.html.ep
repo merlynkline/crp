@@ -52,5 +52,13 @@
 % my $personal_url = url_for('crp.membersite.home', slug => $profile->web_page_slug);
 Personal web site: <a href="<%= $personal_url %>" target="_blank"><%= $personal_url %></a>.
 % }
+Actions:
+<ul>
+    <li><a href="<%= url_for('crp.admin.certificate')->query(id => $login->id) %>">Print certificate</a>
+    <li><a href="<%= url_for('/')->query(id => $login->id) %>">Change email address</a>
+    <li><a href="<%= url_for('/')->query(id => $login->id) %>">Send temporary password</a>
+    <li><a href="<%= url_for('/')->query(id => $login->id) %>">Suspend</a>
+    <li><a href="<%= url_for('/')->query(id => $login->id) %>">Log in to this account</a>
+</ul>
 </p>
 <script>$(".hide-on-load").delay(4000).slideUp(1000);</script>
