@@ -1,6 +1,9 @@
 package CRP::Controller::LoggedIn;
 use Mojo::Base 'Mojolicious::Controller';
 use Mojo::Util;
+
+use DateTime;
+
 use CRP::Util::WordNumber;
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -204,6 +207,8 @@ sub _do_login {
 # TODO: handle auto-login flag
     my $crp_session = $c->stash('crp_session');
     my $destination = $crp_session->variable('interstitial_destination');
+    $login_record->last_login_date(DateTime->now);
+    $login_record->update();
     $crp_session->create_new();
     $crp_session->variable(instructor_id => $login_record->id);
     $crp_session->variable(email => $login_record->email);
