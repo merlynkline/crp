@@ -9,6 +9,7 @@
 <tr><td><%= $name %>:</td><td nowrap="nowrap"><%= $value %></td></tr>
 % }
 % end
+<%= include 'parts/message_box', msg => flash('msg') || stash('msg'), auto_hide => 1 %>
 <h1>Account record for <%= ($profile && $profile->name) ? $profile->name : '(anonymous)' %></h1>
 <table align="right">
     <tr>

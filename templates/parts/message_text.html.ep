@@ -2,6 +2,7 @@
 %# Render a temporary message identified in $msg
 % use Mojo::Util 'xml_escape';
 % my $message = {
+%   account_create          => 'New account created.',
 %   fix_errors              => 'Please fix the errors shown on the form.',
 %   no_advertised_courses   => 'There are no advertised courses.',
 %   no_draft_courses        => 'There are no draft courses.',
@@ -16,6 +17,7 @@
 %   profile_incomplete      => 'Your profile is not complete - please <a href="' . url_for('crp.members.profile') . '">update it here</a>.',
 %   profile_update          => 'Your profile has been updated.',
 %   registration_update     => 'Your information has been updated.',
+%   single_match            => 'Only one matching account found.',
 % };
 % if($msg) {
 <%= b($message->{$msg} // "[Unrecognised message code: '$msg']") =%>

@@ -68,6 +68,7 @@ sub _find_account_results {
         $c->stash(search_key => $query);
         $matches = $c->_find_acounts($query);
         if($matches && @$matches == 1) {
+            $c->flash(msg => 'single_match');
             return $c->redirect_to($c->url_for('crp.admin.show_account')->query(id => $matches->[0]->id));
         }
     }
@@ -127,7 +128,8 @@ sub create_account {
         return $c->welcome if $validation->has_error;
 
         $login_record = $c->crp->model('Login')->create({email => $email});
-        return $c->show_account($login_record->id);
+        $c->flash(msg => 'account_create');
+        return $c->redirect_to($c->url_for('crp.admin.show_account')->query(id => $login_record->id));
     }
     return $c->page('show_account');
 }
