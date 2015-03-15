@@ -6,6 +6,7 @@ use Mojo::Util;
 use Try::Tiny;
 use DateTime;
 use CRP::Util::DateParser;
+use CRP::Util::WordNumber;
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 sub authenticate {
@@ -25,6 +26,8 @@ sub welcome {
     $c->stash(instructor_count          => $c->crp->model('Profile')->search_live_profiles->count);
     $c->stash(draft_courses_count       => $c->crp->model('Course')->get_draft_set->count);
     $c->stash(advertised_courses_count  => $c->crp->model('Course')->get_advertised_set($days)->count);
+    $c->stash(past_courses_count        => $c->crp->model('Course')->get_past_set($days)->count);
+    $c->render(template => "admin/welcome");
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -34,48 +37,76 @@ sub page {
     my $page = shift // $c->stash('page');
     $c->stash('page', $page);
 
-    $c->render(template => "admin/pages/$page");
+    $c->render(template => "admin/pages/$page", @_);
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-sub instructor_search {
+sub find_account {
     my $c = shift;
 
-    my $matches;
     if($c->req->method eq 'POST') {
         my $validation = $c->validation;
-        $validation->required('name');
-        my $name = $c->crp->trimmed_param('name');
-        $name =~ s{^ [%\s]+ | [\s%]+ $}{}gsmx; # Prevent match-all searches
-        $validation->error(name => ['like']) unless $name;
-        if( ! $validation->has_error) {
-            if($name =~ m{^-?(\d+)$}) {
-                return $c->redirect_to('crp.membersite.certificate', slug => "-$1");
-            }
-            else {
-                $c->stash(search_key => $name);
-                $matches = $c->_find_instructors($name);
-                if($matches && @$matches == 1) {
-                    return $c->redirect_to('crp.membersite.home', slug => $matches->[0]->web_page_slug);
-                }
-            }
-        }
+        $validation->required('query');
+        my $query = $c->crp->trimmed_param('query');
+        $query =~ s{^ [%\s]+ | [\s%]+ $}{}gsmx; # Prevent match-all searches
+        $validation->error(query => ['like']) unless $query;
+        return $c->_find_account_results($query) if( ! $validation->has_error);
     }
-    return $c->page('instructor_search', matches => $matches);
+    return $c->welcome;
 }
 
-sub _find_instructors {
+sub _find_account_results {
+    my $c = shift;
+    my($query) = @_;
+
+    my $matches;
+    if($query =~ m{^-?(\d+)$}) {
+        my $id = CRP::Util::WordNumber::decode_number($1);
+        return $c->redirect_to($c->url_for('crp.admin.show_account')->query(id => $id)) if $id;
+    }
+    if($query) {
+        $c->stash(search_key => $query);
+        $matches = $c->_find_acounts($query);
+        if($matches && @$matches == 1) {
+            return $c->redirect_to($c->url_for('crp.admin.show_account')->query(id => $matches->[0]->id));
+        }
+    }
+    return $c->page('find_account_results', matches => $matches);
+}
+
+sub _find_acounts {
     my $c = shift;
     my($search_key) = @_;
 
-    my @matches = $c->crp->model('Profile')->search_live_profiles(
-        {'lower(name)' => { like => lc "%$search_key%"}},
-        {order_by => {-asc => 'lower(name)'}},
+    my @matches = $c->crp->model('Profile')->search(
+        [
+            {'lower(name)' => { like => lc "%$search_key%"}},
+            {'lower(login.email)' => { like => lc "%$search_key%"}},
+        ],
+        {
+            join => 'login',
+            order_by => {-asc => 'lower(name)'}
+        },
     );
     return \@matches if @matches;
     return;
 }
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub show_account {
+    my $c = shift;
+
+    my $id = $c->param('id') || return $c->welcome;
+    my $profile = $c->crp->model('Profile')->find($id) || return $c->welcome;
+    my $days = $c->config->{course}->{age_when_advert_expires_days};
+    $c->stash(
+        profile_record            => $profile,
+        draft_courses_count       => $profile->courses->get_draft_set->count,
+        advertised_courses_count  => $profile->courses->get_advertised_set($days)->count,
+        past_courses_count        => $profile->courses->get_past_set($days)->count,
+    );
+    return $c->page('show_account');
+}
 
 1;
 

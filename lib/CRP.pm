@@ -66,6 +66,8 @@ sub startup {
 
     my $admin = $logged_in->under('/admin')->to('admin#authenticate');
     $admin->get('/')->to('admin#welcome')->name('crp.admin_default');
+    $admin->post('/find_account')->to('admin#find_account')->name('crp.admin.find_account');
+    $admin->any('/show_account')->to('admin#show_account')->name('crp.admin.show_account');
     
     my $member_site = $r->under('/me/:slug')->to('member_site#identify');
     $member_site->any('/')->to('member_site#welcome')->name('crp.membersite.home');

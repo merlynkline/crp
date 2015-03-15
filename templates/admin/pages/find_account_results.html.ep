@@ -1,0 +1,37 @@
+%#<!DOCTYPE html>
+% layout 'member_default', heading => "Account search results";
+% title "Account search";
+<h3>Accounts matching '<%= stash('search_key') %>'</h3>
+% if(defined stash('matches') && @{stash('matches')}) {
+<p>To manage the account for any instructor click on their name.</p>
+<table class="list1">
+    <tr>
+        <th>Name</th>
+        <th>email</th>
+        <th>Postcode</th>
+        <th>Created</th>
+        <th>Last login</th>
+        <th>Disabled</th>
+    </tr>
+    % for my $instructor (@{stash('matches')}) {
+    %   my $url = url_for('crp.admin.show_account')->query(id => $instructor->login->id)->to_abs;
+    %   my $disabled = $instructor->login->disabled_date;
+    %   $disabled = $disabled ? $c->crp->format_date($disabled, 'short') : 'No';
+    %   my $last_login = $instructor->login->last_login_date;
+    %   $last_login = $last_login ? $c->crp->format_date($last_login, 'short') : '';
+    <tr>
+        <td><a href="<%= $url %>"><%= $instructor->name // '' %></a></td>
+        <td><%= $instructor->login->email // '' %></td>
+        <td><%= $instructor->postcode // '' %></td>
+        <td><%= $c->crp->format_date($instructor->login->create_date, 'short') %></td>
+        <td><%= $last_login %></td>
+        <td><%= $disabled %></td>
+    </tr>
+    % }
+</table>
+% }
+% else {
+%= include 'parts/message_box', msg => 'no_instructors_found', auto_hide => 0;
+% }
+
+

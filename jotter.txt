@@ -36,25 +36,16 @@
 + Get rid of all references to Tutor/practitioner
 + Some admin tools
     + Create account
-    + Find account
+    ~ Find account
         + Print certificate
         + Change email address
         + Send temporary password
         + Suspend
-    + Some stats on courses, instructors
+        + Log in to account
+    ~ Some stats on courses, instructors
 + Login routes to test: from logged out, from logged out via interstitial, from already logged in
 
 
-- Instructor's booking acknowledgment
-    - Welcoming cover letter
-    - Details of remaining payment schedule (if any)
-    - Confirmation of date of course
-    - Full details of location (how to find it)
-    - Additional location info (e.g. places to stay)
-    - Attendance instructions
-        - Time to arrive
-        - What to bring (pen, pad, coloured pencils, towel, manual if it's been sent out)
-        - Come prepared to give and receive reflexology
 - Internal student tracking sheet:
     - Attach to booking form so details are to hand
     - Before the course:
