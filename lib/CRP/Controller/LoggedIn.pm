@@ -12,7 +12,6 @@ sub authenticate {
 
     my $logged_in_id = $c->crp->logged_in_instructor_id;
     if($logged_in_id) {
-
         my $login_record = $c->crp->model('Login')->find($logged_in_id);
         if($login_record) {
             $c->stash('login_record', $login_record);
@@ -66,6 +65,8 @@ sub _get_post_interstitial_destination {
 
 sub _check_if_interstitial_needed {
     my $c = shift;
+
+    return if $c->stash('crp_session')->variable('admin_id');
 
     if( ! $c->stash('login_record')->password_hash && $c->current_route ne 'crp.set_password') {
         return 'crp.set_password';
@@ -124,6 +125,7 @@ sub login {
     return $c->_show_login if $validation->has_error;
 
     $c->_do_login($login_record, $auto_login);
+    $c->_redirect_to_interstitial_continuation_or_url('crp.logged_in_default');
 }
 
 sub _show_login {
@@ -198,6 +200,7 @@ sub otp {
     $login_record->update();
 
     $c->_do_login($login_record);
+    $c->_redirect_to_interstitial_continuation_or_url('crp.logged_in_default');
 }
 
 sub _do_login {
@@ -214,9 +217,24 @@ sub _do_login {
     $crp_session->variable(email => $login_record->email);
     $crp_session->variable(login_reason => undef);
     $crp_session->variable(interstitial_destination => $destination) if $destination;
-    $c->_redirect_to_interstitial_continuation_or_url('crp.logged_in_default');
 }
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub admin_login {
+    my $c = shift;
+
+    my $id = $c->param('id');
+    my $login_record;
+    $login_record = $c->crp->model('Login')->find($id) if $id && $c->stash('login_record')->is_administrator;
+    my $admin_id = $c->stash('login_record')->id;
+    my $admin_email = $c->stash('login_record')->email;
+    $c->render(text => "Sorry - you aren't authorised to see this page", status => 403) unless $login_record;
+    $c->_do_login($login_record);
+    my $crp_session = $c->stash('crp_session');
+    $crp_session->variable(admin_id => $admin_id);
+    $crp_session->variable(admin_email => $admin_email);
+    $c->_redirect_to_interstitial_continuation_or_url('crp.logged_in_default');
+}
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 sub welcome {
@@ -277,8 +295,14 @@ sub logout {
     my $c = shift;
 
     my $crp_session = $c->stash('crp_session');
+    my $admin_id = $crp_session->variable('admin_id');
+    my $logged_in_id = $c->crp->logged_in_instructor_id;
     $crp_session->clear();
-    $c->redirect_to('/');
+    return $c->redirect_to('/') unless $admin_id && $logged_in_id;
+    my $login_record = $c->crp->model('Login')->find($admin_id);
+    return $c->redirect_to('/') unless $login_record;
+    $c->_do_login($login_record);
+    $c->redirect_to($c->url_for('crp.admin.show_account')->query(id => $logged_in_id));
 }
 
 

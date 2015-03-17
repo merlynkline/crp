@@ -40,8 +40,8 @@
         ~ Print certificate
         + Change email address
         + Send temporary password
-        + Suspend
-        + Log in to account
+        + (Un)Suspend
+        ~ Log in to account. Set a session variable with the original username. On log-out, return to original account, displaying account just left.
     ~ Some stats on courses, instructors
 + Login routes to test: from logged out, from logged out via interstitial, from already logged in
 
@@ -346,6 +346,15 @@ session:
     - Cut out desired part (A4 is evidently 595x840px at 75%)
     - Scale result to 25% and move to pixel boundary
     - Export as JPG with same name as PDF but .jpg extension
+ - Releasing a new version
+    - Tag name is release-YYYYMMDD-NN
+    - run: git tag <tag-name>
+    - run: git push origin <tag-name>
+    - log in to the vultr server
+    - run: su - crp
+    - run: cd crp
+    - run: ./upd
+    - NB: The upd script just pulls the latest version of whateverbranch is checked out, not necessarily the right tag.
 
 
 
