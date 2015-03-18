@@ -79,6 +79,7 @@ sub set_column {
 
     CRP::Util::Types::type_check($TYPE{$column}, $value) if exists $TYPE{$column};
     $self->web_page_slug($self->_generate_slug($value)) if $column eq 'name';
+    $value = undef if defined $value && $value eq '';
 
     $self->SUPER::set_column($column, $value);
 }
