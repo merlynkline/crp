@@ -10,5 +10,5 @@
         }
     }
     %>"/></div>
-<div class="yellow-text-edited"><%= b($profile->blurb) %></div>
+<div class="yellow-text-edited"><%= b($profile->blurb // '') %></div>
 
