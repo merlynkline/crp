@@ -3,7 +3,7 @@
 <div id="logged_in_indicator">
     Logged in as <%= stash('crp_session')->variable('email') %><% if(stash('crp_session')->variable('admin_email')) { %> <span style="color:#fff; background:#c00"><b>as admin <%= stash('crp_session')->variable('admin_email') %></b></span><% } %>&nbsp;&nbsp;<br />
     <a href="<%= url_for 'crp.logged_in_default' %>">Members area</a>&nbsp;
-% if (stash('login_record')->is_administrator) {
+% if (stash('crp_session')->variable('is_administrator')) {
     <a href="<%= url_for 'crp.admin_default' %>">Admin</a>&nbsp;
 % }
     <a href="<%= url_for 'crp.logout' %>">Log out</a>&nbsp;&nbsp;

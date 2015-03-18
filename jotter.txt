@@ -1,6 +1,5 @@
 
 
-
 + add some decoration to the contact form and the thank you page (etc etc)
 + Finalise text/layout/design
 
@@ -42,6 +41,7 @@
         + Send temporary password
         + (Un)Suspend
         ~ Log in to account. Set a session variable with the original username. On log-out, return to original account, displaying account just left.
+        ~ Include link back to admin home on found account page
     ~ Some stats on courses, instructors
 + Login routes to test: from logged out, from logged out via interstitial, from already logged in
 

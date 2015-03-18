@@ -214,6 +214,7 @@ sub _do_login {
     $login_record->update();
     $crp_session->create_new();
     $crp_session->variable(instructor_id => $login_record->id);
+    $crp_session->variable(is_administrator => $login_record->is_administrator);
     $crp_session->variable(email => $login_record->email);
     $crp_session->variable(login_reason => undef);
     $crp_session->variable(interstitial_destination => $destination) if $destination;

@@ -16,6 +16,7 @@ my %_COOKIE_SESSION_VARIABLE = (
     instructor_id   => 1,
     auto_login_id   => 1,
     email           => 1,
+    is_administrator=> 1,
 );
 
 
