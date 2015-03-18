@@ -40,6 +40,7 @@ sub profile {
     if($c->req->method eq 'POST') {
         my $validation = $c->validation;
 
+        my $profile_was_complete = $profile->is_complete;
         $c->_process_uploaded_photo;
         foreach my $field (qw(name address postcode telephone mobile blurb location latitude longitude)) {
             eval { $profile->$field($c->param($field)); };
@@ -55,7 +56,7 @@ sub profile {
             $c->stash(msg => 'fix_errors');
         }
         else {
-            $c->_notify_admins_of_changes($profile);
+            $c->_notify_admins_of_changes($profile) if $profile_was_complete;
             $profile->update;
             $c->flash(msg => 'profile_update');
             return $c->redirect_to('crp.members.profile');
