@@ -139,12 +139,15 @@ sub _markup_pdf_qrcode_signature {
 
 sub _add_qr_code_link {
     my $self = shift;
-    my($url, $page_number, $x, $y) = @_;
+    my($url, $page_number, $x, $y, $align) = @_;
 
     my ($file_name, $width, $height) = CRP::Util::Graphics::qr_code_link_jpeg_tmp_file($url);
     my $page = $self->_pdf->openpage($page_number || 1);
     my $gfx = $page->gfx;
     my $image = $self->_pdf->image_jpeg($file_name);
+    $align //= 'left';
+    $x -= $width * QRCODE_SCALE if $align eq 'right';
+    $x -= $width / 2 * QRCODE_SCALE if $align eq 'center';
     $gfx->image($image, $x, $y, QRCODE_SCALE);
     $self->_add_temp_file($file_name);
     return($width, $height);
@@ -162,7 +165,7 @@ sub _markup_pdf_qrcode {
     $string = $self->_replace_place_holders($string, $self->_data);
     return unless $string;
     $self->_add_qr_code_link(
-        $string, $markup_item->{page} || 1, $markup_item->{x}, $markup_item->{y}
+        $string, $markup_item->{page} || 1, $markup_item->{x}, $markup_item->{y}, $markup_item->{align}
     );
 }
 
