@@ -4,7 +4,6 @@
 + Finalise text/layout/design
 
 + Generate peronalised PDFs:
-    + add protocols to back of register with boxes to enter week numbers. Add checklist of things to take to each week's course.
     + Name labels for carers
     + Talk/presentation
     + Course log/diary pages
@@ -311,6 +310,8 @@ session:
     + Instructors accounts are eventually disabled if assignments not completed
     + Administrators can extend due dates on assignments
     + Administrators can add new assignments at any time
+ 
+ + Could each instructor have their own shop which earns them commission? (accounting problems? leability? perhaps they just earn credit)
  
  
  Implementation notes
