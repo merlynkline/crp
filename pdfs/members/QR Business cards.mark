@@ -1,0 +1,80 @@
+[
+        { action => 'text', text => '[% name %]',          x => 277, y => 748, size => 16, align => 'right', font => 'Helvetica-Bold' },
+        { action => 'text', text => 'Qualified Instructor',x => 277, y => 730, size => 14, align => 'right' },
+        { action => 'text', text => '[% phone_numbers %]', x => 238, y => 684, size => 10, align => 'right', font => 'Helvetica-Bold' },
+        { action => 'text', text => '[% email %]',         x => 238, y => 672, size =>  7, align => 'right' },
+        { action => 'text', text => '[% url %]',           x => 238, y => 663, size =>  7, align => 'right' },
+        { action => 'qrcode', text => "http://[% url %]",  x => 280.33, y => 659, align => 'right' },
+
+        { action => 'text', text => '[% name %]',          x => 546, y => 748, size => 16, align => 'right', font => 'Helvetica-Bold' },
+        { action => 'text', text => 'Qualified Instructor',x => 546, y => 730, size => 14, align => 'right' },
+        { action => 'text', text => '[% phone_numbers %]', x => 507, y => 684, size => 10, align => 'right', font => 'Helvetica-Bold' },
+        { action => 'text', text => '[% email %]',         x => 507, y => 672, size =>  7, align => 'right' },
+        { action => 'text', text => '[% url %]',           x => 507, y => 663, size =>  7, align => 'right' },
+        { action => 'qrcode', text => "http://[% url %]",  x => 549.33, y => 659, align => 'right' },
+        
+        #-----------------------------------------------------
+
+        { action => 'text', text => '[% name %]',          x => 277, y => 595, size => 16, align => 'right', font => 'Helvetica-Bold' },
+        { action => 'text', text => 'Qualified Instructor',x => 277, y => 577, size => 14, align => 'right' },
+        { action => 'text', text => '[% phone_numbers %]', x => 238, y => 531, size => 10, align => 'right', font => 'Helvetica-Bold' },
+        { action => 'text', text => '[% email %]',         x => 238, y => 519, size =>  7, align => 'right' },
+        { action => 'text', text => '[% url %]',           x => 238, y => 510, size =>  7, align => 'right' },
+        { action => 'qrcode', text => "http://[% url %]",  x => 280.33, y => 506, align => 'right' },
+
+        { action => 'text', text => '[% name %]',          x => 546, y => 595, size => 16, align => 'right', font => 'Helvetica-Bold' },
+        { action => 'text', text => 'Qualified Instructor',x => 546, y => 577, size => 14, align => 'right' },
+        { action => 'text', text => '[% phone_numbers %]', x => 507, y => 531, size => 10, align => 'right', font => 'Helvetica-Bold' },
+        { action => 'text', text => '[% email %]',         x => 507, y => 519, size =>  7, align => 'right' },
+        { action => 'text', text => '[% url %]',           x => 507, y => 510, size =>  7, align => 'right' },
+        { action => 'qrcode', text => "http://[% url %]",  x => 549.33, y => 506, align => 'right' },
+        
+        #-----------------------------------------------------
+
+        { action => 'text', text => '[% name %]',          x => 277, y => 442, size => 16, align => 'right', font => 'Helvetica-Bold' },
+        { action => 'text', text => 'Qualified Instructor',x => 277, y => 424, size => 14, align => 'right' },
+        { action => 'text', text => '[% phone_numbers %]', x => 238, y => 378, size => 10, align => 'right', font => 'Helvetica-Bold' },
+        { action => 'text', text => '[% email %]',         x => 238, y => 366, size =>  7, align => 'right' },
+        { action => 'text', text => '[% url %]',           x => 238, y => 357, size =>  7, align => 'right' },
+        { action => 'qrcode', text => "http://[% url %]",  x => 280.33, y => 353, align => 'right' },
+
+        { action => 'text', text => '[% name %]',          x => 546, y => 442, size => 16, align => 'right', font => 'Helvetica-Bold' },
+        { action => 'text', text => 'Qualified Instructor',x => 546, y => 424, size => 14, align => 'right' },
+        { action => 'text', text => '[% phone_numbers %]', x => 507, y => 378, size => 10, align => 'right', font => 'Helvetica-Bold' },
+        { action => 'text', text => '[% email %]',         x => 507, y => 366, size =>  7, align => 'right' },
+        { action => 'text', text => '[% url %]',           x => 507, y => 357, size =>  7, align => 'right' },
+        { action => 'qrcode', text => "http://[% url %]",  x => 549.33, y => 353, align => 'right' },
+        
+        #-----------------------------------------------------
+
+        { action => 'text', text => '[% name %]',          x => 277, y => 289, size => 16, align => 'right', font => 'Helvetica-Bold' },
+        { action => 'text', text => 'Qualified Instructor',x => 277, y => 271, size => 14, align => 'right' },
+        { action => 'text', text => '[% phone_numbers %]', x => 238, y => 225, size => 10, align => 'right', font => 'Helvetica-Bold' },
+        { action => 'text', text => '[% email %]',         x => 238, y => 213, size =>  7, align => 'right' },
+        { action => 'text', text => '[% url %]',           x => 238, y => 204, size =>  7, align => 'right' },
+        { action => 'qrcode', text => "http://[% url %]",  x => 280.33, y => 200, align => 'right' },
+
+        { action => 'text', text => '[% name %]',          x => 546, y => 289, size => 16, align => 'right', font => 'Helvetica-Bold' },
+        { action => 'text', text => 'Qualified Instructor',x => 546, y => 271, size => 14, align => 'right' },
+        { action => 'text', text => '[% phone_numbers %]', x => 507, y => 225, size => 10, align => 'right', font => 'Helvetica-Bold' },
+        { action => 'text', text => '[% email %]',         x => 507, y => 213, size =>  7, align => 'right' },
+        { action => 'text', text => '[% url %]',           x => 507, y => 204, size =>  7, align => 'right' },
+        { action => 'qrcode', text => "http://[% url %]",  x => 549.33, y => 200, align => 'right' },
+        
+        #-----------------------------------------------------
+
+        { action => 'text', text => '[% name %]',          x => 277, y => 136, size => 16, align => 'right', font => 'Helvetica-Bold' },
+        { action => 'text', text => 'Qualified Instructor',x => 277, y => 118, size => 14, align => 'right' },
+        { action => 'text', text => '[% phone_numbers %]', x => 238, y =>  72, size => 10, align => 'right', font => 'Helvetica-Bold' },
+        { action => 'text', text => '[% email %]',         x => 238, y =>  60, size =>  7, align => 'right' },
+        { action => 'text', text => '[% url %]',           x => 238, y =>  51, size =>  7, align => 'right' },
+        { action => 'qrcode', text => "http://[% url %]",  x => 280.33, y => 47, align => 'right' },
+
+        { action => 'text', text => '[% name %]',          x => 546, y => 136, size => 16, align => 'right', font => 'Helvetica-Bold' },
+        { action => 'text', text => 'Qualified Instructor',x => 546, y => 118, size => 14, align => 'right' },
+        { action => 'text', text => '[% phone_numbers %]', x => 507, y =>  72, size => 10, align => 'right', font => 'Helvetica-Bold' },
+        { action => 'text', text => '[% email %]',         x => 507, y =>  60, size =>  7, align => 'right' },
+        { action => 'text', text => '[% url %]',           x => 507, y =>  51, size =>  7, align => 'right' },
+        { action => 'qrcode', text => "http://[% url %]",  x => 549.33, y => 47, align => 'right' },
+]
+
