@@ -50,44 +50,45 @@
                 %= $contact_row_block->('Postcode', $profile->postcode);
                 % if($profile->login->email) {
                 <tr>
-                    <td style="max-width:180px; overflow: hidden;">Email:</td>
-                    <td><a href="mailto:<%= $profile->login->email %>"><%= $profile->login->email %></a></td>
+                    <td>Email:</td>
+                    <td style="max-width:180px; overflow: hidden;"><a href="mailto:<%= $profile->login->email %>"><%= $profile->login->email %></a></td>
                 </tr>
                 % }
             </table>
         </td>
     </tr>
 </table>
-% if(stash('draft_courses_count') + stash('advertised_courses_count') + stash('past_courses_count') == 0) {
-<p>
-Welcome to the members area. This section of the site is exclusive to qualified instructors
-and provides you with all the support you need to run and advertise your courses.
-You can find everything through the options in the menu and you should explore them to
-see what's there. Some of the more frequently used features are highlighted below.
-</p>
-% }
-<p>
-% if(stash 'incomplete_profile') {
-<div class="member-option-highlight">
-    <div>Help and FAQs</div>
-    The <span>Help/FAQs</span> menu option will take you pages that provide help
-    and answers to FAQs (Frequently Asked Questions) about using this site and
-    all aspects of The Children's Refelexology Programme. These pages are updated
-    often so it's always worth looking!
-    <br />
-    <br />
-    <a href="<%= url_for('crp.members.page', page => 'faqs') %>" class="standard-button">Help and FAQs</a>
-</div>
-<div class="member-option-highlight">
-    <div>Profile</div>
-    Your profile is not complete. <strong>It is important to make sure your profile is complete</strong> and up to
-    date as the information is used by parents and carers looking for courses. In particular, your name
-    is part of the address of your personal pages on this web site. Use the <span>Profile</span>
-    menu option to maintain your profile or click
-    <br />
-    <br />
-    <a href="<%= url_for 'crp.members.profile' %>" class="standard-button">Profile</a>
-</div>
+<div style="width: 620px">
+    % if(stash('draft_courses_count') + stash('advertised_courses_count') + stash('past_courses_count') == 0) {
+    <p>
+    Welcome to the members area. This section of the site is exclusive to qualified instructors
+    and provides you with all the support you need to run and advertise your courses.
+    You can find everything through the options in the menu and you should explore them to
+    see what's there. Some of the more frequently used features are highlighted below.
+    </p>
+    % }
+    <p>
+    % if(stash 'incomplete_profile') {
+    <div class="member-option-highlight">
+        <div>Help and FAQs</div>
+        The <span>Help/FAQs</span> menu option will take you pages that provide help
+        and answers to FAQs (Frequently Asked Questions) about using this site and
+        all aspects of The Children's Refelexology Programme. These pages are updated
+        often so it's always worth looking!
+        <br />
+        <br />
+        <a href="<%= url_for('crp.members.page', page => 'faqs') %>" class="standard-button">Help and FAQs</a>
+    </div>
+    <div class="member-option-highlight">
+        <div>Profile</div>
+        Your profile is not complete. <strong>It is important to make sure your profile is complete</strong> and up to
+        date as the information is used by parents and carers looking for courses. In particular, your name
+        is part of the address of your personal pages on this web site. Use the <span>Profile</span>
+        menu option to maintain your profile or click
+        <br />
+        <br />
+        <a href="<%= url_for 'crp.members.profile' %>" class="standard-button">Profile</a>
+    </div>
 </span>
 % }
 % if(stash('advertised_courses_count') == 0) {
@@ -137,5 +138,5 @@ see what's there. Some of the more frequently used features are highlighted belo
 </p>
 <br clear="left" />
 Your personal web site is at <a href="<%= $personal_url %>"><%= $personal_url %></a>.
-<br clear="right" />
+</div>
 <script>$(".hide-on-load").delay(4000).slideUp(1000);</script>
