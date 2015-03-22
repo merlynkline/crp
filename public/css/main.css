@@ -62,10 +62,10 @@ td {
     background:     #bde;
     padding:        0;
 }
-.top-nav.members-area {
+.top-nav.members-area, .member-option-highlight span {
     background:     #fdd;
 }
-.top-nav span {
+.top-nav span, .member-option-highlight span  {
     display:        inline-block;
     border:         1px solid;
     border-bottom:  0px;
@@ -74,7 +74,7 @@ td {
     border-top-right-radius: 8px;
     background:     linear-gradient(#acd, #bde);
 }
-.top-nav.members-area span {
+.top-nav.members-area span, .member-option-highlight span {
     background:     linear-gradient(#ecc, #fdd);
 }
 .top-nav span.selected {
@@ -162,12 +162,12 @@ td {
     padding:        8px 0;
     font-weight:    bold;
 }
-fieldset, legend, .message-box, .pdf-preview, .highlight-box, .instructor-photo, table.list1 {
+fieldset, legend, .message-box, .pdf-preview, .highlight-box, .instructor-photo, table.list1, .member-option-highlight {
     border:         3px solid #589;
     background:     #bde;
     border-radius:  8px;
 }
-fieldset, legend, .message-box, .pdf-preview {
+fieldset, legend, .message-box {
     margin:         20px;
 }
 .message-box {
@@ -459,6 +459,23 @@ table.list1 {
     font-size:      12px;
     line-height:    120%;
     text-align:     center;
+}
+.member-option-highlight {
+    width:          165px;
+    height:         234px;
+    padding:        8px;
+    text-align:     center;
+    font-size:      12px;
+    line-height:    130%;
+    margin:         0 12px 12px 0;
+    float:          left;
+}
+.member-option-highlight div {
+    font-size:      16px;
+    font-weight:    bold;
+    padding:        0 0 4px;
+    margin:         0 0 4px;
+    border-bottom:  1px solid;
 }
 .page-logo {
     margin:         12px 4px 4px 4px;

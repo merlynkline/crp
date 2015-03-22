@@ -13,9 +13,6 @@
 % if(param('msg')) {
 <%= include 'parts/message_box', msg => param('msg'), auto_hide => 1 %>
 % }
-% if(stash 'incomplete_profile') {
-%= include 'parts/message_box', msg => 'profile_incomplete', auto_hide => 0;
-% }
 <table align="right">
     <tr>
         <td align="center" valign="top">
@@ -25,6 +22,7 @@
                 </tr>
                 %= $contact_row_block->('Draft', stash('draft_courses_count') || 'None');
                 %= $contact_row_block->('Advertised', stash('advertised_courses_count') || 'None');
+                %= $contact_row_block->('Past', stash('past_courses_count') || 'None');
             </table>
             % if (stash 'is_administrator') {
             <span class="highlight-box">
@@ -33,7 +31,7 @@
             </span>
             <br />
             % }
-            <table class="list1">
+            <table class="list1" style="max-width: 300px;">
                 <tr>
                     <th colspan="2">Profile summary</th>
                 </tr>
@@ -42,7 +40,7 @@
                 % if($profile->address) {
                 <tr>
                     <td>Address:</td>
-                    <td>
+                    <td style="max-width:180px; overflow: hidden;">
                         % foreach my $line(split /\s*\n\s*/, $profile->address) {
                         <%= $line %><br>
                         % }
@@ -52,7 +50,7 @@
                 %= $contact_row_block->('Postcode', $profile->postcode);
                 % if($profile->login->email) {
                 <tr>
-                    <td>Email:</td>
+                    <td style="max-width:180px; overflow: hidden;">Email:</td>
                     <td><a href="mailto:<%= $profile->login->email %>"><%= $profile->login->email %></a></td>
                 </tr>
                 % }
@@ -60,11 +58,84 @@
         </td>
     </tr>
 </table>
+% if(stash('draft_courses_count') + stash('advertised_courses_count') + stash('past_courses_count') == 0) {
 <p>
+Welcome to the members area. This section of the site is exclusive to qualified instructors
+and provides you with all the support you need to run and advertise your courses.
+You can find everything through the options in the menu and you should explore them to
+see what's there. Some of the more frequently used features are highlighted below.
+</p>
+% }
+<p>
+% if(stash 'incomplete_profile') {
+<div class="member-option-highlight">
+    <div>Help and FAQs</div>
+    The <span>Help/FAQs</span> menu option will take you pages that provide help
+    and answers to FAQs (Frequently Asked Questions) about using this site and
+    all aspects of The Children's Refelexology Programme. These pages are updated
+    often so it's always worth looking!
+    <br />
+    <br />
+    <a href="<%= url_for('crp.members.page', page => 'faqs') %>" class="standard-button">Help and FAQs</a>
+</div>
+<div class="member-option-highlight">
+    <div>Profile</div>
+    Your profile is not complete. <strong>It is important to make sure your profile is complete</strong> and up to
+    date as the information is used by parents and carers looking for courses. In particular, your name
+    is part of the address of your personal pages on this web site. Use the <span>Profile</span>
+    menu option to maintain your profile or click
+    <br />
+    <br />
+    <a href="<%= url_for 'crp.members.profile' %>" class="standard-button">Profile</a>
+</div>
+</span>
+% }
+% if(stash('advertised_courses_count') == 0) {
+<div class="member-option-highlight">
+    <div>Courses</div>
+    You don't have any courses advertised!
+    Add your courses to advertise them here and to get access to bespoke stationery
+    in the form of PDFs you can download and print.
+    To add and edit your courses use the <span>Courses</span> menu option or click
+    <br />
+    <br />
+    <a href="<%= url_for 'crp.members.courses' %>" class="standard-button">Courses</a>
+</div>
+% }
+<div class="member-option-highlight">
+    <div>Documents</div>
+    Personalised bespoke stationery is available with all your details filled
+    in for you. Just download the PDFs and print them out.
+    Stationery specific to individual courses
+    is available through the <span>Courses</span> menu option. For other
+    documents use the <span>Documents</span> menu option or click
+    <br />
+    <br />
+    <a href="<%= url_for('crp.members.page', page => 'pdf') %>" class="standard-button">Documents</a>
+</div>
+<div class="member-option-highlight">
+    <div>Shop</div>
+    We have an ever-growing range of fun and useful things you may want or need.
+    These range from the Parent/Carer packs you need to run courses through
+    extra laminates and other teaching materials to merchandise for you to
+    use or sell. Use the <span>Shop</span> menu option to see what's available
+    or click
+    <br />
+    <br />
+    <a href="<%= url_for 'crp.members.shop' %>" class="standard-button">Shop</a>
+</div>
+<div class="member-option-highlight">
+    <div>Enquiries</div>
+    Parents and carers can register with us to be notified when courses start
+    in their area. You can find out if we have any enquiries in a paritcular
+    area, which is useful when planning courses. Use the <span>Enquiries</span>
+    menu option or click
+    <br />
+    <br />
+    <a href="<%= url_for 'crp.members.find_enquiries' %>" class="standard-button">Enquiries</a>
+</div>
+</p>
+<br clear="left" />
 Your personal web site is at <a href="<%= $personal_url %>"><%= $personal_url %></a>.
-</p>
-Welcome to the Children's Reflexology Programme Member's area.
-Please use the menu above to explore the site.
-</p>
 <br clear="right" />
 <script>$(".hide-on-load").delay(4000).slideUp(1000);</script>

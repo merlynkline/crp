@@ -4,11 +4,11 @@
 + Finalise text/layout/design
 
 + Generate peronalised PDFs:
+    + add protocols to back of register with boxes to enter week numbers. Add checklist of things to take to each week's course.
     + Name labels for carers
     + Talk/presentation
     + Course log/diary pages
     + Business card with QR code?
-+ Fix up control panel to be useful
 + Work out cancel/publish/delete interactions for courses. Need to show cancelled courses in various places. Cancel a published course: what happens to it?
 + Basic shop page to order packs, book
 + Course costing calculator(s) - JS versions of the spreadsheets
@@ -118,7 +118,6 @@ session:
     - Remove session ID from cookie or delete it if auto-login not set
     - redirect to home page
 
-(add protocols to back of register with boxes to enter week numbers)
 (name labels PDF)
 
 ++ Handle accounts for unqualified instructors (with no current certificate record) - what are the restrictions?

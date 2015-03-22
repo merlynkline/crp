@@ -17,6 +17,7 @@ sub welcome {
     $c->stash(incomplete_profile        => ! $profile->is_complete);
     $c->stash(draft_courses_count       => $profile->courses->get_draft_set->count);
     $c->stash(advertised_courses_count  => $profile->courses->get_advertised_set($days)->count);
+    $c->stash(past_courses_count        => $profile->courses->get_past_set($days)->count);
     $c->stash(is_administrator          => $profile->login->is_administrator);
 }
 
