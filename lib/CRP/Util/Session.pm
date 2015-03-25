@@ -57,6 +57,7 @@ sub create_new {
     $c->session(expires => time + ($c->config->{session}->{default_expiry} || 3600));
     $c->session(last_access => time);
     $self->_debug('create_new: done: id=' . $row->id);
+    $self->_purge_expired_sessions;
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -162,6 +163,17 @@ sub clear {
     $c->session(last_access => time);
     $self->_loaded(0);
     $self->_dirty(0);
+}
+
+sub _purge_expired_sessions {
+    my $self = shift;
+
+    my $c = $self->_mojo;
+    my $seconds = $c->config->{session}->{default_expiry} || 3600;
+    my $dtf = $c->crp->model('Session')->result_source->schema->storage->datetime_parser;
+    $c->crp->model('Session')->search(
+        { last_access_date => {'<', $dtf->format_datetime(DateTime->now()->subtract(seconds => $seconds))} }
+    )->delete;
 }
 
 sub _debug {

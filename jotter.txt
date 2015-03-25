@@ -16,7 +16,6 @@
 + Pass some images through tinyjpg/tinypng
 + Limit numbers in search results. Enquiries - find near location, notify_enquirers.
 + Adding a new enquiry should notify the instructors of nearby courses if requested
-+ Session table housekeeping (see enquiry housekeeping)
 + Data backup (DB, instructors' pics)
 + FAQ/External resources: bibliography (for instructors)
     - How to print PDFs (scaling off, double-sided, A4->A5)
@@ -31,6 +30,7 @@
     - CSV files
     - Geographic searches
 	- Balens insurance
+    - FHT Insurance
 + Get rid of all references to Tutor/practitioner
 + Some admin tools
     ~ Create account
@@ -51,6 +51,8 @@
         - List of payments received (date, amount, outstanding)
         - Checkbox: acknowledgment sent out
         - Checkbox: manual sent out
+    - During the course
+        - Assesment for each measured objective
     - After the course:
         - Checkbox: web site account created
         - Homework tracking, for each piece:
@@ -61,6 +63,8 @@
         - Checkbox: certificates sent
 
 
+
++ Add 'venue housekeeping' to instructors manual
 
 ----
 
