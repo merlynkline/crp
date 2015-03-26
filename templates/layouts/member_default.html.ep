@@ -9,7 +9,7 @@
         ['profile',   'crp.members.profile',        'Profile'],
         ['password',  'crp.set_password',           'Password'],
         ['shop',      'crp.members.shop',           'Shop'],
-        ['faqs',      'crp.members.page:page:faqs', 'Help/FAQs'],
+        ['faqs',      'crp.members.faqs',           'Help/FAQs'],
         ['home',      '/',                          'Main site'],
         ['logout',    '/logout',                    'Log out'],
     ];

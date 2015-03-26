@@ -1,0 +1,18 @@
+%#<!DOCTYPE html>
+% my $articles = stash 'articles';
+% my $current_article = stash 'current_article';
+%
+%#---------------------------------------------------------------------------
+% my $render_menu_entry = sub {
+%   my($article) = @_;
+%   my $this_faq = $current_article->{id} eq $article->{id};
+<span<% if($this_faq) { %> class="selected"<% } %>><% if(!$this_faq) { =%><a href="<%= url_for 'crp.members.faqs', faq_id => $article->{id} %>"><% } =%>
+<%= $article->{title} =%>
+<% if(!$this_faq) { =%></a><% } =%>
+</span><br />
+% };
+%#---------------------------------------------------------------------------
+% foreach my $article (@$articles) {
+%   &$render_menu_entry($article);
+% }
+<h1><%= $current_article->{title} %></h1>

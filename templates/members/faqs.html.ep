@@ -1,0 +1,16 @@
+%#<!DOCTYPE html>
+% layout 'member_default', page_id => 'faqs';
+% title 'Help and FAQs';
+%
+%   my $articles = [
+%       {id => 'intro',     title => 'Overview'},
+%       {id => 'print',     title => 'Printing'},
+%   ];
+%
+%   my $id = stash 'faq_id';
+%   my $current_article = $articles->[0];
+%   foreach my $article (@$articles) {
+%       $current_article = $article if $article->{id} eq $id;
+%   }
+%= include 'members/faqs/' . $current_article->{id}, articles => $articles, current_article => $current_article;
+

@@ -22,6 +22,16 @@ sub welcome {
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub faqs {
+    my $c = shift;
+
+    my $faq_id = shift // $c->stash('faq_id');
+    $c->stash('faq_id', $faq_id);
+
+    $c->render(template => "members/faqs");
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 sub page {
     my $c = shift;
 
