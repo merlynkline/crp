@@ -481,4 +481,28 @@ table.list1 {
     margin:         12px 4px 4px 4px;
     float:          right;
 }
+div.faq-menu {
+    float:          left;
+    margin:         0 12px 12px 0;
+    border-radius:  8px;
+    border-right:   1px solid #589;
+    border-bottom:  1px solid #589;
+    padding:        8px 0;
+}
+.faq-menu center {
+    font-weight: bold;
+}
+.faq-menu a {
+    text-decoration: none;
+}
+.faq-menu a:hover {
+    text-decoration: underline;
+}
+.faq-menu div {
+    padding:        4px 8px;
+}
+.faq-menu div.selected {
+    background:     #fdd;
+}
+
 

@@ -3,11 +3,17 @@
 % title 'Help and FAQs';
 %
 %   my $articles = [
-%       {id => 'intro',     title => 'Overview'},
-%       {id => 'print',     title => 'Printing'},
+%       {id => 'intro',     title => 'Help & FAQs'},
+%       {id => 'print',     title => 'PDF Printing'},
+%       {id => 'insure',    title => 'Insurance'},
+%       {id => 'maps',      title => 'Geo-search'},
+%       {id => 'refer',     title => 'Referrals'},
+%       {id => 'qr',        title => 'QR Codes'},
+%       {id => 'csv',       title => 'CSV Files'},
+%       {id => 'reading',   title => 'Extra reading'},
 %   ];
 %
-%   my $id = stash 'faq_id';
+%   my $id = stash('faq_id') // 'intro';
 %   my $current_article = $articles->[0];
 %   foreach my $article (@$articles) {
 %       $current_article = $article if $article->{id} eq $id;

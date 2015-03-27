@@ -6,13 +6,20 @@
 % my $render_menu_entry = sub {
 %   my($article) = @_;
 %   my $this_faq = $current_article->{id} eq $article->{id};
-<span<% if($this_faq) { %> class="selected"<% } %>><% if(!$this_faq) { =%><a href="<%= url_for 'crp.members.faqs', faq_id => $article->{id} %>"><% } =%>
+<div<% if($this_faq) { %> class="selected"<% } %>><% if(!$this_faq) { =%><a href="<%= url_for 'crp.members.faqs', faq_id => $article->{id} %>"><% } =%>
 <%= $article->{title} =%>
 <% if(!$this_faq) { =%></a><% } =%>
-</span><br />
+</div>
 % };
 %#---------------------------------------------------------------------------
+<div class="faq-menu">
+    <center>Contents</center>
 % foreach my $article (@$articles) {
 %   &$render_menu_entry($article);
 % }
+<img src="/images/Plants/Pokers.png" class="centered-image" />
+</div>
+<img src="<%= url_for '/images/Animals/Owl.jpg' %>" class="page-logo">
 <h1><%= $current_article->{title} %></h1>
+%= content
+<img src="<%= url_for '/images/Plants/LavenderHorizontal2.png' %>" class="centered-image" width="300" />

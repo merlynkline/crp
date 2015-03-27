@@ -1,4 +1,33 @@
 %#<!DOCTYPE html>
 % layout 'faqs';
+<p>
+When you're printing documents it's important that they come out on the paper exactly as they
+were designed. To make that reliable, the documents you can download from this site for printing
+are provided in a standard format called PDF (Portable Document Format). You should find that
+your normal web browser can display and print these files reliably but if you have problems
+you should try
+<a href="https://get.adobe.com/uk/reader/" target="_blank">downloading a free PDF reader here</a>.
+</p>
+<p>
+PDF documents will normally appear in your browser window, just like web pages. You can then
+print them in the same way as other pages, usually by pressing Ctrl-P or Cmd-P. Alternatively
+you can save them on your computer so that you can print them with another piece of software
+such as the PDF reader suggested above or you can send them to someone else, e.g. a commercial
+print shop, to have them printed. Saving a displayed document is usually done by pressing
+Ctrl-S or Cmd-S.
+</p>
+If you are printing documents yourself you need to make sure that the settings are right so that
+the documents print out at the right size. Most documents are intended to be printed on standard
+A4 size paper unless their descriptions say otherwise.
+Some things to watch out for:
+<ul>
+    <li>Make sure scaling is turned off. If there is a specific scale option, make sure it's
+    set to '100%' or 'None'.</li>
+    <li>If there are options like 'Scale to fit' or 'Automatic scaling' or 'Fit to page', make sure
+    those options are turned off.</li>
+    <li>If you have a colour printer then make sure coukour printing options are turned on.</li>
+    <li>If your printer can print double-sided then make sure that option is turned on. Where
+    the documents have multiple pages they are designed to be printed on both sides of the paper
+    unless their descriptions say otherwise.</a>
+</ul>
 
-Help!

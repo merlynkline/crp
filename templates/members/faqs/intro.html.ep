@@ -1,4 +1,15 @@
 %#<!DOCTYPE html>
 % layout 'faqs';
-
-Help!
+<p>
+Here is a collection of articles providing answers to Frequently Asked Questions (FAQs)
+and help and information on all aspects of The Children's Reflexology Programme,
+this web site and the wider community of instructors and carers.
+</p>
+<p>
+Click on the entries in the contents to the left to see the different articles that are
+available. We're always adding new material and improving what's already here so please
+do check back from time to time and please feel free to
+<a href="<%= url_for 'crp.page', page => 'contact' %>">contact us</a>
+if you can't find what you want - we'll answer your question and probably add the answer
+to the articles here for others to find.
+</p>
