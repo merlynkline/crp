@@ -1,4 +1,31 @@
 %#<!DOCTYPE html>
 % layout 'faqs';
-
-Help!
+<p>
+Some of the facilities on this site, e.g. the
+<a href="<%= url_for 'crp.members.find_enquiries' %>">enquiries search</a>
+which lets you find any enquiries we might have registered with us in a particular area,
+will let you download a file in CSV (Comma Separated Value) format. This is
+a standard format for files containing tables of information such as a list
+of the results of an enquiries search. The format is basically plain text,
+so it can be loaded into simple editors and is understandable by human
+readers, but it is really intended for use by software which can process
+tables of information, such as spreadsheets and databases.
+</p>
+<p>
+As an example, you could download the results of an enquiry search and
+then use it in a system such as
+<a href="http://mailchimp.com/" target="_blank">Mail Chimp</a>
+to let enquirers know that you'll be starting a course near them.
+</p>
+<p>
+There is a huge range of software, including online services such as
+<a href="http://www.google.co.uk/docs/about/" target="_blank">Google Docs</a>
+or
+<a href="https://office.live.com/" target="_blank">Microsoft Office</a>,
+and applications such as
+<a href="http://www.libreoffice.org/" target="_blank">Libre Office</a>
+or
+<a href="https://www.openoffice.org/" target="_blank">Open Office</a>,
+which can make use of CSV files for a wide range of purposes.
+(All of these examples are free.)
+</p>

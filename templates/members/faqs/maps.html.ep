@@ -1,4 +1,33 @@
 %#<!DOCTYPE html>
 % layout 'faqs';
+<p>
+This site includes several different geographic search facilities, e.g. the
+<a href="<%= url_for 'crp.members.find_enquiries' %>">enquiries search</a>
+which lets you find any enquiries we might have registered with us in a particular area.
+</p>
+<p>
+All these searches work in the same way, using
+<a href="https://www.google.co.uk/maps" target="_blank">Google Maps</a>
+to identify locations. This means that when you type into the search
+box the system will understand what you enter in the same way that Google Maps
+understands it. The result is displayed on a map so you can be sure it has
+been understood in the way you intended. If this is not the case, you can
+keep trying, and pressing the <strong>check</strong> button, until the right
+result is found. This is useful when, for example, there are several places
+with the same name and you need to enter more information, such as a county,
+to make sure the right one is picked.
+</p>
+<p>
+The Google Maps system will understand common place names as well as post codes
+and other identifiers so you can generally use whatever is most convenient to
+identify the place of interest.
+</p>
+<p>
+Note that geographic searches are not high precision - e.g. the enquiry search
+finds enquiries within about <%= config('enquiry_search_distance') %>km while the
+instructor search uses a range of about <%= config('instructor_search_distance') %>km.
+This means that you don't need to worry too much about getting the location exactly
+right when doing searches - as long as it's in the right town you should get
+useful results.
+</p>
 
-Help!

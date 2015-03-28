@@ -1,4 +1,28 @@
 %#<!DOCTYPE html>
 % layout 'faqs';
+<p>
+<img src="/images/Misc/QRSample.png" align="left" style="margin: 0 8px 8px 0;">
+Many of the documents available for printing from this site include QR (Quick Response) codes like
+the one shown here. These enable users of modern smart-phones and similar devices
+to quickly find out more information by simply pointing their device at the QR code
+and capturing it with their cameras, using a special app which can decode the information
+present in the image. These codes are similar to the barcodes found on most products
+which enable rapid checkout at supermarkets etc.
+</p>
+<p>
+The QR codes produced by this site typically contain web addresses which allow people
+to obtain more information about whatever is on the document. For general documents
+this will be the address of your personal pages on this site while for course-specifc
+documents it will be the address of the web page for the particular course on the
+document. In either case this connects potential clients to you more quickly.
+</p>
+<p>
+There are many suitable apps for scanning QR codes and people will need to pick the
+one most suitable for their device and their particular needs. A popular Android app is
+<a href="https://play.google.com/store/apps/details?id=com.google.zxing.client.android" target="_blank">ZXing Barcode Scanner</a>
+while users of Apple iOS devices often download
+<a href="https://itunes.apple.com/gb/app/qr-code-reader-and-scanner/id388175979" target="_blank">ShopSavvy QR Code Reader and Scanner</a>.
+Both of these apps are free and are frequently already installed on devices.
+</p>
 
-Help!
+
