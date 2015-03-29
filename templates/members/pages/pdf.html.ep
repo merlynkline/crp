@@ -30,6 +30,7 @@ in order to view and print them.
 %= include "members/parts/course_doc", name => 'members/booking_form', caption => "Booking form for your trainees to fill in"
 %= include "members/parts/course_doc", name => 'members/register', caption => "Register to check in trainees to each session"
 %= include "members/parts/course_doc", name => 'members/feedback_form', caption => "Feedback form for your trainees to fill in after a course has finished"
+%= include "members/parts/course_doc", name => 'members/Presentation', caption => "Notes for a presentation to tell people about The Children's Reflexology Programme"
 %= include "members/parts/course_doc", name => 'members/Business cards', caption => "Business cards suitable for Avery C32011, C32016, and similar card stock"
 %= include "members/parts/course_doc", name => 'members/QR Business cards', caption => "Alternate business cards suitable for Avery C32011, C32016, and similar card stock"
 
