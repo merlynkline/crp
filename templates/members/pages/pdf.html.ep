@@ -24,8 +24,10 @@ in order to view and print them.
 %= include "members/parts/course_doc", name => 'ads/Tall flyer general', caption => "Larger version of the three-to-a-sheet flyer"
 %= include "members/parts/course_doc", name => 'ads/Poster - descriptive general', caption => "General purpose poster with descriptive text"
 %= include "members/parts/course_doc", name => 'ads/Poster - pictorial general', caption => "General purpose poster with pictures rather than text"
+%= include "members/parts/course_doc", name => 'ads/Small general descriptive', caption => "General purpose flyer with descriptive text"
+%= include "members/parts/course_doc", name => 'ads/Small general pictorial', caption => "General purpose flyer with pictures rather than text"
 
-<br clear="left" />
+<div class="pdf-seperator"></div>
 
 %= include "members/parts/course_doc", name => 'members/booking_form', caption => "Booking form for your trainees to fill in"
 %= include "members/parts/course_doc", name => 'members/register', caption => "Register to check in trainees to each session"
@@ -34,6 +36,6 @@ in order to view and print them.
 %= include "members/parts/course_doc", name => 'members/Business cards', caption => "Business cards suitable for Avery C32011, C32016, and similar card stock"
 %= include "members/parts/course_doc", name => 'members/QR Business cards', caption => "Alternate business cards suitable for Avery C32011, C32016, and similar card stock"
 
-<br clear="left" />
+<div class="pdf-seperator"></div>
 
 %= include "members/parts/course_doc", name => 'membership_certificate', caption => "Your current membership certificate"

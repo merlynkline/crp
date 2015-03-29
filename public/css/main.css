@@ -460,6 +460,12 @@ table.list1 {
     line-height:    120%;
     text-align:     center;
 }
+.pdf-seperator {
+    width:          165px;
+    height:         279px;
+    margin:         8px;
+    float: left;
+}
 .member-option-highlight {
     width:          165px;
     height:         234px;

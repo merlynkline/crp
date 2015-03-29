@@ -9,9 +9,9 @@ X-Google-Original-From: Lynne Collie <lynne@yourbestfootforward.co.uk>
 + Finalise text/layout/design
 
 + Generate peronalised PDFs:
-    + Name labels for carers
-    + Talk/presentation
+    + A6 handouts generalised
     + Course log/diary pages
+    + Name labels for carers
     + Quite a few PDFs still say "Infant Reflexology" instead of "Children's Reflexology"
 + Work out cancel/publish/delete interactions for courses. Need to show cancelled courses in various places. Cancel a published course: what happens to it?
 + Basic shop page to order packs, book
@@ -23,6 +23,7 @@ X-Google-Original-From: Lynne Collie <lynne@yourbestfootforward.co.uk>
 + Data backup (DB, instructors' pics)
 + FAQ/External resources: bibliography (for instructors)
     - Various books (A&P, reflexology, business (Jane's book?)) - affiliate links
+    - A5 printing
     - Affiliate link to Leoni Dawson?
     - Other training courses
     - Neal's Yard store

@@ -1,0 +1,136 @@
+[
+        {
+            action  => 'text',
+            text    => '[% phone_numbers %]',
+            x       => 148.82,
+            y       => 458,
+            size    => 7,
+            align   => 'center',
+        },
+        {
+            action  => 'text',
+            text    => '[% url %]',
+            x       => 148.82,
+            y       => 450,
+            size    => 7,
+            align   => 'center',
+        },
+        {
+            action  => 'text',
+            text    => '[% email %]',
+            x       => 148.82,
+            y       => 442,
+            size    => 7,
+            align   => 'center',
+        },
+        
+        {
+            action  => 'qrcode',
+            text    => "http://[% url %]",
+            x       => 11,
+            y       => 444,
+        },
+        
+        #-----------------------------------------------------------
+
+        {
+            action  => 'text',
+            text    => '[% phone_numbers %]',
+            x       => 148.82,
+            y       => 37,
+            size    => 7,
+            align   => 'center',
+        },
+        {
+            action  => 'text',
+            text    => '[% url %]',
+            x       => 148.82,
+            y       => 29,
+            size    => 7,
+            align   => 'center',
+        },
+        {
+            action  => 'text',
+            text    => '[% email %]',
+            x       => 148.82,
+            y       => 21,
+            size    => 7,
+            align   => 'center',
+        },
+        
+        {
+            action  => 'qrcode',
+            text    => "http://[% url %]",
+            x       => 11,
+            y       => 23,
+        },
+
+        #===========================================================
+
+        {
+            action  => 'text',
+            text    => '[% phone_numbers %]',
+            x       => 446.46,
+            y       => 458,
+            size    => 7,
+            align   => 'center',
+        },
+        {
+            action  => 'text',
+            text    => '[% url %]',
+            x       => 446.46,
+            y       => 450,
+            size    => 7,
+            align   => 'center',
+        },
+        {
+            action  => 'text',
+            text    => '[% email %]',
+            x       => 446.46,
+            y       => 442,
+            size    => 7,
+            align   => 'center',
+        },
+        
+        {
+            action  => 'qrcode',
+            text    => "http://[% url %]",
+            x       => 308.64,
+            y       => 444,
+        },
+        
+        #-----------------------------------------------------------
+
+        {
+            action  => 'text',
+            text    => '[% phone_numbers %]',
+            x       => 446.46,
+            y       => 37,
+            size    => 7,
+            align   => 'center',
+        },
+        {
+            action  => 'text',
+            text    => '[% url %]',
+            x       => 446.46,
+            y       => 29,
+            size    => 7,
+            align   => 'center',
+        },
+        {
+            action  => 'text',
+            text    => '[% email %]',
+            x       => 446.46,
+            y       => 21,
+            size    => 7,
+            align   => 'center',
+        },
+        
+        {
+            action  => 'qrcode',
+            text    => "http://[% url %]",
+            x       => 308.64,
+            y       => 23,
+        },
+]
+
