@@ -3,7 +3,7 @@
 %#---------------------------------------------------------------------------
 % my $input_field = begin
 %   my($args) = @_;
-<label for="<%= $args->{id} %>"><%= $args->{label} %>
+<label for="<%= $args->{id} %>" style="width:80%"><%= $args->{label} %>
     % if($args->{note}) {
     <div class="field-extra-info"><%= $args->{note} %></div>
     % }
@@ -15,13 +15,13 @@
 %#---------------------------------------------------------------------------
 % my $output_field = begin
 %   my($args) = @_;
-<label for="<%= $args->{id} %>"><%= $args->{label} %>
+<label for="<%= $args->{id} %>" style="width:80%"><%= $args->{label} %>
     % if($args->{note}) {
     <div class="field-extra-info"><%= $args->{note} %></div>
     % }
 </label>
 <div class="input-container">
-    %= number_field 'postcode', id => $args->{id}, size => 3, min => 0, maxlength => 3, align => 'right', value => $args->{value}, style => 'text-align: right; width: 50px; background: #fdd; color: #589', disabled => 'disabled';
+    %= number_field 'postcode', id => $args->{id}, size => 3, min => 0, maxlength => 3, align => 'right', value => $args->{value}, style => 'text-align: right; width: 50px; color: #589', disabled => 'disabled';
 </div>
 % end
 %#---------------------------------------------------------------------------
@@ -60,33 +60,45 @@
 This calculator will help you to work out how many students you need or how much
 to charge to make running a course worthwhile. Just fill in the various fields
 to see how the figures are affected.
-
-<fieldset>
-    <legend>Calculator</legend>
-
-    <strong>Course details</strong><br />
-    %= $input_field->({id => 'numstudents', value => 8, label => 'Number of students on course:', autofocus => "autofocus"});
-    %= $input_field->({id => 'numweeks',    value => 6, label => 'Length of course (weeks):'});
-
-    <br clear="left"><strong>Income</strong><br />
-    %= $input_field->({id => 'courseprice',    label => 'Price of course: £', value => int config('prices')->{course}});
-    %= $output_field->({id => 'priceperweek', label => 'Price per weekly session: £'});
-    %= $output_field->({id => 'totalincome',  label => 'Total course income: £'});
-
-    <br clear="left"><strong>Costs</strong><br />
-    %= $output_field->({id => 'costpacks',  label => 'Parent/carer packs (@£' . config('prices')->{parent_pack} . '): £'});
-    %= $input_field->({id => 'costtravel',  label => 'Travel to and from venue, per week: £', value => int config('prices')->{week_travel}});
-    %= $input_field->({id => 'costrent',    label => 'Cost of renting venue, per week: £', value => int config('prices')->{week_rent}}),
-    %= $input_field->({id => 'costadvert',  label => 'Cost of advertising course: £', value => int config('prices')->{advertising}}),
-    %= $output_field->({id => 'totalcost',  label => 'Total course cost: £'});
-
-    <br clear="left"><strong>Gross profit</strong><br />
-    %= $output_field->({id => 'totalprofit',    label => 'Total course profit: £'});
-    %= $output_field->({id => 'studentprofit',  label => 'Profit per student: £'});
-    %= $output_field->({id => 'weeklyprofit',   label => 'Profit per weekly session: £'});
-
-</fieldset>
 </p>
-<script>
-    recalc();
-</script>
+
+<table width="100%">
+    <tr>
+        <td width="50%" valign="top">
+            <fieldset>
+                <legend>Calculator</legend>
+                <strong>Course details</strong><br />
+                %= $input_field->({id => 'numstudents', value => 8, label => 'Number of students on course:', autofocus => "autofocus"});
+                %= $input_field->({id => 'numweeks',    value => 6, label => 'Length of course (weeks):'});
+
+                <br clear="left"><strong>Income</strong><br />
+                %= $input_field->({id => 'courseprice',    label => 'Price of course: £', value => int config('prices')->{course}});
+
+                <br clear="left"><strong>Costs</strong><br />
+                %= $input_field->({id => 'costtravel',  label => 'Travel to and from venue, per week: £', value => int config('prices')->{week_travel}});
+                %= $input_field->({id => 'costrent',    label => 'Cost of renting venue, per week: £', value => int config('prices')->{week_rent}}),
+                %= $input_field->({id => 'costadvert',  label => 'Cost of advertising course: £', value => int config('prices')->{advertising}}),
+            </fieldset>
+        </td>
+        <td width="50%" valign="top">
+            <fieldset style="background: white">
+                <legend style="background: white">Results</legend>
+                <strong>Income</strong><br />
+                %= $output_field->({id => 'priceperweek', label => 'Price per weekly session: £'});
+                %= $output_field->({id => 'totalincome',  label => 'Total course income: £'});
+
+                <br clear="left"><strong>Costs</strong><br />
+                %= $output_field->({id => 'costpacks',  label => 'Parent/carer packs (@£' . config('prices')->{parent_pack} . '): £'});
+                %= $output_field->({id => 'totalcost',  label => 'Total course cost: £'});
+
+                <br clear="left"><strong>Gross profit</strong><br />
+                %= $output_field->({id => 'totalprofit',    label => 'Total course profit: £'});
+                %= $output_field->({id => 'studentprofit',  label => 'Profit per student: £'});
+                %= $output_field->({id => 'weeklyprofit',   label => 'Profit per weekly session: £'});
+            </fieldset>
+        </td>
+    </tr>
+</table>
+
+<script>recalc();</script>
+
