@@ -1,6 +1,92 @@
 %#<!DOCTYPE html>
 % layout 'member_default', page_id => 'calculator';
+%#---------------------------------------------------------------------------
+% my $input_field = begin
+%   my($args) = @_;
+<label for="<%= $args->{id} %>"><%= $args->{label} %>
+    % if($args->{note}) {
+    <div class="field-extra-info"><%= $args->{note} %></div>
+    % }
+</label>
+<div class="input-container">
+    %= number_field $args->{id}, %$args, size => 3, min => 0, maxlength => 3, align => 'right', style => 'text-align: right; width: 50px;', onchange => 'recalc();', onblur => 'recalc();', onkeyup => 'recalc();';
+</div>
+% end
+%#---------------------------------------------------------------------------
+% my $output_field = begin
+%   my($args) = @_;
+<label for="<%= $args->{id} %>"><%= $args->{label} %>
+    % if($args->{note}) {
+    <div class="field-extra-info"><%= $args->{note} %></div>
+    % }
+</label>
+<div class="input-container">
+    %= number_field 'postcode', id => $args->{id}, size => 3, min => 0, maxlength => 3, align => 'right', value => $args->{value}, style => 'text-align: right; width: 50px; background: #fdd; color: #589', disabled => 'disabled';
+</div>
+% end
+%#---------------------------------------------------------------------------
+<script>
+    function getValue(id, defaultValue) {
+        var value = (document.getElementById(id).value * 1) || defaultValue;
+        return value;
+    }
+
+    function setValue(id, value) {
+        document.getElementById(id).value = value.toFixed(0);
+    }
+
+    function recalc() {
+        var numStudents = getValue('numstudents', 0);
+        var numWeeks    = getValue('numweeks', 1);
+        var coursePrice = getValue('courseprice', 0);
+        var totalIncome = coursePrice * numStudents;
+        var packCost    = <%= config('prices')->{parent_pack} %> * numStudents;
+        var totalCost   = packCost
+                        + ((getValue('costtravel', 0) + getValue('costrent', 0)) * numWeeks)
+                        + getValue('costadvert', 0);
+        var totalProfit = totalIncome - totalCost;
+        setValue('priceperweek', coursePrice / numWeeks);
+        setValue('totalincome',  totalIncome);
+        setValue('costpacks',    packCost);
+        setValue('totalcost',    totalCost);
+        setValue('totalprofit',  totalProfit);
+        setValue('studentprofit',numStudents ? totalProfit / numStudents : 0);
+        setValue('weeklyprofit', totalProfit / numWeeks);
+    }
+        
+</script>
 <h1>Course cost calculator</h1>
 <p>
-Calculate the cost of running a course so you can see what to charge.
+This calculator will help you to work out how many students you need or how much
+to charge to make running a course worthwhile. Just fill in the various fields
+to see how the figures are affected.
+
+<fieldset>
+    <legend>Calculator</legend>
+
+    <strong>Course details</strong><br />
+    %= $input_field->({id => 'numstudents', value => 8, label => 'Number of students on course:', autofocus => "autofocus"});
+    %= $input_field->({id => 'numweeks',    value => 6, label => 'Length of course (weeks):'});
+
+    <br clear="left"><strong>Income</strong><br />
+    %= $input_field->({id => 'courseprice',    label => 'Price of course: £', value => int config('prices')->{course}});
+    %= $output_field->({id => 'priceperweek', label => 'Price per weekly session: £'});
+    %= $output_field->({id => 'totalincome',  label => 'Total course income: £'});
+
+    <br clear="left"><strong>Costs</strong><br />
+    %= $output_field->({id => 'costpacks',  label => 'Parent/carer packs (@£' . config('prices')->{parent_pack} . '): £'});
+    %= $input_field->({id => 'costtravel',  label => 'Travel to and from venue, per week: £', value => int config('prices')->{week_travel}});
+    %= $input_field->({id => 'costrent',    label => 'Cost of renting venue, per week: £', value => int config('prices')->{week_rent}}),
+    %= $input_field->({id => 'costadvert',  label => 'Cost of advertising course: £', value => int config('prices')->{advertising}}),
+    %= $output_field->({id => 'totalcost',  label => 'Total course cost: £'});
+
+    <br clear="left"><strong>Gross profit</strong><br />
+    %= $output_field->({id => 'totalprofit',    label => 'Total course profit: £'});
+    %= $output_field->({id => 'studentprofit',  label => 'Profit per student: £'});
+    %= $output_field->({id => 'weeklyprofit',   label => 'Profit per weekly session: £'});
+
+</fieldset>
 </p>
+<script>
+    recalc();
+</script>

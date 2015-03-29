@@ -1,3 +1,8 @@
+X-Google-Original-From: Rosalind Jane Telling <Zaberryt@outlook.com>
+X-Google-Original-From: Fiona Ludlow <fiona@fromheadtotoes.co.uk>
+X-Google-Original-From: Lynne Collie <lynne@yourbestfootforward.co.uk>
+
+
 
 
 + add some decoration to the contact form and the thank you page (etc etc)
@@ -10,7 +15,6 @@
     + Quite a few PDFs still say "Infant Reflexology" instead of "Children's Reflexology"
 + Work out cancel/publish/delete interactions for courses. Need to show cancelled courses in various places. Cancel a published course: what happens to it?
 + Basic shop page to order packs, book
-+ Course costing calculator(s) - JS versions of the spreadsheets
 + The instructor's 'search for enquiries' page should start with location rather than postcode
 + Should the postcode in the profile be mandatory?
 + Pass some images through tinyjpg/tinypng
@@ -474,5 +478,5 @@ Vultr setup:
         $ carton install
         $ carton exec ./script/crp migrate install
         $ carton exec hypnotoad script/crp daemon
-    # # Configure exim4 to send mail via kidsreflex@gmail.com : velociraptor177
+    # Get vultr to remove port 25 block # Configure exim4 to send mail via kidsreflex@gmail.com : velociraptor177
     
