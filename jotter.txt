@@ -1,15 +1,5 @@
-X-Google-Original-From: Rosalind Jane Telling <Zaberryt@outlook.com>
-X-Google-Original-From: Fiona Ludlow <fiona@fromheadtotoes.co.uk>
-X-Google-Original-From: Lynne Collie <lynne@yourbestfootforward.co.uk>
-
-
-
-
-+ add some decoration to the contact form and the thank you page (etc etc)
-+ Finalise text/layout/design
 
 + Generate peronalised PDFs:
-    + A6 handouts generalised
     + Course log/diary pages
     + Name labels for carers
     + Quite a few PDFs still say "Infant Reflexology" instead of "Children's Reflexology"
@@ -40,6 +30,15 @@ X-Google-Original-From: Lynne Collie <lynne@yourbestfootforward.co.uk>
         ~ Include link back to admin home on found account page
     ~ Some stats on courses, instructors
 + Login routes to test: from logged out, from logged out via interstitial, from already logged in
+
+
+- For the instructor-trainer pack
+    - Student tracking sheet (see below)
+    - Prints of all (many of) the PDFs available from the site
+    - Disruption cards
+    - Peer/self assessment forms
+    - Certificates
+    - Frames for main cetrtificate?
 
 
 - Internal student tracking sheet for instructor course:

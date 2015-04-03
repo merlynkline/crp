@@ -1,0 +1,88 @@
+%#<!DOCTYPE html>
+% layout 'default', heading => "Courses at different levels";
+% title "Courses at different levels";
+
+<p>
+<strong>The Children's Reflexology Programme includes courses at different
+levels.</strong> In addition to the programme itself, you can train to become an
+instructor or you can even train to train instructors! Here is an overview
+of the different levels of course available.
+</p>
+
+<table class="list1">
+
+    <tr>
+        <th>Course</th>
+        <th>Required qualifications</th>
+        <th>Duration</th>
+        <th>Qualification</th>
+        <th>Cost</th>
+    </tr>
+
+    <tr>
+        <td>The Children's Reflexology Programme</td>
+        <td>None. This course is aimed at anyone who cares for young children.</td>
+        <td>Typically six weekly one-hour workshops.</td>
+        <td>Certificate of attendance.</td>
+        <td>Typically £60 (£10/week).</td>
+    </tr>
+    <tr>
+        <td colspan="5" style="font-size: 80%; line-height: 120%; border-bottom: 1px solid; padding-top: 4px; padding-bottom: 8px;">
+            Usually working with your child, this is a hands-on workshop-style course.
+            You will get complete guidance from a qualified instructor who will show
+            you how you and your child can make the most of the reflexology you can learn.
+            You will come away a confident user of simple reflexology equipped with a full
+            set of high quality handouts describing the techniques and a copy of the
+            delightful and engaging children's story, The Mouse's House, which helps you to
+            use and remember the techniques.
+        </td>
+    </tr>
+    
+    <tr>
+        <td>TCRP Instructors</td>
+        <td>Ideally you should have done The Children's Reflexology Programme as a parent/carer.</td>
+        <td>Three days of intensive training.</td>
+        <td>A recognised certificate qualifying you to teach TCRP to parents/carers.</td>
+        <td>£595. Note that you will need to purchase a parent/carer pack for each student on each TCRP course you run, at £15 each.</td>
+    </tr>
+    <tr>
+        <td colspan="5" style="font-size: 80%; line-height: 120%; border-bottom: 1px solid; padding-top: 4px; padding-bottom: 8px;">
+            A comprehensive course covering all aspects of TCRP including the programme itself
+            with its rhymes and animal characters, all the reflexology you need, relevant anatomy
+            &amp; physiology, teaching techniques, running a business based on TCRP, and much more.
+            You will come away with all the knowledge you need, a comprehensive manual, your own 
+            copies of all the handouts used in TCRP and the Mouse's House book, lots of additional 
+            teaching materials for you to use when delivering TCRP courses, and enough parent/carer 
+            packs for you to run your first TCRP course. You will also gain access to the private 
+            area of the web site which contains many additional supporting resources including 
+            facilities for you to produce bespoke stationery and advertising material, plus 
+            facilities for you to advertise yourself and your TCRP courses and make contact with 
+            enquirers that come through the site. You will also be qualified to buy further 
+            parent/carer packs to enable you to deliver future TCRP courses. Each pack contains 
+            all the materials needed to deliver TCRP to one parent/carer and their child, 
+            as described above.
+        </td>
+    </tr>
+
+    <tr>
+        <td>TCRP Instructor Trainer</td>
+        <td>You must be a qualified TCRP instructor and have recognised level three reflexology and level three teaching qualifications.</td>
+        <td>This is an informal workshop usually lasting around half a day.</td>
+        <td>A recognised certificate qualifying you to teach TCRP Instructors courses.</td>
+        <td>£100. Note that you will also need to purchase an Instructor pack for each student on each TCRP Instructors course you run, at £250 each.</td>
+    </tr>
+    <tr>
+        <td colspan="5" style="font-size: 80%; line-height: 120%; padding-top: 4px; padding-bottom: 8px;">
+            This course covers running the TCRP Instructors course (see above) and how to
+            use the additional material provided. You will come away with the everthing you 
+            need to deliver the course including various special training materials, with the 
+            exception of instructor packs which are not included in the price. You will need 
+            an instructor pack for each student on each TCRP Instructors course you run. Each 
+            pack includes all the materials you will give to the instructors as part of the 
+            course (see above) plus the additional materials you need for each student such as 
+            assessment forms and a certificate.
+        </td>
+    </tr>
+
+</table>
+
