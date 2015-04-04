@@ -31,7 +31,25 @@ sub search_near_location {
 sub get_draft_set {
     my $self = shift;
 
-    return $self->search({ published => 0 });
+    return $self->search(
+        { 
+            published => 0,
+            canceled  => 0,
+        }
+    );
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+sub get_canceled_set {
+    my $self = shift;
+    my ($age_when_advert_expires_days) = @_;
+
+    return $self->search(
+        { 
+            canceled  => 1,
+            start_date  => {'>', $self->_date_from_age_days($age_when_advert_expires_days)},
+        }
+    );
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

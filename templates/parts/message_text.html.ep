@@ -4,9 +4,10 @@
 % my $message = {
 %   account_create          => 'New account created.',
 %   fix_errors              => 'Please fix the errors shown on the form.',
-%   no_advertised_courses   => 'There are no advertised courses.',
-%   no_draft_courses        => 'There are no draft courses.',
-%   no_past_courses         => 'There are no past courses.',
+%   no_advertised_courses   => 'You do not currently have any advertised courses.',
+%   no_draft_courses        => 'You do not currently have any draft courses.',
+%   no_past_courses         => 'You do not currently have any past courses.',
+%   no_canceled_courses     => 'You do not currently have any canceled courses.',
 %   course_create           => 'Your new course has been added to the Draft section.',
 %   course_delete           => 'Your course has been deleted.',
 %   course_publish          => 'Your course has been published on your personal web page and enquirers have been notified by email.',

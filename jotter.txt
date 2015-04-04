@@ -3,7 +3,6 @@
     + Course log/diary pages
     + Name labels for carers
     + Quite a few PDFs still say "Infant Reflexology" instead of "Children's Reflexology"
-+ Work out cancel/publish/delete interactions for courses. Need to show cancelled courses in various places. Cancel a published course: what happens to it?
 + Basic shop page to order packs, book
 + The instructor's 'search for enquiries' page should start with location rather than postcode
 + Should the postcode in the profile be mandatory?
@@ -64,6 +63,10 @@
 
 ----
 
++ Twitter/FB connections
+    + Main site linking to kidsreflex twitter/fb
+    + Instructor sites linking to instructors' twitter/fb
+    + On publishing a course, have an option to tweet/fb/whatever
 + Publishing a course could take a long time to notify all the enquirers.
 + Refactor templates to further generalise location input.
 + use named paths in menus (and elsewhere)

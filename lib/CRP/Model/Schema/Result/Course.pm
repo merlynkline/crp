@@ -120,7 +120,7 @@ sub is_cancelable_by_instructor {
     my $self = shift;
     my($instructor_id) = @_;
 
-    return 1 if $self->instructor_id == $instructor_id && $self->published && ! $self->canceled;
+    return 1 if $self->instructor_id == $instructor_id && $self->published;
     return;
 }
 
@@ -143,6 +143,14 @@ sub publish {
 
     croak "Course is not publishable" unless $self->is_publishable;
     $self->update({published => 1, canceled => 0});
+}
+
+sub cancel {
+    my $self = shift;
+    my($instructor_id) = @_;
+
+    croak "Course is not cancelable" unless $self->is_cancelable_by_instructor($instructor_id);
+    $self->update({canceled => 1});
 }
 
 

@@ -202,6 +202,7 @@ sub courses {
     $c->stash(advertised_list   => _date_order_list(scalar $profile->courses->get_advertised_set($days)));
     $c->stash(draft_list        => _date_order_list(scalar $profile->courses->get_draft_set));
     $c->stash(past_list         => _date_order_list(scalar $profile->courses->get_past_set($days)));
+    $c->stash(canceled_list     => _date_order_list(scalar $profile->courses->get_canceled_set($days)));
 }
 
 sub _date_order_list {
@@ -444,11 +445,29 @@ sub _notify_enquirer {
 sub cancel_course {
     my $c = shift;
 
-    my $course_id = $c->param('course_id');
-    my $course = $c->crp->model('Course')->find({id => $course_id});
-    die "You can't edit this course" unless $course && $course->is_cancelable_by_instructor($c->crp->logged_in_instructor_id);
-    $c->stash('crp_session')->variable('course_id', $course_id);
+    my $course = $c->_load_cancelable_course($c->param('course_id'));
+    $c->stash('crp_session')->variable('course_id', $course->id);
     $c->stash('course_record', $course);
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub do_cancel_course {
+    my $c = shift;
+
+    my $course = $c->_load_cancelable_course($c->stash('crp_session')->remove_variable('course_id'));
+    $c->stash('crp_session')->variable('course_id', $course->id);
+    $course->cancel($c->crp->logged_in_instructor_id);
+    $c->stash('course_record', $course);
+    return $c->redirect_to('crp.members.courses');
+}
+
+sub _load_cancelable_course {
+    my $c = shift;
+    my($course_id) = @_;
+
+    my $course = $c->crp->model('Course')->find({id => $course_id});
+    die "You can't cancel this course" unless $course && $course->is_cancelable_by_instructor($c->crp->logged_in_instructor_id);
+    return $course;
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 

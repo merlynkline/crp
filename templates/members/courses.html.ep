@@ -32,6 +32,8 @@
         % }
         % if($type eq 'advertised') {
         <a class="small-button" href="<%= url_for('crp.members.cancel_course')->query(course_id => $course->id) %>" title="Cancel this course">Cancel</a>
+        % }
+        % if($type eq 'advertised' || $type eq 'canceled') {
         <a class="small-button" href="<%= url_for('crp.membersite.course', slug => stash('profile_record')->web_page_slug, course => $course->id) %>" title="See the advertisement page for this course">Adv</a>
         % }
         <a class="small-button" href="<%= url_for('crp.members.course_docs')->query(course_id => $course->id) %>" title="Download and print PDF documents for this course (posters, booking form, register, etc)">PDF</a>
@@ -66,6 +68,15 @@ You can <a href="<%= url_for('crp.members.course') %>">add a new draft course he
 % }
 % else {
 %= include 'parts/message_box', msg => 'no_advertised_courses', auto_hide => 0;
+% }
+
+<h2>Canceled courses</h2>
+% $courses_list = stash('canceled_list');
+% if(@$courses_list) {
+%= $course_list_block->($courses_list, 'canceled');
+% }
+% else {
+%= include 'parts/message_box', msg => 'no_canceled_courses', auto_hide => 0;
 % }
 
 <h2>Past courses</h2>
