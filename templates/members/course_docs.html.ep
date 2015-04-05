@@ -27,7 +27,9 @@ in order to view and print them.
 %= include "members/parts/course_doc", course_id => $course->id, name => 'ads/Poster - simple specific', caption => "Simple poster"
 %= include "members/parts/course_doc", course_id => $course->id, name => 'ads/Small handout specific', caption => "Small handouts, four to a sheet"
 %= include "members/parts/course_doc", course_id => $course->id, name => 'members/booking_form', caption => "Booking form for your trainees to fill in"
+%= include "members/parts/course_doc", course_id => $course->id, name => 'members/booking_form_A5', caption => "Booking form in A5 format"
 %= include "members/parts/course_doc", course_id => $course->id, name => 'members/register', caption => "Register to check in trainees to each session"
 %= include "members/parts/course_doc", course_id => $course->id, name => 'members/feedback_form', caption => "Feedback form for your trainees to fill in after a course has finished"
+%= include "members/parts/course_doc", course_id => $course->id, name => 'members/feedback_form_A5', caption => "Feedback form in A5 format"
 
 
