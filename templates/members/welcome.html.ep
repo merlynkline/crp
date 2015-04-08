@@ -123,7 +123,7 @@
     or click
     <br />
     <br />
-    <a href="<%= url_for 'crp.members.shop' %>" class="standard-button">Shop</a>
+    <a href="<%= url_for 'crp.members.page', page => 'shop' %>" class="standard-button">Shop</a>
 </div>
 <div class="member-option-highlight">
     <div>Enquiries</div>

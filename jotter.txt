@@ -1,9 +1,12 @@
 
+** book descriptions
+** referral sites
+** student tracking sheet
+
 + Generate peronalised PDFs:
     + Course log/diary pages
     + Name labels for carers
     + Quite a few PDFs still say "Infant Reflexology" instead of "Children's Reflexology"
-+ Basic shop page to order packs, book
 + The instructor's 'search for enquiries' page should start with location rather than postcode
 + Should the postcode in the profile be mandatory?
 + Pass some images through tinyjpg/tinypng
@@ -12,7 +15,6 @@
 + Data backup (DB, instructors' pics)
 + FAQ/External resources: bibliography (for instructors)
     - Various books (A&P, reflexology, business (Jane's book?)) - affiliate links
-    - A5 printing
     - Affiliate link to Leoni Dawson?
     - Other training courses
     - Neal's Yard store
@@ -29,15 +31,16 @@
         ~ Include link back to admin home on found account page
     ~ Some stats on courses, instructors
 + Login routes to test: from logged out, from logged out via interstitial, from already logged in
-
++ Finish up PayPal shop layout with logo/header
 
 - For the instructor-trainer pack
     - Student tracking sheet (see below)
-    - Prints of all (many of) the PDFs available from the site
+    - Prints of (many of) the PDFs available from the site
     - Disruption cards
     - Peer/self assessment forms
     - Certificates
-    - Frames for main cetrtificate?
+    - Frames for main certificate?
+    - Student tracking sheets
 
 
 - Internal student tracking sheet for instructor course:

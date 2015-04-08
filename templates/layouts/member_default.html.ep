@@ -8,7 +8,7 @@
         ['calculator','crp.members.page:page:calc', 'Calculator'],
         ['profile',   'crp.members.profile',        'Profile'],
         ['password',  'crp.set_password',           'Password'],
-        ['shop',      'crp.members.shop',           'Shop'],
+        ['shop',      'crp.members.page:page:shop', 'Shop'],
         ['faqs',      'crp.members.faqs',           'Help/FAQs'],
         ['home',      '/',                          'Main site'],
         ['logout',    '/logout',                    'Log out'],

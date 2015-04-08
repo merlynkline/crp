@@ -288,6 +288,9 @@ input[type="checkbox"] {
     margin:         4px 8px;
     color:          inherit;
 }
+input[type="image"] {
+    border: none;
+}
 .input-container {
     float:          left;
     margin-top:     4px;

@@ -1,0 +1,48 @@
+%#<!DOCTYPE html>
+% layout 'member_default', page_id => 'shop';
+% title 'Shop';
+<h1>Members' supplies</h1>
+<p>
+This is just the most essential supplies for running your
+courses but we will be growing our product range as quickly
+as we can!
+</p>
+<p>
+<table>
+    <tr><td colspan="3"><h2>Parent/Carer's pack</h2></td></tr>
+    <tr>
+        <td style="vertical-align: top; padding: 0 12px 0 0;">
+            Everything you need for one parent or carer on one of your courses.
+            Includes a complete set of protocol handouts, a certificate for you
+            to give out on completion and a copy of the book, The Mouse's House.
+            <table align="right">
+                <tr>
+                    <td style="padding: 5px 0 0 0;"><strong>£15.00</strong></td>
+                    <td nowrap="nowrap">
+                        <form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+                            <input type="hidden" name="cmd" value="_s-xclick">
+                            <input type="hidden" name="hosted_button_id" value="BBRFSJEDVLNNL">
+                            <input type="image" src="https://www.paypalobjects.com/en_GB/i/btn/btn_cart_SM.gif" border="0" name="submit" alt="PayPal – The safer, easier way to pay online.">
+                            <img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
+                        </form>
+                    </td>
+                    <td nowrap="nowrap">
+                        <form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post" >
+                            <input type="hidden" name="cmd" value="_s-xclick">
+                            <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----MIIG1QYJKoZIhvcNAQcEoIIGxjCCBsICAQExggEwMIIBLAIBADCBlDCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20CAQAwDQYJKoZIhvcNAQEBBQAEgYCz1ufCT52VpNUG9p26BE/pZ6xo5qZ6i3ekOlE0eRjiBs8rlJ62TfdWmbAJJMWco5tyGFbWKVwV9YABXB4pcFW57MijE3/VxyGbxainjBQmxl+IHFOwqNAwc1I33QLES84blmb6mDGgP/yfhq6Q1Mu8l2varhKv/IkQ/T+3dy7WPTELMAkGBSsOAwIaBQAwUwYJKoZIhvcNAQcBMBQGCCqGSIb3DQMHBAgG+HCbXHCbF4AwTbUAWvS/KAKBu6bJyqY0b89Sm4bSVo8D6InQBEREdACdQ1jgWon9p2IpWxsYaYH8oIIDhzCCA4MwggLsoAMCAQICAQAwDQYJKoZIhvcNAQEFBQAwgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tMB4XDTA0MDIxMzEwMTMxNVoXDTM1MDIxMzEwMTMxNVowgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDBR07d/ETMS1ycjtkpkvjXZe9k+6CieLuLsPumsJ7QC1odNz3sJiCbs2wC0nLE0uLGaEtXynIgRqIddYCHx88pb5HTXv4SZeuv0Rqq4+axW9PLAAATU8w04qqjaSXgbGLP3NmohqM6bV9kZZwZLR/klDaQGo1u9uDb9lr4Yn+rBQIDAQABo4HuMIHrMB0GA1UdDgQWBBSWn3y7xm8XvVk/UtcKG+wQ1mSUazCBuwYDVR0jBIGzMIGwgBSWn3y7xm8XvVk/UtcKG+wQ1mSUa6GBlKSBkTCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb22CAQAwDAYDVR0TBAUwAwEB/zANBgkqhkiG9w0BAQUFAAOBgQCBXzpWmoBa5e9fo6ujionW1hUhPkOBakTr3YCDjbYfvJEiv/2P+IobhOGJr85+XHhN0v4gUkEDI8r2/rNk1m0GA8HKddvTjyGw/XqXa+LSTlDYkqI8OwR8GEYj4efEtcRpRYBxV8KxAW93YDWzFGvruKnnLbDAF6VR5w/cCMn5hzGCAZowggGWAgEBMIGUMIGOMQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxFDASBgNVBAoTC1BheVBhbCBJbmMuMRMwEQYDVQQLFApsaXZlX2NlcnRzMREwDwYDVQQDFAhsaXZlX2FwaTEcMBoGCSqGSIb3DQEJARYNcmVAcGF5cGFsLmNvbQIBADAJBgUrDgMCGgUAoF0wGAYJKoZIhvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMTUwNDA4MjIxNzQ0WjAjBgkqhkiG9w0BCQQxFgQUoRG9TQJqcqjTVqhF75ow+eRxaMUwDQYJKoZIhvcNAQEBBQAEgYB+5K/bwtg/LaKQ1C0DdcMlkLtbBP8tsXSLtWE2k23jfLVAHOmKFCzOYKi+MX3zVzqjBGGh6nDJQijoCM0qZjNvd35GgYdNlS7PNPfehnaVqjkggMu0HAOd5eYbhRVMXdhIIgs6UjHuWmB8dJIy0wq4viUbhedsBVFD0hD7ulL8AQ==-----END PKCS7-----
+                            ">
+                            <input type="image" src="https://www.paypalobjects.com/en_GB/i/btn/btn_viewcart_SM.gif" border="0" name="submit" alt="PayPal – The safer, easier way to pay online.">
+                            <img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </td>
+        <td style="vertical-align: top">
+            <img src="/images/Photos/ParentPack.JPG" width="400" height="208" class="centered-image" />
+        </td>
+    </tr>
+</table>
+
+
+</p>
