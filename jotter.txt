@@ -1,7 +1,5 @@
 
 ** book descriptions
-** referral sites
-** student tracking sheet
 
 + Generate peronalised PDFs:
     + Course log/diary pages
@@ -43,24 +41,7 @@
     - Student tracking sheets
 
 
-- Internal student tracking sheet for instructor course:
-    - Attach to booking form so details are to hand
-    - Before the course:
-        - List of payments received (date, amount, outstanding)
-        - Checkbox: acknowledgment sent out
-        - Checkbox: manual sent out
-    - During the course
-        - Assesment for each measured objective
-    - After the course:
-        - Checkbox: web site account created
-        - Homework tracking, for each piece:
-            - Date received
-            - Mark
-            - Comments
-            - Checkbox: Feedback sent
-        - Checkbox: certificates sent
-
-
+- One parent pack weighs 628g
 
 + Add 'venue housekeeping' to instructors manual
 
@@ -79,6 +60,7 @@
 + Login/auth logic from spreadsheet
 + tests!!
 + Move validation to a plug-in?
++ Get an SSl certificate and move to HTTPS for everything
 
 - New materials for instructors course:
     - Timetable?
