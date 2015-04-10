@@ -12,11 +12,9 @@
 + Adding a new enquiry should notify the instructors of nearby courses if requested
 + Data backup (DB, instructors' pics)
 + FAQ/External resources: bibliography (for instructors)
-    - Various books (A&P, reflexology, business (Jane's book?)) - affiliate links
     - Affiliate link to Leoni Dawson?
     - Other training courses
     - Neal's Yard store
-    - Places to refer people to if they have problems of various sorts
 + Get rid of all references to Tutor/practitioner
 + Some admin tools
     ~ Create account

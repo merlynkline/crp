@@ -11,7 +11,9 @@ you. Click on any of the previews to download the document.
 Some of these documents, and various others, are also available
 with specific course details already filled in. You can download
 these through your
-<a href="<%= url_for 'crp.members.courses' %>">courses page</a>.
+<a href="<%= url_for 'crp.members.courses' %>">courses page</a>
+which is recommended in preference to using the generic versions
+included here.
 </p>
 <p class="extra-info">
 Note that these documents
@@ -20,22 +22,27 @@ version of
 <a href="http://get.adobe.com/uk/reader/" target="_blank">Adobe® Reader® software</a>
 in order to view and print them.
 </p>
+
+<div class="pdf-separator">Advertising<br />and<br />marketing</div>
+
 %= include "members/parts/course_doc", name => 'ads/DL flyer general', caption => "Three-to-a-sheet flyer, good for mailing"
 %= include "members/parts/course_doc", name => 'ads/Tall flyer general', caption => "Larger version of the three-to-a-sheet flyer"
 %= include "members/parts/course_doc", name => 'ads/Poster - descriptive general', caption => "General purpose poster with descriptive text"
 %= include "members/parts/course_doc", name => 'ads/Poster - pictorial general', caption => "General purpose poster with pictures rather than text"
 %= include "members/parts/course_doc", name => 'ads/Small general descriptive', caption => "General purpose flyer with descriptive text"
 %= include "members/parts/course_doc", name => 'ads/Small general pictorial', caption => "General purpose flyer with pictures rather than text"
-
-<div class="pdf-seperator"></div>
-
-%= include "members/parts/course_doc", name => 'members/booking_form', caption => "Booking form for your trainees to fill in"
-%= include "members/parts/course_doc", name => 'members/register', caption => "Register to check in trainees to each session"
-%= include "members/parts/course_doc", name => 'members/feedback_form', caption => "Feedback form for your trainees to fill in after a course has finished"
 %= include "members/parts/course_doc", name => 'members/Presentation', caption => "Notes for a presentation to tell people about The Children's Reflexology Programme"
 %= include "members/parts/course_doc", name => 'members/Business cards', caption => "Business cards suitable for Avery C32011, C32016, and similar card stock"
 %= include "members/parts/course_doc", name => 'members/QR Business cards', caption => "Alternate business cards suitable for Avery C32011, C32016, and similar card stock"
 
-<div class="pdf-seperator"></div>
+<div class="pdf-separator">Course<br />administration</div>
+
+%= include "members/parts/course_doc", name => 'members/booking_form', caption => "Generic booking form for your trainees to fill in"
+%= include "members/parts/course_doc", name => 'members/booking_form_A5', caption => "Generic booking form in A5 format for A4 paper"
+%= include "members/parts/course_doc", name => 'members/register', caption => "Generic register to check in trainees to each session"
+%= include "members/parts/course_doc", name => 'members/feedback_form', caption => "Generic feedback form for your trainees to fill in"
+%= include "members/parts/course_doc", name => 'members/feedback_form_A5', caption => "Generic feedback form in A5 format for A4 paper"
+
+<div class="pdf-separator">Other<br />documents</div>
 
 %= include "members/parts/course_doc", name => 'membership_certificate', caption => "Your current membership certificate"

@@ -162,7 +162,7 @@ td {
     padding:        8px 0;
     font-weight:    bold;
 }
-fieldset, legend, .message-box, .pdf-preview, .highlight-box, .instructor-photo, table.list1, .member-option-highlight {
+fieldset, legend, .message-box, .pdf-preview, .highlight-box, .instructor-photo, table.list1, .member-option-highlight, .pdf-separator {
     border:         3px solid #589;
     background:     #bde;
     border-radius:  8px;
@@ -464,11 +464,18 @@ table.list1 {
     line-height:    120%;
     text-align:     center;
 }
-.pdf-seperator {
-    width:          165px;
-    height:         279px;
+.pdf-separator {
+    width:          113px;
+    height:         267px;
     margin:         8px;
-    float: left;
+    padding:        12px 8px 0 40px;
+    text-align:     right;
+    font-weight:    bold;
+    float:          left;
+    border-left:    none;
+    border-top:     none;
+    border-bottom:  none;
+    background-image: linear-gradient(to right, #fff, #bde);
 }
 .member-option-highlight {
     width:          165px;
