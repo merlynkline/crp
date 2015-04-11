@@ -120,14 +120,21 @@ sub create_account {
 
     if($c->req->method eq 'POST') {
         my $email = $c->crp->trimmed_param('email') || return $c->welcome;
+        my $name = $c->crp->trimmed_param('name');
         my $validation = $c->validation;
         $validation->required('email')->like(qr{^.+@.+[.].+});
+        $validation->required('name');
         my $login_record;
         $login_record = $c->crp->model('Login')->find({'lower(me.email)' => lc $email}) unless $validation->has_error;
         $validation->error(email => ['duplicate_email']) if $login_record;
         return $c->welcome if $validation->has_error;
 
         $login_record = $c->crp->model('Login')->create({email => $email});
+
+        my $profile = $c->crp->model('Profile')->find_or_create({instructor_id => $login_record->id});
+        $profile->name($name);
+        $profile->update;
+
         $c->flash(msg => 'account_create');
         return $c->redirect_to($c->url_for('crp.admin.show_account')->query(id => $login_record->id));
     }

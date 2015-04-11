@@ -28,9 +28,18 @@
 %= form_for 'crp.admin.create_account' => (method => 'POST') => begin
     <fieldset>
         <legend>Create a new account</legend>
-        <label for="email">New email address:</label>
+        <label for="name">New instructor's name:
+            <div class="field-extra-info">This is the name as it will appear on the certificate.</div>
+        </label>
         <div class="input-container">
-            <%= text_field 'email', size => '30', id => 'email', required => "required", autofocus => "autofocus"  =%>
+            <%= text_field 'name', size => '30', id => 'name', required => "required" =%>
+            <%= include 'parts/error', field => 'name' =%>
+        </div>
+        <label for="email">New email address:
+            <div class="field-extra-info">This is the address to be used to log in.</div>
+        </label>
+        <div class="input-container">
+            <%= text_field 'email', size => '30', id => 'email', required => "required" =%>
             <%= include 'parts/error', field => 'email' =%>
         </div>
         <label>&nbsp;</label>
