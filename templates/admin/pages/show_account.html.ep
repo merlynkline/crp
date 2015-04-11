@@ -55,9 +55,9 @@ Personal web site: <a href="<%= $personal_url %>" target="_blank"><%= $personal_
 Actions:
 <ul>
     <li><a href="<%= url_for('crp.admin.certificate')->query(id => $login->id) %>">Print certificate</a>
-    <li><a href="<%= url_for('/')->query(id => $login->id) %>">Change email address</a>
-    <li><a href="<%= url_for('/')->query(id => $login->id) %>">Send temporary password</a>
-    <li><a href="<%= url_for('/')->query(id => $login->id) %>">Suspend</a>
+%#    <li><a href="<%= url_for('/')->query(id => $login->id) %>">Change email address</a>
+%#    <li><a href="<%= url_for('/')->query(id => $login->id) %>">Send temporary password</a>
+%#    <li><a href="<%= url_for('/')->query(id => $login->id) %>">Suspend</a>
     <li><a href="<%= url_for('crp.admin.login')->query(id => $login->id) %>">Log in to this account</a>
 </ul>
 </p>
