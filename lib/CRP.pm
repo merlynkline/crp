@@ -12,7 +12,7 @@ use CRP::Util::Session;
 sub startup {
     my $self = shift;
 
-    warn "Starting\n" if $self->mode eq 'development';
+    warn __PACKAGE__ . " Starting\n" if $self->mode eq 'development';
 
     my $config = $self->plugin('Config');
     $self->plugin('CSRFProtect', on_error => \&_csrf_error_handler);
@@ -28,6 +28,12 @@ sub startup {
 
     # Router
     my $r = $self->routes;
+
+    my $sq_app = $self->app->home->rel_file('../sq/script/sq');
+    if(-e $sq_app) {
+        $sq_app = Mojo::Server->new->load_app($sq_app) if -e $sq_app;
+        $r->get('/')->over(headers => {Host => qr/(^|\.)susanquayle\.co\./})->detour(app => $sq_app);
+    }
 
     $r->get('/')->to('main#welcome');
     $r->any('/update_registration')->to('main#update_registration');
