@@ -43,6 +43,15 @@ td {
     line-height:    100%;
     padding:        2px 0;
 }
+#sm-links {
+    position:       absolute;
+    text-align:     right;
+    width:          100%;
+    line-height:    100%;
+}
+#sm-links img {
+    margin:         12px;
+}
 #footrow {
     width:          100%;
     height:         100px;

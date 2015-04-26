@@ -8,7 +8,6 @@
 
 + Add links to AOR (Friend membership) and Lexie's (?) parenty thing
 + Add extra resources to instructors' area (e.g. FB cover page)
-+ https://www.facebook.com/pages/The-Childrens-Reflexology-Programme/1491554257731838
 
 + Generate personalised PDFs:
     + Course log/diary pages
@@ -349,7 +348,7 @@ session:
     - run: su - crp
     - run: cd crp
     - run: ./upd
-    - NB: The upd script just pulls the latest version of whateverbranch is checked out, not necessarily the right tag.
+    - NB: The upd script just pulls the latest version of whatever branch is checked out, not necessarily the right tag.
 
 
 

@@ -8,4 +8,8 @@
 % }
     <a href="<%= url_for 'crp.logout' %>">Log out</a>&nbsp;&nbsp;
 </div>
+% } else {
+<div id="sm-links">
+    <a href="https://www.facebook.com/pages/The-Childrens-Reflexology-Programme/1491554257731838" target="_blank"><img src="<%= url_for '/images/facebook.png' %>" border="0" /></a>
+</div>
 % }
