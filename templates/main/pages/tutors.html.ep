@@ -6,7 +6,7 @@
 <p>
 <center>
 <strong>
-    The Childrens' Reflexolgy Programme is delivered only by qualified instructors
+    The Childrens' Reflexology Programme is delivered only by qualified instructors
     who have received the required training and use the official course materials.
 </strong>
 </center>
@@ -33,7 +33,7 @@
 <center>
 <span class="highlight-box">
     Interested in becoming an instructor?
-    <a class="standard-button" href="<%= url_for '/page/contact' %>">Contact us now</a>
+    <a class="standard-button" href="<%= url_for '/page/instructor_booking' %>">Book a course now</a>
 </span>
 </center>
 </p>
@@ -66,7 +66,7 @@ a full set of parent packs for your first course, like the one shown below.
 <center>
 <span class="highlight-box">
     Interested in becoming an instructor?
-    <a class="standard-button" href="<%= url_for '/page/contact' %>">Contact us now</a>
+    <a class="standard-button" href="<%= url_for '/page/instructor_booking' %>">Book a course now</a>
 </span>
 </center>
 </p>

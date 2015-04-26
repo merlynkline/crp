@@ -275,5 +275,31 @@ sub cookies_ok {
     $c->redirect_to('/');
 }
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub instructor_booking {
+    my $c = shift;
+
+    my $validation = $c->validation;
+    $validation->required('email')->like(qr{^.+@.+[.].+});
+    $validation->required('location');
+    $validation->required('date');
+    $validation->required('name');
+    $validation->required('about');
+    return $c->page('instructor_booking') if($validation->has_error);
+
+    my %info;
+    foreach my $param(qw(address about name email location date phone postcode)) {
+        $info{$param} =  Mojo::Util::xml_escape($c->crp->trimmed_param($param));
+        $info{$param} =~ s{\n}{<br \\>\n}g;
+    }
+    $c->mail(
+        from            => $c->crp->email_decorated($c->crp->trimmed_param('email'), $c->crp->trimmed_param('name')),
+        to              => $c->crp->email_to($c->app->config->{email_addresses}->{contact_form}),
+        template        => 'main/email/instructor_booking_form',
+        info            => \%info,
+    );
+    $c->redirect_to('/page/instructor_booked');
+}
+
 1;
 

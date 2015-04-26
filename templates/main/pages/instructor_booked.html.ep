@@ -1,0 +1,12 @@
+%#<!DOCTYPE html>
+% layout 'default', heading => 'Your booking request has been sent';
+% title 'Booking request sent';
+<h1>Thank you for your booking request</h1>
+
+<p>Thank you for taking the time to contact us.</p>
+
+<p>
+Your booking request has been sent and I will respond as soon as I possibly can.
+In the meantime please explore the web site to find out more about The Children's Reflexology Programme.
+</p>
+

@@ -1,0 +1,115 @@
+%#<!DOCTYPE html>
+% layout 'default', heading => "Instructors course booking";
+% title "Instructors course booking";
+%
+% my $text_field_block = begin
+% my($name, $prompt, $named_params) = @_;
+% $named_params = {} unless $named_params;
+% my @field_params;
+% push @field_params, $named_params->{default} if defined $named_params->{default};
+% push @field_params, required  => 'required' unless $named_params->{optional};
+% push @field_params, size      => $named_params->{size} // 30;
+% push @field_params, autofocus => 'autofocus' if $named_params->{autofocus};
+% push @field_params, id        => $name;
+% my $info = $named_params->{info} // undef;
+<label for="<%= $name %>"><%= $prompt %>:<% if($info) { %><div class="field-extra-info"><%= $info %></div><% } %></label>
+<div class="input-container">
+    <%= text_field $name, @field_params %>
+    <%= include 'parts/error', field => $name =%>
+</div>
+% end
+
+<img src="<%= url_for '/images/Animals/Owl.jpg' %>" class="page-logo">
+
+<p>
+<strong>
+    The Childrens' Reflexology Programme is delivered only by qualified instructors
+    who have received the required training and use the official course materials.
+</strong>
+</p>
+If you would like to become an instructor in The Children's Reflexology Programme
+please fill in this form in as much detail as you can. I will get back to you as
+soon as possible to confirm your place on a course. I am really looking forward
+to meeting you and welcoming you to the exciting and empowering world of The
+Children's Reflexology Programme!
+</p>
+<p>
+The course is open to everyone but it is very helpful if you have already been
+on the parents' course so you are familiar with the material you will be learning
+how to teach. In particular, you do not need to be a qualified reflexologist, nor
+any other type of therapist, in order to do this course. The fee for the course
+is £595 and you will be required to pay a non-refundable deposit of £100 to
+secure your place once I have confirmed that there is one available.
+<div style="
+    float: right;
+    width: 180px;
+    border: 1px solid black;
+    background: #dde;
+    padding: 0 12px 4px 8px;
+    margin: 16px 0 0 12px;
+    border-radius: 8px;
+    font-size:  10px;
+    line-height: 120%;
+    ">
+    <h3>Course overview</h3>
+    <p>
+    The course qualifies you to instruct parents and carers in
+    The Children’s Reflexology Programme. It covers the following
+    subject areas in enough depth for this purpose:
+    <ul>
+        <li>Reflexology - Overview, basic reflexes and techniques.</li>
+        <li>Running a course in The Programme.</li>
+        <li>Teaching techniques and practice.</li>
+        <li>Rhymes, animals and illustrations associated with the reflexes.</li>
+        <li>Treatment protocols for use in different circumstances.</li>
+        <li>Anatomy and physiology - the basics of the main systems.</li>
+        <li>Running a business based on the Programme.</li>
+        <li>Reflexology - Overview, basic reflexes and techniques.</li>
+    </ul>
+    You will be expected to give reflexology to, and receive it from, your fellow students during this course.
+    </p>
+    <p>
+    In order to qualify you will be required to:
+    <ul>
+        <li>Complete the course to the satisfaction of your tutor.</li>
+        <li>Participate in a micro-teach exercise with your peers during the course, including a self-assessment and a peer assesment.</li>
+        <li>Complete written assignments within three months of taking the course, on anatomy and physiology, parent/carer impact assessment, and reflective practice.</li>
+    </ul>
+    </p>
+    <p>
+    Once you have completed the course you will be able to teach parents and carers under the banner of The Children’s Reflexology Programme and will have ongoing access to a wide range of supporting materials and services for that purpose, including your own personal area of the website. Note that in order to remain an instructor you will be required to purchase official course materials for each of your students and to abide by an appropriate code of ethics.
+    </p>
+</div>
+%= form_for 'crp.instructor_booking', (method => 'POST'), begin
+    <fieldset>
+        <legend>Instructors course booking form</legend>
+
+        %= $text_field_block->('location', 'Course location',       {autofocus => 1, default => param('location')});
+        %= $text_field_block->('date',     'Course date',           {size => 10, default=> param('date')});
+        %= $text_field_block->('name',     'Your name',             {info => "Please enter your name as you would want it to appear on your certificate"});
+        %= $text_field_block->('email',    'Your email address',    {info => "This will be used to log in to this site and will be visible to your clients"});
+        %= $text_field_block->('phone',    'Your telephone numbers',{info => "For our private records", optional => 1});
+        <label for="address">Your address:
+            <div class="field-extra-info">For our private records. Note that the postcode is separate, below.</div>
+        </label>
+        <div class="input-container">
+            %= text_area 'address', rows => '3', cols => '45', id => 'address';
+            <%= include 'parts/error', field => 'address' %>
+        </div>
+        %= $text_field_block->('postcode', 'Your postcode',         {size => 10, optional => 1});
+        <label for="address">About you:
+            <div class="field-extra-info">Please tell me a bit about yourself and why you want to become an instructor.</div>
+        </label>
+        <div class="input-container">
+            %= text_area 'about', rows => '20', cols => '45', id => 'about', required => 'required';
+            <%= include 'parts/error', field => 'about' %>
+        </div>
+        <label>&nbsp;</label>
+        <div class="input-container">
+            <%= submit_button 'Send booking request', name => 'send' %>
+        </div>
+    </fieldset>
+% end;
+<p>
+
+<script>$(".hide-on-load").delay(9000).slideUp(1000);</script>

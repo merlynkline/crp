@@ -6,12 +6,11 @@
     ~ test with hosts file entry
     + request transfer
 
-+ Add DBS check info FAQ
 + Add links to AOR (Friend membership) and Lexie's (?) parenty thing
 + Add extra resources to instructors' area (e.g. FB cover page)
 + https://www.facebook.com/pages/The-Childrens-Reflexology-Programme/1491554257731838
 
-+ Generate peronalised PDFs:
++ Generate personalised PDFs:
     + Course log/diary pages
     + Name labels for carers
     + Quite a few PDFs still say "Infant Reflexology" instead of "Children's Reflexology"

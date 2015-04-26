@@ -50,6 +50,7 @@ sub startup {
     $r->get('/fresh/:cachebuster/*path')->to('main#fresh')->name('crp.fresh');
     $r->any('main/instructor_search')->to('main#instructor_search')->name('crp.instructor_search');
     $r->any('main/location_search')->to('main#location_search')->name('crp.location_search');
+    $r->post('main/instructor_booking')->to('main#instructor_booking')->name('crp.instructor_booking');
 
     my $logged_in = $r->under('/instructor')->to('logged_in#authenticate');
     $logged_in->get('/')->to('members#welcome')->name('crp.logged_in_default');
