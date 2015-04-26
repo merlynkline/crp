@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# Summarise commits between specified commit (or HEAD)
+# and the preceding tag matching release-*
+
+
+current=${1:-HEAD}
+preceding=`git describe ${current}~1 --tags --abbrev=0 --match=release-*`
+echo Changes between $preceding and $current
+git log $preceding..$current --oneline --reverse
+

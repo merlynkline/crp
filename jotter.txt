@@ -1,5 +1,15 @@
 
-** book descriptions
++ Build susanquayle.co.uk site
+    ~ Create new domain service at fasthosts
+    ~ set up email redirects and A record(s)
+    ~ roll out latest crp with the site mounted
+    ~ test with hosts file entry
+    + request transfer
+
++ Add DBS check info FAQ
++ Add links to AOR (Friend membership) and Lexie's (?) parenty thing
++ Add extra resources to instructors' area (e.g. FB cover page)
++ https://www.facebook.com/pages/The-Childrens-Reflexology-Programme/1491554257731838
 
 + Generate peronalised PDFs:
     + Course log/diary pages
