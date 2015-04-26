@@ -10,6 +10,7 @@
 %       {id => 'refer',     title => 'Referrals'},
 %       {id => 'qr',        title => 'QR Codes'},
 %       {id => 'csv',       title => 'CSV Files'},
+%       {id => 'dbs',       title => 'DBS/CRB checks'},
 %       {id => 'reading',   title => 'Extra reading'},
 %   ];
 %
