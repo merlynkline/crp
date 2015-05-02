@@ -2,7 +2,7 @@
 <%
     my $left_nav_menu = [
         ['home',      '/',               'Home'],
-        ['book',      '/page/book',      'Book'],
+        ['book',      '/page/book',      'The book'],
         ['programme', '/page/programme', 'Programme'],
         ['courses',   '/page/courses',   'Courses'],
         ['tutors',    '/page/tutors',    'Instructors'],
