@@ -46,3 +46,4 @@ in order to view and print them.
 <div class="pdf-separator">Other<br />documents</div>
 
 %= include "members/parts/course_doc", name => 'membership_certificate', caption => "Your current membership certificate"
+%= include "members/parts/course_doc", name => 'members/IDCard', caption => "Identity cards suitable for Avery C32011, C32016, and similar card stock"

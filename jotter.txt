@@ -472,5 +472,7 @@ Vultr setup:
         $ carton install
         $ carton exec ./script/crp migrate install
         $ carton exec hypnotoad script/crp daemon
-    # Get vultr to remove port 25 block # Configure exim4 to send mail via kidsreflex@gmail.com : velociraptor177
+    # Get vultr to remove port 25 block
+    # dpkg-reconfigure exim4-config
+        - Set general type to internet site mail handled directly by SMTP, set domain to kidsreflex.co.uk, everything else default
     
