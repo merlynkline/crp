@@ -74,6 +74,7 @@ sub _markup_pdf {
         if   ($action eq 'text')                { $self->_markup_pdf_text($markup_item); }
         elsif($action eq 'qrcode_signature')    { $self->_markup_pdf_qrcode_signature($markup_item); }
         elsif($action eq 'qrcode')              { $self->_markup_pdf_qrcode($markup_item); }
+        elsif($action eq 'image')               { $self->_markup_pdf_image($markup_item); }
     }
 }
 
@@ -81,7 +82,7 @@ sub _markup_pdf_text {
     my $self = shift;
     my($markup_item) = @_;
 
-    my $string = $self->_replace_place_holders($markup_item->{text} || '', $self->_data);
+    my $string = $self->_replace_place_holders($markup_item->{text} || '');
     my $page = $self->_pdf->openpage($markup_item->{page} || 1);
     my $font = $self->_pdf->corefont($markup_item->{font} || 'Helvetica', -dokern => 1);
     my $text = $page->text();
@@ -98,15 +99,38 @@ sub _markup_pdf_text {
 
 sub _replace_place_holders {
     my $self = shift;
-    my($text, $data) = @_;
+    my($text) = @_;
 
-    if($self->test_mode) {
-        $text =~ s{\[%\s*(.+?)\s*%]}{"[[ $1 ]]"}gsmixe;
-    }
-    else {
-        $text =~ s{\[%\s*(.+?)\s*%]}{$data->{$1} || ''}gsmixe;
-    }
+    $text =~ s{\[%\s*(.+?)\s*%]}{$self->_data_value($1)}gsmixe;
     return $text;
+}
+
+sub _data_value {
+    my $self = shift;
+    my($key) = @_;
+
+    my $data = $self->_data;
+    return $data->{$key} if exists $data->{$key};
+    return $self->test_mode ? "[[ $key ]]" : '';
+}
+
+sub _markup_pdf_image {
+    my $self = shift;
+    my($markup_item) = @_;
+ 
+    my($path_name, $page_number, $x, $y, $scale, $align) = @$markup_item{qw(path_name page x y scale align)};
+    $scale ||= 1;
+    $page_number ||= 1;
+    $align //= 'left';
+    $path_name = $self->_replace_place_holders($path_name);
+
+    my $image = $self->_pdf->image_jpeg($path_name);
+    my $width = $image->width;
+    my $page = $self->_pdf->openpage($page_number);
+    my $gfx = $page->gfx;
+    $x -= $width * $scale if $align eq 'right';
+    $x -= $width / 2 * $scale if $align eq 'center';
+    $gfx->image($image, $x, $y, $scale);
 }
 
 sub _markup_pdf_qrcode_signature {
@@ -121,13 +145,13 @@ sub _markup_pdf_qrcode_signature {
         ? 'http://www.kidsreflexology.co.uk/me/-175347/certificate' # Long enough to generate a typically sized QRCode
         : $data->{signature_url} // '';
     my($width, $height) = $self->_add_qr_code_link(
-        $signature_url, $markup_item->{page} || 1, $markup_item->{x}, $markup_item->{y}
+        $signature_url, $markup_item->{page} || 1, $markup_item->{x}, $markup_item->{y}, $markup_item->{align}
     );
 
     my $text_markup_item = { %$markup_item };
 
     $text_markup_item->{text} = $text_markup_item->{text1};
-    $text_markup_item->{x} += $width * QRCODE_SCALE;
+    $text_markup_item->{x} += ($width * QRCODE_SCALE) * (($markup_item->{align} // '') eq 'right' ? -1 : 1);
     $text_markup_item->{y} += 10 * QRCODE_SCALE; # Width of QRCode white border
     $text_markup_item->{y} += $line_height;
     $self->_markup_pdf_text($text_markup_item);
@@ -162,7 +186,7 @@ sub _markup_pdf_qrcode {
     my $string = $self->test_mode
         ? 'http://www.kidsreflexology.co.uk/me/-175347/icourse/88' # Long enough to generate a typically sized QRCode
         : $markup_item->{text} // '';
-    $string = $self->_replace_place_holders($string, $self->_data);
+    $string = $self->_replace_place_holders($string);
     return unless $string;
     $self->_add_qr_code_link(
         $string, $markup_item->{page} || 1, $markup_item->{x}, $markup_item->{y}, $markup_item->{align}
