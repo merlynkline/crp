@@ -58,9 +58,12 @@ sub pdf {
     $pdf = $c->app->home->rel_file("pdfs/$pdf");
     return $c->reply->not_found unless -r $pdf;
 
+    my $data = {
+        profile_image => $c->app->home->rel_file('public/images/Instructors/photos/default.jpg'),
+    };
     my $pdf_doc = CRP::Util::PDFMarkUp->new(file_path => $pdf, test_mode => 1);
     $c->render_file(
-        data                => $pdf_doc->fill_template,
+        data                => $pdf_doc->fill_template($data),
         format              => 'pdf',
         content_disposition => $c->param('download') ? 'attachment' : 'inline',
     );
