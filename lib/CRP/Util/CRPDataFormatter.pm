@@ -24,6 +24,10 @@ sub _extract_crp_profile_data {
     my($c, $data) = @_;
 
     return unless $data->{profile};
+    my $path = $c->crp->instructor_photo_location;
+    my $name = $c->crp->name_for_instructor_photo($data->{profile}->instructor_id);
+    $name = 'default.jpg' unless -r $c->crp->path_for_public_file("$path$name");
+    $data->{profile_image} = $c->crp->path_for_public_file("$path$name");
 
     my $profile = $data->{profile};
     $data->{$_} = $profile->$_ foreach(qw(name postcode telephone mobile));
