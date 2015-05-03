@@ -14,9 +14,13 @@ has _temp_file_list => (
         _temp_files     => 'elements',
     },
 );
-has _data   => (is => 'rw', isa => 'HashRef');
-has _markup => (is => 'rw', isa => 'ArrayRef', default => sub { [] });
-has _pdf    => (is => 'rw', isa => 'PDF::API2');
+has _data       => (is => 'rw', isa => 'HashRef');
+has _items      => (is => 'rw', isa => 'ArrayRef', default => sub { [] });
+has _repeats    => (is => 'rw', isa => 'ArrayRef', default => sub { [] });
+has _scale      => (is => 'rw', isa => 'Num', default => 1);
+has _y_offset   => (is => 'rw', isa => 'Num', default => 0);
+has _x_offset   => (is => 'rw', isa => 'Num', default => 0);
+has _pdf        => (is => 'rw', isa => 'PDF::API2');
 
 use constant QRCODE_SCALE => 0.33;
 
@@ -46,6 +50,10 @@ sub fill_template {
     $self->_load_markup;
     $self->_data($crp_data // {});
     $self->_markup_pdf;
+    foreach my $repeat (@{$self->_repeats}) {
+        $self->_markup_pdf($repeat->{x_offset}, $repeat->{y_offset});
+    };
+
     return $self->_pdf->stringify;
 }
 
@@ -55,21 +63,39 @@ sub _load_markup {
     my $file_path = $self->file_path;
     $file_path =~ s{\.pdf$}{};
     $file_path .= '.mark';
-    my $markup = [];
     if(-r $file_path) {
-        $markup = Mojo::Util::slurp($file_path);
-        $markup = eval $markup;
-        warn "PDF Markup evaluation error in '$file_path': $@" if $@;
-        $markup = [ $markup ] unless ref $markup eq 'ARRAY';
+        my $markup_file = Mojo::Util::slurp($file_path);
+        $markup_file = eval $markup_file;
+        unless($@) {
+            eval {
+                if(ref $markup_file eq 'ARRAY') {
+                    $self->_items($markup_file);
+                    $self->_scale(1);
+                    $self->_repeats([]);
+                }
+                elsif(ref $markup_file eq 'HASH') {
+                    my $version = $markup_file->{version} // '';
+                    die "Unrecognised markup version '$version'" unless $version eq '1';
+                    $self->_items($markup_file->{items} // []);
+                    $self->_scale($markup_file->{scale} // 1);
+                    $self->_repeats($markup_file->{repeats} // []);
+                }
+                else {
+                    die "Unrecognised markup file format";
+                }
+            };
+        }
+        warn "PDF Markup error in '$file_path': $@" if $@;
     }
-    $self->_markup($markup);
 }
 
 sub _markup_pdf {
     my $self = shift;
-    my($markup, $data) = @_;
+    my($x_offset, $y_offset) = @_;
 
-    foreach my $markup_item(@{$self->_markup}) {
+    $self->_x_offset($x_offset // 0);
+    $self->_y_offset($y_offset // 0);
+    foreach my $markup_item(@{$self->_items}) {
         my $action = $markup_item->{action} // 'text';
         if   ($action eq 'text')                { $self->_markup_pdf_text($markup_item); }
         elsif($action eq 'qrcode_signature')    { $self->_markup_pdf_qrcode_signature($markup_item); }
@@ -87,10 +113,10 @@ sub _markup_pdf_text {
     my $font = $self->_pdf->corefont($markup_item->{font} || 'Helvetica', -dokern => 1);
     my $text = $page->text();
     $text->textlabel(
-        $markup_item->{x},
-        $markup_item->{y},
+        $self->_get_x_coordinate($markup_item->{x}),
+        $self->_get_y_coordinate($markup_item->{y}),
         $font,
-        $markup_item->{size} || 12,
+        $self->_get_size($markup_item->{size} || 12),
         $string,
         -align => $markup_item->{align} || 'left',
         -color => $markup_item->{colour} || '#000',
@@ -130,7 +156,7 @@ sub _markup_pdf_image {
     my $gfx = $page->gfx;
     $x -= $width * $scale if $align eq 'right';
     $x -= $width / 2 * $scale if $align eq 'center';
-    $gfx->image($image, $x, $y, $scale);
+    $gfx->image($image, $self->_get_x_coordinate($x), $self->_get_y_coordinate($y), $self->_get_size($scale));
 }
 
 sub _markup_pdf_qrcode_signature {
@@ -172,7 +198,7 @@ sub _add_qr_code_link {
     $align //= 'left';
     $x -= $width * QRCODE_SCALE if $align eq 'right';
     $x -= $width / 2 * QRCODE_SCALE if $align eq 'center';
-    $gfx->image($image, $x, $y, QRCODE_SCALE);
+    $gfx->image($image, $self->_get_x_coordinate($x), $self->_get_y_coordinate($y), $self->_get_size(QRCODE_SCALE));
     $self->_add_temp_file($file_name);
     return($width, $height);
 }
@@ -192,6 +218,28 @@ sub _markup_pdf_qrcode {
         $string, $markup_item->{page} || 1, $markup_item->{x}, $markup_item->{y}, $markup_item->{align}
     );
 }
+
+sub _get_x_coordinate {
+    my $self = shift;
+    my($x) = @_;
+
+    return $self->_get_size($x + $self->_x_offset);
+}
+
+sub _get_y_coordinate {
+    my $self = shift;
+    my($y) = @_;
+
+    return $self->_get_size($y + $self->_y_offset);
+}
+
+sub _get_size {
+    my $self = shift;
+    my($size) = @_;
+
+    return $size * $self->_scale;
+}
+
 
 
 no Moose;
