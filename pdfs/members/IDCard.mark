@@ -1,42 +1,21 @@
-[
+
+{
+    version => 1,
+    items => [
         { x => 227.4, y => 748.0, action => 'text', text => '[% name %]', size => 10, align => 'center', font => 'Helvetica-Bold' },
         { x => 292.3, y => 657.7, action => 'qrcode_signature', text1 => "", text2 => "Signature: [% signature %]", size => 6, align => 'right' },
         { x =>  65.5, y => 657.7, action => 'image', scale => 0.44554, path_name => '[% profile_image %]' },
-        
-        { x => 496.8, y => 748.0, action => 'text', text => '[% name %]', size => 10, align => 'center', font => 'Helvetica-Bold' },
-        { x => 561.7, y => 657.7, action => 'qrcode_signature', text1 => "", text2 => "Signature: [% signature %]", size => 6, align => 'right' },
-        { x => 334.9, y => 657.7, action => 'image', scale => 0.44554, path_name => '[% profile_image %]' },
-#-----------------------------
-        { x => 227.4, y => 594.4, action => 'text', text => '[% name %]', size => 10, align => 'center', font => 'Helvetica-Bold' },
-        { x => 292.3, y => 504.1, action => 'qrcode_signature', text1 => "", text2 => "Signature: [% signature %]", size => 6, align => 'right' },
-        { x =>  65.5, y => 504.1, action => 'image', scale => 0.44554, path_name => '[% profile_image %]' },
-        
-        { x => 496.8, y => 594.4, action => 'text', text => '[% name %]', size => 10, align => 'center', font => 'Helvetica-Bold' },
-        { x => 561.7, y => 504.1, action => 'qrcode_signature', text1 => "", text2 => "Signature: [% signature %]", size => 6, align => 'right' },
-        { x => 334.9, y => 504.1, action => 'image', scale => 0.44554, path_name => '[% profile_image %]' },
-#-----------------------------
-        { x => 227.4, y => 440.9, action => 'text', text => '[% name %]', size => 10, align => 'center', font => 'Helvetica-Bold' },
-        { x => 292.3, y => 350.5, action => 'qrcode_signature', text1 => "", text2 => "Signature: [% signature %]", size => 6, align => 'right' },
-        { x =>  65.5, y => 350.5, action => 'image', scale => 0.44554, path_name => '[% profile_image %]' },
-        
-        { x => 496.8, y => 440.9, action => 'text', text => '[% name %]', size => 10, align => 'center', font => 'Helvetica-Bold' },
-        { x => 561.7, y => 350.5, action => 'qrcode_signature', text1 => "", text2 => "Signature: [% signature %]", size => 6, align => 'right' },
-        { x => 334.9, y => 350.5, action => 'image', scale => 0.44554, path_name => '[% profile_image %]' },
-#-----------------------------
-        { x => 227.4, y => 287.3, action => 'text', text => '[% name %]', size => 10, align => 'center', font => 'Helvetica-Bold' },
-        { x => 292.3, y => 196.9, action => 'qrcode_signature', text1 => "", text2 => "Signature: [% signature %]", size => 6, align => 'right' },
-        { x =>  65.5, y => 196.9, action => 'image', scale => 0.44554, path_name => '[% profile_image %]' },
-        
-        { x => 496.8, y => 287.3, action => 'text', text => '[% name %]', size => 10, align => 'center', font => 'Helvetica-Bold' },
-        { x => 561.7, y => 196.9, action => 'qrcode_signature', text1 => "", text2 => "Signature: [% signature %]", size => 6, align => 'right' },
-        { x => 334.9, y => 196.9, action => 'image', scale => 0.44554, path_name => '[% profile_image %]' },
-#-----------------------------
-        { x => 227.4, y => 133.7, action => 'text', text => '[% name %]', size => 10, align => 'center', font => 'Helvetica-Bold' },
-        { x => 292.3, y =>  43.3, action => 'qrcode_signature', text1 => "", text2 => "Signature: [% signature %]", size => 6, align => 'right' },
-        { x =>  65.5, y =>  43.3, action => 'image', scale => 0.44554, path_name => '[% profile_image %]' },
-        
-        { x => 496.8, y => 133.7, action => 'text', text => '[% name %]', size => 10, align => 'center', font => 'Helvetica-Bold' },
-        { x => 561.7, y =>  43.3, action => 'qrcode_signature', text1 => "", text2 => "Signature: [% signature %]", size => 6, align => 'right' },
-        { x => 334.9, y =>  43.3, action => 'image', scale => 0.44554, path_name => '[% profile_image %]' },
-]
+    ],
+    repeats => [
+        { x_offset => 269.4, y_offset =>    0   },
+        { x_offset =>   0  , y_offset => -153.6 },
+        { x_offset => 269.4, y_offset => -153.6 },
+        { x_offset =>   0  , y_offset => -307.1 },
+        { x_offset => 269.4, y_offset => -307.1 },
+        { x_offset =>   0  , y_offset => -460.7 },
+        { x_offset => 269.4, y_offset => -460.7 },
+        { x_offset =>   0  , y_offset => -614.3 },
+        { x_offset => 269.4, y_offset => -614.3 },
+    ],
+}
 

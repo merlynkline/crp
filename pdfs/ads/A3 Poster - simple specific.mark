@@ -1,0 +1,76 @@
+
+{
+    version => 1,
+    scale => 1.41421,
+    items => [
+        {
+            action  => 'text',
+            text    => '[% phone_numbers %]',
+            x       => 297.64,
+            y       => 74,
+            size    => 14,
+            align   => 'center',
+        },
+        {
+            action  => 'text',
+            text    => '[% url %]',
+            x       => 297.64,
+            y       => 58,
+            size    => 14,
+            align   => 'center',
+        },
+        {
+            action  => 'text',
+            text    => '[% email %]',
+            x       => 297.64,
+            y       => 41,
+            size    => 14,
+            align   => 'center',
+        },
+        
+        
+        {
+            action  => 'text',
+            text    => '[% description %]',
+            x       => 297.64,
+            y       => 498,
+            size    => 28,
+            align   => 'center',
+        },
+        
+        
+        {
+            action  => 'text',
+            text    => 'At [% venue %] with [% name %].',
+            x       => 297.64,
+            y       => 290,
+            size    => 16,
+            align   => 'center',
+        },
+        {
+            action  => 'text',
+            text    => '[% course_duration %] starting [% date %] at [% time %] for [% session_duration %].',
+            x       => 297.64,
+            y       => 270,
+            size    => 16,
+            align   => 'center',
+        },
+        {
+            action  => 'text',
+            text    => '[% price %] including a copy of the book, The Mouse\'s House.',
+            x       => 297.64,
+            y       => 250,
+            size    => 16,
+            align   => 'center',
+        },
+
+        {
+            action  => 'qrcode',
+            text    => "[% course_url %]",
+            x       => 22,
+            y       => 46,
+        },
+
+    ]
+}
+
