@@ -12,6 +12,7 @@
 %       {id => 'csv',       title => 'CSV Files'},
 %       {id => 'dbs',       title => 'DBS/CRB checks'},
 %       {id => 'reading',   title => 'Extra reading'},
+%       {id => 'updates',   title => 'Site updates'},
 %   ];
 %
 %   my $id = stash('faq_id') // 'intro';

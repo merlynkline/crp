@@ -1,0 +1,24 @@
+%#<!DOCTYPE html>
+% layout 'faqs';
+<p>
+We are constantly updating this site with new software and content. In most
+cases this is to make small improvements and fix minor issues but some of
+these updates contain new features that you won't want to miss. To help you
+keep track of what's going on this page contains a very brief overview of
+the most important changes that happen. Check back from time to time to make
+sure you keep up to date with what the site has to offer.
+<ul>
+    <li>26Apr2015</li>
+    <ul>
+        <li>FAQ article for DBS/CRB checks</li>
+        <li>Instructor course booking form</li>
+    </ul>
+    <li>3May2015</li>
+    <ul>
+        <li>Facebook link icon on pages when not logged in</li>
+        <li>New printable PDF document: ID cards</li>
+        <li>A3 versions of three printable PDF posters</li>
+        <li>This FAQ article!
+    </ul>
+</ul>
+</p>
