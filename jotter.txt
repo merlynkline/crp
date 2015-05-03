@@ -1,15 +1,9 @@
 
-+ Build susanquayle.co.uk site
-    ~ Create new domain service at fasthosts
-    ~ set up email redirects and A record(s)
-    ~ roll out latest crp with the site mounted
-    ~ test with hosts file entry
-    + request transfer
-
 + Add links to AOR (Friend membership) and Lexie's (?) parenty thing
 + Add extra resources to instructors' area (e.g. FB cover page)
 
 + Generate personalised PDFs:
+    + A3 versions of some
     + Course log/diary pages
     + Name labels for carers
     + Quite a few PDFs still say "Infant Reflexology" instead of "Children's Reflexology"
@@ -305,7 +299,7 @@ session:
     + Administrators can extend due dates on assignments
     + Administrators can add new assignments at any time
  
- + Could each instructor have their own shop which earns them commission? (accounting problems? leability? perhaps they just earn credit)
+ + Could each instructor have their own shop which earns them commission? (accounting problems? liability? perhaps they just earn credit)
  
  
  Implementation notes
