@@ -1,6 +1,9 @@
 <!DOCTYPE html>
-<html>
+% my $og_image = stash('og_image');
+<html<% if($og_image) { %> xmlns:fb="http://ogp.me/ns/fb#"<% } %>>
     <head>
+        <% if($og_image) { %>        <meta property="og:image" content="<%= url_for($og_image)->to_abs %>" />
+<% } %>
         <title><%= title %> - The Children's Reflexology Programme</title>
         <link rel="shortcut icon" href="<%= url_for '/favicon.ico' %>">
         <link rel="apple-touch-icon-precomposed" href="<%= url_for '/favicon/favicon-152.png' %>">
@@ -18,7 +21,7 @@
 %   my @href = split ':', $href;
 %   my $this_page = (stash('page_id') || stash('page') || '') eq ($page_id || '');
 <span<% if($this_page) { %> class="selected"<% } %>><% if(!$this_page) { =%><a href="<%= url_for @href %>"><% } =%>
-<%= $desc =%>
+        <%= $desc =%>
 <% if(!$this_page) { =%></a><% } =%>
 </span>
 % };

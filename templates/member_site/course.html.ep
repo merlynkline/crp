@@ -1,5 +1,5 @@
 %#<!DOCTYPE html>
-% layout 'default', page_id => 'member.course';
+% layout 'default', page_id => 'member.course', og_image => '/images/FB-og-app.jpg';
 % title 'Course';
 % my $profile = stash('site_profile');
 % my $course = stash('course');
