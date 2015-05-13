@@ -17,6 +17,7 @@ has _temp_file_list => (
 has _data       => (is => 'rw', isa => 'HashRef');
 has _items      => (is => 'rw', isa => 'ArrayRef', default => sub { [] });
 has _repeats    => (is => 'rw', isa => 'ArrayRef', default => sub { [] });
+has _filename   => (is => 'rw', isa => 'Str');
 has _scale      => (is => 'rw', isa => 'Num', default => 1);
 has _y_offset   => (is => 'rw', isa => 'Num', default => 0);
 has _x_offset   => (is => 'rw', isa => 'Num', default => 0);
@@ -79,6 +80,7 @@ sub _load_markup {
                     $self->_items($markup_file->{items} // []);
                     $self->_scale($markup_file->{scale} // 1);
                     $self->_repeats($markup_file->{repeats} // []);
+                    $self->_filename($markup_file->{filename} // '');
                 }
                 else {
                     die "Unrecognised markup file format";
@@ -240,7 +242,13 @@ sub _get_size {
     return $size * $self->_scale;
 }
 
+sub filename {
+    my $self = shift;
 
+    my $filename = $self->_filename || $self->file_path;
+    $filename =~ s{.*/}{};
+    return "TCRP $filename";
+}
 
 no Moose;
 __PACKAGE__->meta->make_immutable;

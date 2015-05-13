@@ -1,6 +1,7 @@
 
 {
     version => 1,
+    filename => 'Business cards',
     items => [
         { action => 'text', text => '[% name %]',          x => 274, y => 753, size => 13, align => 'right', font => 'Helvetica-Bold' },
         { action => 'text', text => '[% phone_numbers %]', x =>  50, y => 685, size => 10,                   font => 'Helvetica-Bold' },

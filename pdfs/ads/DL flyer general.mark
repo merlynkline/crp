@@ -1,5 +1,6 @@
 {
     version => 1,
+    filename => 'DL Flyer',
     items => [
         {
             action  => 'text',

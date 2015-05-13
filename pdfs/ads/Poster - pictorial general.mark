@@ -1,4 +1,7 @@
-[
+{
+    version => 1,
+    filename => 'Pictorial poster',
+    items => [
         {
             action  => 'text',
             text    => '[% name %]',
@@ -37,5 +40,6 @@
             x       => 20,
             y       => 43,
         },
-]
+    ]
+}
 

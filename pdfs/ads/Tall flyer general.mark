@@ -1,4 +1,8 @@
-[
+
+{
+    version => 1,
+    filename => 'Tall flyer.pdf',
+    items => [
         {
             action  => 'text',
             text    => '[% name %]',
@@ -37,5 +41,7 @@
             x       => 25,
             y       => 53,
         },
-]
+    ]
+}
+
 

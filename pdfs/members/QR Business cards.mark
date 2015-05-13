@@ -1,6 +1,7 @@
 
 {
     version => 1,
+    filename => 'QR Business cards',
     items => [
         { action => 'text', text => '[% name %]',          x => 277, y => 748, size => 16, align => 'right', font => 'Helvetica-Bold' },
         { action => 'text', text => 'Qualified Instructor',x => 277, y => 730, size => 14, align => 'right' },

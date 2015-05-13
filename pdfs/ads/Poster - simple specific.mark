@@ -1,4 +1,7 @@
-[
+{
+    version => 1,
+    filename => 'Simple course poster',
+    items => [
         {
             action  => 'text',
             text    => '[% phone_numbers %]',
@@ -67,5 +70,6 @@
             y       => 46,
         },
 
-]
+    ]
+}
 

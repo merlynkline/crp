@@ -1,5 +1,6 @@
 {
     version => 1,
+    filename => 'Descriptive flyer',
     items => [
         {
             action  => 'text',

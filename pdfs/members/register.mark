@@ -1,4 +1,7 @@
-[
+{
+    version => 1,
+    filename => 'Course register',
+    items => [
         {
             action  => 'text',
             text    => '[% name %], [% one_line_address %], [% postcode %]',
@@ -124,5 +127,6 @@
             align   => 'center',
             page    => 2,
         },
-]
+    ]
+}
 

@@ -1,5 +1,6 @@
 {
     version => 1,
+    filename => 'Course handout',
     items => [
         {
             action  => 'text',

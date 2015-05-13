@@ -99,6 +99,7 @@ sub booking_form {
         data                => $pdf_doc->fill_template($data),
         format              => 'pdf',
         content_disposition => $c->param('download') ? 'attachment' : 'inline',
+        filename            => $pdf_doc->filename,
     );
 }
 

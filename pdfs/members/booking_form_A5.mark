@@ -1,4 +1,7 @@
-[
+{
+    version => 1,
+    filename => 'A5 Booking form',
+    items => [
         {
             action  => 'text',
             text    => '[% name %], [% one_line_address %], [% postcode %]',
@@ -52,5 +55,5 @@
             size    => 9.9,
             align   => 'center',
         },
-]
-
+    ]
+}

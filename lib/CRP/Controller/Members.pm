@@ -165,7 +165,8 @@ sub get_pdf {
     $c->render_file(
         data                => $pdf_doc->fill_template($data),
         format              => 'pdf',
-        content_disposition => $c->param('download') ? 'attachment' : 'inline',
+        content_disposition => ($c->param('download') ? 'attachment' : 'inline'),
+        filename            => $pdf_doc->filename,
     );
 }
 
@@ -512,6 +513,7 @@ sub course_pdf {
         data                => $pdf_doc->fill_template($data),
         format              => 'pdf',
         content_disposition => $c->param('download') ? 'attachment' : 'inline',
+        filename            => $pdf_doc->filename,
     );
 }
 
