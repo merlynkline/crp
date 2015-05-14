@@ -1,4 +1,25 @@
 
+
++ Advertise instructors courses
+    + DB table
+        - id
+        - instructor_id
+        - location
+        - latitude
+        - longitude
+        - venue
+        - description
+        - start_date
+        - price
+    + New facility in Admin section to manage courses
+        + List courses
+        + Add course
+        + Delete course
+        + Edit Course
+    + Template to show list of courses upcoming courses, with links to booking forms
+    + Include on instructors course page
+    + Refactor duplicate code from the course models into a common module
+
 + Add links to AOR (Friend membership) and Lexie's (?) parenty thing
 + Add extra resources to instructors' area (e.g. FB cover page)
 
@@ -304,12 +325,6 @@ session:
  
  Implementation notes
  --------------------
- 
- ~ Do we need cookies on the non-logged-in site? => No!
-    ~ Don't send a cookie until log-in
-    ~ Cookie advice on login page
-    ~ Successful login sends re-direct (with cookie) to logged-in home
-    ~ Logged-in home (and all protected pages) checks for cookie and redirects to 'login' page with cookie warning.
  
  Workflow notes
  --------------
