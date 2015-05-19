@@ -13,7 +13,7 @@ sub welcome {
     my $c = shift;
 
     my $days = $c->config->{course}->{age_when_advert_expires_days};
-    my $profile = $c->_load_profile;
+    my $profile = $c->crp->load_profile;
     $c->stash(incomplete_profile        => ! $profile->is_complete);
     $c->stash(draft_courses_count       => $profile->courses->get_draft_set->count);
     $c->stash(advertised_courses_count  => $profile->courses->get_advertised_set($days)->count);
@@ -45,7 +45,7 @@ sub page {
 sub profile {
     my $c = shift;
 
-    my $profile = $c->_load_profile;
+    my $profile = $c->crp->load_profile;
     $c->stash(site_profile => $profile);
 
     if($c->req->method eq 'POST') {
@@ -138,15 +138,6 @@ sub _notify_admins_of_changes {
 }
 
 
-sub _load_profile {
-    my $c = shift;
-
-    my $instructor_id = $c->crp->logged_in_instructor_id or die "Not logged in";
-    my $profile = $c->crp->model('Profile')->find_or_create({instructor_id => $instructor_id});
-    $c->stash('profile_record', $profile);
-    return $profile;
-}
-
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 use CRP::Util::PDFMarkUp;
 use CRP::Util::CRPDataFormatter;
@@ -159,7 +150,7 @@ sub get_pdf {
 
     my $pdf_doc = CRP::Util::PDFMarkUp->new(file_path => $pdf);
     my $data = CRP::Util::CRPDataFormatter::format_data($c, {
-            profile => $c->_load_profile,
+            profile => $c->crp->load_profile,
             email   => $c->stash('crp_session')->variable('email'),
         });
     $c->render_file(
@@ -174,7 +165,7 @@ sub get_pdf {
 sub find_enquiries {
     my $c = shift;
 
-    $c->_load_profile;
+    $c->crp->load_profile;
     my $latitude = $c->param('latitude') // '';
     my $longitude = $c->param('longitude') // '';
     my $file_name_location = $c->param('location') // '';
@@ -198,12 +189,13 @@ sub find_enquiries {
 sub courses {
     my $c = shift;
 
-    my $profile = $c->_load_profile;
+    my $profile = $c->crp->load_profile;
     my $days = $c->config->{course}->{age_when_advert_expires_days};
-    $c->stash(advertised_list   => _date_order_list(scalar $profile->courses->get_advertised_set($days)));
-    $c->stash(draft_list        => _date_order_list(scalar $profile->courses->get_draft_set));
-    $c->stash(past_list         => _date_order_list(scalar $profile->courses->get_past_set($days)));
-    $c->stash(canceled_list     => _date_order_list(scalar $profile->courses->get_canceled_set($days)));
+    my $courses = $profile->courses;
+    $c->stash(advertised_list   => _date_order_list(scalar $courses->get_advertised_set($days)));
+    $c->stash(draft_list        => _date_order_list(scalar $courses->get_draft_set));
+    $c->stash(past_list         => _date_order_list(scalar $courses->get_past_set($days)));
+    $c->stash(canceled_list     => _date_order_list(scalar $courses->get_canceled_set($days)));
 }
 
 sub _date_order_list {
@@ -269,7 +261,7 @@ sub _load_course_from_params {
     my $c = shift;
     my($course) = @_;
 
-    my $profile = $c->_load_profile;
+    my $profile = $c->crp->load_profile;
     my $validation = $c->validation;
 
     my $record = {
@@ -316,7 +308,7 @@ sub _load_course_from_defaults {
     my $c = shift;
     my($course) = @_;
 
-    my $profile = $c->_load_profile;
+    my $profile = $c->crp->load_profile;
     my $config = $c->config->{course};
     $course->location($profile->location);
     $course->session_duration($config->{default_session_duration});
@@ -327,7 +319,7 @@ sub _display_course_editor_with {
     my $c = shift;
     my($course) = @_;
 
-    my $profile = $c->_load_profile;
+    my $profile = $c->crp->load_profile;
     $c->stash(site_profile => $profile);
     $c->stash('course_record', $course);
     $c->stash('edit_restriction', 'PUBLISHED') if $course->published;
@@ -429,7 +421,7 @@ sub _notify_enquirer {
 
     return unless $enquiry->email;
     my $identifier = CRP::Util::WordNumber::encode_number($enquiry->id);
-    my $profile = $c->_load_profile;
+    my $profile = $c->crp->load_profile;
     my $url = $c->url_for('crp.membersite.course', slug => $profile->web_page_slug, course => $course->id)->to_abs;
     $c->mail(
         to          => $c->crp->email_to($enquiry->email, $enquiry->name),
@@ -505,7 +497,7 @@ sub course_pdf {
     my $pdf = $c->app->home->rel_file("pdfs/${name}.pdf");
     my $pdf_doc = CRP::Util::PDFMarkUp->new(file_path => $pdf);
     my $data = CRP::Util::CRPDataFormatter::format_data($c, {
-            profile => $c->_load_profile,
+            profile => $c->crp->load_profile,
             course  => $course,
             email   => $c->stash('crp_session')->variable('email'),
         });
