@@ -153,6 +153,17 @@ sub register {
     );
 
     $app->helper(
+        'crp.load_profile' => sub {
+            my $c = shift;
+
+            my $instructor_id = $c->crp->logged_in_instructor_id or die "Not logged in";
+            my $profile = $c->crp->model('Profile')->find_or_create({instructor_id => $instructor_id});
+            $c->stash('profile_record', $profile);
+            return $profile;
+        }
+    );
+
+    $app->helper(
         'crp.number_or_null' => sub {
             my $c = shift;
             my($number) = @_;
