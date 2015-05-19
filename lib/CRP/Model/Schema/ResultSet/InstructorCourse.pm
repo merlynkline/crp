@@ -42,12 +42,11 @@ sub get_draft_set {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 sub get_canceled_set {
     my $self = shift;
-    my ($age_when_advert_expires_days) = @_;
 
     return $self->search(
         { 
             canceled  => 1,
-            start_date  => {'>', $self->_date_from_age_days($age_when_advert_expires_days)},
+            start_date  => {'>', $self->_now},
         }
     );
 }
@@ -55,13 +54,12 @@ sub get_canceled_set {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 sub get_advertised_set {
     my $self = shift;
-    my ($age_when_advert_expires_days) = @_;
 
     return $self->search(
         {
             published   => 1,
             canceled    => 0,
-            start_date  => {'>', $self->_date_from_age_days($age_when_advert_expires_days)},
+            start_date  => {'>', $self->_now},
         },
     );
 }
@@ -69,21 +67,20 @@ sub get_advertised_set {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 sub get_past_set {
     my $self = shift;
-    my ($age_when_advert_expires_days) = @_;
 
     return $self->search(
         {
             published   => 1,
-            start_date  => {'<=', $self->_date_from_age_days($age_when_advert_expires_days)},
+            start_date  => {'<=', $self->_now},
         },
     );
 }
 
-sub _date_from_age_days {
+sub _now {
     my $self = shift;
     my($age_days) = @_;
 
-    return $self->_format_datetime(DateTime->now()->subtract(days => $age_days));
+    return $self->_format_datetime(DateTime->now());
 }
 
 sub _format_datetime {

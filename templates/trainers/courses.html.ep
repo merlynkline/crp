@@ -1,23 +1,19 @@
 %#<!DOCTYPE html>
 % layout 'member_default', page_id => 'courses';
-% title 'Your courses';
+% title 'Your instructor training courses';
 %#
 % my $course_list_block = begin
 %  my($courses_list, $type) = @_;
 <table class="list1">
     <tr>
         <th>Start</th>
-        <th></th>
         <th>Venue</th>
-        <th>Title</th>
         <th></th>
     </tr>
     % foreach my $course (@$courses_list) {
     <tr>
         <td nowrap><%= $c->crp->format_date($course->start_date, 'short') %></td>
-        <td nowrap><%= $course->time %></td>
         <td><%= $course->venue %></td>
-        <td><%= $course->description %></td>
         <td nowrap>
         % if($type eq 'draft' || $type eq 'advertised') {
             <a class="small-button" href="<%= url_for('crp.members.course')->query(course_id => $course->id) %>" title="Edit the details of this course">Edit</a>
@@ -34,31 +30,28 @@
         <a class="small-button" href="<%= url_for('crp.members.cancel_course')->query(course_id => $course->id) %>" title="Cancel this course">Cancel</a>
         % }
         % if($type eq 'advertised' || $type eq 'canceled') {
-        <a class="small-button" href="<%= url_for('crp.membersite.course', slug => stash('profile_record')->web_page_slug, course => $course->id) %>" title="See the advertisement page for this course">Adv</a>
+%#        <a class="small-button" href="<%= url_for('crp.membersite.course', slug => stash('profile_record')->web_page_slug, course => $course->id) %>" title="See the advertisement page for this course">Adv</a>
         % }
-        <a class="small-button" href="<%= url_for('crp.members.course_docs')->query(course_id => $course->id) %>" title="Download and print PDF documents for this course (posters, booking form, register, etc)">PDF</a>
-        <a class="small-button" href="<%= url_for('crp.members.find_enquiries')->query(location => $course->location, latitude => $course->latitude, longitude => $course->longitude) %>" title="Find any enquires for courses in the area of this course">Enq</a>
+%#        <a class="small-button" href="<%= url_for('crp.members.course_docs')->query(course_id => $course->id) %>" title="Download and print PDF documents for this course (posters, booking form, register, etc)">PDF</a>
         </td>
     </tr>
     % }
 </table>
 % end
-% if(stash('profile_record')->instructor_trainer) {
 <div style="float: right; position: relative; top: 24px;">
-    <a href="<%= url_for 'crp.trainers.courses' %>">Instructor training courses</a>
+    <a href="<%= url_for 'crp.members.courses' %>">TCRP courses</a>
 </div>
-% }
-<h1>Your TCRP courses</h1>
+<h1>Your instructor training courses</h1>
 Add new courses as draft courses and then edit them until you have the details
 right and are happy to advertise them. Use the buttons next to the courses
-to see all the details and take actions such as editing, advertising, printing
-leaflets etc. Hover the mouse over any button to find out more about it.
+to see all the details and take actions.
+Hover the mouse over any button to find out more about it.
 <%= include 'parts/message_box', msg => flash('msg') || stash('msg'), auto_hide => 1 %>
 
 <p>
 <span class="highlight-box">
     To add a new course click:
-    <a class="standard-button" title="Add a new course to the Draft courses list" href="<%= url_for 'crp.members.course' %>">Add course</a>
+    <a class="standard-button" title="Add a new course to the Draft courses list" href="<%= url_for 'crp.trainers.course' %>">Add course</a>
     &nbsp;
 </span>
 </p>
