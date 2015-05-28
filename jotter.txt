@@ -1,4 +1,11 @@
 
++ Online booking form for parent courses
+
++ Add pic of Lyra & Sylvie to programme page
++ Add pic of course materials to courses page
+
++ More FB opengraph stuff
+	+ Home page
 
 + Advertise instructors courses
     + DB table
@@ -12,19 +19,20 @@
         - start_date
         - price
     + New facility in Admin section to manage courses
-        + List courses
+        ~ List courses
         + Add course
         + Delete course
         + Edit Course
     + Template to show list of courses upcoming courses, with links to booking forms
-    + Include on instructors course page
+    + Include upcoming course list on instructors course page
     + Refactor duplicate code from the course models into a common module
 
 + Add links to AOR (Friend membership) and Lexie's (?) parenty thing
-+ Add extra resources to instructors' area (e.g. FB cover page)
+
++ Typo in the general advice section on the back of the parent course booking form
 
 + Generate personalised PDFs:
-    + A3 versions of some
+    ~ A3 versions of some
     + Course log/diary pages
     + Name labels for carers
     + Quite a few PDFs still say "Infant Reflexology" instead of "Children's Reflexology"

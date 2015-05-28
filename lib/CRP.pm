@@ -89,6 +89,7 @@ sub startup {
     $member_site->any('/certificate')->to('member_site#certificate')->name('crp.membersite.certificate');
     $member_site->any('/course/:course')->to('member_site#course')->name('crp.membersite.course');
     $member_site->any('/course/:course/booking_form')->to('member_site#booking_form')->name('crp.membersite.booking_form');
+    $member_site->any('/course/:course/book_online')->to('member_site#book_online')->name('crp.membersite.book_online');
 
     my $tests = $r->under('/test')->to('test#authenticate');
     $tests->get('/')->to('test#welcome');

@@ -68,15 +68,25 @@ sub _get_published_course {
     return;
 }
 
+sub _stash_published_course_and_past_flag_or_404 {
+    my $c = shift;
+
+    my $course = $c->_get_published_course($c->stash('course'));
+    unless($course) {
+        $c->reply->not_found;
+        return undef;
+    }
+    $c->stash(course => $course);
+    my $days = $c->config->{course}->{age_when_advert_expires_days};
+    $c->stash(past_course => $course->start_date < DateTime->now()->subtract(days => $days));
+    return 1;
+}
+
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 sub course {
     my $c = shift;
 
-    my $course = $c->_get_published_course($c->stash('course'));
-    return $c->reply->not_found unless $course;
-    $c->stash(course => $course);
-    my $days = $c->config->{course}->{age_when_advert_expires_days};
-    $c->stash(past_course => $course->start_date < DateTime->now()->subtract(days => $days));
+    return unless $c->_stash_published_course_and_past_flag_or_404;
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -84,15 +94,13 @@ use CRP::Util::PDFMarkUp;
 use CRP::Util::CRPDataFormatter;
 sub booking_form {
     my $c = shift;
-    my $course_id = $c->stash('course');
 
+    return unless $c->_stash_published_course_and_past_flag_or_404;
     my $pdf = $c->app->home->rel_file('pdfs/members/booking_form.pdf');
-    my $course = $c->_get_published_course($c->stash('course'));
-    return $c->reply->not_found unless $course;
     my $pdf_doc = CRP::Util::PDFMarkUp->new(file_path => $pdf);
     my $data = CRP::Util::CRPDataFormatter::format_data($c, {
             profile => $c->stash('site_profile'),
-            course  => $course,
+            course  => $c->stash('course'),
             email   => $c->stash('site_profile')->login->email,
         });
     $c->render_file(
@@ -101,6 +109,13 @@ sub booking_form {
         content_disposition => $c->param('download') ? 'attachment' : 'inline',
         filename            => $pdf_doc->filename,
     );
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub book_online {
+    my $c = shift;
+
+    return unless $c->_stash_published_course_and_past_flag_or_404;
 }
 
 1;

@@ -41,7 +41,7 @@
     <%= $profile->mobile =%>
     </strong>
     <br />
-    You can email me on <a href="mailto:<%= $profile->login->email %>"><%= $profile->login->email %></a><% if($course_available) { %> or <a href="<%= url_for 'crp.membersite.booking_form' %>">download a booking form here</a><% } %>.
+    You can<% if($course_available) { %> <a href="<%= url_for('crp.membersite.book_online') %>"><strong>book a place on line</strong></a> or<% } %> email me on <a href="mailto:<%= $profile->login->email %>"><%= $profile->login->email %></a><% if($course_available) { %> or <a href="<%= url_for 'crp.membersite.booking_form' %>">download a printable booking form</a><% } %>.
 </div>
 % end
 %

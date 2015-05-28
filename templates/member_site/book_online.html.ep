@@ -1,0 +1,184 @@
+%#<!DOCTYPE html>
+% layout 'default', page_id => 'member.course', og_image => '/images/FB-og-app.jpg';
+% title 'Course booking';
+% my $profile = stash('site_profile');
+% my $course = stash('course');
+% my $course_available = 1;
+% $course_available = 0 if $course->canceled || stash 'past_course';
+%
+% my $warning_block = begin
+% if( ! $course_available) {
+<div style="background: #fdd; color: #b00; padding: 8px; text-align: center; border: 3px solid #b00; border-radius: 8px; margin: 8px 0;">
+    <strong>Please note that this course is
+    <%= $course->canceled ? 'CANCELLED' : 'now closed for bookings' %></strong></br />
+    You can still contact
+    <a href="<%= url_for 'crp.membersite.home' %>"><%= $profile->name %></a>
+    for further information.
+</div>
+% }
+% end
+%
+% my $course_details_block = begin
+<%= $warning_block->() =%>
+<div style="background: #ced; border: 3px solid #354; text-align: center; padding: 8px; border-radius: 8px;">
+    <strong><%= $course->description %></strong>
+    with <a href="<%= url_for 'crp.membersite.home' %>"><%= $profile->name %></a>
+    starting <%= $c->crp->format_date($course->start_date, 'short') %>, <%= $course->time %>.
+    <br />
+    This course is over <%= $course->course_duration %>
+    with each session lasting <%= $course->session_duration %>,
+    and costs <%= $course->price %>.
+    <br />
+    <small>
+        The price includes all the workshops plus a copy of
+        <a href="<%= url_for 'crp.page', page => 'book' %>">The Mouse's House</a>
+        and set of comprehensive reference notes.<br />
+    </small>
+</div>
+% end
+%
+%
+%
+<h1>Book course at <%= $course->venue %></h1>
+%= $course_details_block->()
+<p>
+To book a place on this course please fill in the form below in as much detail as you are comfortable with.
+I will get back to you as soon as possible to confirm that a place is available and has
+been reserved for you. All information is held in strict confidence.
+</p>
+<p>
+Note that you can
+<a href="<%= url_for 'crp.membersite.booking_form' %>">download a printable booking form</a>
+if you prefer.
+</p>
+%= form_for '/main/contact' => (method => 'POST') => begin
+<fieldset>
+    <legend>Booking form</legend>
+    %= hidden_field '005_page'  => url_for('crp.membersite.course')->to_abs;
+    %= hidden_field '010_start' => $c->crp->format_date($course->start_date, 'short');
+    %= hidden_field '020_title' => $course->description;
+    %= hidden_field '030_venue' => $course->venue;
+
+    <strong>About you</strong><br />
+    <label for="040_name">Your name:</label>
+    <div class="input-container">
+        <%= text_field '040_name', size => '30', id => '040_name', autofocus => "autofocus" =%>
+        <%= include 'parts/error', field => '040_name' =%>
+    </div>
+    <label for="050_email">Your email address:</label>
+    <div class="input-container">
+        <%= text_field '050_email', size => '30', id => '050_email', required => "required" =%>
+        <%= include 'parts/error', field => '050_email' =%>
+    </div>
+    <label for="060_email">Your telephone number:</label>
+    <div class="input-container">
+        <%= text_field '060_telephone', size => '30', id => '060_telephone' =%>
+    </div>
+    <label for="070_address">Your address:
+        <div class="field-extra-info">Note that the postcode is separate, below.</div>
+    </label>
+    <div class="input-container">
+        %= text_area '070_address', rows => '3', cols => '45', id => '070_address';
+    </div>
+    <label for="080_postcode">Your postcode:</label>
+    <div class="input-container">
+        %= text_field 'postcode', id => '080_postcode', size => 8;
+    </div>
+    <label>How would you like to pay?</label>
+    <div class="input-container" style="margin-top: 0">
+        &nbsp;&nbsp;PayPal
+        %= check_box '090_pay_paypal' => 'Y', id => '090_pay_paypal';
+        &nbsp;&nbsp;BACS
+        %= check_box '091_pay_bacs' => 'Y', id => '091_pay_bacs';
+        &nbsp;&nbsp;Cheque
+        %= check_box '092_pay_cheque' => 'Y', id => '092_pay_cheque';
+        &nbsp;&nbsp;Cash
+        %= check_box '093_pay_cash' => 'Y', id => '093_pay_cash';
+    </div>
+
+    <br clear="left" /><br /><strong>About your child</strong><br />
+    <label for="200_childs_name">Child's name:</label>
+    <div class="input-container">
+        <%= text_field '200_childs_name', size => '30', id => '200_childs_name' =%>
+    </div>
+    <label for="210_childs_age">Child's age:</label>
+    <div class="input-container">
+        <%= text_field '210_childs_age', size => '3', id => '210_childs_age' =%>
+    </div>
+    <label for="220_childs_sex">Child's sex:</label>
+    <div class="input-container">
+        <%= text_field '220_childs_sex', size => '9', id => '220_childs_sex' =%>
+    </div>
+    <label for="230_immunisations">Immunisation date:
+        <div class="field-extra-info">If your child has been received immunisations recently please give the date.</div>
+    </label>
+    <div class="input-container">
+        <%= text_field '230_immunisations', size => '9', id => '230_immunisations' =%>
+    </div>
+    <label for="240_allergies">Allergies:</label>
+    <div class="input-container">
+        %= text_area '240_allergies', rows => '3', cols => '45', id => '240_allergies';
+    </div>
+    <label for="250_conditions">Conditions:
+        <div class="field-extra-info">Please tell me about any conditions such as colic, constipation etc.</div>
+    </label>
+    <div class="input-container">
+        %= text_area '250_conditions', rows => '3', cols => '45', id => '250_conditions';
+    </div>
+
+    <br clear="left" /><br /><strong>Make booking</strong><br />
+    Please note that by making this booking you confirm that you
+    have read and understood the advice and agreement below.
+    <label for="300_additional">Additional information:
+        <div class="field-extra-info">Please give any further relevant information about you, your child, your labour, etc.</div>
+    </label>
+    <div class="input-container">
+        %= text_area '300_additional', rows => '3', cols => '45', id => '300_additional';
+    </div>
+    <label>&nbsp;</label>
+    <div class="input-container">
+        <%= submit_button 'Book place', name => 'book' %>
+    </div>
+</fieldset>
+<h3>General advice</h3>
+Reflexology is a gentle, relaxing, bonding activity. Never rush or force anything.
+Do not practice if you feel stressed or tense. Always ensure that you feel
+safe, secure and confident in what you are doing. Never do anything
+that you and your baby or child are not comfortable with.
+Reflexology is not a substitute for medical attention. If your baby is crying excessively and cannot
+be comforted, he/she may be ill. If your baby is limp, pale, has a temperature, or any difficulties
+breathing, or if you have any concerns about your child, please seek appropriate medical help.
+We recommend that you should not attend a class within 24 hours of a child’s immunisations.
+<h3>Agreement</h3>
+By signing up for this course you are agreeing to the following:
+<ul>
+    <li>You have read the general advice above and will follow it.</li>
+    <li>You take full responsibility for yourself and your child, and for everything that
+    happens to you and your child in relation to the course.</li>
+    <li>If you have any doubts you will seek the advice of a medical professional
+    before proceeding with classes.</li>
+    <li>You will disclose any information regarding your own and your child’s health
+    relevant to the class.</li>
+    <li>You will keep the course tutor informed of any health issues that arise
+    during the course, for both you and your child.</li>
+    <li>You will not attend any class if you or your child are ill or there are any
+    signs of sickness in the family.</li>
+    <li>Payment must be made at the time of booking.</li>
+    <li>Places are subject to availability. In the unlikely event that we cannot find a
+    suitable place we will refund the course fee in full.</li>
+    <li>Refunds are not given once the course has started. Credits for future
+    bookings may be given at our discretion.</li>
+    <li>Cancellation by you must be made more than one week before the
+    course starts or we will be unable to refund your money.</li>
+    <li>Cancellation by us is unlikely but will entitle you to a full refund for
+    any outstanding classes.</li>
+    <li>We cannot provide refunds for missed classes but we may be able
+    to find a place for you in the same class on another course.</li>
+    <li>Safety is always our first concern but we will not be liable for any
+    loss, damage or injury that may occur while attending the classes.</li>
+    <li>You are responsible for all applications of reflexology outside the
+    classes both now and in the future.</li>
+</ul>
+
+% end
+
