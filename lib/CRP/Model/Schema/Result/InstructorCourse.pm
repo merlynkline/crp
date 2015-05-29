@@ -51,10 +51,6 @@ __PACKAGE__->add_columns(
         default_value       => \'(now())',
         is_nullable         => 0,
     },
-    time => {
-        data_type           => 'text',
-        is_nullable         => 0,
-    },
     price => {
         data_type           => 'text',
         is_nullable         => 0,
@@ -120,7 +116,6 @@ sub is_publishable {
     return
         $self->start_date > DateTime->now()
         && $self->venue
-        && $self->time
         && $self->price
         && $self->description
         ;

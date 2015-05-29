@@ -73,8 +73,11 @@ sub startup {
     $logged_in->any('pdf_image/*name')->to('members#pdf_image')->name('crp.members.pdf_image');
     $logged_in->any('course_pdf/:course_id/*name')->to('members#course_pdf')->name('crp.members.course_pdf');
 
-    my $trainer = $logged_in->under('/trainer')->to('trainers#authenticate');
-    $trainer->any('courses')->to('trainers#courses')->name('crp.trainers.courses');
+    my $trainers = $logged_in->under('/trainer')->to('trainers#authenticate');
+    $trainers->any('courses')->to('trainers#courses')->name('crp.trainers.courses');
+    $trainers->any('course')->to('trainers#course')->name('crp.trainers.course');
+    $trainers->any('delete_course')->to('trainers#delete_course')->name('crp.trainers.delete_course');
+    $trainers->any('do_delete_course')->to('trainers#do_delete_course')->name('crp.trainers.do_delete_course');
 
     my $admin = $logged_in->under('/admin')->to('admin#authenticate');
     $admin->get('/')->to('admin#welcome')->name('crp.admin_default');

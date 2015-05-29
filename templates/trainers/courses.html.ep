@@ -8,31 +8,33 @@
     <tr>
         <th>Start</th>
         <th>Venue</th>
+        <th>Title</th>
         <th></th>
     </tr>
     % foreach my $course (@$courses_list) {
     <tr>
         <td nowrap><%= $c->crp->format_date($course->start_date, 'short') %></td>
         <td><%= $course->venue %></td>
+        <td><%= $course->description %></td>
         <td nowrap>
         % if($type eq 'draft' || $type eq 'advertised') {
-            <a class="small-button" href="<%= url_for('crp.members.course')->query(course_id => $course->id) %>" title="Edit the details of this course">Edit</a>
+            <a class="small-button" href="<%= url_for('crp.trainers.course')->query(course_id => $course->id) %>" title="Edit the details of this course">Edit</a>
         % }
         % if($type eq 'draft') {
-            <a class="small-button" href="<%= url_for('crp.members.delete_course')->query(course_id => $course->id) %>" title="Delete this course">Del</a>
+            <a class="small-button" href="<%= url_for('crp.trainers.delete_course')->query(course_id => $course->id) %>" title="Delete this course">Del</a>
             % if($course->is_publishable) {
-            <a class="small-button" href="<%= url_for('crp.members.publish_course')->query(course_id => $course->id) %>" title="Publish this course on your personal web page">Pub</a>
+            <a class="small-button" href="<%= url_for('crp.trainers.publish_course')->query(course_id => $course->id) %>" title="Publish this course on your personal web page">Pub</a>
             % } else {
             <span class="small-button disabled-button" title="This course can't be published - please edit the details">Pub</span>
             % }
         % }
         % if($type eq 'advertised') {
-        <a class="small-button" href="<%= url_for('crp.members.cancel_course')->query(course_id => $course->id) %>" title="Cancel this course">Cancel</a>
+        <a class="small-button" href="<%= url_for('crp.trainers.cancel_course')->query(course_id => $course->id) %>" title="Cancel this course">Cancel</a>
         % }
         % if($type eq 'advertised' || $type eq 'canceled') {
-%#        <a class="small-button" href="<%= url_for('crp.membersite.course', slug => stash('profile_record')->web_page_slug, course => $course->id) %>" title="See the advertisement page for this course">Adv</a>
+%#        <a class="small-button" href="<%= url_for('crp.trainersite.course', slug => stash('profile_record')->web_page_slug, course => $course->id) %>" title="See the advertisement page for this course">Adv</a>
         % }
-%#        <a class="small-button" href="<%= url_for('crp.members.course_docs')->query(course_id => $course->id) %>" title="Download and print PDF documents for this course (posters, booking form, register, etc)">PDF</a>
+%#        <a class="small-button" href="<%= url_for('crp.trainers.course_docs')->query(course_id => $course->id) %>" title="Download and print PDF documents for this course (posters, booking form, register, etc)">PDF</a>
         </td>
     </tr>
     % }

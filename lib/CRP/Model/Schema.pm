@@ -3,7 +3,7 @@ package CRP::Model::Schema;
 use strict;
 use warnings;
 
-our $VERSION = 12;
+our $VERSION = 15;
 
 use base 'DBIx::Class::Schema';
 
