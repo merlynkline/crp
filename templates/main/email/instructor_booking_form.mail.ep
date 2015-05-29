@@ -1,4 +1,4 @@
-%# Email sent when the contact form is filled in
+%# Email sent when the Instructors Course booking form is filled in
 %#
 %# stash 'info' is a hash of fields entered on the form, XML-escaped
 %#

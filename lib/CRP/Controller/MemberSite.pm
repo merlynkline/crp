@@ -116,6 +116,34 @@ sub book_online {
     my $c = shift;
 
     return unless $c->_stash_published_course_and_past_flag_or_404;
+    $c->render(template => 'member_site/book_online');
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub send_booking {
+    my $c = shift;
+
+    my $validation = $c->validation;
+    $validation->required('050_email')->like(qr{^.+@.+[.].+});
+    return $c->book_online if($validation->has_error);
+
+    my %info;
+    foreach my $param(qw(
+        005_page       010_start       020_title      030_venue      040_name          050_email
+        060_telephone  070_address     080_postcode   090_pay_paypal 091_pay_bacs      092_pay_cheque
+        093_pay_cash   200_childs_name 210_childs_age 220_childs_sex 230_immunisations 240_allergies
+        250_conditions 300_additional
+        )) {
+        $info{$param} =  Mojo::Util::xml_escape($c->crp->trimmed_param($param));
+        $info{$param} =~ s{\n}{<br \\>\n}g;
+    }
+    $c->mail(
+        from            => $c->crp->email_decorated($c->crp->trimmed_param('050_email'), $c->crp->trimmed_param('040_name')),
+        to              => $c->stash('site_profile')->login->email,
+        template        => 'member_site/email/course_booking_form',
+        info            => \%info,
+    );
+    $c->redirect_to('/page/course_booked');
 }
 
 1;

@@ -51,7 +51,7 @@ Note that you can
 <a href="<%= url_for 'crp.membersite.booking_form' %>">download a printable booking form</a>
 if you prefer.
 </p>
-%= form_for '/main/contact' => (method => 'POST') => begin
+%= form_for url_for('crp.membersite.send_booking') => (method => 'POST') => begin
 <fieldset>
     <legend>Booking form</legend>
     %= hidden_field '005_page'  => url_for('crp.membersite.course')->to_abs;
@@ -82,7 +82,7 @@ if you prefer.
     </div>
     <label for="080_postcode">Your postcode:</label>
     <div class="input-container">
-        %= text_field 'postcode', id => '080_postcode', size => 8;
+        %= text_field '080_postcode', id => '080_postcode', size => 8;
     </div>
     <label>How would you like to pay?</label>
     <div class="input-container" style="margin-top: 0">

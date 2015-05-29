@@ -90,6 +90,7 @@ sub startup {
     $member_site->any('/course/:course')->to('member_site#course')->name('crp.membersite.course');
     $member_site->any('/course/:course/booking_form')->to('member_site#booking_form')->name('crp.membersite.booking_form');
     $member_site->any('/course/:course/book_online')->to('member_site#book_online')->name('crp.membersite.book_online');
+    $member_site->post('/course/:course/send_booking')->to('member_site#send_booking')->name('crp.membersite.send_booking');
 
     my $tests = $r->under('/test')->to('test#authenticate');
     $tests->get('/')->to('test#welcome');

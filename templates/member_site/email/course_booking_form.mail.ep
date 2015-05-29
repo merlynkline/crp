@@ -1,0 +1,17 @@
+%# Email sent when the course booking form is filled in
+%#
+%# stash 'info' is a hash of fields entered on the form, XML-escaped
+%#
+% stash subject => "Course booking form: The Children's Reflexology Programme";
+%#
+% layout 'default';
+<p>
+Someone has filled in the course booking form on one of your Children's Reflexology Prgogramme
+course pages. The details they entered are shown below. Please get back to them as soon as
+possible to confirm the booking and arrange payment.
+</p>
+<table border="0">
+% foreach my $field (sort keys %{stash('info')}) {
+    <tr><td valign="top"><i><%= $field %>:&nbsp;</td><td valign="top"><%== stash('info')->{$field} %></td></tr>
+% }
+</table>
