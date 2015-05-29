@@ -110,7 +110,7 @@ if you prefer.
         <%= text_field '220_childs_sex', size => '9', id => '220_childs_sex' =%>
     </div>
     <label for="230_immunisations">Immunisation date:
-        <div class="field-extra-info">If your child has been received immunisations recently please give the date.</div>
+        <div class="field-extra-info">If your child has received any immunisations recently please give the date.</div>
     </label>
     <div class="input-container">
         <%= text_field '230_immunisations', size => '9', id => '230_immunisations' =%>
