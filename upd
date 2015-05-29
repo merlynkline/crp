@@ -1,6 +1,7 @@
 #!/bin/sh
 
 git pull;
+carton exec script/crp migrate upgrade
 authbind --deep carton exec hypnotoad script/crp daemon
 
 
