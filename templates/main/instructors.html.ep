@@ -30,12 +30,7 @@
 </strong>
 </p>
 <p>
-<center>
-<span class="highlight-box">
-    Interested in becoming an instructor?
-    <a class="standard-button" href="<%= url_for '/page/instructor_booking' %>">Book a course now</a>
-</span>
-</center>
+%= include "parts/instructors_course_list", courses => stash('instructors_courses');
 </p>
 <p>
 The Children's Reflexology Programme Instructor course has been specially created to empower mums, dads, grandparents and carers to run their own businesses teaching infant reflexology to other parents and carers. Written specifically to empower women with children who may find it difficult to go back to work or secure a job because they have a child as well as older women who may feel pushed aside once they reach a certain age, this offers you the chance to run your own business with a freedom to suit you.
@@ -63,12 +58,7 @@ and everything you need to teach the Programme, as shown above, plus
 a full set of parent packs for your first course, like the one shown below.
 </p>
 <p>
-<center>
-<span class="highlight-box">
-    Interested in becoming an instructor?
-    <a class="standard-button" href="<%= url_for '/page/instructor_booking' %>">Book a course now</a>
-</span>
-</center>
+%= include "parts/instructors_course_list", courses => stash('instructors_courses');
 </p>
 <img src="/images/Photos/ParentPack.JPG" width="800" height="417" class="centered-image" />
 

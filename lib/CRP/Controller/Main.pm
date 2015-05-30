@@ -25,6 +25,9 @@ sub page {
 sub instructors {
     my $c = shift;
 
+    my $advertised_courses = $c->crp->model('InstructorCourse')->get_advertised_set;
+    $advertised_courses = [ $advertised_courses->search(undef, { order_by => {-asc => 'start_date'} }) ];
+    $c->stash('instructors_courses', $advertised_courses);
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 

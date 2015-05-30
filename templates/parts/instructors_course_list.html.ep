@@ -1,0 +1,24 @@
+%#<!DOCTYPE html>
+% if($courses) {
+<table class="list1">
+    <tr><td colspan="4"><strong>Interested in becoming an instructor? Book a course now.</strong></td></tr>
+    <tr>
+        <th>Date</th>
+        <th>Venue</th>
+        <th colspan="2">Title</th>
+    </tr>
+% foreach my $course (@$courses) {
+<tr>
+    <td><%= $c->crp->format_date($course->start_date, 'short') %></td>
+    <td><%= $course->venue %></td>
+    <td><%= $course->description %></td>
+    <td><a href="<%= url_for('/page/instructor_booking')->query(location => $course->venue, date => $c->crp->format_date($course->start_date, 'short')) %>" class="small-button">Book</a></td>
+</tr>
+% }
+</table>
+% } else {
+<span class="highlight-box">
+    Interested in becoming an instructor?
+    <a class="standard-button" href="<%= url_for '/page/instructor_booking' %>">Book a course now</a>
+</span>
+% }
