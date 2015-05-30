@@ -1,12 +1,12 @@
 %#<!DOCTYPE html>
 <%
     my $left_nav_menu = [
-        ['home',      '/',               'Home'],
-        ['book',      '/page/book',      'The book'],
-        ['programme', '/page/programme', 'Programme'],
-        ['courses',   '/page/courses',   'Courses'],
-        ['tutors',    '/page/tutors',    'Instructors'],
-        ['contact',   '/page/contact',   'Contact'],
+        ['home',      '/',                  'Home'],
+        ['book',      '/page/book',         'The book'],
+        ['programme', '/page/programme',    'Programme'],
+        ['courses',   '/page/courses',      'Courses'],
+        ['tutors',    'crp.instructors',    'Instructors'],
+        ['contact',   '/page/contact',      'Contact'],
     ];
     if(stash 'logged_in') {
         push @$left_nav_menu, ['members',   '/instructor',     'Members'];
