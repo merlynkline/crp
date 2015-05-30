@@ -1,5 +1,5 @@
 %#<!DOCTYPE html>
-% if($courses) {
+% if(@$courses) {
 <table class="list1">
     <tr><td colspan="4"><strong>Interested in becoming an instructor? Book a course now.</strong></td></tr>
     <tr>
