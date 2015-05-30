@@ -5,11 +5,11 @@
     <tr>
         <th>Date</th>
         <th>Venue</th>
-        <th colspan="2">Title</th>
+        <th colspan="2">Description</th>
     </tr>
 % foreach my $course (@$courses) {
 <tr>
-    <td><%= $c->crp->format_date($course->start_date, 'short') %></td>
+    <td nowrap="nowrap"><%= $c->crp->format_date($course->start_date, 'short') %></td>
     <td><%= $course->venue %></td>
     <td><%= $course->description %></td>
     <td><a href="<%= url_for('/page/instructor_booking')->query(location => $course->venue, date => $c->crp->format_date($course->start_date, 'short')) %>" class="small-button">Book</a></td>
