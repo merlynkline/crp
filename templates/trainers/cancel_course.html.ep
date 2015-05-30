@@ -1,0 +1,30 @@
+%#<!DOCTYPE html>
+% layout 'member_default';
+% my $course = stash('course_record');
+% title 'Cancel instructors course';
+<h1>Confirm cancel instructors course</h1>
+<p>
+This will withdraw the course from your list of advertised courses so that it will no longer
+be visible.
+</p>
+<p>
+Remember that some people may already have seen the advertisement or even have
+made bookings so you should think carefully before withdrawing a course and make sure you
+contact everyone who needs to know if you decide to go ahead.
+</p>
+Note that once a course has ben canceled you cannot undo that change or re-publish the course.
+<p>
+</p>
+<fieldset>
+    <legend>Confirm cancel</legend>
+    <p>
+    Please confirm that you want to cancel the instructors course shown below and withdraw it from your advertised list.
+    </p>
+    <div class="button-group">
+        <a class="standard-button" href="<%= url_for('crp.trainers.courses') %>">Keep advertised</a>
+        <a class="standard-button" href="<%= url_for('crp.trainers.do_cancel_course') %>">Withdraw</a>
+    </div>
+</fieldset>
+<img align="left" src="<%= url_for '/images/Animals/Snake.jpg' %>" style="margin-right: 16px" />
+%= include "parts/instructors_course_details", course => $course;
+</p>

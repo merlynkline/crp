@@ -76,8 +76,12 @@ sub startup {
     my $trainers = $logged_in->under('/trainer')->to('trainers#authenticate');
     $trainers->any('courses')->to('trainers#courses')->name('crp.trainers.courses');
     $trainers->any('course')->to('trainers#course')->name('crp.trainers.course');
+    $trainers->any('cancel_course')->to('trainers#cancel_course')->name('crp.trainers.cancel_course');
+    $trainers->any('do_cancel_course')->to('trainers#do_cancel_course')->name('crp.trainers.do_cancel_course');
     $trainers->any('delete_course')->to('trainers#delete_course')->name('crp.trainers.delete_course');
     $trainers->any('do_delete_course')->to('trainers#do_delete_course')->name('crp.trainers.do_delete_course');
+    $trainers->any('publish_course')->to('trainers#publish_course')->name('crp.trainers.publish_course');
+    $trainers->any('do_publish_course')->to('trainers#do_publish_course')->name('crp.trainers.do_publish_course');
 
     my $admin = $logged_in->under('/admin')->to('admin#authenticate');
     $admin->get('/')->to('admin#welcome')->name('crp.admin_default');
