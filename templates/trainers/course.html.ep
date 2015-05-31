@@ -50,11 +50,11 @@
         </label>
         <div id="location-input-map-container"><div id="location-input-map-canvas"></div></div>
 
-        <label for="description">Title:
+        <label for="description">Description:
             <div class="field-extra-info">Enter a short description of the course such as 'Autumn southwest course'.</div>
         </label>
         <div class="input-container">
-            %= text_field 'description', id => 'description', required => 'required', value => $course->description, maxlength => 200;
+            %= text_area 'description' => $course->description, id => 'description', rows => '4', cols => '45', required => 'required', maxlength => 200;
             <%= include 'parts/error', field => 'description' %>
         </div>
 

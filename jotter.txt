@@ -1,5 +1,5 @@
 
-+ Online booking form for parent courses
++ Data backup (DB, instructors' pics)
 
 + Add pic of Lyra & Sylvie to programme page
 + Add pic of course materials to courses page
@@ -8,23 +8,6 @@
 	+ Home page
 
 + Advertise instructors courses
-    + DB table
-        - id
-        - instructor_id
-        - location
-        - latitude
-        - longitude
-        - venue
-        - description
-        - start_date
-        - price
-    + New facility in Admin section to manage courses
-        ~ List courses
-        + Add course
-        + Delete course
-        + Edit Course
-    + Template to show list of courses upcoming courses, with links to booking forms
-    + Include upcoming course list on instructors course page
     + Refactor duplicate code from the course models into a common module
 
 + Add links to AOR (Friend membership) and Lexie's (?) parenty thing
@@ -41,7 +24,6 @@
 + Pass some images through tinyjpg/tinypng
 + Limit numbers in search results. Enquiries - find near location, notify_enquirers.
 + Adding a new enquiry should notify the instructors of nearby courses if requested
-+ Data backup (DB, instructors' pics)
 + FAQ/External resources: bibliography (for instructors)
     - Affiliate link to Leoni Dawson?
     - Other training courses
