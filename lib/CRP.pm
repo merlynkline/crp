@@ -5,6 +5,7 @@ use Mojolicious::Plugin::RenderFile;
 use DBIx::Connector;
 
 use CRP::Helper::Main;
+use CRP::Plugin::ETag;
 use CRP::Model::Schema;
 use CRP::Util::Session;
 
@@ -17,6 +18,7 @@ sub startup {
     my $config = $self->plugin('Config');
     $self->plugin('CSRFProtect', on_error => \&_csrf_error_handler);
     $self->plugin('CRP::Helper::Main');
+    $self->plugin('CRP::Plugin::ETag');
     $self->plugin('RenderFile');
     $self->plugin(mail => $config->{mail});
     $self->secrets([$config->{secret}]);
