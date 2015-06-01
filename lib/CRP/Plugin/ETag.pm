@@ -24,7 +24,6 @@ sub register {
             $self->res->headers->header('ETag' => $our_etag);
 
             my $browser_etag = $self->req->headers->header('If-None-Match');
-warn "$our_etag : ", ($browser_etag || 'NONE') . ' : ', $self->req->url,"\n";;
             return unless $browser_etag && $browser_etag eq $our_etag;
 
             $self->res->code(304);
