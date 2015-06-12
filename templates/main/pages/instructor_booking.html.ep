@@ -111,5 +111,14 @@ secure your place once I have confirmed that there is one available.
     </fieldset>
 % end;
 <p>
+<h4>Cancellation policy</h4>
+<p class="extra-info">
+The deposit you pay to secure your place is not refundable except in the unlikely event that we
+have to cancel your course after your place has been confirmed. If you wish to cancel your booking
+you may do so up until four weeks before the start of the course and any payment you have made
+will be refunded after deducting the non-refundable deposit. Cancellations after this time are
+not eligible for refunds. In exceptional circumstances we may offer a refund or a transfer
+to another course entirely at our discretion.
+</p>
 
 <script>$(".hide-on-load").delay(9000).slideUp(1000);</script>
