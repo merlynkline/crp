@@ -324,6 +324,9 @@ session:
         + tweak as required
         + remove 001-auto.sql
     + run: ./script/crp migrate upgrade
+- Making PDFs in Xara
+    - Choose email/web download
+    - In advanced options, choose PDF v1.3 for Adobe Reader 4
 - Making PDF thumbnails
     - Load test PDF into Chrome
     - Zoom to 75%

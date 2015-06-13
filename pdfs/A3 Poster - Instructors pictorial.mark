@@ -1,0 +1,18 @@
+[
+        {
+            action  => 'text',
+            text    => '[% venue %]',
+            x       => 420,
+            y       => 585,
+            align   => 'center',
+            size    => 24,
+        },
+        {
+            action  => 'text',
+            text    => '[% date %]',
+            x       => 420,
+            y       => 556,
+            align   => 'center',
+            size    => 24,
+        },
+]

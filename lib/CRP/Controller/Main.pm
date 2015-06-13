@@ -5,6 +5,7 @@ use DateTime;
 use Try::Tiny;
 use CRP::Util::WordNumber;
 use CRP::Util::Session;
+use CRP::Util::PDFMarkUp;
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -308,6 +309,27 @@ sub instructor_booking {
         info            => \%info,
     );
     $c->redirect_to('/page/instructor_booked');
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub instructor_poster {
+    my $c = shift;
+
+    my $id = Mojo::Util::xml_escape($c->param('id'));
+    my $course = $c->crp->model('InstructorCourse')->find($id);
+    return $c->reply->not_found unless $course;
+
+    my $pdf = $c->app->home->rel_file("pdfs/A3 Poster - Instructors pictorial.pdf");
+    my $pdf_doc = CRP::Util::PDFMarkUp->new(file_path => $pdf);
+    $c->render_file(
+        data                => $pdf_doc->fill_template({
+                venue   => $course->venue,
+                date    => $c->crp->format_date($course->start_date, 'long'),
+            }),
+        format              => 'pdf',
+        content_disposition => ($c->param('download') ? 'attachment' : 'inline'),
+        filename            => $pdf_doc->filename,
+    );
 }
 
 1;
