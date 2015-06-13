@@ -1,6 +1,4 @@
 
-+ Data backup (DB, instructors' pics)
-
 + Add pic of Lyra & Sylvie to programme page
 + Add pic of course materials to courses page
 
@@ -312,9 +310,6 @@ session:
  
  + Could each instructor have their own shop which earns them commission? (accounting problems? liability? perhaps they just earn credit)
  
- 
- Implementation notes
- --------------------
  
  Workflow notes
  --------------
