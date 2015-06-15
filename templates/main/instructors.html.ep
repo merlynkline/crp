@@ -1,5 +1,5 @@
 %#<!DOCTYPE html>
-% layout 'default', heading => "Certified instructors";
+% layout 'default', heading => "Certified instructors", page_id => 'tutors';
 % title "Certified instructors";
 <img src="<%= url_for '/images/Animals/Owl.jpg' %>" class="page-logo">
 
@@ -56,6 +56,35 @@ become a fully qualified instructor, ready to take The Children's Reflexology
 programme to the world! The course includes a comprehensive course manual
 and everything you need to teach the Programme, as shown above, plus
 a full set of parent packs for your first course, like the one shown below.
+The course is recognised by insurance companies such as
+<a href="http://www.balens.co.uk/" target="_blank">Balens</a> who hold a copy
+of the certificate and will provide the cover you need to run
+The Children's Reflexology Programme.
+</p>
+</p>
+By attending this course you will gain the benefit of:
+<ul>
+    <li>Training in everything you need to know to run The Children's Reflexology Programme including:
+    <ul>
+        <li>The simple reflexology you will be teaching to parents and carers.</li>
+        <li>Relevant anatomy, physiology and pathology.</li>
+        <li>Teaching practices and techniques.</li>
+        <li>Running a business based on the programme.</li>
+    </ul>
+    <li>All the teaching materials you will need, as shown in the pictures on this page.</li>
+    <li>Specially designed forms and other stationery to help with administration and marketing of your courses.</li>
+    <li>Access to the members area of the website with all its online facilities, including:
+    <ul>
+        <li>Your own pages with all your details including courses you are running.</li>
+        <li>A geographical search and enquiry system so parents and carers can find you and your courses.</li>
+        <li>Bespoke printable documents automatically created for you and your courses including posters, flyers, business cards and administrative stationery.</li>
+        <li>Tools to help you manage your costs.</li>
+    </ul>
+    </li>
+    <li>Enough sets of training material, including copies of <a href="/page/book">The Mouse's House</a>, to run your first course.</li>
+    <li>Ongoing support in the future as The Children's Reflexology Programme grows with you.</li>
+    <li>The right to use all this under the banner of The Children's Reflexology Programme to improve the lives of parents and carers everywhere!</li>
+</ul>
 </p>
 <p>
 %= include "parts/instructors_course_list", courses => stash('instructors_courses');

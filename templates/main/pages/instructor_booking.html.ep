@@ -1,5 +1,5 @@
 %#<!DOCTYPE html>
-% layout 'default', heading => "Instructors course booking";
+% layout 'default', heading => "Instructors course booking", page_id => 'tutors';
 % title "Instructors course booking";
 %
 % my $text_field_block = begin
