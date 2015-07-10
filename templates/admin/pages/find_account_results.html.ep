@@ -12,6 +12,7 @@
         <th>Created</th>
         <th>Last login</th>
         <th>Disabled</th>
+        <th>Demo</th>
     </tr>
     % for my $login (@{stash('matches')}) {
     %   my $instructor = $login->profile;
@@ -20,13 +21,15 @@
     %   $disabled = $disabled ? $c->crp->format_date($disabled, 'short') : 'No';
     %   my $last_login = $login->last_login_date;
     %   $last_login = $last_login ? $c->crp->format_date($last_login, 'short') : '';
+    %   my $demo = $login->is_demo ? 'Yes' : 'No';
     <tr>
         <td><a href="<%= $url %>"><%= ($instructor && $instructor->name) // '(anonymous)' %></a></td>
         <td><%= $login->email // '' %></td>
         <td><%= ($instructor && $instructor->postcode) // '' %></td>
-        <td><%= $c->crp->format_date($login->create_date, 'short') %></td>
-        <td><%= $last_login %></td>
-        <td><%= $disabled %></td>
+        <td nowrap="nowrap"><%= $c->crp->format_date($login->create_date, 'short') %></td>
+        <td nowrap="nowrap"><%= $last_login %></td>
+        <td nowrap="nowrap"><%= $disabled %></td>
+        <td><%= $demo %></td>
     </tr>
     % }
 </table>
