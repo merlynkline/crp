@@ -10,6 +10,7 @@
 % }
 % end
 <h1>Member's area<% if(stash('profile_record')->name) { %> for <%= stash('profile_record')->name %><% } %></h1>
+%= include 'parts/demo_indicator'
 % if(param('msg')) {
 <%= include 'parts/message_box', msg => param('msg'), auto_hide => 1 %>
 % }
@@ -77,7 +78,7 @@
         often so it's always worth looking!
         <br />
         <br />
-        <a href="<%= url_for('crp.members.page', page => 'faqs') %>" class="standard-button">Help and FAQs</a>
+        <a href="<%= url_for('crp.members.faqs') %>" class="standard-button">Help and FAQs</a>
     </div>
     <div class="member-option-highlight">
         <div>Profile</div>
