@@ -1,0 +1,17 @@
+%#<!DOCTYPE html>
+% layout 'member_default', page_id => 'demo_info';
+<h1>Demonstration accounts</h1>
+<p>
+These accounts are provided so that you can try out the on-line services
+available to members of The Children's Reflexology Programme. They give
+full access to most of the facilities of normal accounts but there are
+some necessary differences, as follows:
+<ul>
+    <li>You can add new courses and see the associated documents but you cannot publish these courses as doing so might be confusing for people searching for courses who might come across them.</li>
+    <li>Your personal web pages on this site are not made visible to Google and other search engines so that they will not accidentally be found by people searching for instructors. They are also marked to show that they are only demonstration pages, just in case someone does stumble on them accidentally.</li>
+    <li>Similarly, searching for an instructor using the facilities on this site will not find demonstration accounts.</li>
+    <li>Any PDF documents you download for printing will be marked to show that they were produced by a demonstration account.</li>
+    <li>You can't buy things from the on-line shop.</li>
+    <li>There are other minor differences around the site. These are clearly indicated wherever they occur.</li>
+</ul>
+</p>

@@ -122,6 +122,7 @@ sub _before_dispatch {
     if($c->cookie($c->config->{session}->{cookie_name})) {
         $c->stash(crp_session => CRP::Util::Session->new(mojo => $c));
         $c->stash(logged_in => $c->crp->logged_in_instructor_id);
+        $c->stash(is_demo => $c->crp->load_profile->login->is_demo) if $c->stash('logged_in');
     }
 
     if($c->app->mode eq 'production') {

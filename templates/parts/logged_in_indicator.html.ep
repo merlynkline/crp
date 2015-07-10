@@ -1,7 +1,8 @@
 %#<!DOCTYPE html>
+%= include 'parts/demo_indicator'
 % if(stash 'logged_in') {
 <div id="logged_in_indicator">
-    Logged in as <%= stash('crp_session')->variable('email') %><% if(stash('crp_session')->variable('admin_email')) { %> <span style="color:#fff; background:#c00"><b>as admin <%= stash('crp_session')->variable('admin_email') %></b></span><% } %>&nbsp;&nbsp;<br />
+    Logged in as <%= stash('crp_session')->variable('email') %><% if(stash('crp_session')->variable('admin_email')) { %> <span style="color:#fff; background:#c00"><b>&nbsp;as admin <%= stash('crp_session')->variable('admin_email') %>&nbsp;</b></span><% } %>&nbsp;&nbsp;<br />
     <a href="<%= url_for 'crp.logged_in_default' %>">Members area</a>&nbsp;
 % if (stash('crp_session')->variable('is_administrator')) {
     <a href="<%= url_for 'crp.admin_default' %>">Admin</a>&nbsp;
