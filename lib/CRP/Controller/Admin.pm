@@ -69,7 +69,7 @@ sub _find_account_results {
         $matches = $c->_find_acounts($query);
         if($matches && @$matches == 1) {
             $c->flash(msg => 'single_match');
-            return $c->redirect_to($c->url_for('crp.admin.show_account')->query(id => $matches->[0]->id));
+            return $c->_show_account_id($matches->[0]->id);
         }
     }
     return $c->page('find_account_results', matches => $matches);
@@ -92,6 +92,13 @@ sub _find_acounts {
 
     return \@matches if @matches;
     return;
+}
+
+sub _show_account_id {
+    my $c = shift;
+    my($id) = @_;
+
+    return $c->redirect_to($c->url_for('crp.admin.show_account')->query(id => $id));
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -136,7 +143,7 @@ sub create_account {
         $profile->update;
 
         $c->flash(msg => 'account_create');
-        return $c->redirect_to($c->url_for('crp.admin.show_account')->query(id => $login_record->id));
+        return $c->_show_account_id($login_record->id);
     }
     return $c->page('show_account');
 }
@@ -166,6 +173,16 @@ sub certificate {
     );
 }
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub change_demo {
+    my $c = shift;
+
+    my $id = $c->param('id') || shift || return $c->welcome;
+    my $login = $c->crp->model('Login')->find($id) || return $c->welcome;
+    $login->is_demo($login->is_demo ? 0 : 1);
+    $login->update;
+    return $c->_show_account_id($id);
+}
 
 1;
 

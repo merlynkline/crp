@@ -59,6 +59,12 @@ Actions:
 %#    <li><a href="<%= url_for('/')->query(id => $login->id) %>">Send temporary password</a>
 %#    <li><a href="<%= url_for('/')->query(id => $login->id) %>">Suspend</a>
     <li><a href="<%= url_for('crp.admin.login')->query(id => $login->id) %>">Log in to this account</a>
+    <li>
+        %= form_for 'crp.admin.change_demo' => (method => 'POST') => begin
+        This is a <%= $login->is_demo ? 'DEMO' : 'normal' %> account.
+        %= hidden_field 'id' => $login->id;
+        %= submit_button 'Change'
+        % end
 </ul>
 </p>
 <script>$(".hide-on-load").delay(4000).slideUp(1000);</script>
