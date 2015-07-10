@@ -48,6 +48,10 @@ __PACKAGE__->add_columns(
         data_type           => 'boolean',
         is_nullable         => 1,
     },
+    is_demo => {
+        data_type           => 'boolean',
+        is_nullable         => 1,
+    },
     auto_login => {
         data_type           => 'boolean',
         is_nullable         => 1,

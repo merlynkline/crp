@@ -1,4 +1,25 @@
 
++ book page typo: "carer's"
++ Courses page: "The course shows you how to treat specific conditions of childhood"
++ PDF talk notes: "course shows you how to treat specific conditions of childhood"
+
++ Some method of finding unsatisfied enquiries to decide where to put courses on etc.
+
++ Have a demo instructor's account:
+	+ Can add courses but not publish them (goes to an explanatory page)
+	+ Profile page not included in Google list
+	+ Not included in search results for instructors (except specific search?)
+	+ PDFs have "SAMPLE" written across them (or something)
+	+ Profile page (i.e. personal web page) has "SAMPLE" written across it (or something)
+	+ Not included (or included separately) in admin stats
+	+ Demo status indicated clearly when logged in. On every page?
+	+ Can't get to admin tools even if somehow is an admin
+	+ Shop disabled
+	+ Extra FAQ describing account status?
+	+ Profile changes not emailed to admin
+
+
+
 + Add pic of Lyra & Sylvie to programme page
 + Add pic of course materials to courses page
 
@@ -15,7 +36,7 @@
 + Generate personalised PDFs:
     ~ A3 versions of some
     + Course log/diary pages
-    + Name labels for carers
+    + Name labels for carers and kids
     + Quite a few PDFs still say "Infant Reflexology" instead of "Children's Reflexology"
 + The instructor's 'search for enquiries' page should start with location rather than postcode
 + Should the postcode in the profile be mandatory?
