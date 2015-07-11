@@ -11,7 +11,7 @@ sub search_live_profiles {
     my $self = shift;
 
     my $live_resultset = $self->search(
-        {'login.disabled_date' => undef},
+        {'login.disabled_date' => undef, is_demo => undef},
         {join => 'login'},
     );
     return $live_resultset->search(@_);
