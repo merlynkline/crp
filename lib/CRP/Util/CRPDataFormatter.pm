@@ -38,7 +38,7 @@ sub _extract_crp_profile_data {
     $phone_numbers .= $profile->mobile // '';
     $data->{phone_numbers} = $phone_numbers;
 
-    my $one_line_address = $profile->address;
+    my $one_line_address = $profile->address // '';
     $one_line_address =~ s{\s*[\r\n]+\s*}{, }gsm;
     $one_line_address =~ s{^\s*|\s*$}{}g;
     $data->{one_line_address} = $one_line_address;
