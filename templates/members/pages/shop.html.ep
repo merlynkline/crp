@@ -17,6 +17,9 @@ as we can!
             to give out on completion and a copy of the book, The Mouse's House.
             <table align="right">
                 <tr>
+                    % if(stash('is_demo')) {
+                    <td style="background: #ddd; padding: 2px 4px; font-size: 12px; color: #666; border: 1px solid #666;">(Purchase buttons removed for demonstration)</td>
+                    % } else {
                     <td style="padding: 5px 0 0 0;"><strong>£15.00</strong></td>
                     <td nowrap="nowrap">
                         <form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
@@ -35,6 +38,7 @@ as we can!
                             <img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
                         </form>
                     </td>
+                    % }
                 </tr>
             </table>
         </td>
