@@ -13,6 +13,7 @@ sub format_data {
     my $profile = $data->{profile};
     _extract_crp_profile_data($c, $data);
     _extract_crp_course_data($c, $data, $profile);
+    _set_demonstration_data($c, $data) if $profile->login->is_demo;
 
     delete $data->{profile};
     delete $data->{course};
@@ -74,6 +75,15 @@ sub _extract_crp_course_data {
         slug => $profile->web_page_slug,
         course => $course->id
     )->to_abs,
+}
+
+sub _set_demonstration_data {
+    my($c, $data) = @_;
+
+    $data->{email} = '(Demonstration email)';
+    $data->{phone_numbers} = '(Demonstration phone)';
+    $data->{one_line_address} = '(Demonstration postal address)';
+    $data->{_is_demo} = 1;
 }
 
 1;

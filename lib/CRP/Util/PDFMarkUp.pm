@@ -54,6 +54,7 @@ sub fill_template {
     foreach my $repeat (@{$self->_repeats}) {
         $self->_markup_pdf($repeat->{x_offset}, $repeat->{y_offset});
     };
+    $self->_add_demonstration_marker if $self->_data->{_is_demo};
 
     return $self->_pdf->stringify;
 }
@@ -123,6 +124,36 @@ sub _markup_pdf_text {
         -align => $markup_item->{align} || 'left',
         -color => $markup_item->{colour} || '#000',
     );
+}
+
+sub _add_demonstration_marker {
+    my $self = shift;
+
+    my $FONT_SIZE_FACTOR = 3;
+    my $font = $self->_pdf->corefont('Helvetica', -dokern => 1);
+    for my $page_number (1 .. $self->_pdf->pages) {
+        my $page = $self->_pdf->openpage($page_number);
+        my $media_box = $page->find_prop('MediaBox');
+        $media_box = [ map{ $_->val } $media_box->elementsof ];
+        my $x = ($media_box->[2] - $media_box->[0]) / 2;
+        my $y = ($media_box->[3] - $media_box->[1]) / 2;
+        my $font_size = $x / $FONT_SIZE_FACTOR;
+        my $offset = $font_size * 0.707 / 2;
+        $x += $offset;
+        $y -= $offset;
+        my $text = $page->text();
+        $text->render(1);
+        $text->strokecolor('#DD4422');
+        $text->linedash(2, 1);
+        $text->font($font, $font_size);
+        $text->linewidth($font_size / 30);
+        $text->transform(-translate => [$x, $y], -rotate => 45);
+        $text->text_center('Demonstration');
+        $text->transform(-translate => [$x + $font_size * 1.5, $y - $font_size * 1.5], -rotate => 45);
+        $text->text_center('Demonstration');
+        $text->transform(-translate => [$x - $font_size * 1.5, $y + $font_size * 1.5], -rotate => 45);
+        $text->text_center('Demonstration');
+    }
 }
 
 sub _replace_place_holders {

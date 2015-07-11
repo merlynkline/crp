@@ -7,11 +7,11 @@
 
 + Have a demo instructor's account:
 	~ Can add courses but not publish them
-	+ Profile page not included in Google list
-	+ Not included in search results for instructors (except specific search?)
+	~ Profile page not included in Google list
+	~ Not included in search results for instructors (except specific search?)
 	+ PDFs have "SAMPLE" written across them (or something)
-	+ Profile page (i.e. personal web page) has "SAMPLE" written across it (or something)
-	+ Not included (or included separately) in admin stats
+	~ Profile page (i.e. personal web page) and certificate have "SAMPLE" written across them (or something)
+	~ Not included (or included separately) in admin stats
 	~ Demo status indicated clearly when logged in. On every page?
 	+ Can't get to admin tools even if somehow is an admin
 	+ Shop disabled
