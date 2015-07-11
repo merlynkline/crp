@@ -10,6 +10,9 @@
 % }
 % end
 <h1><%= $profile->name %> - Qualified Instructor</h1>
+% if($profile->login->is_demo) {
+<span style="color: #a42; font-size: 150%; font-face: bold"><strong>(This is a demonstration account - please do not use the information shown here)</strong></span>
+% }
 <div id='instructor-nav'>
     <ul>
         <li><a href="#courses">Courses</a></li>
@@ -66,7 +69,12 @@ Please contact me if there's anything else you'd like to know.
     </tr>
     % }
     %= $contact_row_block->('Postcode', $profile->postcode);
-    % if($profile->login->email) {
+    % if($profile->login->is_demo) {
+    <tr>
+        <td>Email:</td>
+        <td>(email hidden for demonstration)</td>
+    </tr>
+    % } elsif($profile->login->email) {
     <tr>
         <td>Email:</td>
         <td><a href="mailto:<%= $profile->login->email %>"><%= $profile->login->email %></a></td>

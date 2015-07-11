@@ -7,7 +7,7 @@
         <div style="opacity: 1.0;">
             <img src="<%= url_for '/images/Plants/LavenderHorizontal2.png' %>" style="display: block; margin: 0 auto;" />
             <p class="certificate-emphasised">This page certifies that</p>
-            <p class="certificate-writing"><%= stash('site_profile')->name %></p>
+            <p class="certificate-writing"><%= stash('site_profile')->login->is_demo ? '(Demonstration Account)' : stash('site_profile')->name %></p>
             <p>
             Has completed the official training course and
             the required professional development to remain a
