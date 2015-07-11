@@ -13,7 +13,7 @@
 	~ Profile page (i.e. personal web page) and certificate have "SAMPLE" written across them (or something)
 	~ Not included (or included separately) in admin stats
 	~ Demo status indicated clearly when logged in. On every page?
-	+ Can't get to admin tools even if somehow is an admin
+	~ Can't get to admin tools even if somehow is an admin
 	~ Shop disabled
 	~ Extra FAQ describing account status?
 	+ Profile changes not emailed to admin

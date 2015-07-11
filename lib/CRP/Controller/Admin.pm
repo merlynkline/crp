@@ -12,7 +12,7 @@ use CRP::Util::WordNumber;
 sub authenticate {
     my $c = shift;
 
-    return 1 if $c->stash('login_record')->is_administrator;
+    return 1 if $c->stash('login_record')->is_administrator && ! $c->stash('login_record')->is_demo;
     $c->render(text => "Sorry - you aren't authorised to see this page", status => 403);
     return 0;
 }
