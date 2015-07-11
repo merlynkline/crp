@@ -25,9 +25,13 @@
         % if($type eq 'draft') {
             <a class="small-button" href="<%= url_for('crp.members.delete_course')->query(course_id => $course->id) %>" title="Delete this course">Del</a>
             % if($course->is_publishable) {
-            <a class="small-button" href="<%= url_for('crp.members.publish_course')->query(course_id => $course->id) %>" title="Publish this course on your personal web page">Pub</a>
+                % if(stash('is_demo')) {
+                <span class="small-button disabled-button" title="Sorry - you can't publish this course on your personal web page because you are using a demonstration account">Pub</span>
+                % } else {
+                <a class="small-button" href="<%= url_for('crp.members.publish_course')->query(course_id => $course->id) %>" title="Publish this course on your personal web page">Pub</a>
+                % }
             % } else {
-            <span class="small-button disabled-button" title="This course can't be published - please edit the details">Pub</span>
+                <span class="small-button disabled-button" title="This course can't be published - please edit the details">Pub</span>
             % }
         % }
         % if($type eq 'advertised') {

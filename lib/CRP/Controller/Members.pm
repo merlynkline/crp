@@ -374,6 +374,8 @@ sub _load_publishable_course {
 
     my $course = $c->_load_editable_course($course_id);
     die "You can't pubish this course" unless $course->is_publishable;
+    my $profile = $c->crp->load_profile;
+    die "You can't publish courses in demonstration accounts" if $profile->login->is_demo;
     return $course;
 }
 
