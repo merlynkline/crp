@@ -296,6 +296,7 @@ sub logout {
     my $c = shift;
 
     my $crp_session = $c->stash('crp_session');
+    return $c->redirect_to('/') unless $crp_session;
     my $admin_id = $crp_session->variable('admin_id');
     my $logged_in_id = $c->crp->logged_in_instructor_id;
     $crp_session->clear();
