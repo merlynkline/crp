@@ -22,6 +22,7 @@
 </center>
 </p>
 <br />
+<a href="http://www.aor.org.uk/" target="_blank"><img style="float:right; width:80px; height:80px;" src="<%= url_for '/images/AORCPDApproved.jpg' %>"></a>
 <h1>Become a certified instructor</h1>
 <p>
 <strong>
@@ -85,6 +86,7 @@ By attending this course you will gain the benefit of:
     <li>Ongoing support in the future as The Children's Reflexology Programme grows with you.</li>
     <li>The right to use all this under the banner of The Children's Reflexology Programme to improve the lives of parents and carers everywhere!</li>
 </ul>
+See the <a href="<%= url_for('/page/instructor_booking') %>">booking form</a> for more information.
 </p>
 <p>
 %= include "parts/instructors_course_list", courses => stash('instructors_courses');

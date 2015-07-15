@@ -22,6 +22,7 @@
 <img src="<%= url_for '/images/Animals/Owl.jpg' %>" class="page-logo">
 
 <p>
+<a href="http://www.aor.org.uk/" target="_blank"><img style="float:right; width:80px; height:80px;" src="<%= url_for '/images/AORCPDApproved.jpg' %>"></a>
 <strong>
     The Childrens' Reflexology Programme is delivered only by qualified instructors
     who have received the required training and use the official course materials.
@@ -37,8 +38,14 @@ Children's Reflexology Programme!
 The course is open to everyone but it is very helpful if you have already been
 on the parents' course so you are familiar with the material you will be learning
 how to teach. In particular, you do not need to be a qualified reflexologist, nor
-any other type of therapist, in order to do this course. The fee for the course
-is £595 and you will be required to pay a non-refundable deposit of £100 to
+any other type of therapist, in order to do this course. There is also an
+occasional two-day course for qualified relexologists only, which does not include
+some of the material on reflexology and anatomy &amp; physiology. This two-day
+course is an <a href="http://www.aor.org.uk/" target="_blank">AoR approved CPD course</a> for their members.
+</p>
+<p>
+The fee for the course is £595 or £495 for the two-day reflexologists' course when available.
+You will be required to pay a non-refundable deposit of £100 to
 secure your place once I have confirmed that there is one available.
 <div style="
     float: right;
