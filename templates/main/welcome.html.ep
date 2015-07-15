@@ -61,7 +61,7 @@
     <a href="<%= url_for 'crp.page', page => 'book' %>">The Mouse's House</a>.
     </p>
 
-    <img src="<%= url_for '/images/Plants/LavenderHorizontal2.png' %>" style="display: block; margin: 0 auto; width:300px;" />
+    <img src="<%= url_for '/images/Photos/SpontaneousKids.jpg' %>" style="display: block; margin: 0 auto; width:600px;" />
 
     <p class="front-page-normal">
 
