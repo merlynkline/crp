@@ -203,9 +203,7 @@ sub _markup_pdf_qrcode_signature {
     my $signature_url = $self->test_mode
         ? 'http://www.kidsreflexology.co.uk/me/-175347/certificate' # Long enough to generate a typically sized QRCode
         : $data->{signature_url} // '';
-    my($width, $height) = $self->_add_qr_code_link(
-        $signature_url, $markup_item->{page} || 1, $markup_item->{x}, $markup_item->{y}, $markup_item->{align}
-    );
+    my($width, $height) = $self->_add_qr_code_link($signature_url, $markup_item);
 
     my $text_markup_item = { %$markup_item };
 
@@ -222,16 +220,21 @@ sub _markup_pdf_qrcode_signature {
 
 sub _add_qr_code_link {
     my $self = shift;
-    my($url, $page_number, $x, $y, $align) = @_;
+    my($url, $markup_item) = @_;
+
+    my($page_number, $x, $y, $align, $scale) = @$markup_item{qw(page x y align scale)};
+    $page_number ||= 1;
+    $scale ||= 1;
+    $scale *= QRCODE_SCALE;
 
     my ($file_name, $width, $height) = CRP::Util::Graphics::qr_code_link_jpeg_tmp_file($url);
     my $page = $self->_pdf->openpage($page_number || 1);
     my $gfx = $page->gfx;
     my $image = $self->_pdf->image_jpeg($file_name);
     $align //= 'left';
-    $x -= $width * QRCODE_SCALE if $align eq 'right';
-    $x -= $width / 2 * QRCODE_SCALE if $align eq 'center';
-    $gfx->image($image, $self->_get_x_coordinate($x), $self->_get_y_coordinate($y), $self->_get_size(QRCODE_SCALE));
+    $x -= $width * $scale if $align eq 'right';
+    $x -= $width / 2 * $scale if $align eq 'center';
+    $gfx->image($image, $self->_get_x_coordinate($x), $self->_get_y_coordinate($y), $self->_get_size($scale));
     $self->_add_temp_file($file_name);
     return($width, $height);
 }
@@ -247,9 +250,7 @@ sub _markup_pdf_qrcode {
         : $markup_item->{text} // '';
     $string = $self->_replace_place_holders($string);
     return unless $string;
-    $self->_add_qr_code_link(
-        $string, $markup_item->{page} || 1, $markup_item->{x}, $markup_item->{y}, $markup_item->{align}
-    );
+    $self->_add_qr_code_link($string, $markup_item);
 }
 
 sub _get_x_coordinate {
