@@ -1,0 +1,45 @@
+{
+    version => 1,
+    filename => 'Roll-up banner',
+    items => [
+        {
+            action  => 'text',
+            text    => '[% name %]',
+            x       => 1213.23,
+            y       => 4166.36,
+            size    => 60,
+            align   => 'center',
+        },
+        {
+            action  => 'text',
+            text    => '[% phone_numbers %]',
+            x       => 1213.23,
+            y       => 4118.74,
+            size    => 36,
+            align   => 'center',
+        },
+        {
+            action  => 'text',
+            text    => '[% url %]',
+            x       => 1213.23,
+            y       => 4064.6,
+            size    => 36,
+            align   => 'center',
+        },
+        {
+            action  => 'qrcode',
+            text    => "http://[% url %]",
+            x       => 287.39,
+            y       => 4021.64,
+            scale   => 6.2,
+            align   => 'right',
+        },
+        {
+            action  => 'qrcode',
+            text    => "http://[% url %]",
+            x       => 2140.85,
+            y       => 4021.64,
+            scale   => 6.2,
+        },
+    ],
+}
