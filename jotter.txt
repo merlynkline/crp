@@ -1,5 +1,4 @@
 
-+ book page typo: "carer's"
 + Courses page: "The course shows you how to treat specific conditions of childhood"
 + PDF talk notes: "course shows you how to treat specific conditions of childhood"
 
