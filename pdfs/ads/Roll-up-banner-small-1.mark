@@ -29,7 +29,7 @@
         {
             action  => 'qrcode',
             text    => "http://[% url %]",
-            x       => 287.39,
+            x       => 318.57,
             y       => 4021.64,
             scale   => 6.2,
             align   => 'right',
@@ -37,7 +37,7 @@
         {
             action  => 'qrcode',
             text    => "http://[% url %]",
-            x       => 2140.85,
+            x       => 2109.67,
             y       => 4021.64,
             scale   => 6.2,
         },

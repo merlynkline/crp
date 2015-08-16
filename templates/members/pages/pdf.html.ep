@@ -33,7 +33,7 @@ in order to view and print them.
 %= include "members/parts/course_doc", name => 'ads/A3 Poster - pictorial general', caption => "A3 version of general purpose pictorial poster"
 %= include "members/parts/course_doc", name => 'ads/Small general descriptive', caption => "General purpose flyer with descriptive text"
 %= include "members/parts/course_doc", name => 'ads/Small general pictorial', caption => "General purpose flyer with pictures rather than text"
-%= include "members/parts/course_doc", name => 'ads/Roll-up-banner-small-1', caption => "Roll-up banner, 2m tall"
+%= include "members/parts/course_doc", name => 'ads/Roll-up-banner-small-1', caption => "Roller banner, 2m tall and 85cm wide (also fits 80 cm wide). Warning: large file (about 8MB)."
 %= include "members/parts/course_doc", name => 'members/Presentation', caption => "Notes for a presentation to tell people about The Children's Reflexology Programme"
 %= include "members/parts/course_doc", name => 'members/Business cards', caption => "Business cards suitable for Avery C32011, C32016, and similar card stock"
 %= include "members/parts/course_doc", name => 'members/QR Business cards', caption => "Alternate business cards suitable for Avery C32011, C32016, and similar card stock"
