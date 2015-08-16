@@ -54,17 +54,25 @@ Personal web site: <a href="<%= $personal_url %>" target="_blank"><%= $personal_
 % }
 Actions:
 <ul>
-    <li><a href="<%= url_for('crp.admin.certificate')->query(id => $login->id) %>">Print certificate</a>
-%#    <li><a href="<%= url_for('/')->query(id => $login->id) %>">Change email address</a>
-%#    <li><a href="<%= url_for('/')->query(id => $login->id) %>">Send temporary password</a>
-%#    <li><a href="<%= url_for('/')->query(id => $login->id) %>">Suspend</a>
-    <li><a href="<%= url_for('crp.admin.login')->query(id => $login->id) %>">Log in to this account</a>
+    <li><a href="<%= url_for('crp.admin.certificate')->query(id => $login->id) %>">Print certificate</a></li>
+%#    <li><a href="<%= url_for('/')->query(id => $login->id) %>">Send temporary password</a></li>
+%#    <li><a href="<%= url_for('/')->query(id => $login->id) %>">Suspend</a></li>
+    <li><a href="<%= url_for('crp.admin.login')->query(id => $login->id) %>">Log in to this account</a></li>
     <li>
         %= form_for 'crp.admin.change_demo' => (method => 'POST') => begin
-        This is a <%= $login->is_demo ? 'DEMO' : 'normal' %> account.
+        This is a <%= $login->is_demo ? 'DEMO' : 'normal (non-demo)' %> account.
         %= hidden_field 'id' => $login->id;
         %= submit_button 'Change'
         % end
+    </li>
+    <li>
+        %= form_for 'crp.admin.change_email' => (method => 'POST') => begin
+        email:
+        %= text_field 'email' => $login->email;
+        %= hidden_field 'id' => $login->id;
+        %= submit_button 'Change'
+        % end
+    </li>
 </ul>
 </p>
 <script>$(".hide-on-load").delay(4000).slideUp(1000);</script>

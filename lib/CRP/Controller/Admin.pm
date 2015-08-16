@@ -184,5 +184,16 @@ sub change_demo {
     return $c->_show_account_id($id);
 }
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub change_email {
+    my $c = shift;
+
+    my $id = $c->param('id') || shift || return $c->welcome;
+    my $login = $c->crp->model('Login')->find($id) || return $c->welcome;
+    $login->email($c->param('email'));
+    $login->update;
+    return $c->_show_account_id($id);
+}
+
 1;
 

@@ -35,7 +35,7 @@
     ~ Create account
     ~ Find account
         ~ Print certificate
-        + Change email address
+        ~ Change email address
         + Send temporary password
         + (Un)Suspend
         ~ Log in to account. Set a session variable with the original username. On log-out, return to original account, displaying account just left.
@@ -218,7 +218,10 @@ session:
             ~ Admins notified of changes by email (to prevent generating PDFs for others)
             ~ Generates instructor's page in carers' area of site
         ~ Change password
-        + Change email address: sends a confirmation link in email to the new address and a deny link in email to the old address. The confirmation email will work once, within a short period. The deny email will work for a longer period and still works even after the confirmation link has been used, and prevents the confirmation link from working.
+        + Change email address:
+            + sends a confirmation link in email to the new address
+            + sends a warning email to the old address.
+            + The confirmation email will work within a short period and will require entry of password.
         + Messages shown on login (from admins/system)
         ~ Get a list of carers that have expressed interest near a particular place
         + Record details of a course
