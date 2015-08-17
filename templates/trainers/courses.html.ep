@@ -17,6 +17,7 @@
         <td><%= $course->venue %></td>
         <td><%= $course->description %></td>
         <td nowrap>
+        <a href="<%= url_for('crp.instructor_poster')->query(id => $course->id) %>" class="small-button">PDF</a>
         % if($type eq 'draft' || $type eq 'advertised') {
             <a class="small-button" href="<%= url_for('crp.trainers.course')->query(course_id => $course->id) %>" title="Edit the details of this course">Edit</a>
         % }

@@ -72,7 +72,7 @@ my %TYPE = (
     venue               => {MinLen => 1, MaxLen => 50},
     description         => {MinLen => 1, MaxLen => 200},
     time                => {MinLen => 1, MaxLen => 20},
-    price               => {MinLen => 1, MaxLen => 20},
+    price               => {MinLen => 1, MaxLen => 50},
 );
 
 sub set_column {

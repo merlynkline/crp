@@ -1,18 +1,26 @@
 [
         {
             action  => 'text',
-            text    => '[% venue %]',
+            text    => '[% venue %] - [% date %]',
             x       => 420,
-            y       => 585,
+            y       => 575,
             align   => 'center',
-            size    => 24,
+            size    => 18,
         },
         {
             action  => 'text',
-            text    => '[% date %]',
+            text    => '[% description %]',
             x       => 420,
-            y       => 556,
+            y       => 552,
             align   => 'center',
-            size    => 24,
+            size    => 14,
+        },
+        {
+            action  => 'text',
+            text    => '[% price %]',
+            x       => 420,
+            y       => 532,
+            align   => 'center',
+            size    => 14,
         },
 ]

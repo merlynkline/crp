@@ -323,8 +323,10 @@ sub instructor_poster {
     my $pdf_doc = CRP::Util::PDFMarkUp->new(file_path => $pdf);
     $c->render_file(
         data                => $pdf_doc->fill_template({
-                venue   => $course->venue,
-                date    => $c->crp->format_date($course->start_date, 'long'),
+                venue       => $course->venue,
+                date        => $c->crp->format_date($course->start_date, 'long'),
+                description => $course->description,
+                price       => $course->price,
             }),
         format              => 'pdf',
         content_disposition => ($c->param('download') ? 'attachment' : 'inline'),

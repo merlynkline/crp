@@ -76,7 +76,7 @@
             <div class="field-extra-info">Enter the price of the course. This is free text so you can enter things like '£595, early-bird £550'.</div>
         </label>
         <div class="input-container">
-            %= text_field 'price', id => 'price', maxlength => 20, required => 'required', value => $course->price;
+            %= text_field 'price', id => 'price', maxlength => 50, required => 'required', value => $course->price;
             <%= include 'parts/error', field => 'price' %>
         </div>
 
