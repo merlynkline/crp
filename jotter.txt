@@ -2,7 +2,12 @@
 + Courses page: "The course shows you how to treat specific conditions of childhood"
 + PDF talk notes: "course shows you how to treat specific conditions of childhood"
 
++ Add some sort of monitoring
++ Is there a memory leak somewhere? PDF rendering?
+
 + Some method of finding unsatisfied enquiries to decide where to put courses on etc.
+
++ Admin tools for finding and listing courses that instructors are running
 
 + Add pic of course materials to courses page
 
@@ -467,4 +472,5 @@ Vultr setup:
     # Get vultr to remove port 25 block
     # dpkg-reconfigure exim4-config
         - Set general type to internet site mail handled directly by SMTP, set domain to kidsreflex.co.uk, everything else default
-    
+    # sed -i "14 i su - crp -c \"cd crp; authbind --deep carton exec hypnotoad script/crp daemon\"" /etc/rc.local
+
