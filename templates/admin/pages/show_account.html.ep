@@ -9,6 +9,11 @@
 <tr><td><%= $name %>:</td><td nowrap="nowrap"><%= $value %></td></tr>
 % }
 % end
+% my $course_row_block = begin
+% my($type, $count) = @_;
+<tr><td><%= $type %>:</td><td nowrap="nowrap"><a href="<%= url_for('crp.admin.parent_courses')->query(type => lc $type, id => $profile->id) %>"><%= $count || 'None' %></a></td></tr>
+<a href="<%= url_for('crp.admin.parent_courses')->query(type => 'draft') %>"></a>
+% end
 <%= include 'parts/message_box', msg => flash('msg') || stash('msg'), auto_hide => 1 %>
 <h1>Account record for <%= ($profile && $profile->name) ? $profile->name : '(anonymous)' %></h1>
 <table align="right">
@@ -16,9 +21,9 @@
         <td align="center" valign="top">
             <table class="list1">
                 <tr><th colspan="2">Course summary</th></tr>
-                %= $contact_row_block->('Draft', stash('draft_courses_count') || 'None');
-                %= $contact_row_block->('Advertised', stash('advertised_courses_count') || 'None');
-                %= $contact_row_block->('Past', stash('advertised_courses_count') || 'None');
+                %= $course_row_block->('Draft', stash('draft_courses_count'));
+                %= $course_row_block->('Advertised', stash('advertised_courses_count'));
+                %= $course_row_block->('Past', stash('advertised_courses_count'));
             </table>
             <table class="list1">
                 <tr><th colspan="2">Profile summary</th></tr>

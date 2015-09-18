@@ -5,9 +5,9 @@
 <table class="list1">
     <tr><th colspan="2">Various stats</th></tr>
     <tr><td>Active instructors:</td><td align="right"><%= stash 'instructor_count' %></td></tr>
-    <tr><td>Draft courses:</td>     <td align="right"><%= stash 'draft_courses_count' %></td></tr>
-    <tr><td>Advertised courses:</td><td align="right"><%= stash 'advertised_courses_count' %></td></tr>
-    <tr><td>Past courses:</td>      <td align="right"><%= stash 'past_courses_count' %></td></tr>
+    <tr><td>Draft courses:</td>     <td align="right"><a href="<%= url_for('crp.admin.parent_courses')->query(type => 'draft') %>"><%= stash 'draft_courses_count' %></a></td></tr>
+    <tr><td>Advertised courses:</td><td align="right"><a href="<%= url_for('crp.admin.parent_courses')->query(type => 'advertised') %>"><%= stash 'advertised_courses_count' %></a></td></tr>
+    <tr><td>Past courses:</td>      <td align="right"><a href="<%= url_for('crp.admin.parent_courses')->query(type => 'past') %>"><%= stash 'past_courses_count' %></a></td></tr>
 </table>
 
 %= form_for 'crp.admin.find_account' => (method => 'POST') => begin

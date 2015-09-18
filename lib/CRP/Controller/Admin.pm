@@ -31,6 +31,39 @@ sub welcome {
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub list_parent_courses {
+    my $c = shift;
+
+    my $type = $c->param('type') || 'all';
+    my $instructor_id = $c->param('id');
+    my $courses = $c->crp->model('Course');
+    my $days = $c->config->{course}->{age_when_advert_expires_days};
+
+    my $set;
+    if   ($type eq 'advertised') { $set = $courses->get_advertised_set($days); }
+    elsif($type eq 'draft')      { $set = $courses->get_draft_set;             }
+    elsif($type eq 'past')       { $set = $courses->get_past_set($days);       }
+    elsif($type eq 'canceled')   { $set = $courses->get_canceled_set($days);   }
+    else                         { $set = $courses->resultset;                 }
+
+    if($instructor_id) {
+        $set = $set->search({ instructor_id => $instructor_id });
+        my $login = $c->crp->model('Login')->find($instructor_id);
+        $c->stash(login => $login);
+        my $profile = $login->profile;
+        $c->stash(profile_record => $profile) if $profile;
+    }
+
+    $c->stash(
+        instructor_id   => $instructor_id,
+        type            => $type,
+        course_list     => [ $set->search(undef, { order_by => {-asc => 'start_date'} }) ],
+    );
+
+    return $c->page('parent_courses');
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 sub page {
     my $c = shift;
 

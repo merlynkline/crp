@@ -94,6 +94,7 @@ sub startup {
     $admin->any('/certificate')->to('admin#certificate')->name('crp.admin.certificate');
     $admin->any('/admin_login')->to('logged_in#admin_login')->name('crp.admin.login');
     $admin->any('/create_account')->to('admin#create_account')->name('crp.admin.create_account');
+    $admin->any('/parent_courses')->to('admin#list_parent_courses')->name('crp.admin.parent_courses');
     $admin->post('/change_demo')->to('admin#change_demo')->name('crp.admin.change_demo');
     $admin->post('/change_email')->to('admin#change_email')->name('crp.admin.change_email');
     

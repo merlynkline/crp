@@ -7,8 +7,6 @@
 
 + Some method of finding unsatisfied enquiries to decide where to put courses on etc.
 
-+ Admin tools for finding and listing courses that instructors are running
-
 + Add pic of course materials to courses page
 
 + More FB opengraph stuff
