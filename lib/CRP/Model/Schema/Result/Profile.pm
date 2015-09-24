@@ -76,7 +76,7 @@ my %TYPE = (
     name        => {MinLen => 1, MaxLen => 150},
     address     => {MaxLen => 300},
     postcode    => {MinLen => 1, MaxLen => 10},
-    blurb       => {MaxLen => 2000},
+    blurb       => {MaxLen => 4000},
 );
 
 sub set_column {
