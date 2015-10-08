@@ -1,9 +1,56 @@
 
++ hypnotoad config to limit memory consumption
+
 + Courses page: "The course shows you how to treat specific conditions of childhood"
 + PDF talk notes: "course shows you how to treat specific conditions of childhood"
 
++ Instructor course admin
+    + Add extra info to instructor course records
+        + Notes (to record where you're staying, travel details, address of course, contacts etc etc)
+        + Checkboxes for various things? (e.g. venue booked, hotel booked, travel arranged, number of packs reserved/sent, etc)
+    + Add a table with a record for each person that books on to a course
+        + Name they booked under
+        + Contact details (phone, email, post)
+        + Reflexologist flag
+        + Price agreed
+        + Pay-by date
+        + Transactions
+        + Everything from the booking form
+        + Everything needed for the student progress tracking form
+        + Notes
+    + Admin facilities for courses
+        + PDF Documents
+            + Booking acknowledgement
+            + Register
+            + Student progress forms
+            + Certificates
+        + per-course status sheet (students with balances, packs required, checklist of hotel booking etc)
+        + List of courses with numbers booked, packs required etc
+        + Create pre-qualification instructor accounts for students
+        + Mark students accounts as qualified
+    + Extra facilities on instructor accounts
+        + Extra table indicating qualifications
+            + Type code (e.g. instructor, school, special needs etc)
+            + Date of course
+            + Success flag
+        + Pre-qualification mode
+            + Public page indicates that they haven't qualified yet and when they should
+            + Certificate page indicates that they haven't qualified yet and when they should
+            + Can only create a limited number of courses (one?)
+            + Main pages remind them that this is a pre-qualification account
+            + Extra page where they can find out about courses they are signed up for (when they are, what they've paid, what they owe, booking acknowledgement PDF with up-to-date info)
+
 + Add some sort of monitoring
+
 + Is there a memory leak somewhere? PDF rendering?
+    - There does seem to be - we occasionally get failures because there's not enough memory to fork a child process
+    - Removing the etag handler doesn't seem to help
+    - Apparent association with fetching PDFs seems to be just because they are large content. Happens with other things but less obviously. Process grows by amount related to size of fetched document.
+    - Looks like this happens in Morbo as well as Hypnotoad
+
++ Publicity agreement
++ Non-copy agreement
+    
 
 + Some method of finding unsatisfied enquiries to decide where to put courses on etc.
 
@@ -466,9 +513,31 @@ Vultr setup:
         $ git clone https://github.com/merlynkline/crp
         $ carton install
         $ carton exec ./script/crp migrate install
-        $ carton exec hypnotoad script/crp daemon
+        $ authbind --deep carton exec hypnotoad script/crp daemon
     # Get vultr to remove port 25 block
     # dpkg-reconfigure exim4-config
         - Set general type to internet site mail handled directly by SMTP, set domain to kidsreflex.co.uk, everything else default
     # sed -i "14 i su - crp -c \"cd crp; authbind --deep carton exec hypnotoad script/crp daemon\"" /etc/rc.local
+    # # Create backup system:
+    # mkdir /var/backup
+    # # Create /var/backup/backup:
+        " #!/bin/sh
+        " 
+        " 
+        " BACKUP_DIR=var/backup
+        " 
+        " cd /
+        " su - postgres -c "pg_dumpall -c" | gzip > $BACKUP_DIR/postgres_backup.gz
+        " tar -zcf $BACKUP_DIR/backup.tar.gz \
+        "   $BACKUP_DIR/postgres_backup.gz \
+        "   $BACKUP_DIR/backup \
+        "   home/crp/crp/public/images/Instructors/photos/ \
+        " 
+        " rm -rf $BACKUP_DIR/postgres_backup.gz
+        " scp -q $BACKUP_DIR/backup.tar.gz crpbackup@home.binary.co.uk:crp.backup.tar.gz
+    # echo "1 1 * * * /var/backup/backup" >> /var/spool/cron/crontabs/root
+    # echo "7 3 * * * kill -USR2 `cat /home/crp/crp/script/hypnotoad.pid`" >> /var/spool/cron/crontabs/crp
+    # chown crp.crontab /var/spool/cron/crontabs/crp
+    # chmod 600 /var/spool/cron/crontabs/crp
+
 

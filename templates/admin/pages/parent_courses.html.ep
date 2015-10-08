@@ -20,14 +20,18 @@ all instructors
     <tr>
         <th>Start</th>
         <th></th>
+        <th>Instructor</th>
         <th>Venue</th>
         <th>Title</th>
         <th></th>
     </tr>
     % foreach my $course (@$courses_list) {
+    %   my $url = url_for('crp.admin.show_account')->query(id => $course->instructor_id)->to_abs;
+    %   my $instructor = $course->instructor->profile;
     <tr>
         <td nowrap><%= $c->crp->format_date($course->start_date, 'short') %></td>
         <td nowrap><%= $course->time %></td>
+        <td><a href="<%= $url %>"><%= ($instructor && $instructor->name) // '(anonymous)' %></a></td>
         <td><%= $course->venue %></td>
         <td><%= $course->description %></td>
         <td nowrap>
