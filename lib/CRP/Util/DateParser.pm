@@ -150,7 +150,7 @@ sub _month_from_name {
     $name = lc $name;
     my $month = 0;
     foreach my $test_month (qw(
-        january february march april may june julky august september october november december
+        january february march april may june july august september october november december
     )) {
         $month++;
         return $month if substr($test_month, 0, length $name) eq $name;
