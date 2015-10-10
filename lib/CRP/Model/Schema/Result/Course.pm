@@ -75,6 +75,11 @@ __PACKAGE__->add_columns(
         data_type           => 'boolean',
         is_nullable         => 0,
     },
+    book_excluded => {
+        data_type           => 'boolean',
+        default_value       => 'f',
+        is_nullable         => 0,
+    },
 );
 
 __PACKAGE__->set_primary_key('id');
@@ -93,7 +98,7 @@ sub set_column {
     my $self = shift;
     my($column, $value) = @_;
 
-    return if $self->published && ($column eq 'location' || $column eq 'start_date');
+    return if $self->published && ($column eq 'location' || $column eq 'start_date' || $column eq 'book_excluded');
 
     CRP::Util::Types::type_check($TYPE{$column}, $value) if exists $TYPE{$column};
 

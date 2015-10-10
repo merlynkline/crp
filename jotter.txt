@@ -1,6 +1,26 @@
 
 + hypnotoad config to limit memory consumption
 
+~ New switch on parent courses to indicate book is not included
+    ~ Add to DB
+    ~ Add to course form
+    ~ Defaults to included
+    ~ Changes course page
+        ~ doesn't mention the book
+        X Changes description of notes
+    ~ Change online booking page as per course page
+    ~ Not editable after course published
++ Booking form: Add a tickbox saying photos and quotes can be used for publicity or talk to your instructor
+    + Parent course booking form
+        + Online
+        + PDF
+    + Instructor course booking form
+        + Online
+        + PDF
+
+
++ bug: Dates should accept 2-digit years (e.g. when creating a course)
+
 + Courses page: "The course shows you how to treat specific conditions of childhood"
 + PDF talk notes: "course shows you how to treat specific conditions of childhood"
 

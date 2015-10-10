@@ -88,6 +88,19 @@
             <%= include 'parts/error', field => 'price' %>
         </div>
 
+        <label for="include_book">Price includes book?
+            <div class="field-extra-info">
+                % if($restricted) {
+                You can't change whether the book is included because this course is published.
+                % } else {
+                Are you including a copy of <i>The Mouses's House</i> in the price of the course?
+                % }
+            </div>
+        </label>
+        <div class="input-container">
+            %= check_box include_book => 'Y', id => 'include_book', @disabler;
+        </div>
+
         <label for="session_duration">Session length:
             <div class="field-extra-info">Enter the expected duration of each session, e.g. '1 hour'.</div>
         </label>

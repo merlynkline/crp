@@ -30,9 +30,13 @@
     and costs <%= $course->price %>.
     <br />
     <small>
-        The price includes all the workshops plus a copy of
+        The price includes all the workshops plus
+        % if( ! $course->book_excluded ) {
+        a copy of
         <a href="<%= url_for 'crp.page', page => 'book' %>">The Mouse's House</a>
-        and set of comprehensive reference notes.<br />
+        and
+        % }
+        a set of comprehensive reference notes.<br />
     </small>
 </div>
 % end
