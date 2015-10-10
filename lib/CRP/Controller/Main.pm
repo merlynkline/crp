@@ -298,7 +298,7 @@ sub instructor_booking {
     return $c->page('instructor_booking') if($validation->has_error);
 
     my %info;
-    foreach my $param(qw(address about name email location date phone postcode)) {
+    foreach my $param(qw(address about name email location date phone postcode photo_release reflexqual)) {
         $info{$param} =  Mojo::Util::xml_escape($c->crp->trimmed_param($param));
         $info{$param} =~ s{\n}{<br \\>\n}g;
     }

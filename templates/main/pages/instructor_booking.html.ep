@@ -111,6 +111,14 @@ secure your place once I have confirmed that there is one available.
             %= text_area 'about', rows => '20', cols => '45', id => 'about', required => 'required';
             <%= include 'parts/error', field => 'about' %>
         </div>
+        %= $text_field_block->('reflexqual','Reflexology qualification',{info => "If you are qualified relexologist please enter your qualification.", optional => 1});
+        <label>
+            Photography release
+            <div class="field-extra-info">Please tick this box if you are happy for photographs or quotes to be used in publicity.</div>
+        </label>
+        <div class="input-container">
+            %= check_box 'photo_release' => 'Y', id => 'photo_release'
+        </div>
         <label>&nbsp;</label>
         <div class="input-container">
             <%= submit_button 'Send booking request', name => 'send' %>
