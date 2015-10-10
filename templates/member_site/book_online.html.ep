@@ -139,6 +139,14 @@ if you prefer.
     <div class="input-container">
         %= text_area '300_additional', rows => '3', cols => '45', id => '300_additional';
     </div>
+
+    <label>
+        Photography release
+        <div class="field-extra-info">Please tick this box if you are happy for any photographs of, or quotes from, you or your child to be used in publicity.</div>
+    </label>
+    <div class="input-container">
+        %= check_box '310_photo_release' => 'Y', id => '310_photo_release'
+    </div>
     <label>&nbsp;</label>
     <div class="input-container">
         <%= submit_button 'Book place', name => 'book' %>

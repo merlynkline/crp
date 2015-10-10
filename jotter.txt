@@ -11,13 +11,14 @@
     ~ Change online booking page as per course page
     ~ Not editable after course published
 + Booking form: Add a tickbox saying photos and quotes can be used for publicity or talk to your instructor
-    + Parent course booking form
-        + Online
-        + PDF
+    ~ Parent course booking form
+        ~ Online
+        ~ PDF
     + Instructor course booking form
         + Online
         + PDF
 
++ Checkbox in instructor's profile to hide their postal address (etc?) on their personal web page
 
 + bug: Dates should accept 2-digit years (e.g. when creating a course)
 
