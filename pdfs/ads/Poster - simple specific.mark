@@ -56,7 +56,7 @@
         },
         {
             action  => 'text',
-            text    => '[% price %] including a copy of the book, The Mouse\'s House.',
+            text    => '[% price %]',
             x       => 297.64,
             y       => 250,
             size    => 16,

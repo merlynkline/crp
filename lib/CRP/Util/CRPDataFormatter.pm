@@ -68,6 +68,7 @@ sub _extract_crp_course_data {
     my $course = $data->{course};
     $data->{$_} = $course->$_ foreach(qw(venue course_duration session_duration time price description));
 
+    $data->{price}      .= ' including a copy of the book, The Mouse\'s House.' unless $course->book_excluded;
     $data->{date}       = $c->crp->format_date($course->start_date, 'stroke');
     $data->{weekday}    = $c->crp->format_date($course->start_date, 'weekday');
     $data->{course_url} = $c->url_for(
