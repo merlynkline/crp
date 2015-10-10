@@ -91,13 +91,13 @@ if you prefer.
     <label>How would you like to pay?</label>
     <div class="input-container" style="margin-top: 0">
         &nbsp;&nbsp;PayPal
-        %= check_box '090_pay_paypal' => 'Y', id => '090_pay_paypal';
+        %= radio_button '090_pay' => 'PayPal', id => '090_pay_paypal';
         &nbsp;&nbsp;BACS
-        %= check_box '091_pay_bacs' => 'Y', id => '091_pay_bacs';
+        %= radio_button '090_pay' => 'BACS', id => '091_pay_bacs';
         &nbsp;&nbsp;Cheque
-        %= check_box '092_pay_cheque' => 'Y', id => '092_pay_cheque';
+        %= radio_button '090_pay' => 'Cheque', id => '092_pay_cheque';
         &nbsp;&nbsp;Cash
-        %= check_box '093_pay_cash' => 'Y', id => '093_pay_cash';
+        %= radio_button '090_pay' => 'Cash', id => '093_pay_cash';
     </div>
 
     <br clear="left" /><br /><strong>About your child</strong><br />
