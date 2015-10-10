@@ -8,63 +8,66 @@ keep track of what's going on this page contains a very brief overview of
 the most important changes that happen. Check back from time to time to make
 sure you keep up to date with what the site has to offer.
 <ul>
-    <li>26Apr2015</li>
-    <ul>
-        <li>FAQ article for DBS/CRB checks</li>
-        <li>Instructor course booking form</li>
+    <li>10Oct2015</li><ul>
+        <li>New checkbox on parent courses to indicate the book isn't included</li>
     </ul>
-    <li>3May2015</li>
-    <ul>
+
+    <li>24Sep2015</li><ul>
+        <li>Improved visibility of errors on input forms</li>
+        <li>Increased size of description allowed in profiles</li>
+    </ul>
+
+    <li>16Aug2015</li><ul>
+        <li>Improved PDF for roller banner</li>
+        <li>Added roller banner to PDF/print FAQs</li>
+        <li>Facility for us to change members' email addresses</li>
+    </ul>
+
+    <li>17Jul2015</li><ul>
+        <li>New PDF document for roller banner</li>
+    </ul>
+
+    <li>15Jul2015</li><ul>
+        <li>Demonstration instructor's logins available</li>
+        <li>AOR approved CPD course information</li>
+        <li>New picture on front page</li>
+    </ul>
+
+    <li>13Jun2015</li><ul>
+        <li>Instructors course posters</li>
+    </ul>
+
+    <li>12Jun2015</li><ul>
+        <li>Performance improvements across the whole site</li>
+    </ul>
+
+    <li>31May2015</li><ul>
+        <li>List upcoming instructors courses with links to on-line booking form</li>
+    </ul>
+
+    <li>29May2015</li><ul>
+        <li>On-line booking form for parent/carer courses. Sends email to the instructor.</li>
+    </ul>
+
+    <li>13May2015</li><ul>
+        <li>Improved filenames for downloaded PDFs</li>
+    </ul>
+
+    <li>8May2015</li><ul>
+        <li>Linking to a course a page in Facebook will now produce a special image which is better than the default</li>
+    </ul>
+
+    <li>3May2015</li><ul>
         <li>Facebook link icon on pages when not logged in</li>
         <li>New printable PDF document: ID cards</li>
         <li>A3 versions of three printable PDF posters</li>
         <li>This FAQ article!
     </ul>
-    <li>8May2015</li>
-    <ul>
-        <li>Linking to a course a page in Facebook will now produce a special image which is better than the default</li>
+
+    <li>26Apr2015</li><ul>
+        <li>FAQ article for DBS/CRB checks</li>
+        <li>Instructor course booking form</li>
     </ul>
-    <li>13May2015</li>
-    <ul>
-        <li>Improved filenames for downloaded PDFs</li>
-    </ul>
-    <li>29May2015</li>
-    <ul>
-        <li>On-line booking form for parent/carer courses. Sends email to the instructor.</li>
-    </ul>
-    <li>31May2015</li>
-    <ul>
-        <li>List upcoming instructors courses with links to on-line booking form</li>
-    </ul>
-    <li>12Jun2015</li>
-    <ul>
-        <li>Performance improvements across the whole site</li>
-    </ul>
-    <li>13Jun2015</li>
-    <ul>
-        <li>Instructors course posters</li>
-    </ul>
-    <li>15Jul2015</li>
-    <ul>
-        <li>Demonstration instructor's logins available</li>
-        <li>AOR approved CPD course information</li>
-        <li>New picture on front page</li>
-    </ul>
-    <li>17Jul2015</li>
-    <ul>
-        <li>New PDF document for roller banner</li>
-    </ul>
-    <li>16Aug2015</li>
-    <ul>
-        <li>Improved PDF for roller banner</li>
-        <li>Added roller banner to PDF/print FAQs</li>
-        <li>Facility for us to change members' email addresses</li>
-    </ul>
-    <li>24Sep2015</li>
-    <ul>
-        <li>Improved visibility of errors on input forms</li>
-        <li>Increased size of description allowed in profiles</li>
-    </ul>
-    </li>
+
 </ul>
 </p>
