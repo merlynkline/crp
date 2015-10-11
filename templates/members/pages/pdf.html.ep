@@ -17,8 +17,7 @@ included here.
 </p>
 <p class="extra-info">
 Note that these documents
-are in PDF format and so you may need to install a free
-version of
+are in PDF format so you may need to install a free version of
 <a href="http://get.adobe.com/uk/reader/" target="_blank">Adobe® Reader® software</a>
 in order to view and print them.
 </p>
@@ -33,14 +32,13 @@ in order to view and print them.
 %= include "members/parts/course_doc", name => 'ads/A3 Poster - pictorial general', caption => "A3 version of general purpose pictorial poster"
 %= include "members/parts/course_doc", name => 'ads/Small general descriptive', caption => "General purpose flyer with descriptive text"
 %= include "members/parts/course_doc", name => 'ads/Small general pictorial', caption => "General purpose flyer with pictures rather than text"
-%= include "members/parts/course_doc", name => 'ads/Roll-up-banner-small-1', caption => "Roller banner, 2m tall and 85cm wide (also fits 80 cm wide). Warning: large file (about 8MB)."
+%= include "members/parts/course_doc", name => 'ads/Roll-up-banner-small-1', caption => "Roller banner, 2m tall and 85cm wide (also fits 80 cm wide). Warning: large file (about 8MB)"
 %= include "members/parts/course_doc", name => 'members/Presentation', caption => "Notes for a presentation to tell people about The Children's Reflexology Programme"
 %= include "members/parts/course_doc", name => 'members/Business cards', caption => "Business cards suitable for Avery C32011, C32016, and similar card stock"
 %= include "members/parts/course_doc", name => 'members/QR Business cards', caption => "Alternate business cards suitable for Avery C32011, C32016, and similar card stock"
 %= include "members/parts/course_doc", name => 'members/Notepaper', caption => "Headed notepaper"
 %= include "members/parts/course_doc", name => 'members/Compliments', caption => "Compliments slips"
 %= include "members/parts/course_doc", name => 'members/Gift voucher', caption => "Gift vouchers"
-%= include "members/parts/course_doc", name => 'members/Gift voucher log', caption => "Log sheet to manage gift vouchers"
 
 <div class="pdf-separator">Course<br />administration</div>
 
@@ -49,6 +47,7 @@ in order to view and print them.
 %= include "members/parts/course_doc", name => 'members/register', caption => "Generic register to check in trainees to each session"
 %= include "members/parts/course_doc", name => 'members/feedback_form', caption => "Generic feedback form for your trainees to fill in"
 %= include "members/parts/course_doc", name => 'members/feedback_form_A5', caption => "Generic feedback form in A5 format for A4 paper"
+%= include "members/parts/course_doc", name => 'members/Gift voucher log', caption => "Log sheet to manage gift vouchers"
 
 <div class="pdf-separator">Other<br />documents</div>
 

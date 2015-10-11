@@ -1,8 +1,9 @@
 %#<!DOCTYPE html>
 % layout 'faqs';
 <p>
-One of the PDF documents available for printing is a set of four gift vouchers on
-an A4 page. When printing these you should always use high quality card (at least
+    One of the PDF documents available for printing
+<a href="<%= url_for('crp.members.get_pdf', pdf => "members/Gift voucher") %>">is a set of four gift vouchers</a>
+on an A4 page. When printing these you should always use high quality card (at least
 250g weight) and if you are doing it yourself you should guillotine them carefully rather than trying to cut
 them with scissors. Note that there is a small cutting guide printed in the centre
 of the sheet to help with accurate cutting.
@@ -23,8 +24,9 @@ you are aware of your liability at all times:
     <li>Sign each voucher when you receive the money for it and not before.</li>
     <li>Keep a list of the vouchers you sell so you can keep track of them.</li>
 </ul>
-To help with this there is a further PDF you can use to print a form to keep
-track of your vouchers. This allows you to record information about each voucher
+To help with this there is a further
+<a href="<%= url_for('crp.members.get_pdf', pdf => "members/Gift voucher log") %>">PDF you can use to print a form to keep
+track of your vouchers</a>. This allows you to record information about each voucher
 including the number, when it was sold, how much it was sold for, whom it was
 sold to, when it expires and when it has been fulfilled. When using this form
 you should fill in the first two digits of the voucher numbers yourself as these
