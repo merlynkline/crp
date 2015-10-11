@@ -37,6 +37,8 @@ in order to view and print them.
 %= include "members/parts/course_doc", name => 'members/Presentation', caption => "Notes for a presentation to tell people about The Children's Reflexology Programme"
 %= include "members/parts/course_doc", name => 'members/Business cards', caption => "Business cards suitable for Avery C32011, C32016, and similar card stock"
 %= include "members/parts/course_doc", name => 'members/QR Business cards', caption => "Alternate business cards suitable for Avery C32011, C32016, and similar card stock"
+%= include "members/parts/course_doc", name => 'members/Notepaper', caption => "Headed notepaper"
+%= include "members/parts/course_doc", name => 'members/Compliments', caption => "Compliments slips"
 
 <div class="pdf-separator">Course<br />administration</div>
 

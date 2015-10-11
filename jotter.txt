@@ -53,7 +53,6 @@
     - Apparent association with fetching PDFs seems to be just because they are large content. Happens with other things but less obviously. Process grows by amount related to size of fetched document.
     - Looks like this happens in Morbo as well as Hypnotoad
 
-+ Publicity agreement
 + Non-copy agreement
     
 
@@ -410,56 +409,6 @@ session:
     - run: ./upd
     - NB: The upd script just pulls the latest version of whatever branch is checked out, not necessarily the right tag.
 
-
-- Tutor DB tables
-    - Tutor accounts
-        - ID
-        - create date
-        - last login date
-        - email
-        - password hash
-        - OTP hash
-        - OTP expiry
-        - Admin flag
-        - Autologin requested
-    - Tutor profiles
-        - instructor_id
-        - name
-        - address
-        - postcode
-        - telephone
-        - mobile
-        - photo
-        - blurb
-        - web_page_slug
-    - Sessions
-        - ID
-        - TutorID
-        - Last access timestamp
-        - Data
-    - Courses
-        - id
-        - instructor_id
-        - location
-        - latitude
-        - longitude
-        - venue
-        - description
-        - start_date
-        - time
-        - price
-        - session_duration
-        - course_duration
-        - canceled
-        - published
-    - Attendees
-    - Audit
-        - id
-        - timestamp
-        - instructor_id (or NULL)
-        - course_id (or NULL)
-        - event_type
-        - details
 
 
 - New things to me:
