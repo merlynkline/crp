@@ -1,7 +1,7 @@
 
 {
     version => 1,
-    filename => 'Business cards',
+    filename => 'Compliments slips',
     items => [
         { action => 'text', text => '[% name %]',                               x => 460, y => 776, size => 14, align => 'right', font => 'Helvetica-Bold' },
         { action => 'text', text => '[% one_line_address %], [% postcode %]',   x => 572, y => 759, size => 12, align => 'right' },
