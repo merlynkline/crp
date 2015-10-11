@@ -1,0 +1,42 @@
+{
+    version => 1,
+    filename => 'Gift vouchers',
+    items => [
+        {
+            action  => 'text',
+            text    => '[% phone_numbers %]',
+            x       => 210.5,
+            y       => 40,
+            size    => 11,
+            align   => 'center',
+        },
+        {
+            action  => 'text',
+            text    => '[% url %]',
+            x       => 210.5,
+            y       => 27,
+            size    => 11,
+            align   => 'center',
+        },
+        {
+            action  => 'text',
+            text    => '[% email %]',
+            x       => 210.5,
+            y       => 14,
+            size    => 11,
+            align   => 'center',
+        },
+        
+        {
+            action  => 'qrcode',
+            text    => "http://[% url %]",
+            x       => 11,
+            y       => 21,
+        },
+    ],
+    repeats => [
+        { x_offset =>   0,    y_offset => 297.6 },
+        { x_offset => 421,    y_offset =>   0   },
+        { x_offset => 421,    y_offset => 297.6 },
+    ],
+}

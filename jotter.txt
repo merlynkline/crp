@@ -1,7 +1,6 @@
 
 + hypnotoad config to limit memory consumption
 
-
 + Checkbox in instructor's profile to hide their postal address (etc?) on their personal web page
 
 + bug: Dates should accept 2-digit years (e.g. when creating a course)

@@ -5,6 +5,7 @@
 %   my $articles = [
 %       {id => 'intro',     title => 'Help & FAQs'},
 %       {id => 'print',     title => 'PDF Printing'},
+%       {id => 'vouchers',  title => 'Gift vouchers'},
 %       {id => 'insure',    title => 'Insurance'},
 %       {id => 'maps',      title => 'Geo-search'},
 %       {id => 'refer',     title => 'Referrals'},
