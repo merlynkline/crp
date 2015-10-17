@@ -8,61 +8,77 @@ use CRP::Util::DateParser;
 
 my $parser = CRP::Util::DateParser->new;
 
+my $this_year = 1900 + (localtime)[5];
+my @two_digit_year_fixtures = (
+    [ ($this_year     )  % 100  => $this_year      ],
+    [ ($this_year +  1)  % 100  => $this_year +  1 ],
+    [ ($this_year + 50)  % 100  => $this_year + 50 ],
+    [ ($this_year + 51)  % 100  => $this_year - 49 ],
+    [ ($this_year -  1)  % 100  => $this_year -  1 ],
+    [ ($this_year - 51)  % 100  => $this_year + 49 ],
+    [ ($this_year - 50)  % 100  => $this_year + 50 ],
+    [ ($this_year - 49)  % 100  => $this_year - 49 ],
+);
+
+my $ten_years_forward = $this_year + 10;
+my $ten_years_back = $this_year - 10;
+
 my $fixtures = <<EOT;
 24/1/1995:1995:01:24T09:08:17.1823213 ISO-8601
 24/1/1995:1995-01-24T09:08:17.1823213
-16/6/94:Wed, 16 Jun 94 07:29:35 CST 
-13/10/94:Thu, 13 Oct 94 10:13:13 -0700
+16/6/1994:Wed, 16 Jun 1994 07:29:35 CST 
+13/10/1994:Thu, 13 Oct 1994 10:13:13 -0700
 9/11/1994:Wed, 9 Nov 1994 09:50:32 -0500 (EST) 
-21/12/17:21 dec 17:05 
-21/12/17:21-dec 17:05
-21/12/17:21/dec 17:05
-21/12/93:21/dec/93 17:05
+21/12/1917:21 dec 1917:05 
+21/12/1917:21-dec 1917:05
+21/12/1917:21/dec 1917:05
+21/12/1993:21/dec/1993 17:05
 2/10/1999:1999 10:02:18 "GMT"
-16/11/94:16 Nov 94 22:28:20 PST
+16/11/1994:16 Nov 1994 22:28:20 PST
 10/11/2012:10 th Nov 2012
 10/11/2012:10 Nov 2012
 10/11/2012:Nov 10 th 2012
 10/11/2012:Nov 10th 2012
 10/11/2012:Nov 10 2012
 10/11/2012:20121110
-9/11/10:9Nov10
-10/9/11:9-10-11
-14/9/11:14-9-11
+9/11/1910:9Nov1910
+10/9/1911:9-10-1911
+14/9/1911:14-9-1911
 :23-23-11
 :12Jib2012
 :32Feb2012
-1/2/3:1February03
+1/2/1903:1February1903
 :jafdhsj
 EOT
 
 test_date_parser($parser, $_) foreach (split "\n", $fixtures);
 
+my $this_year_two = sprintf "%02i", $this_year % 100;
 $fixtures = <<EOT;
 24/1/1995:1995:01:24T09:08:17.1823213 ISO-8601
 24/1/1995:1995-01-24T09:08:17.1823213
-16/6/94:Wed, 16 Jun 94 07:29:35 CST 
-13/10/94:Thu, 13 Oct 94 10:13:13 -0700
+16/6/1994:Wed, 16 Jun 1994 07:29:35 CST 
+13/10/1994:Thu, 13 Oct 1994 10:13:13 -0700
 9/11/1994:Wed, 9 Nov 1994 09:50:32 -0500 (EST) 
-21/12/17:21 dec 17:05 
-21/12/17:21-dec 17:05
-21/12/17:21/dec 17:05
-21/12/93:21/dec/93 17:05
+21/12/1917:21 dec 1917:05 
+21/12/1917:21-dec 1917:05
+21/12/1917:21/dec 1917:05
+21/12/1993:21/dec/1993 17:05
 2/10/1999:1999 10:02:18 "GMT"
-16/11/94:16 Nov 94 22:28:20 PST
+16/11/1994:16 Nov 1994 22:28:20 PST
 10/11/2012:10 th Nov 2012
 10/11/2012:10 Nov 2012
 10/11/2012:Nov 10 th 2012
 10/11/2012:Nov 10th 2012
 10/11/2012:Nov 10 2012
 10/11/2012:20121110
-9/11/10:9Nov10
-9/10/11:9-10-11
-14/9/11:14-9-11
+9/11/$this_year:9Nov$this_year_two
+9/10/$this_year:9-10-$this_year_two
+14/9/$this_year:14-9-$this_year_two
 :23-23-11
 :12Jib2012
 :32Feb2012
-1/2/3:1February03
+1/2/1903:1February1903
 :jafdhsj
 EOT
 
@@ -71,7 +87,7 @@ test_date_parser($parser, $_) foreach (split "\n", $fixtures);
 
 foreach my $day (qw(1 9 10 11 19 21 28 31)) {
     foreach my $month (1 .. 12) {
-        foreach my $year (qw(1 9 10 99 100 999 1000 1999 2000 2100)) {
+        foreach my $year (qw(100 999 1000 1999 2000 2100)) {
             my $expected = "$day/$month/$year";
             $parser->prefer_month_first_order(1);
             test_date_parser($parser, "$expected:$month/$day/$year");
@@ -81,6 +97,14 @@ foreach my $day (qw(1 9 10 11 19 21 28 31)) {
             test_date_parser($parser, sprintf "$expected:%04i%02i%02i", $year, $month, $day);
         }
     }
+}
+
+foreach my $two_digit_year_fixture (@two_digit_year_fixtures) {
+    my($test_year, $expected_year) = @$two_digit_year_fixture;
+    test_date_parser($parser, "21/6/$expected_year:21/06/$test_year");
+    $parser->literal_years_below_100(1);
+    test_date_parser($parser, "21/6/$test_year:21/06/$test_year");
+    $parser->literal_years_below_100(0);
 }
 
 
@@ -93,8 +117,8 @@ sub test_date_parser {
     if($parser->parsed_ok) {
         ok($date ne '', "parsed, as expected: $string");
         is($parser->day, $d, "Extracted day '$d': $string");
-        is($parser->month, $m, "Extracted month '$d': $string");
-        is($parser->year, $y, "Extracted year '$d': $string");
+        is($parser->month, $m, "Extracted month '$m': $string");
+        is($parser->year, $y, "Extracted year '$y': $string");
     }
     else {
         ok($date eq '', "parse failed, as expected: $string");

@@ -9,6 +9,7 @@ use Moose;
 # anything like dates to a human observer.
 
 has prefer_month_first_order    => (is => 'rw', isa => 'Bool', default => 1);
+has literal_years_below_100     => (is => 'rw', isa => 'Bool', default => 0);
 
 has day                         => (is => 'ro', isa => 'Int',  clearer => '_clear_day', writer => '_day');
 has month                       => (is => 'ro', isa => 'Int',  clearer => '_clear_month', writer => '_month');
@@ -77,12 +78,24 @@ sub _process_numeric_token {
 
     if($token > 31 || $token == 0 || length $token > 2 || ($self->month && $self->day)) {
         return 0 if defined $self->year;
-        $self->_year($token + 0);
+        $self->_set_year($token + 0);
         return 1;
     }
     else {
         return $self->_process_month_or_day_token($token + 0);
     }
+}
+
+sub _set_year {
+    my $self = shift;
+    my($year) = @_;
+
+    if($year < 100 && ! $self->literal_years_below_100) {
+        my $this_year = 1900 + (localtime)[5];
+        $year += $this_year - $this_year % 100;
+        $year -= 100 if $year > $this_year + 50;
+    }
+    $self->_year($year);
 }
 
 sub _process_month_or_day_token {
