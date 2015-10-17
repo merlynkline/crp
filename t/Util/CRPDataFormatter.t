@@ -25,6 +25,9 @@ my $login = qobj (
     email       => 'EMAIL',
 );
 
+my $t = Test::Mojo->new('CRP');
+my $c = $t->app->build_controller;
+
 my $profile = qobj (
     name        => 'NAME',
     telephone   => 'TELEPHONE',
@@ -52,10 +55,8 @@ $expected = {
     signature_date      => '01 Jan 15',
     one_line_address    => "ADR1, ADR2",
     phone_numbers       => "TELEPHONE / MOBILE",
+    profile_image       => $c->crp->path_for_public_file('images/Instructors/photos/default.jpg'),
 };
-
-my $t = Test::Mojo->new('CRP');
-my $c = $t->app->build_controller;
 
 my $formatted = CRP::Util::CRPDataFormatter::format_data($c, $data);
 is_deeply($formatted, $expected, "_extract_crp_data [1]");
