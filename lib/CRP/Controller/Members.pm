@@ -63,6 +63,7 @@ sub profile {
                 die $error if $error;
             }
         }
+        $profile->hide_address(($c->param('hide_address') // '') eq 'Y' ? 'Y' : 'N');
         if($validation->has_error) {
             $c->stash(msg => 'fix_errors');
         }
@@ -73,6 +74,7 @@ sub profile {
             return $c->redirect_to('crp.members.profile');
         }
     }
+    $c->param('hide_address', $profile->hide_address ? 'Y' : '');
 }
 
 use CRP::Util::Graphics;

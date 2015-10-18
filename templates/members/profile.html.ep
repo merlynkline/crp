@@ -34,7 +34,16 @@
             <%= include 'parts/error', field => 'postcode' %>
         </div>
 
+        <label for="hide_address">Hide address on web page:
+            <div class="field-extra-info">Set this option if you would prefer not to show your postal address on your personal web page.</div>
+        </label>
+        <div class="input-container">
+            %= check_box hide_address => 'Y', id => 'hide_address';
+        </div>
+
         <label for="telephone">Telephone:
+            <div class="field-extra-info">You can leave this blank to display a mobile number only.</div>
+        </label>
         </label>
         <div class="input-container">
             %= text_field 'telephone', id => 'telephone', size => 10, value => $profile->telephone;
@@ -42,6 +51,7 @@
         </div>
 
         <label for="mobile">Mobile:
+            <div class="field-extra-info">You can leave this blank to display a landline number only.</div>
         </label>
         <div class="input-container">
             %= text_field 'mobile', id => 'mobile', size => 10, value => $profile->mobile;
@@ -104,6 +114,7 @@
 </div>
 <br />
 <%= include 'member_site/parts/blurb', cachebuster => 1 %>
+<%= include 'member_site/parts/contact' %>
 <br clear="all"/>
 <script src="<%= url_for '/js/yellow-text.min.js' %>"></script>
 <script>

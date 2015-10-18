@@ -63,6 +63,11 @@ __PACKAGE__->add_columns(
         is_nullable         => 0,
         default_value       => 0,
     },
+    hide_address => {
+        data_type           => 'boolean',
+        default_value       => 'f',
+        is_nullable         => 0,
+    },
 );
 
 __PACKAGE__->set_primary_key('instructor_id');
