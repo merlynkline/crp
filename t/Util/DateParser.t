@@ -99,6 +99,25 @@ foreach my $day (qw(1 9 10 11 19 21 28 31)) {
     }
 }
 
+$fixtures = <<EOT;
+1/1/2015:1firstmonth2015
+1/1/2015:1primero2015
+20/12/2015:20lastmonth2015
+20/12/2015:20doce2015
+EOT
+
+foreach my $fixture (split "\n", $fixtures) {
+    $fixture =~ /:(.+)$/;
+    test_date_parser($parser, ":$1");
+}
+
+$parser->add_month_name(firstmonth => 1);
+$parser->add_month_name(primero => 1);
+$parser->add_month_name(lastmonth => 12);
+$parser->add_month_name(doce => 12);
+
+test_date_parser($parser, $_) foreach (split "\n", $fixtures);
+
 foreach my $two_digit_year_fixture (@two_digit_year_fixtures) {
     my($test_year, $expected_year) = @$two_digit_year_fixture;
     test_date_parser($parser, "21/6/$expected_year:21/06/$test_year");

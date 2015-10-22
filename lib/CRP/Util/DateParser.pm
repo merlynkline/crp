@@ -1,6 +1,8 @@
 package CRP::Util::DateParser;
 use Moose;
 
+use Carp;
+
 # Parse a day, month and year from a user-entered string.
 # These are not validated except in the most basic way.
 # It is assumed that the string is intended to represent
@@ -17,6 +19,20 @@ has year                        => (is => 'ro', isa => 'Int',  clearer => '_clea
 has parsed_ok                   => (is => 'ro', isa => 'Bool', clearer => '_clear_parsed_ok', writer => '_parsed_ok');
 
 has _possible_month_or_day      => (is => 'rw', isa => 'Int', clearer => '_clear__possible_month_or_day', init_arg => undef);
+has _month_names                => (is => 'rw', isa => 'ArrayRef', init_arg => undef, default => sub {[
+            january     =>  1,
+            february    =>  2,
+            march       =>  3,
+            april       =>  4,
+            may         =>  5,
+            june        =>  6,
+            july        =>  7,
+            august      =>  8,
+            september   =>  9,
+            october     => 10,
+            november    => 11,
+            december    => 12,
+        ]});
 
 sub parse {
     my $self = shift;
@@ -27,6 +43,16 @@ sub parse {
     $self->_parse_tokens($tokens) if @$tokens >= 3;
 
     return $self->parsed_ok;
+}
+
+sub add_month_name {
+    my $self = shift;
+    my($month_name, $month_number) = @_;
+
+    croak "No month_name supplied" unless $month_name;
+    $month_number //= '';
+    croak "month_number '$month_number' is not between 1 and 12" unless $month_number >= 1 and $month_number <= 12;
+    push @{$self->_month_names}, $month_name, $month_number;
 }
 
 sub _reset {
@@ -148,7 +174,7 @@ sub _process_word_token {
     my $self = shift;
     my($token) = @_;
 
-    my $check_month = _month_from_name($token);
+    my $check_month = $self->_month_from_name($token);
     return 1 unless $check_month;
     return 0 if $self->month;
     $self->_month($check_month);
@@ -157,16 +183,13 @@ sub _process_word_token {
 }
 
 sub _month_from_name {
+    my $self = shift;
     my($name) = @_;
 
     return unless length $name > 2;
     $name = lc $name;
-    my $month = 0;
-    foreach my $test_month (qw(
-        january february march april may june july august september october november december
-    )) {
-        $month++;
-        return $month if substr($test_month, 0, length $name) eq $name;
+    for(my $index = 0; $index < $#{$self->_month_names}; $index += 2) {
+        return $self->_month_names->[$index + 1] if substr($self->_month_names->[$index], 0, length $name) eq $name;
     }
     return;
 }
