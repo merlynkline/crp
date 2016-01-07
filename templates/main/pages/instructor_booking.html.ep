@@ -22,7 +22,6 @@
 <img src="<%= url_for '/images/Animals/Owl.jpg' %>" class="page-logo">
 
 <p>
-<a href="http://www.aor.org.uk/" target="_blank"><img style="float:right; width:80px; height:80px;" src="<%= url_for '/images/AORCPDApproved.jpg' %>"></a>
 <strong>
     The Childrens' Reflexology Programme is delivered only by qualified instructors
     who have received the required training and use the official course materials.
@@ -35,28 +34,33 @@ to meeting you and welcoming you to the exciting and empowering world of The
 Children's Reflexology Programme!
 </p>
 <p>
-The course is open to everyone but it is very helpful if you have already been
+The three-day course is open to everyone but it is very helpful if you have already been
 on the parents' course so you are familiar with the material you will be learning
 how to teach. In particular, you do not need to be a qualified reflexologist, nor
-any other type of therapist, in order to do this course. There is also an
+any other type of therapist, in order to do this course.
+</p>
+<p>
+There is also an
 occasional two-day course for qualified relexologists only, which does not include
+<a href="http://www.aor.org.uk/" target="_blank"><img style="float:right; width:80px; height:80px; padding: 0 0 0 8px;" src="<%= url_for '/images/AORCPDApproved.jpg' %>"></a>
 some of the material on reflexology and anatomy &amp; physiology. This two-day
-course is an <a href="http://www.aor.org.uk/" target="_blank">AoR approved CPD course</a> for their members.
+course is <a href="http://www.aor.org.uk/" target="_blank">AoR approved</a>
+and <a href="http://www.aor.org.uk/" target="_blank">FHT accredited</a>
+for their members.
+Please note that on some occasions, depending on travel arrangements and booking volumes,
+I may not be able to run the separate two-day course. In these cases qualified reflexologists
+are welcome to attend the last two days of the three-day non-reflexologist's course, which have identical
+<a href="http://www.fht.org.uk/" target="_blank"><img style="float: right; width: 80px; height: 65px; padding: 0 0 8x;" src="<%= url_for '/images/FHTAccreditation.jpg' %>"></a>
+content and delivery, for the price of the two-day course. Please indicate on the booking
+form if you wish to do this.
 </p>
 <p>
 The fee for the course is £595 or £495 for the two-day reflexologists' course when available.
 You will be required to pay a non-refundable deposit of £100 to
 secure your place once I have confirmed that there is one available.
-<div style="
+<div class="info-box" style="
     float: right;
     width: 180px;
-    border: 1px solid black;
-    background: #dde;
-    padding: 0 12px 4px 8px;
-    margin: 16px 0 0 12px;
-    border-radius: 8px;
-    font-size:  10px;
-    line-height: 120%;
     ">
     <h3>Course overview</h3>
     <p>

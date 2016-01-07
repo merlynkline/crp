@@ -18,6 +18,11 @@
     </td>
 </tr>
 % }
+<tr><td colspan="4" style="border-top: 2px solid; border-color: inherit; font-size: 70%; line-height: 120%; text-align: center;">
+        If I'm not currently running a course near you or of the type you would like then please do 
+        <a href="<%= url_for '/page/contact' %>">get in touch</a>.<br />
+        If you have a small group of friends or colleagues who would like to attend then I am always happy to travel.
+</td></tr>
 </table>
 % } else {
 <span class="highlight-box">

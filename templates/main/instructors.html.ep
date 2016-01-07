@@ -20,16 +20,40 @@
     <a class="standard-button" href="<%= url_for 'crp.instructor_search' %>">Find a specific instructor</a>
 </span>
 </center>
-</p>
 <br />
-<a href="http://www.aor.org.uk/" target="_blank"><img style="float:right; width:80px; height:80px;" src="<%= url_for '/images/AORCPDApproved.jpg' %>"></a>
 <h1>Become a certified instructor</h1>
-<p>
-<strong>
-    Would you like to run your own business empowering parents and carers to help themselves and their children?
-    It is now possible to become a fully qualified Children's Reflexology Programme Instructor without having to train as a reflexologist.
-</strong>
-</p>
+<table>
+    <tr>
+        <td style="padding:0 8px 0 0; width:60%;">
+            <strong>
+                Would you like to run your own business empowering parents and carers to help themselves and their children?
+                It is now possible to become a fully qualified Children's Reflexology Programme Instructor without having to train as a reflexologist.
+            </strong>
+        </td>
+        <td>
+            <div style="
+                border:         1px solid black;
+                padding:        4px;
+                margin:         0;
+                border-radius:  8px;
+                line-height:    120%;
+                font-size:      75%;
+                text-align:     center;
+                ">
+                <table>
+                    <tr>
+                        <td>
+                            If you are already a qualified reflexologist then you can take the special two-day,
+                            AOR-approved and FHT-accredited course.<br />
+                            <a href="http://www.aor.org.uk/" target="_blank"><img style="padding: 8px 16px 0 16px; width:66px; height:66px;" src="<%= url_for '/images/AORCPDApproved.jpg' %>"></a>
+                            <a href="http://www.fht.org.uk/" target="_blank"><img style="padding: 8px 16px 0 16px; width:80px; height:66px;" src="<%= url_for '/images/FHTAccreditation.jpg' %>"></a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+    </tr>
+</table>
 <p>
 %= include "parts/instructors_course_list", courses => stash('instructors_courses');
 </p>

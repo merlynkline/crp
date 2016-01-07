@@ -393,6 +393,15 @@ table.list1 {
     font-size:      75%;
     line-height:    130%;
 }
+.info-box {
+    border:         1px solid black;
+    padding:        0 12px 4px 8px;
+    margin:         16px 0 0 12px;
+    border-radius:  8px;
+    background:     #dde;
+    font-size:      10px;
+    line-height:    120%;
+}
 .certificate-container {
     text-align:             center;
     font-family:            'Tangerine', cursive;
