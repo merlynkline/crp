@@ -1,5 +1,92 @@
 
-+ hypnotoad config to limit memory consumption
++ New courses
+    + New qualifications table in DB
+        + ID
+        + Qualification name
+        + Abbreviation
+    + New instructor qualifications table in DB
+        + ID
+        + Instructor ID
+        + Qualification ID
+        + Date passed
+    + New column in instructor course table: qualification ID
+    + Changes to admin page for instructor's account record:
+        + list of qualifications and dates passed
+        + facility to record when they gain a qualification
+        + Facility to print certificate for each qualification
+    + Add qualification records for all existing instructors when deploying new code
+    + Show which qualifications they've done on the certificate page and personal web page
+    + Membership certificate PDF:
+        + Date will need to be calculated differently
+        + Show which qualifications are included
+        ? Should we have separate certificates? Probably not
+    + New versions of at least some of the course PDFs, shown correctly for the course type
+    + Some PDFs need to show qualifcations
+        + Business cards
+        + Headed paper
+        + Comp slips
+        + ID cards
+    + Instructor courses page will need to indicate what type of instructor course it is
+        + Possibly add filtering to show only certain course types
+    + Update web site 
+        + "Home" page: short mention of AN
+        + "Programme" page: more mention of AN
+        + "Courses" page: more mention of AN
+        + "Instructors" page: more mention of AN, details of course type in course description
+    + Admin pages for instructor training courses
+        + Show course type in descriptions in lists
+        + New field to set qualification type when adding a course (not editable after publishing)
+    + Course advertisement page on web site must say type (also on on-line booking page)
+    + Allow an account to exist with no qualifications - based on demo account
+        + Certificate page must be a special case "trainee (not yet qualified)"
+        + Personal web page must not say "qualified instructor" but "trainee (not yet qualified)"
+        + Can't publish any courses
+        + Membership certificate shouldn't be available or should have 'not valid' in the date or similar
+        + All PDFS could be watermarked "Trainee" like a demo account
+        + PDFS shoqing qualifications should instead say "Trainee"
+        + Shop should have purchase buttons removed "(Purchase buttons removed until you qualify)"
+        + Article in FAQs
+        + Disabled buttons (e.g. course publish) need appropriate tooltips
+        + Instructor searches shouldn't find trainees
+        + The hidden list of instructors for Google shouldn't include trainees
+        + Search the code and templates for "demo" to double-check if anything else needs doing
+    + When an instructor adds a course, the details need to include the course type
+        + If they have multiple qualifications they can select which type it is (not editable after publishing)
+        + If they only have one qualification then the course is that type and there's no selector
+    + Course detail panel in templates should include course type
+        + Shows on "download course docs" page
++ Shop
+    + Packs for AN course
+    + Feet
+    + Books
+    + Some things need to have restricted availability (e.g. packs only available to people who've done the right course)
+? How will we add the nursery course
+
+
++ New PDFs for magazine adverts at various sizes
+
++ When the new book comes out
+    + Update book page
+    + Add to the shop page?
+
++ Order book: date ordered, who, qty, desc, amnt paid, date sent, post cost
++ Accident book
+
++ Add a page about running your first course and collect anecdotes from instructors who've done it
++ Add PDF forms for collecting research data
+    + Could be a form on the site for entering it and automatically collecting
+
++ Add captions to the pictures indicating that they are for illustration only
+    + New picture of course materials not showing feet
+
++ Changes to course manual
+    + Change music to the way it's sung now
+    + Homework colouring page could have animals on it
+    + Add 'venue housekeeping'
+    + More about therapeutic touch, earlier on
+    + Non-copy agreement
+
++ Parent booking form agreement could include something about treating each other with respect, non-discrimination
 
 + Courses page: "The course shows you how to treat specific conditions of childhood"
 + PDF talk notes: "course shows you how to treat specific conditions of childhood"
@@ -47,9 +134,7 @@
     - Removing the etag handler doesn't seem to help
     - Apparent association with fetching PDFs seems to be just because they are large content. Happens with other things but less obviously. Process grows by amount related to size of fetched document.
     - Looks like this happens in Morbo as well as Hypnotoad
-
-+ Non-copy agreement
-    
+    - Possibly this is just normal memory consumption. Limting the number of connections before restarting has helped anyway.
 
 + Some method of finding unsatisfied enquiries to decide where to put courses on etc.
 
@@ -68,7 +153,7 @@
 + Generate personalised PDFs:
     ~ A3 versions of some
     + Course log/diary pages
-    + Name labels for carers and kids
+    + Name labels for carers and kids (with pictures of animals, to be coloured in)
     + Quite a few PDFs still say "Infant Reflexology" instead of "Children's Reflexology"
 + The instructor's 'search for enquiries' page should start with location rather than postcode
 + Should the postcode in the profile be mandatory?
@@ -105,7 +190,6 @@
 
 - One parent pack weighs 628g
 
-+ Add 'venue housekeeping' to instructors manual
 
 ----
 
@@ -166,8 +250,6 @@ session:
     - Destroy session
     - Remove session ID from cookie or delete it if auto-login not set
     - redirect to home page
-
-(name labels PDF)
 
 ++ Handle accounts for unqualified instructors (with no current certificate record) - what are the restrictions?
     + No certificates
