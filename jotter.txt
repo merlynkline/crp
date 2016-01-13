@@ -73,7 +73,6 @@
         + Shows on "download course docs" page
 + Shop
     + Packs for AN course
-    + Feet
     + Books
     + Some things need to have restricted availability (e.g. packs only available to people who've done the right course)
 ? How will we add the nursery course
