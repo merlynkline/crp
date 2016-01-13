@@ -1,5 +1,9 @@
++ Bug: Location search for nearby courses includes cancelled courses in the results
 
-+ New courses
++ Preliminary changes for EYP course
+    + New page describing it
+
++ New AN courses
     + New qualifications table in DB
         + ID
         + Qualification name
@@ -12,8 +16,9 @@
     + New column in instructor course table: qualification ID
     + Changes to admin page for instructor's account record:
         + list of qualifications and dates passed
-        + facility to record when they gain a qualification
+        + facility to record when they gain a qualification - can be future dated
         + Facility to print certificate for each qualification
+    + When adding a new instructor account, optional fields for initial qualifcation type and date
     + Add qualification records for all existing instructors when deploying new code
     + Show which qualifications they've done on the certificate page and personal web page
     + Membership certificate PDF:
@@ -28,24 +33,33 @@
         + ID cards
     + Instructor courses page will need to indicate what type of instructor course it is
         + Possibly add filtering to show only certain course types
-    + Update web site 
+    + Update web site
         + "Home" page: short mention of AN
-        + "Programme" page: more mention of AN
-        + "Courses" page: more mention of AN
-        + "Instructors" page: more mention of AN, details of course type in course description
+        + "Programme" page: more mention of AN. Split into two pages.
+        + "Courses" page: more mention of AN. Split into two pages.
+        + "Instructors" page: more mention of AN, details of course type in course description. Split into two pages.
     + Admin pages for instructor training courses
         + Show course type in descriptions in lists
         + New field to set qualification type when adding a course (not editable after publishing)
+    + PDFs for instructor courses need changing to indicate qualification they are for (possibly different PDF for each)
     + Course advertisement page on web site must say type (also on on-line booking page)
-    + Allow an account to exist with no qualifications - based on demo account
-        + Certificate page must be a special case "trainee (not yet qualified)"
+    + Course location search to find parent courses
+        + Allow searching by course type
+        + Show instructors' names in results
+        + Should be a GET request rather than POST (without CSRF)
+    + Allow an account to exist with no current qualifications
+        - Future qualifications may be present
+        - Based on demo account
+        + Certificate page on instructor's personal site
+            + Must be a special case "trainee (not yet qualified)"
+            + Future qualifcations may be listed with indication that they aren't yet current
         + Personal web page must not say "qualified instructor" but "trainee (not yet qualified)"
-        + Can't publish any courses
+        + Can't publish any courses (except for one for a future qualification)
         + Membership certificate shouldn't be available or should have 'not valid' in the date or similar
-        + All PDFS could be watermarked "Trainee" like a demo account
-        + PDFS shoqing qualifications should instead say "Trainee"
+        + Non-course-specific PDFS could be watermarked "Trainee" like a demo account
+        + PDFS showing qualifications should instead say "Trainee"
         + Shop should have purchase buttons removed "(Purchase buttons removed until you qualify)"
-        + Article in FAQs
+        + Article in FAQs describing how this works
         + Disabled buttons (e.g. course publish) need appropriate tooltips
         + Instructor searches shouldn't find trainees
         + The hidden list of instructors for Google shouldn't include trainees
@@ -53,6 +67,8 @@
     + When an instructor adds a course, the details need to include the course type
         + If they have multiple qualifications they can select which type it is (not editable after publishing)
         + If they only have one qualification then the course is that type and there's no selector
+        + All courses must be dated after the corresponding qualification date
+        + Can only publish one course for a future-dated qualification
     + Course detail panel in templates should include course type
         + Shows on "download course docs" page
 + Shop

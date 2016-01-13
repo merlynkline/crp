@@ -1,34 +1,7 @@
 %#<!DOCTYPE html>
 % layout 'member_default', page_id => 'shop';
 % title 'Shop';
-<h1>Members' supplies</h1>
-<p>
-This is just the most essential supplies for running your
-courses but we will be growing our product range as quickly
-as we can!
-</p>
-<p>
-<table>
-    <tr><td colspan="3"><h2>Parent/Carer's pack</h2></td></tr>
-    <tr>
-        <td style="vertical-align: top; padding: 0 12px 0 0;">
-            Everything you need for one parent or carer on one of your courses.
-            Includes a complete set of protocol handouts, a certificate for you
-            to give out on completion and a copy of the book, The Mouse's House.
-            <table align="right">
-                <tr>
-                    % if(stash('is_demo')) {
-                    <td style="background: #ddd; padding: 2px 4px; font-size: 12px; color: #666; border: 1px solid #666;">(Purchase buttons removed for demonstration)</td>
-                    % } else {
-                    <td style="padding: 5px 0 0 0;"><strong>£15.00</strong></td>
-                    <td nowrap="nowrap">
-                        <form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
-                            <input type="hidden" name="cmd" value="_s-xclick">
-                            <input type="hidden" name="hosted_button_id" value="BBRFSJEDVLNNL">
-                            <input type="image" src="https://www.paypalobjects.com/en_GB/i/btn/btn_cart_SM.gif" border="0" name="submit" alt="PayPal – The safer, easier way to pay online.">
-                            <img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
-                        </form>
-                    </td>
+% my $view_cart = sub {
                     <td nowrap="nowrap">
                         <form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post" >
                             <input type="hidden" name="cmd" value="_s-xclick">
@@ -38,14 +11,66 @@ as we can!
                             <img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
                         </form>
                     </td>
+% };
+%
+% my $price_display = sub {
+%   my($price) = @_;
+                    <td style="padding: 5px 0 0 0;"><strong><%= $price %></strong></td>
+% };
+%
+% my $add_to_cart = sub {
+%   my($button_id) = @_;
+                    <td nowrap="nowrap">
+                        <form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+                            <input type="hidden" name="cmd" value="_s-xclick">
+                            <input type="hidden" name="hosted_button_id" value="<%= $button_id %>">
+                            <input type="image" src="https://www.paypalobjects.com/en_GB/i/btn/btn_cart_SM.gif" border="0" name="submit" alt="PayPal – The safer, easier way to pay online.">
+                            <img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
+                        </form>
+                    </td>
+% };
+%
+% my $buy_buttons = sub {
+%   my($button_id, $price) = @_;
+            <table align="right">
+                <tr>
+                    % if(stash('is_demo')) {
+                    <td style="background: #ddd; padding: 2px 4px; font-size: 12px; color: #666; border: 1px solid #666;">(Purchase buttons removed for demonstration)</td>
+                    % } else {
+                    % $price_display->($price);
+                    % $add_to_cart->($button_id);
+                    % &$view_cart;
                     % }
                 </tr>
             </table>
+% };
+%
+% my $standard_item = sub {
+%   my($button_id, $price, $title, $width, $height, $image, $description) = @_;
+    <tr><td colspan="3"><h2><%= $title %></h2></td></tr>
+    <tr>
+        <td style="vertical-align: top; padding: 0 12px 0 0;">
+            <%= $description %>
+            % $buy_buttons->($button_id, $price);
         </td>
         <td style="vertical-align: top">
-            <img src="/images/Photos/ParentPack.JPG" width="400" height="208" class="centered-image" />
+            <img src="<%= $image %>" width="<%= $width %>" height="<%= $height %>" class="centered-image" style="border: 1px solid black;"/>
         </td>
     </tr>
+% };
+<h1>Members' supplies</h1>
+<p>
+This is just the most essential supplies for running your
+courses but we will be growing our product range as quickly
+as we can! All prices include post and packing. Just click
+the <b>Add to Cart</b> button for each item you want and
+click any <b>View Cart</b> button when you've finished or to
+change your order.
+</p>
+<p>
+<table>
+    % $standard_item->('BBRFSJEDVLNNL', '£15.00', "Parent/Carer's pack", 400, 208, '/images/Photos/ParentPack.JPG', "Everything you need for one parent or carer on one of your courses. Includes a complete set of protocol handouts, a certificate for you to give out on completion and a copy of the book, The Mouse's House.");
+    % $standard_item->('4JBUMHWQQR9A6', '£6.99', "Pair of soft baby feet", 233, 208, '/images/Photos/SoftFeet1.jpg', "A pair of soft foam baby feet suitable for demonstration and practice of reflexology techniques.");
 </table>
 
 
