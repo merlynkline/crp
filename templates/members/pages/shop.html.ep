@@ -32,6 +32,7 @@
 %
 % my $buy_buttons = sub {
 %   my($button_id, $price) = @_;
+            <br clear="right">
             <table align="right">
                 <tr>
                     % if(stash('is_demo')) {
@@ -62,7 +63,7 @@
 <p>
 This is just the most essential supplies for running your
 courses but we will be growing our product range as quickly
-as we can! All prices include post and packing. Just click
+as we can! <b>All prices include post and packing</b>. Just click
 the <b>Add to Cart</b> button for each item you want and
 click any <b>View Cart</b> button when you've finished or to
 change your order.
@@ -70,7 +71,7 @@ change your order.
 <p>
 <table>
     % $standard_item->('BBRFSJEDVLNNL', '£15.00', "Parent/Carer's pack", 400, 208, '/images/Photos/ParentPack.JPG', "Everything you need for one parent or carer on one of your courses. Includes a complete set of protocol handouts, a certificate for you to give out on completion and a copy of the book, The Mouse's House.");
-    % $standard_item->('4JBUMHWQQR9A6', '£6.99', "Pair of soft baby feet", 233, 208, '/images/Photos/SoftFeet1.jpg', "A pair of soft foam baby feet suitable for demonstration and practice of reflexology techniques.");
+    % $standard_item->('4JBUMHWQQR9A6', '£6.50', "Pair of soft baby feet", 233, 208, '/images/Photos/SoftFeet1.jpg', "A pair of TCRP soft foam baby feet suitable for demonstration and practice of reflexology techniques.");
 </table>
 
 
