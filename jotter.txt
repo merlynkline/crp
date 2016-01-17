@@ -1,4 +1,5 @@
 + Bug: Location search for nearby courses includes cancelled courses in the results
++ Booking forms (generic PDF, course PDF, online) say don't bring child after immunisations, should be if unwell (or similar)
 
 + Preliminary changes for EYP course
     + New page describing it
