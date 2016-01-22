@@ -48,6 +48,8 @@ in order to view and print them.
 %= include "members/parts/course_doc", name => 'members/feedback_form', caption => "Generic feedback form for your trainees to fill in"
 %= include "members/parts/course_doc", name => 'members/feedback_form_A5', caption => "Generic feedback form in A5 format for A4 paper"
 %= include "members/parts/course_doc", name => 'members/Gift voucher log', caption => "Log sheet to manage gift vouchers"
+%= include "members/parts/course_doc", name => 'members/MYMOP_Initial', caption => "MYMOP initial data collection form"
+%= include "members/parts/course_doc", name => 'members/MYMOP_Follow_up', caption => "MYMOP follow up collection form"
 
 <div class="pdf-separator">Other<br />documents</div>
 

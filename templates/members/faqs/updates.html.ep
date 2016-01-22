@@ -8,6 +8,8 @@ keep track of what's going on this page contains a very brief overview of
 the most important changes that happen. Check back from time to time to make
 sure you keep up to date with what the site has to offer.
 <ul>
+    <li>22Jan2016<li><ul>
+        <li>New PDF documents for MYMOP forms</li>
     <li>18Oct2015</li><ul>
         <li>Fix to handle two-digit years in dates sensibly</li>
         <li>New feature in profile to hide your postal address on your personal web page</li>

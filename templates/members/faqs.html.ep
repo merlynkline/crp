@@ -12,6 +12,7 @@
 %       {id => 'qr',        title => 'QR Codes'},
 %       {id => 'csv',       title => 'CSV Files'},
 %       {id => 'dbs',       title => 'DBS/CRB checks'},
+%       {id => 'mymop',     title => 'MYMOP forms'},
 %       {id => 'reading',   title => 'Extra reading'},
 %       {id => 'updates',   title => 'Site updates'},
 %   ];
