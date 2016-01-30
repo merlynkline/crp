@@ -40,7 +40,27 @@
     </center>
     </p>
 
-    %= include 'main/parts/reviews'
+    <div id="reviews">
+        <a href="<%= url_for 'crp.page',  page => 'reviews' %>">
+            <div id="review-list" class="scroll-text">
+                <ul>
+                    <li><b>Testimonials:</b></li>
+                    %= include 'main/parts/reviews'
+                </ul>
+            </div>
+        </a>
+        <script src="<%= url_for '/js/ScrollBox.js' %>"></script>
+        <script>
+            $('#review-list').scrollbox({
+                step:   1,
+                delay:  0,
+                speed: 10,
+                linear: 1,
+                direction: 'h'
+
+            });
+        </script>
+    </div>
 
     <p class="front-page-normal">
 

@@ -59,6 +59,9 @@
     + Admin pages for instructor training courses
         + Show course type in descriptions in lists
         + New field to set qualification type when adding a course (not editable after publishing)
+    + Admin page for qualifications
+        + List qualifcations
+        + Edit qualification details (no deleting allowed!)
     + PDFs for instructor courses need changing to indicate qualification they are for (possibly different PDF for each)
     + Course advertisement page on web site must say type (also on on-line booking page)
     + Course location search to find parent courses

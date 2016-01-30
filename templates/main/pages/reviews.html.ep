@@ -1,0 +1,12 @@
+%#<!DOCTYPE html>
+% layout 'default', heading => "Testimonials";
+% title "Testimonials";
+<p>
+Here are the testimonials from the front page laid out so you can see them more easily!
+<div id="review-page-list">
+    <ul>
+        %= include 'main/parts/reviews'
+    </ul>
+</div>
+</p>
+
