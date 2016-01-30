@@ -3,6 +3,24 @@
 
 + Preliminary changes for EYP course
     + New page describing it
+    + Instructors can add trainees to a list of certified EYPs
+        + Only if they're an EY instructor
+        + See a list of practioners they've trained (Name, Date added (auto), Pack ID, Short note)
+        + Add new ones
+        + Download filled-in certificate PDF for any one
+        + Each certificate has a signature
+        + Certificate signature can be validated to see certificate on site
+        + Edit details (Name, pack ID)
+            + Sends email to site admin when an edit is done
+        + Revoke certificate
+            + Send email to site admin
+    + Site admins can see registered EY practitioners
+        + List by instructor
+        + Search by name, Pack ID
+        + View certificate via signature link
+        + Download certificate PDF
+        + Revoke certificate
+        
 
 + New AN courses
     + New qualifications table in DB
