@@ -14,6 +14,7 @@ sub search_live_courses {
 
     my $live_resultset = $self->search({
         published => 1,
+        canceled => 0,
         start_date => {'>', $self->_format_datetime($earliest_date)},
     });
     return $live_resultset->search(@_);
