@@ -151,6 +151,7 @@ sub show_account {
             past_courses_count        => $profile->courses->get_past_set($days)->count,
         );
     }
+    $c->stash(available_qualifications => $c->crp->model('Qualification')->search(undef, {order_by => 'abbreviation'}));
     return $c->page('show_account');
 }
 

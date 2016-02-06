@@ -269,7 +269,7 @@ label {
     background:     white;
     text-decoration:    none;
 }
-input, textarea, .standard-button {
+input, textarea, .standard-button, select {
     border-radius:  4px;
     border:         2px solid #589;
     margin:         0 4px 4px 4px;
@@ -310,6 +310,9 @@ input[type="checkbox"], input[type="radio"] {
 }
 input[type="image"] {
     border: none;
+}
+select {
+    padding: 6px 2px;
 }
 .input-container {
     float:          left;
