@@ -31,17 +31,17 @@
         ~ Instructor_ID
         ~ Qualification_ID
         ~ passed_date
-    + New course_type table
-        + Columns
+    ~ New course_type table
+        ~ Columns
             ~ id (auto)
             ~ description
             ~ abbreviation
             ~ qualification_required_id (indexed)
-        + Initialise with "The Childrens Reflexology Programme" "TCRP" "TCRP Instructor"
-        + Backfill existing courses with the ID
-    + New column in instructor course table: course_type_id
+        ~ Initialise with "The Childrens Reflexology Programme" "TCRP" "TCRP Instructor"
+    ~ New column in instructor course table: course_type_id
+        ~ Backfill existing courses with the ID
     + Changes to admin page for instructor's account record:
-        + list of qualifications and dates passed
+        ~ list of qualifications and dates passed
         + facility to record when they gain a qualification - can be future dated
         + Facility to print certificate for each qualification
     + When adding a new instructor account, optional fields for initial qualifcation type and date
