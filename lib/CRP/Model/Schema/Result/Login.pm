@@ -65,7 +65,8 @@ __PACKAGE__->add_columns(
 
 __PACKAGE__->set_primary_key('id');
 __PACKAGE__->add_unique_constraint('login_email_key', ['email']);
-__PACKAGE__->might_have('profile' => 'CRP::Model::Schema::Result::Profile', {'foreign.instructor_id' => 'self.id'});
+__PACKAGE__->might_have('profile' => 'CRP::Model::Schema::Result::Profile', 'instructor_id');
+__PACKAGE__->has_many('qualifications' => 'CRP::Model::Schema::Result::InstructorQualification', 'instructor_id');
 
 
 1;

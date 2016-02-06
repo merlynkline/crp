@@ -22,22 +22,27 @@
         
 
 + New AN courses
-    + New qualifications table in DB
-        + ID
-        + Qualification name
-        + Abbreviation
-    + New instructor qualifications table in DB
-        + ID
-        + Instructor ID
-        + Qualification ID
-        + Date passed
+    ~ New qualification table in DB
+        ~ ID
+        ~ Qualification (name)
+        ~ Abbreviation
+    ~ New instructor_qualification table in DB
+        ~ ID
+        ~ Instructor_ID
+        ~ Qualification_ID
+        ~ passed_date
     + New column in instructor course table: qualification ID
     + Changes to admin page for instructor's account record:
         + list of qualifications and dates passed
         + facility to record when they gain a qualification - can be future dated
         + Facility to print certificate for each qualification
     + When adding a new instructor account, optional fields for initial qualifcation type and date
-    + Add qualification records for all existing instructors when deploying new code
+    ~ Add qualification records for all existing instructors when deploying new code. After migrate prepare:
+        ~ copy new autosql to one or more numbered sql files in the same directory
+        ~ Add SQL to insert records in the new tables, something like:
+            ~ INSERT INTO qualification (id, qualification, abbreviation) VALUES ( ***SOMESEQ***, 'Instructor in The Childrens Reflexology Programme', 'TCRP Instructor');
+            ~ INSERT INTO instructor_qualification SELECT ****SOMESEQ***, id AS instructor_id, 1 AS qualification_id, create_date AS passed_date FROM login;
+        ~ remove 001-auto.sql
     + Show which qualifications they've done on the certificate page and personal web page
     + Membership certificate PDF:
         + Date will need to be calculated differently
