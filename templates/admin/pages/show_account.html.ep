@@ -76,6 +76,7 @@ Actions:
         %= text_field 'email' => $login->email;
         %= hidden_field 'id' => $login->id;
         %= submit_button 'Change'
+        <%= include 'parts/error', field => 'email' %>
         % end
     </li>
     <li>
@@ -94,6 +95,8 @@ Actions:
         %= date_field 'pass_date', id => 'pass_date', maxlength => 10, required => 'required', '';
         %= hidden_field 'id' => $login->id;
         %= submit_button 'Add'
+        <%= include 'parts/error', field => 'qualification' %>
+        <%= include 'parts/error', field => 'pass_date' %>
         % end
     </li>
 </ul>

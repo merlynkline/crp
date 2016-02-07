@@ -102,7 +102,7 @@ sub _find_account_results {
         $matches = $c->_find_acounts($query);
         if($matches && @$matches == 1) {
             $c->flash(msg => 'single_match');
-            return $c->_show_account_id($matches->[0]->id);
+            return $c->_redirect_to_show_account_id($matches->[0]->id);
         }
     }
     return $c->page('find_account_results', matches => $matches);
@@ -127,7 +127,7 @@ sub _find_acounts {
     return;
 }
 
-sub _show_account_id {
+sub _redirect_to_show_account_id {
     my $c = shift;
     my($id) = @_;
 
@@ -160,26 +160,33 @@ sub create_account {
     my $c = shift;
 
     if($c->req->method eq 'POST') {
-        my $email = $c->crp->trimmed_param('email') || return $c->welcome;
+        my $email = $c->_get_and_validate_email_param();
         my $name = $c->crp->trimmed_param('name');
         my $validation = $c->validation;
-        $validation->required('email')->like(qr{^.+@.+[.].+});
         $validation->required('name');
-        my $login_record;
-        $login_record = $c->crp->model('Login')->find({'lower(me.email)' => lc $email}) unless $validation->has_error;
-        $validation->error(email => ['duplicate_email']) if $login_record;
         return $c->welcome if $validation->has_error;
 
-        $login_record = $c->crp->model('Login')->create({email => $email});
+        my $login_record = $c->crp->model('Login')->create({email => $email});
 
         my $profile = $c->crp->model('Profile')->find_or_create({instructor_id => $login_record->id});
         $profile->name($name);
         $profile->update;
 
         $c->flash(msg => 'account_create');
-        return $c->_show_account_id($login_record->id);
+        return $c->_redirect_to_show_account_id($login_record->id);
     }
     return $c->page('show_account');
+}
+
+sub _get_and_validate_email_param {
+    my $c = shift;
+
+    my $email = $c->crp->trimmed_param('email');
+    my $validation = $c->validation;
+    $validation->required('email')->like(qr{^.+@.+[.].+});
+    my $login_record = $c->crp->model('Login')->find({'lower(me.email)' => lc $email}) unless $validation->has_error;
+    $validation->error(email => ['duplicate_email']) if $login_record;
+    return $email;
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -215,7 +222,7 @@ sub change_demo {
     my $login = $c->crp->model('Login')->find($id) || return $c->welcome;
     $login->is_demo($login->is_demo ? 0 : 1);
     $login->update;
-    return $c->_show_account_id($id);
+    return $c->_redirect_to_show_account_id($id);
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -223,11 +230,15 @@ sub change_email {
     my $c = shift;
 
     my $id = $c->param('id') || shift || return $c->welcome;
+    my $email = $c->_get_and_validate_email_param();
+    my $validation = $c->validation;
+    return $c->show_account($id) if $validation->has_error;
     my $login = $c->crp->model('Login')->find($id) || return $c->welcome;
-    $login->email($c->param('email'));
+    $login->email($email);
     $login->update;
-    return $c->_show_account_id($id);
+    return $c->_redirect_to_show_account_id($id);
 }
+
 
 1;
 
