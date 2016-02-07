@@ -97,6 +97,7 @@ sub startup {
     $admin->any('/parent_courses')->to('admin#list_parent_courses')->name('crp.admin.parent_courses');
     $admin->post('/change_demo')->to('admin#change_demo')->name('crp.admin.change_demo');
     $admin->post('/change_email')->to('admin#change_email')->name('crp.admin.change_email');
+    $admin->post('/add_qualification')->to('admin#add_qualification')->name('crp.admin.add_qualification');
     
     my $member_site = $r->under('/me/:slug')->to('member_site#identify');
     $member_site->any('/')->to('member_site#welcome')->name('crp.membersite.home');

@@ -42,7 +42,7 @@
         ~ Backfill existing courses with the ID
     + Changes to admin page for instructor's account record:
         ~ list of qualifications and dates passed
-        + facility to record when they gain a qualification - can be future dated
+        ~ facility to record when they gain a qualification - can be future dated
         + Facility to print certificate for each qualification
     + When adding a new instructor account, optional fields for initial qualifcation type and date
     ~ Add qualification records for all existing instructors when deploying new code. After migrate prepare:
