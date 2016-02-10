@@ -9,12 +9,19 @@
             <p class="certificate-emphasised">This page certifies that</p>
             <p class="certificate-writing"><%= stash('site_profile')->login->is_demo ? '(Demonstration Account)' : stash('site_profile')->name %></p>
             <p>
-            Has completed the official training course and
+            Has completed the official training and
             the required professional development to remain a
             </p>
             <p class="certificate-emphasised">Qualified Instructor</p>
             <p>
-            in The Children's Reflexology Programme<br />
+            with the following qualifications:
+            </p>
+            <p>
+            % foreach my $qualification (stash('site_profile')->login->qualifications) {
+            <%= $qualification->qualification->qualification; %><br />
+            % }
+            </p>
+            <p>
             as of today, <%= stash('today') %>.
             </p>
             <p class="certificate-extra">

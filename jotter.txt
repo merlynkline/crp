@@ -40,10 +40,10 @@
         ~ Initialise with "The Childrens Reflexology Programme" "TCRP" "TCRP Instructor"
     ~ New column in instructor course table: course_type_id
         ~ Backfill existing courses with the ID
-    + Changes to admin page for instructor's account record:
+    ~ Changes to admin page for instructor's account record:
         ~ list of qualifications and dates passed
         ~ facility to record when they gain a qualification - can be future dated
-        + Facility to print certificate for each qualification
+        ~ Facility to print certificate for each qualification
     + When adding a new instructor account, optional fields for initial qualifcation type and date
     ~ Add qualification records for all existing instructors when deploying new code. After migrate prepare:
         ~ copy new autosql to one or more numbered sql files in the same directory
@@ -51,7 +51,7 @@
             ~ INSERT INTO qualification (id, qualification, abbreviation) VALUES ( ***SOMESEQ***, 'Instructor in The Childrens Reflexology Programme', 'TCRP Instructor');
             ~ INSERT INTO instructor_qualification SELECT ****SOMESEQ***, id AS instructor_id, 1 AS qualification_id, create_date AS passed_date FROM login;
         ~ remove 001-auto.sql
-    + Show which qualifications they've done on the certificate page and personal web page
+    ~ Show which qualifications they've done on the certificate page
     + Membership certificate PDF:
         + Date will need to be calculated differently
         + Show which qualifications are included
