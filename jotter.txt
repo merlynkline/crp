@@ -52,10 +52,11 @@
             ~ INSERT INTO instructor_qualification SELECT ****SOMESEQ***, id AS instructor_id, 1 AS qualification_id, create_date AS passed_date FROM login;
         ~ remove 001-auto.sql
     ~ Show which qualifications they've done on the certificate page
+    ~ Show which qualifications they've done on instructor's personal web page
     + Membership certificate PDF:
         + Date will need to be calculated differently
         + Show which qualifications are included
-        ? Should we have separate certificates? Probably not
+        X Should we have separate certificates? Probably not
     + New versions of at least some of the course PDFs, shown correctly for the course type
     + Some PDFs need to show qualifcations
         + Business cards
@@ -84,13 +85,13 @@
     + Allow an account to exist with no current qualifications
         - Future qualifications may be present
         - Based on demo account
-        + Certificate page on instructor's personal site
-            + Must be a special case "trainee (not yet qualified)"
-            + Future qualifcations may be listed with indication that they aren't yet current
-        + Personal web page must not say "qualified instructor" but "trainee (not yet qualified)"
+        ~ Certificate page on instructor's personal site
+            ~ Must be a special case "trainee (not yet qualified)"
+            ~ Future qualifcations may be listed with indication that they aren't yet current
+        ~ Personal web page must not say "qualified instructor" but "trainee (not yet qualified)"
         + Can't publish any courses (except for one for a future qualification)
         + Membership certificate shouldn't be available or should have 'not valid' in the date or similar
-        + Non-course-specific PDFS could be watermarked "Trainee" like a demo account
+        + Non-course-specific PDFS could be watermarked "Trainee" like a demo account (could be both!)
         + PDFS showing qualifications should instead say "Trainee"
         + Shop should have purchase buttons removed "(Purchase buttons removed until you qualify)"
         + Article in FAQs describing how this works

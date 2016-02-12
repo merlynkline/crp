@@ -2,8 +2,10 @@
 % layout 'default', page_id => 'member.home';
 % title 'Welcome';
 % my $profile = stash('site_profile');
+% my @passed_qualifications = $profile->login->qualifications->get_passed_set;
+% my @future_qualifications = $profile->login->qualifications->get_in_training_set;
 %
-<h1><%= $profile->name %> - Qualified Instructor</h1>
+<h1><%= $profile->name %> - <%= @passed_qualifications ? 'Qualified' : 'Trainee' %> Instructor</h1>
 % if($profile->login->is_demo) {
 <span style="color: #a42; font-size: 150%; font-face: bold"><strong>(This is a demonstration account - please do not use the information shown here)</strong></span>
 % }
@@ -42,6 +44,25 @@ you, please contact me to see if we can arrange something.
 I don't have places available on courses running in the near future but please
 do contact me to find out when more courses are coming up or to see if we can
 arrange something specially for you.
+% }
+% if(@passed_qualifications || @future_qualifications) {
+<h2><a name="qualifications"></a>Qualifications</h2>
+%   if(@passed_qualifications) {
+I have the following qualifications in The Children's Reflexology Programme:
+<ul>
+%       foreach my $qualification (@passed_qualifications) {
+<li><%= $qualification->qualification->qualification; %></li>
+%       }
+</ul>
+%   }
+%   if(@future_qualifications) {
+I am training for the following qualifications in The Children's Reflexology Programme:
+<ul>
+%       foreach my $qualification (@future_qualifications) {
+<li><%= $qualification->qualification->qualification; %></li>
+%       }
+</ul>
+%   }
 % }
 
 <%= include 'member_site/parts/contact' %>
