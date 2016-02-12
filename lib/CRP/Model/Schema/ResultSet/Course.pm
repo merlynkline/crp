@@ -3,7 +3,7 @@ package CRP::Model::Schema::ResultSet::Course;
 use strict;
 use warnings;
 
-use base qw(DBIx::Class::ResultSet CRP::Model::Schema::location_search);
+use base qw(DBIx::Class::ResultSet CRP::Model::Schema::location_search CRP::Model::Schema::date_utils);
 
 use DateTime;
 
@@ -85,17 +85,6 @@ sub _date_from_age_days {
     my($age_days) = @_;
 
     return $self->_format_datetime(DateTime->now()->subtract(days => $age_days));
-}
-
-sub _format_datetime {
-    my $self = shift;
-    my($date) = @_;
-
-    if(ref $date) {
-        my $dtf = $self->result_source->schema->storage->datetime_parser;
-        $date = $dtf->format_datetime($date);
-    }
-    return $date;
 }
 
 

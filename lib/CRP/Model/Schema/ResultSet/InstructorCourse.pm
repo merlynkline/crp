@@ -3,7 +3,7 @@ package CRP::Model::Schema::ResultSet::InstructorCourse;
 use strict;
 use warnings;
 
-use base qw(DBIx::Class::ResultSet CRP::Model::Schema::location_search);
+use base qw(DBIx::Class::ResultSet CRP::Model::Schema::location_search CRP::Model::Schema::date_utils);
 
 use DateTime;
 
@@ -74,24 +74,6 @@ sub get_past_set {
             start_date  => {'<=', $self->_now},
         },
     );
-}
-
-sub _now {
-    my $self = shift;
-    my($age_days) = @_;
-
-    return $self->_format_datetime(DateTime->now());
-}
-
-sub _format_datetime {
-    my $self = shift;
-    my($date) = @_;
-
-    if(ref $date) {
-        my $dtf = $self->result_source->schema->storage->datetime_parser;
-        $date = $dtf->format_datetime($date);
-    }
-    return $date;
 }
 
 
