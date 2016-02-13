@@ -260,7 +260,7 @@ sub add_qualification {
     my $validation = $c->validation;
 
     my $qualification_id = $c->param('qualification');
-    $validation->error(qualification => ['no_qualification']) unless $c->crp->model('Qualification')->find($qualification_id);
+    $validation->error(qualification => ['no_qualification']) unless $qualification_id ne '' && $c->crp->model('Qualification')->find($qualification_id);
     if( ! $validation->has_error) {
         my $has_qualification = $c->crp->model('InstructorQualification')->search({
                 instructor_id       => $id,
@@ -270,11 +270,10 @@ sub add_qualification {
     }
 
     my $pass_date = CRP::Util::Misc::get_date_input($c->crp->trimmed_param('pass_date'));
-    $validation->error(pass_date => ['no_pass_date']) unless $pass_date;
 
     return $c->show_account($id) if $validation->has_error;
 
-    my $instructor_qualification = $c->crp->model('InstructorQualification')->create({
+    $c->crp->model('InstructorQualification')->create({
             instructor_id       => $id,
             qualification_id    => $qualification_id,
             passed_date         => $pass_date,

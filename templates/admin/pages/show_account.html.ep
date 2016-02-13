@@ -94,8 +94,8 @@ Actions:
         None
         % }
         %= form_for 'crp.admin.add_qualification' => (method => 'POST') => begin
-        %= select_field qualification => [ ['Please select...' => -1], map { [$_->abbreviation => $_->id] } stash('available_qualifications') ]
-        %= date_field 'pass_date', id => 'pass_date', maxlength => 10, required => 'required', '';
+        %= select_field qualification => [ ['Please select...' => ''], map { [$_->abbreviation => $_->id] } stash('available_qualifications') ]
+        %= date_field 'pass_date', id => 'pass_date', maxlength => 10, '';
         %= hidden_field 'id' => $login->id;
         %= submit_button 'Add'
         <%= include 'parts/error', field => 'qualification' %>

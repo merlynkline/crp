@@ -1,7 +1,3 @@
-don't store qual rec
-don't require date
-'please select' value is ''
-
 + Booking forms (generic PDF, course PDF, online) say don't bring child after immunisations, should be if unwell (or similar)
 
 + Preliminary changes for EYP course
@@ -49,6 +45,7 @@ don't require date
         ~ facility to record when they gain a qualification - can be future dated
         ~ Facility to print certificate for each qualification
         + Facility to set pass date for undated qualifications
+        + Facility to delete undated and future qualifications (cancelled course etc)
     ~ When adding a new instructor account, optional fields for initial qualifcation type and date
     ~ Add qualification records for all existing instructors when deploying new code. After migrate prepare:
         ~ copy new autosql to one or more numbered sql files in the same directory
@@ -75,6 +72,10 @@ don't require date
         + "Programme" page: more mention of AN. Split into two pages.
         + "Courses" page: more mention of AN. Split into two pages.
         + "Instructors" page: more mention of AN, details of course type in course description. Split into two pages.
+    + Account search improvements
+        + Find demo accounts only
+        + Find trainee accounts only
+        + Find accounts with specific/no qualifications
     + Admin pages for instructor training courses
         + Show course type in descriptions in lists
         + New field to set qualification type when adding a course (not editable after publishing)
@@ -83,7 +84,10 @@ don't require date
             + Show number of holders and trainees
         + Edit qualification details
         + Only delete qualifications not in use
-    + Main admin page: stats should show trainees and qualified instructors separately.
+    + Main admin page:
+        + stats should show trainees and qualified instructors separately.
+        + stats link to lists of trainees
+        + stats link to list of qualified instructors
     + PDFs for instructor courses need changing to indicate qualification they are for (possibly different PDF for each)
     + Course advertisement page on web site must say type (also on on-line booking page)
     + Course location search to find parent courses
