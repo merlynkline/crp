@@ -84,7 +84,7 @@ Actions:
             <ul>
             % foreach my $qualification ($login->qualifications) {
             <li>
-                <%= $c->crp->format_date($qualification->passed_date, 'short') %>
+                <%= $qualification->passed_date ? $c->crp->format_date($qualification->passed_date, 'short') : '(trainee)' %>
                 <%= $qualification->qualification->qualification; %>
                 <a class="small-button" href="<%= url_for('crp.admin.certificate')->query(id => $login->id, qualification_id => $qualification->qualification_id) %>">Certificate</a>
             </li>

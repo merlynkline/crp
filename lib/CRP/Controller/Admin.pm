@@ -28,6 +28,7 @@ sub welcome {
     $c->stash(draft_courses_count       => $c->crp->model('Course')->get_draft_set->count);
     $c->stash(advertised_courses_count  => $c->crp->model('Course')->get_advertised_set($days)->count);
     $c->stash(past_courses_count        => $c->crp->model('Course')->get_past_set($days)->count);
+    $c->stash(available_qualifications  => $c->crp->model('Qualification')->search(undef, {order_by => 'abbreviation'}));
     $c->render(template => "admin/welcome");
 }
 
@@ -172,6 +173,16 @@ sub create_account {
         my $profile = $c->crp->model('Profile')->find_or_create({instructor_id => $login_record->id});
         $profile->name($name);
         $profile->update;
+
+        my $qualification_id = $c->param('qualification');
+        if($qualification_id ne '') {
+            my $pass_date = CRP::Util::Misc::get_date_input($c->crp->trimmed_param('pass_date'));
+            $c->crp->model('InstructorQualification')->create({
+                    instructor_id       => $login_record->id,
+                    qualification_id    => $qualification_id,
+                    passed_date         => $pass_date,
+                });
+        }
 
         $c->flash(msg => 'account_create');
         return $c->_redirect_to_show_account_id($login_record->id);

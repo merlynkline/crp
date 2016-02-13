@@ -42,6 +42,12 @@
             <%= text_field 'email', size => '30', id => 'email', required => "required" =%>
             <%= include 'parts/error', field => 'email' =%>
         </div>
+        <label for="email">Initial qualification:
+        </label>
+        <div class="input-container">
+            %= select_field qualification => [ ['(None)' => ''], map { [$_->abbreviation => $_->id] } stash('available_qualifications') ]
+            %= date_field 'pass_date', id => 'pass_date', maxlength => 10, '';
+        </div>
         <label>&nbsp;</label>
         <div class="input-container">
             <%= submit_button 'Create', name => 'create' %>
