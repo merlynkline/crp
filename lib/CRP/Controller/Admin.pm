@@ -165,7 +165,7 @@ sub create_account {
         my $email = $c->_get_and_validate_email_param();
         my $name = $c->crp->trimmed_param('name');
         my $validation = $c->validation;
-        $validation->required('name');
+        $validation->required('name')->like(qr{\S+});
         return $c->welcome if $validation->has_error;
 
         my $login_record = $c->crp->model('Login')->create({email => $email});
