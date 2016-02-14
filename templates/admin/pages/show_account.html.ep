@@ -92,14 +92,24 @@ Actions:
                 <br/>
                 <a class="standard-button" href="<%= url_for('crp.admin.certificate')->query(id => $login->id, qualification_id => $qualification->qualification_id) %>">Certificate</a>
                 % if($qualification->is_trainee) {
-                &nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;|&nbsp;&nbsp;
                 %= form_for 'crp.admin.delete_qualification' => (method => 'POST', style => 'display: inline-block;') => begin
                 %= hidden_field 'qid' => $qid;
                 %= hidden_field 'id' => $login->id;
                 %= check_box "sure$qid" => 'Y';
                 %= submit_button 'Delete';
                 % end
+                % }
+                % if( ! $qualification->passed_date) {
+                &nbsp;&nbsp;|&nbsp;&nbsp;
+                %= form_for 'crp.admin.set_pass_date' => (method => 'POST', style => 'display: inline-block;') => begin
+                %= hidden_field 'qid' => $qid;
+                %= hidden_field 'id' => $login->id;
+                %= date_field "pass_date_$qid", id => "pass_date_$qid", maxlength => 10, required => 'required';
+                %= submit_button 'Pass';
+                % end
                 <%= include 'parts/error', field => "sure$qid" %>
+                <%= include 'parts/error', field => "pass_date_$qid" %>
                 % }
             </li>
             % }

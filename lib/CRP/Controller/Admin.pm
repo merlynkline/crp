@@ -305,6 +305,28 @@ sub delete_qualification {
     return $c->_redirect_to_show_account_id($id);
 }
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub set_pass_date {
+    my $c = shift;
+    my $id = $c->param('id') || return $c->welcome;
+    my $qualification_id = $c->param('qid') || return $c->welcome;
+    my $validation = $c->validation;
+
+    my $pass_date = CRP::Util::Misc::get_date_input($c->crp->trimmed_param("pass_date_$qualification_id"));
+    $validation->error("pass_date_$qualification_id", ["no_pass_date"]) unless $pass_date;
+    return $c->show_account($id) if $validation->has_error;
+
+    my $instructor_qualification = $c->crp->model('InstructorQualification')->find({
+                instructor_id   => $id,
+                id              => $qualification_id,
+            });
+
+    $instructor_qualification->passed_date($pass_date);
+    $instructor_qualification->update;
+
+    $c->flash(msg => 'qualification_updated');
+    return $c->_redirect_to_show_account_id($id);
+}
 
 1;
 

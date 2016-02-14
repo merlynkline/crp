@@ -99,6 +99,7 @@ sub startup {
     $admin->post('/change_email')->to('admin#change_email')->name('crp.admin.change_email');
     $admin->post('/add_qualification')->to('admin#add_qualification')->name('crp.admin.add_qualification');
     $admin->post('/delete_qualification')->to('admin#delete_qualification')->name('crp.admin.delete_qualification');
+    $admin->post('/set_pass_date')->to('admin#set_pass_date')->name('crp.admin.set_pass_date');
     
     my $member_site = $r->under('/me/:slug')->to('member_site#identify');
     $member_site->any('/')->to('member_site#welcome')->name('crp.membersite.home');

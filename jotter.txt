@@ -45,8 +45,8 @@
         ~ list of qualifications and dates passed
         ~ facility to record when they gain a qualification - can be future dated
         ~ Facility to print certificate for each qualification
-        + Facility to set pass date for undated qualifications
-        + Facility to delete undated and future qualifications (cancelled course etc)
+        ~ Facility to set pass date for undated qualifications
+        ~ Facility to delete undated and future qualifications (cancelled course etc)
     ~ When adding a new instructor account, optional fields for initial qualifcation type and date
     ~ Add qualification records for all existing instructors when deploying new code. After migrate prepare:
         ~ copy new autosql to one or more numbered sql files in the same directory

@@ -21,6 +21,7 @@
 %   registration_update     => 'Your information has been updated.',
 %   qualification_added     => 'New qualification added.',
 %   qualification_deleted   => 'Qualification deleted.',
+%   qualification_updated   => 'Qualification updated.',
 %   single_match            => 'Only one matching account found.',
 % };
 % if($msg) {
