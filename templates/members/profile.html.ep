@@ -118,7 +118,6 @@
 <br clear="all"/>
 <script src="<%= url_for '/js/yellow-text.min.js' %>"></script>
 <script>
-    $(".hide-on-load").delay(7000).slideUp(1000);
     $('#blurb').YellowText({
         height:             "260px",
         width:              "570px",

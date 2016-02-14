@@ -1,8 +1,9 @@
 %#<!DOCTYPE html>
 %# Render a temporary message identified in $msg
 % if($msg) {
-<div class="temporary-message hide-on-load">
+<div class="temporary-message">
     %= include 'parts/message_text', msg => $msg;
 </div>
+<script>$(".temporary-message").delay(4000).slideUp(1000);</script>
 %}
 

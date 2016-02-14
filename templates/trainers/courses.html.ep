@@ -94,7 +94,3 @@ Hover the mouse over any button to find out more about it.
 % else {
 %= include 'parts/message_box', msg => 'no_past_courses', auto_hide => 0;
 % }
-
-<script>
-    $(".hide-on-load").delay(4000).slideUp(1000);
-</script>

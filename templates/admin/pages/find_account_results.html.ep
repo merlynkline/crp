@@ -37,5 +37,3 @@
 % else {
 %= include 'parts/message_box', msg => 'no_instructors_found', auto_hide => 0;
 % }
-
-

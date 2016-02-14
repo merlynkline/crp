@@ -116,5 +116,3 @@ See the <a href="<%= url_for('/page/instructor_booking') %>">booking form</a> fo
 %= include "parts/instructors_course_list", courses => stash('instructors_courses');
 </p>
 <img src="/images/Photos/ParentPack.JPG" width="800" height="417" class="centered-image" />
-
-<script>$(".hide-on-load").delay(9000).slideUp(1000);</script>

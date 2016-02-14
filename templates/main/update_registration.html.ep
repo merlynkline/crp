@@ -95,6 +95,3 @@ You can change any of the details and click the update button if you wish.
 
     </fieldset>
 % end
-<script>$(".hide-on-load").delay(4000).slideUp(1000);</script>
-
-

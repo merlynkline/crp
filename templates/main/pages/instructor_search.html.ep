@@ -56,6 +56,5 @@ You can use the search form below to find out more about a specific instructor.
 % }
 <p>You can <a href="<%= url_for 'crp.location_search' %>">search for instructors and courses near you here</a>.</p>
 </p>
-<script>$(".hide-on-load").delay(9000).slideUp(1000);</script>
 
 

@@ -104,4 +104,3 @@ Actions:
     </li>
 </ul>
 </p>
-<script>$(".hide-on-load").delay(4000).slideUp(1000);</script>

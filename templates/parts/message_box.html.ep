@@ -2,9 +2,16 @@
 %# Render a message identified in $msg, inside a message box
 % if($msg) {
 <div class="message-box<%= $auto_hide ? ' hide-on-load' : '' %>">
+    <a href="" style="float: right; position: relative; left: 6px; top: -6px;" class="small-button click-to-hide">&nbsp;X&nbsp;</a>
     %= include 'parts/message_text', msg => $msg;
     <br clear="left" />
     <img src="<%= url_for '/images/Plants/LavenderHorizontal2.png' %>" style="display: block; margin: 0 auto;" />
 </div>
+<script>
+    $('.click-to-hide').click(function(event) { event.preventDefault(); $(this).parent().slideUp(200); });
+% if($auto_hide) {
+    setTimeout(function() { $('.hide-on-load').slideUp(1000); }, 60000);
+% }
+</script>
 %}
 
