@@ -47,5 +47,10 @@ sub sqlt_deploy_hook {
     }
 }
 
+sub is_trainee {
+    my $self = shift;
+    return ! defined $self->passed_date || $self->passed_date > DateTime->now;
+}
+
 1;
 

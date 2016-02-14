@@ -19,6 +19,8 @@
 %   profile_incomplete      => 'Your profile is not complete - please <a href="' . url_for('crp.members.profile') . '">update it here</a>.',
 %   profile_update          => 'Your profile has been updated.',
 %   registration_update     => 'Your information has been updated.',
+%   qualification_added     => 'New qualification added.',
+%   qualification_deleted   => 'Qualification deleted.',
 %   single_match            => 'Only one matching account found.',
 % };
 % if($msg) {

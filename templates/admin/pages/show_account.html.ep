@@ -80,27 +80,43 @@ Actions:
     </li>
     <li>
         Qualifications:
-        % if($login->qualifications) {
-            <ul>
-            % foreach my $qualification ($login->qualifications) {
+        <ul>
+            % my @qualifications = $login->qualifications;
+            % if(@qualifications) {
+                % foreach my $qualification (@qualifications) {
+                % my $qid = $qualification->id;
             <li>
-                <%= $qualification->passed_date ? $c->crp->format_date($qualification->passed_date, 'short') : '(trainee)' %>
+                <%= $qualification->passed_date ? $c->crp->format_date($qualification->passed_date, 'short') : '' %>
+                <%= $qualification->is_trainee ? '(Trainee)' : '' %>
                 <%= $qualification->qualification->qualification; %>
-                <a class="small-button" href="<%= url_for('crp.admin.certificate')->query(id => $login->id, qualification_id => $qualification->qualification_id) %>">Certificate</a>
+                <br/>
+                <a class="standard-button" href="<%= url_for('crp.admin.certificate')->query(id => $login->id, qualification_id => $qualification->qualification_id) %>">Certificate</a>
+                % if($qualification->is_trainee) {
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                %= form_for 'crp.admin.delete_qualification' => (method => 'POST', style => 'display: inline-block;') => begin
+                %= hidden_field 'qid' => $qid;
+                %= hidden_field 'id' => $login->id;
+                %= check_box "sure$qid" => 'Y';
+                %= submit_button 'Delete';
+                % end
+                <%= include 'parts/error', field => "sure$qid" %>
+                % }
             </li>
             % }
-        </ul>
         % } else {
-        None
+            <li>(None)</li>
         % }
-        %= form_for 'crp.admin.add_qualification' => (method => 'POST') => begin
-        %= select_field qualification => [ ['Please select...' => ''], map { [$_->abbreviation => $_->id] } stash('available_qualifications') ]
-        %= date_field 'pass_date', id => 'pass_date', maxlength => 10;
-        %= hidden_field 'id' => $login->id;
-        %= submit_button 'Add'
-        <%= include 'parts/error', field => 'qualification' %>
-        <%= include 'parts/error', field => 'pass_date' %>
-        % end
+            <li>New:
+            %= form_for 'crp.admin.add_qualification' => (method => 'POST', style => 'display: inline-block;') => begin
+            %= select_field qualification => [ ['Please select...' => ''], map { [$_->abbreviation => $_->id] } stash('available_qualifications') ]
+            %= date_field 'pass_date', id => 'pass_date', maxlength => 10;
+            %= hidden_field 'id' => $login->id;
+            %= submit_button 'Add'
+            <%= include 'parts/error', field => 'qualification' %>
+            <%= include 'parts/error', field => 'pass_date' %>
+            % end
+            </li>
+        </ul>
     </li>
 </ul>
 </p>

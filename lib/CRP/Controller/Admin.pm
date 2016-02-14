@@ -280,6 +280,28 @@ sub add_qualification {
             passed_date         => $pass_date,
         });
 
+    $c->flash(msg => 'qualification_added');
+    return $c->_redirect_to_show_account_id($id);
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub delete_qualification {
+    my $c = shift;
+
+    my $id = $c->param('id') || return $c->welcome;
+    my $qualification_id = $c->param('qid') || return $c->welcome;
+    my $sure = $c->param("sure$qualification_id") // '';
+    my $validation = $c->validation;
+
+    $validation->error("sure$qualification_id", ['confirm_delete']) unless $sure eq 'Y';
+    return $c->show_account($id) if $validation->has_error;
+
+    $c->crp->model('InstructorQualification')->find({
+                instructor_id   => $id,
+                id              => $qualification_id,
+            })->delete;
+
+    $c->flash(msg => 'qualification_deleted');
     return $c->_redirect_to_show_account_id($id);
 }
 
