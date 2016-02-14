@@ -249,6 +249,7 @@ sub change_email {
     my $login = $c->crp->model('Login')->find($id) || return $c->welcome;
     $login->email($email);
     $login->update;
+    $c->flash(msg => 'email_updated');
     return $c->_redirect_to_show_account_id($id);
 }
 
