@@ -1,4 +1,3 @@
-*** date input fields for quals have bad inits
 
 + Booking forms (generic PDF, course PDF, online) say don't bring child after immunisations, should be if unwell (or similar)
 

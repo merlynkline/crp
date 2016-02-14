@@ -46,7 +46,7 @@
         </label>
         <div class="input-container">
             %= select_field qualification => [ ['(None)' => ''], map { [$_->abbreviation => $_->id] } stash('available_qualifications') ]
-            %= date_field 'pass_date', id => 'pass_date', maxlength => 10, '';
+            %= date_field 'pass_date', id => 'pass_date', maxlength => 10;
         </div>
         <label>&nbsp;</label>
         <div class="input-container">
