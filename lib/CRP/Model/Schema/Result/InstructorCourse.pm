@@ -63,10 +63,15 @@ __PACKAGE__->add_columns(
         data_type           => 'boolean',
         is_nullable         => 0,
     },
+    qualification_id => {
+        data_type           => 'integer',
+        is_nullable         => 1,
+    },
 );
 
 __PACKAGE__->set_primary_key('id');
 __PACKAGE__->belongs_to('instructor' => 'CRP::Model::Schema::Result::Login', 'instructor_id');
+__PACKAGE__->belongs_to('qualification' => 'CRP::Model::Schema::Result::Qualification', 'qualification_id');
 
 my %TYPE = (
     venue               => {MinLen => 1, MaxLen => 50},

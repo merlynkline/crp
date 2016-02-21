@@ -41,6 +41,8 @@
         ~ Initialise with "The Childrens Reflexology Programme" "TCRP" "TCRP Instructor"
     ~ New column in instructor course table: course_type_id
         ~ Backfill existing courses with the ID
+    ~ New column in instructors_course table: qualification_id
+        ~ Backfill existing courses with the ID
     ~ Changes to admin page for instructor's account record:
         ~ list of qualifications and dates passed
         ~ facility to record when they gain a qualification - can be future dated
@@ -524,6 +526,7 @@ session:
         + copy new autosql to one or more numbered sql files in the same directory
         + tweak as required
         + remove 001-auto.sql
+    + Add any additional scripts required (e.g. backfill for new data)
     + run: ./script/crp migrate upgrade
 - Making PDFs in Xara
     - Choose email/web download
