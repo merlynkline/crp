@@ -89,6 +89,7 @@ sub find_account {
     $query =~ s{^ [%\s]+ | [\s%]+ $}{}gsmx; # Prevent match-all searches
     $validation->error(query => ['like']) unless $query;
     return $c->_find_account_results($query) if( ! $validation->has_error);
+    return $c->welcome;
 }
 
 sub _find_account_results {
