@@ -16,7 +16,7 @@ sub startup {
     warn __PACKAGE__ . " Starting\n" if $self->mode eq 'development';
 
     my $config = $self->plugin('Config');
-    $self->plugin('CSRFProtect', on_error => \&_csrf_error_handler);
+    $self->plugin('CRP::Plugin::CSRFProtect', on_error => \&_csrf_error_handler);
     $self->plugin('CRP::Helper::Main');
     $self->plugin('CRP::Plugin::ETag');
     $self->plugin('RenderFile');
