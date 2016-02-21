@@ -1,6 +1,5 @@
 
 requires "Mojolicious", "6.00";
-requires "Mojolicious::Plugin::CSRFProtect", "0.16";
 requires "Mojolicious::Plugin::RenderFile", "0.08";
 requires "DBIx::Connector", "0.53";
 requires "List::MoreUtils";
