@@ -15,7 +15,7 @@
     <tr>
         <td nowrap><%= $c->crp->format_date($course->start_date, 'short') %></td>
         <td><%= $course->venue %></td>
-        <td><%= $course->description %></td>
+        <td><%= $course->description %><br /><span class="supplementary-info" style="color: inherit;">Qualification gained: <%= $course->qualification->qualification %></span></td>
         <td nowrap>
         <a href="<%= url_for('crp.instructor_poster')->query(id => $course->id) %>" class="small-button">PDF</a>
         % if($type eq 'draft' || $type eq 'advertised') {
