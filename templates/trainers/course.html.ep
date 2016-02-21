@@ -23,6 +23,14 @@
             <%= include 'parts/error', field => 'venue' %>
         </div>
 
+        <label for="qualification">Qualification:
+            <div class="field-extra-info">What the certificate issued will be for.</div>
+        </label>
+        <div class="input-container">
+            %= select_field qualification => [ ['Please select...' => ''], map { [$_->abbreviation => $_->id, ($_->id eq $course->qualification_id ? (selected => 'selected') : ())] } stash('available_qualifications') ], value => $course->qualification_id, @disabler;
+            <%= include 'parts/error', field => 'qualification' %>
+        </div>
+
         <label for="location-input-location">Location:</label>
         <div class="input-container">
             %= text_field 'location' => $course->location, onblur => 'locationInputHandler.codeAddress()', id => 'location-input-location', @disabler;

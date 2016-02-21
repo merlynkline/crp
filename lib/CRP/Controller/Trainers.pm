@@ -102,6 +102,7 @@ sub _load_course_from_params {
         description         => $c->crp->trimmed_param('description'),
         start_date          => CRP::Util::Misc::get_date_input($c->crp->trimmed_param('start_date')),
         price               => $c->crp->trimmed_param('price'),
+        qualification_id    => $c->crp->trimmed_param('qualification'),
     };
 
     foreach my $column (keys %$record) {
@@ -118,6 +119,7 @@ sub _load_course_from_params {
         $validation->error(start_date => ['future_date'])
             unless $record->{start_date} && $record->{start_date} >= DateTime->now;
     }
+    $validation->error(qualification => ['no_qualification']) unless $record->{qualification_id};
 
     return $validation;
 }
@@ -147,6 +149,7 @@ sub _display_course_editor_with {
     $c->stash(site_profile => $profile);
     $c->stash('course_record', $course);
     $c->stash('edit_restriction', 'PUBLISHED') if $course->published;
+    $c->stash(available_qualifications => $c->crp->model('Qualification')->search(undef, {order_by => 'abbreviation'}));
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 

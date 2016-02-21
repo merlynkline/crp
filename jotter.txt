@@ -81,7 +81,7 @@
         + Find accounts with specific/no qualifications
     + Admin pages for instructor training courses
         ~ Show course type in descriptions in lists
-        + New field to set qualification type when adding a course (not editable after publishing)
+        ~ New field to set qualification type when adding a course (not editable after publishing)
     + Admin page for qualifications
         + List qualifcations
             + Show number of holders and trainees

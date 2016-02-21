@@ -279,8 +279,9 @@ input, textarea, .standard-button, select {
     font-family:    inherit;
     color:          inherit;
 }
-input:disabled {
+input:disabled, select:disabled {
     color:          #bbb;
+    background:     rgb(235, 235, 238);
 }
 .small-button {
     border:         1px solid #589;
