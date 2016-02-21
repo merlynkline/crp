@@ -1,9 +1,9 @@
 package CRP;
 use Mojo::Base 'Mojolicious';
-use Mojolicious::Plugin::CSRFProtect;
 use Mojolicious::Plugin::RenderFile;
 use DBIx::Connector;
 
+use CRP::Plugin::CSRFProtect;
 use CRP::Helper::Main;
 use CRP::Plugin::ETag;
 use CRP::Model::Schema;
