@@ -83,15 +83,12 @@ sub page {
 sub find_account {
     my $c = shift;
 
-    if($c->req->method eq 'POST') {
-        my $validation = $c->validation;
-        $validation->required('query');
-        my $query = $c->crp->trimmed_param('query');
-        $query =~ s{^ [%\s]+ | [\s%]+ $}{}gsmx; # Prevent match-all searches
-        $validation->error(query => ['like']) unless $query;
-        return $c->_find_account_results($query) if( ! $validation->has_error);
-    }
-    return $c->welcome;
+    my $validation = $c->validation;
+    $validation->required('query');
+    my $query = $c->crp->trimmed_param('query');
+    $query =~ s{^ [%\s]+ | [\s%]+ $}{}gsmx; # Prevent match-all searches
+    $validation->error(query => ['like']) unless $query;
+    return $c->_find_account_results($query) if( ! $validation->has_error);
 }
 
 sub _find_account_results {

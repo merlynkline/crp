@@ -89,7 +89,7 @@ sub startup {
 
     my $admin = $logged_in->under('/admin')->to('admin#authenticate');
     $admin->get('/')->to('admin#welcome')->name('crp.admin_default');
-    $admin->post('/find_account')->to('admin#find_account')->name('crp.admin.find_account');
+    $admin->any('/find_account')->to('admin#find_account')->name('crp.admin.find_account');
     $admin->any('/show_account')->to('admin#show_account')->name('crp.admin.show_account');
     $admin->any('/certificate')->to('admin#certificate')->name('crp.admin.certificate');
     $admin->any('/admin_login')->to('logged_in#admin_login')->name('crp.admin.login');
