@@ -86,7 +86,7 @@
         + Edit qualification details
         + Only delete qualifications not in use
     + Main admin page:
-        + stats should show trainees and qualified instructors separately.
+        ~ stats should show trainees and qualified instructors separately.
         + stats link to lists of trainees
         + stats link to list of qualified instructors
     + PDFs for instructor courses need changing to indicate qualification they are for (possibly different PDF for each)

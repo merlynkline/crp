@@ -24,11 +24,15 @@ sub welcome {
     my $c = shift;
 
     my $days = $c->config->{course}->{age_when_advert_expires_days};
-    $c->stash(instructor_count          => $c->crp->model('Profile')->search_live_profiles->count);
-    $c->stash(draft_courses_count       => $c->crp->model('Course')->get_draft_set->count);
-    $c->stash(advertised_courses_count  => $c->crp->model('Course')->get_advertised_set($days)->count);
-    $c->stash(past_courses_count        => $c->crp->model('Course')->get_past_set($days)->count);
-    $c->stash(available_qualifications  => $c->crp->model('Qualification')->search(undef, {order_by => 'abbreviation'}));
+    $c->stash(
+        instructor_count          => $c->crp->model('Profile')->search_live_profiles->count,
+        trainee_instructor_count  => $c->crp->model('Profile')->search_trainees->count,
+        qualified_instructor_count=> $c->crp->model('Profile')->search_qualified->count,
+        draft_courses_count       => $c->crp->model('Course')->get_draft_set->count,
+        advertised_courses_count  => $c->crp->model('Course')->get_advertised_set($days)->count,
+        past_courses_count        => $c->crp->model('Course')->get_past_set($days)->count,
+        available_qualifications  => $c->crp->model('Qualification')->search(undef, {order_by => 'abbreviation'}),
+    );
     $c->render(template => "admin/welcome");
 }
 
@@ -267,7 +271,7 @@ sub add_qualification {
                 instructor_id       => $id,
                 qualification_id    => $qualification_id,
             })->count > 0;
-        $validation->error(qualification => ['has_qualification']) if $has_qualification;
+#        $validation->error(qualification => ['has_qualification']) if $has_qualification;
     }
 
     my $pass_date = CRP::Util::Misc::get_date_input($c->crp->trimmed_param('pass_date'));
