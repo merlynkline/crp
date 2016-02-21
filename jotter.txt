@@ -68,8 +68,8 @@
         + Headed paper
         + Comp slips
         + ID cards
-    + Instructor courses page will need to indicate what type of instructor course it is
-        + Possibly add filtering to show only certain course types
+    ~ Instructor courses page will need to indicate what type of instructor course it is
+        X Possibly add filtering to show only certain course types
     + Update web site
         + "Home" page: short mention of AN
         + "Programme" page: more mention of AN. Split into two pages.
