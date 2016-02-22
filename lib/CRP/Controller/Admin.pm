@@ -31,7 +31,7 @@ sub welcome {
         draft_courses_count       => $c->crp->model('Course')->get_draft_set->count,
         advertised_courses_count  => $c->crp->model('Course')->get_advertised_set($days)->count,
         past_courses_count        => $c->crp->model('Course')->get_past_set($days)->count,
-        available_qualifications  => $c->crp->model('Qualification')->search(undef, {order_by => 'abbreviation'}),
+        available_qualifications  => [ $c->crp->model('Qualification')->search(undef, {order_by => 'abbreviation'}) ],
     );
     $c->render(template => "admin/welcome");
 }
@@ -155,7 +155,7 @@ sub show_account {
             past_courses_count        => $profile->courses->get_past_set($days)->count,
         );
     }
-    $c->stash(available_qualifications => $c->crp->model('Qualification')->search(undef, {order_by => 'abbreviation'}));
+    $c->stash(available_qualifications => [ $c->crp->model('Qualification')->search(undef, {order_by => 'abbreviation'}) ]);
     return $c->page('show_account');
 }
 
@@ -256,7 +256,7 @@ sub change_email {
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-sub add_qualification {
+sub add_instructor_qualification {
     my $c = shift;
 
     my $id = $c->param('id') || shift || return $c->welcome;
@@ -269,7 +269,7 @@ sub add_qualification {
                 instructor_id       => $id,
                 qualification_id    => $qualification_id,
             })->count > 0;
-#        $validation->error(qualification => ['has_qualification']) if $has_qualification;
+        $validation->error(qualification => ['has_qualification']) if $has_qualification;
     }
 
     my $pass_date = CRP::Util::Misc::get_date_input($c->crp->trimmed_param('pass_date'));
@@ -287,7 +287,7 @@ sub add_qualification {
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-sub delete_qualification {
+sub delete_instructor_qualification {
     my $c = shift;
 
     my $id = $c->param('id') || return $c->welcome;
@@ -329,6 +329,54 @@ sub set_pass_date {
     $c->flash(msg => 'qualification_updated');
     return $c->_redirect_to_show_account_id($id);
 }
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub edit_qualification {
+    my $c = shift;
+    my $id = $c->param('id') || return $c->welcome;
+
+    my $qualification = $c->crp->model('Qualification')->find($id) || return $c->welcome;
+    $c->param(abbreviation  => $qualification->abbreviation);
+    $c->param(qualification => $qualification->qualification);
+    return $c->page('edit_qualification');
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub add_qualification {
+    my $c = shift;
+    my $id = $c->param('id') && return $c->welcome;
+
+    return $c->page('edit_qualification');
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub save_qualification {
+    my $c = shift;
+    my $id = $c->param('id');
+
+    my $validation = $c->validation;
+    $validation->required('abbreviation');
+    my $abbreviation = $c->crp->trimmed_param('abbreviation');
+    $validation->error('abbreviation', ['invalid_column_MinLen']) unless length $abbreviation >= 4;
+    $validation->error('abbreviation', ['invalid_column_MaxLen']) unless length $abbreviation <= 30;
+    $validation->required('qualification');
+    my $qualification_name = $c->crp->trimmed_param('qualification');
+    $validation->error('qualification', ['invalid_column_MinLen']) unless length $qualification_name >= 10;
+    $validation->error('qualification', ['invalid_column_MaxLen']) unless length $qualification_name <= 100;
+    return $c->page('edit_qualification') if $validation->has_error;
+
+    my $qualification = ($id
+        ? $c->crp->model('Qualification')->find($id)
+        : $c->crp->model('Qualification')->new_result({})
+    ) || return $c->welcome;
+
+    $qualification->abbreviation($abbreviation);
+    $qualification->qualification($qualification_name);
+    $qualification->update_or_insert;
+
+    return $c->redirect_to($c->url_for('crp.admin_default'));
+}
+
 
 1;
 

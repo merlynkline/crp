@@ -1,0 +1,32 @@
+%#<!DOCTYPE html>
+% my $title = (param('id') ? 'Edit' : 'Add') . ' qualification';
+% layout 'member_default';
+% title $title;
+<%= include 'parts/message_box', msg => flash('msg') || stash('msg'), auto_hide => 1 %>
+<h1><%= $title %></h1>
+%= form_for 'crp.admin.save_qualification' => (method => 'POST') => begin
+%= hidden_field 'id' => param('id');
+<fieldset>
+    <legend><%= $title %></legend>
+
+    <label for="abbreviation">Abbreviation:
+    </label>
+    <div class="input-container">
+        %= text_field 'abbreviation', id => 'abbreviation', maxlength => 30, required => 'required';
+        <%= include 'parts/error', field => 'abbreviation' =%>
+    </div>
+
+    <label for="qualification">Qualification:
+    </label>
+    <div class="input-container">
+        %= text_field 'qualification', id => 'qualification', maxlength => 100, required => 'required', size => 55;
+        <%= include 'parts/error', field => 'qualification' =%>
+    </div>
+
+    <label>&nbsp;</label>
+    <div class="input-container">
+        <%= submit_button 'Save', name => 'save' %>
+    </div>
+
+</fieldset>
+% end

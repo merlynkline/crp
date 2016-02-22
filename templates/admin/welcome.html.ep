@@ -47,7 +47,7 @@
         <label for="email">Initial qualification:
         </label>
         <div class="input-container">
-            %= select_field qualification => [ ['(None)' => ''], map { [$_->abbreviation => $_->id] } stash('available_qualifications') ]
+            %= select_field qualification => [ ['(None)' => ''], map { [$_->abbreviation => $_->id] } @{stash('available_qualifications')} ]
             %= date_field 'pass_date', id => 'pass_date', maxlength => 10;
         </div>
         <label>&nbsp;</label>
@@ -59,7 +59,7 @@
 
 <table class="list1">
     <tr><th colspan="2">Qualifications</th><th>Instructors</th><th>Trainees</th><th></th></tr>
-    % foreach my $qualification (stash('available_qualifications')) {
+    % foreach my $qualification (@{stash('available_qualifications')}) {
     %    my $num_instructors = $qualification->instructor_qualifications->get_passed_set->count;
     %    my $num_trainees    = $qualification->instructor_qualifications->get_in_training_set->count;
     <tr>
@@ -71,9 +71,9 @@
             % if($num_instructors > 0 || $num_trainees > 0) {
             <span class="small-button disabled-button" title="This qualifcation can't be deleted because it is in use">Del</span>
             % } else {
-            <a class="small-button" href="<%= url_for('crp.admin.delete_qualification')->query(qualifiction_id => $qualification->id) %>" title="Delete this qualification">Del</a>
+            <a class="small-button" href="<%= url_for('crp.admin.delete_qualification')->query(id => $qualification->id) %>" title="Delete this qualification">Del</a>
             % }
-            <a class="small-button" href="<%= url_for('crp.admin.edit_qualification')->query(qualifiction_id => $qualification->id) %>" title="Edit this qualification">Edit</a>
+            <a class="small-button" href="<%= url_for('crp.admin.edit_qualification')->query(id => $qualification->id) %>" title="Edit this qualification">Edit</a>
          </td>
     </tr>
     % }

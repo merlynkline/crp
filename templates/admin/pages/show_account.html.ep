@@ -93,7 +93,7 @@ Actions:
                 <a class="standard-button" href="<%= url_for('crp.admin.certificate')->query(id => $login->id, qualification_id => $qualification->qualification_id) %>">Certificate</a>
                 % if($qualification->is_trainee) {
                 &nbsp;&nbsp;|&nbsp;&nbsp;
-                %= form_for 'crp.admin.delete_qualification' => (method => 'POST', style => 'display: inline-block;') => begin
+                %= form_for 'crp.admin.delete_instructor_qualification' => (method => 'POST', style => 'display: inline-block;') => begin
                 %= hidden_field 'qid' => $qid;
                 %= hidden_field 'id' => $login->id;
                 %= check_box "sure$qid" => 'Y';
@@ -117,8 +117,8 @@ Actions:
             <li>(None)</li>
         % }
             <li>New:
-            %= form_for 'crp.admin.add_qualification' => (method => 'POST', style => 'display: inline-block;') => begin
-            %= select_field qualification => [ ['Please select...' => ''], map { [$_->abbreviation => $_->id] } stash('available_qualifications') ]
+            %= form_for 'crp.admin.add_instructor_qualification' => (method => 'POST', style => 'display: inline-block;') => begin
+            %= select_field qualification => [ ['Please select...' => ''], map { [$_->abbreviation => $_->id] } @{stash('available_qualifications')} ]
             %= date_field 'pass_date', id => 'pass_date', maxlength => 10;
             %= hidden_field 'id' => $login->id;
             %= submit_button 'Add'

@@ -149,7 +149,7 @@ sub _display_course_editor_with {
     $c->stash(site_profile => $profile);
     $c->stash('course_record', $course);
     $c->stash('edit_restriction', 'PUBLISHED') if $course->published;
-    $c->stash(available_qualifications => $c->crp->model('Qualification')->search(undef, {order_by => 'abbreviation'}));
+    $c->stash(available_qualifications => [ $c->crp->model('Qualification')->search(undef, {order_by => 'abbreviation'}) ]);
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 

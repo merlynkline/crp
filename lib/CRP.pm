@@ -97,10 +97,13 @@ sub startup {
     $admin->any('/parent_courses')->to('admin#list_parent_courses')->name('crp.admin.parent_courses');
     $admin->post('/change_demo')->to('admin#change_demo')->name('crp.admin.change_demo');
     $admin->post('/change_email')->to('admin#change_email')->name('crp.admin.change_email');
-    $admin->post('/add_qualification')->to('admin#add_qualification')->name('crp.admin.add_qualification');
-    $admin->post('/delete_qualification')->to('admin#delete_qualification')->name('crp.admin.delete_qualification');
+    $admin->post('/add_instructor_qualification')->to('admin#add_instructor_qualification')->name('crp.admin.add_instructor_qualification');
+    $admin->post('/delete_instructor_qualification')->to('admin#delete_instructor_qualification')->name('crp.admin.delete_instructor_qualification');
     $admin->post('/set_pass_date')->to('admin#set_pass_date')->name('crp.admin.set_pass_date');
-    
+    $admin->any('/edit_qualification')->to('admin#edit_qualification')->name('crp.admin.edit_qualification');
+    $admin->any('/add_qualification')->to('admin#add_qualification')->name('crp.admin.add_qualification');
+    $admin->post('/save_qualification')->to('admin#save_qualification')->name('crp.admin.save_qualification');
+
     my $member_site = $r->under('/me/:slug')->to('member_site#identify');
     $member_site->any('/')->to('member_site#welcome')->name('crp.membersite.home');
     $member_site->any('/certificate')->to('member_site#certificate')->name('crp.membersite.certificate');
