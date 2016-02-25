@@ -1,0 +1,25 @@
+%#<!DOCTYPE html>
+% layout 'member_default';
+% title 'Delete qualification';
+% my $qualification = stash('qualification');
+<h1>Confirm delete qualification</h1>
+<fieldset>
+    <legend>Confirm delete</legend>
+    <p>
+    Please confirm that you want to permanently delete the qualification shown below.
+    This <strong>cannot be undone</strong>.
+    </p>
+    <div class="button-group">
+        <a class="standard-button" href="<%= url_for('crp.admin_default') %>">Cancel</a>
+        <a class="standard-button" href="<%= url_for('crp.admin.do_delete_qualification') %>">Delete</a>
+    </div>
+</fieldset>
+<img align="left" src="<%= url_for '/images/Animals/Snake.jpg' %>" style="margin-right: 16px" />
+<table class="list1">
+    <tr><th>Abbreviation</th><th>Qualification</th></tr>
+    <tr>
+        <td><%= $qualification->abbreviation %></td>
+        <td><%= $qualification->qualification %></td>
+    </tr>
+</table>
+</p>

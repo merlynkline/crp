@@ -103,6 +103,8 @@ sub startup {
     $admin->any('/edit_qualification')->to('admin#edit_qualification')->name('crp.admin.edit_qualification');
     $admin->any('/add_qualification')->to('admin#add_qualification')->name('crp.admin.add_qualification');
     $admin->post('/save_qualification')->to('admin#save_qualification')->name('crp.admin.save_qualification');
+    $admin->any('delete_qualification')->to('admin#delete_qualification')->name('crp.admin.delete_qualification');
+    $admin->any('do_delete_qualification')->to('admin#do_delete_qualification')->name('crp.admin.do_delete_qualification');
 
     my $member_site = $r->under('/me/:slug')->to('member_site#identify');
     $member_site->any('/')->to('member_site#welcome')->name('crp.membersite.home');

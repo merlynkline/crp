@@ -85,9 +85,9 @@
     + Admin page for qualifications
         ~ List qualifications
             ~ Show number of holders and trainees
-        + Edit qualification details
-        + Only delete qualifications not in use
-        + Add new qualifications
+        ~ Edit qualification details
+        ~ Only delete qualifications not in use
+        ~ Add new qualifications
     + Main admin page:
         ~ stats should show trainees and qualified instructors separately.
         + stats link to lists of trainees

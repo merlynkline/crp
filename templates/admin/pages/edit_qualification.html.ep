@@ -12,7 +12,7 @@
     <label for="abbreviation">Abbreviation:
     </label>
     <div class="input-container">
-        %= text_field 'abbreviation', id => 'abbreviation', maxlength => 30, required => 'required';
+        %= text_field 'abbreviation', id => 'abbreviation', maxlength => 30,  autofocus => 'autofocus', required => 'required';
         <%= include 'parts/error', field => 'abbreviation' =%>
     </div>
 

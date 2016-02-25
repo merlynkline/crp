@@ -377,6 +377,38 @@ sub save_qualification {
     return $c->redirect_to($c->url_for('crp.admin_default'));
 }
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub delete_qualification {
+    my $c = shift;
+
+    my $id = $c->param('id');
+    my $qualification = $c->_load_deletable_qualification($id) || return $c->welcome;
+    $c->stash('crp_session')->variable('id', $id);
+    $c->stash('qualification', $qualification);
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub do_delete_qualification {
+    my $c = shift;
+
+    my $id = $c->stash('crp_session')->remove_variable('id');
+    my $qualification = $c->_load_deletable_qualification($id) || return $c->welcome;
+    $c->flash(msg => 'qualification_delete');
+    $qualification->delete;
+    return $c->redirect_to($c->url_for('crp.admin_default'));
+}
+
+sub _load_deletable_qualification {
+    my $c = shift;
+    my($id) = @_;
+
+    my $qualification   = $c->crp->model('Qualification')->find($id) || return $c->welcome;
+    return unless $qualification
+        && $qualification->instructor_qualifications->get_passed_set->count == 0
+        && $qualification->instructor_qualifications->get_in_training_set->count == 0;
+    return $qualification;
+}
+
 
 1;
 
