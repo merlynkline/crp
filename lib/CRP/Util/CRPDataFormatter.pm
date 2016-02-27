@@ -64,15 +64,14 @@ sub _extract_crp_qualification_data {
         my $most_recent_date;
         foreach my $qualification (@qualifications) {
             next if $qualification->is_trainee;
-            $qualifications_desc .= "\n" . $qualification->qualification->qualification;
+            $qualifications_desc .= $qualification->qualification->qualification . "\n";
             $most_recent_date = $qualification->passed_date if ! $most_recent_date || $qualification->passed_date > $most_recent_date;
         }
         $data->{signature_date} = $c->crp->format_date(_certificate_date($most_recent_date), 'cert') if $most_recent_date;
     }
     if($qualifications_desc) {
-        $qualifications_desc = "With the following qualifications:$qualifications_desc";
         $data->{_mark_trainee} = 0;
-        $data->{qualifications} = $qualifications_desc;
+        $data->{qualifications} = substr $qualifications_desc, 0, -1;
     }
     else {
         $data->{qualifications} = "TRAINEE";
