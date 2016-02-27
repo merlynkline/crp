@@ -102,7 +102,7 @@ sub _load_course_from_params {
         description         => $c->crp->trimmed_param('description'),
         start_date          => CRP::Util::Misc::get_date_input($c->crp->trimmed_param('start_date')),
         price               => $c->crp->trimmed_param('price'),
-        qualification_id    => $c->crp->trimmed_param('qualification'),
+        qualification_id    => $c->crp->trimmed_param('qualification') || 0,
     };
 
     foreach my $column (keys %$record) {
@@ -146,6 +146,7 @@ sub _display_course_editor_with {
     my($course) = @_;
 
     my $profile = $c->crp->load_profile;
+    $c->param(qualification => $course->qualification_id);
     $c->stash(site_profile => $profile);
     $c->stash('course_record', $course);
     $c->stash('edit_restriction', 'PUBLISHED') if $course->published;
