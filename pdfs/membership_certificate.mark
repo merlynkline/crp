@@ -20,6 +20,15 @@
         },
         {
             action  => 'text',
+            text    => '[% qualifications %]',
+            x       => 298,
+            y       => 270,
+            align   => 'center',
+            size    => 12,
+            font    => 'Georgia',
+        },
+        {
+            action  => 'text',
             text    => 'Susan Quayle',
             x       => 170,
             y       => 184,
