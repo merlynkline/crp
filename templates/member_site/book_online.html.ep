@@ -25,6 +25,7 @@
     with <a href="<%= url_for 'crp.membersite.home' %>"><%= $profile->name %></a>
     starting <%= $c->crp->format_date($course->start_date, 'short') %>, <%= $course->time %>.
     <br />
+    <%=  $course->course_type->description %><br />
     This course is over <%= $course->course_duration %>
     with each session lasting <%= $course->session_duration %>,
     and costs <%= $course->price %>.
