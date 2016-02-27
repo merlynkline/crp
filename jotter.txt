@@ -102,8 +102,8 @@
         ~ If they only have one qualification then the course is that type and there's no selector
         ~ All courses must be dated after the corresponding qualification date
         ~ Can only publish one course for a future-dated qualification
-    + Course detail panel in templates should include course type
-        + Shows on "download course docs" page
+    ~ Course detail panel in templates should include course type
+        ~ Shows on "download course docs" page
     + PDFs for instructor courses need changing to indicate qualification they are for (possibly different PDF for each)
     + Course advertisement page on web site must say type (also on on-line booking page)
     + Course location search to find parent courses

@@ -2,10 +2,10 @@
 % layout 'member_default';
 % my $course = stash('course_record');
 % title 'Course documents';
-<h1>Download course documents</h1>
 <div style="float:right">
     %= include "parts/course_details", course => $course;
 </div>
+<h1>Download course documents</h1>
 <p>
 Here is a collection of documents suitable for advertising
 and administration, each of which has details specific to

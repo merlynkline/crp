@@ -4,6 +4,7 @@
     <tr><td>Start:</td>          <td><%= $c->crp->format_date($course->start_date, 'short') %> <%= $course->time %></td></tr>
     <tr><td>Venue:</td>          <td><%= $course->venue %></td></tr>
     <tr><td>Title:</td>          <td><%= $course->description %></td></tr>
+    <tr><td>Type:</td>           <td><%= $course->course_type->description %></td></tr>
     <tr><td>Price:</td>          <td><%= $course->price %><br /><small>(<%= $course->book_excluded ? 'excludes' : 'includes' %> book)</small></td></tr>
     <tr><td>Session length:</td> <td><%= $course->session_duration %></td></tr>
     <tr><td>Course length:</td>  <td><%= $course->course_duration %></td></tr>
