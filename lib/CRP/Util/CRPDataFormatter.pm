@@ -13,6 +13,7 @@ sub format_data {
     my $profile = $data->{profile};
     _extract_crp_profile_data($c, $data);
     _extract_crp_course_data($c, $data, $profile);
+    _extract_crp_qualification_data($c, $data, $profile);
     _set_demonstration_data($c, $data) if $profile->login->is_demo;
 
     delete $data->{profile};
@@ -50,6 +51,22 @@ sub _extract_crp_profile_data {
     $data->{signature} = $signature;
     $data->{signature_url} = $c->url_for('crp.membersite.certificate', slug => $signature)->to_abs;
     $data->{signature_date} = $c->crp->format_date(_certificate_date($profile->login->create_date), 'cert');
+}
+
+sub _extract_crp_qualification_data {
+    my($c, $data, $profile) = @_;
+
+    return unless $profile;
+    my $qualifications_desc = '';
+    my @qualifications = $profile->login->qualifications;
+    if(@qualifications) {
+        foreach my $qualification (@qualifications) {
+            next if $qualification->is_trainee;
+            $qualifications_desc .= "\n" . $qualification->qualification->qualification;
+        }
+    }
+    $qualifications_desc = "With the following qualifications:$qualifications_desc" if $qualifications_desc;
+    $data->{qualifications} = $qualifications_desc || "TRAINEE";
 }
 
 sub _certificate_date {
