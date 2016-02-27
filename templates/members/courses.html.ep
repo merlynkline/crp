@@ -17,7 +17,7 @@
         <td nowrap><%= $c->crp->format_date($course->start_date, 'short') %></td>
         <td nowrap><%= $course->time %></td>
         <td><%= $course->venue %></td>
-        <td><%= $course->description %></td>
+        <td><%= $course->description %><br /><span class="supplementary-info" style="color: inherit;"><%= $course->course_type->description %></span></td>
         <td nowrap>
         % if($type eq 'draft' || $type eq 'advertised') {
             <a class="small-button" href="<%= url_for('crp.members.course')->query(course_id => $course->id) %>" title="Edit the details of this course">Edit</a>
@@ -61,8 +61,12 @@ leaflets etc. Hover the mouse over any button to find out more about it.
 
 <p>
 <span class="highlight-box">
+    % if(@{stash('available_course_types')}) {
     To add a new course click:
     <a class="standard-button" title="Add a new course to the Draft courses list" href="<%= url_for 'crp.members.course' %>">Add course</a>
+    % } else {
+    Sorry - because you are a trainee you can't add a course until you gain a qualification or delete or cancel a course.
+    % }
     &nbsp;
 </span>
 </p>
