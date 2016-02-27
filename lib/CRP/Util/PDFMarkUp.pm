@@ -115,15 +115,20 @@ sub _markup_pdf_text {
     my $page = $self->_pdf->openpage($markup_item->{page} || 1);
     my $font = $self->_pdf->corefont($markup_item->{font} || 'Helvetica', -dokern => 1);
     my $text = $page->text();
-    $text->textlabel(
-        $self->_get_x_coordinate($markup_item->{x}),
-        $self->_get_y_coordinate($markup_item->{y}),
-        $font,
-        $self->_get_size($markup_item->{size} || 12),
-        $string,
-        -align => $markup_item->{align} || 'left',
-        -color => $markup_item->{colour} || '#000',
-    );
+    my $y = $self->_get_y_coordinate($markup_item->{y});
+    my $size = $self->_get_size($markup_item->{size} || 12);
+    foreach my $line (split /\s*\n\s*/, $string) {
+        $text->textlabel(
+            $self->_get_x_coordinate($markup_item->{x}),
+            $y,
+            $font,
+            $size,
+            $line,
+            -align => $markup_item->{align} || 'left',
+            -color => $markup_item->{colour} || '#000',
+        );
+        $y -= $size * ($markup_item->{linespace} || 1.2);
+    }
 }
 
 sub _add_demonstration_marker {
