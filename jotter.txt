@@ -66,8 +66,8 @@
     + Some PDFs need to show qualifcations and/or trainee status
         ~ QR Business cards
         ~ Business cards
-        + Headed paper
-        + Comp slips
+        ~ Headed paper
+        ~ Comp slips
         ~ ID cards
     ~ Instructor courses page will need to indicate what type of instructor course it is
         X Possibly add filtering to show only certain course types
