@@ -54,7 +54,7 @@ sub fill_template {
     foreach my $repeat (@{$self->_repeats}) {
         $self->_markup_pdf($repeat->{x_offset}, $repeat->{y_offset});
     };
-    $self->_add_demonstration_marker if $self->_data->{_is_demo};
+    $self->_add_watermark if $self->_data->{_is_demo} || $self->_data->{_mark_trainee};
 
     return $self->_pdf->stringify;
 }
@@ -131,11 +131,17 @@ sub _markup_pdf_text {
     }
 }
 
-sub _add_demonstration_marker {
+sub _add_watermark {
     my $self = shift;
 
     my $FONT_SIZE_FACTOR = 3;
     my $font = $self->_pdf->corefont('Helvetica', -dokern => 1);
+    my $watermark = '';
+    $watermark = 'Demonstration' if $self->_data->{_is_demo};
+    if($self->_data->{_mark_trainee}) {
+        $watermark .= '    ' if $watermark;
+        $watermark .= 'Trainee    Trainee';
+    }
     for my $page_number (1 .. $self->_pdf->pages) {
         my $page = $self->_pdf->openpage($page_number);
         my $media_box = $page->find_prop('MediaBox');
@@ -153,11 +159,11 @@ sub _add_demonstration_marker {
         $text->font($font, $font_size);
         $text->linewidth($font_size / 30);
         $text->transform(-translate => [$x, $y], -rotate => 45);
-        $text->text_center('Demonstration');
+        $text->text_center($watermark);
         $text->transform(-translate => [$x + $font_size * 1.5, $y - $font_size * 1.5], -rotate => 45);
-        $text->text_center('Demonstration');
+        $text->text_center($watermark);
         $text->transform(-translate => [$x - $font_size * 1.5, $y + $font_size * 1.5], -rotate => 45);
-        $text->text_center('Demonstration');
+        $text->text_center($watermark);
     }
 }
 

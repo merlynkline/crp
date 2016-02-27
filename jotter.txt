@@ -106,8 +106,8 @@
             ~ Future qualifcations may be listed with indication that they aren't yet current
         ~ Personal web page must not say "qualified instructor" but "trainee (not yet qualified)"
         + Can't publish any courses (except for one for a future qualification)
-        + Membership certificate shouldn't be available or should have 'not valid' in the date or similar
-        + Non-course-specific PDFS could be watermarked "Trainee" like a demo account (could be both!)
+        ~ Membership certificate shouldn't be available or should have 'not valid' in the date or similar
+        ~ Non-course-specific PDFS could be watermarked "Trainee" like a demo account (could be both!)
         + PDFS showing qualifications should instead say "Trainee"
         + Shop should have purchase buttons removed "(Purchase buttons removed until you qualify)"
         + Article in FAQs describing how this works

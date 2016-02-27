@@ -56,6 +56,7 @@ sub _extract_crp_profile_data {
 sub _extract_crp_qualification_data {
     my($c, $data, $profile) = @_;
 
+    $data->{_mark_trainee} = 1;
     return unless $profile;
     my $qualifications_desc = '';
     my @qualifications = $profile->login->qualifications;
@@ -68,8 +69,14 @@ sub _extract_crp_qualification_data {
         }
         $data->{signature_date} = $c->crp->format_date(_certificate_date($most_recent_date), 'cert') if $most_recent_date;
     }
-    $qualifications_desc = "With the following qualifications:$qualifications_desc" if $qualifications_desc;
-    $data->{qualifications} = $qualifications_desc || "TRAINEE";
+    if($qualifications_desc) {
+        $qualifications_desc = "With the following qualifications:$qualifications_desc";
+        $data->{_mark_trainee} = 0;
+        $data->{qualifications} = $qualifications_desc;
+    }
+    else {
+        $data->{qualifications} = "TRAINEE";
+    }
 }
 
 sub _certificate_date {
@@ -96,6 +103,7 @@ sub _extract_crp_course_data {
         slug => $profile->web_page_slug,
         course => $course->id
     )->to_abs,
+    $data->{_mark_trainee} = 0;
 }
 
 sub _set_demonstration_data {
