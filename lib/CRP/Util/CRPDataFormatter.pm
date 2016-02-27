@@ -60,10 +60,13 @@ sub _extract_crp_qualification_data {
     my $qualifications_desc = '';
     my @qualifications = $profile->login->qualifications;
     if(@qualifications) {
+        my $most_recent_date;
         foreach my $qualification (@qualifications) {
             next if $qualification->is_trainee;
             $qualifications_desc .= "\n" . $qualification->qualification->qualification;
+            $most_recent_date = $qualification->passed_date if ! $most_recent_date || $qualification->passed_date > $most_recent_date;
         }
+        $data->{signature_date} = $c->crp->format_date(_certificate_date($most_recent_date), 'cert') if $most_recent_date;
     }
     $qualifications_desc = "With the following qualifications:$qualifications_desc" if $qualifications_desc;
     $data->{qualifications} = $qualifications_desc || "TRAINEE";

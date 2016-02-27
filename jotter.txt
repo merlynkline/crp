@@ -58,9 +58,9 @@
         ~ remove 001-auto.sql
     ~ Show which qualifications they've done on the certificate page
     ~ Show which qualifications they've done on instructor's personal web page
-    + Membership certificate PDF:
-        + Date will need to be calculated differently
-        + Show which qualifications are included
+    ~ Membership certificate PDF:
+        ~ Date will need to be calculated differently
+        ~ Show which qualifications are included
         X Should we have separate certificates? Probably not
     + New versions of at least some of the course PDFs, shown correctly for the course type
     + Some PDFs need to show qualifcations
