@@ -146,7 +146,7 @@ sub _display_course_editor_with {
     my($course) = @_;
 
     my $profile = $c->crp->load_profile;
-    $c->param(qualification => $course->qualification_id);
+    $c->param(qualification => $course->qualification_id // '');
     $c->stash(site_profile => $profile);
     $c->stash('course_record', $course);
     $c->stash('edit_restriction', 'PUBLISHED') if $course->published;
