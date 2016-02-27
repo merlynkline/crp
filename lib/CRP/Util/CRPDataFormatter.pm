@@ -72,9 +72,11 @@ sub _extract_crp_qualification_data {
     if($qualifications_desc) {
         $data->{_mark_trainee} = 0;
         $data->{qualifications} = substr $qualifications_desc, 0, -1;
+        $data->{status} = "Qualified Instructor";
     }
     else {
         $data->{qualifications} = "TRAINEE";
+        $data->{status} = "TRAINEE";
     }
 }
 

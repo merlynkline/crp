@@ -4,6 +4,7 @@
     filename => 'Business cards',
     items => [
         { action => 'text', text => '[% name %]',          x => 274, y => 753, size => 13, align => 'right', font => 'Helvetica-Bold' },
+        { action => 'text', text => '[% status %]',        x => 274, y => 738, size => 11, align => 'right', font => 'Helvetica' },
         { action => 'text', text => '[% phone_numbers %]', x =>  50, y => 685, size => 10,                   font => 'Helvetica-Bold' },
         { action => 'text', text => '[% email %]',         x =>  50, y => 665, size =>  7 },
         { action => 'text', text => '[% url %]',           x =>  50, y => 656, size =>  7 },
