@@ -36,6 +36,7 @@ __PACKAGE__->add_columns(
 
 __PACKAGE__->set_primary_key('id');
 __PACKAGE__->belongs_to('qualification' => 'CRP::Model::Schema::Result::Qualification', 'qualification_required_id');
+__PACKAGE__->has_many('instructor_qualification' => 'CRP::Model::Schema::Result::InstructorQualification', {'foreign.qualification_id' => 'self.qualification_required_id'} );
 
 sub sqlt_deploy_hook {
     my ($self, $sqlt_table) = @_;

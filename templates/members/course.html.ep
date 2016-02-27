@@ -23,6 +23,23 @@
             <%= include 'parts/error', field => 'venue' %>
         </div>
 
+        <label for="course_type_id">Course type:
+        </label>
+        <div class="input-container">
+            % my @course_type_options = map { [$_->description => $_->id] } @{stash('available_course_types')};
+            % my @course_type_disabler = @disabler;
+            % if(@course_type_options == 1) {
+            %    @course_type_disabler = qw(disabled disabled);
+            % } else {
+            %    unshift @course_type_options, ['Please select...' => ''];
+            % }
+            %= select_field course_type_id => \@course_type_options, @course_type_disabler;
+            % if($course_type_disabler[1]) {
+            %=  hidden_field course_type_id => param('course_type_id') || $course_type_options[0]->[1];
+            % }
+            <%= include 'parts/error', field => 'course_type_id' %>
+        </div>
+
         <label for="location-input-location">Location:</label>
         <div class="input-container">
             %= text_field 'location' => $course->location, onblur => 'locationInputHandler.codeAddress()', id => 'location-input-location', @disabler;

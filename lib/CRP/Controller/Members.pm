@@ -219,16 +219,54 @@ sub courses {
     my $profile = $c->crp->load_profile;
     my $days = $c->config->{course}->{age_when_advert_expires_days};
     my $courses = $profile->courses;
-    $c->stash(advertised_list   => _date_order_list(scalar $courses->get_advertised_set($days)));
-    $c->stash(draft_list        => _date_order_list(scalar $courses->get_draft_set));
-    $c->stash(past_list         => _date_order_list(scalar $courses->get_past_set($days)));
-    $c->stash(canceled_list     => _date_order_list(scalar $courses->get_canceled_set($days)));
+    $c->stash(
+        advertised_list         => _date_order_list(scalar $courses->get_advertised_set($days)),
+        draft_list              => _date_order_list(scalar $courses->get_draft_set),
+        past_list               => _date_order_list(scalar $courses->get_past_set($days)),
+        canceled_list           => _date_order_list(scalar $courses->get_canceled_set($days)),
+        available_course_types  => $c->_available_course_types($profile),
+    );
 }
 
 sub _date_order_list {
     my($result_set) = @_;
 
     return [ $result_set->search(undef, { order_by => {-asc => 'start_date'} }) ];
+}
+
+sub _available_course_types {
+    my $c = shift;
+    my($profile) = @_;
+
+    my @course_types = $c->crp->model('CourseType')->search(
+        { 'instructor_qualification.instructor_id' => $profile->instructor_id },
+        {
+            join    => 'instructor_qualification',
+            columns => [qw(id abbreviation description qualification_required_id)],
+            distinct=> 1,
+            order_by=> 'id',
+        }
+    );
+
+    return [] unless @course_types;
+
+    my @trainee_qualifications = grep { $_->is_trainee } $profile->qualifications;
+
+    return \@course_types unless @trainee_qualifications;
+
+    my %trainee_qualification = map { $_->qualification_id => 1 } @trainee_qualifications;
+
+    my %available_course_type = map { $_->id => $_ } @course_types;
+
+    foreach my $course ($profile->courses) {
+        next if $course->canceled;
+        next unless exists $trainee_qualification{$course->course_type->qualification_required_id};
+        foreach my $course_type (@course_types) {
+            delete $available_course_type{$course_type->id} if $course_type->qualification_required_id == $course->course_type->qualification_required_id;
+        }
+    }
+
+    return [ sort { $b->id <=> $a->id } values %available_course_type ];
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -301,9 +339,10 @@ sub _load_course_from_params {
         start_date          => CRP::Util::Misc::get_date_input($c->crp->trimmed_param('start_date')),
         time                => $c->crp->trimmed_param('time'),
         price               => $c->crp->trimmed_param('price'),
-        book_excluded       => $c->param('include_book') eq 'Y' ? 'N' : 'Y',
+        book_excluded       => $c->param('include_book') // '' eq 'Y' ? 'N' : 'Y',
         session_duration    => $c->crp->trimmed_param('session_duration'),
         course_duration     => $c->crp->trimmed_param('course_duration'),
+        course_type_id      => $c->crp->trimmed_param('course_type_id') || 0,
     };
 
     foreach my $column (keys %$record) {
@@ -316,10 +355,24 @@ sub _load_course_from_params {
             die $error if $error;
         }
     }
-    if( ! $course->published) {
-        $validation->error(start_date => ['future_date'])
-            unless $record->{start_date} && $record->{start_date} >= DateTime->now;
+    if( ! $course->published && $record->{start_date}) {
+        if($record->{start_date} < DateTime->now) {
+            $validation->error(start_date => ['future_date']);
+        }
+        else {
+            my $course_type_id = $record->{course_type_id};
+            if($course_type_id) {
+                my $qualification_required_id = $c->crp->model('CourseType')->find($course_type_id)->qualification_required_id;
+                foreach my $qualification($profile->qualifications) {
+                    if($qualification->qualification_id == $qualification_required_id) {
+                        $validation->error(start_date => ['before_qualification']) unless $record->{start_date} > $qualification->passed_date;
+                        last;
+                    }
+                }
+            }
+        }
     }
+    $validation->error(course_type_id => ['no_course_type']) unless $record->{course_type_id};
 
     return $validation;
 }
@@ -348,9 +401,14 @@ sub _display_course_editor_with {
     my($course) = @_;
 
     my $profile = $c->crp->load_profile;
-    $c->stash(site_profile => $profile);
-    $c->stash('course_record', $course);
-    $c->param('include_book', $course->book_excluded ? '' : 'Y');
+    $c->param(course_type_id => $course->course_type_id // '');
+    $c->param(include_book   => $course->book_excluded ? '' : 'Y');
+    $c->stash(
+        site_profile            => $profile,
+        course_record           => $course,
+        include_book            => $course->book_excluded ? '' : 'Y',
+        available_course_types  => $c->_available_course_types($profile),
+    );
     $c->stash('edit_restriction', 'PUBLISHED') if $course->published;
 }
 

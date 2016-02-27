@@ -32,6 +32,7 @@ __PACKAGE__->add_columns(
 
 __PACKAGE__->set_primary_key('id');
 __PACKAGE__->has_many(instructor_qualifications => 'CRP::Model::Schema::Result::InstructorQualification', 'qualification_id');
+__PACKAGE__->has_many(course_types              => 'CRP::Model::Schema::Result::CourseType', 'qualification_required_id');
 
 
 __PACKAGE__->set_primary_key('id');

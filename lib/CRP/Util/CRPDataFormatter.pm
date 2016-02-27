@@ -59,7 +59,7 @@ sub _extract_crp_qualification_data {
     $data->{_mark_trainee} = 1;
     return unless $profile;
     my $qualifications_desc = '';
-    my @qualifications = $profile->login->qualifications;
+    my @qualifications = $profile->qualifications;
     if(@qualifications) {
         my $most_recent_date;
         foreach my $qualification (@qualifications) {

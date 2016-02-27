@@ -1,4 +1,8 @@
-
+ 
+ - Get Course types where there is a past qualification or there is a future qualification for which no course is already created and not deleted or cancelled.
+ 
+ 
+ 
 + Booking forms (generic PDF, course PDF, online) say don't bring child after immunisations, should be if unwell (or similar)
 
 + Preliminary changes for EYP course
@@ -63,7 +67,7 @@
         ~ Show which qualifications are included
         X Should we have separate certificates? Probably not
     + New versions of at least some of the course PDFs, shown correctly for the course type
-    + Some PDFs need to show qualifcations and/or trainee status
+    ~ Some PDFs need to show qualifcations and/or trainee status
         ~ QR Business cards
         ~ Business cards
         ~ Headed paper
@@ -93,6 +97,13 @@
         ~ stats should show trainees and qualified instructors separately.
         + stats link to lists of trainees
         + stats link to list of qualified instructors
+    ~ When an instructor adds a course, the details need to include the course type
+        ~ If they have multiple qualifications they can select which type it is (not editable after publishing)
+        ~ If they only have one qualification then the course is that type and there's no selector
+        ~ All courses must be dated after the corresponding qualification date
+        ~ Can only publish one course for a future-dated qualification
+    + Course detail panel in templates should include course type
+        + Shows on "download course docs" page
     + PDFs for instructor courses need changing to indicate qualification they are for (possibly different PDF for each)
     + Course advertisement page on web site must say type (also on on-line booking page)
     + Course location search to find parent courses
@@ -117,13 +128,6 @@
         + The hidden list of instructors for Google shouldn't include trainees
         + Search the code and templates for "demo" to double-check if anything else needs doing
     ~ Members area should show the logged in member what qualifications they have
-    + When an instructor adds a course, the details need to include the course type
-        + If they have multiple qualifications they can select which type it is (not editable after publishing)
-        + If they only have one qualification then the course is that type and there's no selector
-        + All courses must be dated after the corresponding qualification date
-        + Can only publish one course for a future-dated qualification
-    + Course detail panel in templates should include course type
-        + Shows on "download course docs" page
     + Add Claire's reading list:
         - Books:
             - Neurotribes: The Legacy of Autism and How to Think Smarter About People Who Think Differently by S Silberman (2015) ISBN: 1760113646
@@ -233,8 +237,10 @@
 + More FB opengraph stuff
 	+ Home page
 
-+ Advertise instructors courses
-    + Refactor duplicate code from the course models into a common module
++ Refactoring
+    + Move duplicate code from the instructor and ordinary course models into a common module
+    + CRP::Controller::Members::_display_course_editor_with() should load the course into $c->param rather than passing the course_record to the template
+    + CRP::Controller::Trainers::_display_course_editor_with() should load the course into $c->param rather than passing the course_record to the template
 
 + Add links to AOR (Friend membership) and Lexie's (?) parenty thing
 
