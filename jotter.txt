@@ -82,7 +82,7 @@
     ~ Admin pages for instructor training courses
         ~ Show course type in descriptions in lists
         ~ New field to set qualification type when adding a course (not editable after publishing)
-    + Admin page for qualifications
+    ~ Admin page for qualifications
         ~ List qualifications
             ~ Show number of holders and trainees
         ~ Edit qualification details
@@ -115,6 +115,7 @@
         + Instructor searches shouldn't find trainees
         + The hidden list of instructors for Google shouldn't include trainees
         + Search the code and templates for "demo" to double-check if anything else needs doing
+    ~ Members area should show the logged in member what qualifications they have
     + When an instructor adds a course, the details need to include the course type
         + If they have multiple qualifications they can select which type it is (not editable after publishing)
         + If they only have one qualification then the course is that type and there's no selector
@@ -122,6 +123,28 @@
         + Can only publish one course for a future-dated qualification
     + Course detail panel in templates should include course type
         + Shows on "download course docs" page
+    + Add Claire's reading list:
+        - Books:
+            - Neurotribes: The Legacy of Autism and How to Think Smarter About People Who Think Differently by S Silberman (2015) ISBN: 1760113646
+            - The A-Z Reference Book of Syndromes and Inherited Disorders by P Gilbert (2003) ISBN: 9780748734740
+            - The Man Who Couldn't Stop: The Truth About OCD by D Adam (2015) ISBN: 1447277686
+            - The Oxford Handbook of Learning and Intellectual Disability Nursing  Ed. B Gates (2009) ISBN :0199533229
+            - Valuing People with a learning disability by Dr S Mee (2012) ISBN: 1905539665
+        - Online resources:
+            - Autistic Spectrum Disorders:
+                - NAS: www.autism.org.uk 
+            - Cerebral Palsy:
+                - SCOPE: www.scope.org.uk/support/families/diagnosis/cerebral-palsy 
+            - Down Syndrome:
+                - DSA:  www.downs-syndrome.org.uk/about-downs-syndrome 
+            - General Information:
+                - MENCAP: www.mencap.org.uk/about-learning-disability
+                - BILD: www.bild.org.uk/information/faqs/
+                - http://www.specialneedsjungle.com/patientinform-snj/patientinform-send-medical-research/
+            - Mental Health:
+                - www.mentalhealth.org.uk/a-to-z/c/children-and-young-people
+                - www.youngminds.org.uk
+
 + Shop
     + Packs for AN course
     + Books

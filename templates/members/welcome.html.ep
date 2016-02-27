@@ -56,6 +56,25 @@
                 </tr>
                 % }
             </table>
+            <table class="list1" style="max-width: 300px;">
+                <tr><th colspan="2">Qualifications</th></tr>
+                % my @qualifications = $profile->login->qualifications;
+                % if(@qualifications) {
+                    % foreach my $qualification (@qualifications) {
+                    <tr>
+                        <td nowrap="nowrap">
+                            <%= $qualification->passed_date ? $c->crp->format_date($qualification->passed_date, 'short') : '' %>
+                            <%= $qualification->is_trainee ? '(Trainee)' : '' %>
+                        </td>
+                        <td>
+                            <%= $qualification->qualification->qualification; %>
+                        </td>
+                    </tr>
+                    % }
+                % } else {
+                    <tr><td colspan="2">None yet!</th></tr>
+                % }
+            </table>
         </td>
     </tr>
 </table>
