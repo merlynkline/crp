@@ -4,7 +4,7 @@
     filename => 'QR Business cards',
     items => [
         { action => 'text', text => '[% name %]',          x => 277, y => 748, size => 16, align => 'right', font => 'Helvetica-Bold' },
-        { action => 'text', text => 'Qualified Instructor',x => 277, y => 730, size => 14, align => 'right' },
+        { action => 'text', text => '[% qualifications %]',x => 277, y => 734, size =>  8, align => 'right' },
         { action => 'text', text => '[% phone_numbers %]', x => 238, y => 684, size => 10, align => 'right', font => 'Helvetica-Bold' },
         { action => 'text', text => '[% email %]',         x => 238, y => 672, size =>  7, align => 'right' },
         { action => 'text', text => '[% url %]',           x => 238, y => 663, size =>  7, align => 'right' },

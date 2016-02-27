@@ -63,7 +63,8 @@
         ~ Show which qualifications are included
         X Should we have separate certificates? Probably not
     + New versions of at least some of the course PDFs, shown correctly for the course type
-    + Some PDFs need to show qualifcations
+    + Some PDFs need to show qualifcations and/or trainee status
+        ~ QR Business cards
         + Business cards
         + Headed paper
         + Comp slips
