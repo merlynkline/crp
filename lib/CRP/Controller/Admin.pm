@@ -210,9 +210,9 @@ sub certificate {
     my $c = shift;
 
     my $id = $c->param('id') || shift || return $c->welcome;
-    my $qualification_id = $c->param('qualification_id') || 1;
+    my $code = $c->param('code') || '';
     my $login = $c->crp->model('Login')->find($id) || return $c->welcome;
-    my $pdf = $c->app->home->rel_file("pdfs/Qualification_Certificate_$qualification_id.pdf");
+    my $pdf = $c->app->home->rel_file("pdfs/Qualification_Certificate_$code.pdf");
     return $c->reply->not_found unless -r $pdf;
 
     my $pdf_doc = CRP::Util::PDFMarkUp->new(file_path => $pdf);

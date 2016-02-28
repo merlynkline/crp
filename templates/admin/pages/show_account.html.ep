@@ -90,7 +90,7 @@ Actions:
                 <%= $qualification->is_trainee ? '(Trainee)' : '' %>
                 <%= $qualification->qualification->qualification; %>
                 <br/>
-                <a class="standard-button" href="<%= url_for('crp.admin.certificate')->query(id => $login->id, qualification_id => $qualification->qualification_id) %>">Certificate</a>
+                <a class="standard-button" href="<%= url_for('crp.admin.certificate')->query(id => $login->id, code => $qualification->qualification->code) %>">Certificate</a>
                 % if($qualification->is_trainee) {
                 &nbsp;&nbsp;|&nbsp;&nbsp;
                 %= form_for 'crp.admin.delete_instructor_qualification' => (method => 'POST', style => 'display: inline-block;') => begin
