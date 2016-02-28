@@ -24,6 +24,37 @@
         
 
 + New AN courses
+    + New versions of at least some of the course PDFs, shown correctly for the course type
+    + Update web site
+        + "Home" page: short mention of AN
+        + "Programme" page: more mention of AN. Split into two pages.
+        + "Courses" page: more mention of AN. Split into two pages.
+        + "Instructors" page: more mention of AN, details of course type in course description. Split into two pages.
+    + PDFs for instructor courses need changing to indicate qualification they are for (possibly different PDF for each)
+    + Some new course types may need a different advertisement page and on-line booking form (including PDF version)
+    + Course location search to find parent courses
+        + Allow searching by course type
+        + Show instructors' names in results
+        + Should be a GET request rather than POST (without CSRF)
+    + Shop
+        + Packs for AN course
+        + Books
+        + Some things need to have restricted availability (e.g. packs only available to people who've done the right course)
+    + Not in the MVP:
+        + Account search improvements
+            + Find demo accounts only
+            + Find trainee accounts only
+            + Find accounts with specific/no qualifications
+        + Main admin page:
+            + stats link to lists of trainees
+            + stats link to list of qualified instructors
+        + Facilities to maintain course types
+            + List them
+            + Add new ones
+            + Edit them
+            + Delete unused ones
+        + Instructor searches shouldn't find trainees
+        + The hidden list of instructors for Google shouldn't include trainees
     ~ New qualification table in DB
         ~ ID
         ~ Qualification (name)
@@ -63,7 +94,6 @@
         ~ Date will need to be calculated differently
         ~ Show which qualifications are included
         X Should we have separate certificates? Probably not
-    + New versions of at least some of the course PDFs, shown correctly for the course type
     ~ Some PDFs need to show qualifcations and/or trainee status
         ~ QR Business cards
         ~ Business cards
@@ -72,11 +102,6 @@
         ~ ID cards
     ~ Instructor courses page will need to indicate what type of instructor course it is
         X Possibly add filtering to show only certain course types
-    + Update web site
-        + "Home" page: short mention of AN
-        + "Programme" page: more mention of AN. Split into two pages.
-        + "Courses" page: more mention of AN. Split into two pages.
-        + "Instructors" page: more mention of AN, details of course type in course description. Split into two pages.
     ~ Admin pages for instructor training courses
         ~ Show course type in descriptions in lists
         ~ New field to set qualification type when adding a course (not editable after publishing)
@@ -96,32 +121,9 @@
     ~ Course detail panel in templates should include course type
         ~ Shows on "download course docs" page
     ~ Course search results should show course type
-    + PDFs for instructor courses need changing to indicate qualification they are for (possibly different PDF for each)
-    + Some new course types may need a different advertisement page and on-line booking form (including PDF version)
     ~ Course advertisement page on web site must say type (also on on-line booking page)
-    + Course location search to find parent courses
-        + Allow searching by course type
-        + Show instructors' names in results
-        + Should be a GET request rather than POST (without CSRF)
-    + Allow an account to exist with no current qualifications
-        - Future qualifications may be present
-        - Based on demo account
-        ~ Certificate page on instructor's personal site
-            ~ Must be a special case "trainee (not yet qualified)"
-            ~ Future qualifcations may be listed with indication that they aren't yet current
-        ~ Personal web page must not say "qualified instructor" but "trainee (not yet qualified)"
-        ~ Can't publish any courses (except for one for a future qualification)
-        ~ Membership certificate shouldn't be available or should have 'not valid' in the date or similar
-        ~ Non-course-specific PDFS could be watermarked "Trainee" like a demo account (could be both!)
-        ~ PDFS showing qualifications should instead say "Trainee"
-        + Shop should have purchase buttons removed "(Purchase buttons removed until you qualify)"
-        + Article in FAQs describing how this works
-        ~ Disabled buttons (e.g. course publish) need appropriate tooltips
-        + Instructor searches shouldn't find trainees
-        + The hidden list of instructors for Google shouldn't include trainees
-        + Search the code and templates for "demo" to double-check if anything else needs doing
     ~ Members area should show the logged in member what qualifications they have
-    + Add Claire's reading list:
+    ~ Add Claire's reading list:
         - Books:
             - Neurotribes: The Legacy of Autism and How to Think Smarter About People Who Think Differently by S Silberman (2015) ISBN: 1760113646
             - The A-Z Reference Book of Syndromes and Inherited Disorders by P Gilbert (2003) ISBN: 9780748734740
@@ -142,24 +144,22 @@
             - Mental Health:
                 - www.mentalhealth.org.uk/a-to-z/c/children-and-young-people
                 - www.youngminds.org.uk
-    + Not in the MVP:
-        + Account search improvements
-            + Find demo accounts only
-            + Find trainee accounts only
-            + Find accounts with specific/no qualifications
-        + Main admin page:
-            + stats link to lists of trainees
-            + stats link to list of qualified instructors
-        + Facilities to maintain course types
-            + List them
-            + Add new ones
-            + Edit them
-            + Delete unused ones
+    + Allow an account to exist with no current qualifications
+        - Future qualifications may be present
+        - Based on demo account
+        ~ Certificate page on instructor's personal site
+            ~ Must be a special case "trainee (not yet qualified)"
+            ~ Future qualifcations may be listed with indication that they aren't yet current
+        ~ Personal web page must not say "qualified instructor" but "trainee (not yet qualified)"
+        ~ Can't publish any courses (except for one for a future qualification)
+        ~ Membership certificate shouldn't be available or should have 'not valid' in the date or similar
+        ~ Non-course-specific PDFS could be watermarked "Trainee" like a demo account (could be both!)
+        ~ PDFS showing qualifications should instead say "Trainee"
+        + Shop should have purchase buttons removed "(Purchase buttons removed until you qualify)"
+        ~ Article in FAQs describing how this works
+        ~ Disabled buttons (e.g. course publish) need appropriate tooltips
+        + Search the code and templates for "demo" to double-check if anything else needs doing
 
-+ Shop
-    + Packs for AN course
-    + Books
-    + Some things need to have restricted availability (e.g. packs only available to people who've done the right course)
 ? How will we add the nursery course
 
 

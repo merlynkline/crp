@@ -13,6 +13,7 @@
 %       {id => 'csv',       title => 'CSV Files'},
 %       {id => 'dbs',       title => 'DBS/CRB checks'},
 %       {id => 'mymop',     title => 'MYMOP forms'},
+%       {id => 'trainees',  title => 'Trainees'},
 %       {id => 'reading',   title => 'Extra reading'},
 %       {id => 'updates',   title => 'Site updates'},
 %   ];
