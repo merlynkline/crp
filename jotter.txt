@@ -42,7 +42,7 @@
     + Shop
         + Packs for AN course
         + Books
-        + Some things need to have restricted availability (e.g. packs only available to people who've done the right course)
+        ~ Some things need to have restricted availability (e.g. packs only available to people who've done the right course)
     + Not in the MVP:
         + Account search improvements
             + Find demo accounts only
@@ -158,10 +158,10 @@
         ~ Membership certificate shouldn't be available or should have 'not valid' in the date or similar
         ~ Non-course-specific PDFS could be watermarked "Trainee" like a demo account (could be both!)
         ~ PDFS showing qualifications should instead say "Trainee"
-        + Shop should have purchase buttons removed "(Purchase buttons removed until you qualify)"
+        ~ Shop should have purchase buttons removed "(Purchase buttons removed until you qualify)"
         ~ Article in FAQs describing how this works
         ~ Disabled buttons (e.g. course publish) need appropriate tooltips
-        + Search the code and templates for "demo" to double-check if anything else needs doing
+        ~ Search the code and templates for "demo" to double-check if anything else needs doing
 
 ? How will we add the nursery course
 
@@ -250,6 +250,7 @@
     + Move duplicate code from the instructor and ordinary course models into a common module
     + CRP::Controller::Members::_display_course_editor_with() should load the course into $c->param rather than passing the course_record to the template
     + CRP::Controller::Trainers::_display_course_editor_with() should load the course into $c->param rather than passing the course_record to the template
+    + Move business logic off shop template and into code
 
 + Add links to AOR (Friend membership) and Lexie's (?) parenty thing
 

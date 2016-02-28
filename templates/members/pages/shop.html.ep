@@ -1,6 +1,8 @@
 %#<!DOCTYPE html>
 % layout 'member_default', page_id => 'shop';
 % title 'Shop';
+% my $profile = stash('profile_record');
+% my %quals = map { $_->qualification->code => 1 } $profile->qualifications->get_passed_set;
 % my $view_cart = sub {
                     <td nowrap="nowrap">
                         <form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post" >
@@ -37,6 +39,8 @@
                 <tr>
                     % if(stash('is_demo')) {
                     <td style="background: #ddd; padding: 2px 4px; font-size: 12px; color: #666; border: 1px solid #666;">(Purchase buttons removed for demonstration)</td>
+                    % } elsif( ! %quals) {
+                    <td style="background: #ddd; padding: 2px 4px; font-size: 12px; color: #666; border: 1px solid #666;">(Purchase buttons removed until you qualify)</td>
                     % } else {
                     % $price_display->($price);
                     % $add_to_cart->($button_id);
@@ -47,7 +51,12 @@
 % };
 %
 % my $standard_item = sub {
-%   my($button_id, $price, $title, $width, $height, $image, $description) = @_;
+%   my($button_id, $required_quals, $price, $title, $width, $height, $image, $description) = @_;
+%   my $has_quals;
+%   foreach my $check_qual (@$required_quals) {
+%       $has_quals = 1 if $quals{$check_qual};
+%   }
+%   return unless $has_quals || @$required_quals == 0 || ! %quals || stash('is_demo');
     <tr><td colspan="3"><h2><%= $title %></h2></td></tr>
     <tr>
         <td style="vertical-align: top; padding: 0 12px 0 0;">
@@ -60,6 +69,7 @@
     </tr>
 % };
 <h1>Members' supplies</h1>
+[<%= %quals ? "some" : "none" %>]
 <p>
 This is just the most essential supplies for running your
 courses but we will be growing our product range as quickly
@@ -70,8 +80,8 @@ change your order.
 </p>
 <p>
 <table>
-    % $standard_item->('BBRFSJEDVLNNL', '£15.00', "Parent/Carer's pack", 400, 208, '/images/Photos/ParentPack.JPG', "Everything you need for one parent or carer on one of your courses. Includes a complete set of protocol handouts, a certificate for you to give out on completion and a copy of the book, The Mouse's House.");
-    % $standard_item->('4JBUMHWQQR9A6', '£6.50', "Pair of soft baby feet", 233, 208, '/images/Photos/SoftFeet1.jpg', "A pair of TCRP soft foam baby feet suitable for demonstration and practice of reflexology techniques.");
+    % $standard_item->('BBRFSJEDVLNNL', ['TCRP'], '£15.00', "Parent/Carer's pack", 400, 208, '/images/Photos/ParentPack.JPG', "Everything you need for one parent or carer on one of your courses. Includes a complete set of protocol handouts, a certificate for you to give out on completion and a copy of the book, The Mouse's House.");
+    % $standard_item->('4JBUMHWQQR9A6', [], '£6.50', "Pair of soft baby feet", 233, 208, '/images/Photos/SoftFeet1.jpg', "A pair of TCRP soft foam baby feet suitable for demonstration and practice of reflexology techniques.");
 </table>
 
 
