@@ -40,7 +40,7 @@ available near you in the future, please
             <td nowrap><a href="<%= $url %>" class="simple-link"><%= $c->crp->format_date($course->start_date, 'short') %></a></td>
             <td nowrap><a href="<%= $url %>" class="simple-link"><%= $course->time %></a></td>
             <td><a href="<%= $url %>" class="simple-link"><%= $course->venue %></a></td>
-            <td><a href="<%= $url %>" class="simple-link"><%= $course->description %></a></td>
+            <td><a href="<%= $url %>" class="simple-link"><%= $course->description %></a><span class="supplementary-info" style="color: inherit;"><br /><%= $course->course_type->description %></span></td>
         </tr>
 % }
 </table>

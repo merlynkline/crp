@@ -257,7 +257,10 @@ sub location_search {
             $longitude,
             $c->config->{'instructor_search_distance'},
             {},
-            { order_by => {-asc => 'start_date'} },
+            {
+                order_by => {-asc => 'start_date'},
+                prefetch => 'course_type',
+            },
         );
 
         my @instructors_list = $c->crp->model('Profile')->search_near_location(

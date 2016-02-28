@@ -1,7 +1,4 @@
  
- - Get Course types where there is a past qualification or there is a future qualification for which no course is already created and not deleted or cancelled.
- 
- 
  
 + Booking forms (generic PDF, course PDF, online) say don't bring child after immunisations, should be if unwell (or similar)
 
@@ -80,10 +77,6 @@
         + "Programme" page: more mention of AN. Split into two pages.
         + "Courses" page: more mention of AN. Split into two pages.
         + "Instructors" page: more mention of AN, details of course type in course description. Split into two pages.
-    + Account search improvements
-        + Find demo accounts only
-        + Find trainee accounts only
-        + Find accounts with specific/no qualifications
     ~ Admin pages for instructor training courses
         ~ Show course type in descriptions in lists
         ~ New field to set qualification type when adding a course (not editable after publishing)
@@ -93,10 +86,8 @@
         ~ Edit qualification details
         ~ Only delete qualifications not in use
         ~ Add new qualifications
-    + Main admin page:
+    ~ Main admin page:
         ~ stats should show trainees and qualified instructors separately.
-        + stats link to lists of trainees
-        + stats link to list of qualified instructors
     ~ When an instructor adds a course, the details need to include the course type
         ~ If they have multiple qualifications they can select which type it is (not editable after publishing)
         ~ If they only have one qualification then the course is that type and there's no selector
@@ -104,8 +95,10 @@
         ~ Can only publish one course for a future-dated qualification
     ~ Course detail panel in templates should include course type
         ~ Shows on "download course docs" page
+    ~ Course search results should show course type
     + PDFs for instructor courses need changing to indicate qualification they are for (possibly different PDF for each)
-    + Course advertisement page on web site must say type (also on on-line booking page)
+    + Some new course types may need a different advertisement page and on-line booking form (including PDF version)
+    ~ Course advertisement page on web site must say type (also on on-line booking page)
     + Course location search to find parent courses
         + Allow searching by course type
         + Show instructors' names in results
@@ -117,13 +110,13 @@
             ~ Must be a special case "trainee (not yet qualified)"
             ~ Future qualifcations may be listed with indication that they aren't yet current
         ~ Personal web page must not say "qualified instructor" but "trainee (not yet qualified)"
-        + Can't publish any courses (except for one for a future qualification)
+        ~ Can't publish any courses (except for one for a future qualification)
         ~ Membership certificate shouldn't be available or should have 'not valid' in the date or similar
         ~ Non-course-specific PDFS could be watermarked "Trainee" like a demo account (could be both!)
-        + PDFS showing qualifications should instead say "Trainee"
+        ~ PDFS showing qualifications should instead say "Trainee"
         + Shop should have purchase buttons removed "(Purchase buttons removed until you qualify)"
         + Article in FAQs describing how this works
-        + Disabled buttons (e.g. course publish) need appropriate tooltips
+        ~ Disabled buttons (e.g. course publish) need appropriate tooltips
         + Instructor searches shouldn't find trainees
         + The hidden list of instructors for Google shouldn't include trainees
         + Search the code and templates for "demo" to double-check if anything else needs doing
@@ -149,6 +142,19 @@
             - Mental Health:
                 - www.mentalhealth.org.uk/a-to-z/c/children-and-young-people
                 - www.youngminds.org.uk
+    + Not in the MVP:
+        + Account search improvements
+            + Find demo accounts only
+            + Find trainee accounts only
+            + Find accounts with specific/no qualifications
+        + Main admin page:
+            + stats link to lists of trainees
+            + stats link to list of qualified instructors
+        + Facilities to maintain course types
+            + List them
+            + Add new ones
+            + Edit them
+            + Delete unused ones
 
 + Shop
     + Packs for AN course
