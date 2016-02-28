@@ -25,7 +25,7 @@
 + New AN courses
     ~ Add indexed 'code' columns to the qualification and course_type tables
         ~ Set up codes for existing entries
-        + Fix qualification editor: can't edit code, can't add duplicate code
+        ~ Fix qualification editor: can't edit code, can't add duplicate code
         - Used to identify resources (shop items, PDFs, pages etc) associated with specific course types and qualifications
     + New versions of at least some of the course PDFs, shown correctly for the course type
     + Update web site

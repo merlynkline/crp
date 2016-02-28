@@ -4,6 +4,7 @@
 %   create_record           => "Sorry - we couldn't record your information. Please try again",
 %   confirm_delete          => "Please tick the tickbox to confirm you want to delete this qualification",
 %   before_qualification    => 'Please enter a date after you qualify to teach this course',
+%   duplicate_code          => 'That code is already in use. Please choose another',
 %   duplicate_email         => 'That email address is already registered',
 %   file_too_large          => 'Sorry - that file is too large. Please choose another',
 %   future_date             => 'Please enter a date in the future',

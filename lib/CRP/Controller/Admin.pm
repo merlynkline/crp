@@ -338,6 +338,7 @@ sub edit_qualification {
     my $qualification = $c->crp->model('Qualification')->find($id) || return $c->welcome;
     $c->param(abbreviation  => $qualification->abbreviation);
     $c->param(qualification => $qualification->qualification);
+    $c->param(code          => $qualification->code);
     return $c->page('edit_qualification');
 }
 
@@ -363,6 +364,12 @@ sub save_qualification {
     my $qualification_name = $c->crp->trimmed_param('qualification');
     $validation->error('qualification', ['invalid_column_MinLen']) unless length $qualification_name >= 10;
     $validation->error('qualification', ['invalid_column_MaxLen']) unless length $qualification_name <= 100;
+    my $code;
+    if( ! $id) {
+        $validation->required('code');
+        $code = $c->crp->trimmed_param('code');
+        $validation->error('code', ['duplicate_code']) if $c->crp->model('Qualification')->find({code => $code});
+    }
     return $c->page('edit_qualification') if $validation->has_error;
 
     my $qualification = ($id
@@ -372,6 +379,7 @@ sub save_qualification {
 
     $qualification->abbreviation($abbreviation);
     $qualification->qualification($qualification_name);
+    $qualification->code($code) unless $id;
     $qualification->update_or_insert;
 
     return $c->redirect_to($c->url_for('crp.admin_default'));

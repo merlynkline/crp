@@ -2,6 +2,7 @@
 % my $title = (param('id') ? 'Edit' : 'Add') . ' qualification';
 % layout 'member_default';
 % title $title;
+% my @disabler; @disabler = qw(disabled disabled) if param('id');
 <%= include 'parts/message_box', msg => flash('msg') || stash('msg'), auto_hide => 1 %>
 <h1><%= $title %></h1>
 %= form_for 'crp.admin.save_qualification' => (method => 'POST') => begin
@@ -12,7 +13,7 @@
     <label for="abbreviation">Abbreviation:
     </label>
     <div class="input-container">
-        %= text_field 'abbreviation', id => 'abbreviation', maxlength => 30,  autofocus => 'autofocus', required => 'required';
+        %= text_field 'abbreviation', id => 'abbreviation', maxlength => 30, autofocus => 'autofocus', required => 'required';
         <%= include 'parts/error', field => 'abbreviation' =%>
     </div>
 
@@ -21,6 +22,13 @@
     <div class="input-container">
         %= text_field 'qualification', id => 'qualification', maxlength => 100, required => 'required', size => 55;
         <%= include 'parts/error', field => 'qualification' =%>
+    </div>
+
+    <label for="code">Code:
+    </label>
+    <div class="input-container">
+        %= text_field 'code', id => 'code', maxlength => 15, required => 'required', size => 10, @disabler;
+        <%= include 'parts/error', field => 'code' =%>
     </div>
 
     <label>&nbsp;</label>
