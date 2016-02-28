@@ -12,7 +12,7 @@ CREATE TABLE "course_type" (
   PRIMARY KEY ("id")
 );
 CREATE INDEX "course_type_idx_qualification_required_id" on "course_type" ("qualification_required_id");
-CREATE INDEX "qualification_qualification_required_id_idx" on "course_type" ("qualification_required_id");
+CREATE INDEX "course_type_qualification_required_id_idx" on "course_type" ("qualification_required_id");
 
 ;
 ALTER TABLE "course_type" ADD CONSTRAINT "course_type_fk_qualification_required_id" FOREIGN KEY ("qualification_required_id")

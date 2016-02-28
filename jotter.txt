@@ -1,5 +1,4 @@
  
- 
 + Booking forms (generic PDF, course PDF, online) say don't bring child after immunisations, should be if unwell (or similar)
 
 + Preliminary changes for EYP course
@@ -24,6 +23,10 @@
         
 
 + New AN courses
+    ~ Add indexed 'code' columns to the qualification and course_type tables
+        ~ Set up codes for existing entries
+        + Fix qualification editor: can't edit code, can't add duplicate code
+        - Used to identify resources (shop items, PDFs, pages etc) associated with specific course types and qualifications
     + New versions of at least some of the course PDFs, shown correctly for the course type
     + Update web site
         + "Home" page: short mention of AN
@@ -50,8 +53,8 @@
             + stats link to list of qualified instructors
         + Facilities to maintain course types
             + List them
-            + Add new ones
-            + Edit them
+            + Add new ones, forbidding duplicate code
+            + Edit them, can't edit the code
             + Delete unused ones
         + Instructor searches shouldn't find trainees
         + The hidden list of instructors for Google shouldn't include trainees

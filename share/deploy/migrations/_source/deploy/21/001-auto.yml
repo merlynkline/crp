@@ -443,7 +443,7 @@ schema:
           type: NORMAL
         - fields:
             - qualification_required_id
-          name: qualification_qualification_required_id_idx
+          name: course_type_qualification_required_id_idx
           options: []
           type: NORMAL
       name: course_type

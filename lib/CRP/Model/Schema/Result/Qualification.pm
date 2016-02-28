@@ -28,6 +28,10 @@ __PACKAGE__->add_columns(
         data_type           => 'text',
         is_nullable         => 0,
     },
+    code => {
+        data_type           => 'text',
+        is_nullable         => 1,
+    },
 );
 
 __PACKAGE__->set_primary_key('id');
@@ -36,6 +40,14 @@ __PACKAGE__->has_many(course_types              => 'CRP::Model::Schema::Result::
 
 
 __PACKAGE__->set_primary_key('id');
+
+sub sqlt_deploy_hook {
+    my ($self, $sqlt_table) = @_;
+
+    foreach my $column (qw(code)) {
+        $sqlt_table->add_index(name => "qualification_${column}_idx", fields => [$column]);
+    }
+}
 
 1;
 

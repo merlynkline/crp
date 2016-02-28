@@ -1,6 +1,6 @@
 -- 
 -- Created by SQL::Translator::Producer::PostgreSQL
--- Created on Sat Feb  6 22:17:35 2016
+-- Created on Sun Feb 28 20:25:03 2016
 -- 
 ;
 --
@@ -53,8 +53,10 @@ CREATE TABLE "qualification" (
   "id" serial NOT NULL,
   "qualification" text,
   "abbreviation" text NOT NULL,
+  "code" text,
   PRIMARY KEY ("id")
 );
+CREATE INDEX "qualification_code_idx" on "qualification" ("code");
 
 ;
 --
@@ -96,33 +98,12 @@ CREATE TABLE "course_type" (
   "description" text,
   "abbreviation" text NOT NULL,
   "qualification_required_id" integer NOT NULL,
+  "code" text,
   PRIMARY KEY ("id")
 );
 CREATE INDEX "course_type_idx_qualification_required_id" on "course_type" ("qualification_required_id");
 CREATE INDEX "course_type_qualification_required_id_idx" on "course_type" ("qualification_required_id");
-
-;
---
--- Table: instructors_course.
---
-CREATE TABLE "instructors_course" (
-  "id" serial NOT NULL,
-  "instructor_id" integer NOT NULL,
-  "location" text,
-  "latitude" numeric,
-  "longitude" numeric,
-  "venue" text NOT NULL,
-  "description" text NOT NULL,
-  "start_date" timestamptz DEFAULT (now()) NOT NULL,
-  "price" text NOT NULL,
-  "canceled" boolean NOT NULL,
-  "published" boolean NOT NULL,
-  PRIMARY KEY ("id")
-);
-CREATE INDEX "instructors_course_idx_instructor_id" on "instructors_course" ("instructor_id");
-CREATE INDEX "instructor_course_latitude_idx" on "instructors_course" ("latitude");
-CREATE INDEX "instructor_course_longitude_idx" on "instructors_course" ("longitude");
-CREATE INDEX "instructor_course_instructor_id_idx" on "instructors_course" ("instructor_id");
+CREATE INDEX "course_type_code_idx" on "course_type" ("code");
 
 ;
 --
@@ -168,6 +149,31 @@ CREATE INDEX "qualification_instructor_id_idx" on "instructor_qualification" ("i
 
 ;
 --
+-- Table: instructors_course.
+--
+CREATE TABLE "instructors_course" (
+  "id" serial NOT NULL,
+  "instructor_id" integer NOT NULL,
+  "location" text,
+  "latitude" numeric,
+  "longitude" numeric,
+  "venue" text NOT NULL,
+  "description" text NOT NULL,
+  "start_date" timestamptz DEFAULT (now()) NOT NULL,
+  "price" text NOT NULL,
+  "canceled" boolean NOT NULL,
+  "published" boolean NOT NULL,
+  "qualification_id" integer,
+  PRIMARY KEY ("id")
+);
+CREATE INDEX "instructors_course_idx_instructor_id" on "instructors_course" ("instructor_id");
+CREATE INDEX "instructors_course_idx_qualification_id" on "instructors_course" ("qualification_id");
+CREATE INDEX "instructor_course_latitude_idx" on "instructors_course" ("latitude");
+CREATE INDEX "instructor_course_longitude_idx" on "instructors_course" ("longitude");
+CREATE INDEX "instructor_course_instructor_id_idx" on "instructors_course" ("instructor_id");
+
+;
+--
 -- Table: course.
 --
 CREATE TABLE "course" (
@@ -210,11 +216,7 @@ ALTER TABLE "audit" ADD CONSTRAINT "audit_fk_instructor_id" FOREIGN KEY ("instru
 
 ;
 ALTER TABLE "course_type" ADD CONSTRAINT "course_type_fk_qualification_required_id" FOREIGN KEY ("qualification_required_id")
-  REFERENCES "qualification" ("id") DEFERRABLE;
-
-;
-ALTER TABLE "instructors_course" ADD CONSTRAINT "instructors_course_fk_instructor_id" FOREIGN KEY ("instructor_id")
-  REFERENCES "login" ("id") DEFERRABLE;
+  REFERENCES "qualification" ("id") ON DELETE CASCADE ON UPDATE CASCADE DEFERRABLE;
 
 ;
 ALTER TABLE "profile" ADD CONSTRAINT "profile_fk_instructor_id" FOREIGN KEY ("instructor_id")
@@ -226,6 +228,14 @@ ALTER TABLE "instructor_qualification" ADD CONSTRAINT "instructor_qualification_
 
 ;
 ALTER TABLE "instructor_qualification" ADD CONSTRAINT "instructor_qualification_fk_qualification_id" FOREIGN KEY ("qualification_id")
+  REFERENCES "qualification" ("id") ON DELETE CASCADE ON UPDATE CASCADE DEFERRABLE;
+
+;
+ALTER TABLE "instructors_course" ADD CONSTRAINT "instructors_course_fk_instructor_id" FOREIGN KEY ("instructor_id")
+  REFERENCES "login" ("id") DEFERRABLE;
+
+;
+ALTER TABLE "instructors_course" ADD CONSTRAINT "instructors_course_fk_qualification_id" FOREIGN KEY ("qualification_id")
   REFERENCES "qualification" ("id") DEFERRABLE;
 
 ;

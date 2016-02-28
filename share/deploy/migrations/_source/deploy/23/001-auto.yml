@@ -386,8 +386,8 @@ schema:
             - qualification_required_id
           match_type: ''
           name: course_type_fk_qualification_required_id
-          on_delete: ''
-          on_update: ''
+          on_delete: CASCADE
+          on_update: CASCADE
           options: []
           reference_fields:
             - id
@@ -402,6 +402,16 @@ schema:
           is_unique: 0
           name: abbreviation
           order: 3
+          size:
+            - 0
+        code:
+          data_type: text
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: code
+          order: 5
           size:
             - 0
         description:
@@ -444,6 +454,11 @@ schema:
         - fields:
             - qualification_required_id
           name: course_type_qualification_required_id_idx
+          options: []
+          type: NORMAL
+        - fields:
+            - code
+          name: course_type_code_idx
           options: []
           type: NORMAL
       name: course_type
@@ -1272,6 +1287,16 @@ schema:
           order: 3
           size:
             - 0
+        code:
+          data_type: text
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: code
+          order: 4
+          size:
+            - 0
         id:
           data_type: integer
           default_value: ~
@@ -1293,7 +1318,12 @@ schema:
           order: 2
           size:
             - 0
-      indices: []
+      indices:
+        - fields:
+            - code
+          name: qualification_code_idx
+          options: []
+          type: NORMAL
       name: qualification
       options: []
       order: 3
