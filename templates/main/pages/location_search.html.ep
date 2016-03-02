@@ -8,7 +8,7 @@ The Childrens' Reflexology Programme is delivered only by qualified instructors
 who have received the required training and use the official course materials.
 You can use the search form below to find courses and instructors near you.
 </p>
-%= form_for  'crp.location_search' => (method => 'POST') => begin
+%= form_for  'crp.location_search' => (method => 'GET') => begin
     <fieldset>
         <legend>Find courses and instructors</legend>
 
