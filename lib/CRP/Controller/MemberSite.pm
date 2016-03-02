@@ -96,7 +96,9 @@ sub booking_form {
     my $c = shift;
 
     return unless $c->_stash_published_course_and_past_flag_or_404;
-    my $pdf = $c->app->home->rel_file('pdfs/members/booking_form.pdf');
+    my $code = $c->stash('course')->course_type->code;
+    my $pdf = $c->app->home->rel_file("pdfs/members/booking_form-$code.pdf");
+    $pdf = $c->app->home->rel_file('pdfs/members/booking_form.pdf') unless -f $pdf;
     my $pdf_doc = CRP::Util::PDFMarkUp->new(file_path => $pdf);
     my $data = CRP::Util::CRPDataFormatter::format_data($c, {
             profile => $c->stash('site_profile'),
