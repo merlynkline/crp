@@ -24,14 +24,22 @@ version of
 in order to view and print them.
 </p>
 <br clear="right" />
-%= include "members/parts/course_doc", course_id => $course->id, name => 'ads/Poster - simple specific', caption => "Simple poster"
-%= include "members/parts/course_doc", course_id => $course->id, name => 'ads/A3 Poster - simple specific', caption => "A3 version of simple poster"
-%= include "members/parts/course_doc", course_id => $course->id, name => 'ads/Small handout specific', caption => "Small handouts, four to a sheet"
-%= include "members/parts/course_doc", course_id => $course->id, name => 'ads/Poster - Ante Natal Course', caption => "Poster for antenatal course only"
-%= include "members/parts/course_doc", course_id => $course->id, name => 'members/booking_form', caption => "Booking form for your trainees to fill in"
-%= include "members/parts/course_doc", course_id => $course->id, name => 'members/booking_form_A5', caption => "Booking form in A5 format"
-%= include "members/parts/course_doc", course_id => $course->id, name => 'members/register', caption => "Register to check in trainees to each session"
-%= include "members/parts/course_doc", course_id => $course->id, name => 'members/feedback_form', caption => "Feedback form for your trainees to fill in after a course has finished"
-%= include "members/parts/course_doc", course_id => $course->id, name => 'members/feedback_form_A5', caption => "Feedback form in A5 format"
+% my $code = $course->course_type->code;
+% foreach my $document (
+%   ['TCRP',      'ads/Poster - simple specific',      "Simple poster"],
+%   ['TCRP',      'ads/A3 Poster - simple specific',   "A3 version of simple poster"],
+%   ['TCRP',      'ads/Small handout specific',        "Small handouts, four to a sheet"],
+%   ['TCRP',      'ads/Poster - Ante Natal Course',    "Poster for antenatal course only"],
+%   ['TCRP',      'members/booking_form',              "Booking form for your trainees to fill in"],
+%   ['TCRP',      'members/booking_form_A5',           "Booking form in A5 format"],
+%   ['TCRP',      'members/register',                  "Register to check in trainees to each session"],
+%   ['TCRP',      'members/feedback_form',             "Feedback form for your trainees to fill in after a course has finished"],
+%   ['TCRP',      'members/feedback_form_A5',          "Feedback form in A5 format"],
+% ) {
+%   my($selector, $name, $caption) = @$document;
+%   if($code =~ /^$selector$/) {
+%=      include "members/parts/course_doc", course_id => $course->id, name => $name, caption => $caption;
+%   }
+% }
 
 
