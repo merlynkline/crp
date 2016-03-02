@@ -322,7 +322,9 @@ sub instructor_poster {
     my $course = $c->crp->model('InstructorCourse')->find($id);
     return $c->reply->not_found unless $course;
 
-    my $pdf = $c->app->home->rel_file("pdfs/A3 Poster - Instructors pictorial.pdf");
+    my $code = $course->qualification->code;
+    my $pdf = $c->app->home->rel_file("pdfs/InstructorCoursePosterA3-$code.pdf");
+    $pdf = $c->app->home->rel_file("pdfs/A3 Poster - Instructors pictorial.pdf") unless -f $pdf;
     my $pdf_doc = CRP::Util::PDFMarkUp->new(file_path => $pdf);
     $c->render_file(
         data                => $pdf_doc->fill_template({

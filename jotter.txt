@@ -27,14 +27,20 @@
         ~ Set up codes for existing entries
         ~ Fix qualification editor: can't edit code, can't add duplicate code
         - Used to identify resources (shop items, PDFs, pages etc) associated with specific course types and qualifications
-    + New versions of at least some of the course PDFs, shown correctly for the course type
+    + Course PDFs
+        ~ Only show the right ones for each course type
+        + Add new ones for the new course(s)
     + Update web site
         + "Home" page: short mention of AN
         + "Programme" page: more mention of AN. Split into two pages.
         + "Courses" page: more mention of AN. Split into two pages.
         + "Instructors" page: more mention of AN, details of course type in course description. Split into two pages.
-    + PDFs for instructor courses need changing to indicate qualification they are for (possibly different PDF for each)
-    + Some new course types may need a different advertisement page and on-line booking form (including PDF version)
+    + PDFs for instructor courses
+        ~ Send the right PDF for the course type
+        + Add new PDF for the course
+    + Show the right parent course advertisement page for the course type
+    ~ Show the right parent course online booking form for the course type
+    + Send the right parent course booking form PDF for the course type
     + Course location search to find parent courses
         + Allow searching by course type
         + Show instructors' names in results
