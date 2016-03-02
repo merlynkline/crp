@@ -42,9 +42,9 @@
     + Show the right parent course online booking form for the course type
     ~ Send the right parent course booking form PDF for the course type
     + Course location search to find parent courses
-        + Allow searching by course type
-        + Show instructors' names in results
-        + Should be a GET request rather than POST (without CSRF)
+        X Allow searching by course type
+        ~ Show instructors' names in results
+        ~ Should be a GET request rather than POST (without CSRF)
     + Shop
         + Packs for AN course
         + Books
