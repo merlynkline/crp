@@ -39,8 +39,8 @@
         ~ Send the right PDF for the course type
         + Add new PDF for the course
     + Show the right parent course advertisement page for the course type
-    ~ Show the right parent course online booking form for the course type
-    + Send the right parent course booking form PDF for the course type
+    + Show the right parent course online booking form for the course type
+    ~ Send the right parent course booking form PDF for the course type
     + Course location search to find parent courses
         + Allow searching by course type
         + Show instructors' names in results

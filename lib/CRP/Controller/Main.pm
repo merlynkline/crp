@@ -209,22 +209,17 @@ sub instructor_search {
     my $c = shift;
 
     my $matches;
-    if($c->req->method eq 'POST') {
-        my $validation = $c->validation;
-        $validation->required('name');
-        my $name = $c->crp->trimmed_param('name');
-        $name =~ s{^ [%\s]+ | [\s%]+ $}{}gsmx; # Prevent match-all searches
-        $validation->error(name => ['like']) unless $name;
-        if( ! $validation->has_error) {
-            if($name =~ m{^-?(\d+)$}) {
-                return $c->redirect_to('crp.membersite.certificate', slug => "-$1");
-            }
-            else {
-                $c->stash(search_key => $name);
-                $matches = $c->_find_instructors($name);
-                if($matches && @$matches == 1) {
-                    return $c->redirect_to('crp.membersite.home', slug => $matches->[0]->web_page_slug);
-                }
+    my $name = $c->crp->trimmed_param('name');
+    $name =~ s{^ [%\s]+ | [\s%]+ $}{}gsmx; # Prevent match-all searches
+    if($name) {
+        if($name =~ m{^-?(\d+)$}) {
+            return $c->redirect_to('crp.membersite.certificate', slug => "-$1");
+        }
+        else {
+            $c->stash(search_key => $name);
+            $matches = $c->_find_instructors($name);
+            if($matches && @$matches == 1) {
+                return $c->redirect_to('crp.membersite.home', slug => $matches->[0]->web_page_slug);
             }
         }
     }
