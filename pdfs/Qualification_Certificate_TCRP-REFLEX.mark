@@ -1,0 +1,12 @@
+[
+        {
+            action  => 'qrcode_signature',
+            text1   => "Electronic signature: [% signature %]",
+            text2   => "[% signature_url %]",
+            x       => 215,
+            y       => 104,
+            size    => 6,
+            align   => 'left',
+        },
+]
+

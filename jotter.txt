@@ -598,7 +598,14 @@ session:
     - run: cd crp
     - run: ./upd
     - NB: The upd script just pulls the latest version of whatever branch is checked out, not necessarily the right tag.
-
+  - Adding a new qualification
+    - Add the qualification record
+    - Add the certificate PDF pdfs/Qualification_Certificate_$code.pdf
+  - Adding a new (parent) course type
+    - Add the course_type record
+    - Add any new PDFs required
+    - Make PDFs available in templates/members/course_docs.html.ep
+    - Add new booking forms (online and PDF) and advert page, if required
 
 
 - New things to me:
