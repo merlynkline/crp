@@ -108,9 +108,9 @@ Actions:
                 %= date_field "pass_date_$qid", id => "pass_date_$qid", maxlength => 10, required => 'required';
                 %= submit_button 'Pass';
                 % end
+                % }
                 <%= include 'parts/error', field => "sure$qid" %>
                 <%= include 'parts/error', field => "pass_date_$qid" %>
-                % }
             </li>
             % }
         % } else {
