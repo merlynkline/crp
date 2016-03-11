@@ -78,9 +78,4 @@
          </td>
     </tr>
     % }
-    <tr>
-        <td colspan="6" align="right">
-            <a class="small-button" href="<%= url_for('crp.admin.add_qualification') %>" title="Add a new qualification">Add</a>
-        </td>
-    </tr>
 </table>
