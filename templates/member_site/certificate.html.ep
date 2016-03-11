@@ -14,7 +14,7 @@
             <p>Has completed the official training and the required professional development to remain a</p>
             <p class="certificate-emphasised">Qualified Instructor</p>
             <p>with the following qualifications:</p>
-            <p>
+            <p class="certificate-qualification">
             % foreach my $qualification (@passed_qualifications) {
             <%= $qualification->qualification->qualification; %><br />
             % }
@@ -26,7 +26,7 @@
             % }
             % if(@future_qualifications) {
             <p><%= @passed_qualifications ? 'and also is ' : '' %>in training for the following qualifications:</p>
-            <p>
+            <p class="certificate-qualification">
             % foreach my $qualification (@future_qualifications) {
             <%= $qualification->qualification->qualification; %><br />
             % }

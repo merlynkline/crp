@@ -23,10 +23,6 @@
         
 
 + New AN courses
-    ~ Add indexed 'code' columns to the qualification and course_type tables
-        ~ Set up codes for existing entries
-        ~ Fix qualification editor: can't edit code, can't add duplicate code
-        - Used to identify resources (shop items, PDFs, pages etc) associated with specific course types and qualifications
     + Course PDFs
         ~ Only show the right ones for each course type
         + Add new ones for the new course(s)
@@ -37,7 +33,7 @@
         + "Instructors" page: more mention of AN, details of course type in course description. Split into two pages.
     + PDFs for instructor courses
         ~ Send the right PDF for the course type
-        + Add new PDF for the course
+        + Add new PDF for the AN course
     + Show the right parent course advertisement page for the course type
     + Show the right parent course online booking form for the course type
     ~ Send the right parent course booking form PDF for the course type
@@ -64,6 +60,12 @@
             + Delete unused ones
         + Instructor searches shouldn't find trainees
         + The hidden list of instructors for Google shouldn't include trainees
+    ~ Add new qualification for Reflexologist Instructor
+    ~ Add new course_type for Instructors with Reflexologist Instructor qualification so they can do normal TCRP courses
+    ~ Add indexed 'code' columns to the qualification and course_type tables
+        ~ Set up codes for existing entries
+        ~ Fix qualification editor: can't edit code, can't add duplicate code
+        - Used to identify resources (shop items, PDFs, pages etc) associated with specific course types and qualifications
     ~ New qualification table in DB
         ~ ID
         ~ Qualification (name)
@@ -98,6 +100,7 @@
             ~ INSERT INTO instructor_qualification SELECT ****SOMESEQ***, id AS instructor_id, 1 AS qualification_id, create_date AS passed_date FROM login;
         ~ remove 001-auto.sql
     ~ Show which qualifications they've done on the certificate page
+        ~ Qualifications in simple font
     ~ Show which qualifications they've done on instructor's personal web page
     ~ Membership certificate PDF:
         ~ Date will need to be calculated differently
