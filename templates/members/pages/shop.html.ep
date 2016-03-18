@@ -69,7 +69,6 @@
     </tr>
 % };
 <h1>Members' supplies</h1>
-[<%= %quals ? "some" : "none" %>]
 <p>
 This is just the most essential supplies for running your
 courses but we will be growing our product range as quickly
@@ -82,6 +81,7 @@ change your order.
 <table>
     % $standard_item->('BBRFSJEDVLNNL', ['TCRP'], '£15.00', "Parent/Carer's pack", 400, 208, '/images/Photos/ParentPack.JPG', "Everything you need for one parent or carer on one of your courses. Includes a complete set of protocol handouts, a certificate for you to give out on completion and a copy of the book, The Mouse's House.");
     % $standard_item->('4JBUMHWQQR9A6', [], '£6.50', "Pair of soft baby feet", 233, 208, '/images/Photos/SoftFeet1.jpg', "A pair of TCRP soft foam baby feet suitable for demonstration and practice of reflexology techniques.");
+    % $standard_item->('GR29DKU4RSYDN', [], '£3.50', "CD  - Rhymes and Music", 282, 208, '/images/Photos/CDRhymes.jpg', "CD containing the music from the programme with and without all the different rhymes. If you choose to sell them the RRP is £4.99 but you may sell at any price you wish.");
 </table>
 
 
