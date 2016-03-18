@@ -410,6 +410,22 @@ DISTRIBUTIONS
       DBIx::Class 0.07005
       ExtUtils::MakeMaker 6.42
       perl 5.008001
+  IO-Socket-SSL-2.024
+    pathname: S/SU/SULLR/IO-Socket-SSL-2.024.tar.gz
+    provides:
+      IO::Socket::SSL 2.024
+      IO::Socket::SSL::Intercept 2.014
+      IO::Socket::SSL::OCSP_Cache 2.024
+      IO::Socket::SSL::OCSP_Resolver 2.024
+      IO::Socket::SSL::PublicSuffix undef
+      IO::Socket::SSL::SSL_Context 2.024
+      IO::Socket::SSL::SSL_HANDLE 2.024
+      IO::Socket::SSL::Session_Cache 2.024
+      IO::Socket::SSL::Utils 2.014
+    requirements:
+      ExtUtils::MakeMaker 0
+      Net::SSLeay 1.46
+      Scalar::Util 0
   Imager-QRCode-0.034
     pathname: K/KU/KURIHARA/Imager-QRCode-0.034.tar.gz
     provides:
@@ -420,6 +436,16 @@ DISTRIBUTIONS
       Imager 0.55
       Test::More 0
       XSLoader 0.02
+  Net-SSLeay-1.72
+    pathname: M/MI/MIKEM/Net-SSLeay-1.72.tar.gz
+    provides:
+      Net::SSLeay 1.72
+      Net::SSLeay::Handle 0.61
+    requirements:
+      ExtUtils::MakeMaker 6.36
+      MIME::Base64 0
+      Test::More 0.60_01
+      perl 5.005
   Package-Variant-1.002002
     pathname: H/HA/HAARG/Package-Variant-1.002002.tar.gz
     provides:

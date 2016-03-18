@@ -682,6 +682,9 @@ Vultr setup:
     # aptitude install bsd-mailx
     # aptitude install postgresql-server-dev-9.1
     # aptitude install libjpeg-dev
+    # aptitude install openssl
+    # aptitude install libio-socket-ssl-perl
+    # aptitude install libssl-dev
     # cpanm carton
     # su - crp
         $ mkdir crp
@@ -690,6 +693,10 @@ Vultr setup:
         $ carton install
         $ carton exec ./script/crp migrate install
         $ authbind --deep carton exec hypnotoad script/crp daemon
+        $ mkdir ssl
+        $ cd ssl
+        $ scp merlyn@home.binary.co.uk:crp/ssl/kidsreflex.co.uk.crt .
+        $ scp merlyn@home.binary.co.uk:crp/ssl/kidsreflex.co.uk.key .
     # Get vultr to remove port 25 block
     # dpkg-reconfigure exim4-config
         - Set general type to internet site mail handled directly by SMTP, set domain to kidsreflex.co.uk, everything else default
@@ -715,5 +722,6 @@ Vultr setup:
     # echo "7 3 * * * kill -USR2 `cat /home/crp/crp/script/hypnotoad.pid`" >> /var/spool/cron/crontabs/crp
     # chown crp.crontab /var/spool/cron/crontabs/crp
     # chmod 600 /var/spool/cron/crontabs/crp
+    
 
 
