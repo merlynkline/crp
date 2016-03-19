@@ -19,7 +19,7 @@ requires "Mojolicious::Plugin::Mail";
 requires "DBD::Pg";
 requires "Imager::File::JPEG";
 requires "IO::Socket::SSL";
-
+requires "Crypt::LE";
 
 
 
