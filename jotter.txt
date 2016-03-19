@@ -1,4 +1,4 @@
- 
+
 + Booking forms (generic PDF, course PDF, online) say don't bring child after immunisations, should be if unwell (or similar)
 
 + Preliminary changes for EYP course
@@ -321,7 +321,7 @@
 + Login/auth logic from spreadsheet
 + tests!!
 + Move validation to a plug-in?
-+ Get an SSl certificate and move to HTTPS for everything
+~ Get an SSl certificate and move to HTTPS for everything
 
 - New materials for instructors course:
     - Timetable?
@@ -642,6 +642,7 @@ session:
     - HTML5
     - Carton
     - PayPal links
+    - LetsEncrypt SSL cert
 
 
 
@@ -668,6 +669,9 @@ Vultr setup:
     # touch /etc/authbind/byport/80
     # chown crp /etc/authbind/byport/80
     # chmod u+x /etc/authbind/byport/80
+    # touch /etc/authbind/byport/443
+    # chown crp /etc/authbind/byport/443
+    # chmod u+x /etc/authbind/byport/443
     # aptitude install git
     # aptitude install postgresql
     # su - postgres -c "createuser crp -SdR"
