@@ -12,8 +12,8 @@ sub format_data {
     my $data = {%$crp_data};
     my $profile = $data->{profile};
     _extract_crp_profile_data($c, $data);
-    _extract_crp_course_data($c, $data, $profile);
     _extract_crp_qualification_data($c, $data, $profile);
+    _extract_crp_course_data($c, $data, $profile);
     _set_demonstration_data($c, $data) if $profile->login->is_demo;
 
     delete $data->{profile};

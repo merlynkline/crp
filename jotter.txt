@@ -9,10 +9,10 @@
         + Add new ones
         + Download filled-in certificate PDF for any one
         + Each certificate has a signature
-        + Certificate signature can be validated to see certificate on site
+        + Certificateemail to site admin when an edit is done
+        + Revoke ce signature can be validated to see certificate on site
         + Edit details (Name, pack ID)
-            + Sends email to site admin when an edit is done
-        + Revoke certificate
+            + Sends rtificate
             + Send email to site admin
     + Site admins can see registered EY practitioners
         + List by instructor
@@ -23,28 +23,6 @@
         
 
 + New AN courses
-    + Course PDFs
-        ~ Only show the right ones for each course type
-        + Add new ones for the new course(s)
-    + Update web site
-        + "Home" page: short mention of AN
-        + "Programme" page: more mention of AN. Split into two pages.
-        + "Courses" page: more mention of AN. Split into two pages.
-        + "Instructors" page: more mention of AN, details of course type in course description. Split into two pages.
-    + PDFs for instructor courses
-        ~ Send the right PDF for the course type
-        + Add new PDF for the AN course
-    + Show the right parent course advertisement page for the course type
-    + Show the right parent course online booking form for the course type
-    ~ Send the right parent course booking form PDF for the course type
-    + Course location search to find parent courses
-        X Allow searching by course type
-        ~ Show instructors' names in results
-        ~ Should be a GET request rather than POST (without CSRF)
-    + Shop
-        + Packs for AN course
-        + Books
-        ~ Some things need to have restricted availability (e.g. packs only available to people who've done the right course)
     + Not in the MVP:
         + Account search improvements
             + Find demo accounts only
@@ -55,125 +33,12 @@
             + stats link to list of qualified instructors
         + Facilities to maintain course types
             + List them
-            + Add new ones, forbidding duplicate code
             + Edit them, can't edit the code
             + Delete unused ones
         + Instructor searches shouldn't find trainees
         + The hidden list of instructors for Google shouldn't include trainees
-    ~ Add new qualification for Reflexologist Instructor
-    ~ Add new course_type for Instructors with Reflexologist Instructor qualification so they can do normal TCRP courses
-    ~ Add indexed 'code' columns to the qualification and course_type tables
-        ~ Set up codes for existing entries
-        ~ Fix qualification editor: can't edit code, can't add duplicate code
-        - Used to identify resources (shop items, PDFs, pages etc) associated with specific course types and qualifications
-    ~ New qualification table in DB
-        ~ ID
-        ~ Qualification (name)
-        ~ Abbreviation
-    ~ New instructor_qualification table in DB
-        ~ ID
-        ~ Instructor_ID
-        ~ Qualification_ID
-        ~ passed_date
-    ~ New course_type table
-        ~ Columns
-            ~ id (auto)
-            ~ description
-            ~ abbreviation
-            ~ qualification_required_id (indexed)
-        ~ Initialise with "The Childrens Reflexology Programme" "TCRP" "TCRP Instructor"
-    ~ New column in instructor course table: course_type_id
-        ~ Backfill existing courses with the ID
-    ~ New column in instructors_course table: qualification_id
-        ~ Backfill existing courses with the ID
-    ~ Changes to admin page for instructor's account record:
-        ~ list of qualifications and dates passed
-        ~ facility to record when they gain a qualification - can be future dated
-        ~ Facility to print certificate for each qualification
-        ~ Facility to set pass date for undated qualifications
-        ~ Facility to delete undated and future qualifications (cancelled course etc)
-    ~ When adding a new instructor account, optional fields for initial qualifcation type and date
-    ~ Add qualification records for all existing instructors when deploying new code. After migrate prepare:
-        ~ copy new autosql to one or more numbered sql files in the same directory
-        ~ Add SQL to insert records in the new tables, something like:
-            ~ INSERT INTO qualification (id, qualification, abbreviation) VALUES ( ***SOMESEQ***, 'Instructor in The Childrens Reflexology Programme', 'TCRP Instructor');
-            ~ INSERT INTO instructor_qualification SELECT ****SOMESEQ***, id AS instructor_id, 1 AS qualification_id, create_date AS passed_date FROM login;
-        ~ remove 001-auto.sql
-    ~ Show which qualifications they've done on the certificate page
-        ~ Qualifications in simple font
-    ~ Show which qualifications they've done on instructor's personal web page
-    ~ Membership certificate PDF:
-        ~ Date will need to be calculated differently
-        ~ Show which qualifications are included
-        X Should we have separate certificates? Probably not
-    ~ Some PDFs need to show qualifcations and/or trainee status
-        ~ QR Business cards
-        ~ Business cards
-        ~ Headed paper
-        ~ Comp slips
-        ~ ID cards
-    ~ Instructor courses page will need to indicate what type of instructor course it is
-        X Possibly add filtering to show only certain course types
-    ~ Admin pages for instructor training courses
-        ~ Show course type in descriptions in lists
-        ~ New field to set qualification type when adding a course (not editable after publishing)
-    ~ Admin page for qualifications
-        ~ List qualifications
-            ~ Show number of holders and trainees
-        ~ Edit qualification details
-        ~ Only delete qualifications not in use
-        ~ Add new qualifications
-    ~ Main admin page:
-        ~ stats should show trainees and qualified instructors separately.
-    ~ When an instructor adds a course, the details need to include the course type
-        ~ If they have multiple qualifications they can select which type it is (not editable after publishing)
-        ~ If they only have one qualification then the course is that type and there's no selector
-        ~ All courses must be dated after the corresponding qualification date
-        ~ Can only publish one course for a future-dated qualification
-    ~ Course detail panel in templates should include course type
-        ~ Shows on "download course docs" page
-    ~ Course search results should show course type
-    ~ Course advertisement page on web site must say type (also on on-line booking page)
-    ~ Members area should show the logged in member what qualifications they have
-    ~ Add Claire's reading list:
-        - Books:
-            - Neurotribes: The Legacy of Autism and How to Think Smarter About People Who Think Differently by S Silberman (2015) ISBN: 1760113646
-            - The A-Z Reference Book of Syndromes and Inherited Disorders by P Gilbert (2003) ISBN: 9780748734740
-            - The Man Who Couldn't Stop: The Truth About OCD by D Adam (2015) ISBN: 1447277686
-            - The Oxford Handbook of Learning and Intellectual Disability Nursing  Ed. B Gates (2009) ISBN :0199533229
-            - Valuing People with a learning disability by Dr S Mee (2012) ISBN: 1905539665
-        - Online resources:
-            - Autistic Spectrum Disorders:
-                - NAS: www.autism.org.uk 
-            - Cerebral Palsy:
-                - SCOPE: www.scope.org.uk/support/families/diagnosis/cerebral-palsy 
-            - Down Syndrome:
-                - DSA:  www.downs-syndrome.org.uk/about-downs-syndrome 
-            - General Information:
-                - MENCAP: www.mencap.org.uk/about-learning-disability
-                - BILD: www.bild.org.uk/information/faqs/
-                - http://www.specialneedsjungle.com/patientinform-snj/patientinform-send-medical-research/
-            - Mental Health:
-                - www.mentalhealth.org.uk/a-to-z/c/children-and-young-people
-                - www.youngminds.org.uk
-    + Allow an account to exist with no current qualifications
-        - Future qualifications may be present
-        - Based on demo account
-        ~ Certificate page on instructor's personal site
-            ~ Must be a special case "trainee (not yet qualified)"
-            ~ Future qualifcations may be listed with indication that they aren't yet current
-        ~ Personal web page must not say "qualified instructor" but "trainee (not yet qualified)"
-        ~ Can't publish any courses (except for one for a future qualification)
-        ~ Membership certificate shouldn't be available or should have 'not valid' in the date or similar
-        ~ Non-course-specific PDFS could be watermarked "Trainee" like a demo account (could be both!)
-        ~ PDFS showing qualifications should instead say "Trainee"
-        ~ Shop should have purchase buttons removed "(Purchase buttons removed until you qualify)"
-        ~ Article in FAQs describing how this works
-        ~ Disabled buttons (e.g. course publish) need appropriate tooltips
-        ~ Search the code and templates for "demo" to double-check if anything else needs doing
 
 ? How will we add the nursery course
-
 
 + New PDFs for magazine adverts at various sizes
 
@@ -566,7 +431,7 @@ session:
  
  Workflow notes
  --------------
- + DB changes:
+ - DB changes:
     + Modify lib/CRP/Model/Schema/Result/*
     + Update version number in lib/CRP/Model/Schema.pm
     + check status - run: ./script/crp migrate status
@@ -579,48 +444,65 @@ session:
     + Add any additional scripts required (e.g. backfill for new data)
     + run: ./script/crp migrate upgrade
 - Making PDFs in Xara
-    - Choose email/web download
-    - In advanced options, choose PDF v1.3 for Adobe Reader 4
+    + Choose email/web download
+    + In advanced options, choose PDF v1.3 for Adobe Reader 4
 - Making PDF thumbnails
-    - Load test PDF into Chrome
-    - Zoom to 75%
-    - Snip and copy to clipboard
-    - Paste into Xara
-    - Set units to pixels
-    - Move to pixel boundary
-    - Cut out desired part (A4 is evidently 595x840px at 75%)
-    - Scale result to 25% and move to pixel boundary
-    - Export as JPG with same name as PDF but .jpg extension
+    + Load test PDF into Chrome
+    + Zoom to 75%
+    + Snip and copy to clipboard
+    + Paste into Xara
+    + Set units to pixels
+    + Move to pixel boundary
+    + Cut out desired part (A4 is evidently 595x840px at 75%)
+    + Scale result to 25% and move to pixel boundary
+    + Export as JPG with same name as PDF but .jpg extension
 - Releasing a new version
-    - Make sure release note is updated (use relnote script): templates/members/faqs/updates.html.ep
-    - Tag name is release-YYYYMMDD-NN
-    - run: git tag <tag-name>
-    - run: git push origin <tag-name>
-    - log in to the vultr server
-    - run: su - crp
-    - run: cd crp
-    - run: ./upd
-    - NB: The upd script just pulls the latest version of whatever branch is checked out, not necessarily the right tag.
-- Adding a new qualification
-    - Add the qualification record
-    - Add the certificate PDF pdfs/Qualification_Certificate_$code.pdf
-- Adding a new (parent) course type
-    - Add the course_type record
-    - Add any new PDFs required
-    - Make PDFs available in templates/members/course_docs.html.ep
-    - Add new booking forms (online and PDF) and advert page, if required
+    + Make sure release note is updated (use relnote script): templates/members/faqs/updates.html.ep
+    + Tag name is release-YYYYMMDD-NN
+    + run: git tag <tag-name>
+    + run: git push origin <tag-name>
+    + log in to the vultr server
+    + run: su - crp
+    + run: cd crp
+    + run: ./upd
+    + NB: The upd script just pulls the latest version of whatever branch is checked out, not necessarily the right tag.
+- Adding a new instructor qualification
+    + Add record in DB with a schema update
+    + Add certificate PDF for the qualification as pdfs/Qualification_Certificate_$code.pdf
+    + Add a new PDF for the instructor course poster
+    + Update the web site to talk about the new instructor course
+        + "Home" page - short mention
+        + "Programme" page(s) - more details, perhaps a new page split off
+        + "Courses" page(s) - more details, perhaps a new page split off
+        + "Instructors" page(s) - more details, perhaps a new page split off
+        + Anything else
+    + Add any new products to the shop
+    + Add parent course type(s) for the new qualification
+- Adding a new parent course type
+    + Add record in DB with a schema update
+    + Review parent-course PDFs:
+        + Some may be good for the new course without change
+        + Some could be changed to work for the new course as well as existing courses
+        + Some may need changing for the new course in a way that breaks them for existing courses (so new versions needed)
+        + Additional, completely new documents may be needed
+    + Create any new/altered parent-course PDFs required
+    + Make new and existing PDFs available in templates/members/course_docs.html.ep
+    + Create and show a new parent course advertisement page for the new parent course type
+    + Create and show the right parent course online booking form for the parent course type
+    + Create and show the right parent course PDF booking form for the parent course type
+    + Add any new products to the shop (parent packs etc)
 - Adding a new product to the shop
     - Log in to the PayPal account and:
-        - Go to tools and use the button tool
-        - Click the Action menu on an existing button and choose 'Create similar button'
-        - Change the description, code and price
-        - Click the Create button
-        - In the displayed code, look for the bit like <input type="hidden" name="hosted_button_id" value="GR29DKU4RSYDN">
-        - Copy the value (GR29DKU4RSYDN in the example above)
-    - Create a suitable image in a sensible place
+        + Go to tools and use the button tool
+        + Click the Action menu on an existing button and choose 'Create similar button'
+        + Change the description, code and price
+        + Click the Create button
+        + In the displayed code, look for the bit like <input type="hidden" name="hosted_button_id" value="GR29DKU4RSYDN">
+        + Copy the value (GR29DKU4RSYDN in the example above)
+    + Create a suitable image in a sensible place (like public/images/Photos)
     - In the CRP app
-        - Edit templates/members/pages/shop.html.ep
-        - At the bottom of the template, copy an existing $standard_item->() line and edit the parameters
+        + Edit templates/members/pages/shop.html.ep
+        + At the bottom of the template, copy an existing $standard_item->() line and edit the parameters
         - Parameters are, in order:
             - $button_id - the code copied from PayPal, above
             - $required_quals - arrayref of qualification codes, one of which must be held to purchase (empty for open availability)
