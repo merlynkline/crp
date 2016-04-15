@@ -57,7 +57,6 @@
                 speed: 10,
                 linear: 1,
                 direction: 'h'
-
             });
         </script>
     </div>
@@ -81,7 +80,29 @@
     <a href="<%= url_for 'crp.page', page => 'book' %>">The Mouse's House</a>.
     </p>
 
-    <img src="<%= url_for '/images/Photos/SpontaneousKids.jpg' %>" style="display: block; margin: 0 auto; width:600px;" />
+    <div id="pics">
+        <div id="pic-list" class="scroll-pics">
+            <ul>
+                <li><img src="<%= url_for '/images/Photos/SpontaneousKids.jpg' %>" /></li>
+                <li><img src="<%= url_for '/images/Photos/Course10-360.jpg' %>" /></li>
+                <li><img src="<%= url_for '/images/Photos/Course5-360.jpg' %>" /></li>
+                <li><img src="<%= url_for '/images/Photos/Course9-360.jpg' %>" /></li>
+                <li><img src="<%= url_for '/images/Photos/Course12-360.jpg' %>" /></li>
+                <li><img src="<%= url_for '/images/Photos/Course8-360.jpg' %>" /></li>
+                <li><img src="<%= url_for '/images/Photos/Certificates-360.jpg' %>" /></li>
+                <li><img src="<%= url_for '/images/Photos/Course7-360.jpg' %>" /></li>
+                <li><img src="<%= url_for '/images/Photos/Course11-360.jpg' %>" /></li>
+                <li><img src="<%= url_for '/images/Photos/Course6-360.jpg' %>" /></li>
+            </ul>
+        </div>
+        <script>
+            $('#pic-list').scrollbox({
+                distance:   950,
+                startDelay:   7,
+                direction:   'h'
+            });
+        </script>
+    </div>
 
     <p class="front-page-normal">
 

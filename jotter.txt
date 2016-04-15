@@ -1,3 +1,48 @@
++ AN parent course
+    * Make the new parent packs
+        * Techniques leaflet
+    * Add new instructor qualification
+        ~ Add record in DB with a schema update
+        * Add certificate PDF for the qualification as pdfs/Qualification_Certificate_$code.pdf
+        + Add a new PDF for the instructor course poster
+        + Update the web site to talk about the new instructor course
+            + "Home" page - short mention
+            + "Programme" page(s) - more details, perhaps a new page split off
+            + "Courses" page(s) - more details, perhaps a new page split off
+            + "Instructors" page(s) - more details, perhaps a new page split off
+            + Anything else
+        + Add any new products to the shop
+    * Add parent course type(s) for the new qualification
+        * Add record in DB with a schema update
+        * Review parent-course PDFs:
+            + Some may be good for the new course without change
+            + Some could be changed to work for the new course as well as existing courses
+            + Some may need changing for the new course in a way that breaks them for existing courses (so new versions needed)
+            + Additional, completely new documents may be needed
+        * Create any new/altered parent-course PDFs required
+            * Change: Booking form
+            * Change: Register - protocols on back page must change; other things
+            * Add: Mental capacity letter and form
+            + Add: Course poster for older kids
+        * Make new and existing PDFs available in templates/members/course_docs.html.ep
+            ? Which existing PDFs? All of them?
+        * Create and show a new parent course advertisement page for the new parent course type
+        * Create and show the right parent course online booking form for the parent course type
+        * Create and show the right parent course PDF booking form for the parent course type
+        * Add any new products to the shop (parent packs etc)
+* Change some existing PDFs to generalise for AN as well as normal TCRP
+    * Change "baby" to "child"
+    * "courses are available with material for...." needs to be generalised
+? Remove docs from main docs where they are also in the course docs. Do people really need these generalised versions? Perhaps yes, for marketing type puposes.
+
++ AN Instructor course for Claire to run
+    * Instructor pack
+        * Hand technique posters
+    * Decide price
+    * Check booking form will work as it currently is
+    * New version of booking acknowledgement/confirmation for Claire to use
+    * New PDF poster for instructor course
+
 
 + Booking forms (generic PDF, course PDF, online) say don't bring child after immunisations, should be if unwell (or similar)
 
@@ -467,7 +512,7 @@ session:
     + run: ./upd
     + NB: The upd script just pulls the latest version of whatever branch is checked out, not necessarily the right tag.
 - Adding a new instructor qualification
-    + Add record in DB with a schema update
+    + Add record in DB by means of a schema update
     + Add certificate PDF for the qualification as pdfs/Qualification_Certificate_$code.pdf
     + Add a new PDF for the instructor course poster
     + Update the web site to talk about the new instructor course
@@ -479,7 +524,7 @@ session:
     + Add any new products to the shop
     + Add parent course type(s) for the new qualification
 - Adding a new parent course type
-    + Add record in DB with a schema update
+    + Add record in DB by means of a schema update
     + Review parent-course PDFs:
         + Some may be good for the new course without change
         + Some could be changed to work for the new course as well as existing courses
