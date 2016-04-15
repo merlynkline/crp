@@ -97,7 +97,7 @@
         </div>
         <script>
             $('#pic-list').scrollbox({
-                distance:   950,
+                distance:   946,
                 startDelay:   7,
                 direction:   'h'
             });
