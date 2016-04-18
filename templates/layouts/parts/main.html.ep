@@ -11,7 +11,7 @@
         <meta name="msapplication-TileImage" content="<%= url_for '/favicon/favicon-144.png' %>">
         <meta charset="utf-8">
         <link rel="stylesheet" href="<%= url_for '/css/main.css' %>">
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 % foreach my $extra_template (@{$c->crp->stash_list('extra_header_templates')}) {
 %=   include $extra_template
 % }
