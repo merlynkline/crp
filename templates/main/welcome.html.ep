@@ -93,11 +93,15 @@
                 <li><img src="<%= url_for '/images/Photos/Course7-360.jpg' %>" /></li>
                 <li><img src="<%= url_for '/images/Photos/Course11-360.jpg' %>" /></li>
                 <li><img src="<%= url_for '/images/Photos/Course6-360.jpg' %>" /></li>
+                <li><img src="<%= url_for '/images/Photos/Autoreflex-360.jpg' %>" /></li>
+                <li><img src="<%= url_for '/images/Photos/SofaKids-360.jpg' %>" /></li>
             </ul>
         </div>
         <script>
             $('#pic-list').scrollbox({
                 distance:   946,
+                speed:       64,
+                delay:        6,
                 startDelay:   7,
                 direction:   'h'
             });
