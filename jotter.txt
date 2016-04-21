@@ -1,9 +1,9 @@
 + AN parent course
     * Make the new parent packs
         * Techniques leaflet
-    * Add new instructor qualification
+    * Add new AN instructor qualification
         ~ Add record in DB with a schema update
-        * Add certificate PDF for the qualification as pdfs/Qualification_Certificate_$code.pdf
+        ~ Add certificate PDF for the qualification as pdfs/Qualification_Certificate_$code.pdf
         + Add a new PDF for the instructor course poster
         + Update the web site to talk about the new instructor course
             + "Home" page - short mention
@@ -38,6 +38,8 @@
 + AN Instructor course for Claire to run
     * Instructor pack
         * Hand technique posters
+        * Instructor trainer's manual
+        * Instructor trainer's check-list for evidence of training, to get certificates
     * Decide price
     * Check booking form will work as it currently is
     * New version of booking acknowledgement/confirmation for Claire to use
