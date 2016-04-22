@@ -37,7 +37,7 @@ in order to view and print them.
 %   ['TCRP|TCRPRX',      'members/feedback_form_A5',          "Feedback form in A5 format"],
 % ) {
 %   my($selector, $name, $caption) = @$document;
-%   if($code =~ /^$selector$/) {
+%   if($code =~ /^($selector)$/) {
 %=      include "members/parts/course_doc", course_id => $course->id, name => $name, caption => $caption;
 %   }
 % }
