@@ -13,19 +13,19 @@
             + Anything else
         + Add any new products to the shop
     * Add parent course type(s) for the new qualification
-        * Add record in DB with a schema update
+        ~ Add record in DB with a schema update
         * Review parent-course PDFs:
             + Some may be good for the new course without change
             + Some could be changed to work for the new course as well as existing courses
             + Some may need changing for the new course in a way that breaks them for existing courses (so new versions needed)
             + Additional, completely new documents may be needed
         * Create any new/altered parent-course PDFs required
-            * Change: Booking form
+            ~ Change: Booking form (plus A5 version)
             * Change: Register - protocols on back page must change; other things
             * Add: Mental capacity letter and form
             + Add: Course poster for older kids
         * Make new and existing PDFs available in templates/members/course_docs.html.ep
-            ? Which existing PDFs? All of them?
+            ~ Which existing PDFs? All of them? => The ones that haven't changed (booking form and register)
         * Create and show a new parent course advertisement page for the new parent course type
         * Create and show the right parent course online booking form for the parent course type
         * Create and show the right parent course PDF booking form for the parent course type

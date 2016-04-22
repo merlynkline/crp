@@ -26,15 +26,17 @@ in order to view and print them.
 <br clear="right" />
 % my $code = $course->course_type->code;
 % foreach my $document (
-%   ['TCRP|TCRPRX',      'ads/Poster - simple specific',      "Simple poster"],
-%   ['TCRP|TCRPRX',      'ads/A3 Poster - simple specific',   "A3 version of simple poster"],
-%   ['TCRP|TCRPRX',      'ads/Small handout specific',        "Small handouts, four to a sheet"],
-%   ['TCRP|TCRPRX',      'ads/Poster - Ante Natal Course',    "Poster for antenatal course only"],
-%   ['TCRP|TCRPRX',      'members/booking_form',              "Booking form for your trainees to fill in"],
-%   ['TCRP|TCRPRX',      'members/booking_form_A5',           "Booking form in A5 format"],
-%   ['TCRP|TCRPRX',      'members/register',                  "Register to check in trainees to each session"],
-%   ['TCRP|TCRPRX',      'members/feedback_form',             "Feedback form for your trainees to fill in after a course has finished"],
-%   ['TCRP|TCRPRX',      'members/feedback_form_A5',          "Feedback form in A5 format"],
+%   ['TCRP|TCRPRX|TCRPAN',  'ads/Poster - simple specific',      "Simple poster"],
+%   ['TCRP|TCRPRX|TCRPAN',  'ads/A3 Poster - simple specific',   "A3 version of simple poster"],
+%   ['TCRP|TCRPRX|TCRPAN',  'ads/Small handout specific',        "Small handouts, four to a sheet"],
+%   ['TCRP|TCRPRX|TCRPAN',  'ads/Poster - Ante Natal Course',    "Poster for antenatal course only"],
+%   ['TCRP|TCRPRX|',        'members/booking_form',              "Booking form for your trainees to fill in"],
+%   ['TCRPAN',              'members/booking_form_an',           "Booking form for your trainees to fill in"],
+%   ['TCRP|TCRPRX|',        'members/booking_form_A5',           "Booking form in A5 format"],
+%   ['TCRPAN',              'members/booking_form_an_A5',        "Booking form in A5 format"],
+%   ['TCRP|TCRPRX|',        'members/register',                  "Register to check in trainees to each session"],
+%   ['TCRP|TCRPRX|TCRPAN',  'members/feedback_form',             "Feedback form for your trainees to fill in after a course has finished"],
+%   ['TCRP|TCRPRX|TCRPAN',  'members/feedback_form_A5',          "Feedback form in A5 format"],
 % ) {
 %   my($selector, $name, $caption) = @$document;
 %   if($code =~ /^($selector)$/) {
