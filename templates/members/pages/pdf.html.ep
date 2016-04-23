@@ -1,6 +1,8 @@
 %#<!DOCTYPE html>
 % layout 'member_default', page_id => 'pdfs';
 % title 'Personalised stationery';
+% my $profile = stash('profile_record');
+% my %quals = map { $_->qualification->code => 1 } $profile->qualifications->get_passed_set;
 <h1>Download personalised stationery</h1>
 <p>
 Here is a collection of documents suitable for advertising
@@ -44,6 +46,9 @@ in order to view and print them.
 
 %= include "members/parts/course_doc", name => 'members/booking_form', caption => "Generic booking form for your trainees to fill in"
 %= include "members/parts/course_doc", name => 'members/booking_form_A5', caption => "Generic booking form in A5 format for A4 paper"
+% if($quals{'TCRP-AN'}) {
+%= include "members/parts/course_doc", name => 'members/mencap', caption => "Mental Capacity decision form and letter"
+% }
 %= include "members/parts/course_doc", name => 'members/register', caption => "Generic register to check in trainees to each session"
 %= include "members/parts/course_doc", name => 'members/feedback_form', caption => "Generic feedback form for your trainees to fill in"
 %= include "members/parts/course_doc", name => 'members/feedback_form_A5', caption => "Generic feedback form in A5 format for A4 paper"
