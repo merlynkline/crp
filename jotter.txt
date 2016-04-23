@@ -22,7 +22,8 @@
         * Create any new/altered parent-course PDFs required
             ~ Change: Booking form (plus A5 version)
             * Change: Register - protocols on back page must change; other things
-            * Add: Mental capacity letter and form
+            ~ Add: Mental capacity letter and form
+            * Add: AN Roller banner
             + Add: Course poster for older kids
         * Make new and existing PDFs available in templates/members/course_docs.html.ep
             ~ Which existing PDFs? All of them? => The ones that haven't changed (booking form and register)
@@ -30,6 +31,7 @@
         * Create and show the right parent course online booking form for the parent course type
         * Create and show the right parent course PDF booking form for the parent course type
         * Add any new products to the shop (parent packs etc)
+    ~ Add FAQ article for Mental Capacity decision form
 * Change some existing PDFs to generalise for AN as well as normal TCRP
     * Change "baby" to "child"
     * "courses are available with material for...." needs to be generalised
