@@ -21,7 +21,7 @@
             + Additional, completely new documents may be needed
         * Create any new/altered parent-course PDFs required
             ~ Change: Booking form (plus A5 version)
-            * Change: Register - protocols on back page must change; other things
+            ~ Change: Register - protocols on back page must change; other things
             ~ Add: Mental capacity letter and form
             ~ Add: AN Roller banner
             * Add: Other new posters in: \\REVOLVER\susan-home\The Children's Reflexology Programme\Special Needs\New PDF's for website
