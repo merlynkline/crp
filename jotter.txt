@@ -23,13 +23,16 @@
             ~ Change: Booking form (plus A5 version)
             * Change: Register - protocols on back page must change; other things
             ~ Add: Mental capacity letter and form
-            * Add: AN Roller banner
+            ~ Add: AN Roller banner
+            * Add: Other new posters in: \\REVOLVER\susan-home\The Children's Reflexology Programme\Special Needs\New PDF's for website
             + Add: Course poster for older kids
         * Make new and existing PDFs available in templates/members/course_docs.html.ep
-            ~ Which existing PDFs? All of them? => The ones that haven't changed (booking form and register)
+            ~ Which existing PDFs? All of them? => The ones that haven't changed (all but booking form and register)
         * Create and show a new parent course advertisement page for the new parent course type
         * Create and show the right parent course online booking form for the parent course type
+            * Refer to the Mental Capacity form
         * Create and show the right parent course PDF booking form for the parent course type
+            * Refer to the Mental Capacity form
         * Add any new products to the shop (parent packs etc)
     ~ Add FAQ article for Mental Capacity decision form
 * Change some existing PDFs to generalise for AN as well as normal TCRP
