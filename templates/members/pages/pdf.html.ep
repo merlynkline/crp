@@ -32,6 +32,10 @@ in order to view and print them.
 %= include "members/parts/course_doc", name => 'ads/A3 Poster - descriptive general', caption => "A3 version of general purpose text poster"
 %= include "members/parts/course_doc", name => 'ads/Poster - pictorial general', caption => "General purpose poster with pictures rather than text"
 %= include "members/parts/course_doc", name => 'ads/A3 Poster - pictorial general', caption => "A3 version of general purpose pictorial poster"
+% if($quals{'TCRP-AN'}) {
+%= include "members/parts/course_doc", name => 'ads/Poster - pictorial general AN', caption => "General purpose Additional Needs poster with pictures rather than text"
+%= include "members/parts/course_doc", name => 'ads/A3 Poster - pictorial general AN', caption => "A3 version of general purpose Additional Needs pictorial poster"
+% }
 %= include "members/parts/course_doc", name => 'ads/Small general descriptive', caption => "General purpose flyer with descriptive text"
 %= include "members/parts/course_doc", name => 'ads/Small general pictorial', caption => "General purpose flyer with pictures rather than text"
 %= include "members/parts/course_doc", name => 'ads/Roll-up-banner-small-1', caption => "Roller banner, 2m tall and 85cm wide (also fits 80 cm wide). Warning: large file (about 8MB)"
