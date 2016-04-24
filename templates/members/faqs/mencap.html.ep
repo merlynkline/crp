@@ -3,14 +3,15 @@
 <p>
 If you have the Additional Needs Instructor qualification you will find
 an extra document in the <i>Course administration</i> section of your
-<a href="<%= url_for('crp.members.page', page => 'pdf') %>">PDF Documents</a>.
-You should use this if your are running a course and
+<a href="<%= url_for('crp.members.page', page => 'pdf') %>">PDF Documents</a>,
+the Mental Capacity decision form and letter.
+You should use this if you are running a course and
 someone aged sixteen or over wishes to attend but you are concerned about
 their capacity to consent under the terms of the Mental Capacity Act (or
 similar local legislation).
 </p>
 <p>
-To make use of the form, print it off and fill in part one, identifying the
+To make use of the form print it off and fill in part one, identifying the
 individual for whom the decision is to be made and describing the benefits
 you expect them to receive from the course as well as any specific risks
 you have identified which will require mitigation. You should then
