@@ -31,14 +31,14 @@
         ~ Create and show a new parent course advertisement page for the new parent course type
         * Create and show the right parent course online booking form for the parent course type
             * Refer to the Mental Capacity form
-        * Create and show the right parent course PDF booking form for the parent course type
+        ~ Create and show the right parent course PDF booking form for the parent course type
             ~ Refer to the Mental Capacity form
         * Add any new products to the shop (parent packs etc)
     ~ Add FAQ article for Mental Capacity decision form
 * Change some existing PDFs to generalise for AN as well as normal TCRP
     * Change "baby" to "child"
-    * "courses are available with material for...." needs to be generalised
-? Remove docs from main docs where they are also in the course docs. Do people really need these generalised versions? Perhaps yes, for marketing type puposes.
+    ~ "courses are available with material for...." needs to be generalised
+X Remove docs from main docs where they are also in the course docs. Do people really need these generalised versions? Perhaps yes, for marketing type puposes.
 
 + AN Instructor course for Claire to run
     * Instructor pack

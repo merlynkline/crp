@@ -54,6 +54,8 @@ in order to view and print them.
 %= include "members/parts/course_doc", name => 'members/booking_form', caption => "Generic booking form for your trainees to fill in"
 %= include "members/parts/course_doc", name => 'members/booking_form_A5', caption => "Generic booking form in A5 format for A4 paper"
 % if($quals{'TCRP-AN'}) {
+%= include "members/parts/course_doc", name => 'members/booking_form-TCRPAN', caption => "Generic Additional Needs booking form for your trainees to fill in"
+%= include "members/parts/course_doc", name => 'members/booking_form_an_A5', caption => "Generic Additional Needs booking form in A5 format for A4 paper"
 %= include "members/parts/course_doc", name => 'members/mencap', caption => "Mental Capacity decision form and letter"
 % }
 %= include "members/parts/course_doc", name => 'members/register', caption => "Generic register to check in trainees to each session"
