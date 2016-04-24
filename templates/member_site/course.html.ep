@@ -52,8 +52,14 @@
 %
 %
 %
-<h1>Course at <%= $course->venue %></h1>
-%= $course_details_block->()
+% my $pos_image_block = begin
+% my($x, $y, $w, $file) = @_;
+<img style="position: absolute; top:  <%= $y %>px; left: <%= $x %>px; <% if($w) { %> width: <%= $w %>px; height: auto; <% } %>" src ="/images/<%= $file %>" />
+% end
+%
+%
+%
+% my $reversed_header = begin
 <div style="
     background: black;
     color: white;
@@ -66,11 +72,13 @@
     Would you like to learn a new way to help you and
     your child through times of illness and distress?
 </div>
-% my $pos_image_block = begin
-% my($x, $y, $w, $file) = @_;
-<img style="position: absolute; top:  <%= $y %>px; left: <%= $x %>px; <% if($w) { %> width: <%= $w %>px; height: auto; <% } %>" src ="/images/<%= $file %>" />
 % end
-<div style="height:830px; position: relative; margin: 24px 0;">
+%
+%
+%
+% my $advert_standard_block = begin
+%= $reversed_header->()
+<div style="height:830px; position: relative; margin: 24px 0; left: 50px;">
     %= $pos_image_block->(  0, 400, 200, 'Techniques/ThumbWalk.jpg');
     %= $pos_image_block->(150, 240,   0, 'Animals/MouseInNest.jpg');
     %= $pos_image_block->(  0,   0, 150, 'Animals/Owl.jpg');
@@ -92,5 +100,44 @@
         reflexology!
     </div>
 </div>
+% end
+%
+%
+%
+% my $advert_an_block = begin
+%= $reversed_header->()
+<div style="height:870px; position: relative; margin: 24px 0; left: 50px;">
+    %= $pos_image_block->(150, 240,   0, 'Misc/AutisticBoyWithCert.jpg');
+    %= $pos_image_block->(  0,   0, 150, 'Animals/Owl.jpg');
+    %= $pos_image_block->(660,  20,   0, 'Animals/Hare.jpg');
+    %= $pos_image_block->(180,  80,   0, 'Animals/Mole.jpg');
+    %= $pos_image_block->(380,  70, 300, 'Techniques/HandThumbWalk.jpg');
+    %= $pos_image_block->(  0, 220,   0, 'Animals/Snake.jpg');
+    %= $pos_image_block->(670, 380, 150, 'Feet/DorsalComplete.jpg');
+    %= $pos_image_block->( 20, 620, 100, 'Plants/Pokers.png');
+    %= $pos_image_block->(130, 700, 200, 'Hands/PalmarComplete.jpg');
+    %= $pos_image_block->(  0, 480, 160, 'Animals/Badger.jpg');
+    %= $pos_image_block->(360, 700, 120, 'Animals/Squirrel.jpg');
+    %= $pos_image_block->(510, 630, 300, 'Misc/CarerCertificate.jpg');
+    <div style="position: absolute; top: 0px; left: 175px; font-size: 30px; line-height: 120%;">
+        Help Mouse's friends to make her<br />
+        a cosy nest...
+    </div>
+    <div style="position: absolute; top: 620px; left: 220px; font-size: 30px; line-height: 120%;">
+        ...and learn to give your child<br />
+        reflexology!
+    </div>
+</div>
+% end
+%
+%
+%
+<h1>Course at <%= $course->venue %></h1>
+%= $course_details_block->()
+% if($course->course_type->code eq 'TCRPAN') {
+%= $advert_an_block->()
+% } else {
+%= $advert_standard_block->()
+% }
 %= $course_details_block->()
 
