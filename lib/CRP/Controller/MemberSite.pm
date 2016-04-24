@@ -148,12 +148,8 @@ sub send_booking {
     return $c->book_online if($validation->has_error);
 
     my %info;
-    foreach my $param(qw(
-        005_page       010_start       020_title      030_venue      040_name          050_email
-        060_telephone  070_address     080_postcode   090_pay
-                       200_childs_name 210_childs_age 220_childs_sex 230_immunisations 240_allergies
-        250_conditions 300_additional  310_photo_release
-        )) {
+    foreach my $param (@{$c->req->params->names}) {
+        next unless $param =~ /^\d\d\d_/;
         $info{$param} =  Mojo::Util::xml_escape($c->crp->trimmed_param($param) // '');
         $info{$param} =~ s{\n}{<br \\>\n}g;
     }

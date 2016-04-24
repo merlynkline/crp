@@ -114,6 +114,29 @@ if you prefer.
     <div class="input-container">
         <%= text_field '220_childs_sex', size => '9', id => '220_childs_sex' =%>
     </div>
+    % if($course->course_type->code eq 'TCRPAN') {
+    <label for="232_mencap">Mental Capacity to consent?
+        <div class="field-extra-info">
+            If your child is 16 or over and may not have the Mental Capacity to consent
+            as defined by the Mental Capacity Act then you must select <b>No</b> and also
+            have the<br><a href="<%= url_for('crp.membersite.mencap_form') %>" target="_blank">Mental Capacity form</a> completed.
+        </div>
+    </label>
+    <div class="input-container" style="margin-top: 0">
+        &nbsp;&nbsp;Yes
+        %= radio_button '232_mencap' => 'Yes', id => '232_mencap_Yes';
+        &nbsp;&nbsp;No
+        %= radio_button '232_mencap' => 'No', id => '232_mencap_No';
+    </div>
+
+    <label for="242_conditions">Conditions, diagnosis and specific needs
+        <div class="field-extra-info">Please give any relevant information about you and your child to help us ensure you get the right support during the course.</div>
+    </label>
+    <div class="input-container">
+        %= text_area '242_conditions', rows => '8', cols => '45', id => '242_conditions';
+    </div>
+
+    % } else {
     <label for="230_immunisations">Immunisation date:
         <div class="field-extra-info">If your child has received any immunisations recently please give the date.</div>
     </label>
@@ -130,6 +153,7 @@ if you prefer.
     <div class="input-container">
         %= text_area '250_conditions', rows => '3', cols => '45', id => '250_conditions';
     </div>
+    % }
 
     <br clear="left" /><br /><strong>Make booking</strong><br />
     Please note that by making this booking you confirm that you
