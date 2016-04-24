@@ -183,7 +183,7 @@ sub _send_pdf_response {
         data                => $pdf_doc->fill_template($pdf_data),
         format              => 'pdf',
         content_disposition => $c->param('download') ? 'attachment' : 'inline',
-        filename            => $pdf_doc->filename . '.pdf',
+        filename            => $pdf_doc->filename,
     );
 }
 

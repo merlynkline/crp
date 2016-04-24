@@ -290,6 +290,7 @@ sub filename {
 
     my $filename = $self->_filename || $self->file_path;
     $filename =~ s{.*/}{};
+    $filename .= '.pdf' unless $filename =~ m{\.pdf$};
     return "TCRP $filename";
 }
 
