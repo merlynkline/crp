@@ -114,6 +114,24 @@ sub booking_form {
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub mencap_form {
+    my $c = shift;
+
+    my $pdf = $c->app->home->rel_file("pdfs/members/mencap.pdf");
+    my $pdf_doc = CRP::Util::PDFMarkUp->new(file_path => $pdf);
+    my $data = CRP::Util::CRPDataFormatter::format_data($c, {
+            profile => $c->stash('site_profile'),
+            email   => $c->stash('site_profile')->login->email,
+        });
+    $c->render_file(
+        data                => $pdf_doc->fill_template($data),
+        format              => 'pdf',
+        content_disposition => $c->param('download') ? 'attachment' : 'inline',
+        filename            => $pdf_doc->filename,
+    );
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 sub book_online {
     my $c = shift;
 

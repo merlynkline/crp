@@ -109,6 +109,7 @@ sub startup {
     my $member_site = $r->under('/me/:slug')->to('member_site#identify');
     $member_site->any('/')->to('member_site#welcome')->name('crp.membersite.home');
     $member_site->any('/certificate')->to('member_site#certificate')->name('crp.membersite.certificate');
+    $member_site->any('/mental_capacity_form')->to('member_site#mencap_form')->name('crp.membersite.mencap_form');
     $member_site->any('/course/:course')->to('member_site#course')->name('crp.membersite.course');
     $member_site->any('/course/:course/booking_form')->to('member_site#booking_form')->name('crp.membersite.booking_form');
     $member_site->any('/course/:course/book_online')->to('member_site#book_online')->name('crp.membersite.book_online');
