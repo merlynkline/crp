@@ -481,6 +481,8 @@ session:
  + Could each instructor have their own shop which earns them commission? (accounting problems? liability? perhaps they just earn credit)
  
  
+#----------------------------------------------------------------------------
+ 
  Workflow notes
  --------------
  - DB changes:
@@ -565,6 +567,7 @@ session:
             - $image - URL
             - $description
 
+#----------------------------------------------------------------------------
 
 - New things to me:
     - Mojolicious
@@ -578,9 +581,7 @@ session:
     - PayPal links
     - LetsEncrypt SSL cert
 
-
-
-
+#----------------------------------------------------------------------------
 
 Vultr setup:
 - 108.61.175.23
