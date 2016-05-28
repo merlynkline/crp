@@ -6,5 +6,8 @@
 % stash subject => "Website contact form: The Children's Reflexology Programme";
 %#
 % layout 'default';
-
+<p>
+<%= stash('info')->{sender} %>
+sent a message through the website contact form:
+</p>
 %== stash('info')->{message}

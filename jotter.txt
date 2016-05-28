@@ -1,3 +1,15 @@
+
++ Further qualification tracking
+    + For each qualification, record what assignments have been completed when and the results
+    + Qualifications are not passed until all assignments received
+    ? Record pass date separately from course date?
+    + Instructors with past qualifications but incomplete assignments are still trainees
+    + Search for instructors with incomplete assignments
+    + Qualifications with complete assignments have their certificates available as PDFs with "COPY" stamped on them
+    + Check these things happen (they probably do already)
+        + Membership certificates show trainee status for qualifications with incomplate assignments
+        
+
 + AN parent course
     * Make the new parent packs
         * Techniques leaflet
@@ -15,10 +27,10 @@
     * Add parent course type(s) for the new qualification
         ~ Add record in DB with a schema update
         ~ Review parent-course PDFs:
-            + Some may be good for the new course without change
-            + Some could be changed to work for the new course as well as existing courses
-            + Some may need changing for the new course in a way that breaks them for existing courses (so new versions needed)
-            + Additional, completely new documents may be needed
+            ~ Some may be good for the new course without change
+            ~ Some could be changed to work for the new course as well as existing courses
+            ~ Some may need changing for the new course in a way that breaks them for existing courses (so new versions needed)
+            ~ Additional, completely new documents may be needed
         ~ Create any new/altered parent-course PDFs required
             ~ Change: Booking form (plus A5 version)
             ~ Change: Register - protocols on back page must change; other things
@@ -624,6 +636,7 @@ Vultr setup:
     # aptitude install openssl
     # aptitude install libio-socket-ssl-perl
     # aptitude install libssl-dev
+    # hostname www.kidsreflex.co.uk
     # cpanm carton
     # su - crp
         $ mkdir crp
