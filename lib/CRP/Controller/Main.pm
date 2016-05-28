@@ -42,11 +42,15 @@ sub contact {
 
     my $message = Mojo::Util::xml_escape($c->param('message'));
     $message =~ s{\n}{<br \\>\n}g;
+    my $sender = $c->crp->email_decorated($c->crp->trimmed_param('email'), $c->crp->trimmed_param('name'));
     $c->mail(
-        from        => $c->crp->email_decorated($c->crp->trimmed_param('email'), $c->crp->trimmed_param('name')),
+        reply_to    => $c->crp->email_decorated($c->crp->trimmed_param('email'), $c->crp->trimmed_param('name')),
         to          => $c->crp->email_to($c->app->config->{email_addresses}->{contact_form}),
         template    => 'main/email/contact_form',
-        info        => {message => $message},
+        info        => {
+            message => $message,
+            sender  => $sender,
+        },
     );
     $c->redirect_to('/page/contacted');
 }
@@ -301,7 +305,7 @@ sub instructor_booking {
         $info{$param} =~ s{\n}{<br \\>\n}g;
     }
     $c->mail(
-        from            => $c->crp->email_decorated($c->crp->trimmed_param('email'), $c->crp->trimmed_param('name')),
+        reply_to        => $c->crp->email_decorated($c->crp->trimmed_param('email'), $c->crp->trimmed_param('name')),
         to              => $c->crp->email_to($c->app->config->{email_addresses}->{contact_form}),
         template        => 'main/email/instructor_booking_form',
         info            => \%info,
