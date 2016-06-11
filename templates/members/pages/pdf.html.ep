@@ -60,7 +60,6 @@ in order to view and print them.
 %= include "members/parts/course_doc", name => 'ads/A3 Poster - pictorial general AN', caption => "A3 version of general purpose Additional Needs pictorial poster"
 %= include "members/parts/course_doc", name => 'ads/Roll-up-banner-small-1-AN', caption => "Additional Needs roller banner, 2mx85cm (also fits 80 cm wide). Warning: large file (about 8MB)"
 %= include "members/parts/course_doc", name => 'members/booking_form-TCRPAN', caption => "Generic Additional Needs booking form for your trainees to fill in"
-%= include "members/parts/course_doc", name => 'members/booking_form_an_A5', caption => "Generic Additional Needs booking form in A5 format for A4 paper"
 %= include "members/parts/course_doc", name => 'members/mencap', caption => "Mental Capacity decision form and letter"
 % }
 
