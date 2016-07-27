@@ -503,10 +503,13 @@ table.list1 {
     border-color:   #dde;
 }
 .front-page-medium {
-    font-size:      24px;
-    line-height:    120%;
+    font-size:      28px;
+    line-height:    130%;
     text-align:     center;
-    margin:         0 0 12px 0;
+    margin:         0;
+}
+.front-page-normal {
+    margin:         0 8px 0 8px;
 }
 .pdf-preview {
     padding:        4px;

@@ -11,7 +11,8 @@ and insured instructors.</strong> It empowers parents and carers to be able to o
 children a non-invasive complementary therapy at home at any time of the day or night,
 from someone they love and feel safe with. The therapy is suitable for helping to
 cope with the ordinary stresses of everyday life by strengthening the bonds between
-carers and children, as well as targeting common childhood illnesses.
+carers and children, as well as targeting common childhood illnesses. There is a special
+version of the course for <a href="#additional">parents of children with additional needs</a>.
 </p>
 <p>
 <img src="<%= url_for '/images/Photos/Course1.jpg' %>" style="float: left; margin: 0 8px 8px 0; width: 200px; border: 1px solid grey;">
@@ -52,6 +53,23 @@ to become an instructor yourself. This programme is about empowerment on all lev
 <center>
     <img src="<%= url_for '/images/Photos/Course3.jpg' %>" style="display: block; margin: 8px auto; width: 400px; border: 1px solid grey;">
     <i>Successful students showing off their certificates!</i>
-<center>
+</center>
 </p>
-
+<p>
+<a name="additional"><strong>The Children's Reflexology Programme for Additional Needs – TCRPAN</strong></a><br />
+This course is specifically for parents of children with additional needs, from depression
+and anxiety to severe and complex physical or neurological conditions.
+</p>
+<p>
+The course aims to empower parents to be able to help their children, whatever their age,
+through reflexology but also offers children the opportunity for self empowerment by giving
+them strategies that they can use at any time throughout their day.
+</p>
+<p>
+This course can have a powerful effect upon families, bringing them together in new ways and
+creating close connections both at home and within their communities.
+</p>
+<center>
+    <img src="<%= url_for '/images/Photos/Jack.jpg' %>" style="display: block; margin: 8px auto; width: 400px; border: 1px solid grey;">
+    <i>A successful TCRP-AN student and his mum showing off their certificate!</i>
+</center>

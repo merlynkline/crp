@@ -2,7 +2,6 @@
 % layout 'default', page_id => 'home';
 % title 'Welcome';
 <div class="water-mark">
-    <br />
     <p class="front-page-large">
     Helping
     <strong>parents</strong>
@@ -18,6 +17,9 @@
     <strong>illness</strong>
     and
     <strong>everyday life</strong>.</p>
+    <div class="highlight-box" style="float: right; text-align: center; margin: 0 12px 0 12px;">
+        <a class="standard-button" href="<%= url_for 'crp.location_search' %>">Find a course near you</a><br><br><a class="standard-button" href="<%= url_for 'crp.instructors' %>">Become an instructor</a>
+    </div>
     <p class="front-page-medium">
     Our
     <a href="<%= url_for 'crp.page',  page => 'programme' %>">fun, interactive workshops</a>
@@ -29,15 +31,6 @@
     <strong>health</strong>
     and strengthen
     <strong>bonds</strong>.
-    </p>
-    <p>
-    <center>
-        <span class="highlight-box">
-            <a class="standard-button" href="<%= url_for 'crp.location_search' %>">Find a course near you</a>
-            or
-            <a class="standard-button" href="<%= url_for 'crp.instructors' %>">Become an instructor</a>
-        </span>
-    </center>
     </p>
 
     <div id="reviews">
@@ -69,15 +62,16 @@
     <a href="<%= url_for 'crp.page',  page => 'programme' %>">The Children's Reflexology Programme</a>
     is a short course of fun workshops where parents, carers and children
     get together to learn how to use a gentle non-invasive complementary therapy to empower
-    themselves in times of stress and distress throughout childhood and on
-    into adulthood. The courses run
-    <a href="<%= url_for 'crp.page', page => 'courses' %>">in many places</a>
-    using a collection of delightful rhymes and pictures of a group of
-    animal friends, engaging children and teaching the simple reflexology.
+    themselves in times of stress and distress throughout childhood and beyond.
+    The course
+    uses a collection of delightful rhymes, pictures and stories to
+    engage children and teach the simple reflexology.
     The programme is delivered by
     <a href="<%= url_for 'crp.instructors' %>">specially qualified instructors</a>
     and is supported by high quality materials including the lovely book,
     <a href="<%= url_for 'crp.page', page => 'book' %>">The Mouse's House</a>.
+    There is a special version of the course for
+    <a href="<%= url_for 'crp.page', page => 'courses' %>#additional">parents of children with additional needs</a>.
     </p>
 
     <div id="pics">
