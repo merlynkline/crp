@@ -1,3 +1,68 @@
+rm -rf share/deploy/migrations/PostgreSQL/deploy/26/; rm -rf share/deploy/migrations/_source/deploy/26/; rm -rf share/deploy/migrations/PostgreSQL/upgrade/25-26/; rm -rf share/deploy/migrations/PostgreSQL/downgrade/26-25/001-auto.sql; 
+
+
++ Add new Instructor Trainer qualifications
+    ~ Add qualification records in DB with a schema update
+        ~ Instructor trainer
+        ~ AN Instructor trainer
+    + Add certificate PDF for the qualification as pdfs/Qualification_Certificate_$code.pdf
+    + Add a new PDF for the instructor course poster
+    + Add any new products to the shop
+    + Instructor training courses section needs to be accessible to users with an appropriate qualification
+        ~ DB updates:
+            ~ Add column: course_type.qualification_earned_id (NULL means it's a parents course, otherwise it'a an instructors course)
+            ~ Add course_type rows for instructor training courses, earning the relevant qualifications
+                ~ Instructor
+                ~ AN Instructor
+                ~ Reflexologist Instructor
+                X AN Reflexologist Instructor
+            ~ Add column: instructors_course.course_type_id
+            ~ Add column: instructors_course.duration TEXT
+            ~ UPDATE instructors_course SET course_type_id = SELECT id FROM course_type WHERE qualification_earned_id = instructors_course.qualification_id
+            ~ UPDATE instructors_course SET duration = '3 days'
+            X (later?) DROP instructors_course.qualification_id
+                ~ Comment on instructors_course.qualification_id to say it's obsolete and why
+        + Code + template changes:
+            + Replace refs to instructors_course.qualification_id with course_type.qualification_earned_id
+            + Wherever we fetch parent course information we must restrict to those WHERE course_type.qualification_earned_id IS NULL
+            + Wherever we fetch instructor course information we must restrict to those WHERE course_type.qualification_earned_id IS NOT NULL
+            + Instructors get to see the "Instructor training courses" link if they have qualifications matching any course_type.qualification_required_id where course_type.qualification_earned_id IS NOT NULL
+            + When adding/editing Instructor training courses:
+                + Replace qualification drop-down is replaced by an appropriately restricted course_type selection
+                + Add field for instructors_course.duration
+                + Ensure instructors_course.instructor_id is set correctly
+            + When showing details of Instructor training courses, include:
+                + course_type.description
+                + course_type.qualification_earned_id
+                + instructors_course.duration
+                + instructors_course.instructor_id
+                + Link to the instructor's personal web page
+            + Show details of Instructor training courses on personal web pages of Instructor trainers
+            + Admin pages
+                + Stats collection for homepage needs to count courses properly and add instructor trainer courses
+                + Course Summary box for account record page needs to include Instructor training courses and links to lists of them
+                    + List of Instructor training courses for instructor needs to be added
+                + NB: Bug: In dev, course summary for SQ says "Past: None" but links to a non-empty list
+            + Member pages:
+                + _available_course_types() needs to be restricted to parents or instructors courses
+        + Other possible template changes
+            + templates/main/pages/course_booked.html.ep "Thank you for taking the time to contact me."
+            + templates/main/pages/instructor_booking.html.ep "Please tell me a bit about yourself"
+            + templates/parts/instructors_course_list.html.ep "If I'm not currently running a course near you"
+            + templates/parts/instructors_course_list.html.ep "I am always happy to travel"
+            + templates/main/pages/instructor_booking.html.ep "I will get back to you as"
+            + templates/main/pages/instructor_booking.html.ep "I am really looking forward"
+            + templates/main/pages/instructor_booking.html.ep "I may not be able to run the separate two-day course"
+            + templates/main/pages/instructor_booking.html.ep  "secure your place once I have confirmed that there is one available"
+    + Instructor training course should only allow you to set up courses for qualifications you are allowed to train for
+    + Instructor course PDFs need to be personalised for the instructor
+    + Instructor course page (course list) needs to inidcate the tutor
+    + Instructor courses need multiple PDFs avilable
+        + Booking form
+        + Student tracker
+        + Others
+    + Improve UI for selecting and displaying instructor courses as opposed to normal courses
+    + Admin area stats need to include instructor training courses
 
 + Further qualification tracking
     + For each qualification, record what assignments have been completed when and the results
@@ -508,6 +573,13 @@ session:
         + tweak as required
         + remove 001-auto.sql
     + Add any additional scripts required (e.g. backfill for new data)
+    + run: ./script/crp migrate upgrade
+- Adding new data to DB without any schema changes
+    + Update version number in lib/CRP/Model/Schema.pm
+    + check status - run: ./script/crp migrate status
+    + run: ./script/crp migrate prepare
+    + check new autosql files are empty, like: share/deploy/migrations/PostgreSQL/upgrade/23-24/001-auto.sql
+    + Add scripts to create new data, like: share/deploy/migrations/PostgreSQL/upgrade/23-24/create_an_qualification.sql
     + run: ./script/crp migrate upgrade
 - Making PDFs in Xara
     + Choose email/web download

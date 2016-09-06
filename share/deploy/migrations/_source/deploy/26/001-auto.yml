@@ -1,0 +1,1462 @@
+---
+schema:
+  procedures: {}
+  tables:
+    audit:
+      constraints:
+        - deferrable: 1
+          expression: ''
+          fields:
+            - id
+          match_type: ''
+          name: ''
+          on_delete: ''
+          on_update: ''
+          options: []
+          reference_fields: []
+          reference_table: ''
+          type: PRIMARY KEY
+        - deferrable: 1
+          expression: ''
+          fields:
+            - course_id
+          match_type: ''
+          name: audit_fk_course_id
+          on_delete: ''
+          on_update: ''
+          options: []
+          reference_fields:
+            - id
+          reference_table: login
+          type: FOREIGN KEY
+        - deferrable: 1
+          expression: ''
+          fields:
+            - instructor_id
+          match_type: ''
+          name: audit_fk_instructor_id
+          on_delete: ''
+          on_update: ''
+          options: []
+          reference_fields:
+            - id
+          reference_table: login
+          type: FOREIGN KEY
+      fields:
+        course_id:
+          data_type: integer
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: course_id
+          order: 3
+          size:
+            - 0
+        details:
+          data_type: text
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: details
+          order: 6
+          size:
+            - 0
+        event_type:
+          data_type: text
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: event_type
+          order: 5
+          size:
+            - 0
+        id:
+          data_type: integer
+          default_value: ~
+          is_auto_increment: 1
+          is_nullable: 0
+          is_primary_key: 1
+          is_unique: 0
+          name: id
+          order: 1
+          size:
+            - 0
+        instructor_id:
+          data_type: integer
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: instructor_id
+          order: 4
+          size:
+            - 0
+        timestamp:
+          data_type: timestamptz
+          default_value: !!perl/ref
+            =: (now())
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: timestamp
+          order: 2
+          size:
+            - 0
+      indices:
+        - fields:
+            - course_id
+          name: audit_idx_course_id
+          options: []
+          type: NORMAL
+        - fields:
+            - instructor_id
+          name: audit_idx_instructor_id
+          options: []
+          type: NORMAL
+        - fields:
+            - instructor_id
+          name: profile_instructor_id_idx
+          options: []
+          type: NORMAL
+        - fields:
+            - course_id
+          name: profile_course_id_idx
+          options: []
+          type: NORMAL
+        - fields:
+            - timestamp
+          name: profile_timestamp_idx
+          options: []
+          type: NORMAL
+      name: audit
+      options: []
+      order: 5
+    course:
+      constraints:
+        - deferrable: 1
+          expression: ''
+          fields:
+            - id
+          match_type: ''
+          name: ''
+          on_delete: ''
+          on_update: ''
+          options: []
+          reference_fields: []
+          reference_table: ''
+          type: PRIMARY KEY
+        - deferrable: 1
+          expression: ''
+          fields:
+            - course_type_id
+          match_type: ''
+          name: course_fk_course_type_id
+          on_delete: ''
+          on_update: ''
+          options: []
+          reference_fields:
+            - id
+          reference_table: course_type
+          type: FOREIGN KEY
+        - deferrable: 1
+          expression: ''
+          fields:
+            - instructor_id
+          match_type: ''
+          name: course_fk_instructor_id
+          on_delete: ''
+          on_update: ''
+          options: []
+          reference_fields:
+            - id
+          reference_table: login
+          type: FOREIGN KEY
+      fields:
+        book_excluded:
+          data_type: boolean
+          default_value: f
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: book_excluded
+          order: 15
+          size:
+            - 0
+        canceled:
+          data_type: boolean
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: canceled
+          order: 13
+          size:
+            - 0
+        course_duration:
+          data_type: text
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: course_duration
+          order: 12
+          size:
+            - 0
+        course_type_id:
+          data_type: integer
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: course_type_id
+          order: 16
+          size:
+            - 0
+        description:
+          data_type: text
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: description
+          order: 7
+          size:
+            - 0
+        id:
+          data_type: integer
+          default_value: ~
+          is_auto_increment: 1
+          is_nullable: 0
+          is_primary_key: 1
+          is_unique: 0
+          name: id
+          order: 1
+          size:
+            - 0
+        instructor_id:
+          data_type: integer
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: instructor_id
+          order: 2
+          size:
+            - 0
+        latitude:
+          data_type: real
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: latitude
+          order: 4
+          size:
+            - 0
+        location:
+          data_type: text
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: location
+          order: 3
+          size:
+            - 0
+        longitude:
+          data_type: real
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: longitude
+          order: 5
+          size:
+            - 0
+        price:
+          data_type: text
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: price
+          order: 10
+          size:
+            - 0
+        published:
+          data_type: boolean
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: published
+          order: 14
+          size:
+            - 0
+        session_duration:
+          data_type: text
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: session_duration
+          order: 11
+          size:
+            - 0
+        start_date:
+          data_type: timestamptz
+          default_value: !!perl/ref
+            =: (now())
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: start_date
+          order: 8
+          size:
+            - 0
+        time:
+          data_type: text
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: time
+          order: 9
+          size:
+            - 0
+        venue:
+          data_type: text
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: venue
+          order: 6
+          size:
+            - 0
+      indices:
+        - fields:
+            - course_type_id
+          name: course_idx_course_type_id
+          options: []
+          type: NORMAL
+        - fields:
+            - instructor_id
+          name: course_idx_instructor_id
+          options: []
+          type: NORMAL
+        - fields:
+            - latitude
+          name: course_latitude_idx
+          options: []
+          type: NORMAL
+        - fields:
+            - longitude
+          name: course_longitude_idx
+          options: []
+          type: NORMAL
+        - fields:
+            - instructor_id
+          name: course_instructor_id_idx
+          options: []
+          type: NORMAL
+      name: course
+      options: []
+      order: 9
+    course_type:
+      constraints:
+        - deferrable: 1
+          expression: ''
+          fields:
+            - id
+          match_type: ''
+          name: ''
+          on_delete: ''
+          on_update: ''
+          options: []
+          reference_fields: []
+          reference_table: ''
+          type: PRIMARY KEY
+        - deferrable: 1
+          expression: ''
+          fields:
+            - qualification_earned_id
+          match_type: ''
+          name: course_type_fk_qualification_earned_id
+          on_delete: ''
+          on_update: ''
+          options: []
+          reference_fields:
+            - id
+          reference_table: qualification
+          type: FOREIGN KEY
+        - deferrable: 1
+          expression: ''
+          fields:
+            - qualification_required_id
+          match_type: ''
+          name: course_type_fk_qualification_required_id
+          on_delete: CASCADE
+          on_update: CASCADE
+          options: []
+          reference_fields:
+            - id
+          reference_table: qualification
+          type: FOREIGN KEY
+      fields:
+        abbreviation:
+          data_type: text
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: abbreviation
+          order: 3
+          size:
+            - 0
+        code:
+          data_type: text
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: code
+          order: 5
+          size:
+            - 0
+        description:
+          data_type: text
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: description
+          order: 2
+          size:
+            - 0
+        id:
+          data_type: integer
+          default_value: ~
+          is_auto_increment: 1
+          is_nullable: 0
+          is_primary_key: 1
+          is_unique: 0
+          name: id
+          order: 1
+          size:
+            - 0
+        qualification_earned_id:
+          data_type: integer
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: qualification_earned_id
+          order: 6
+          size:
+            - 0
+        qualification_required_id:
+          data_type: integer
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: qualification_required_id
+          order: 4
+          size:
+            - 0
+      indices:
+        - fields:
+            - qualification_earned_id
+          name: course_type_idx_qualification_earned_id
+          options: []
+          type: NORMAL
+        - fields:
+            - qualification_required_id
+          name: course_type_idx_qualification_required_id
+          options: []
+          type: NORMAL
+        - fields:
+            - qualification_required_id
+          name: course_type_qualification_required_id_idx
+          options: []
+          type: NORMAL
+        - fields:
+            - code
+          name: course_type_code_idx
+          options: []
+          type: NORMAL
+      name: course_type
+      options: []
+      order: 6
+    enquiry:
+      constraints:
+        - deferrable: 1
+          expression: ''
+          fields:
+            - id
+          match_type: ''
+          name: ''
+          on_delete: ''
+          on_update: ''
+          options: []
+          reference_fields: []
+          reference_table: ''
+          type: PRIMARY KEY
+        - deferrable: 1
+          expression: ''
+          fields:
+            - email
+          match_type: ''
+          name: enquiry_email_key
+          on_delete: ''
+          on_update: ''
+          options: []
+          reference_fields: []
+          reference_table: ''
+          type: UNIQUE
+      fields:
+        create_date:
+          data_type: timestamptz
+          default_value: !!perl/ref
+            =: (now())
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: create_date
+          order: 4
+          size:
+            - 0
+        email:
+          data_type: text
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 1
+          name: email
+          order: 3
+          size:
+            - 0
+        id:
+          data_type: integer
+          default_value: ~
+          is_auto_increment: 1
+          is_nullable: 0
+          is_primary_key: 1
+          is_unique: 0
+          name: id
+          order: 1
+          size:
+            - 0
+        latitude:
+          data_type: real
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: latitude
+          order: 7
+          size:
+            - 0
+        location:
+          data_type: text
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: location
+          order: 6
+          size:
+            - 0
+        longitude:
+          data_type: real
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: longitude
+          order: 8
+          size:
+            - 0
+        name:
+          data_type: text
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: name
+          order: 2
+          size:
+            - 0
+        notify_new_courses:
+          data_type: boolean
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: notify_new_courses
+          order: 9
+          size:
+            - 0
+        notify_tutors:
+          data_type: boolean
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: notify_tutors
+          order: 10
+          size:
+            - 0
+        send_newsletter:
+          data_type: boolean
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: send_newsletter
+          order: 11
+          size:
+            - 0
+        suspend_date:
+          data_type: timestamptz
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: suspend_date
+          order: 5
+          size:
+            - 0
+      indices:
+        - fields:
+            - suspend_date
+          name: enquiry_suspend_date_idx
+          options: []
+          type: NORMAL
+        - fields:
+            - latitude
+          name: enquiry_latitude_idx
+          options: []
+          type: NORMAL
+        - fields:
+            - longitude
+          name: enquiry_longitude_idx
+          options: []
+          type: NORMAL
+      name: enquiry
+      options: []
+      order: 1
+    instructor_qualification:
+      constraints:
+        - deferrable: 1
+          expression: ''
+          fields:
+            - id
+          match_type: ''
+          name: ''
+          on_delete: ''
+          on_update: ''
+          options: []
+          reference_fields: []
+          reference_table: ''
+          type: PRIMARY KEY
+        - deferrable: 1
+          expression: ''
+          fields:
+            - instructor_id
+          match_type: ''
+          name: instructor_qualification_fk_instructor_id
+          on_delete: CASCADE
+          on_update: CASCADE
+          options: []
+          reference_fields:
+            - id
+          reference_table: login
+          type: FOREIGN KEY
+        - deferrable: 1
+          expression: ''
+          fields:
+            - qualification_id
+          match_type: ''
+          name: instructor_qualification_fk_qualification_id
+          on_delete: CASCADE
+          on_update: CASCADE
+          options: []
+          reference_fields:
+            - id
+          reference_table: qualification
+          type: FOREIGN KEY
+      fields:
+        id:
+          data_type: integer
+          default_value: ~
+          is_auto_increment: 1
+          is_nullable: 0
+          is_primary_key: 1
+          is_unique: 0
+          name: id
+          order: 1
+          size:
+            - 0
+        instructor_id:
+          data_type: integer
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: instructor_id
+          order: 3
+          size:
+            - 0
+        passed_date:
+          data_type: timestamptz
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: passed_date
+          order: 4
+          size:
+            - 0
+        qualification_id:
+          data_type: integer
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: qualification_id
+          order: 2
+          size:
+            - 0
+      indices:
+        - fields:
+            - instructor_id
+          name: instructor_qualification_idx_instructor_id
+          options: []
+          type: NORMAL
+        - fields:
+            - qualification_id
+          name: instructor_qualification_idx_qualification_id
+          options: []
+          type: NORMAL
+        - fields:
+            - qualification_id
+          name: qualification_qualification_id_idx
+          options: []
+          type: NORMAL
+        - fields:
+            - instructor_id
+          name: qualification_instructor_id_idx
+          options: []
+          type: NORMAL
+      name: instructor_qualification
+      options: []
+      order: 8
+    instructors_course:
+      constraints:
+        - deferrable: 1
+          expression: ''
+          fields:
+            - id
+          match_type: ''
+          name: ''
+          on_delete: ''
+          on_update: ''
+          options: []
+          reference_fields: []
+          reference_table: ''
+          type: PRIMARY KEY
+        - deferrable: 1
+          expression: ''
+          fields:
+            - course_type_id
+          match_type: ''
+          name: instructors_course_fk_course_type_id
+          on_delete: ''
+          on_update: ''
+          options: []
+          reference_fields:
+            - id
+          reference_table: course_type
+          type: FOREIGN KEY
+        - deferrable: 1
+          expression: ''
+          fields:
+            - instructor_id
+          match_type: ''
+          name: instructors_course_fk_instructor_id
+          on_delete: ''
+          on_update: ''
+          options: []
+          reference_fields:
+            - id
+          reference_table: login
+          type: FOREIGN KEY
+      fields:
+        canceled:
+          data_type: boolean
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: canceled
+          order: 10
+          size:
+            - 0
+        course_type_id:
+          data_type: integer
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: course_type_id
+          order: 13
+          size:
+            - 0
+        description:
+          data_type: text
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: description
+          order: 7
+          size:
+            - 0
+        duration:
+          data_type: text
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: duration
+          order: 14
+          size:
+            - 0
+        id:
+          data_type: integer
+          default_value: ~
+          is_auto_increment: 1
+          is_nullable: 0
+          is_primary_key: 1
+          is_unique: 0
+          name: id
+          order: 1
+          size:
+            - 0
+        instructor_id:
+          data_type: integer
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: instructor_id
+          order: 2
+          size:
+            - 0
+        latitude:
+          data_type: real
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: latitude
+          order: 4
+          size:
+            - 0
+        location:
+          data_type: text
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: location
+          order: 3
+          size:
+            - 0
+        longitude:
+          data_type: real
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: longitude
+          order: 5
+          size:
+            - 0
+        price:
+          data_type: text
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: price
+          order: 9
+          size:
+            - 0
+        published:
+          data_type: boolean
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: published
+          order: 11
+          size:
+            - 0
+        qualification_id:
+          data_type: integer
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: qualification_id
+          order: 12
+          size:
+            - 0
+        start_date:
+          data_type: timestamptz
+          default_value: !!perl/ref
+            =: (now())
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: start_date
+          order: 8
+          size:
+            - 0
+        venue:
+          data_type: text
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: venue
+          order: 6
+          size:
+            - 0
+      indices:
+        - fields:
+            - course_type_id
+          name: instructors_course_idx_course_type_id
+          options: []
+          type: NORMAL
+        - fields:
+            - instructor_id
+          name: instructors_course_idx_instructor_id
+          options: []
+          type: NORMAL
+        - fields:
+            - latitude
+          name: instructor_course_latitude_idx
+          options: []
+          type: NORMAL
+        - fields:
+            - longitude
+          name: instructor_course_longitude_idx
+          options: []
+          type: NORMAL
+        - fields:
+            - instructor_id
+          name: instructor_course_instructor_id_idx
+          options: []
+          type: NORMAL
+      name: instructors_course
+      options: []
+      order: 10
+    login:
+      constraints:
+        - deferrable: 1
+          expression: ''
+          fields:
+            - id
+          match_type: ''
+          name: ''
+          on_delete: ''
+          on_update: ''
+          options: []
+          reference_fields: []
+          reference_table: ''
+          type: PRIMARY KEY
+        - deferrable: 1
+          expression: ''
+          fields:
+            - email
+          match_type: ''
+          name: login_email_key
+          on_delete: ''
+          on_update: ''
+          options: []
+          reference_fields: []
+          reference_table: ''
+          type: UNIQUE
+      fields:
+        auto_login:
+          data_type: boolean
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: auto_login
+          order: 10
+          size:
+            - 0
+        create_date:
+          data_type: timestamptz
+          default_value: !!perl/ref
+            =: (now())
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: create_date
+          order: 3
+          size:
+            - 0
+        disabled_date:
+          data_type: timestamptz
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: disabled_date
+          order: 11
+          size:
+            - 0
+        email:
+          data_type: text
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 1
+          name: email
+          order: 2
+          size:
+            - 0
+        id:
+          data_type: integer
+          default_value: ~
+          is_auto_increment: 1
+          is_nullable: 0
+          is_primary_key: 1
+          is_unique: 0
+          name: id
+          order: 1
+          size:
+            - 0
+        is_administrator:
+          data_type: boolean
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: is_administrator
+          order: 8
+          size:
+            - 0
+        is_demo:
+          data_type: boolean
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: is_demo
+          order: 9
+          size:
+            - 0
+        last_login_date:
+          data_type: timestamptz
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: last_login_date
+          order: 4
+          size:
+            - 0
+        otp_expiry_date:
+          data_type: timestamptz
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: otp_expiry_date
+          order: 7
+          size:
+            - 0
+        otp_hash:
+          data_type: text
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: otp_hash
+          order: 6
+          size:
+            - 0
+        password_hash:
+          data_type: text
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: password_hash
+          order: 5
+          size:
+            - 0
+      indices: []
+      name: login
+      options: []
+      order: 2
+    profile:
+      constraints:
+        - deferrable: 1
+          expression: ''
+          fields:
+            - instructor_id
+          match_type: ''
+          name: ''
+          on_delete: ''
+          on_update: ''
+          options: []
+          reference_fields: []
+          reference_table: ''
+          type: PRIMARY KEY
+        - deferrable: 1
+          expression: ''
+          fields:
+            - web_page_slug
+          match_type: ''
+          name: web_page_slug_key
+          on_delete: ''
+          on_update: ''
+          options: []
+          reference_fields: []
+          reference_table: ''
+          type: UNIQUE
+        - deferrable: 1
+          expression: ''
+          fields:
+            - instructor_id
+          match_type: ''
+          name: profile_fk_instructor_id
+          on_delete: CASCADE
+          on_update: ''
+          options: []
+          reference_fields:
+            - id
+          reference_table: login
+          type: FOREIGN KEY
+      fields:
+        address:
+          data_type: text
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: address
+          order: 3
+          size:
+            - 0
+        blurb:
+          data_type: text
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: blurb
+          order: 8
+          size:
+            - 0
+        hide_address:
+          data_type: boolean
+          default_value: f
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: hide_address
+          order: 14
+          size:
+            - 0
+        instructor_id:
+          data_type: integer
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 1
+          is_unique: 0
+          name: instructor_id
+          order: 1
+          size:
+            - 0
+        instructor_trainer:
+          data_type: boolean
+          default_value: 0
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: instructor_trainer
+          order: 13
+          size:
+            - 0
+        latitude:
+          data_type: real
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: latitude
+          order: 11
+          size:
+            - 0
+        location:
+          data_type: text
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: location
+          order: 10
+          size:
+            - 0
+        longitude:
+          data_type: real
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: longitude
+          order: 12
+          size:
+            - 0
+        mobile:
+          data_type: text
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: mobile
+          order: 6
+          size:
+            - 0
+        name:
+          data_type: text
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: name
+          order: 2
+          size:
+            - 0
+        photo:
+          data_type: text
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: photo
+          order: 7
+          size:
+            - 0
+        postcode:
+          data_type: text
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: postcode
+          order: 4
+          size:
+            - 0
+        telephone:
+          data_type: text
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: telephone
+          order: 5
+          size:
+            - 0
+        web_page_slug:
+          data_type: text
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 1
+          name: web_page_slug
+          order: 9
+          size:
+            - 0
+      indices:
+        - fields:
+            - web_page_slug
+          name: profile_web_page_slug_idx
+          options: []
+          type: NORMAL
+        - fields:
+            - latitude
+          name: profile_latitude_idx
+          options: []
+          type: NORMAL
+        - fields:
+            - longitude
+          name: profile_longitude_idx
+          options: []
+          type: NORMAL
+      name: profile
+      options: []
+      order: 7
+    qualification:
+      constraints:
+        - deferrable: 1
+          expression: ''
+          fields:
+            - id
+          match_type: ''
+          name: ''
+          on_delete: ''
+          on_update: ''
+          options: []
+          reference_fields: []
+          reference_table: ''
+          type: PRIMARY KEY
+      fields:
+        abbreviation:
+          data_type: text
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: abbreviation
+          order: 3
+          size:
+            - 0
+        code:
+          data_type: text
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: code
+          order: 4
+          size:
+            - 0
+        id:
+          data_type: integer
+          default_value: ~
+          is_auto_increment: 1
+          is_nullable: 0
+          is_primary_key: 1
+          is_unique: 0
+          name: id
+          order: 1
+          size:
+            - 0
+        qualification:
+          data_type: text
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: qualification
+          order: 2
+          size:
+            - 0
+      indices:
+        - fields:
+            - code
+          name: qualification_code_idx
+          options: []
+          type: NORMAL
+      name: qualification
+      options: []
+      order: 3
+    session:
+      constraints:
+        - deferrable: 1
+          expression: ''
+          fields:
+            - id
+          match_type: ''
+          name: ''
+          on_delete: ''
+          on_update: ''
+          options: []
+          reference_fields: []
+          reference_table: ''
+          type: PRIMARY KEY
+      fields:
+        data:
+          data_type: text
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: data
+          order: 3
+          size:
+            - 0
+        id:
+          data_type: integer
+          default_value: ~
+          is_auto_increment: 1
+          is_nullable: 0
+          is_primary_key: 1
+          is_unique: 0
+          name: id
+          order: 1
+          size:
+            - 0
+        instructor_id:
+          data_type: integer
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: instructor_id
+          order: 2
+          size:
+            - 0
+        last_access_date:
+          data_type: timestamptz
+          default_value: !!perl/ref
+            =: (now())
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: last_access_date
+          order: 4
+          size:
+            - 0
+      indices: []
+      name: session
+      options: []
+      order: 4
+  triggers: {}
+  views: {}
+translator:
+  add_drop_table: 0
+  filename: ~
+  no_comments: 0
+  parser_args:
+    sources:
+      - Audit
+      - Course
+      - CourseType
+      - Enquiry
+      - InstructorCourse
+      - InstructorQualification
+      - Login
+      - Profile
+      - Qualification
+      - Session
+  parser_type: SQL::Translator::Parser::DBIx::Class
+  producer_args: {}
+  producer_type: SQL::Translator::Producer::YAML
+  show_warnings: 0
+  trace: 0
+  version: 0.11020

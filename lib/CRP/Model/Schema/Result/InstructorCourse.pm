@@ -64,14 +64,26 @@ __PACKAGE__->add_columns(
         is_nullable         => 0,
     },
     qualification_id => {
+        # NB This column is now obsolete. It is replaced by course_type_id which is an FK referring to
+        # course_type.id, through which this and other information is available. Not dropped at the same
+        # time as adding course_type_id because the information is needed to back-fill the new column
+        # during migration.
         data_type           => 'integer',
+        is_nullable         => 1,
+    },
+    course_type_id => {
+        data_type           => 'integer',
+        is_nullable         => 1,
+    },
+    duration => {
+        data_type           => 'text',
         is_nullable         => 1,
     },
 );
 
 __PACKAGE__->set_primary_key('id');
 __PACKAGE__->belongs_to('instructor' => 'CRP::Model::Schema::Result::Login', 'instructor_id');
-__PACKAGE__->belongs_to('qualification' => 'CRP::Model::Schema::Result::Qualification', 'qualification_id');
+__PACKAGE__->belongs_to('course_type' => 'CRP::Model::Schema::Result::CourseType', 'course_type_id');
 
 my %TYPE = (
     venue               => {MinLen => 1, MaxLen => 50},

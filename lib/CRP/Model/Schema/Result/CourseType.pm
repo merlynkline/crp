@@ -36,10 +36,15 @@ __PACKAGE__->add_columns(
         data_type           => 'text',
         is_nullable         => 1,
     },
+    qualification_earned_id => {
+        data_type           => 'integer',
+        is_nullable         => 1,
+    },
 );
 
 __PACKAGE__->set_primary_key('id');
-__PACKAGE__->belongs_to('qualification' => 'CRP::Model::Schema::Result::Qualification', 'qualification_required_id');
+__PACKAGE__->belongs_to('qualification_required' => 'CRP::Model::Schema::Result::Qualification', 'qualification_required_id');
+__PACKAGE__->belongs_to('qualification_earned' => 'CRP::Model::Schema::Result::Qualification', 'qualification_earned_id', {join_type => 'left'});
 __PACKAGE__->has_many('instructor_qualification' => 'CRP::Model::Schema::Result::InstructorQualification', {'foreign.qualification_id' => 'self.qualification_required_id'} );
 
 sub sqlt_deploy_hook {
