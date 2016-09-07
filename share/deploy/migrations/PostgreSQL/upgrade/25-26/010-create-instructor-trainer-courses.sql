@@ -17,6 +17,10 @@ BEGIN;
     ('INST-TRAIN-AN', 'Additional Needs Instructor Trainer in The Children''s Reflexology Programme', 'TCRP AN Instructor Trainer')
     ;
 
+
+
+    -- New course types for Instructor Trainer courses
+
     INSERT INTO course_type
     (description, abbreviation, code, qualification_required_id, qualification_earned_id)
     VALUES
@@ -28,10 +32,6 @@ BEGIN;
         (SELECT id FROM qualification WHERE code = 'TCRP')
     )
     ;
-
-
-
-    -- New course types for Instructor Trainer courses
 
     INSERT INTO course_type
     (description, abbreviation, code, qualification_required_id, qualification_earned_id)
