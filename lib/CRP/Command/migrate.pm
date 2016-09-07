@@ -23,7 +23,8 @@ sub run {
 
     my $config = $self->app->config->{database};
     my $init = 0;
-    GetOptions('init' => \$init);
+    my $force_overwrite;
+    GetOptions('init' => \$init, 'force_overwrite!' => \$force_overwrite);
 
     $ENV{DBIC_MIGRATION_SCHEMA_CLASS} = 'CRP::Model::Schema';
     $ENV{DBIC_MIGRATION_TARGET_DIR}   = 'share/deploy';
@@ -44,6 +45,7 @@ sub run {
             '--username', $config->{username},
             '--password', $config->{password},
         );
+        unshift @ARGV, '--force_overwrite' if $force_overwrite;
         (require DBIx::Class::Migration::Script)->run_with_options;
     }
 }
