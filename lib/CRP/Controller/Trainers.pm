@@ -9,7 +9,7 @@ use CRP::Util::Misc;
 sub authenticate {
     my $c = shift;
 
-    return 1 if $c->stash('login_record')->profile->instructor_trainer;
+    return 1 if @{$c->_available_course_types($c->stash('login_record')->profile)};
     $c->render(text => "Sorry - you aren't authorised to see this page", status => 403);
     return 0;
 }
