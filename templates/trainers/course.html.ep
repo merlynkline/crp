@@ -23,15 +23,13 @@
             <%= include 'parts/error', field => 'venue' %>
         </div>
 
-        <label for="qualification">Qualification:
-            <div class="field-extra-info">What the certificate issued will be for.</div>
-        </label>
+        <label for="course_type">Course type:</label>
         <div class="input-container">
-            %= select_field qualification => [ ['Please select...' => ''], map { [$_->abbreviation => $_->id, ($_->id eq ($course->qualification_id // '') ? (selected => 'selected') : ())] } @{stash('available_qualifications')} ], @disabler;
+            %= select_field course_type => [ ['Please select...' => ''], map { [$_->description => $_->id, ($_->id eq ($course->course_type_id // '') ? (selected => 'selected') : ())] } @{stash('available_course_types')} ], @disabler;
             % if($disabler[1]) {
-            %= hidden_field qualification => $course->qualification_id;
+            %= hidden_field course_type => $course->course_type_id;
             % }
-            <%= include 'parts/error', field => 'qualification' %>
+            <%= include 'parts/error', field => 'course_type' %>
         </div>
 
         <label for="location-input-location">Location:</label>
@@ -81,6 +79,14 @@
         <div class="input-container">
             %= date_field 'start_date', id => 'start_date', maxlength => 10, required => 'required', value => $course->start_date ? $c->crp->format_date($course->start_date, 'input') : '', @disabler;
             <%= include 'parts/error', field => 'start_date' %>
+        </div>
+
+        <label for="duration">Duration:
+            <div class="field-extra-info">Enter the duration of the course. This is free text so you can enter things like '3 days'.</div>
+        </label>
+        <div class="input-container">
+            %= text_field 'duration', id => 'duration', maxlength => 50, required => 'required', value => $course->duration;
+            <%= include 'parts/error', field => 'duration' %>
         </div>
 
         <label for="price">Price:

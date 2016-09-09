@@ -15,7 +15,11 @@
     <tr>
         <td nowrap><%= $c->crp->format_date($course->start_date, 'short') %></td>
         <td><%= $course->venue %></td>
-        <td><%= $course->description %><br /><span class="supplementary-info" style="color: inherit;">Qualification gained: <%= $course->qualification->qualification %></span></td>
+        <td>
+            <span class="supplementary-info" style="color: inherit;"><em><%= $course->course_type->description %></em></span><br />
+            <%= $course->description %><br />
+            <span class="supplementary-info" style="color: inherit;">Qualification gained: <%= $course->course_type->qualification_earned->qualification %></span>
+        </td>
         <td nowrap>
         <a href="<%= url_for('crp.instructor_poster')->query(id => $course->id) %>" class="small-button">PDF</a>
         % if($type eq 'draft' || $type eq 'advertised') {
@@ -59,7 +63,7 @@ Hover the mouse over any button to find out more about it.
 </span>
 </p>
 <br />
-<h2>Draft courses</h2>
+<h2>Draft instructor training courses</h2>
 % my $courses_list = stash('draft_list');
 % if(@$courses_list) {
 %= $course_list_block->($courses_list, 'draft');
@@ -68,7 +72,7 @@ Hover the mouse over any button to find out more about it.
 %= include 'parts/message_box', msg => 'no_draft_courses', auto_hide => 0;
 % }
 
-<h2>Advertised courses</h2>
+<h2>Advertised instructor training courses</h2>
 % $courses_list = stash('advertised_list');
 % if(@$courses_list) {
 %= $course_list_block->($courses_list, 'advertised');
@@ -77,7 +81,7 @@ Hover the mouse over any button to find out more about it.
 %= include 'parts/message_box', msg => 'no_advertised_courses', auto_hide => 0;
 % }
 
-<h2>Canceled courses</h2>
+<h2>Canceled instructor training courses</h2>
 % $courses_list = stash('canceled_list');
 % if(@$courses_list) {
 %= $course_list_block->($courses_list, 'canceled');
@@ -86,7 +90,7 @@ Hover the mouse over any button to find out more about it.
 %= include 'parts/message_box', msg => 'no_canceled_courses', auto_hide => 0;
 % }
 
-<h2>Past courses</h2>
+<h2>Past instructor training courses</h2>
 % $courses_list = stash('past_list');
 % if(@$courses_list) {
 %= $course_list_block->($courses_list, 'past');

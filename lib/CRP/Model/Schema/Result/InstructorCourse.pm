@@ -70,6 +70,7 @@ __PACKAGE__->add_columns(
         # during migration.
         data_type           => 'integer',
         is_nullable         => 1,
+        accessor            => '_obsolete_qualification_id',
     },
     course_type_id => {
         data_type           => 'integer',

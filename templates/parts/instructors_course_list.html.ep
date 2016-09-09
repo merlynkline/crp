@@ -9,9 +9,13 @@
     </tr>
 % foreach my $course (@$courses) {
 <tr>
-    <td nowrap="nowrap"><%= $c->crp->format_date($course->start_date, 'short') %></td>
+    <td nowrap="nowrap"><%= $c->crp->format_date($course->start_date, 'short') %><br /><span class="supplementary-info" style="color: inherit;"><%= $course->duration %></span></td>
     <td><%= $course->venue %></td>
-    <td><%= $course->description %><br /><span class="supplementary-info" style="color: inherit;">Qualification gained: <%= $course->qualification->qualification %></span></td>
+    <td><span class="supplementary-info" style="color: inherit;"><em><%= $course->course_type->description %></em></span><br />
+        <%= $course->description %><br />
+        <span class="supplementary-info" style="color: inherit;">Tutor: <a href="<%=url_for('crp.membersite.home', slug => $course->instructor->profile->web_page_slug)->to_abs %>"><%= $course->instructor->profile->name %></a><br />
+        Qualification gained: <%= $course->course_type->qualification_earned->qualification %></span>
+    </td>
     <td>
         <a href="<%= url_for('/page/instructor_booking')->query(location => $course->venue, date => $c->crp->format_date($course->start_date, 'short')) %>" class="small-button">Book&nbsp;place</a>
         <a href="<%= url_for('crp.instructor_poster')->query(id => $course->id) %>" class="small-button">Poster</a>

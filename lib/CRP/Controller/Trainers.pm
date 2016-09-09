@@ -81,7 +81,7 @@ sub _load_editable_course {
     my $c = shift;
     my($course_id) = @_;
 
-    my $course = $c->crp->model('InstructorCourse')->find({id => $course_id});
+    my $course = $c->crp->model('InstructorCourse')->find({id => $course_id, prefetch => 'course_type'});
     die "You can't edit this course" unless $course && $course->is_editable_by_instructor($c->crp->logged_in_instructor_id);
     return $course;
 }
@@ -102,7 +102,8 @@ sub _load_course_from_params {
         description         => $c->crp->trimmed_param('description'),
         start_date          => CRP::Util::Misc::get_date_input($c->crp->trimmed_param('start_date')),
         price               => $c->crp->trimmed_param('price'),
-        qualification_id    => $c->crp->trimmed_param('qualification') || 0,
+        duration            => $c->crp->trimmed_param('duration'),
+        course_type_id      => $c->crp->trimmed_param('course_type') || 0,
     };
 
     foreach my $column (keys %$record) {
@@ -119,7 +120,7 @@ sub _load_course_from_params {
         $validation->error(start_date => ['future_date'])
             unless $record->{start_date} && $record->{start_date} >= DateTime->now;
     }
-    $validation->error(qualification => ['no_qualification']) unless $record->{qualification_id};
+    $validation->error(course_type => ['no_course_type']) unless $record->{course_type_id};
 
     return $validation;
 }
@@ -137,7 +138,8 @@ sub _load_course_from_defaults {
     my($course) = @_;
 
     my $profile = $c->crp->load_profile;
-    my $config = $c->config->{course};
+    my $config = $c->config->{instructors_course};
+    $course->duration($config->{default_course_duration});
     $course->location($profile->location);
 }
 
@@ -146,11 +148,31 @@ sub _display_course_editor_with {
     my($course) = @_;
 
     my $profile = $c->crp->load_profile;
-    $c->param(qualification => $course->qualification_id // '');
+    $c->param(course_type => $course->course_type_id // '');
     $c->stash(site_profile => $profile);
     $c->stash('course_record', $course);
     $c->stash('edit_restriction', 'PUBLISHED') if $course->published;
-    $c->stash(available_qualifications => [ $c->crp->model('Qualification')->search(undef, {order_by => 'abbreviation'}) ]);
+    $c->stash(available_course_types => $c->_available_course_types($profile));
+}
+
+sub _available_course_types {
+    my $c = shift;
+    my($profile) = @_;
+
+    my @course_types = $c->crp->model('CourseType')->search(
+        {
+            'instructor_qualification.instructor_id' => $profile->instructor_id,
+            qualification_earned_id => { '!=', undef },
+        },
+        {
+            join    => 'instructor_qualification',
+            columns => [qw(id abbreviation description qualification_required_id)],
+            distinct=> 1,
+            order_by=> 'description',
+        }
+    );
+
+    return \@course_types;
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 

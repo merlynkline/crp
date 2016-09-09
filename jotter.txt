@@ -2,14 +2,14 @@ rm -rf share/deploy/migrations/PostgreSQL/deploy/26/; rm -rf share/deploy/migrat
 
 
 + Add new Instructor Trainer qualifications
-    ~ Add qualification records in DB with a schema update
-        ~ Instructor trainer
-        ~ AN Instructor trainer
     + Add certificate PDF for the qualification as pdfs/Qualification_Certificate_$code.pdf
     + Add a new PDF for the instructor course poster
     + Add any new products to the shop
     + Instructor training courses section needs to be accessible to users with an appropriate qualification
         ~ DB updates:
+            ~ Add qualification records
+                ~ Instructor trainer
+                ~ AN Instructor trainer
             ~ Add column: course_type.qualification_earned_id (NULL means it's a parents course, otherwise it'a an instructors course)
             ~ Add course_type rows for instructor training courses, earning the relevant qualifications
                 ~ Instructor
@@ -23,20 +23,23 @@ rm -rf share/deploy/migrations/PostgreSQL/deploy/26/; rm -rf share/deploy/migrat
             X (later?) DROP instructors_course.qualification_id
                 ~ Comment on instructors_course.qualification_id to say it's obsolete and why
         + Code + template changes:
-            + Replace refs to instructors_course.qualification_id with course_type.qualification_earned_id
+            ~ Make a custom accessor for instructors_course.qualification_id so attempts to use it throw an exception
+            ~ Replace refs to instructors_course.qualification_id with course_type.qualification_earned_id
             + Wherever we fetch parent course information we must restrict to those WHERE course_type.qualification_earned_id IS NULL
             + Wherever we fetch instructor course information we must restrict to those WHERE course_type.qualification_earned_id IS NOT NULL
             + Instructors get to see the "Instructor training courses" link if they have qualifications matching any course_type.qualification_required_id where course_type.qualification_earned_id IS NOT NULL
             + When adding/editing Instructor training courses:
-                + Replace qualification drop-down is replaced by an appropriately restricted course_type selection
-                + Add field for instructors_course.duration
+                - templates/trainers/course.html.ep
+                ~ Replace qualification drop-down is replaced by an appropriately restricted course_type selection
+                ~ Add field for instructors_course.duration
                 + Ensure instructors_course.instructor_id is set correctly
             + When showing details of Instructor training courses, include:
-                + course_type.description
-                + course_type.qualification_earned_id
-                + instructors_course.duration
-                + instructors_course.instructor_id
-                + Link to the instructor's personal web page
+                ~ course_type.description
+                ~ course_type.qualification_earned_id
+                ~ instructors_course.duration
+                ~ instructors_course.instructor_id
+                ~ Link to the instructor's personal web page
+            + Brief course details (e.g. when confirming a delete) could show more
             + Show details of Instructor training courses on personal web pages of Instructor trainers
             + Admin pages
                 + Stats collection for homepage needs to count courses properly and add instructor trainer courses
@@ -55,7 +58,10 @@ rm -rf share/deploy/migrations/PostgreSQL/deploy/26/; rm -rf share/deploy/migrat
             + templates/main/pages/instructor_booking.html.ep "I may not be able to run the separate two-day course"
             + templates/main/pages/instructor_booking.html.ep  "secure your place once I have confirmed that there is one available"
     + Instructor training course should only allow you to set up courses for qualifications you are allowed to train for
-    + Instructor course PDFs need to be personalised for the instructor
+    + Instructor course PDFs
+        + Need to be personalised for the instructor
+        + Need to show course_type->description and course->duration
+        + Currently named for qualification code - need renaming for course_type.code
     + Instructor course page (course list) needs to inidcate the tutor
     + Instructor courses need multiple PDFs avilable
         + Booking form
