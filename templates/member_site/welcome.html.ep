@@ -19,27 +19,55 @@
 <%= include 'member_site/parts/blurb', cachebuster => 0 %>
 <br clear="right" />
 <h2><a name="courses"></a>Courses</a></h2>
-% if(@{stash 'advertised_list'}) {
+% if(@{stash 'advertised_list'} || @{stash 'instructors_advertised_list'}) {
 Here's a list of courses I've got coming up. Click on any of them to get
 more details or to book a place. If you don't see a course suitable for
 you, please contact me to see if we can arrange something.
-<table class="list1">
-    <tr>
-        <th>Start</th>
-        <th></th>
-        <th>Venue</th>
-        <th>Title</th>
-    </tr>
-    % foreach my $course (@{stash 'advertised_list'}) {
-    %   my $url = url_for 'crp.membersite.course', course => $course->id;
-    <tr>
-        <td nowrap><a href="<%= $url %>" class="simple-link"><%= $c->crp->format_date($course->start_date, 'short') %></a></td>
-        <td nowrap><a href="<%= $url %>" class="simple-link"><%= $course->time %></a></td>
-        <td><a href="<%= $url %>" class="simple-link"><%= $course->venue %></a></td>
-        <td><a href="<%= $url %>" class="simple-link"><%= $course->description %></a></td>
-    </tr>
-    % }
-</table>
+    % if(@{stash 'advertised_list'}) {
+    <table class="list1">
+        <tr>
+            <th>Start</th>
+            <th></th>
+            <th>Venue</th>
+            <th>Title</th>
+        </tr>
+        % foreach my $course (@{stash 'advertised_list'}) {
+        %   my $url = url_for 'crp.membersite.course', course => $course->id;
+        <tr>
+            <td nowrap><a href="<%= $url %>" class="simple-link"><%= $c->crp->format_date($course->start_date, 'short') %></a></td>
+            <td nowrap><a href="<%= $url %>" class="simple-link"><%= $course->time %></a></td>
+            <td><a href="<%= $url %>" class="simple-link"><%= $course->venue %></a></td>
+            <td><a href="<%= $url %>" class="simple-link"><%= $course->description %></a></td>
+        </tr>
+        % }
+    </table>
+    %}
+    % if(@{stash 'instructors_advertised_list'}) {
+    <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Instructor training courses</h3>
+    <table class="list1">
+        <tr>
+            <th>Start</th>
+            <th>Venue</th>
+            <th>Title</th>
+            <th></th>
+        </tr>
+        % foreach my $course (@{stash 'instructors_advertised_list'}) {
+        <tr>
+            <td nowrap><%= $c->crp->format_date($course->start_date, 'short') %><br /><%= $course->duration %></td>
+            <td><%= $course->venue %></td>
+            <td>
+                <span class="supplementary-info" style="color: inherit;"><em><%= $course->course_type->description %></em></span><br />
+                <%= $course->description %><br />
+                <span class="supplementary-info" style="color: inherit;">Qualification gained: <%= $course->course_type->qualification_earned->qualification %></span>
+            </td>
+            <td>
+                <a href="<%= url_for('/page/instructor_booking')->query(location => $course->venue, date => $c->crp->format_date($course->start_date, 'short')) %>" class="small-button">Book&nbsp;place</a>
+                <a href="<%= url_for('crp.instructor_poster')->query(id => $course->id) %>" class="small-button">Poster</a>
+            </td>
+        </tr>
+        % }
+    </table>
+    %}
 % } else {
 I don't have places available on courses running in the near future but please
 do contact me to find out when more courses are coming up or to see if we can

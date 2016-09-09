@@ -28,19 +28,19 @@ rm -rf share/deploy/migrations/PostgreSQL/deploy/26/; rm -rf share/deploy/migrat
             + Wherever we fetch parent course information we must restrict to those WHERE course_type.qualification_earned_id IS NULL
             + Wherever we fetch instructor course information we must restrict to those WHERE course_type.qualification_earned_id IS NOT NULL
             + Instructors get to see the "Instructor training courses" link if they have qualifications matching any course_type.qualification_required_id where course_type.qualification_earned_id IS NOT NULL
-            + When adding/editing Instructor training courses:
+            ~ When adding/editing Instructor training courses:
                 - templates/trainers/course.html.ep
                 ~ Replace qualification drop-down is replaced by an appropriately restricted course_type selection
                 ~ Add field for instructors_course.duration
-                + Ensure instructors_course.instructor_id is set correctly
-            + When showing details of Instructor training courses, include:
+                ~ Ensure instructors_course.instructor_id is set correctly
+            ~ When showing details of Instructor training courses, include:
                 ~ course_type.description
                 ~ course_type.qualification_earned_id
                 ~ instructors_course.duration
                 ~ instructors_course.instructor_id
                 ~ Link to the instructor's personal web page
-            + Brief course details (e.g. when confirming a delete) could show more
-            + Show details of Instructor training courses on personal web pages of Instructor trainers
+            ~ Brief course details (e.g. when confirming a delete) could show more
+            ~ Show details of Instructor training courses on personal web pages of Instructor trainers
             + Admin pages
                 + Stats collection for homepage needs to count courses properly and add instructor trainer courses
                 + Course Summary box for account record page needs to include Instructor training courses and links to lists of them
@@ -48,6 +48,10 @@ rm -rf share/deploy/migrations/PostgreSQL/deploy/26/; rm -rf share/deploy/migrat
                 + NB: Bug: In dev, course summary for SQ says "Past: None" but links to a non-empty list
             + Member pages:
                 + _available_course_types() needs to be restricted to parents or instructors courses
+            + Booking form for instructor training courses
+                - Identify by course ID and look up details
+                - Change the book button so it links by id (templates/parts/instructors_course_list.html.ep and templates/member_site/welcome.html.ep)
+                ? Send email to the trainer as well as to SQ (try not to duplicate to SQ! Perhaps both email addrs on one email would do that)
         + Other possible template changes
             + templates/main/pages/course_booked.html.ep "Thank you for taking the time to contact me."
             + templates/main/pages/instructor_booking.html.ep "Please tell me a bit about yourself"

@@ -45,6 +45,15 @@ sub welcome {
         { order_by => {-asc => 'start_date'} },
     ) ];
     $c->stash(advertised_list => $advertised_list);
+    my $instructors_advertised_list = [ $profile->instructors_courses(
+        {
+            published   => 1,
+            canceled    => 0,
+            start_date  => {'>', $dtf->format_datetime(DateTime->now())},
+        },
+        { order_by => {-asc => 'start_date'} },
+    ) ];
+    $c->stash(instructors_advertised_list => $instructors_advertised_list);
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
