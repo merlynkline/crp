@@ -53,7 +53,7 @@ you, please contact me to see if we can arrange something.
         </tr>
         % foreach my $course (@{stash 'instructors_advertised_list'}) {
         <tr>
-            <td nowrap><%= $c->crp->format_date($course->start_date, 'short') %><br /><%= $course->duration %></td>
+            <td nowrap><%= $c->crp->format_date($course->start_date, 'short') %><br /><span class="supplementary-info" style="color: inherit;"><%= $course->duration %></span></td>
             <td><%= $course->venue %></td>
             <td>
                 <span class="supplementary-info" style="color: inherit;"><em><%= $course->course_type->description %></em></span><br />
