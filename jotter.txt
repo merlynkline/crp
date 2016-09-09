@@ -22,12 +22,12 @@ rm -rf share/deploy/migrations/PostgreSQL/deploy/26/; rm -rf share/deploy/migrat
             ~ UPDATE instructors_course SET duration = '3 days'
             X (later?) DROP instructors_course.qualification_id
                 ~ Comment on instructors_course.qualification_id to say it's obsolete and why
-        + Code + template changes:
+        + Code and template changes:
             ~ Make a custom accessor for instructors_course.qualification_id so attempts to use it throw an exception
             ~ Replace refs to instructors_course.qualification_id with course_type.qualification_earned_id
             + Wherever we fetch parent course information we must restrict to those WHERE course_type.qualification_earned_id IS NULL
             + Wherever we fetch instructor course information we must restrict to those WHERE course_type.qualification_earned_id IS NOT NULL
-            + Instructors get to see the "Instructor training courses" link if they have qualifications matching any course_type.qualification_required_id where course_type.qualification_earned_id IS NOT NULL
+            ~ Instructors get to see the "Instructor training courses" link if they have qualifications matching any course_type.qualification_required_id where course_type.qualification_earned_id IS NOT NULL
             ~ When adding/editing Instructor training courses:
                 - templates/trainers/course.html.ep
                 ~ Replace qualification drop-down is replaced by an appropriately restricted course_type selection
