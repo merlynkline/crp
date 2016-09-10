@@ -17,7 +17,7 @@
         Qualification gained: <%= $course->course_type->qualification_earned->qualification %></span>
     </td>
     <td>
-        <a href="<%= url_for('/page/instructor_booking')->query(location => $course->venue, date => $c->crp->format_date($course->start_date, 'short')) %>" class="small-button">Book&nbsp;place</a>
+        <a href="<%= url_for('/instructor_booking_form')->query(id => $course->id) %>" class="small-button">Book&nbsp;place</a>
         <a href="<%= url_for('crp.instructor_poster')->query(id => $course->id) %>" class="small-button">Poster</a>
     </td>
 </tr>
