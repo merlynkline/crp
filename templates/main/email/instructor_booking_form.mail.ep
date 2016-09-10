@@ -5,9 +5,13 @@
 % stash subject => "Instructor course booking form: The Children's Reflexology Programme";
 %#
 % layout 'default';
+% my $info = stash('info');
 
+Someone has filled in the booking form for your Instructors Course running
+on <%= $info->{date} %> at <%= $info->{location} %>. The complete details
+entered on the form are shown below:
 <table border="0">
-% foreach my $field (sort keys %{stash('info')}) {
+% foreach my $field (sort keys %$info) {
     <tr><td valign="top"><i><%= $field %>:&nbsp;</td><td valign="top"><%== stash('info')->{$field} %></td></tr>
 % }
 </table>

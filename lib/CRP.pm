@@ -44,6 +44,7 @@ sub startup {
     $r->any('/main/resend_confirmation')->to('main#resend_confirmation');
     $r->any('/login')->to('logged_in#login')->name('crp.login');
     $r->any('/instructors')->to('main#instructors')->name('crp.instructors');
+    $r->any('/instructor_booking_form')->to('main#instructor_booking_form')->name('crp.instructor_booking_form');
     $r->any('/cookies_ok')->to('main#cookies_ok')->name('crp.accept_cookies');
     $r->any('/logout')->to('logged_in#logout')->name('crp.logout');
     $r->get('/page/*page')->to('main#page')->name('crp.page');

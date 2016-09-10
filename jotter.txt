@@ -49,9 +49,10 @@ rm -rf share/deploy/migrations/PostgreSQL/deploy/26/; rm -rf share/deploy/migrat
             ~ Member pages:
                 ~ _available_course_types() needs to be restricted to parents or instructors courses
             + Booking form for instructor training courses
-                + Identify by course ID and look up details
+                ~ Identify by course ID and look up details
+                + Remove the old booking form
                 + Change the book button so it links by id (templates/parts/instructors_course_list.html.ep and templates/member_site/welcome.html.ep)
-                ? Send email to the trainer as well as to SQ (try not to duplicate to SQ! Perhaps both email addrs on one email would do that)
+                ~ Send email to the trainer as well as to SQ (try not to duplicate to SQ! Perhaps both email addrs on one email would do that)
         + Other possible template changes
             + templates/main/pages/course_booked.html.ep "Thank you for taking the time to contact me."
             + templates/main/pages/instructor_booking.html.ep "Please tell me a bit about yourself"
@@ -61,18 +62,18 @@ rm -rf share/deploy/migrations/PostgreSQL/deploy/26/; rm -rf share/deploy/migrat
             + templates/main/pages/instructor_booking.html.ep "I am really looking forward"
             + templates/main/pages/instructor_booking.html.ep "I may not be able to run the separate two-day course"
             + templates/main/pages/instructor_booking.html.ep  "secure your place once I have confirmed that there is one available"
-    + Instructor training course should only allow you to set up courses for qualifications you are allowed to train for
-    + Instructor course PDFs
-        + Need to be personalised for the instructor
-        + Need to show course_type->description and course->duration
-        + Currently named for qualification code - need renaming for course_type.code
-    + Instructor course page (course list) needs to inidcate the tutor
+        + Instructor course PDFs
+            + Need to be personalised for the instructor
+            + Need to show course_type->description and course->duration
+            + Currently named for qualification code - need renaming for course_type.code
+    ~ Instructor training course should only allow you to set up courses for qualifications you are allowed to train for
+    ~ Instructor course page (course list) needs to inidcate the tutor
     + Instructor courses need multiple PDFs avilable
         + Booking form
         + Student tracker
         + Others
     + Improve UI for selecting and displaying instructor courses as opposed to normal courses
-    + Admin area stats need to include instructor training courses
+
 
 + Further qualification tracking
     + For each qualification, record what assignments have been completed when and the results

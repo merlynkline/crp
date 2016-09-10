@@ -288,25 +288,59 @@ sub cookies_ok {
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub instructor_booking_form {
+    my $c = shift;
+
+    my $id = $c->crp->trimmed_param('id');
+    $c->stash('course', $c->crp->model('InstructorCourse')->find($id)) if $id;
+    $c->render(template => 'main/instructor_booking_form', @_);
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 sub instructor_booking {
     my $c = shift;
 
+    my $id = $c->crp->trimmed_param('id');
+    my $course = $c->crp->model('InstructorCourse')->find($id) if $id;
     my $validation = $c->validation;
     $validation->required('email')->like(qr{^.+@.+[.].+});
-    $validation->required('location');
-    $validation->required('date');
     $validation->required('name');
     $validation->required('about');
-    return $c->page('instructor_booking') if($validation->has_error);
+    unless($course) {
+        $validation->required('location');
+        $validation->required('date');
+    }
+    return $c->instructor_booking_form if($validation->has_error);
 
     my %info;
     foreach my $param(qw(address about name email location date phone postcode photo_release reflexqual)) {
-        $info{$param} =  Mojo::Util::xml_escape($c->crp->trimmed_param($param));
-        $info{$param} =~ s{\n}{<br \\>\n}g;
+        $info{$param} = $c->crp->trimmed_param($param) // '';
+    }
+    if($course) {
+        $info{location}     = $course->location;
+        $info{date}         = $c->crp->format_date($course->start_date, 'short');
+        $info{tutor_name}   = $course->instructor->profile->name;
+        $info{tutor_email}  = $course->instructor->email;
+
+    }
+    foreach my $key (keys %info) {
+        $info{$key} =  Mojo::Util::xml_escape($info{$key});
+        $info{$key} =~ s{\n}{<br \\>\n}g;
+    }
+
+    my $notification_email = $c->crp->email_to($c->app->config->{email_addresses}->{contact_form});
+    my $tutor_email = $notification_email;
+    if($course) {
+        $tutor_email = $c->crp->email_to($course->instructor->email, $course->instructor->profile->name);
+        $c->mail(
+            to              => $notification_email,
+            template        => 'main/email/instructor_booking_notification',
+            info            => \%info,
+        );
     }
     $c->mail(
         reply_to        => $c->crp->email_decorated($c->crp->trimmed_param('email'), $c->crp->trimmed_param('name')),
-        to              => $c->crp->email_to($c->app->config->{email_addresses}->{contact_form}),
+        to              => $tutor_email,
         template        => 'main/email/instructor_booking_form',
         info            => \%info,
     );

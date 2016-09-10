@@ -24,6 +24,11 @@ td {
     vertical-align: top;
     padding: 0;
 }
+hr {
+    height: 1px;
+    border: 0;
+    background: #589;
+}
 #main-body-container {
     width:          976px;
     border-style:   solid;
