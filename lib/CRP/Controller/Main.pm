@@ -291,8 +291,11 @@ sub cookies_ok {
 sub instructor_booking_form {
     my $c = shift;
 
-    my $id = $c->crp->trimmed_param('id');
-    $c->stash('course', $c->crp->model('InstructorCourse')->find($id)) if $id;
+    my $id = $c->crp->numeric_param('id');
+    my $course = $c->crp->model('InstructorCourse')->find($id);
+    undef $course unless $course->published;
+
+    $c->stash('course', $course);
     $c->render(template => 'main/instructor_booking_form', @_);
 }
 
@@ -300,8 +303,10 @@ sub instructor_booking_form {
 sub instructor_booking {
     my $c = shift;
 
-    my $id = $c->crp->trimmed_param('id');
-    my $course = $c->crp->model('InstructorCourse')->find($id) if $id;
+    my $id = $c->crp->numeric_param('id');
+    my $course = $c->crp->model('InstructorCourse')->find($id);
+    undef $course unless $course->published;
+
     my $validation = $c->validation;
     $validation->required('email')->like(qr{^.+@.+[.].+});
     $validation->required('name');
@@ -351,7 +356,7 @@ sub instructor_booking {
 sub instructor_poster {
     my $c = shift;
 
-    my $id = Mojo::Util::xml_escape($c->param('id'));
+    my $id = $c->crp->numeric_param('id');
     my $course = $c->crp->model('InstructorCourse')->find($id);
     return $c->reply->not_found unless $course;
 

@@ -66,6 +66,19 @@ sub register {
         }
     );
 
+    # CGI parameter as number
+    $app->helper(
+        'crp.numeric_param' => sub {
+            my $c = shift;
+            my($param) = @_;
+
+            my $value = $c->param($param) // '';
+            $value =~ s{^\s+|\s+$}{}g;
+            $value = 0 unless $value =~ /^\d{1,9}$/;
+            return $value;
+        }
+    );
+
     # Absolute path to public file
     $app->helper(
         'crp.path_for_public_file' => sub {
