@@ -58,11 +58,6 @@ __PACKAGE__->add_columns(
         data_type           => 'real',
         is_nullable         => 1,
     },
-    instructor_trainer => {
-        data_type           => 'boolean',
-        is_nullable         => 0,
-        default_value       => 0,
-    },
     hide_address => {
         data_type           => 'boolean',
         default_value       => 'f',

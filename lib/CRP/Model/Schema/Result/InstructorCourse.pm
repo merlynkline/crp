@@ -63,15 +63,6 @@ __PACKAGE__->add_columns(
         data_type           => 'boolean',
         is_nullable         => 0,
     },
-    qualification_id => {
-        # NB This column is now obsolete. It is replaced by course_type_id which is an FK referring to
-        # course_type.id, through which this and other information is available. Not dropped at the same
-        # time as adding course_type_id because the information is needed to back-fill the new column
-        # during migration.
-        data_type           => 'integer',
-        is_nullable         => 1,
-        accessor            => '_obsolete_qualification_id',
-    },
     course_type_id => {
         data_type           => 'integer',
         is_nullable         => 1,
