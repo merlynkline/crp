@@ -255,6 +255,17 @@ sub _load_cancelable_course {
     return $course;
 }
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub course_docs {
+    my $c = shift;
+
+    my $course_id = $c->crp->numeric_param('id');
+    my $course = $c->crp->model('InstructorCourse')->find({id => $course_id});
+    die "You can't download documents for this course" unless $course && $course->instructor_id == $c->crp->logged_in_instructor_id;
+    $c->stash('crp_session')->variable('course_id', $course_id);
+    $c->stash('course_record', $course);
+}
+
 
 1;
 

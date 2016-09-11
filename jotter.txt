@@ -41,11 +41,10 @@ rm -rf share/deploy/migrations/PostgreSQL/deploy/26/; rm -rf share/deploy/migrat
                 ~ Link to the instructor's personal web page
             ~ Brief course details (e.g. when confirming a delete) could show more
             ~ Show details of Instructor training courses on personal web pages of Instructor trainers
-            + Admin pages
+            ~ Admin pages
                 ~ Stats collection for homepage needs to count courses properly and add instructor trainer courses
                 ~ Course Summary box for account record page needs to include Instructor training courses and links to lists of them
                     ~ List of Instructor training courses for instructor needs to be added
-                    + Add button for course PDFs to admin instructor course lists
                 ~ NB: Bug: In dev, course summary for SQ says "Past: None" but links to a non-empty list
             ~ Member pages:
                 ~ _available_course_types() needs to be restricted to parents or instructors courses
@@ -54,6 +53,22 @@ rm -rf share/deploy/migrations/PostgreSQL/deploy/26/; rm -rf share/deploy/migrat
                 ~ Remove the old booking form
                 ~ Change the book button so it links by id (templates/parts/instructors_course_list.html.ep and templates/member_site/welcome.html.ep)
                 ~ Send email to the trainer as well as to SQ (try not to duplicate to SQ! Perhaps both email addrs on one email would do that)
+            + Add instructor course PDFS
+                ~ Add mechanism for showing course PDFs for instructor courses, like parent courses
+                + Posters are currently named for qualification code - need renaming for course_type.code (or something) and move to common course docs
+                + Add poster to templates/trainers/course_docs.html.ep
+                + Change current instructor course PDF buttons to use new code and location
+                + Add bits to poster PDFs
+                    + Instructor personalisation
+                    + Start date and duration
+                    ? Qualification earned?
+                    ? Course type?
+                ~ Add button for course PDFs to admin instructor course lists
+                + Add other PDFs
+                    - list in templates/trainers/course_docs.html.ep
+                    + Booking form
+                    + Student tracker
+                    + Others
         + Other possible template changes
             + templates/main/pages/course_booked.html.ep "Thank you for taking the time to contact me."
             + templates/main/pages/instructor_booking.html.ep "Please tell me a bit about yourself"
@@ -63,16 +78,8 @@ rm -rf share/deploy/migrations/PostgreSQL/deploy/26/; rm -rf share/deploy/migrat
             + templates/main/pages/instructor_booking.html.ep "I am really looking forward"
             + templates/main/pages/instructor_booking.html.ep "I may not be able to run the separate two-day course"
             + templates/main/pages/instructor_booking.html.ep  "secure your place once I have confirmed that there is one available"
-        + Instructor course PDFs
-            + Need to be personalised for the instructor
-            + Need to show course_type->description and course->duration
-            + Currently named for qualification code - need renaming for course_type.code
     ~ Instructor training course should only allow you to set up courses for qualifications you are allowed to train for
     ~ Instructor course page (course list) needs to inidcate the tutor
-    + Instructor courses need multiple PDFs avilable
-        + Booking form
-        + Student tracker
-        + Others
     + Improve UI for selecting and displaying instructor courses as opposed to normal courses
 
 
