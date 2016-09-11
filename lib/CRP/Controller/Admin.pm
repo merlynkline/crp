@@ -46,6 +46,29 @@ sub list_parent_courses {
     my $type = $c->param('type') || 'all';
     my $instructor_id = $c->param('id');
     my $courses = $c->crp->model('Course');
+
+    $c->_stash_course_list_info($courses, $type, $instructor_id);
+
+    return $c->page('parent_courses');
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub list_instructor_courses {
+    my $c = shift;
+
+    my $type = $c->param('type') || 'all';
+    my $instructor_id = $c->param('id');
+    my $courses = $c->crp->model('InstructorCourse');
+
+    $c->_stash_course_list_info($courses, $type, $instructor_id);
+
+    return $c->page('instructor_courses');
+}
+
+sub _stash_course_list_info {
+    my $c = shift;
+    my($courses, $type, $instructor_id) = @_;
+
     my $days = $c->config->{course}->{age_when_advert_expires_days};
 
     my $set;
@@ -68,8 +91,6 @@ sub list_parent_courses {
         type            => $type,
         course_list     => [ $set->search(undef, { order_by => {-asc => 'start_date'} }) ],
     );
-
-    return $c->page('parent_courses');
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 

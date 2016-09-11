@@ -96,6 +96,7 @@ sub startup {
     $admin->any('/admin_login')->to('logged_in#admin_login')->name('crp.admin.login');
     $admin->any('/create_account')->to('admin#create_account')->name('crp.admin.create_account');
     $admin->any('/parent_courses')->to('admin#list_parent_courses')->name('crp.admin.parent_courses');
+    $admin->any('/instructor_courses')->to('admin#list_instructor_courses')->name('crp.admin.instructor_courses');
     $admin->post('/change_demo')->to('admin#change_demo')->name('crp.admin.change_demo');
     $admin->post('/change_email')->to('admin#change_email')->name('crp.admin.change_email');
     $admin->post('/add_instructor_qualification')->to('admin#add_instructor_qualification')->name('crp.admin.add_instructor_qualification');

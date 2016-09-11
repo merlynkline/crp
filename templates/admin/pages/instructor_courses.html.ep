@@ -1,0 +1,49 @@
+%#<!DOCTYPE html>
+% layout 'member_default';
+% title 'Instructor trainer courses';
+% my $login   = stash('login');
+% my $profile = stash('profile_record');
+% my $type    = stash('type');
+
+<h1>List of <%= $type %> Instructor trainer courses for
+% if($instructor_id) {
+%= ($profile && $profile->name) ? $profile->name : "(anonymous #$instructor_id)"
+% } else {
+all instructors
+% }
+</h1>
+
+% my $course_list_block = begin
+% my($courses_list) = @_;
+% if($courses_list && @$courses_list) {
+<table class="list1">
+    <tr>
+        <th>Start</th>
+        <th>Tutor</th>
+        <th>Location</th>
+        <th>Title</th>
+        <th></th>
+    </tr>
+    % foreach my $course (@$courses_list) {
+    %   my $url = url_for('crp.admin.show_account')->query(id => $course->instructor_id)->to_abs;
+    %   my $instructor = $course->instructor->profile;
+    <tr>
+        <td nowrap><%= $c->crp->format_date($course->start_date, 'short') %><br /><span class="supplementary-info" style="color: inherit;"><%= $course->duration %></span></td>
+        <td><a href="<%= $url %>"><%= ($instructor && $instructor->name) // '(anonymous)' %></a></td>
+        <td><%= $course->location %></td>
+        <td><span class="supplementary-info" style="color: inherit;"><em><%= $course->course_type->description %></em></span><br />
+            <%= $course->description %></td>
+        <td nowrap>
+% if($course->published) {
+            <a href="<%= url_for('/instructor_booking_form')->query(id => $course->id) %>" class="small-button">Book&nbsp;place</a>
+% }
+        </td>
+    </tr>
+    % }
+</table>
+% } else {
+No courses found
+%}
+% end
+
+%= $course_list_block->(stash('course_list'));

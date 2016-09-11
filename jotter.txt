@@ -43,8 +43,9 @@ rm -rf share/deploy/migrations/PostgreSQL/deploy/26/; rm -rf share/deploy/migrat
             ~ Show details of Instructor training courses on personal web pages of Instructor trainers
             + Admin pages
                 ~ Stats collection for homepage needs to count courses properly and add instructor trainer courses
-                + Course Summary box for account record page needs to include Instructor training courses and links to lists of them
-                    + List of Instructor training courses for instructor needs to be added
+                ~ Course Summary box for account record page needs to include Instructor training courses and links to lists of them
+                    ~ List of Instructor training courses for instructor needs to be added
+                    + Add button for course PDFs to admin instructor course lists
                 ~ NB: Bug: In dev, course summary for SQ says "Past: None" but links to a non-empty list
             ~ Member pages:
                 ~ _available_course_types() needs to be restricted to parents or instructors courses
