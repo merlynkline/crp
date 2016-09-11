@@ -23,7 +23,7 @@
                 <tr><th colspan="2">Course summary</th></tr>
                 %= $course_row_block->('Draft', stash('draft_courses_count'));
                 %= $course_row_block->('Advertised', stash('advertised_courses_count'));
-                %= $course_row_block->('Past', stash('advertised_courses_count'));
+                %= $course_row_block->('Past', stash('past_courses_count'));
             </table>
             <table class="list1">
                 <tr><th colspan="2">Profile summary</th></tr>
