@@ -3,13 +3,26 @@
 % title 'Admin tools';
 
 <table class="list1">
-    <tr><th colspan="2">Various stats</th></tr>
-    <tr><td>Active instructors:</td><td align="right"><%= stash 'instructor_count' %></td></tr>
-    <tr><td>&nbsp;&nbsp;...Trainees:</td><td align="right"><%= stash 'trainee_instructor_count' %></td></tr>
-    <tr><td>&nbsp;&nbsp;...Qualified:</td><td align="right"><%= stash 'qualified_instructor_count' %></td></tr>
-    <tr><td>Draft courses:</td>     <td align="right"><a href="<%= url_for('crp.admin.parent_courses')->query(type => 'draft') %>"><%= stash 'draft_courses_count' %></a></td></tr>
-    <tr><td>Advertised courses:</td><td align="right"><a href="<%= url_for('crp.admin.parent_courses')->query(type => 'advertised') %>"><%= stash 'advertised_courses_count' %></a></td></tr>
-    <tr><td>Past courses:</td>      <td align="right"><a href="<%= url_for('crp.admin.parent_courses')->query(type => 'past') %>"><%= stash 'past_courses_count' %></a></td></tr>
+    <tr><th colspan="3">Various stats</th></tr>
+    <tr><th colspan="2" style="text-align: right">Parent</th><th style="text-align: right">Instructor</th></tr>
+    <tr><td>Active instructors:</td><td align="right"><%= stash 'instructor_count' %><td>&nbsp;</td></td></tr>
+    <tr><td>&nbsp;&nbsp;...Trainees:</td><td align="right"><%= stash 'trainee_instructor_count' %></td><td>&nbsp;</td></tr>
+    <tr><td>&nbsp;&nbsp;...Qualified:</td><td align="right"><%= stash 'qualified_instructor_count' %><td>&nbsp;</td></td></tr>
+    <tr>
+        <td>Draft courses:</td>     
+        <td align="right"><a href="<%= url_for('crp.admin.parent_courses')->query(type => 'draft') %>"><%= stash 'draft_courses_count' %></a></td>
+        <td align="right"><a href="<%= url_for('crp.admin.instructor_courses')->query(type => 'draft') %>"><%= stash 'draft_instructor_courses_count' %></a></td>
+    </tr>
+    <tr>
+        <td>Advertised courses:</td>
+        <td align="right"><a href="<%= url_for('crp.admin.parent_courses')->query(type => 'advertised') %>"><%= stash 'advertised_courses_count' %></a></td>
+        <td align="right"><a href="<%= url_for('crp.admin.instructor_courses')->query(type => 'advertised') %>"><%= stash 'advertised_instructor_courses_count' %></a></td>
+    </tr>
+    <tr>
+        <td>Past courses:</td>      
+        <td align="right"><a href="<%= url_for('crp.admin.parent_courses')->query(type => 'past') %>"><%= stash 'past_courses_count' %></a></td>
+        <td align="right"><a href="<%= url_for('crp.admin.instructor_courses')->query(type => 'past') %>"><%= stash 'past_instructor_courses_count' %></a></td>
+    </tr>
 </table>
 
 %= form_for 'crp.admin.find_account' => (method => 'GET') => begin

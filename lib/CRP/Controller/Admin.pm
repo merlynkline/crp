@@ -25,13 +25,16 @@ sub welcome {
 
     my $days = $c->config->{course}->{age_when_advert_expires_days};
     $c->stash(
-        instructor_count          => $c->crp->model('Profile')->search_live_profiles->count,
-        trainee_instructor_count  => $c->crp->model('Profile')->search_trainees->count,
-        qualified_instructor_count=> $c->crp->model('Profile')->search_qualified->count,
-        draft_courses_count       => $c->crp->model('Course')->get_draft_set->count,
-        advertised_courses_count  => $c->crp->model('Course')->get_advertised_set($days)->count,
-        past_courses_count        => $c->crp->model('Course')->get_past_set($days)->count,
-        available_qualifications  => [ $c->crp->model('Qualification')->search(undef, {order_by => 'abbreviation'}) ],
+        instructor_count                     => $c->crp->model('Profile')->search_live_profiles->count,
+        trainee_instructor_count             => $c->crp->model('Profile')->search_trainees->count,
+        qualified_instructor_count           => $c->crp->model('Profile')->search_qualified->count,
+        draft_courses_count                  => $c->crp->model('Course')->get_draft_set->count,
+        advertised_courses_count             => $c->crp->model('Course')->get_advertised_set($days)->count,
+        past_courses_count                   => $c->crp->model('Course')->get_past_set($days)->count,
+        draft_instructor_courses_count       => $c->crp->model('InstructorCourse')->get_draft_set->count,
+        advertised_instructor_courses_count  => $c->crp->model('InstructorCourse')->get_advertised_set($days)->count,
+        past_courses_instructor_count        => $c->crp->model('InstructorCourse')->get_past_set($days)->count,
+        available_qualifications             => [ $c->crp->model('Qualification')->search(undef, {order_by => 'abbreviation'}) ],
     );
     $c->render(template => "admin/welcome");
 }
