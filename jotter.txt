@@ -42,16 +42,16 @@ rm -rf share/deploy/migrations/PostgreSQL/deploy/26/; rm -rf share/deploy/migrat
             ~ Brief course details (e.g. when confirming a delete) could show more
             ~ Show details of Instructor training courses on personal web pages of Instructor trainers
             + Admin pages
-                + Stats collection for homepage needs to count courses properly and add instructor trainer courses
+                ~ Stats collection for homepage needs to count courses properly and add instructor trainer courses
                 + Course Summary box for account record page needs to include Instructor training courses and links to lists of them
                     + List of Instructor training courses for instructor needs to be added
-                + NB: Bug: In dev, course summary for SQ says "Past: None" but links to a non-empty list
+                ~ NB: Bug: In dev, course summary for SQ says "Past: None" but links to a non-empty list
             ~ Member pages:
                 ~ _available_course_types() needs to be restricted to parents or instructors courses
-            + Booking form for instructor training courses
+            ~ Booking form for instructor training courses
                 ~ Identify by course ID and look up details
-                + Remove the old booking form
-                + Change the book button so it links by id (templates/parts/instructors_course_list.html.ep and templates/member_site/welcome.html.ep)
+                ~ Remove the old booking form
+                ~ Change the book button so it links by id (templates/parts/instructors_course_list.html.ep and templates/member_site/welcome.html.ep)
                 ~ Send email to the trainer as well as to SQ (try not to duplicate to SQ! Perhaps both email addrs on one email would do that)
         + Other possible template changes
             + templates/main/pages/course_booked.html.ep "Thank you for taking the time to contact me."

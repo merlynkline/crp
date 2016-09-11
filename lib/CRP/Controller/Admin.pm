@@ -149,10 +149,13 @@ sub show_account {
     $c->stash(login => $login);
     if($profile) {
         $c->stash(
-            profile_record            => $profile,
-            draft_courses_count       => $profile->courses->get_draft_set->count,
-            advertised_courses_count  => $profile->courses->get_advertised_set($days)->count,
-            past_courses_count        => $profile->courses->get_past_set($days)->count,
+            profile_record                       => $profile,
+            draft_courses_count                  => $profile->courses->get_draft_set->count,
+            advertised_courses_count             => $profile->courses->get_advertised_set($days)->count,
+            past_courses_count                   => $profile->courses->get_past_set($days)->count,
+            draft_instructor_courses_count       => $profile->instructors_courses->get_draft_set->count,
+            advertised_instructor_courses_count  => $profile->instructors_courses->get_advertised_set($days)->count,
+            past_courses_instructor_count        => $profile->instructors_courses->get_past_set($days)->count,
         );
     }
     $c->stash(available_qualifications => [ $c->crp->model('Qualification')->search(undef, {order_by => 'abbreviation'}) ]);
