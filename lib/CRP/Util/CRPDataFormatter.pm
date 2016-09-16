@@ -14,6 +14,7 @@ sub format_data {
     _extract_crp_profile_data($c, $data);
     _extract_crp_qualification_data($c, $data, $profile);
     _extract_crp_course_data($c, $data, $profile);
+    _extract_crp_instructor_course_data($c, $data, $profile);
     _set_demonstration_data($c, $data) if $profile->login->is_demo;
 
     delete $data->{profile};
@@ -86,6 +87,17 @@ sub _certificate_date {
     my $earliest = DateTime->now()->subtract(years => 1);
     $signup_date = $signup_date->add(years => 1) while $signup_date < $earliest;
     return $signup_date;
+}
+
+sub _extract_crp_instructor_course_data {
+    my($c, $data, $profile)  = @_;
+
+    return unless $data->{instructor_course};
+
+    my $course = $data->{instructor_course};
+    $data->{$_} = $course->$_ foreach(qw(venue duration price description));
+    $data->{date} = $c->crp->format_date($course->start_date, 'stroke');
+    $data->{_mark_trainee} = 0;
 }
 
 sub _extract_crp_course_data {

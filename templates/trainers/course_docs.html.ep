@@ -26,21 +26,17 @@ in order to view and print them.
 <br clear="right" />
 % my $code = $course->course_type->code;
 % foreach my $document (
-%   ['TCRP|TCRPRX|TCRPAN',  'ads/Poster - simple specific',      "Simple poster"],
-%   ['TCRP|TCRPRX|TCRPAN',  'ads/A3 Poster - simple specific',   "A3 version of simple poster"],
-%   ['TCRP|TCRPRX|TCRPAN',  'ads/Small handout specific',        "Small handouts, four to a sheet"],
-%   ['TCRP|TCRPRX|TCRPAN',  'ads/Poster - Ante Natal Course',    "Poster for antenatal course only"],
-%   ['TCRP|TCRPRX',         'members/booking_form',              "Booking form for your trainees to fill in"],
-%   ['TCRPAN',              'members/booking_form-TCRPAN',       "Booking form for your trainees to fill in"],
-%   ['TCRP|TCRPRX',         'members/booking_form_A5',           "Booking form in A5 format"],
-%   ['TCRP|TCRPRX',         'members/register',                  "Register to check in trainees to each session"],
-%   ['TCRPAN',              'members/register-AN',               "Register to check in trainees to each session"],
-%   ['TCRP|TCRPRX|TCRPAN',  'members/feedback_form',             "Feedback form for your trainees to fill in after a course has finished"],
-%   ['TCRP|TCRPRX|TCRPAN',  'members/feedback_form_A5',          "Feedback form in A5 format"],
+%   ['TCRPINST',            'ads/trainer/A3PosterPics-TCRPINST',        "Simple pictorial poster"],
+%   ['TCRPREFLEXINST',      'ads/trainer/A3PosterPics-TCRPREFLEXINST',  "Simple pictorial poster"],
 % ) {
 %   my($selector, $name, $caption) = @$document;
 %   if($code =~ /^($selector)$/) {
-%=      include "members/parts/course_doc", course_id => $course->id, name => $name, caption => $caption;
+%     my $url = url_for('crp.trainers.course_pdf', course_id => $course->id, name => $name);
+<div class="pdf-preview">
+    <a href="<%= $url %>"><img src="<%= url_for('crp.members.pdf_image', name => $name) %>.jpg" /></a>
+    <br />
+    <a href="<%= $url %>"><%= $caption %></a>
+</div>
 %   }
 % }
 

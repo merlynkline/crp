@@ -266,6 +266,41 @@ sub course_docs {
     $c->stash('course_record', $course);
 }
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+use CRP::Util::PDFMarkUp;
+sub course_pdf {
+    my $c = shift;
+
+    my $course_id = $c->stash('course_id');
+    my $name = $c->stash('name');
+    my $course = $c->crp->model('InstructorCourse')->find({id => $course_id});
+    die "You can't download a PDF for this course" unless $course && $course->instructor_id == $c->crp->logged_in_instructor_id;
+    my $pdf = $c->app->home->rel_file("pdfs/${name}.pdf");
+    my $pdf_doc = CRP::Util::PDFMarkUp->new(file_path => $pdf);
+
+    $c->_send_pdf_response($pdf_doc, {instructor_course  => $course});
+}
+
+use CRP::Util::CRPDataFormatter;
+sub _send_pdf_response {
+    my $c = shift;
+    my($pdf_doc, $data) = @_;
+
+    $data //= {};
+    my $pdf_data = CRP::Util::CRPDataFormatter::format_data($c, {
+        %$data,
+        profile => $c->crp->load_profile,
+        email   => $c->stash('crp_session')->variable('email'),
+    });
+    $c->render_file(
+        data                => $pdf_doc->fill_template($pdf_data),
+        format              => 'pdf',
+        content_disposition => $c->param('download') ? 'attachment' : 'inline',
+        filename            => $pdf_doc->filename,
+    );
+}
+
+
 
 1;
 

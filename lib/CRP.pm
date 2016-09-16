@@ -88,6 +88,7 @@ sub startup {
     $trainers->any('publish_course')->to('trainers#publish_course')->name('crp.trainers.publish_course');
     $trainers->any('do_publish_course')->to('trainers#do_publish_course')->name('crp.trainers.do_publish_course');
     $trainers->any('course_docs')->to('trainers#course_docs')->name('crp.trainers.course_docs');
+    $trainers->any('course_pdf/:course_id/*name')->to('trainers#course_pdf')->name('crp.trainers.course_pdf');
 
     my $admin = $logged_in->under('/admin')->to('admin#authenticate');
     $admin->get('/')->to('admin#welcome')->name('crp.admin_default');

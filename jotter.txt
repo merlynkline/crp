@@ -69,6 +69,8 @@ rm -rf share/deploy/migrations/PostgreSQL/deploy/26/; rm -rf share/deploy/migrat
                     + Booking form
                     + Student tracker
                     + Others
+                    + invoice
+                    + Banner
         + Other possible template changes
             + templates/main/pages/course_booked.html.ep "Thank you for taking the time to contact me."
             + templates/main/pages/instructor_booking.html.ep "Please tell me a bit about yourself"
