@@ -353,6 +353,7 @@ sub instructor_booking {
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+use CRP::Util::CRPDataFormatter;
 sub instructor_poster {
     my $c = shift;
 
@@ -360,22 +361,19 @@ sub instructor_poster {
     my $course = $c->crp->model('InstructorCourse')->find($id);
     return $c->reply->not_found unless $course;
 
-    my $code = $course->qualification->code;
-    my $pdf = $c->app->home->rel_file("pdfs/InstructorCoursePosterA3-$code.pdf");
-    $pdf = $c->app->home->rel_file("pdfs/A3 Poster - Instructors pictorial.pdf") unless -f $pdf;
+    my $code = $course->course_type->code;
+    my $pdf = $c->app->home->rel_file("pdfs/ads/trainer/A3PosterPics-$code.pdf");
     my $pdf_doc = CRP::Util::PDFMarkUp->new(file_path => $pdf);
+    my $pdf_data = CRP::Util::CRPDataFormatter::format_data($c, {
+        profile           => $c->crp->model('Profile')->find({instructor_id => $course->instructor_id}),
+        instructor_course => $course,
+    });
     $c->render_file(
-        data                => $pdf_doc->fill_template({
-                venue       => $course->venue,
-                date        => $c->crp->format_date($course->start_date, 'long'),
-                description => $course->description,
-                price       => $course->price,
-            }),
+        data                => $pdf_doc->fill_template($pdf_data),
         format              => 'pdf',
-        content_disposition => ($c->param('download') ? 'attachment' : 'inline'),
+        content_disposition => $c->param('download') ? 'attachment' : 'inline',
         filename            => $pdf_doc->filename,
     );
 }
 
 1;
-
