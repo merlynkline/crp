@@ -1,4 +1,7 @@
-[
+{
+    version => 1,
+    filename => 'Pictorial poster A3',
+    items => [
         {
             action  => 'text',
             text    => '[% venue %] - [% date %]',
@@ -17,10 +20,50 @@
         },
         {
             action  => 'text',
-            text    => '[% price %]',
+            text    => '[% price %] - [% duration %]',
             x       => 420,
             y       => 532,
             align   => 'center',
             size    => 14,
         },
-]
+        {
+            action  => 'text',
+            text    => '[% name %]',
+            x       => 420,
+            y       => 88,
+            size    => 18,
+            align   => 'center',
+        },
+        {
+            action  => 'text',
+            text    => '[% phone_numbers %]',
+            x       => 420,
+            y       => 68,
+            size    => 14,
+            align   => 'center',
+        },
+        {
+            action  => 'text',
+            text    => '[% url %]',
+            x       => 420,
+            y       => 52,
+            size    => 14,
+            align   => 'center',
+        },
+        {
+            action  => 'text',
+            text    => '[% email %]',
+            x       => 420,
+            y       => 36,
+            size    => 14,
+            align   => 'center',
+        },
+        {
+            scale   => 1.6,
+            action  => 'qrcode',
+            text    => "http://[% url %]",
+            x       => 29,
+            y       => 70,
+        },
+    ],
+}

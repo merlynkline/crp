@@ -27,6 +27,7 @@ in order to view and print them.
 % my $code = $course->course_type->code;
 % foreach my $document (
 %   ['TCRPINST',            'ads/trainer/A3PosterPics-TCRPINST',        "Simple pictorial poster"],
+%   ['TCRPANINST',          'ads/trainer/A3PosterPics-TCRPANINST',      "Simple pictorial poster"],
 %   ['TCRPREFLEXINST',      'ads/trainer/A3PosterPics-TCRPREFLEXINST',  "Simple pictorial poster"],
 % ) {
 %   my($selector, $name, $caption) = @$document;

@@ -96,6 +96,7 @@ sub _extract_crp_instructor_course_data {
 
     my $course = $data->{instructor_course};
     $data->{$_} = $course->$_ foreach(qw(venue duration price description));
+    $data->{course_type} = $course->course_type->description;
     $data->{date} = $c->crp->format_date($course->start_date, 'stroke');
     $data->{_mark_trainee} = 0;
 }
