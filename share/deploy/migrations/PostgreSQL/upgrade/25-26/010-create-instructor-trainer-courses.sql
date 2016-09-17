@@ -38,8 +38,8 @@ BEGIN;
     VALUES
     (
         'Additional Needs Instructor in The Children''s Reflexology Programme',
-        'TCRP Instructor',
-        'TCRPINST',
+        'TCRP AN Instructor',
+        'TCRPANINST',
         (SELECT id FROM qualification WHERE code = 'INST-TRAIN-AN'),
         (SELECT id FROM qualification WHERE code = 'TCRP-AN')
     )
