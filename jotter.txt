@@ -68,10 +68,10 @@ rm -rf share/deploy/migrations/PostgreSQL/deploy/26/; rm -rf share/deploy/migrat
                             ~ Course checklist
                             ~ Instructors Confirmation
                             ~ Instructors Booking Form
-                            + Instructors Feedback Form
-                            + Micro-teach assessment
-                            + Register
-                            + Student progress
+                            ~ Instructors Feedback Form
+                            ~ Micro-teach assessment
+                            ~ Register
+                            ~ Student progress
                         - Others
                             + Flyer based on \\REVOLVER\susan-home\The Children's Reflexology Programme\Instructor Course flyer
                             ? Other flyers etc?

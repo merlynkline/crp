@@ -27,11 +27,18 @@ in order to view and print them.
 % my $code = $course->course_type->code;
 % foreach my $document (
 %   ['TCRPINST',            'ads/trainer/A3PosterPics-TCRPINST',        "Simple pictorial poster"],
-%   ['TCRPINST',            'trainer/TCRPINST/Booking form',            "Booking form"],
-%   ['TCRPINST',            'trainer/TCRPINST/Booking confirmation',    "Booking confirmation form"],
-%   ['TCRPINST',            'trainer/TCRPINST/Course checklist',        "Course teaching checklist"],
 %   ['TCRPANINST',          'ads/trainer/A3PosterPics-TCRPANINST',      "Simple pictorial poster"],
 %   ['TCRPREFLEXINST',      'ads/trainer/A3PosterPics-TCRPREFLEXINST',  "Simple pictorial poster"],
+%   ['TCRPINST',            'trainer/TCRPINST/Booking form',            "Booking form"],
+%   ['TCRPINST',            'trainer/TCRPINST/Student progress',        "Student progress form"],
+%   ['TCRPINST',            'trainer/TCRPINST/Booking confirmation',    "Booking confirmation form"],
+%   ['TCRPINST|TCRPANINST|TCRPREFLEXINST',
+%                           'trainer/TCRPINST/Register',                "Register"],
+%   ['TCRPINST',            'trainer/TCRPINST/Course checklist',        "Course teaching checklist"],
+%   ['TCRPINST|TCRPANINST|TCRPREFLEXINST',
+%                           'trainer/TCRPINST/Micro-teach assessment',  "Micro-teach assessment form"],
+%   ['TCRPINST|TCRPANINST|TCRPREFLEXINST',
+%                           'trainer/TCRPINST/Feedback form',           "Feedback form"],
 % ) {
 %   my($selector, $name, $caption) = @$document;
 %   if($code =~ /^($selector)$/) {
