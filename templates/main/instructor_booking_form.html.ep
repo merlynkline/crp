@@ -98,7 +98,7 @@ secure your place once I have confirmed that there is one available.
         % if(stash 'course') {
             %= hidden_field 'id' => $course->id;
             <span class="supplementary-info" style="color: inherit;"><em><%= $course->course_type->description %></em></span><br />
-            <%= $c->crp->format_date($course->start_date, 'short') %> - <%= $course->duration %> - <%= $course->location %><br />
+            <%= $c->crp->format_date($course->start_date, 'short') %> - <%= $course->duration %> - <%= $course->venue %><br />
             <%= $course->description %><br />
             <span class="supplementary-info" style="color: inherit;">Tutor: <a href="<%=url_for('crp.membersite.home', slug => $course->instructor->profile->web_page_slug)->to_abs %>"><%= $course->instructor->profile->name %></a><br />
                 Qualification gained: <%= $course->course_type->qualification_earned->qualification %></span>
