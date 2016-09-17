@@ -2,9 +2,6 @@ rm -rf share/deploy/migrations/PostgreSQL/deploy/26/; rm -rf share/deploy/migrat
 
 
 + Add new Instructor Trainer qualifications
-    + Add certificate PDF for the qualification as pdfs/Qualification_Certificate_$code.pdf
-    + Add a new PDF for the instructor course poster
-    + Add any new products to the shop
     + Instructor training courses section needs to be accessible to users with an appropriate qualification
         ~ DB updates:
             ~ Add qualification records
@@ -57,7 +54,7 @@ rm -rf share/deploy/migrations/PostgreSQL/deploy/26/; rm -rf share/deploy/migrat
                 ~ Add mechanism for showing course PDFs for instructor courses, like parent courses
                 ~ Posters are currently named for qualification code - need renaming for course_type.code (or something) and move to common course docs
                 ~ Add posters to templates/trainers/course_docs.html.ep
-                + Change current instructor course PDF buttons to use new code and location
+                ~ Change current instructor course Poster buttons to use new code and location
                 + Add bits to poster PDFs
                     ~ Instructor personalisation
                     ~ Start date and duration
@@ -66,11 +63,57 @@ rm -rf share/deploy/migrations/PostgreSQL/deploy/26/; rm -rf share/deploy/migrat
                 ~ Add button for course PDFs to admin instructor course lists
                 + Add other PDFs
                     - list in templates/trainers/course_docs.html.ep
-                    + Booking form
-                    + Student tracker
-                    + Others
-                    + invoice
-                    + Banner
+                    + TCRPINST
+                        - From \\REVOLVER\susan-home\The Children's Reflexology Programme\Instructors course\TCRP Instructor Trainer Course Materials
+                            ~ Course checklist
+                            ~ Instructors Confirmation
+                            ~ Instructors Booking Form
+                            + Instructors Feedback Form
+                            + Micro-teach assessment
+                            + Register
+                            + Student progress
+                        - Others
+                            + Flyer based on \\REVOLVER\susan-home\The Children's Reflexology Programme\Instructor Course flyer
+                            ? Other flyers etc?
+                            + invoice
+                                - Number like TCRP-instructorid-yymmdd-sss (could use millisecond?)
+                                - Add date, instructor's contact details and course details when it's for a course
+                                + Also for parent courses and a general blank
+                            + Banner
+                    + TCRPREFLEXINST
+                        - From \\REVOLVER\susan-home\The Children's Reflexology Programme\Instructors course\TCRP Instructor Trainer Course Materials
+                            ~ Course checklist
+                            + Instructors Confirmation
+                            + Instructors Booking Form
+                            + Instructors Feedback Form
+                            + Micro-teach assessment
+                            + Register
+                            + Student progress
+                        - Others
+                            + Flyer based on \\REVOLVER\susan-home\The Children's Reflexology Programme\Instructor Course flyer
+                            ? Other flyers etc?
+                            + invoice
+                                - Number like TCRP-instructorid-yymmdd-sss (could use millisecond?)
+                                - Add date, instructor's contact details and course details when it's for a course
+                                + Also for parent courses and a general blank
+                            + Banner
+                    + TCRPANINST
+                        - From \\REVOLVER\susan-home\The Children's Reflexology Programme\Instructors course\TCRP Instructor Trainer Course Materials
+                            + Course checklist
+                            + Instructors Confirmation
+                            + Instructors Booking Form
+                            + Instructors Feedback Form
+                            + Micro-teach assessment
+                            + Register
+                            + Student progress
+                        - Others
+                            + Flyer based on \\REVOLVER\susan-home\The Children's Reflexology Programme\Instructor Course flyer
+                            ? Other flyers etc?
+                            + invoice
+                                - Number like TCRP-instructorid-yymmdd-sss (could use millisecond?)
+                                - Add date, instructor's contact details and course details when it's for a course
+                                + Also for parent courses and a general blank
+                            + Banner
         + Other possible template changes
             + templates/main/pages/course_booked.html.ep "Thank you for taking the time to contact me."
             + templates/main/pages/instructor_booking.html.ep "Please tell me a bit about yourself"
@@ -82,7 +125,10 @@ rm -rf share/deploy/migrations/PostgreSQL/deploy/26/; rm -rf share/deploy/migrat
             + templates/main/pages/instructor_booking.html.ep  "secure your place once I have confirmed that there is one available"
     ~ Instructor training course should only allow you to set up courses for qualifications you are allowed to train for
     ~ Instructor course page (course list) needs to inidcate the tutor
-    + Improve UI for selecting and displaying instructor courses as opposed to normal courses
+    X Improve UI for selecting and displaying instructor courses as opposed to normal courses
+    + Add certificate PDF for the qualification as pdfs/Qualification_Certificate_$code.pdf
+    ~ Add a new PDF for the instructor course poster
+    + Add any new products to the shop
 
 
 + Further qualification tracking

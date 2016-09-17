@@ -1,0 +1,60 @@
+{
+    version => 1,
+    filename => 'Booking confirmation',
+    items => [
+        {
+            action  => 'text',
+            text    => '[% phone_numbers %]',
+            x       => 300,
+            y       => 51,
+            size    => 10,
+            align   => 'center',
+        },
+        {
+            action  => 'text',
+            text    => '[% url %]',
+            x       => 300,
+            y       => 39,
+            size    => 10,
+            align   => 'center',
+        },
+        {
+            action  => 'text',
+            text    => '[% email %]',
+            x       => 300,
+            y       => 27,
+            size    => 10,
+            align   => 'center',
+        },
+        {
+            action  => 'text',
+            text    => '[% name %]',
+            x       => 280,
+            y       => 426,
+            size    => 14,
+            align   => 'right',
+            font    => 'Georgia,BoldItalic',
+        },
+        {
+            action  => 'text',
+            text    => '[% venue %]',
+            x       => 118,
+            y       => 386,
+            size    => 12,
+        },
+        {
+            action  => 'text',
+            text    => '[% date %] - [% duration %]',
+            x       => 118,
+            y       => 224,
+            size    => 11,
+        },
+        {
+            action  => 'text',
+            text    => '[% price %]',
+            x       => 118,
+            y       => 168,
+            size    => 11,
+        },
+    ]
+}
