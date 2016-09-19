@@ -33,6 +33,7 @@ in order to view and print them.
 %   ['TCRP|TCRPRX',         'members/booking_form',              "Booking form for your trainees to fill in"],
 %   ['TCRPAN',              'members/booking_form-TCRPAN',       "Booking form for your trainees to fill in"],
 %   ['TCRP|TCRPRX',         'members/booking_form_A5',           "Booking form in A5 format"],
+%   ['TCRP|TCRPRX|TCRPAN',  'members/Invoice',                   "Numbered invoice"],
 %   ['TCRP|TCRPRX',         'members/register',                  "Register to check in trainees to each session"],
 %   ['TCRPAN',              'members/register-AN',               "Register to check in trainees to each session"],
 %   ['TCRP|TCRPRX|TCRPAN',  'members/feedback_form',             "Feedback form for your trainees to fill in after a course has finished"],

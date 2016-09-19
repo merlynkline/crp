@@ -1,0 +1,19 @@
+
+{
+    version => 1,
+    filename => 'Invoice',
+    items => [
+        { action => 'text', text => '[% name %]',                               x => 460, y => 776, size => 14, align => 'right', font => 'Helvetica-Bold' },
+        { action => 'text', text => '[% one_line_address %], [% postcode %]',   x => 572, y => 759, size => 12, align => 'right' },
+        { action => 'text', text => '[% email %] - [%url %]',                   x => 572, y => 742, size => 12, align => 'right' },
+        { action => 'text', text => '[% phone_numbers %]',                      x => 572, y => 726, size => 12, align => 'right' },
+        { action => 'text', text => '[% qualifications %]',                     x => 572, y => 711, size =>  9, align => 'right' },
+
+        { action => 'text', text => '[% invoice_number %]',                     x => 432, y => 593, size => 12, align => 'left' },
+        { action => 'text', text => '[% today %]',                              x => 432, y => 579, size => 12, align => 'left' },
+
+        { action => 'text', text => '[% invoice_line_1 %]',                     x => 143, y => 434, size => 12, align => 'left' },
+        { action => 'text', text => '[% invoice_line_2 %]',                     x => 143, y => 418, size => 10, align => 'left' },
+        { action => 'text', text => '[% invoice_price %]',                      x => 540, y => 434, size => 12, align => 'right' },
+    ],
+}

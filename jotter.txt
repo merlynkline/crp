@@ -1,5 +1,3 @@
-rm -rf share/deploy/migrations/PostgreSQL/deploy/26/; rm -rf share/deploy/migrations/_source/deploy/26/; rm -rf share/deploy/migrations/PostgreSQL/upgrade/25-26/; rm -rf share/deploy/migrations/PostgreSQL/downgrade/26-25/001-auto.sql; 
-
 
 + Add new Instructor Trainer qualifications
     + Instructor training courses section needs to be accessible to users with an appropriate qualification
@@ -75,10 +73,10 @@ rm -rf share/deploy/migrations/PostgreSQL/deploy/26/; rm -rf share/deploy/migrat
                         - Others
                             + Flyer based on \\REVOLVER\susan-home\The Children's Reflexology Programme\Instructor Course flyer
                             ? Other flyers etc?
-                            + invoice
+                            ~ invoice
                                 - Number like TCRP-instructorid-yymmdd-sss (could use millisecond?)
                                 - Add date, instructor's contact details and course details when it's for a course
-                                + Also for parent courses and a general blank
+                                ~ Also for parent courses and a general blank
                             + Banner
                     + TCRPREFLEXINST
                         - From \\REVOLVER\susan-home\The Children's Reflexology Programme\Instructors course\TCRP Instructor Trainer Course Materials
@@ -194,7 +192,6 @@ X Remove docs from main docs where they are also in the course docs. Do people r
     * New version of booking acknowledgement/confirmation for Claire to use
     * New PDF poster for instructor course
 
-
 + Booking forms (generic PDF, course PDF, online) say don't bring child after immunisations, should be if unwell (or similar)
 
 + Preliminary changes for EYP course
@@ -216,7 +213,6 @@ X Remove docs from main docs where they are also in the course docs. Do people r
         + View certificate via signature link
         + Download certificate PDF
         + Revoke certificate
-        
 
 + New AN courses
     + Not in the MVP:
@@ -233,8 +229,6 @@ X Remove docs from main docs where they are also in the course docs. Do people r
             + Delete unused ones
         + Instructor searches shouldn't find trainees
         + The hidden list of instructors for Google shouldn't include trainees
-
-? How will we add the nursery course
 
 + New PDFs for magazine adverts at various sizes
 
@@ -302,7 +296,7 @@ X Remove docs from main docs where they are also in the course docs. Do people r
 
 + Add some sort of monitoring
 
-+ Is there a memory leak somewhere? PDF rendering?
+X Is there a memory leak somewhere? PDF rendering?
     - There does seem to be - we occasionally get failures because there's not enough memory to fork a child process
     - Removing the etag handler doesn't seem to help
     - Apparent association with fetching PDFs seems to be just because they are large content. Happens with other things but less obviously. Process grows by amount related to size of fetched document.
@@ -322,7 +316,7 @@ X Remove docs from main docs where they are also in the course docs. Do people r
     + CRP::Controller::Trainers::_display_course_editor_with() should load the course into $c->param rather than passing the course_record to the template
     + Move business logic off shop template and into code
 
-+ Add links to AOR (Friend membership) and Lexie's (?) parenty thing
+X Add links to AOR (Friend membership) and Lexie's (?) parenty thing
 
 + Typo in the general advice section on the back of the parent course booking form
 
@@ -341,17 +335,6 @@ X Remove docs from main docs where they are also in the course docs. Do people r
     - Other training courses
     - Neal's Yard store
 + Get rid of all references to Tutor/practitioner
-+ Some admin tools
-    ~ Create account
-    ~ Find account
-        ~ Print certificate
-        ~ Change email address
-        + Send temporary password
-        + (Un)Suspend
-        ~ Log in to account. Set a session variable with the original username. On log-out, return to original account, displaying account just left.
-        ~ Include link back to admin home on found account page
-    ~ Some stats on courses, instructors
-+ Login routes to test: from logged out, from logged out via interstitial, from already logged in
 + Finish up PayPal shop layout with logo/header
 
 - For the instructor-trainer pack
@@ -410,31 +393,6 @@ session:
     new($c): discard existing session and create a new one. if there's a cookie, attempt to retrieve a session from it.
     set(attribute, value): set or delete an attribute. Set dirty flag as required.
 
-
-
-
-
-
-- Verified login:
-    - Get or create session
-    - Recover stored redirect URL from session
-    - Set up cookie: session ID, userid for auto login, expiry date (depending on auto-login)
-    - Clear session
-    - Set up session: user ID
-    - redirect to stored page or default
- - Log-out
-    - Destroy session
-    - Remove session ID from cookie or delete it if auto-login not set
-    - redirect to home page
-
-++ Handle accounts for unqualified instructors (with no current certificate record) - what are the restrictions?
-    + No certificates
-    + Can't add a course
-    + Can't use the shop?
-    + Can't get (most?) PDFs
-    + Not included in CRP::Controller::Main::tutor_list 
-    + Others?
-
 + Certificate management
     + Database table with: certificate_id, instructor_id, issue_date, life_time, type, version, issuer_id, instructors_name, revocation_date, revoker_id
         - Type is for course certificates and renewal certificates (and maybe others at some point)
@@ -451,15 +409,6 @@ session:
     + Administrators can create and revoke certificates
     + Administrators can get PDFs of certificates without the scanned issuer's manual signature, for the issuer to actually sign
     
-+ Main landing page
-    ~ Welcome and brief overview
-    ~ Link to instructors' area
-    ~ Link to carers' area
-    ~ Link to administrators' area
-    ~ General contact form
-    + Log in/out for instructors/admins
-        + Persistent login option for private computers
-        ~ Password recovery (time-limited OTP email)
 + Carers' area
     ~ Search for instructors by location
     + More information about CRP

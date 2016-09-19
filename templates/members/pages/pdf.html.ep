@@ -52,6 +52,7 @@ in order to view and print them.
 %= include "members/parts/course_doc", name => 'members/Gift voucher log', caption => "Log sheet to manage gift vouchers"
 %= include "members/parts/course_doc", name => 'members/MYMOP_Initial', caption => "MYMOP initial data collection form"
 %= include "members/parts/course_doc", name => 'members/MYMOP_Follow_up', caption => "MYMOP follow up collection form"
+%= include "members/parts/course_doc", name => 'members/Invoice', caption => "Blank, numbered invoice"
 
 % if($quals{'TCRP-AN'}) {
 <div class="pdf-separator">Additional<br />Needs specific<br />documents</div>

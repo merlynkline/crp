@@ -1,0 +1,51 @@
+
+-----------------------------------------------------------------------------
+
+~ Some admin tools
+    ~ Create account
+    ~ Find account
+        ~ Print certificate
+        ~ Change email address
+        X Send temporary password
+        X (Un)Suspend
+        ~ Log in to account. Set a session variable with the original username. On log-out, return to original account, displaying account just left.
+        ~ Include link back to admin home on found account page
+    ~ Some stats on courses, instructors
+~ Login routes to test: from logged out, from logged out via interstitial, from already logged in
+
+-----------------------------------------------------------------------------
+
++ Main landing page
+    ~ Welcome and brief overview
+    ~ Link to instructors' area
+    ~ Link to carers' area
+    ~ Link to administrators' area
+    ~ General contact form
+    + Log in/out for instructors/admins
+        + Persistent login option for private computers
+        ~ Password recovery (time-limited OTP email)
+
+-----------------------------------------------------------------------------
+
+- Verified login:
+    - Get or create session
+    - Recover stored redirect URL from session
+    - Set up cookie: session ID, userid for auto login, expiry date (depending on auto-login)
+    - Clear session
+    - Set up session: user ID
+    - redirect to stored page or default
+ - Log-out
+    - Destroy session
+    - Remove session ID from cookie or delete it if auto-login not set
+    - redirect to home page
+
+-----------------------------------------------------------------------------
+
++ Handle accounts for unqualified instructors (with no current certificate record) - what are the restrictions?
+    + No certificates
+    + Can't add a course
+    + Can't use the shop?
+    + Can't get (most?) PDFs
+    + Not included in CRP::Controller::Main::tutor_list 
+    + Others?
+

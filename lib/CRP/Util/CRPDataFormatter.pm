@@ -10,17 +10,42 @@ sub format_data {
     my($c, $crp_data) = @_;
 
     my $data = {%$crp_data};
+
+    _set_common_data($c, $data);
+
     my $profile = $data->{profile};
     _extract_crp_profile_data($c, $data);
     _extract_crp_qualification_data($c, $data, $profile);
     _extract_crp_course_data($c, $data, $profile);
     _extract_crp_instructor_course_data($c, $data, $profile);
+    _set_invoice_data($c, $data);
     _set_demonstration_data($c, $data) if $profile->login->is_demo;
 
     delete $data->{profile};
     delete $data->{course};
 
     return $data;
+}
+
+sub _set_common_data {
+    my($c, $data) = @_;
+
+    $data->{today} = $c->crp->format_date(DateTime->now(), 'long');
+}
+
+sub _set_invoice_data {
+    my($c, $data) = @_;
+
+    $data->{invoice_number} = _generate_invoice_number();
+    if(exists $data->{course_type}) {
+        $data->{invoice_line_1} = 'Training course';
+        $data->{invoice_line_2} = $data->{course_type};
+        my $price = $data->{price};
+        $price =~ s/[^\d.]//g;
+        $price .= '.00' if $price ne '' && $price !~ /\./;
+        $data->{invoice_price}  = $price;
+        
+    }
 }
 
 sub _extract_crp_profile_data {
@@ -116,7 +141,8 @@ sub _extract_crp_course_data {
         'crp.membersite.course',
         slug => $profile->web_page_slug,
         course => $course->id
-    )->to_abs,
+    )->to_abs;
+    $data->{course_type}   = $course->course_type->description;
     $data->{_mark_trainee} = 0;
 }
 
@@ -127,6 +153,10 @@ sub _set_demonstration_data {
     $data->{phone_numbers} = '(Demonstration phone)';
     $data->{one_line_address} = '(Demonstration postal address)';
     $data->{_is_demo} = 1;
+}
+
+sub _generate_invoice_number {
+    my $num = DateTime->now()->strftime('%y%m%d.%H%M%S')
 }
 
 1;
