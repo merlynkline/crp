@@ -1,3 +1,4 @@
++ Trainees can't edit courses they are trainees for
 
 + Add new Instructor Trainer qualifications
     + Instructor training courses section needs to be accessible to users with an appropriate qualification
