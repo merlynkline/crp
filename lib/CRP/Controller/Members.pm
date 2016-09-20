@@ -252,7 +252,7 @@ sub _date_order_list {
 
 sub _available_course_types {
     my $c = shift;
-    my($profile) = @_;
+    my($profile, $edited_course_id) = @_;
 
     my @course_types = $c->crp->model('CourseType')->search(
         {
@@ -279,6 +279,7 @@ sub _available_course_types {
 
     foreach my $course ($profile->courses) {
         next if $course->canceled;
+        next if $edited_course_id && $course->id == $edited_course_id;
         next unless exists $trainee_qualification{$course->course_type->qualification_required_id};
         foreach my $course_type (@course_types) {
             delete $available_course_type{$course_type->id} if $course_type->qualification_required_id == $course->course_type->qualification_required_id;
@@ -446,7 +447,7 @@ sub _display_course_editor_with {
     $c->stash(
         site_profile            => $profile,
         course_record           => $course,
-        available_course_types  => $c->_available_course_types($profile),
+        available_course_types  => $c->_available_course_types($profile, $course->id),
     );
     $c->stash('edit_restriction', 'PUBLISHED') if $course->published;
 }
