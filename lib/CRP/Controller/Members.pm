@@ -358,7 +358,7 @@ sub _load_course_from_params {
         start_date          => CRP::Util::Misc::get_date_input($c->crp->trimmed_param('start_date')),
         time                => $c->crp->trimmed_param('time'),
         price               => $c->crp->trimmed_param('price'),
-        book_excluded       => $c->param('include_book') // '' eq 'Y' ? 'N' : 'Y',
+        book_excluded       => ($c->param('include_book') // '') eq 'Y' ? 'N' : 'Y',
         session_duration    => $c->crp->trimmed_param('session_duration'),
         course_duration     => $c->crp->trimmed_param('course_duration'),
         course_type_id      => $c->crp->trimmed_param('course_type_id') || 0,
@@ -442,11 +442,10 @@ sub _display_course_editor_with {
 
     my $profile = $c->crp->load_profile;
     $c->param(course_type_id => $course->course_type_id // '');
-    $c->param(include_book   => $course->book_excluded ? '' : 'Y');
+    $c->param(include_book   => ( ! $course->book_excluded || $course->book_excluded eq 'N') ? 'Y' : '');
     $c->stash(
         site_profile            => $profile,
         course_record           => $course,
-        include_book            => $course->book_excluded ? '' : 'Y',
         available_course_types  => $c->_available_course_types($profile),
     );
     $c->stash('edit_restriction', 'PUBLISHED') if $course->published;
