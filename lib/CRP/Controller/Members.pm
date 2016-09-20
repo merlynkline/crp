@@ -382,9 +382,10 @@ sub _load_course_from_params {
             my $course_type_id = $record->{course_type_id};
             if($course_type_id) {
                 my $qualification_required_id = $c->crp->model('CourseType')->find($course_type_id)->qualification_required_id;
+                $validation->error(course_type_id => ['trainee_qual_reused']) if _is_used_trainee_qualification($profile, $qualification_required_id);
                 foreach my $qualification($profile->qualifications) {
                     if($qualification->qualification_id == $qualification_required_id) {
-                        $validation->error(start_date => ['before_qualification']) unless $record->{start_date} > $qualification->passed_date;
+                        $validation->error(start_date => ['before_qualification']) unless $qualification->is_trainee || $record->{start_date} > $qualification->passed_date;
                         last;
                     }
                 }
@@ -394,6 +395,26 @@ sub _load_course_from_params {
     $validation->error(course_type_id => ['no_course_type']) unless $record->{course_type_id};
 
     return $validation;
+}
+
+sub _is_used_trainee_qualification {
+    my($profile, $qualification_id) = @_;
+
+    my %used_trainee_qualifications;
+
+    my @trainee_qualifications = grep { $_->is_trainee } $profile->qualifications;
+
+    if(@trainee_qualifications) {
+        my %trainee_qualification = map { $_->qualification_id => 1 } @trainee_qualifications;
+        return unless exists $trainee_qualification{$qualification_id};
+
+        foreach my $course ($profile->courses) {
+            next if $course->canceled;
+            return 1 if $course->course_type->qualification_required_id == $qualification_id;
+        }
+    }
+
+    return;
 }
 
 sub _display_course_editor {

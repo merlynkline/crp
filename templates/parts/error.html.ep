@@ -16,6 +16,7 @@
 %   no_qualification        => 'Please choose a qualification',
 %   no_such_email           => 'Sorry - that email address is not recorded on our system',
 %   required                => 'Please fill in this field',
+%   trainee_qual_reused     => 'You can only create one course like this until you fully qualify to teach this course',
 %   password_bad            => 'Sorry - that password is not secure enough',
 %   password_mismatch       => 'The two passwords must be identical',
 %   invalid_column_MinLen   => 'Please enter a longer value in this field',
