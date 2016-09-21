@@ -183,6 +183,19 @@ sub show_account {
         );
     }
     $c->stash(available_qualifications => [ $c->crp->model('Qualification')->search(undef, {order_by => 'abbreviation'}) ]);
+    my $trainers = [ $c->crp->model('CourseType')->search(
+        {
+            qualification_earned_id => { '!=', undef },
+        },
+        {
+            join     => {'instructor_qualification' => {'instructor' => 'profile'}},
+            select   => [ 'profile.instructor_id', 'profile.name'],
+            as       => [ 'instructor_id', 'name'],
+            distinct => 1,
+        }
+    )];
+    $trainers = [ map { [$_->get_column('name') => $_->get_column('instructor_id')] } @$trainers ];
+    $c->stash(trainers => $trainers);
     return $c->page('show_account');
 }
 
@@ -291,6 +304,8 @@ sub add_instructor_qualification {
 
     my $qualification_id = $c->param('qualification');
     $validation->error(qualification => ['no_qualification']) unless $qualification_id ne '' && $c->crp->model('Qualification')->find($qualification_id);
+    my $trainer_id = $c->param('trainer');
+    $validation->error(trainer => ['no_trainer']) unless $trainer_id ne '' && $c->crp->model('Login')->find($trainer_id);
     if( ! $validation->has_error) {
         my $has_qualification = $c->crp->model('InstructorQualification')->search({
                 instructor_id       => $id,
@@ -306,6 +321,7 @@ sub add_instructor_qualification {
     $c->crp->model('InstructorQualification')->create({
             instructor_id       => $id,
             qualification_id    => $qualification_id,
+            trainer_id          => $trainer_id,
             passed_date         => $pass_date,
         });
 

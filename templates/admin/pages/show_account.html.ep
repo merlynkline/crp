@@ -61,18 +61,8 @@
 % my $personal_url = url_for('crp.membersite.home', slug => $profile->web_page_slug);
 Personal web site: <a href="<%= $personal_url %>" target="_blank"><%= $personal_url %></a>.
 % }
-Actions:
 <ul>
-%#    <li><a href="<%= url_for('/')->query(id => $login->id) %>">Send temporary password</a></li>
-%#    <li><a href="<%= url_for('/')->query(id => $login->id) %>">Suspend</a></li>
     <li><a href="<%= url_for('crp.admin.login')->query(id => $login->id) %>">Log in to this account</a></li>
-    <li>
-        %= form_for 'crp.admin.change_demo' => (method => 'POST') => begin
-        This is a <%= $login->is_demo ? 'DEMO' : 'normal (non-demo)' %> account.
-        %= hidden_field 'id' => $login->id;
-        %= submit_button 'Change'
-        % end
-    </li>
     <li>
         %= form_for 'crp.admin.change_email' => (method => 'POST') => begin
         email:
@@ -82,55 +72,65 @@ Actions:
         <%= include 'parts/error', field => 'email' %>
         % end
     </li>
-    <li>
-        Qualifications:
-        <ul>
-            % my @qualifications = $login->qualifications;
-            % if(@qualifications) {
-                % foreach my $qualification (@qualifications) {
-                % my $qid = $qualification->id;
-            <li>
-                <%= $qualification->passed_date ? $c->crp->format_date($qualification->passed_date, 'short') : '' %>
-                <%= $qualification->is_trainee ? '(Trainee)' : '' %>
-                <%= $qualification->qualification->qualification; %>
-                <br/>
+</ul>
+<table class="list1">
+    <tr><th>Qualifications</th></tr>
+    % my @qualifications = $login->qualifications;
+    % foreach my $qualification (@qualifications) {
+    % my $qid = $qualification->id;
+    <tr>
+        <td>
+            <div style="position: releative; float: right;">
                 <a class="standard-button" href="<%= url_for('crp.admin.certificate')->query(id => $login->id, code => $qualification->qualification->code) %>">Certificate</a>
-                % if($qualification->is_trainee) {
-                &nbsp;&nbsp;|&nbsp;&nbsp;
-                %= form_for 'crp.admin.delete_instructor_qualification' => (method => 'POST', style => 'display: inline-block;') => begin
-                %= hidden_field 'qid' => $qid;
-                %= hidden_field 'id' => $login->id;
-                %= check_box "sure$qid" => 'Y';
-                %= submit_button 'Delete';
-                % end
-                % }
-                % if( ! $qualification->passed_date) {
-                &nbsp;&nbsp;|&nbsp;&nbsp;
-                %= form_for 'crp.admin.set_pass_date' => (method => 'POST', style => 'display: inline-block;') => begin
-                %= hidden_field 'qid' => $qid;
-                %= hidden_field 'id' => $login->id;
-                %= date_field "pass_date_$qid", id => "pass_date_$qid", maxlength => 10, required => 'required';
-                %= submit_button 'Pass';
-                % end
-                % }
-                <%= include 'parts/error', field => "sure$qid" %>
-                <%= include 'parts/error', field => "pass_date_$qid" %>
-            </li>
+            </div>
+            <%= $qualification->passed_date ? $c->crp->format_date($qualification->passed_date, 'short') : '' %>
+            <%= $qualification->is_trainee ? '(Trainee)' : '' %>
+            <%= $qualification->qualification->qualification; %><br />
+            Tutor: <a href="<%= url_for('crp.admin.show_account')->query(id => $qualification->trainer_id)->to_abs %>"><%= $qualification->trainer->profile->name %></a><br>
+            % if($qualification->is_trainee) {
+            %= form_for 'crp.admin.delete_instructor_qualification' => (method => 'POST', style => 'display: inline-block;') => begin
+            %= hidden_field 'qid' => $qid;
+            %= hidden_field 'id' => $login->id;
+            %= check_box "sure$qid" => 'Y';
+            %= submit_button 'Delete';
+            % end
             % }
-        % } else {
-            <li>(None)</li>
-        % }
-            <li>New:
+            % if( ! $qualification->passed_date) {
+            % if($qualification->is_trainee) {
+            &nbsp;&nbsp;|&nbsp;&nbsp;
+            % }
+            %= form_for 'crp.admin.set_pass_date' => (method => 'POST', style => 'display: inline-block;') => begin
+            %= hidden_field 'qid' => $qid;
+            %= hidden_field 'id' => $login->id;
+            %= date_field "pass_date_$qid", id => "pass_date_$qid", maxlength => 10, required => 'required';
+            %= submit_button 'Pass';
+            % end
+            % }
+            <%= include 'parts/error', field => "sure$qid" %>
+            <%= include 'parts/error', field => "pass_date_$qid" %>
+        </td>
+    </tr>
+    % }
+    <tr>
+        <td>New:
             %= form_for 'crp.admin.add_instructor_qualification' => (method => 'POST', style => 'display: inline-block;') => begin
-            %= select_field qualification => [ ['Please select...' => ''], map { [$_->abbreviation => $_->id] } @{stash('available_qualifications')} ]
-            %= date_field 'pass_date', id => 'pass_date', maxlength => 10;
+            %= select_field qualification => [ ['Select qualification...' => ''], map { [$_->abbreviation => $_->id] } @{stash('available_qualifications')} ]
+            %= select_field trainer => [ ['Select trainer...' => ''], @{stash('trainers')} ]
             %= hidden_field 'id' => $login->id;
             %= submit_button 'Add'
             <%= include 'parts/error', field => 'qualification' %>
-            <%= include 'parts/error', field => 'pass_date' %>
+            <%= include 'parts/error', field => 'trainer' %>
             % end
-            </li>
-        </ul>
+        </td>
+    </tr>
+</table>
+<ul>
+    <li>
+        %= form_for 'crp.admin.change_demo' => (method => 'POST') => begin
+        This is a <%= $login->is_demo ? 'DEMO' : 'normal (non-demo)' %> account.
+        %= hidden_field 'id' => $login->id;
+        %= submit_button 'Change'
+        % end
     </li>
 </ul>
 </p>

@@ -130,9 +130,10 @@
 
 + Qualifications should record who the trainer was
     ~ New column in the DB for the instructor ID, backfilled as Sue
-    + New UI for setting the instructor for a qualification
-        + Remove the date box when adding a new qualification
-        + Add a drop-down when passing a qualification, to select the trainer
+    ~ New UI for setting the instructor for a qualification
+        ~ Remove the date box when adding a new qualification
+        ~ Add a drop-down when passing a qualification, to select the trainer
+        + Validate trainer against qualification to make sure they've passed
     + Instructor trainer Admin page could have stats for people they've qualified and links to lists
     
 + Instructors should have a record of purchases made
