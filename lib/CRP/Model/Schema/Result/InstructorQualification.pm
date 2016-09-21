@@ -33,11 +33,16 @@ __PACKAGE__->add_columns(
         timezone            => 'UTC',
         is_nullable         => 1,
     },
+    trainer_id => {
+        data_type           => 'integer',
+        is_nullable         => 1,
+    },
 );
 
 __PACKAGE__->set_primary_key('id');
 __PACKAGE__->belongs_to('instructor' => 'CRP::Model::Schema::Result::Login', 'instructor_id');
 __PACKAGE__->belongs_to('qualification' => 'CRP::Model::Schema::Result::Qualification', 'qualification_id');
+__PACKAGE__->belongs_to('trainer' => 'CRP::Model::Schema::Result::Login', 'trainer_id');
 
 sub sqlt_deploy_hook {
     my ($self, $sqlt_table) = @_;
