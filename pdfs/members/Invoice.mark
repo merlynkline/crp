@@ -9,8 +9,8 @@
         { action => 'text', text => '[% phone_numbers %]',                      x => 572, y => 726, size => 12, align => 'right' },
         { action => 'text', text => '[% qualifications %]',                     x => 572, y => 711, size =>  9, align => 'right' },
 
-        { action => 'text', text => '[% invoice_number %]',                     x => 432, y => 593, size => 12, align => 'left' },
-        { action => 'text', text => '[% today %]',                              x => 432, y => 579, size => 12, align => 'left' },
+        { action => 'text', text => 'Invoice number [% invoice_number %]',      x => 545, y => 630, size => 12, align => 'right' },
+        { action => 'text', text => '[% today %]',                              x => 545, y => 616, size => 12, align => 'right' },
 
         { action => 'text', text => '[% invoice_line_1 %]',                     x => 143, y => 434, size => 12, align => 'left' },
         { action => 'text', text => '[% invoice_line_2 %]',                     x => 143, y => 418, size => 10, align => 'left' },

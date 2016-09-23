@@ -1,4 +1,3 @@
-
 + Add new Instructor Trainer qualifications
     + Instructor training courses section needs to be accessible to users with an appropriate qualification
         ~ DB updates:
@@ -135,11 +134,13 @@
         ~ Add a drop-down when passing a qualification, to select the trainer
         + Validate trainer against qualification to make sure they've passed
     + Instructor trainer Admin page could have stats for people they've qualified and links to lists
-    
+ 
 + Instructors should have a record of purchases made
     + Enter an order
         - [ID]
         - Date
+        - Source (paypal, phone, email)
+        - Reference (paypal ID, their order number)
         - Description
         - Amount paid
         - Fulfilled?
@@ -155,8 +156,93 @@
         - Address to cut out and stick on the envelope
         - List of any orders within a couple of days of the date for the same instructor
             - Tickboxes for when they're made up
++ We need a local accounting system
+    + See notes above about instructors' orders. This should match and should update that.
+        + Also need to be able to record orders for people who aren't instructors
+    + Transaction records
+        + Basic transaction record:
+            - [ID]
+            - Type (invoice/credit note/payment made/payment received/invoice received)
+            - Date
+            - External ref
+            - Instructor ID/account number (for non-instructors)
+            - Total
+            - Total allocated
+            - Notes
+        + Allocation record
+            - [ID]
+            - Date
+            - Transaction ID 1
+            - Transaction ID 1
+            - Amount
+            - Notes
+        + Invoices sent
+            - [ID]
+            - [Basic transaction ID]
+            - Name/address
+            - List of lines
+                - [Basic transaction ID]
+                - [invoice_id]
+                - Stock ID
+                - Description [replaces that looked up from Stock ID]
+                - Quantity
+                - Amount
+        + Credit notes
+            - [ID]
+            - [Basic transaction ID]
+        + Payments made/received
+            - [ID]
+            - Account ID
+            - Date
+            - Internal ref (e.g. chq number)
+            - Payment type ID
+        + Invoices received
+            - [ID]
+            - Account ID
+            - Date
+            - External ref (may be null)
+            - List of lines [as per invoices sent)
+        + Stock
+            - [ID]
+            - Code
+            - Description
+            - Stock level
+            - Typical purchase price [NULL if manufactured]
+            - Selling price (a set of rules?) [NULL if not for sale]
+            - Tax analysis code ID
+            - Notes (e.g. where to buy, how to manufacture)
+        + Stock component (stock items used to manufacture other stock items)
+            + [ID]
+            + Stock ID this goes into
+            + Stock ID that goes into it (avoid circular refs when adding/editing!)
+            + Quantity used
+            + Notes (e.g. re manufacturing process)
+        + Stock analysis code
+            + [ID]
+            + Stock ID
+            + Code
+            + Description
+        + Payment type
+            + [ID]
+            + Code
+            + Description (cash/paypal/cheque/etc)
+        + Account
+            + [ID]
+            + Name
+            + Address
+            + Postcode
+            + Instructor ID (if relevant)
+            + Telephone numbers
+            + Email
+            + Create date
+            + Total of each transaction type?
+    ? How should analysis work? Model above is not good. What do we need to do?
+        - Break sales and purchases down by different overlapping areas, possibly into sub(-sub...)-areas
+        - Break sales and purchases down for tax. This must include *all* transactions; other analyses might not need to
 
-        
+
+
+
 + Further qualification tracking
     + For each qualification, record what assignments have been completed when and the results
     + Qualifications are not passed until all assignments received

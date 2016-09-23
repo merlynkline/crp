@@ -36,7 +36,7 @@ sub _set_common_data {
 sub _set_invoice_data {
     my($c, $data) = @_;
 
-    $data->{invoice_number} = _generate_invoice_number();
+    $data->{invoice_number} = _generate_invoice_number($data);
     if(exists $data->{course_type}) {
         $data->{invoice_line_1} = 'Training course';
         $data->{invoice_line_2} = $data->{course_type};
@@ -156,7 +156,9 @@ sub _set_demonstration_data {
 }
 
 sub _generate_invoice_number {
-    my $num = DateTime->now()->strftime('%y%m%d.%H%M%S')
+    my($data) = @_;
+
+    return CRP::Util::WordNumber::encipher($data->{profile}->id) . '.' . CRP::Util::WordNumber::encipher(localtime);
 }
 
 1;
