@@ -159,5 +159,21 @@
 </div>
 </p>
 <br clear="left" />
+% if(@{stash('instructors_trained')}) {
+<table class="list1">
+    <tr><th colspan="3">Instructors you've trained</th></tr>
+    <tr><th>Date</th><th>Instructor</th><th>Qualification</th></tr>
+    % foreach my $qualification (@{stash('instructors_trained')}) {
+    % my $qid = $qualification->id;
+    % my $url = url_for('crp.membersite.home', slug => $qualification->instructor->profile->web_page_slug)->to_abs;
+    % my $name = $qualification->instructor->profile->name;
+    <tr>
+        <td nowrap="nowrap"><%= $qualification->passed_date ? $c->crp->format_date($qualification->passed_date, 'short') : '' %></td>
+        <td><a href="<%= $url %>"><%= $name %></a></td>
+        <td class="extra-info"><%= $qualification->qualification->qualification; %></td>
+    </tr>
+    % }
+% }
+</table>
 Your personal web site is at <a href="<%= $personal_url %>"><%= $personal_url %></a>.
 </div>
