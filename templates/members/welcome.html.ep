@@ -61,13 +61,15 @@
                 % my @qualifications = $profile->login->qualifications;
                 % if(@qualifications) {
                     % foreach my $qualification (@qualifications) {
+                    % my $url = url_for('crp.membersite.home', slug => $qualification->trainer->profile->web_page_slug)->to_abs;
                     <tr>
                         <td nowrap="nowrap">
                             <%= $qualification->passed_date ? $c->crp->format_date($qualification->passed_date, 'short') : '' %>
                             <%= $qualification->is_trainee ? '(Trainee)' : '' %>
                         </td>
                         <td>
-                            <%= $qualification->qualification->qualification; %>
+                            <%= $qualification->qualification->qualification; %><br />
+                            Tutor: <a href="<%= $url %>"><%= $qualification->trainer->profile->name %></a><br>
                         </td>
                     </tr>
                     % }
