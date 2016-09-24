@@ -180,6 +180,7 @@ sub show_account {
             draft_instructor_courses_count       => $profile->instructors_courses->get_draft_set->count,
             advertised_instructor_courses_count  => $profile->instructors_courses->get_advertised_set($days)->count,
             past_courses_instructor_count        => $profile->instructors_courses->get_past_set($days)->count,
+            instructors_trained                  => [ $c->crp->model('InstructorQualification')->search({trainer_id => $id}, {order_by => 'instructor_id'}) ],
         );
     }
     $c->stash(available_qualifications => [ $c->crp->model('Qualification')->search(undef, {order_by => 'abbreviation'}) ]);

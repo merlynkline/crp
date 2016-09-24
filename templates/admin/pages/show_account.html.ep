@@ -124,6 +124,22 @@ Personal web site: <a href="<%= $personal_url %>" target="_blank"><%= $personal_
         </td>
     </tr>
 </table>
+% if(@{stash('instructors_trained')}) {
+<table class="list1">
+    <tr><th colspan="3">Instructors trained</th></tr>
+    <tr><th>Date</th><th>Instructor</th><th>Qualification</th></tr>
+    % foreach my $qualification (@{stash('instructors_trained')}) {
+    % my $qid = $qualification->id;
+    % my $url = url_for('crp.admin.show_account')->query(id => $qualification->instructor_id)->to_abs;
+    % my $name = $qualification->instructor->profile->name;
+    <tr>
+        <td><%= $qualification->passed_date ? $c->crp->format_date($qualification->passed_date, 'short') : '' %></td>
+        <td><a href="<%= $url %>"><%= $name %></a></td>
+        <td><%= $qualification->qualification->qualification; %></td>
+    </tr>
+    % }
+% }
+</table>
 <ul>
     <li>
         %= form_for 'crp.admin.change_demo' => (method => 'POST') => begin
