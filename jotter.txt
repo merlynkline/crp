@@ -133,7 +133,8 @@
         ~ Remove the date box when adding a new qualification
         ~ Add a drop-down when passing a qualification, to select the trainer
         + Validate trainer against qualification to make sure they've passed
-    + Instructor trainer Admin page could have stats for people they've qualified and links to lists
+    ~ Instructor trainer Admin page could have stats for people they've qualified and links to lists
+    ~ Instructor home page could show them whom they've trained
  
 + Instructors should have a record of purchases made
     + Enter an order

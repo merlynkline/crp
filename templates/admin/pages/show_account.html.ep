@@ -133,9 +133,9 @@ Personal web site: <a href="<%= $personal_url %>" target="_blank"><%= $personal_
     % my $url = url_for('crp.admin.show_account')->query(id => $qualification->instructor_id)->to_abs;
     % my $name = $qualification->instructor->profile->name;
     <tr>
-        <td><%= $qualification->passed_date ? $c->crp->format_date($qualification->passed_date, 'short') : '' %></td>
+        <td nowrap="nowrap"><%= $qualification->passed_date ? $c->crp->format_date($qualification->passed_date, 'short') : '' %></td>
         <td><a href="<%= $url %>"><%= $name %></a></td>
-        <td><%= $qualification->qualification->qualification; %></td>
+        <td class="extra-info"><%= $qualification->qualification->qualification; %></td>
     </tr>
     % }
 % }
