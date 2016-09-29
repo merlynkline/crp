@@ -1,6 +1,148 @@
 
 -----------------------------------------------------------------------------
 
++ Add new Instructor Trainer qualifications
+    + Instructor training courses section needs to be accessible to users with an appropriate qualification
+        ~ DB updates:
+            ~ Add qualification records
+                ~ Instructor trainer
+                ~ AN Instructor trainer
+            ~ Add column: course_type.qualification_earned_id (NULL means it's a parents course, otherwise it'a an instructors course)
+            ~ Add course_type rows for instructor training courses, earning the relevant qualifications
+                ~ Instructor
+                ~ AN Instructor
+                ~ Reflexologist Instructor
+                X AN Reflexologist Instructor
+            ~ Add column: instructors_course.course_type_id
+            ~ Add column: instructors_course.duration TEXT
+            ~ UPDATE instructors_course SET course_type_id = SELECT id FROM course_type WHERE qualification_earned_id = instructors_course.qualification_id
+            ~ UPDATE instructors_course SET duration = '3 days'
+            ~ DROP instructors_course.qualification_id
+            ~ DROP profile.instructor_trainer
+        + Code and template changes:
+            ~ Make a custom accessor for instructors_course.qualification_id so attempts to use it throw an exception
+            ~ Replace refs to instructors_course.qualification_id with course_type.qualification_earned_id
+            ~ Wherever we fetch parent course information we must restrict to those WHERE course_type.qualification_earned_id IS NULL
+            ~ Wherever we fetch instructor course information we must restrict to those WHERE course_type.qualification_earned_id IS NOT NULL
+            ~ Instructors get to see the "Instructor training courses" link if they have qualifications matching any course_type.qualification_required_id where course_type.qualification_earned_id IS NOT NULL
+            ~ When adding/editing Instructor training courses:
+                - templates/trainers/course.html.ep
+                ~ Replace qualification drop-down is replaced by an appropriately restricted course_type selection
+                ~ Add field for instructors_course.duration
+                ~ Ensure instructors_course.instructor_id is set correctly
+            ~ When showing details of Instructor training courses, include:
+                ~ course_type.description
+                ~ course_type.qualification_earned_id
+                ~ instructors_course.duration
+                ~ instructors_course.instructor_id
+                ~ Link to the instructor's personal web page
+            ~ Brief course details (e.g. when confirming a delete) could show more
+            ~ Show details of Instructor training courses on personal web pages of Instructor trainers
+            ~ Admin pages
+                ~ Stats collection for homepage needs to count courses properly and add instructor trainer courses
+                ~ Course Summary box for account record page needs to include Instructor training courses and links to lists of them
+                    ~ List of Instructor training courses for instructor needs to be added
+                ~ NB: Bug: In dev, course summary for SQ says "Past: None" but links to a non-empty list
+            ~ Member pages:
+                ~ _available_course_types() needs to be restricted to parents or instructors courses
+            ~ Booking form for instructor training courses
+                ~ Identify by course ID and look up details
+                ~ Remove the old booking form
+                ~ Change the book button so it links by id (templates/parts/instructors_course_list.html.ep and templates/member_site/welcome.html.ep)
+                ~ Send email to the trainer as well as to SQ (try not to duplicate to SQ! Perhaps both email addrs on one email would do that)
+            + Add instructor course PDFS
+                ~ Add mechanism for showing course PDFs for instructor courses, like parent courses
+                ~ Posters are currently named for qualification code - need renaming for course_type.code (or something) and move to common course docs
+                ~ Add posters to templates/trainers/course_docs.html.ep
+                ~ Change current instructor course Poster buttons to use new code and location
+                + Add bits to poster PDFs
+                    ~ Instructor personalisation
+                    ~ Start date and duration
+                    ? Qualification earned?
+                    ? Course type?
+                ~ Add button for course PDFs to admin instructor course lists
+                + Add other PDFs
+                    - list in templates/trainers/course_docs.html.ep
+                    + TCRPINST
+                        - From \\REVOLVER\susan-home\The Children's Reflexology Programme\Instructors course\TCRP Instructor Trainer Course Materials
+                            ~ Course checklist
+                            ~ Instructors Confirmation
+                            ~ Instructors Booking Form
+                            ~ Instructors Feedback Form
+                            ~ Micro-teach assessment
+                            ~ Register
+                            ~ Student progress
+                        - Others
+                            + Flyer based on \\REVOLVER\susan-home\The Children's Reflexology Programme\Instructor Course flyer
+                            ? Other flyers etc?
+                            ~ invoice
+                                - Number like TCRP-instructorid-yymmdd-sss (could use millisecond?)
+                                - Add date, instructor's contact details and course details when it's for a course
+                                ~ Also for parent courses and a general blank
+                            + Banner
+                    + TCRPREFLEXINST
+                        - From \\REVOLVER\susan-home\The Children's Reflexology Programme\Instructors course\TCRP Instructor Trainer Course Materials
+                            ~ Course checklist
+                            + Instructors Confirmation
+                            + Instructors Booking Form
+                            + Instructors Feedback Form
+                            + Micro-teach assessment
+                            + Register
+                            + Student progress
+                        - Others
+                            + Flyer based on \\REVOLVER\susan-home\The Children's Reflexology Programme\Instructor Course flyer
+                            ? Other flyers etc?
+                            + invoice
+                                - Number like TCRP-instructorid-yymmdd-sss (could use millisecond?)
+                                - Add date, instructor's contact details and course details when it's for a course
+                                + Also for parent courses and a general blank
+                            + Banner
+                    + TCRPANINST
+                        - From \\REVOLVER\susan-home\The Children's Reflexology Programme\Instructors course\TCRP Instructor Trainer Course Materials
+                            + Course checklist
+                            + Instructors Confirmation
+                            + Instructors Booking Form
+                            + Instructors Feedback Form
+                            + Micro-teach assessment
+                            + Register
+                            + Student progress
+                        - Others
+                            + Flyer based on \\REVOLVER\susan-home\The Children's Reflexology Programme\Instructor Course flyer
+                            ? Other flyers etc?
+                            + invoice
+                                - Number like TCRP-instructorid-yymmdd-sss (could use millisecond?)
+                                - Add date, instructor's contact details and course details when it's for a course
+                                + Also for parent courses and a general blank
+                            + Banner
+        + Other possible template changes
+            + templates/main/pages/course_booked.html.ep "Thank you for taking the time to contact me."
+            + templates/main/pages/instructor_booking.html.ep "Please tell me a bit about yourself"
+            + templates/parts/instructors_course_list.html.ep "If I'm not currently running a course near you"
+            + templates/parts/instructors_course_list.html.ep "I am always happy to travel"
+            + templates/main/pages/instructor_booking.html.ep "I will get back to you as"
+            + templates/main/pages/instructor_booking.html.ep "I am really looking forward"
+            + templates/main/pages/instructor_booking.html.ep "I may not be able to run the separate two-day course"
+            + templates/main/pages/instructor_booking.html.ep  "secure your place once I have confirmed that there is one available"
+    ~ Instructor training course should only allow you to set up courses for qualifications you are allowed to train for
+    ~ Instructor course page (course list) needs to inidcate the tutor
+    X Improve UI for selecting and displaying instructor courses as opposed to normal courses
+    + Add certificate PDF for the qualification as pdfs/Qualification_Certificate_$code.pdf
+    ~ Add a new PDF for the instructor course poster
+    + Add any new products to the shop
+
+-----------------------------------------------------------------------------
+
++ Qualifications should record who the trainer was
+    ~ New column in the DB for the instructor ID, backfilled as Sue
+    ~ New UI for setting the instructor for a qualification
+        ~ Remove the date box when adding a new qualification
+        ~ Add a drop-down when passing a qualification, to select the trainer
+        + Validate trainer against qualification to make sure they've passed
+    ~ Instructor trainer Admin page could have stats for people they've qualified and links to lists
+    ~ Instructor home page could show them whom they've trained
+ 
+-----------------------------------------------------------------------------
+
 ~ Some admin tools
     ~ Create account
     ~ Find account

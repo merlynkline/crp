@@ -306,7 +306,16 @@ sub add_instructor_qualification {
     my $qualification_id = $c->param('qualification');
     $validation->error(qualification => ['no_qualification']) unless $qualification_id ne '' && $c->crp->model('Qualification')->find($qualification_id);
     my $trainer_id = $c->param('trainer');
-    $validation->error(trainer => ['no_trainer']) unless $trainer_id ne '' && $c->crp->model('Login')->find($trainer_id);
+    if($trainer_id ne '' && $c->crp->model('Login')->find($trainer_id)) {
+        if($qualification_id) {
+            unless(_trainer_can_teach_qualification($c, $trainer_id, $qualification_id)) {
+                $validation->error(trainer => ['trainer_not_qualified']);
+            }
+        }
+    }
+    else {
+        $validation->error(trainer => ['no_trainer']) unless $trainer_id ne '' && $c->crp->model('Login')->find($trainer_id);
+    }
     if( ! $validation->has_error) {
         my $has_qualification = $c->crp->model('InstructorQualification')->search({
                 instructor_id       => $id,
@@ -328,6 +337,24 @@ sub add_instructor_qualification {
 
     $c->flash(msg => 'qualification_added');
     return $c->_redirect_to_show_account_id($id);
+}
+
+sub _trainer_can_teach_qualification {
+    my($c, $trainer_id, $qualification_id) = @_;
+
+    # Logged-in admin can teach anything, to boot-strap adding of qualifications
+    return 1 if $c->stash('login_record')->id == $trainer_id;
+
+    return 1 if $c->crp->model('CourseType')->search(
+        {
+            qualification_earned_id => $qualification_id,
+            'instructor_qualification.instructor_id' => $trainer_id,
+        },
+        {
+            join     => 'instructor_qualification'
+        }
+    )->count > 0;
+    return 0;
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
