@@ -1,0 +1,10 @@
+% if(config('recaptcha')->{secretkey}) {
+            <label>
+            Human being
+            <div class="field-extra-info">Unfortunately we get a lot of spam so please reassure us that you are a human being by solving the captcha.</div>
+        </label>
+        <div class="input-container" style="padding-left: 4px">
+            <%= stash 'recaptcha' %>
+            <%= include 'parts/error', field => 'recaptcha' %>
+        </div>
+% }

@@ -133,6 +133,7 @@ secure your place once I have confirmed that there is one available.
         <div class="input-container">
             %= check_box 'photo_release' => 'Y', id => 'photo_release'
         </div>
+        <%= include 'parts/recaptcha' =%>
         <label>&nbsp;</label>
         <div class="input-container">
             <%= submit_button 'Send booking request', name => 'send' %>

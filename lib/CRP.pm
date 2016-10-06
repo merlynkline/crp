@@ -28,6 +28,13 @@ sub startup {
 
     $self->app->types->type(csv => 'text/csv;charset=UTF-8');
 
+    if($config->{recaptcha}->{secretkey}) {
+        $self->plugin('ReCAPTCHAv2', {
+            sitekey       => $config->{recaptcha}->{sitekey},
+            secret        => $config->{recaptcha}->{secretkey},
+        });
+    }
+
     # Router
     my $r = $self->routes;
 

@@ -186,6 +186,25 @@ sub register {
         }
     );
 
+    $app->helper(
+        'crp.stash_recaptcha' => sub {
+            my $c = shift;
+
+            $c->stash('recaptcha', $c->recaptcha_get_html) if $app->config->{recaptcha}->{secretkey};
+        }
+    );
+
+    $app->helper(
+        'crp.validate_recaptcha' => sub {
+            my $c = shift;
+            my($validation) = @_;
+
+            if($app->config->{recaptcha}->{secretkey}) {
+                $validation->error(recaptcha => ['recaptcha_fail']) unless $c->recaptcha_verify;
+            }
+        }
+    );
+
 }
 
 1;

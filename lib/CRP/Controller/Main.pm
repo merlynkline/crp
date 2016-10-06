@@ -296,6 +296,7 @@ sub instructor_booking_form {
     undef $course unless $course->published;
 
     $c->stash('course', $course);
+    $c->crp->stash_recaptcha();
     $c->render(template => 'main/instructor_booking_form', @_);
 }
 
@@ -308,6 +309,7 @@ sub instructor_booking {
     undef $course unless $course->published;
 
     my $validation = $c->validation;
+    $c->crp->validate_recaptcha($validation);
     $validation->required('email')->like(qr{^.+@.+[.].+});
     $validation->required('name');
     $validation->required('about');
