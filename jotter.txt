@@ -40,6 +40,9 @@
     + Add new banner PDFs for instructor trainers
     + Add any new products to the shop
 
++ Facility to suspend an account
++ Show email address when setting password on an account
+
 + Instructors should have a record of purchases made
     + Enter an order
         - [ID]

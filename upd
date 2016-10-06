@@ -3,6 +3,11 @@
 git pull
 carton
 carton exec script/crp migrate upgrade
+secret_config="c_r_p.conf.secret"
+if [ -f "$secret_config" ];
+then
+    . "./$secret_config"
+fi
 authbind --deep carton exec hypnotoad script/crp daemon
 
 
