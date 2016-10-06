@@ -607,6 +607,14 @@ DISTRIBUTIONS
       Math::Complex 1.39
       Test::More 0.9301
       perl 5.006001
+  Mojolicious-Plugin-ReCAPTCHAv2-0.4
+    pathname: H/HJ/HJANSEN/Mojolicious-Plugin-ReCAPTCHAv2-0.4.tar.gz
+    provides:
+      Mojolicious::Plugin::ReCAPTCHAv2 0.4
+    requirements:
+      ExtUtils::MakeMaker 0
+      IO::Socket::SSL 1.75
+      Mojolicious 0
   MooX-HandlesVia-0.001008
     pathname: M/MA/MATTP/MooX-HandlesVia-0.001008.tar.gz
     provides:
