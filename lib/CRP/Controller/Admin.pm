@@ -217,16 +217,6 @@ sub create_account {
         $profile->name($name);
         $profile->update;
 
-        my $qualification_id = $c->param('qualification');
-        if($qualification_id ne '') {
-            my $pass_date = CRP::Util::Misc::get_date_input($c->crp->trimmed_param('pass_date'));
-            $c->crp->model('InstructorQualification')->create({
-                    instructor_id       => $login_record->id,
-                    qualification_id    => $qualification_id,
-                    passed_date         => $pass_date,
-                });
-        }
-
         $c->flash(msg => 'account_create');
         return $c->_redirect_to_show_account_id($login_record->id);
     }
