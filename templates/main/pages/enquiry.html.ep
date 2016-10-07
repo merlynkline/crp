@@ -64,6 +64,8 @@
             %= check_box newsletter => 'Y', id => 'newsletter';
         </div>
 
+        <%= include 'parts/recaptcha' =%>
+
         <label>&nbsp;</label>
         <div class="input-container">
             %= submit_button 'Go'

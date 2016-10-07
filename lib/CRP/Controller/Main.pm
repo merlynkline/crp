@@ -62,6 +62,7 @@ sub register_interest {
     my $c = shift;
 
     my $validation = $c->validation;
+    $c->crp->validate_recaptcha($validation);
     $validation->required('email')->like(qr{^.+@.+[.].+});
     return $c->page('enquiry') if($validation->has_error);
     my $record = {
