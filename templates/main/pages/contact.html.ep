@@ -21,6 +21,7 @@
             <%= text_area 'message', rows => '10', cols => '45', id => 'field_message', required => "required" =%>
             <%= include 'parts/error', field => 'message' =%>
         </div>
+        <%= include 'parts/recaptcha' =%>
         <label>&nbsp;</label>
         <div class="input-container">
             <%= submit_button 'Send', name => 'send' %>

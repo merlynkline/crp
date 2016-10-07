@@ -18,6 +18,7 @@ sub page {
 
     my $page = shift // $c->stash('page');
     $c->stash('page', $page);
+    $c->crp->stash_recaptcha();
 
     $c->render(template => "main/pages/$page", @_);
 }
@@ -36,6 +37,7 @@ sub contact {
     my $c = shift;
 
     my $validation = $c->validation;
+    $c->crp->validate_recaptcha($validation);
     $validation->required('email')->like(qr{^.+@.+[.].+});
     $validation->required('message');
     return $c->page('contact') if($validation->has_error);
