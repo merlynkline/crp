@@ -8,6 +8,9 @@ keep track of what's going on this page contains a very brief overview of
 the most important changes that happen. Check back from time to time to make
 sure you keep up to date with what the site has to offer.
 <ul>
+    <li>7Oct2016</li><ul>
+        <li>Added recaptcha to various contact forms to control bot spam</li>
+    </ul>
     <li>28Sep2016</li><ul>
         <li>New PDF document: Invoice</li>
         <li>Major update to add new features for Instructor Trainers</li>
