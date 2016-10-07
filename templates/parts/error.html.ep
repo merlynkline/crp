@@ -21,7 +21,7 @@
 %   trainer_not_qualified   => 'That trainer is not qualified to teach that qualification',
 %   password_bad            => 'Sorry - that password is not secure enough',
 %   password_mismatch       => 'The two passwords must be identical',
-%   recaptcha_fail          => 'Please solve the captcha to coninue',
+%   recaptcha_fail          => 'Please solve the captcha to continue',
 %   invalid_column_MinLen   => 'Please enter a longer value in this field',
 %   invalid_column_MaxLen   => 'Please enter a shorter value in this field',
 %   invalid_image_file      => "Sorry - we couldn't understand that image file. Please use .jpg or .png",
