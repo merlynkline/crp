@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Tag a release
+
+preceding=`git describe HEAD~1 --tags --abbrev=0 --match=release-*`
+preceding_prefix="${preceding:0:17}"
+preceding_suffix="${preceding:17:2}"
+current=`date +release-%Y%m%d-`
+
+if [ "$current" = "$preceding_prefix" ]; then
+    current=`printf "${current}%02d" $((preceding_suffix+1))`
+else
+    current="${current}01"
+fi
+
+echo "Tagging $current"
+echo git tag $current
+echo git push origin $current
