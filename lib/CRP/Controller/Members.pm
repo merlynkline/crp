@@ -395,6 +395,7 @@ sub _load_course_from_params {
         }
     }
     $validation->error(course_type_id => ['no_course_type']) unless $record->{course_type_id};
+    $validation->error(start_date => ['invalid_date']) unless $record->{start_date};
 
     return $validation;
 }

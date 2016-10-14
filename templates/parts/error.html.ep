@@ -10,6 +10,7 @@
 %   future_date             => 'Please enter a date in the future',
 %   has_qualification       => 'This instructor already has that qualification',
 %   incorrect_password      => "Sorry - that's the wrong password",
+%   invalid_date            => 'Please enter a valid date',
 %   like                    => 'Please enter something sensible',
 %   no_course_type          => 'Please choose a course type',
 %   no_pass_date            => 'Please enter a pass date (may be in the future)',
