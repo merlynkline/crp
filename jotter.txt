@@ -709,7 +709,7 @@ session:
     + Add any new products to the shop (parent packs etc)
 - Adding a new product to the shop
     - Log in to the PayPal account and:
-        + Go to tools and use the button tool
+        + Go to tools>all tools and use the paypal buttons tool
         + Click the Action menu on an existing button and choose 'Create similar button'
         + Change the description, code and price
         + Click the Create button
