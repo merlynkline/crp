@@ -1,6 +1,7 @@
 %#<!DOCTYPE html>
 % layout 'member_default', heading => 'Administrative tools', page_id => 'admin';
 % title 'Admin tools';
+%= include 'admin/parts/menu', page_id => 'admin.main';
 
 <table class="list1">
     <tr><th colspan="3">Various stats</th></tr>

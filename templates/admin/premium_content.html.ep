@@ -1,0 +1,5 @@
+%#<!DOCTYPE html>
+% layout 'member_default', heading => 'Admin: Premium content', page_id => 'admin.premium';
+% title 'Admin: Premium content';
+%= include 'admin/parts/menu', page_id => 'admin.premium';
+

@@ -1,0 +1,13 @@
+%#<!DOCTYPE html>
+% my @menu = (
+%   ['admin.main'       => 'Main',              'crp.admin_default' ],
+%   ['admin.premium'    => 'Premium content',   'crp.admin_premium' ],
+% );
+Admin menu:
+% foreach my $entry (@menu) {
+%     my $select_class = $page_id eq $entry->[0] ? 'admin-menu-selected' : '';
+<div class="admin-menu <%= $select_class %>">
+    <a href="<%= url_for($entry->[2]) %>"><%= $entry->[1] %></a>
+</div>
+% }
+<hr />

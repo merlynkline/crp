@@ -478,6 +478,10 @@ sub _load_deletable_qualification {
     return $qualification;
 }
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub premium_content {
+}
+
 
 1;
 

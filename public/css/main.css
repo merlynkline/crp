@@ -199,6 +199,14 @@ fieldset, legend, .message-box {
     margin:         8px auto;
     display:        block;
 }
+.admin-menu {
+    display:    inline-block;
+    padding:    2px;
+    margin:     4px 2px 0px;
+}
+.admin-menu-selected {
+    font-weight:    bold;
+}
 legend {
     padding:        2px 4px;
     border-width:   2px;
