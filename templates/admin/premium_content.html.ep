@@ -2,4 +2,42 @@
 % layout 'member_default', heading => 'Admin: Premium content', page_id => 'admin.premium';
 % title 'Admin: Premium content';
 %= include 'admin/parts/menu', page_id => 'admin.premium';
+% my $paths = stash('paths');
+
+% if(@$paths) {
+%= form_for 'crp.admin.create_premium' => (method => 'POST') => begin
+    <fieldset>
+        <legend>Create a new premium access authorisation</legend>
+        <label for="dir">Premium directory:
+            <div class="field-extra-info">This is the directory you will be granting access to.</div>
+        </label>
+        <div class="input-container">
+            %= select_field dir => [ ['Please select...' => ''], map { [$_ => $_, ($_ eq stash('dir') ? (selected => 'selected') : ())] } @$paths ];
+            <%= include 'parts/error', field => 'dir' %>
+        </div>
+        <label for="name">Name:
+            <div class="field-extra-info">This is the name as it will appear on the content pages.</div>
+        </label>
+        <div class="input-container">
+            <%= text_field 'name', size => '30', id => 'name', required => "required" =%>
+            <%= include 'parts/error', field => 'name' =%>
+        </div>
+        <label for="email">email address:
+            <div class="field-extra-info">This is the address the authorised link will be sent to.</div>
+        </label>
+        <div class="input-container">
+            <%= text_field 'email', size => '30', id => 'email', required => "required" =%>
+            <%= include 'parts/error', field => 'email' =%>
+        </div>
+        <div class="input-container">
+            <%= submit_button 'Authorise', name => 'authorise' %>
+        </div>
+    </fieldset>
+% end
+% }
+% else {
+<div class="message-box">
+    There are no premium content directories available yet.
+</div>
+% }
 

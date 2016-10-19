@@ -479,7 +479,12 @@ sub _load_deletable_qualification {
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+use CRP::Util::PremiumContent;
 sub premium_content {
+    my $c = shift;
+
+    my $premium_content = CRP::Util::PremiumContent->new(c => $c);
+    $c->stash(paths => $premium_content->paths);
 }
 
 

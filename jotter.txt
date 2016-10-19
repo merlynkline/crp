@@ -11,10 +11,10 @@
         ~ owner name
         ~ disabled flag
     - authorisation is by an auth cookie or by lookup in the auth table to generate the cookie
-    + auth cookie is a long-lived cookie with the path set to /premium/*dir that has the id, dir and expiry date (about a week), encrypted in it
+    + auth cookie is a long-lived cookie with the path set to /premium/*dir that has the id, dir, name, email and expiry date (about a week), encrypted in it
         - eg: $c->signed_cookie(premium => "prem stuff", {httponly => 1, path => '/instructor'});
         + pseudo-code for auth process:
-            - if(cookie present) {
+            - if(cookie present and (id == cookie id or id == "_authorised")) {
             -     decrypt cookie;
             -     if(*dir == cookie dir) {
             -         if(cookie expired) {
@@ -29,8 +29,8 @@
             -     check dir exists or premium 404;
             -     generate cookie for *id or redirect to access page and exit;
             - }
-            - if(*id != "authorised") {
-            -     redirect to /premium/*dir/authorised/sub-path;
+            - if(*id != "_authorised") {
+            -     redirect to /premium/*dir/_authorised/sub-path;
             -     exit;
             - }
             - display page or premium 404;
@@ -42,7 +42,7 @@
     - access pages have some common content:
         - allow entry of an email address to get an email containing links to all authed premium content for that email
         - some means of complaining if you think you should have access
-    - access page template is templates/premium/dir/access.htm
+    - access page template is templates/premium/dir/access.html.ep
     ~ Each newly created auth cookie is logged in the cookie log table:
         ~ id (PK)
         ~ auth_id -> auth table (indexed)
@@ -71,19 +71,19 @@
         + Get stats that suggest abuse
             + Overlapping cookies
             + Multiple IP addresses
-        - Note: Creating new premium content is just adding the template directory with sales page
+        - Note: Creating new premium content is just adding the template directory with an access page and a welcome page
     + Tests
         + Try to get to a non-existant premium site: premium 404
         + Try to visit a premium site through /premium/*dir/authorised
             + without sub-path
-                + With valid cookie: welcome page
-                + With expired cookie: welcome page
+                + With valid cookie: welcome page with correct name/email shown
+                + With expired cookie: welcome page with correct name/email shown
                 + Without cookie: access page
             + with sub-path
                 + With valid cookie: correct sub-page
                 + With expired cookie:
                     + Auth disabled: access page
-                    + Auth not disabled: correct sub-page
+                    + Auth not disabled: correct sub-page with correct name/email shown
                 + Without cookie: access page
             + with invalid sub-path
                 + With valid cookie: premium 404
@@ -91,23 +91,26 @@
                 + Without cookie:  access page
         + Try to visit a premium site through /premium/*dir/*id
             + without sub-path
-                + With valid cookie: welcome page, via URL /premium/*dir/authorised
+                + With valid cookie: welcome page, via URL /premium/*dir/authorised, with correct name/email shown
+                + With valid cookie for a different ID: welcome page, via URL /premium/*dir/authorised, with correct name/email for different ID shown
                 + With expired cookie:
                     + Auth disabled: access page
-                    + Auth not disabled: correct sub-page, via URL /premium/*dir/authorised
+                    + Auth not disabled: correct sub-page, via URL /premium/*dir/authorised, with correct name/email shown
                 + Without cookie:
                     + Auth disabled: access page
-                    + Auth not disabled: correct sub-page, via URL /premium/*dir/authorised
+                    + Auth not disabled: correct sub-page, via URL /premium/*dir/authorised, with correct name/email shown
             + with sub-path
-                + With valid cookie: correct sub-page, via URL /premium/*dir/authorised
+                + With valid cookie: correct sub-page, via URL /premium/*dir/authorised, with correct name/email shown
+                + With valid cookie for a different ID: correct sub-page, via URL /premium/*dir/authorised, with correct name/email for different ID shown
                 + With expired cookie:
                     + Auth disabled: access page
-                    + Auth not disabled: correct sub-page, via URL /premium/*dir/authorised
+                    + Auth not disabled: correct sub-page, via URL /premium/*dir/authorised, with correct name/email shown
                 + Without cookie:
                     + Auth disabled: access page
-                    + Auth not disabled: correct sub-page, via URL /premium/*dir/authorised
+                    + Auth not disabled: correct sub-page, via URL /premium/*dir/authorised, with correct name/email shown
             + with invalid sub-path
                 + With valid cookie: premium 404
+                + With valid cookie for a different ID: premium 404
                 + With expired cookie:
                     + Auth disabled: access page
                     + Auth not disabled: premium 404
