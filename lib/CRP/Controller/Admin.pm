@@ -205,7 +205,7 @@ sub create_account {
     my $c = shift;
 
     if($c->req->method eq 'POST') {
-        my $email = $c->_get_and_validate_email_param();
+        my $email = $c->_get_and_validate_instructor_email_param();
         my $name = $c->crp->trimmed_param('name');
         my $validation = $c->validation;
         $validation->required('name')->like(qr{\S+});
@@ -223,14 +223,24 @@ sub create_account {
     return $c->page('show_account');
 }
 
+sub _get_and_validate_instructor_email_param {
+    my $c = shift;
+
+    my $email = $c->_get_and_validate_email_param();
+    my $validation = $c->validation;
+    unless($validation->has_error) {
+        my $login_record = $c->crp->model('Login')->find({'lower(me.email)' => lc $email});
+        $validation->error(email => ['duplicate_email']) if $login_record;
+    }
+    return $email;
+}
+
 sub _get_and_validate_email_param {
     my $c = shift;
 
     my $email = $c->crp->trimmed_param('email');
     my $validation = $c->validation;
     $validation->required('email')->like(qr{^.+@.+[.].+});
-    my $login_record = $c->crp->model('Login')->find({'lower(me.email)' => lc $email}) unless $validation->has_error;
-    $validation->error(email => ['duplicate_email']) if $login_record;
     return $email;
 }
 
@@ -276,7 +286,7 @@ sub change_email {
     my $c = shift;
 
     my $id = $c->param('id') || shift || return $c->welcome;
-    my $email = $c->_get_and_validate_email_param();
+    my $email = $c->_get_and_validate_instructor_email_param();
     my $validation = $c->validation;
     return $c->show_account($id) if $validation->has_error;
     my $login = $c->crp->model('Login')->find($id) || return $c->welcome;
@@ -485,6 +495,39 @@ sub premium_content {
 
     my $premium_content = CRP::Util::PremiumContent->new(c => $c);
     $c->stash(paths => $premium_content->paths);
+    $c->render(template => 'admin/premium_content');
+}
+
+sub premium_auth {
+    my $c = shift;
+
+    if($c->req->method eq 'POST') {
+        my $email = $c->_get_and_validate_email_param();
+        my $name = $c->crp->trimmed_param('name');
+        my $dir = $c->crp->trimmed_param('dir');
+        my $validation = $c->validation;
+        $validation->required('name')->like(qr{\S+});
+        $validation->required('dir');
+        unless($validation->has_error) {
+            my $auth_record = $c->crp->model('PremiumAuthorisation')->find(
+                {'lower(me.email)' => lc $email},
+                {directory         => $dir},
+            );
+            $validation->error(email => ['duplicate_email_premium']) if $auth_record;
+        }
+        return $c->premium_content if $validation->has_error;
+
+        $c->crp->model('PremiumAuthorisation')->create({
+                email       => $email,
+                name        => $name,
+                directory   => $dir,
+                is_disabled => 0,
+            });
+
+        $c->flash(msg => 'premium_create');
+        return $c->redirect_to($c->url_for('crp.admin_premium'));
+    }
+    return $c->premium_content;
 }
 
 

@@ -4,6 +4,7 @@
 %= include 'admin/parts/menu', page_id => 'admin.premium';
 % my $paths = stash('paths');
 
+<%= include 'parts/message_box', msg => flash('msg') || stash('msg'), auto_hide => 1 %>
 % if(@$paths) {
 %= form_for 'crp.admin.create_premium' => (method => 'POST') => begin
     <fieldset>

@@ -6,6 +6,7 @@
 %   before_qualification    => 'Please enter a date after you qualify to teach this course',
 %   duplicate_code          => 'That code is already in use. Please choose another',
 %   duplicate_email         => 'That email address is already registered',
+%   duplicate_email_premium => 'That email address is already registered for that directory',
 %   file_too_large          => 'Sorry - that file is too large. Please choose another',
 %   future_date             => 'Please enter a date in the future',
 %   has_qualification       => 'This instructor already has that qualification',

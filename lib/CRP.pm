@@ -117,6 +117,7 @@ sub startup {
     $admin->any('delete_qualification')->to('admin#delete_qualification')->name('crp.admin.delete_qualification');
     $admin->any('do_delete_qualification')->to('admin#do_delete_qualification')->name('crp.admin.do_delete_qualification');
     $admin->any('premium_content')->to('admin#premium_content')->name('crp.admin_premium');
+    $admin->any('premium_auth')->to('admin#premium_auth')->name('crp.admin.create_premium');
 
     my $member_site = $r->under('/me/:slug')->to('member_site#identify');
     $member_site->any('/')->to('member_site#welcome')->name('crp.membersite.home');
