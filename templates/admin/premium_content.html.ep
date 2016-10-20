@@ -42,3 +42,15 @@
 </div>
 % }
 
+<hr />
+<div class="supplementary-info">
+    <h2>Creating new premium content</h2>
+    <p>
+    Premium content is created by adding a new directory inside the <code>templates/premium</code> directory.
+    The new directory must contain at least:
+    <ul>
+        <li><code>welcome.html.ep</code> - the home page for the new content.</li>
+        <li><code>access.html.ep</code> - a page that will be displayed if an unauthorised access attempt is made.</li>
+    </ul>
+    </p>
+</div>
