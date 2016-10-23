@@ -46,11 +46,17 @@
 <div class="supplementary-info">
     <h2>Creating new premium content</h2>
     <p>
-    Premium content is created by adding a new directory inside the <code>templates/premium</code> directory.
+    Premium content appears under premium URLs like <code>/premium/:dir/:id/*path</code>.
+    </p>
+    <p>
+    Premium content is created by adding a new directory inside the <code>premium/templates</code> directory.
     The new directory must contain at least:
     <ul>
         <li><code>welcome.html.ep</code> - the home page for the new content.</li>
         <li><code>access.html.ep</code> - a page that will be displayed if an unauthorised access attempt is made.</li>
     </ul>
+    Static content should be added inside corresponding directories inside the <code>premium/static</code> directory and
+    referred to by premium URLs where the path part starts with <code>static/</code>, like
+    <code>/premium/:dir/:id/static/*path</code>.
     </p>
 </div>

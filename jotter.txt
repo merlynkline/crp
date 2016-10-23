@@ -11,6 +11,7 @@
         ~ owner name
         ~ disabled flag
     - authorisation is by an auth cookie or by lookup in the auth table to generate the cookie
+    + Set expiry headers on delivered premium content
     + auth cookie is a long-lived cookie with the path set to /premium/*dir that has the id, dir, name, email and expiry date (about a week), encrypted in it
         - eg: $c->signed_cookie(premium => "prem stuff", {httponly => 1, path => '/instructor'});
         + pseudo-code for auth process:

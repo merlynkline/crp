@@ -135,6 +135,8 @@ sub startup {
     $tests->get('/pdf/*pdf')->to('test#pdf');
     $tests->get('/email/*email')->to('test#email');
 
+    $r->any($self->config->{premium}->{root} . '/:dir/:id/*path')->to('premium#content');
+
     $self->app->hook(before_dispatch => \&_before_dispatch);
     $self->app->hook(after_dispatch => \&_after_dispatch);
 }
