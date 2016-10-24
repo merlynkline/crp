@@ -212,7 +212,6 @@ sub send_content {
 
     return $self->show_not_found_page unless $self->content_exists;
     $self->_set_response_cookie;
-    $self->c->res->headers->header(expires => Mojo::Date->new(time + $self->c->config->{premium}->{expiry}));
     my $path = $self->_non_blank_path;
     $path =~ s/\.html$//;
     $self->_render_template($self->dir . '/' . $path);
