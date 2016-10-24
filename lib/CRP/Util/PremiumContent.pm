@@ -1,10 +1,12 @@
 package CRP::Util::PremiumContent;
+
 use Moose;
 
 use Carp;
 use IO::Dir;
 use Mojo::Util qw(b64_decode b64_encode);
 use Mojo::JSON qw(decode_json encode_json);
+use Mojo::Date;
 
 use constant {
     DEFAULT_PAGE   => 'welcome',
@@ -188,7 +190,7 @@ sub dir_exists {
 sub content_exists {
     my $self = shift;
 
-    return -f $self->_file_path($self->path);
+    return -f $self->_file_path($self->_non_blank_path);
 }
 
 sub show_not_found_page {
@@ -210,7 +212,10 @@ sub send_content {
 
     return $self->show_not_found_page unless $self->content_exists;
     $self->_set_response_cookie;
-    return $self->_render_template($self->dir . '/' . $self->path);
+    $self->c->res->headers->header(expires => Mojo::Date->new(time + $self->c->config->{premium}->{expiry}));
+    my $path = $self->_non_blank_path;
+    $path =~ s/\.html$//;
+    $self->_render_template($self->dir . '/' . $path);
 }
 
 
@@ -240,6 +245,12 @@ sub _render_template {
     unshift @{$renderer->paths}, $self->c->app->home->rel_file(PAGE_PATH);
     $self->c->render($template);
     shift @{$renderer->paths};
+}
+
+sub _non_blank_path {
+    my $self = shift;
+
+    return $self->path || DEFAULT_PAGE;
 }
 
 

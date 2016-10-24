@@ -13,14 +13,16 @@ use CRP::Util::PremiumContent;
 sub content {
     my $c = shift;
 
+    my $subpath = $c->stash('subpath') // '';
+    my($id, $path) = split('/', $subpath, 2);
     my $premium_content = CRP::Util::PremiumContent->new(
         c    => $c,
         dir  => $c->stash('dir'),
-        id   => $c->stash('id'),
-        path => $c->stash('subpath'),
+        id   => $id,
+        path => $path,
     );
 
-    if($premium_content->cookie && ($c->stash('id') eq $premium_content->authorised_id || $premium_content->cookie_id_matches)) {
+    if($premium_content->cookie && ($id eq $premium_content->authorised_id || $premium_content->cookie_id_matches)) {
         if($premium_content->cookie_dir_matches) {
             if($premium_content->cookie_expired) {
                 $premium_content->generate_cookie;
