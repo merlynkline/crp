@@ -130,12 +130,29 @@ sub generate_cookie {
             email   => $authorisation->email,
             expires => time + $self->c->config->{premium}->{expiry},
         };
+
+        $self->c->crp->model('PremiumCookieLog')->create({
+                auth_id     => $self->id,
+                remote_id   => $self->_remote_id,
+            });
     }
+
     $self->_set_cookie($cookie);
 }
 
 
-sub set_cookie {
+sub _remote_id {
+    my $self = shift;
+
+    return '1'
+    . ':' . ($self->c->req->headers->header('X-Real-IP') || '')
+    . ':' . ($self->c->tx->remote_address || '')
+    . ':' . ($self->c->req->headers->header('X-Forwarded-For') || '')
+    ;
+}
+
+
+sub _set_response_cookie {
     my $self = shift;
 
     $self->c->signed_cookie(
@@ -148,14 +165,16 @@ sub set_cookie {
 }
 
 
-sub authorised_path {
+sub redirect_to_authorised_path {
     my $self = shift;
 
-    return $self->c->config->{premium}->{root}
+    $self->_set_response_cookie;
+    my $authorised_path = $self->c->config->{premium}->{root}
     . '/' . $self->dir
     . '/' . $self->c->config->{premium}->{authorised_id}
     . '/' . $self->path
     ;
+    return $self->c->redirect_to($self->c->app->url_for($authorised_path));
 }
 
 
@@ -190,7 +209,7 @@ sub send_content {
     my $self = shift;
 
     return $self->show_not_found_page unless $self->content_exists;
-    $self->set_cookie;
+    $self->_set_response_cookie;
     return $self->_render_template($self->dir . '/' . $self->path);
 }
 

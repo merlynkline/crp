@@ -27,11 +27,12 @@ sub content {
             $premium_content->generate_cookie;
             return $premium_content->show_access_page unless $premium_content->cookie;
         }
-        return $c->redirect_to($c->app->url_for($premium_content->authorised_path)) if $premium_content->id ne $premium_content->authorised_id;
+        return $premium_content->redirect_to_authorised_path if $premium_content->id ne $premium_content->authorised_id;
    }
    else {
        $premium_content->generate_cookie;
        return $premium_content->show_access_page unless $premium_content->cookie;
+       return $premium_content->redirect_to_authorised_path;
    }
 
 
