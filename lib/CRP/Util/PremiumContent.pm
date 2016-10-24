@@ -174,7 +174,7 @@ sub redirect_to_authorised_path {
     . '/' . $self->c->config->{premium}->{authorised_id}
     . '/' . $self->path
     ;
-    return $self->c->redirect_to($self->c->app->url_for($authorised_path));
+    return $self->c->redirect_to($self->c->url_for($authorised_path));
 }
 
 
@@ -237,10 +237,9 @@ sub _render_template {
     my($template) = @_;
 
     my $renderer = $self->c->app->renderer;
-    my $old_paths = $renderer->paths;
-    $renderer->paths([$self->c->app->home->rel_file(PAGE_PATH)]);
+    unshift @{$renderer->paths}, $self->c->app->home->rel_file(PAGE_PATH);
     $self->c->render($template);
-    $renderer->paths($old_paths);
+    shift @{$renderer->paths};
 }
 
 

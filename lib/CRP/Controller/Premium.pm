@@ -12,7 +12,7 @@ sub content {
         c    => $c,
         dir  => $c->stash('dir'),
         id   => $c->stash('id'),
-        path => $c->stash('path'),
+        path => $c->stash('subpath'),
     );
 
     if($premium_content->cookie && ($c->stash('id') eq $premium_content->authorised_id || $premium_content->cookie_id_matches)) {

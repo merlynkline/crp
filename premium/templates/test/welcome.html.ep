@@ -1,2 +1,4 @@
-
-welcome to 'test'
+%#<!DOCTYPE html>
+% my $title = "TITLEEJKWA";
+% layout 'premium', title => $title;;
+welcome to 'test' (<%= $title %>)
