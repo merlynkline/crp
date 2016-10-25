@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+%= include 'layouts/parts/premium-start';
+
+<div class="premium-access-main">
+    <img src="<%= url_for '/images/Animals/Snake.jpg' %>" id="premium-access-image" />
+    <h1>I'm really sorry!</h1>
+    <p>You don't have access to this page. If you think this is wrong please see the
+    bottom of this page for help on getting access.</p>
+</div>
+<div id="premium-access-content">
+%= content
+</div>
+<div class="premium-access-main">
+    <h3>Getting access</h3>
+    <p>If you have received an email granting access to this page then please use the
+    <strong>personalised link in the email</strong> to gain access. If you are still unable to gain access
+    then you can use the <a href="<%= url_for('crp.page', page => 'contact') %>">contact form</a>
+    to ask for further help.</p>
+    <p>Alternatively you can enter your email address in the form below
+    to request an email with personalised links to all the premium pages
+    on this site to which you have been granted access.
+</div>
+%= include 'layouts/parts/premium-end';

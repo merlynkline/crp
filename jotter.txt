@@ -1,8 +1,9 @@
 
 + Premium content space for e-courses etc
-    + URLs like /premium/*dir/*id/....
+    ~ URLs like /premium/*dir/*id/....
     - id is a wordnum that gets a unique ID in an auth table
-    + content is in templates/premium/dir
+    ~ content is in premium/templates/dir
+    + static content from premium/static/dir
     ~ auth table:
         ~ id (PK)
         ~ create date
@@ -11,10 +12,12 @@
         ~ owner name
         ~ disabled flag
     - authorisation is by an auth cookie or by lookup in the auth table to generate the cookie
-    + Set expiry headers on delivered premium content
-    + auth cookie is a long-lived cookie with the path set to /premium/*dir that has the id, dir, name, email and expiry date (about a week), encrypted in it
+    - Set expiry headers on delivered premium content
+        ~ Pages
+        + Static content
+    ~ auth cookie is a long-lived cookie with the path set to /premium/*dir that has the id, dir, name, email and expiry date (about a week), encrypted in it
         - eg: $c->signed_cookie(premium => "prem stuff", {httponly => 1, path => '/instructor'});
-        + pseudo-code for auth process:
+        ~ pseudo-code for auth process:
             - if(cookie present and (id == cookie id or id == "_authorised")) {
             -     decrypt cookie;
             -     if(*dir == cookie dir) {
@@ -31,7 +34,7 @@
             -     generate cookie for *id or redirect to access page and exit;
             - }
             - if(*id != "_authorised") {
-            -     redirect to /premium/*dir/_authorised/sub-path;
+            -     redirect to /premium/:dir/_authorised/sub-path;
             -     exit;
             - }
             - display page or premium 404;
@@ -41,8 +44,10 @@
             - Most access is through a URL that doesn't include the ID so sharing it won't work
     + should do the normal kidsreflex cookie notification
     + Need a means to deliver premium content other than pages (images, video, etc)
+        + static content in premium/static/:dir with URL /premium/:dir/:id/static/*path
+        + streaming content in premium/stream/:dir with URL /premium/:dir/:id/stream/*path
         + How to handle streaming content?
-    - access pages have some common content:
+    + access pages have some common content:
         - allow entry of an email address to get an email containing links to all authed premium content for that email
         - some means of complaining if you think you should have access
     - access page template is templates/premium/dir/access.html.ep
