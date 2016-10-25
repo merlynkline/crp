@@ -20,4 +20,5 @@
     to request an email with personalised links to all the premium pages
     on this site to which you have been granted access.
 </div>
+<img src="<%= url_for '/images/Plants/Thistle.png' %>" style="display: block; margin: 20px auto;" />
 %= include 'layouts/parts/premium-end';

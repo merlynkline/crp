@@ -42,14 +42,14 @@
             - Most authorisation is by cookie, so it's quick
             - New cookies are generated reasonably often so lockouts etc are effective
             - Most access is through a URL that doesn't include the ID so sharing it won't work
-    + should do the normal kidsreflex cookie notification
+    ~ should do the normal kidsreflex cookie notification
     + Need a means to deliver premium content other than pages (images, video, etc)
         + static content in premium/static/:dir with URL /premium/:dir/:id/static/*path
         + streaming content in premium/stream/:dir with URL /premium/:dir/:id/stream/*path
         + How to handle streaming content?
     + access pages have some common content:
-        - allow entry of an email address to get an email containing links to all authed premium content for that email
-        - some means of complaining if you think you should have access
+        + allow entry of an email address to get an email containing links to all authed premium content for that email
+        ~ some means of complaining if you think you should have access
     - access page template is templates/premium/dir/access.html.ep
     ~ Each newly created auth cookie is logged in the cookie log table:
         ~ id (PK)

@@ -42,9 +42,9 @@ Specially for: <%= stash('cookie')->{name} . ' ' . stash('cookie')->{email} %>
             <div class="premium-nav" %>
                 <a href="http://www.susanquayle.co.uk/"><img src="/images/SQCHLogoSmall.png" id="sq-logo" /></a>
                 <ul>
-                    <li><a href="<%= url_for '/page/copyright' %>">Copyright &copy;</a></li>
-                    <li><a href="<%= url_for '/page/privacy' %>">Privacy policy</a></li>
-                    <li><a href="<%= url_for '/page/contact' %>">Contact us</a></li>
+                    <li><a href="<%= url_for '/page/copyright' %>">&copy;&nbsp;Copyright</a></li>
+                    <li><a href="<%= url_for '/page/privacy' %>">Privacy</a></li>
+                    <li><a href="<%= url_for '/page/contact' %>">Contact</a></li>
                 </ul>
             </div>
         </div>

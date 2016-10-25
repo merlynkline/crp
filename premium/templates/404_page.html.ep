@@ -1,2 +1,21 @@
-
-Your premium page wasn't found
+<!DOCTYPE html>
+%= include stash('cookie')->{dir} . '/set-title';
+% layout 'premium';
+% my $root_url = $c->config->{premium}->{root} . '/' . stash('cookie')->{dir} .'/' . $c->config->{premium}->{authorised_id};
+<div class="premium-access-main">
+    <img src="<%= url_for '/images/Animals/Snake.jpg' %>" id="premium-access-image" />
+    <h1>I'm really sorry!</h1>
+    <p>
+    Although you do have access to this area of the site, I can't find the
+    specific page you're looking for. You can try looking at the main page
+    for this area of the site at
+    <a href="<%= url_for($root_url) %>"><%= $root_url %></a>.
+    If that doesn't get you to the right place
+    then you can use the <a href="<%= url_for('crp.page', page => 'contact') %>">contact form</a>
+    to ask for further help.</p>
+    <p class="supplementary-info">
+    If you're interested in the technical details this is an error code
+    <b>404</b> - <i>page not found</i>.
+    </p>
+    <img src="<%= url_for '/images/Plants/Thistle.png' %>" style="display: block; margin: 20px auto;" />
+</div>

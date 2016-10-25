@@ -196,7 +196,8 @@ sub content_exists {
 sub show_not_found_page {
     my $self = shift;
 
-    $self->_render_template('404_page');
+    $self->c->stash(cookie => $self->cookie);
+    $self->_render_template('404_page', status => 404);
 }
 
 
@@ -239,11 +240,11 @@ sub _rel_file_path {
 
 sub _render_template {
     my $self = shift;
-    my($template) = @_;
+    my($template, @params) = @_;
 
     my $renderer = $self->c->app->renderer;
     unshift @{$renderer->paths}, $self->c->app->home->rel_file(PAGE_PATH);
-    $self->c->render($template);
+    $self->c->render($template, @params);
     shift @{$renderer->paths};
 }
 
