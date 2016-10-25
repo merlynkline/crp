@@ -598,3 +598,66 @@ div.faq-menu {
     background:     #eee;
 }
 
+body.premium-page-body {
+    background-color: #fff;
+}
+
+#premium-header-container {
+    background-image:   linear-gradient(#fff, #bde);
+    border-bottom:      1px solid #589;
+    padding:            4px 4px 0 4px;
+}
+
+#premium-header-image {
+    width: 24px;
+    float: left;
+    margin-right: 8px;
+}
+
+.premium-header h1 {
+    display:    inline-block;
+    margin:     0;
+    font-size:  18px;
+    padding:    0 0 2px 0;
+    font-weight: bold;
+}
+
+#premium-owner {
+    font-size: 9px;
+    line-height: 80%;
+}
+
+.premium-nav, .premium-header, .premium-nav ul {
+    display:        inline-block;
+}
+
+.premium-nav ul a {
+    text-decoration: none;
+    padding: 1px;
+}
+
+.premium-nav {
+    float:right;
+}
+
+.premium-nav ul {
+    margin: 0;
+    padding: 0;
+}
+
+.premium-nav #sq-logo {
+    height: 28px;
+}
+
+.premium-nav li {
+    list-style:     none;
+    font-size:      8px;
+    line-height:    8px;
+    text-align:     right;
+    padding:        0 8px;
+}
+
+.premium-nav li:hover {
+    background:     #edc;
+}
+
