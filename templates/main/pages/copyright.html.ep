@@ -6,7 +6,7 @@
 Except where otherwise noted, the material on this web site and
 the content of all the courses, books and other published material
 associated with Children's Reflexology Programme are all copyright
-&copy; 2014 Susan Quayle. All rights are reserved.
+&copy; 2014 - <%= (localtime)[5] + 1900 %> Susan Quayle. All rights are reserved.
 </p>
 <div class="horizontal-divider-small"></div>
 <p>
