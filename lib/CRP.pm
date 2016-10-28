@@ -135,7 +135,11 @@ sub startup {
     $tests->get('/pdf/*pdf')->to('test#pdf');
     $tests->get('/email/*email')->to('test#email');
 
-    $r->any($self->config->{premium}->{root} . '/:dir/*subpath')->to('premium#content');
+    $r->post($self->config->{premium}->{root} . '/:dir/_control/link_request')->to('premium#link_request')->name('crp.premium.linkrequest');
+    $r->any($self->config->{premium}->{root} . '/:dir/_control/link_request_sent')->to('premium#link_request_sent')->name('crp.premium.linkrequestsent');
+    $r->any($self->config->{premium}->{root} . '/:dir/*subpath')->to('premium#content')->name('crp.premium.page');
+    $r->any($self->config->{premium}->{root} . '/:dir')->to('premium#content');
+
 
     $self->app->hook(before_dispatch => \&_before_dispatch);
     $self->app->hook(after_dispatch => \&_after_dispatch);

@@ -1,0 +1,16 @@
+% stash subject => "Premium page links: The Children's Reflexology Programme";
+% layout 'premium';
+% my $info = stash 'info';
+<p>
+Here are the premium pages you have access to:
+<ul>
+% foreach my $page (@{$info->{pages}}) {
+%   my $url = url_for('crp.premium.page', {dir => $page->{dir}, subpath => $page->{id}})->to_abs;
+    <li><a href="<%= $url %>"><%= $url %></a></li>
+% }
+</ul>
+If you're still having difficulty finding the page you're looking for
+then you can use the <a href="<%= url_for('crp.page', page => 'contact')->to_abs %>">contact form</a>
+to ask for further help.</p>
+</p>
+%= include 'parts/email_signature';

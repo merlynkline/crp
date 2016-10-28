@@ -20,5 +20,23 @@
     to request an email with personalised links to all the premium pages
     on this site to which you have been granted access.
 </div>
+
+%= form_for 'crp.premium.linkrequest' => { dir => stash('dir') } => (method => 'POST') => begin
+    <fieldset style="width: 75%; margin: auto;">
+        <legend>Request access links</legend>
+        <label for="email">Your email address:</label>
+        <div class="input-container">
+            <%= text_field 'email', size => '30', id => 'email', required => "required", autofocus => "autofocus" =%>
+            <%= include 'parts/error', field => 'email' =%>
+        </div>
+        <%= include 'parts/recaptcha' =%>
+        <label>&nbsp;</label>
+        <div class="input-container">
+            <%= submit_button 'Send', name => 'request' %>
+        </div>
+    </fieldset>
+% end
+
 <img src="<%= url_for '/images/Plants/Thistle.png' %>" style="display: block; margin: 20px auto;" />
+
 %= include 'layouts/parts/premium-end';

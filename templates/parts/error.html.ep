@@ -15,6 +15,7 @@
 %   like                    => 'Please enter something sensible',
 %   no_course_type          => 'Please choose a course type',
 %   no_pass_date            => 'Please enter a pass date (may be in the future)',
+%   no_premium_available    => "Sorry - there are no premium pages available to that email address.",
 %   no_qualification        => 'Please choose a qualification',
 %   no_such_email           => 'Sorry - that email address is not recorded on our system',
 %   no_trainer              => 'Please choose a trainer',

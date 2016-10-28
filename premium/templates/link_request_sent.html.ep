@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+% title "Premium links sent";
+% layout 'premium';
+<div class="premium-access-main">
+    <img src="<%= url_for '/images/Animals/Owl.jpg' %>" id="premium-access-image" />
+    <h1>Premium links sent</h1>
+    <p>
+    We have sent you an email to the address you entered, listing all the
+    premium pages you currently have access to. Don't forget to check
+    your spam folder if you don't receive it shortly.
+    </p.
+    <p>
+    If you still can't get to the page you want
+    then you can use the <a href="<%= url_for('crp.page', page => 'contact') %>">contact form</a>
+    to ask for further help.</p>
+    <img src="<%= url_for '/images/Plants/Thistle.png' %>" style="display: block; margin: 20px auto;" />
+</div>

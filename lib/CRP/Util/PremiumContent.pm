@@ -44,11 +44,19 @@ sub _build_paths {
 }
 
 
+sub is_authorised_id {
+    my $self = shift;
+
+    return $self->id eq $self->authorised_id;
+}
+
+
 sub cookie_id_matches {
     my $self = shift;
 
     return $self->cookie && $self->cookie->{id} == $self->_numeric_id;
 }
+
 
 sub _numeric_id {
     my $self = shift;
@@ -57,6 +65,15 @@ sub _numeric_id {
     $id = CRP::Util::WordNumber::decode_number($id) if $id !~ /^\d+$/;
     return $id if $id > 0 && $id < 2_000_000_000;
     return 0;
+}
+
+
+sub _id_as_symbol {
+    my $self = shift;
+    my($id) = @_;
+
+    $id = CRP::Util::WordNumber::encode_number($id) if $id =~ /^\d+$/ && $id > 0 && $id < 2_000_000_000;
+    return $id;
 }
 
 
@@ -126,7 +143,7 @@ sub generate_cookie {
     my $authorisation = $self->c->crp->model('PremiumAuthorisation')->find($self->_numeric_id) if $self->_numeric_id;
     if($authorisation && ! $authorisation->is_disabled) {
         $cookie = {
-            id      => $self->id,
+            id      => $self->_numeric_id,
             dir     => $authorisation->directory,
             name    => $authorisation->name,
             email   => $authorisation->email,
@@ -134,7 +151,7 @@ sub generate_cookie {
         };
 
         $self->c->crp->model('PremiumCookieLog')->create({
-                auth_id     => $self->id,
+                auth_id     => $self->_numeric_id,
                 remote_id   => $self->_remote_id,
             });
     }
@@ -174,7 +191,7 @@ sub redirect_to_authorised_path {
     my $authorised_path = $self->c->config->{premium}->{root}
     . '/' . $self->dir
     . '/' . $self->c->config->{premium}->{authorised_id}
-    . '/' . $self->path
+    . '/' . ($self->path // '')
     ;
     return $self->c->redirect_to($self->c->url_for($authorised_path));
 }
@@ -197,14 +214,15 @@ sub show_not_found_page {
     my $self = shift;
 
     $self->c->stash(cookie => $self->cookie);
-    $self->_render_template('404_page', status => 404);
+    $self->render_template('404_page', status => 404);
 }
 
 
 sub show_access_page {
     my $self = shift;
 
-    return $self->_render_template($self->dir . '/' . ACCESS_PAGE);
+    $self->c->crp->stash_recaptcha();
+    return $self->render_template($self->dir . '/' . ACCESS_PAGE);
 }
 
 
@@ -216,7 +234,7 @@ sub send_content {
     $self->c->stash(cookie => $self->cookie);
     my $path = $self->_non_blank_path;
     $path =~ s/\.html$//;
-    $self->_render_template($self->dir . '/' . $path);
+    $self->render_template($self->dir . '/' . $path);
 }
 
 
@@ -238,7 +256,8 @@ sub _rel_file_path {
     return PAGE_PATH . '/' . $self->dir . '/' . $file_path;
 }
 
-sub _render_template {
+
+sub render_template {
     my $self = shift;
     my($template, @params) = @_;
 
@@ -248,10 +267,37 @@ sub _render_template {
     shift @{$renderer->paths};
 }
 
+
+sub send_email {
+    my $self = shift;
+    my($to, $template, $info) = @_;
+
+    my $renderer = $self->c->app->renderer;
+    unshift @{$renderer->paths}, $self->c->app->home->rel_file(PAGE_PATH);
+    $self->c->mail(
+        to          => $self->c->crp->email_to($to),
+        template    => $template,
+        info        => $info,
+    );
+    shift @{$renderer->paths};
+}
+
+
 sub _non_blank_path {
     my $self = shift;
 
     return $self->path || DEFAULT_PAGE;
+}
+
+
+sub get_all_pages_for_email {
+    my $self = shift;
+    my($email) = @_;
+
+    my @pages = $self->c->crp->model('PremiumAuthorisation')->search({email => $email, is_disabled => 0});
+    return unless @pages;
+
+    return map { { id => $self->_id_as_symbol($_->id), dir => $_->directory } } @pages;
 }
 
 
