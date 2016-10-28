@@ -34,7 +34,9 @@ sub register {
             my $c = shift;
 
             use List::Util;
-            if ( (! List::Util::pairfirst { uc $a eq 'METHOD' && uc $b eq 'GET' } @_[1 .. $#_ - 1]) &&
+            my $first_param = 1;
+            $first_param = 2 if @_ > 2 && ref $_[1] eq 'HASH';
+            if ( (! List::Util::pairfirst { uc $a eq 'METHOD' && uc $b eq 'GET' } @_[$first_param .. $#_ - 1]) &&
                  defined $_[-1] && ref( $_[-1] ) eq 'CODE') {
                 my $cb = $_[-1];
                 $_[-1] = sub {
