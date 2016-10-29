@@ -58,7 +58,7 @@ sub link_request {
     my $premium_content = $c->_get_premium_content_handler;
 
     my $validation = $c->validation;
-#    $c->crp->validate_recaptcha($validation);
+    $c->crp->validate_recaptcha($validation);
     $validation->required('email')->like(qr{^.+@.+[.].+});
 
     my @pages;

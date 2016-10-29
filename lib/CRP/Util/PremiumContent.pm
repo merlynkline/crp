@@ -10,6 +10,7 @@ use Mojo::Date;
 
 use constant {
     DEFAULT_PAGE   => 'welcome',
+    WELCOME_MAIL   => 'welcome',
     ACCESS_PAGE    => 'access',
     STATIC_CONTENT => 'static',
     PAGE_PATH      => 'premium/templates',
@@ -22,26 +23,66 @@ has id   => (is => 'ro', required => 1);
 has dir  => (is => 'ro', required => 1);
 has path => (is => 'ro', required => 1);
 
-has paths   => (is => 'ro', isa => 'ArrayRef[Str]',  init_arg => undef, lazy => 1, builder => '_build_paths');
 has cookie  => (is => 'ro', isa => 'Maybe[HashRef]', init_arg => undef, lazy => 1, builder => '_build_cookie', writer => '_set_cookie');
 
 
-sub _build_paths {
-    my $self = shift;
+sub paths {
+    my($c) = @_;
 
     my @paths;
-    my $base_dir = $self->c->app->home->rel_file('templates/premium');
+    my $base_dir = $c->app->home->rel_file(PAGE_PATH);
 
     my $dir = IO::Dir->new($base_dir);
     while(defined(my $entry = $dir->read)) {
         my $sub_dir = "$base_dir/$entry";
         if(-d $sub_dir) {
-            push @paths, $entry if -f "$sub_dir/" . DEFAULT_PAGE . '.html.ep' and -f "$sub_dir/" . ACCESS_PAGE . '.html.ep';
+            push @paths, $entry if
+                -f "$sub_dir/" . DEFAULT_PAGE . '.html.ep'
+                and -f "$sub_dir/" . ACCESS_PAGE . '.html.ep'
+                and -f "$sub_dir/" . WELCOME_MAIL . '.mail.ep'
+            ;
         }
     }
 
     return \@paths;
 }
+
+
+sub id_from_email_and_dir {
+    my($c, $email, $dir) = @_;
+
+    my $auth_record = $c->crp->model('PremiumAuthorisation')->find(
+        {'lower(me.email)' => lc $email},
+        {directory         => $dir},
+    );
+
+    return $auth_record ? $auth_record->id : 0;
+}
+
+
+sub create_authorisation {
+    my($c, $email, $dir, $name) = @_;
+
+    $c->crp->model('PremiumAuthorisation')->create({
+            email       => $email,
+            name        => $name,
+            directory   => $dir,
+            is_disabled => 0,
+        });
+
+    my $id = _id_as_symbol(id_from_email_and_dir($c, $email, $dir));
+    my $template = $dir . '/' . WELCOME_MAIL;
+    my $info = {
+        email   => $email,
+        name    => $name,
+        dir     => $dir,
+        id      => $id,
+    };
+    _send_email($c, $email, $template, $info);
+}
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
 sub is_authorised_id {
@@ -69,7 +110,6 @@ sub _numeric_id {
 
 
 sub _id_as_symbol {
-    my $self = shift;
     my($id) = @_;
 
     $id = CRP::Util::WordNumber::encode_number($id) if $id =~ /^\d+$/ && $id > 0 && $id < 2_000_000_000;
@@ -272,10 +312,17 @@ sub send_email {
     my $self = shift;
     my($to, $template, $info) = @_;
 
-    my $renderer = $self->c->app->renderer;
-    unshift @{$renderer->paths}, $self->c->app->home->rel_file(PAGE_PATH);
-    $self->c->mail(
-        to          => $self->c->crp->email_to($to),
+    _send_email($self->c, $to, $template, $info);
+}
+
+
+sub _send_email {
+    my($c, $to, $template, $info) = @_;
+
+    my $renderer = $c->app->renderer;
+    unshift @{$renderer->paths}, $c->app->home->rel_file(PAGE_PATH);
+    $c->mail(
+        to          => $c->crp->email_to($to),
         template    => $template,
         info        => $info,
     );
@@ -297,7 +344,7 @@ sub get_all_pages_for_email {
     my @pages = $self->c->crp->model('PremiumAuthorisation')->search({email => $email, is_disabled => 0});
     return unless @pages;
 
-    return map { { id => $self->_id_as_symbol($_->id), dir => $_->directory } } @pages;
+    return map { { id => _id_as_symbol($_->id), dir => $_->directory } } @pages;
 }
 
 

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+%# Layout for premium content access grant emails
+% stash subject => "Premium access granted: " . title;
+% my $info = stash 'info';
+% my $url = url_for('crp.premium.page', {dir => $info->{dir}, subpath => $info->{id}})->to_abs;
+<html>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <p>Dear <%= $info->{name} %>,</p>
+        <p>You now have access to our premium content <strong><%= title %></strong>.</p>
+        <%= content %>
+        <p>To view this content please use the following address:</p>
+        <p><a href="<%= $url %>"><%= $url %></a></p>
+        <p>
+        You can click the link or copy and paste the address into your web browser (e.g.
+        Internet Explorer, Chrome, FireFox, Safari). Make sure you keep this email
+        safely to ensure that you can gain access again in the future should you
+        need to. The link provided is a personal link for your use only - please
+        do not share it with others.
+        </p>
+        <p>Thank you for your interest in our premium content.</p>
+        %= include 'parts/email_signature';
+    </body>
+</html>

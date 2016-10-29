@@ -13,7 +13,7 @@
             <div class="field-extra-info">This is the directory you will be granting access to.</div>
         </label>
         <div class="input-container">
-            %= select_field dir => [ ['Please select...' => ''], map { [$_ => $_, ($_ eq stash('dir') ? (selected => 'selected') : ())] } @$paths ];
+            %= select_field dir => [ ['Please select...' => ''], map { [$_ => $_, ($_ eq (stash('dir') // '') ? (selected => 'selected') : ())] } @$paths ];
             <%= include 'parts/error', field => 'dir' %>
         </div>
         <label for="name">Name:
@@ -54,6 +54,7 @@
     <ul>
         <li><code>welcome.html.ep</code> - the home page for the new content.</li>
         <li><code>access.html.ep</code> - a page that will be displayed if an unauthorised access attempt is made.</li>
+        <li><code>welcome.mail.ep</code> - Welcome email sent when authorisation is created.</li>
     </ul>
     Static content should be added inside corresponding directories inside the <code>premium/static</code> directory and
     referred to by premium URLs where the path part starts with <code>static/</code>, like

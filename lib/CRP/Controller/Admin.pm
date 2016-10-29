@@ -493,10 +493,10 @@ use CRP::Util::PremiumContent;
 sub premium_content {
     my $c = shift;
 
-    my $premium_content = CRP::Util::PremiumContent->new(c => $c);
-    $c->stash(paths => $premium_content->paths);
+    $c->stash(paths => CRP::Util::PremiumContent::paths($c));
     $c->render(template => 'admin/premium_content');
 }
+
 
 sub premium_auth {
     my $c = shift;
@@ -508,22 +508,13 @@ sub premium_auth {
         my $validation = $c->validation;
         $validation->required('name')->like(qr{\S+});
         $validation->required('dir');
-        unless($validation->has_error) {
-            my $auth_record = $c->crp->model('PremiumAuthorisation')->find(
-                {'lower(me.email)' => lc $email},
-                {directory         => $dir},
-            );
-            $validation->error(email => ['duplicate_email_premium']) if $auth_record;
+        if( ! $validation->has_error && CRP::Util::PremiumContent::id_from_email_and_dir($c, $email, $dir)) {
+warn ">>> ",CRP::Util::PremiumContent::id_from_email_and_dir($c, $email, $dir);
+            $validation->error(email => ['duplicate_email_premium']);
         }
         return $c->premium_content if $validation->has_error;
 
-        $c->crp->model('PremiumAuthorisation')->create({
-                email       => $email,
-                name        => $name,
-                directory   => $dir,
-                is_disabled => 0,
-            });
-
+        CRP::Util::PremiumContent::create_authorisation($c, $email, $dir, $name);
         $c->flash(msg => 'premium_create');
         return $c->redirect_to($c->url_for('crp.admin_premium'));
     }

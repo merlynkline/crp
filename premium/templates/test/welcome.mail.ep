@@ -1,0 +1,7 @@
+%#<!DOCTYPE html>
+% include 'test/set-title', format => 'html';
+% layout 'premium_welcome';
+
+<p>
+You won't regret having access to test. It's great.
+<p>
