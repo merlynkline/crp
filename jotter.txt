@@ -3,7 +3,7 @@
     ~ URLs like /premium/*dir/*id/....
     - id is a wordnum that gets a unique ID in an auth table
     ~ content is in premium/templates/dir
-    + static content from premium/static/dir
+    ~ static content from premium/static/dir
     ~ auth table:
         ~ id (PK)
         ~ create date
@@ -12,9 +12,6 @@
         ~ owner name
         ~ disabled flag
     - authorisation is by an auth cookie or by lookup in the auth table to generate the cookie
-    - Set expiry headers on delivered premium content
-        ~ Pages
-        + Static content
     ~ auth cookie is a long-lived cookie with the path set to /premium/*dir that has the id, dir, name, email and expiry date (about a week), encrypted in it
         - eg: $c->signed_cookie(premium => "prem stuff", {httponly => 1, path => '/instructor'});
         ~ pseudo-code for auth process:
@@ -44,7 +41,7 @@
             - Most access is through a URL that doesn't include the ID so sharing it won't work
     ~ should do the normal kidsreflex cookie notification
     + Need a means to deliver premium content other than pages (images, video, etc)
-        + static content in premium/static/:dir with URL /premium/:dir/:id/static/*path
+        ~ static content in premium/static/:dir with URL /premium/:dir/:id/static/*path
         + streaming content in premium/stream/:dir with URL /premium/:dir/:id/stream/*path
         + How to handle streaming content?
     ~ access pages have some common content:

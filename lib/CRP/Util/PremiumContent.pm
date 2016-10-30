@@ -273,8 +273,17 @@ sub send_content {
     $self->_set_response_cookie;
     $self->c->stash(cookie => $self->cookie);
     my $path = $self->_non_blank_path;
+
+    return $self->_send_static_content if $self->_is_static_path;
+
     $path =~ s/\.html$//;
     $self->render_template($self->dir . '/' . $path);
+}
+
+sub _send_static_content {
+    my $self = shift;
+
+    $self->c->reply->static('../' . $self->_rel_file_path($self->path));
 }
 
 
@@ -289,11 +298,25 @@ sub _rel_file_path {
     my $self = shift;
     my($path) = @_;
 
+    if($self->_is_static_path) {
+        my $static_prefix = STATIC_CONTENT . '/';
+        $path =~ s/$static_prefix//;
+        return STATIC_PATH . '/' . $self->dir . '/' . $path;
+    }
+
     my $file_path = $path;
     $file_path .= '.html' unless $file_path =~ /\.html$/;
     $file_path .= '.ep';
 
     return PAGE_PATH . '/' . $self->dir . '/' . $file_path;
+}
+
+
+sub _is_static_path {
+    my $self = shift;
+
+    my $static_prefix = STATIC_CONTENT . '/';
+    return $self->path =~ /^$static_prefix/;
 }
 
 

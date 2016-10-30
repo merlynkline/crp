@@ -1,6 +1,0 @@
-%#<!DOCTYPE html>
-%= include 'test/set-title';
-% layout 'premium';
-<div style="background: pink; padding: 8px;">
-    welcome to 'test' ( title is <%= title %>)
-</div>
