@@ -509,7 +509,6 @@ sub premium_auth {
         $validation->required('name')->like(qr{\S+});
         $validation->required('dir');
         if( ! $validation->has_error && CRP::Util::PremiumContent::id_from_email_and_dir($c, $email, $dir)) {
-warn ">>> ",CRP::Util::PremiumContent::id_from_email_and_dir($c, $email, $dir);
             $validation->error(email => ['duplicate_email_premium']);
         }
         return $c->premium_content if $validation->has_error;

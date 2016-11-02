@@ -1,5 +1,5 @@
 % stash subject => "Premium page links: The Children's Reflexology Programme";
-% layout 'premium';
+% layout 'premium', with_video => 0;
 % my $info = stash 'info';
 <p>
 Here are the premium pages you have access to:

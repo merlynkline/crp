@@ -9,7 +9,7 @@
     </head>
     <body>
         <p>Dear <%= $info->{name} %>,</p>
-        <p>You now have access to our premium content <strong><%= title %></strong>.</p>
+        <p>You now have access to our premium content: <strong><%= title %></strong></p>
         <%= content %>
         <p>To view this content please use the following address:</p>
         <p><a href="<%= $url %>"><%= $url %></a></p>

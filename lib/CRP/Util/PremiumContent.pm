@@ -13,9 +13,11 @@ use constant {
     WELCOME_MAIL   => 'welcome',
     ACCESS_PAGE    => 'access',
     STATIC_CONTENT => 'static',
-    PAGE_PATH      => 'premium/templates',
-    STATIC_PATH    => 'premium/static',
-    STREAM_PATH    => 'premium/stream',
+    STREAM_CONTENT => 'stream',
+    PREMIUM_PATH   => 'premium',
+    PAGE_PATH      => 'templates',
+    STATIC_PATH    => 'static',
+    STREAM_PATH    => 'stream',
 };
 
 has c    => (is => 'ro', required => 1);
@@ -30,11 +32,11 @@ sub paths {
     my($c) = @_;
 
     my @paths;
-    my $base_dir = $c->app->home->rel_file(PAGE_PATH);
+    my $base_dir = $c->app->home->rel_file(PREMIUM_PATH);
 
     my $dir = IO::Dir->new($base_dir);
     while(defined(my $entry = $dir->read)) {
-        my $sub_dir = "$base_dir/$entry";
+        my $sub_dir = "$base_dir/$entry/" . PAGE_PATH;
         if(-d $sub_dir) {
             push @paths, $entry if
                 -f "$sub_dir/" . DEFAULT_PAGE . '.html.ep'
@@ -71,14 +73,14 @@ sub create_authorisation {
         });
 
     my $id = _id_as_symbol(id_from_email_and_dir($c, $email, $dir));
-    my $template = $dir . '/' . WELCOME_MAIL;
+    my $template = join '/', $dir, PAGE_PATH, WELCOME_MAIL;
     my $info = {
         email   => $email,
         name    => $name,
         dir     => $dir,
         id      => $id,
     };
-    _send_email($c, $email, $template, $info);
+    _send_email($c, $email, $template, $dir, $info);
 }
 
 
@@ -250,6 +252,7 @@ sub content_exists {
     return -f $self->_file_path($self->_non_blank_path);
 }
 
+
 sub show_not_found_page {
     my $self = shift;
 
@@ -262,7 +265,7 @@ sub show_access_page {
     my $self = shift;
 
     $self->c->crp->stash_recaptcha();
-    return $self->render_template($self->dir . '/' . ACCESS_PAGE);
+    return $self->render_template(join '/', $self->dir, PAGE_PATH, ACCESS_PAGE);
 }
 
 
@@ -275,12 +278,19 @@ sub send_content {
     my $path = $self->_non_blank_path;
 
     return $self->_send_static_content if $self->_is_static_path;
+    return $self->_send_stream_content if $self->_is_stream_path;
 
     $path =~ s/\.html$//;
-    $self->render_template($self->dir . '/' . $path);
+    $self->render_template(join '/', $self->dir, PAGE_PATH, $path);
 }
 
 sub _send_static_content {
+    my $self = shift;
+
+    $self->c->reply->static('../' . $self->_rel_file_path($self->path));
+}
+
+sub _send_stream_content {
     my $self = shift;
 
     $self->c->reply->static('../' . $self->_rel_file_path($self->path));
@@ -301,14 +311,20 @@ sub _rel_file_path {
     if($self->_is_static_path) {
         my $static_prefix = STATIC_CONTENT . '/';
         $path =~ s/$static_prefix//;
-        return STATIC_PATH . '/' . $self->dir . '/' . $path;
+        return join '/', PREMIUM_PATH, $self->dir, STATIC_PATH, $path;
+    }
+
+    if($self->_is_stream_path) {
+        my $stream_prefix = STREAM_CONTENT . '/';
+        $path =~ s/$stream_prefix//;
+        return join '/', PREMIUM_PATH, $self->dir, STREAM_PATH, $path;
     }
 
     my $file_path = $path;
     $file_path .= '.html' unless $file_path =~ /\.html$/;
     $file_path .= '.ep';
 
-    return PAGE_PATH . '/' . $self->dir . '/' . $file_path;
+    return join '/', PREMIUM_PATH, $self->dir, PAGE_PATH, $file_path;
 }
 
 
@@ -320,13 +336,23 @@ sub _is_static_path {
 }
 
 
+sub _is_stream_path {
+    my $self = shift;
+
+    my $stream_prefix = STREAM_CONTENT . '/';
+    return $self->path =~ /^$stream_prefix/;
+}
+
+
 sub render_template {
     my $self = shift;
     my($template, @params) = @_;
 
     my $renderer = $self->c->app->renderer;
-    unshift @{$renderer->paths}, $self->c->app->home->rel_file(PAGE_PATH);
+    unshift @{$renderer->paths}, $self->c->app->home->rel_file(PREMIUM_PATH);
+    unshift @{$renderer->paths}, $self->c->app->home->rel_file(join '/', PREMIUM_PATH, $self->dir, PAGE_PATH);
     $self->c->render($template, @params);
+    shift @{$renderer->paths};
     shift @{$renderer->paths};
 }
 
@@ -335,20 +361,22 @@ sub send_email {
     my $self = shift;
     my($to, $template, $info) = @_;
 
-    _send_email($self->c, $to, $template, $info);
+    _send_email($self->c, $to, $template, $self->dir, $info);
 }
 
 
 sub _send_email {
-    my($c, $to, $template, $info) = @_;
+    my($c, $to, $template, $dir, $info) = @_;
 
     my $renderer = $c->app->renderer;
-    unshift @{$renderer->paths}, $c->app->home->rel_file(PAGE_PATH);
+    unshift @{$renderer->paths}, $c->app->home->rel_file(PREMIUM_PATH);
+    unshift @{$renderer->paths}, $c->app->home->rel_file(join '/', PREMIUM_PATH, $dir, PAGE_PATH);
     $c->mail(
         to          => $c->crp->email_to($to),
         template    => $template,
         info        => $info,
     );
+    shift @{$renderer->paths};
     shift @{$renderer->paths};
 }
 

@@ -3,6 +3,5 @@
 /LocalBits
 c_r_p.conf.secret
 devrun
-/premium/static/test
-/premium/templates/test
+/premium/test
 

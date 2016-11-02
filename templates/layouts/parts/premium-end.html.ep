@@ -10,5 +10,8 @@
             ga('send', 'pageview');
 
         </script>
+% if($with_video) {
+        <script src="http://vjs.zencdn.net/5.11.9/video.js"></script>
+% }
     </body>
 </html>

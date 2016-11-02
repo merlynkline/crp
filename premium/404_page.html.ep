@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-%= include stash('cookie')->{dir} . '/set-title';
-% layout 'premium';
+%= include 'set-title';
+% layout 'premium', with_video => 0;
 % my $root_url = $c->config->{premium}->{root} . '/' . stash('cookie')->{dir} .'/' . $c->config->{premium}->{authorised_id};
 <div class="premium-access-main">
     <img src="<%= url_for '/images/Animals/Snake.jpg' %>" id="premium-access-image" />

@@ -49,15 +49,18 @@
     Premium content appears under premium URLs like <code>/premium/:dir/:id/*path</code>.
     </p>
     <p>
-    Premium content is created by adding a new directory inside the <code>premium/templates</code> directory.
-    The new directory must contain at least:
+    Premium content is created by adding a new premium directory inside the <code>premium</code> directory,
+    named for the new premium content (<code>:dir</code> in the URL route above).
+    The new directory must contain at least a <code>templates</code> directory with:
     <ul>
         <li><code>welcome.html.ep</code> - the home page for the new content.</li>
         <li><code>access.html.ep</code> - a page that will be displayed if an unauthorised access attempt is made.</li>
         <li><code>welcome.mail.ep</code> - Welcome email sent when authorisation is created.</li>
     </ul>
-    Static content should be added inside corresponding directories inside the <code>premium/static</code> directory and
+    Further pages should be created as templates inside the same directory.
+    Static content should be added inside a <code>static</code> directory inside the ithe new premium directory and
     referred to by premium URLs where the path part starts with <code>static/</code>, like
-    <code>/premium/:dir/:id/static/*path</code>.
+    <code>/premium/:dir/:id/static/*path</code>. Streaming content should similarly be in a <code>stream</code>
+    directory and uses URLs like <code>/premium/:dir/:id/stream/*path</code>.
     </p>
 </div>

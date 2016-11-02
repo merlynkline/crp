@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 % title "Premium links sent";
-% layout 'premium';
+% layout 'premium', with_video => 0;
 <div class="premium-access-main">
     <img src="<%= url_for '/images/Animals/Owl.jpg' %>" id="premium-access-image" />
     <h1>Premium links sent</h1>
