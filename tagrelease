@@ -14,5 +14,5 @@ else
 fi
 
 echo "Tagging $current"
-echo git tag $current
-echo git push origin $current
+git tag $current
+git push origin $current
