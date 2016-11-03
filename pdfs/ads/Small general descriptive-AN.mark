@@ -1,0 +1,42 @@
+{
+    version => 1,
+    filename => 'Descriptive flyer',
+    items => [
+        {
+            action  => 'text',
+            text    => '[% phone_numbers %]',
+            x       => 148.82,
+            y       => 458,
+            size    => 7,
+            align   => 'center',
+        },
+        {
+            action  => 'text',
+            text    => '[% url %]',
+            x       => 148.82,
+            y       => 450,
+            size    => 7,
+            align   => 'center',
+        },
+        {
+            action  => 'text',
+            text    => '[% email %]',
+            x       => 148.82,
+            y       => 442,
+            size    => 7,
+            align   => 'center',
+        },
+        
+        {
+            action  => 'qrcode',
+            text    => "http://[% url %]",
+            x       => 11,
+            y       => 444,
+        },
+    ],
+    repeats => [
+        { x_offset =>   0,    y_offset => -421 },
+        { x_offset => 297.64, y_offset =>    0 },
+        { x_offset => 297.64, y_offset => -421 },
+    ],
+}

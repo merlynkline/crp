@@ -3,6 +3,10 @@
 % title 'Personalised stationery';
 % my $profile = stash('profile_record');
 % my %quals = map { $_->qualification->code => 1 } $profile->qualifications->get_passed_set;
+% my $pdf = sub {
+%   my($pdf_file, $pdf_caption) = @_;
+%=  include "members/parts/course_doc", name => $pdf_file, caption => $pdf_caption;
+% };
 <h1>Download personalised stationery</h1>
 <p>
 Here is a collection of documents suitable for advertising
@@ -26,45 +30,47 @@ in order to view and print them.
 
 <div class="pdf-separator">Advertising<br />and<br />marketing</div>
 
-%= include "members/parts/course_doc", name => 'ads/DL flyer general', caption => "Three-to-a-sheet flyer, good for mailing"
-%= include "members/parts/course_doc", name => 'ads/Tall flyer general', caption => "Larger version of the three-to-a-sheet flyer"
-%= include "members/parts/course_doc", name => 'ads/Poster - descriptive general', caption => "General purpose poster with descriptive text"
-%= include "members/parts/course_doc", name => 'ads/A3 Poster - descriptive general', caption => "A3 version of general purpose text poster"
-%= include "members/parts/course_doc", name => 'ads/Poster - pictorial general', caption => "General purpose poster with pictures rather than text"
-%= include "members/parts/course_doc", name => 'ads/A3 Poster - pictorial general', caption => "A3 version of general purpose pictorial poster"
-%= include "members/parts/course_doc", name => 'ads/Small general descriptive', caption => "General purpose flyer with descriptive text"
-%= include "members/parts/course_doc", name => 'ads/Small general pictorial', caption => "General purpose flyer with pictures rather than text"
-%= include "members/parts/course_doc", name => 'ads/Roll-up-banner-small-1', caption => "Roller banner, 2m tall and 85cm wide (also fits 80 cm wide). Warning: large file (about 8MB)"
-%= include "members/parts/course_doc", name => 'members/Presentation', caption => "Notes for a presentation to tell people about The Children's Reflexology Programme"
-%= include "members/parts/course_doc", name => 'members/Business cards', caption => "Business cards suitable for Avery C32011, C32016, and similar card stock"
-%= include "members/parts/course_doc", name => 'members/QR Business cards', caption => "Alternate business cards suitable for Avery C32011, C32016, and similar card stock"
-%= include "members/parts/course_doc", name => 'members/Notepaper', caption => "Headed notepaper"
-%= include "members/parts/course_doc", name => 'members/Compliments', caption => "Compliments slips"
-%= include "members/parts/course_doc", name => 'members/Gift voucher', caption => "Gift vouchers"
+% $pdf->('ads/DL flyer general', "Three-to-a-sheet flyer, good for mailing");
+% $pdf->('ads/Tall flyer general', "Larger version of the three-to-a-sheet flyer");
+% $pdf->('ads/Poster - descriptive general', "General purpose poster with descriptive text");
+% $pdf->('ads/A3 Poster - descriptive general', "A3 version of general purpose text poster");
+% $pdf->('ads/Poster - pictorial general', "General purpose poster with pictures rather than text");
+% $pdf->('ads/A3 Poster - pictorial general', "A3 version of general purpose pictorial poster");
+% $pdf->('ads/Small general descriptive', "General purpose flyer with descriptive text");
+% $pdf->('ads/Small general pictorial', "General purpose flyer with pictures rather than text");
+% $pdf->('ads/Roll-up-banner-small-1', "Roller banner, 2m tall and 85cm wide (also fits 80 cm wide). Warning: large file (about 8MB)");
+% $pdf->('members/Presentation', "Notes for a presentation to tell people about The Children's Reflexology Programme");
+% $pdf->('members/Business cards', "Business cards suitable for Avery C32011, C32016, and similar card stock");
+% $pdf->('members/QR Business cards', "Alternate business cards suitable for Avery C32011, C32016, and similar card stock");
+% $pdf->('members/Notepaper', "Headed notepaper");
+% $pdf->('members/Compliments', "Compliments slips");
+% $pdf->('members/Gift voucher', "Gift vouchers");
 
 <div class="pdf-separator">Course<br />administration</div>
 
-%= include "members/parts/course_doc", name => 'members/booking_form', caption => "Generic booking form for your trainees to fill in"
-%= include "members/parts/course_doc", name => 'members/booking_form_A5', caption => "Generic booking form in A5 format for A4 paper"
-%= include "members/parts/course_doc", name => 'members/register', caption => "Generic register to check in trainees to each session"
-%= include "members/parts/course_doc", name => 'members/feedback_form', caption => "Generic feedback form for your trainees to fill in"
-%= include "members/parts/course_doc", name => 'members/feedback_form_A5', caption => "Generic feedback form in A5 format for A4 paper"
-%= include "members/parts/course_doc", name => 'members/Gift voucher log', caption => "Log sheet to manage gift vouchers"
-%= include "members/parts/course_doc", name => 'members/MYMOP_Initial', caption => "MYMOP initial data collection form"
-%= include "members/parts/course_doc", name => 'members/MYMOP_Follow_up', caption => "MYMOP follow up collection form"
-%= include "members/parts/course_doc", name => 'members/Invoice', caption => "Blank, numbered invoice"
+% $pdf->('members/booking_form', "Generic booking form for your trainees to fill in");
+% $pdf->('members/booking_form_A5', "Generic booking form in A5 format for A4 paper");
+% $pdf->('members/register', "Generic register to check in trainees to each session");
+% $pdf->('members/feedback_form', "Generic feedback form for your trainees to fill in");
+% $pdf->('members/feedback_form_A5', "Generic feedback form in A5 format for A4 paper");
+% $pdf->('members/Gift voucher log', "Log sheet to manage gift vouchers");
+% $pdf->('members/MYMOP_Initial', "MYMOP initial data collection form");
+% $pdf->('members/MYMOP_Follow_up', "MYMOP follow up collection form");
+% $pdf->('members/Invoice', "Blank, numbered invoice");
 
 % if($quals{'TCRP-AN'}) {
 <div class="pdf-separator">Additional<br />Needs specific<br />documents</div>
 
-%= include "members/parts/course_doc", name => 'ads/Poster - pictorial general AN', caption => "General purpose Additional Needs poster with pictures rather than text"
-%= include "members/parts/course_doc", name => 'ads/A3 Poster - pictorial general AN', caption => "A3 version of general purpose Additional Needs pictorial poster"
-%= include "members/parts/course_doc", name => 'ads/Roll-up-banner-small-1-AN', caption => "Additional Needs roller banner, 2mx85cm (also fits 80 cm wide). Warning: large file (about 8MB)"
-%= include "members/parts/course_doc", name => 'members/booking_form-TCRPAN', caption => "Generic Additional Needs booking form for your trainees to fill in"
-%= include "members/parts/course_doc", name => 'members/mencap', caption => "Mental Capacity decision form and letter"
+% $pdf->('ads/Poster - pictorial general AN', "General purpose Additional Needs poster with pictures rather than text");
+% $pdf->('ads/A3 Poster - pictorial general AN', "A3 version of general purpose Additional Needs pictorial poster");
+% $pdf->('ads/Small general descriptive-AN', "General purpose Additional Needs flyer with descriptive text");
+% $pdf->('ads/Roll-up-banner-small-1-AN', "Additional Needs roller banner, 2mx85cm (also fits 80 cm wide). Warning: large file (about 8MB)");
+% $pdf->('members/booking_form-TCRPAN', "Generic Additional Needs booking form for your trainees to fill in");
+% $pdf->('members/mencap', "Mental Capacity decision form and letter");
 % }
 
 <div class="pdf-separator">Other<br />documents</div>
 
-%= include "members/parts/course_doc", name => 'membership_certificate', caption => "Your current membership certificate"
-%= include "members/parts/course_doc", name => 'members/IDCard', caption => "Identity cards suitable for Avery C32011, C32016, and similar card stock"
+% $pdf->('membership_certificate', "Your current membership certificate");
+% $pdf->('members/IDCard', "Identity cards suitable for Avery C32011, C32016, and similar card stock");
+
