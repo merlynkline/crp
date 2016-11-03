@@ -293,7 +293,13 @@ sub _send_static_content {
 sub _send_stream_content {
     my $self = shift;
 
-    $self->c->reply->static('../' . $self->_rel_file_path($self->path));
+    my $asset = $self->c->app->static->file('../' . $self->_rel_file_path($self->path));
+
+    my $types = $self->c->app->types;
+    my $type = $self->path =~ /\.(\w+)$/ ? $types->type($1) : undef;
+    $self->c->res->headers->content_type($type || $types->type('txt'));
+
+    $self->c->reply->asset($asset);
 }
 
 
