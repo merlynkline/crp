@@ -259,6 +259,7 @@ sub _available_course_types {
         {
             'instructor_qualification.instructor_id' => $profile->instructor_id,
             qualification_earned_id => undef,
+            is_professional => 0,
         },
         {
             join    => 'instructor_qualification',

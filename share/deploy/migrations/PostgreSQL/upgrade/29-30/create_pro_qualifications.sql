@@ -10,13 +10,14 @@ BEGIN;
     ;
 
     INSERT INTO course_type
-    (description, abbreviation, code, qualification_required_id)
+    (description, abbreviation, code, qualification_required_id, is_professional)
     VALUES
     (
         'The Children''s Reflexology Programme Additional Needs Professional',
         'TCRP-AN-PRO',
         'TCRPANPRO',
-        (SELECT id FROM qualification WHERE code = 'TCRP-AN-PRO')
+        (SELECT id FROM qualification WHERE code = 'TCRP-AN-PRO'),
+        't'
     )
     ;
 
@@ -28,13 +29,14 @@ BEGIN;
     ;
 
     INSERT INTO course_type
-    (description, abbreviation, code, qualification_required_id)
+    (description, abbreviation, code, qualification_required_id, is_professional)
     VALUES
     (
         'The Children''s Reflexology Programme Early Years Professional',
         'TCRP-EY-PRO',
         'TCRPEYPRO',
-        (SELECT id FROM qualification WHERE code = 'TCRP-EY-PRO')
+        (SELECT id FROM qualification WHERE code = 'TCRP-EY-PRO'),
+        't'
     )
     ;
 
