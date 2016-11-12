@@ -520,6 +520,20 @@ sub premium_auth {
     return $c->premium_content;
 }
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+#use CRP::Util::BlogContent;
+sub blog_content {
+    my $c = shift;
+}
+
+sub create_blog {
+    my $c = shift;
+
+    $c->render(template => 'admin/blog_article');
+}
+
+
+
 
 1;
 

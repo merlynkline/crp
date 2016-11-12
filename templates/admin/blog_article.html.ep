@@ -1,0 +1,6 @@
+%#<!DOCTYPE html>
+% layout 'member_default', heading => 'Admin: Blog article', page_id => 'admin.blog';
+% title 'Admin: Blog article';
+%= include 'admin/parts/menu', page_id => 'admin.blog';
+
+<br />

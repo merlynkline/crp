@@ -2,6 +2,7 @@
 % my @menu = (
 %   ['admin.main'       => 'Main',              'crp.admin_default' ],
 %   ['admin.premium'    => 'Premium content',   'crp.admin_premium' ],
+%   ['admin.blog'       => 'Blog',              'crp.admin_blog'    ],
 % );
 Admin menu:
 % foreach my $entry (@menu) {

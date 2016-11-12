@@ -1,0 +1,10 @@
+%#<!DOCTYPE html>
+% layout 'member_default', heading => 'Admin: Blog content', page_id => 'admin.blog';
+% title 'Admin: Blog content';
+%= include 'admin/parts/menu', page_id => 'admin.blog';
+
+<br />
+<span class="highlight-box">
+    To add a new article click:
+    <a class="standard-button" title="Add a new article for the blog" href="<%= url_for 'crp.admin.create_blog' %>">Add article</a>
+</span>
