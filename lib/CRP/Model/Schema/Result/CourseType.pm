@@ -28,7 +28,7 @@ __PACKAGE__->add_columns(
         data_type           => 'text',
         is_nullable         => 0,
     },
-    qualification_required_id => {
+    qualification_required_id => { # to teach
         data_type           => 'integer',
         is_nullable         => 0,
     },
@@ -39,6 +39,11 @@ __PACKAGE__->add_columns(
     qualification_earned_id => {
         data_type           => 'integer',
         is_nullable         => 1,
+    },
+    is_professional => {
+        data_type           => 'boolean',
+        default_value       => 'f',
+        is_nullable         => 0,
     },
 );
 

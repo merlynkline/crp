@@ -1,4 +1,64 @@
 
++ Professionals
+    + Count of attendees on course list
+    + Extra button for advertised and past professional courses: [Stud]
+        + Goes to a page with a list of students on the course
+        + Button to add a student
+    + Instructors running a professional's course can add attendees with:
+        - Course attended
+        - Name
+        - email
+        - suspended flag
+        - Organisation details (name/address/phone)
+            + Could default to same as other attendee for same course if there is one, or offer drop-down to fill or something
+    + Adding an attendee sends them an email with a link to their own page and details of the course
+    + Attendee's page:
+        + If course is in future, just says course details including instructor and promises more after the course
+        + If course doesn't exist (deleted), just says page will be available when trained
+        + If course is more than three years old, says they must retrain
+        + If attendee record is deleted/suspended, some message
+        + 404 sensibly for non-existant attendees
+        + Otherwise show:
+            + Links to personalised PDFs:
+                X certificate
+                + consent form
+                + advertising
+            + Attendee details on file
+            + Time until next CPD
+            + Contact details for trainer (link to personal page)
+    + Instructors can manage attendees
+        + Search for individuals by name, email, course attended, qualifications about to expire
+        + Admins can find attendees of any course
+        + Edit details
+        + Delete (only if the course is in the future)
+        + Suspend (only if the course is in the past)
+        + Re-send email
+        + Get certificate PDF
+        + Show link to the attendee's special page
+        + Send an email to everyone whose qualifications will expire soon
+    + Publicly visible list of qualified professionals
+        + Only include those with up-to-date certificates
+        + Says what qualification they have and who qualified them
+        + Search by organisation
+    ~ Add a column to the qualification table - a boolean to indicate that the qualification is for professionals who get a controlled certificate
+    + Extend the instructor training course facilities
+        + These are now intructor/professional training courses
+        - Choice of course type makes the difference, by reference to the qualification earned
+        + Lists of courses on the public site must only include instructor training courses and not professional courses
+        + Cancelling a professional course must delete all the attendees (and warn about that)
+    ~ Add a new professionals table
+        ~ id
+        ~ name
+        ~ organisation_name
+        ~ organisation_address
+        ~ organisation_postcode
+        ~ organisation_phone
+        ~ email
+        ~ instructors_course_id
+        ~ suspended_flag
+
+
+
 + Premium content space for e-courses etc
     ~ URLs like /premium/*dir/*id/....
     - id is a wordnum that gets a unique ID in an auth table
@@ -40,10 +100,10 @@
             - New cookies are generated reasonably often so lockouts etc are effective
             - Most access is through a URL that doesn't include the ID so sharing it won't work
     ~ should do the normal kidsreflex cookie notification
-    + Need a means to deliver premium content other than pages (images, video, etc)
+    ~ Need a means to deliver premium content other than pages (images, video, etc)
         ~ static content in premium/static/:dir with URL /premium/:dir/:id/static/*path
-        + streaming content in premium/stream/:dir with URL /premium/:dir/:id/stream/*path
-        + How to handle streaming content?
+        ~ streaming content in premium/stream/:dir with URL /premium/:dir/:id/stream/*path
+        ~ How to handle streaming content?
     ~ access pages have some common content:
         ~ allow entry of an email address to get an email containing links to all authed premium content for that email
         ~ some means of complaining if you think you should have access
