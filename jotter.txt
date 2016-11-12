@@ -28,6 +28,7 @@
             + Links to personalised PDFs:
                 X certificate
                 + consent form
+                + Follow-up advice
                 + advertising poster
                     + Use existing mechanism for instructor courses
                     + make sure it works from the instructor's profile page

@@ -203,10 +203,7 @@ sub do_delete_course {
 sub publish_course {
     my $c = shift;
 
-    my $course_id = $c->param('course_id');
-    my $course = $c->_load_publishable_course($course_id);
-    $c->stash('crp_session')->variable('course_id', $course_id);
-    $c->stash('course_record', $course);
+    $c->_stash_course($c->crp->numeric_param('course_id'));
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -262,11 +259,7 @@ sub _load_cancelable_course {
 sub course_docs {
     my $c = shift;
 
-    my $course_id = $c->crp->numeric_param('id');
-    my $course = $c->crp->model('InstructorCourse')->find({id => $course_id});
-    die "You can't download documents for this course" unless $course && $course->instructor_id == $c->crp->logged_in_instructor_id;
-    $c->stash('crp_session')->variable('course_id', $course_id);
-    $c->stash('course_record', $course);
+    $c->_stash_course($c->crp->numeric_param('id'));
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -301,6 +294,24 @@ sub _send_pdf_response {
         content_disposition => $c->param('download') ? 'attachment' : 'inline',
         filename            => $pdf_doc->filename,
     );
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub attendees {
+    my $c = shift;
+
+    $c->_stash_course($c->crp->numeric_param('course_id'));
+}
+
+sub _stash_course {
+    my $c = shift;
+    my($course_id) = @_;
+
+    my $course = $c->crp->model('InstructorCourse')->find({id => $course_id});
+    die "You can't manage this course" unless $course && $course->instructor_id == $c->crp->logged_in_instructor_id;
+    $c->stash('crp_session')->variable('course_id', $course_id);
+    $c->stash('course_record', $course);
+    return;
 }
 
 

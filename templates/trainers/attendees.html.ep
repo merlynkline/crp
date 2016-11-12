@@ -1,0 +1,22 @@
+%#<!DOCTYPE html>
+% layout 'member_default', page_id => 'courses';
+% title 'Course attendees';
+% my $course = stash('course_record');
+%#
+<div style="float:right; width:480px;">
+    %= include "parts/instructors_course_details", course => $course;
+</div>
+<h1>Course attendees</h1>
+<p>
+<span class="highlight-box">
+    To add a new attendee click:
+    <a class="standard-button" title="Add a new attendee" href="<%= url_for 'crp.trainers.attendee' %>">Add attendee</a>
+    &nbsp;
+</span>
+<br clear="all" />
+<%= include 'parts/message_box', msg => flash('msg') || stash('msg'), auto_hide => 1 %>
+% if($course->professionals->count == 0) {
+%= include 'parts/message_box', msg => 'no_attendees', auto_hide => 0;
+% }
+% else {
+% }

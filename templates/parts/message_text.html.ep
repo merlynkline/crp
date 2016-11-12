@@ -13,6 +13,7 @@
 %   course_delete           => 'Your course has been deleted.',
 %   course_publish          => 'Your course has been published on your personal web page and enquirers have been notified by email.',
 %   course_update           => 'Your course has been updated.',
+%   no_attendees            => 'There are no attendees registered for this course.',
 %   no_enquiries_found      => 'Sorry - there are no enquiries near <em>' . xml_escape(param('location') // '') . '</em> in our records at the moment. We get new enquiries all the time though, so please check again in the future.',
 %   no_instructors_found    => "Sorry - there are no instructors matching <em>'" . xml_escape(stash('search_key') // '') . "'</em> in our records at the moment. Try entering a smaller part of the name to match more records or try a different spelling.",
 %   password_set            => 'Your password has been updated.',
