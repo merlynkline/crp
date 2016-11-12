@@ -43,7 +43,7 @@ you, please contact me to see if we can arrange something.
     </table>
     %}
     % if(@{stash 'instructors_advertised_list'}) {
-    <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Instructor training courses</h3>
+    <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Instructor and professional training courses</h3>
     <table class="list1">
         <tr>
             <th>Start</th>
@@ -58,10 +58,14 @@ you, please contact me to see if we can arrange something.
             <td>
                 <span class="supplementary-info" style="color: inherit;"><em><%= $course->course_type->description %></em></span><br />
                 <%= $course->description %><br />
+% if($course->course_type->qualification_earned) {
                 <span class="supplementary-info" style="color: inherit;">Qualification gained: <%= $course->course_type->qualification_earned->qualification %></span>
+% }
             </td>
             <td>
+% if( ! $course->course_type->is_professional) {
                 <a href="<%= url_for('/instructor_booking_form')->query(id => $course->id) %>" class="small-button">Book&nbsp;place</a>
+% }
                 <a href="<%= url_for('crp.instructor_poster')->query(id => $course->id) %>" class="small-button">Poster</a>
             </td>
         </tr>

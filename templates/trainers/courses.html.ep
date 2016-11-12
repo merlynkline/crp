@@ -18,9 +18,11 @@
         <td>
             <span class="supplementary-info" style="color: inherit;"><em><%= $course->course_type->description %></em></span><br />
             <%= $course->description %><br />
+% if($course->course_type->qualification_earned) {
             <span class="supplementary-info" style="color: inherit;">Qualification gained: <%= $course->course_type->qualification_earned->qualification %></span>
+% }
         </td>
-        <td nowrap>
+        <td nowrap align="right">
         <a href="<%= url_for('crp.trainers.course_docs')->query(id => $course->id) %>" class="small-button">PDF</a>
         % if($type eq 'draft' || $type eq 'advertised') {
             <a class="small-button" href="<%= url_for('crp.trainers.course')->query(course_id => $course->id) %>" title="Edit the details of this course">Edit</a>
@@ -40,6 +42,10 @@
 %#        <a class="small-button" href="<%= url_for('crp.trainersite.course', slug => stash('profile_record')->web_page_slug, course => $course->id) %>" title="See the advertisement page for this course">Adv</a>
         % }
 %#        <a class="small-button" href="<%= url_for('crp.trainers.course_docs')->query(course_id => $course->id) %>" title="Download and print PDF documents for this course (posters, booking form, register, etc)">PDF</a>
+% if($course->course_type->is_professional && $type ne 'draft' && $type ne 'canceled') {
+          <br />
+          <a class="small-button" href=""><%= $course->professionals->count %> attendees</a>&nbsp;
+% }
         </td>
     </tr>
     % }

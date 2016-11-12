@@ -1,10 +1,10 @@
 %#<!DOCTYPE html>
-% layout 'member_default', heading => "Instructors course", page_id => 'member-home', extra_header_templates => 'parts/location_input';
+% layout 'member_default', heading => "Instructors/pro course", page_id => 'member-home', extra_header_templates => 'parts/location_input';
 % my $course = stash('course_record');
 % my $restricted = (stash('edit_restriction') // '') eq 'PUBLISHED';
 % my @disabler; push @disabler, qw(disabled disabled) if $restricted;
-% title 'Instructors course';
-<h1>Enter instructors course details</h1>
+% title 'Instructors/pro  course';
+<h1>Enter instructors/pro course details</h1>
 <%= include 'parts/message_box', msg => flash('msg') || stash('msg'), auto_hide => 1 %>
 %= form_for 'crp.trainers.course' => (method => 'POST') => begin
     <p>Please enter the course details below.</p>
@@ -12,7 +12,7 @@
     <p>NB: This course is already published so there are some details that you cannot edit.</p>
     % }
     <fieldset>
-        <legend>Instructors course details</legend>
+        <legend>Instructors/pro course details</legend>
         %= hidden_field 'course_id' => $course->id;
 
         <label for="venue">Venue:

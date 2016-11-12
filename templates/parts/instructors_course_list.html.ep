@@ -13,8 +13,10 @@
     <td><%= $course->venue %></td>
     <td><span class="supplementary-info" style="color: inherit;"><em><%= $course->course_type->description %></em></span><br />
         <%= $course->description %><br />
-        <span class="supplementary-info" style="color: inherit;">Tutor: <a href="<%=url_for('crp.membersite.home', slug => $course->instructor->profile->web_page_slug)->to_abs %>"><%= $course->instructor->profile->name %></a><br />
-        Qualification gained: <%= $course->course_type->qualification_earned->qualification %></span>
+        <span class="supplementary-info" style="color: inherit;">Tutor: <a href="<%=url_for('crp.membersite.home', slug => $course->instructor->profile->web_page_slug)->to_abs %>"><%= $course->instructor->profile->name %></a>
+% if($course->course_type->qualification_earned) {
+<br />Qualification gained: <%= $course->course_type->qualification_earned->qualification %></span>
+% }
     </td>
     <td>
         <a href="<%= url_for('/instructor_booking_form')->query(id => $course->id) %>" class="small-button">Book&nbsp;place</a>

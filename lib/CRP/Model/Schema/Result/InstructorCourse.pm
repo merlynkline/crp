@@ -76,6 +76,7 @@ __PACKAGE__->add_columns(
 __PACKAGE__->set_primary_key('id');
 __PACKAGE__->belongs_to('instructor' => 'CRP::Model::Schema::Result::Login', 'instructor_id');
 __PACKAGE__->belongs_to('course_type' => 'CRP::Model::Schema::Result::CourseType', 'course_type_id');
+__PACKAGE__->has_many('professionals' => 'CRP::Model::Schema::Result::Professional', 'instructors_course_id');
 
 my %TYPE = (
     venue               => {MinLen => 1, MaxLen => 50},
