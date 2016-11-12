@@ -47,9 +47,9 @@
     % }
 </table>
 % end
-% if(stash('is_instructor_trainer')) {
+% if(stash('is_instr_or_pro_trainer')) {
 <div style="float: right; position: relative; top: 24px;">
-    <a href="<%= url_for 'crp.trainers.courses' %>">Instructor training courses</a>
+    <a href="<%= url_for 'crp.trainers.courses' %>">Instructor and pro training courses</a>
 </div>
 % }
 <h1>Your TCRP courses</h1>

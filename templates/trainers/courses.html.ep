@@ -1,6 +1,6 @@
 %#<!DOCTYPE html>
 % layout 'member_default', page_id => 'courses';
-% title 'Your instructor training courses';
+% title 'Your instructor and pro training courses';
 %#
 % my $course_list_block = begin
 %  my($courses_list, $type) = @_;
@@ -48,7 +48,7 @@
 <div style="float: right; position: relative; top: 24px;">
     <a href="<%= url_for 'crp.members.courses' %>">TCRP courses</a>
 </div>
-<h1>Your instructor training courses</h1>
+<h1>Your instructor and pro training courses</h1>
 Add new courses as draft courses and then edit them until you have the details
 right and are happy to advertise them. Use the buttons next to the courses
 to see all the details and take actions.

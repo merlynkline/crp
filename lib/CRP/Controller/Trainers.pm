@@ -162,7 +162,10 @@ sub _available_course_types {
     my @course_types = $c->crp->model('CourseType')->search(
         {
             'instructor_qualification.instructor_id' => $profile->instructor_id,
-            qualification_earned_id => { '!=', undef },
+            -or => {
+                qualification_earned_id => { '!=', undef },
+                -bool => 'is_professional',
+            },
         },
         {
             join    => 'instructor_qualification',

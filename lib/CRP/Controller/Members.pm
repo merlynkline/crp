@@ -226,18 +226,21 @@ sub courses {
         past_list               => _date_order_list(scalar $courses->get_past_set($days)),
         canceled_list           => _date_order_list(scalar $courses->get_canceled_set($days)),
         available_course_types  => $c->_available_course_types($profile),
-        is_instructor_trainer   => $c->_is_instructor_trainer($profile),
+        is_instr_or_pro_trainer => $c->_is_instructor_or_pro_trainer($profile),
     );
 }
 
-sub _is_instructor_trainer {
+sub _is_instructor_or_pro_trainer {
     my $c = shift;
     my($profile) = @_;
 
     return $c->crp->model('CourseType')->search(
         {
             'instructor_qualification.instructor_id' => $profile->instructor_id,
-            qualification_earned_id => { '!=', undef },
+            -or => {
+                qualification_earned_id => { '!=', undef },
+                -bool => 'is_professional',
+            },
         },
         {
             join    => 'instructor_qualification',
@@ -259,7 +262,7 @@ sub _available_course_types {
         {
             'instructor_qualification.instructor_id' => $profile->instructor_id,
             qualification_earned_id => undef,
-            is_professional => 0,
+            -not_bool => 'is_professional',
         },
         {
             join    => 'instructor_qualification',
