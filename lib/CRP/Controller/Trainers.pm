@@ -267,11 +267,9 @@ use CRP::Util::PDFMarkUp;
 sub course_pdf {
     my $c = shift;
 
-    my $course_id = $c->stash('course_id');
-    my $name = $c->stash('name');
-    my $course = $c->crp->model('InstructorCourse')->find({id => $course_id});
-    die "You can't download a PDF for this course" unless $course && $course->instructor_id == $c->crp->logged_in_instructor_id;
-    my $pdf = $c->app->home->rel_file("pdfs/${name}.pdf");
+    my $course  = $c->_stash_course($c->stash('course_id'));
+    my $name    = $c->stash('name');
+    my $pdf     = $c->app->home->rel_file("pdfs/${name}.pdf");
     my $pdf_doc = CRP::Util::PDFMarkUp->new(file_path => $pdf);
 
     $c->_send_pdf_response($pdf_doc, {instructor_course  => $course});
@@ -311,9 +309,66 @@ sub _stash_course {
     die "You can't manage this course" unless $course && $course->instructor_id == $c->crp->logged_in_instructor_id;
     $c->stash('crp_session')->variable('course_id', $course_id);
     $c->stash('course_record', $course);
-    return;
+    return $course;
 }
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub attendee {
+    my $c = shift;
+
+    my $course = $c->_stash_course($c->stash('crp_session')->variable('course_id'));
+    if($c->req->method eq 'POST') {
+        $c->_create_or_update_attendee;
+    }
+    else {
+        $c->_display_attendee_editor;
+    }
+}
+
+sub _display_attendee_editor {
+    my $c = shift;
+
+    my $attendee = $c->_get_new_or_existing_attendee;
+    $c->_load_attendee_from_defaults($attendee) unless $attendee->in_storage;
+    $c->_display_attendee_editor_with($attendee);
+}
+
+sub _get_new_or_existing_attendee {
+    my $c = shift;
+
+    my $attendee_id = $c->param('attendee_id');
+    my $attendee;
+    if($attendee_id) {
+        my $course = $c->stash('course_record');
+        my $attendee = $c->crp->model('Professional')->find({id => $attendee_id});
+        die "You can't edit this attendee" unless $attendee && $attendee->instructors_course_id == $course->id;
+    }
+    else {
+        $attendee = $c->crp->model('Professional')->new_result({});
+    }
+    return $attendee;
+}
+
+sub _load_attendee_from_defaults {
+    my $c = shift;
+    my($attendee) = @_;
+
+    my $course = $c->stash('course_record');
+    my $last_attendee = $course->professionals->search(undef, {order_by => {-desc => 'id'}})->first;
+    if($last_attendee) {
+        foreach my $attribute (qw(organisation_name organisation_address organisation_postcode organisation_telephone)) {
+            $attendee->$attribute($last_attendee->$attribute);
+        }
+    }
+    $attendee->instructors_course_id($course->id);
+}
+
+sub _display_attendee_editor_with {
+    my $c = shift;
+    my($attendee) = @_;
+
+    $c->stash('attendee_record', $attendee);
+}
 
 
 1;

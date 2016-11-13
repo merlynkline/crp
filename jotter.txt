@@ -12,7 +12,7 @@
                 + Could default to same as other attendee for same course if there is one, or offer drop-down to fill or something
         + Make sure the same person can attend more than one course but not the same course more than once
         + Edit a student
-        + Delete a student (if the course is in the future)
+        + Delete a student
         + Suspend a student
         + Re-send email
         + Get certificate PDF

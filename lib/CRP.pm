@@ -97,6 +97,7 @@ sub startup {
     $trainers->any('course_docs')->to('trainers#course_docs')->name('crp.trainers.course_docs');
     $trainers->any('course_pdf/:course_id/*name')->to('trainers#course_pdf')->name('crp.trainers.course_pdf');
     $trainers->any('attendees')->to('trainers#attendees')->name('crp.trainers.attendees');
+    $trainers->any('attendee')->to('trainers#attendee')->name('crp.trainers.attendee');
 
     my $admin = $logged_in->under('/admin')->to('admin#authenticate');
     $admin->get('/')->to('admin#welcome')->name('crp.admin_default');

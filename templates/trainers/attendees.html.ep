@@ -7,7 +7,6 @@
     %= include "parts/instructors_course_details", course => $course;
 </div>
 <h1>Course attendees</h1>
-<p>
 <span class="highlight-box">
     To add a new attendee click:
     <a class="standard-button" title="Add a new attendee" href="<%= url_for 'crp.trainers.attendee' %>">Add attendee</a>

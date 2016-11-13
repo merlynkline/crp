@@ -1,0 +1,74 @@
+%#<!DOCTYPE html>
+% layout 'member_default', page_id => 'courses';
+% title 'Attendee details';
+% my $course = stash('course_record');
+% my $attendee = stash('attendee_record');
+%#
+<div style="float:right; width:480px;">
+    %= include "parts/instructors_course_details", course => $course;
+</div>
+<h1>Enter attendee details</h1>
+<%= include 'parts/message_box', msg => flash('msg') || stash('msg'), auto_hide => 1 %>
+%= form_for 'crp.trainers.attendee' => (method => 'POST') => begin
+<p>Please enter the attendee details below.
+These details will appear on documents they produce so make sure they are exactly as required by the attendee.
+The email address will be used to send important information to the attendee so must be a valid email address
+that they can receive personally.
+</p>
+<br clear="all" />
+    <fieldset>
+        <legend>Attendee details</legend>
+        %= hidden_field 'course_id' => $course->id;
+        %= hidden_field 'attendee_id' => $attendee->id;
+
+        <label for="name">Name:
+            <div class="field-extra-info">Full name as it should appear on documents.</div>
+        </label>
+        <div class="input-container">
+            %= text_field 'name', id => 'name', autofocus => 'autofocus', required => 'required';
+            <%= include 'parts/error', field => 'name' %>
+        </div>
+
+        <label for="email">Email address:</label>
+        <div class="input-container">
+            <%= text_field 'email', size => '30', id => 'email', required => "required" =%>
+            <%= include 'parts/error', field => 'email' =%>
+        </div>
+
+        <label for="organisation_name">Organisation name:</label>
+        <div class="input-container">
+            %= text_field 'organisation_name', size => 30, id => 'organisation_name', required => 'required';
+            <%= include 'parts/error', field => 'organisation_name' %>
+        </div>
+
+        <label for="organisation_address">Organisation address:
+            <div class="field-extra-info">Note that the postcode is separate, below.</div>
+        </label>
+        <div class="input-container">
+            %= text_area 'organisation_address', rows => '3', cols => '45', id => 'organisation_address';
+            <%= include 'parts/error', field => 'organisation_address' %>
+        </div>
+
+        <label for="organisation_postcode">Organisation postcode:
+        </label>
+        <div class="input-container">
+            %= text_field 'organisation_postcode', id => 'organisation_postcode', size => 8, required => 'required';
+            <%= include 'parts/error', field => 'organisation_postcode' %>
+        </div>
+
+        <label for="organisation_telephone">Organisation telephone:</label>
+        </label>
+        <div class="input-container">
+            %= text_field 'organisation_telephone', id => 'organisation_telephone', size => 10;
+            <%= include 'parts/error', field => 'organisation_telephone' %>
+        </div>
+
+        <label>&nbsp;</label>
+        <label>Make sure you save your changes:</label>
+        <div class="input-container">
+            %= submit_button 'Save'
+            <%= include 'parts/error', field => '_general' %>
+            <%= include 'parts/temporary_message', msg => flash 'msg' %>
+        </div>
+    </fieldset>
+% end
