@@ -75,7 +75,7 @@ if you prefer.
         <%= text_field '050_email', size => '30', id => '050_email', required => "required" =%>
         <%= include 'parts/error', field => '050_email' =%>
     </div>
-    <label for="060_email">Your telephone number:</label>
+    <label for="060_telephone">Your telephone number:</label>
     <div class="input-container">
         <%= text_field '060_telephone', size => '30', id => '060_telephone' =%>
     </div>
