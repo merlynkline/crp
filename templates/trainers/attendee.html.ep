@@ -8,7 +8,6 @@
     %= include "parts/instructors_course_details", course => $course;
 </div>
 <h1>Enter attendee details</h1>
-<%= include 'parts/message_box', msg => flash('msg') || stash('msg'), auto_hide => 1 %>
 %= form_for 'crp.trainers.attendee' => (method => 'POST') => begin
 <p>Please enter the attendee details below.
 These details will appear on documents they produce so make sure they are exactly as required by the attendee.
@@ -16,6 +15,7 @@ The email address will be used to send important information to the attendee so 
 that they can receive personally.
 </p>
 <br clear="all" />
+<%= include 'parts/message_box', msg => flash('msg') || stash('msg'), auto_hide => 1 %>
     <fieldset>
         <legend>Attendee details</legend>
         %= hidden_field 'course_id' => $course->id;
@@ -25,19 +25,19 @@ that they can receive personally.
             <div class="field-extra-info">Full name as it should appear on documents.</div>
         </label>
         <div class="input-container">
-            %= text_field 'name', id => 'name', autofocus => 'autofocus', required => 'required';
+            %= text_field 'name', id => 'name', autofocus => 'autofocus', required => 'required', value => $attendee->name;
             <%= include 'parts/error', field => 'name' %>
         </div>
 
         <label for="email">Email address:</label>
         <div class="input-container">
-            <%= text_field 'email', size => '30', id => 'email', required => "required" =%>
+            <%= text_field 'email', size => '30', id => 'email', required => "required", value => $attendee->email =%>
             <%= include 'parts/error', field => 'email' =%>
         </div>
 
         <label for="organisation_name">Organisation name:</label>
         <div class="input-container">
-            %= text_field 'organisation_name', size => 30, id => 'organisation_name', required => 'required';
+            %= text_field 'organisation_name', size => 30, id => 'organisation_name', required => 'required', value => $attendee->organisation_name;
             <%= include 'parts/error', field => 'organisation_name' %>
         </div>
 
@@ -45,21 +45,21 @@ that they can receive personally.
             <div class="field-extra-info">Note that the postcode is separate, below.</div>
         </label>
         <div class="input-container">
-            %= text_area 'organisation_address', rows => '3', cols => '45', id => 'organisation_address';
+            %= text_area 'organisation_address' => $attendee->organisation_address, rows => '3', cols => '45', id => 'organisation_address';
             <%= include 'parts/error', field => 'organisation_address' %>
         </div>
 
         <label for="organisation_postcode">Organisation postcode:
         </label>
         <div class="input-container">
-            %= text_field 'organisation_postcode', id => 'organisation_postcode', size => 8, required => 'required';
+            %= text_field 'organisation_postcode', id => 'organisation_postcode', size => 8, required => 'required', value => $attendee->organisation_postcode;
             <%= include 'parts/error', field => 'organisation_postcode' %>
         </div>
 
         <label for="organisation_telephone">Organisation telephone:</label>
         </label>
         <div class="input-container">
-            %= text_field 'organisation_telephone', id => 'organisation_telephone', size => 10;
+            %= text_field 'organisation_telephone', id => 'organisation_telephone', size => 10, value => $attendee->organisation_telephone;
             <%= include 'parts/error', field => 'organisation_telephone' %>
         </div>
 

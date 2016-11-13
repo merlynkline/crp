@@ -3,6 +3,8 @@
 % use Mojo::Util 'xml_escape';
 % my $message = {
 %   account_create          => 'New account created.',
+%   attendee_create         => 'Attendee created.',
+%   attendee_update         => 'Attendee updated.',
 %   email_updated           => 'Email address updated.',
 %   fix_errors              => 'Please fix the errors shown on the form.',
 %   no_advertised_courses   => 'You do not currently have any advertised courses.',

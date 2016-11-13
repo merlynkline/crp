@@ -298,7 +298,7 @@ sub _send_pdf_response {
 sub attendees {
     my $c = shift;
 
-    $c->_stash_course($c->crp->numeric_param('course_id'));
+    $c->_stash_course($c->crp->numeric_param('course_id') || $c->stash('crp_session')->variable('course_id'));
 }
 
 sub _stash_course {
@@ -340,7 +340,7 @@ sub _get_new_or_existing_attendee {
     my $attendee;
     if($attendee_id) {
         my $course = $c->stash('course_record');
-        my $attendee = $c->crp->model('Professional')->find({id => $attendee_id});
+        $attendee = $c->crp->model('Professional')->find({id => $attendee_id});
         die "You can't edit this attendee" unless $attendee && $attendee->instructors_course_id == $course->id;
     }
     else {
@@ -368,6 +368,52 @@ sub _display_attendee_editor_with {
     my($attendee) = @_;
 
     $c->stash('attendee_record', $attendee);
+}
+
+sub _create_or_update_attendee {
+    my $c = shift;
+
+    my $attendee = $c->_get_new_or_existing_attendee;
+    my $validation = $c->_load_attendee_from_params($attendee);
+    if($validation->has_error) {
+        $c->stash(msg => 'fix_errors');
+        $c->_display_attendee_editor_with($attendee);
+    }
+    else {
+        $c->flash(msg => $attendee->in_storage ? 'attendee_update' : 'attendee_create');
+        $attendee->update_or_insert;
+        return $c->redirect_to('crp.trainers.attendees');
+    }
+}
+
+sub _load_attendee_from_params {
+    my $c = shift;
+    my($attendee) = @_;
+
+    my $validation = $c->validation;
+    my $course = $c->stash('course_record');
+
+    my $record = {
+        instructors_course_id   => $course->id,
+    };
+    foreach my $field (qw(name email organisation_name organisation_address organisation_postcode organisation_telephone)) {
+        $record->{$field} = $c->crp->trimmed_param($field);
+        $validation->required($field);
+    }
+    $validation->required('email')->like(qr{^.+@.+[.].+});
+
+    foreach my $column (keys %$record) {
+        eval { $attendee->$column($record->{$column}); };
+        my $error = $@;
+        if($error =~ m{^CRP::Util::Types::(.+?) }) {
+            $validation->error($column => ["invalid_column_$1"]);
+        }
+        else {
+            die $error if $error;
+        }
+    }
+
+    return $validation;
 }
 
 

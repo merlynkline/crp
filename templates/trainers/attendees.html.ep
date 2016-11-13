@@ -18,4 +18,25 @@
 %= include 'parts/message_box', msg => 'no_attendees', auto_hide => 0;
 % }
 % else {
+<table class="list1">
+    <tr>
+        <th>Name</th>
+        <th>Organisation</th>
+        <th></th>
+    </tr>
+    % foreach my $attendee ($course->professionals) {
+    <tr>
+        <td><%= $attendee->name %><br /><%= $attendee->email %></td>
+        <td>
+            <%= $attendee->organisation_name %><br />
+            <%= $attendee->organisation_address %><br />
+            <%= $attendee->organisation_postcode %><br />
+            <%= $attendee->organisation_telephone %>
+        </td>
+        <td>
+            <a class="small-button" href="<%= url_for('crp.trainers.attendee')->query(attendee_id => $attendee->id) %>" title="Edit the details of this attendee">Edit</a>
+        </td>
+    </tr>
+    % }
+</table>
 % }
