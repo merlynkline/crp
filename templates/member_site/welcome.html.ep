@@ -65,8 +65,8 @@ you, please contact me to see if we can arrange something.
             <td>
 % if( ! $course->course_type->is_professional) {
                 <a href="<%= url_for('/instructor_booking_form')->query(id => $course->id) %>" class="small-button">Book&nbsp;place</a>
-% }
                 <a href="<%= url_for('crp.instructor_poster')->query(id => $course->id) %>" class="small-button">Poster</a>
+% }
             </td>
         </tr>
         % }
