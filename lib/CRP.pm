@@ -63,6 +63,7 @@ sub startup {
     $r->any('main/location_search')->to('main#location_search')->name('crp.location_search');
     $r->post('main/instructor_booking')->to('main#instructor_booking')->name('crp.instructor_booking');
     $r->any('main/instructor_poster')->to('main#instructor_poster')->name('crp.instructor_poster');
+    $r->any('professional/:slug')->to('main#professional_page')->name('crp.pro_page');
 
     my $logged_in = $r->under('/instructor')->to('logged_in#authenticate');
     $logged_in->get('/')->to('members#welcome')->name('crp.logged_in_default');

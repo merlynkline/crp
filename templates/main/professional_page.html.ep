@@ -1,0 +1,42 @@
+%#<!DOCTYPE html>
+% layout 'default', page_id => '';
+% title 'Welcome';
+<div style="float: right; width: 408px">
+    <table class="list1">
+        <tr><th colspan="2">Course details</th></tr>
+        <tr><td>Date:</td>           <td><%= $c->crp->format_date($course->start_date, 'short') %> - <%= $course->duration %></td></tr>
+        <tr><td>Title:</td>          <td><%= $course->description %></td></tr>
+        <tr><td>Type:</td>           <td><%= $course->course_type->description %></td></tr>
+        <tr><td>Venue:</td>          <td><%= $course->venue %></td></tr>
+        <tr><td>Location:</td>       <td><%= $course->location %></td></tr>
+        <tr><td><b>Trainer</b>:</td> <td><b><a href="<%= url_for('crp.membersite.home', slug => $trainer->web_page_slug) %>"><%= $trainer->name %></a></b></td></tr>
+    </table>
+</div>
+<h1>Professional training</h1>
+<h2><%= $attendee->name %></h2>
+<%= $attendee->organisation_name %>
+<hr />
+% if($is_untrained) {
+<p>
+Thank you for choosing to train with The Children's Reflexology Programme.
+As soon as your training is complete this page will give you access to the special personalised
+resources you need to deliver the programme effectively in your setting. Make sure you bookmark
+this page so you can return here easily whenever you need anything.
+</p>
+% }
+% elsif($is_expired) {
+<p>
+Thank you for training with The Children's Reflexology Programme.
+Unfortunately your qualification has expired and must be renewed before you can make use of the
+resouces that are normally available through this page. Please contact your trainer to arrange
+to have your qualification renewed.
+</p>
+<p>
+Please note that if you have already renewed your qualification then you should have received
+an email with a new page address to use for access to resources. If you have not received this
+email or are having difficulty accessing your new page then please contact your trainer for
+assistance.
+</p>
+% }
+% else {
+}

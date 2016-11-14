@@ -35,6 +35,7 @@
         </td>
         <td>
             <a class="small-button" href="<%= url_for('crp.trainers.attendee')->query(attendee_id => $attendee->id) %>" title="Edit the details of this attendee">Edit</a>
+            <br /><a href="<%= url_for 'crp.pro_page', slug => $attendee->id %>">Attendee's page</a>
         </td>
     </tr>
     % }

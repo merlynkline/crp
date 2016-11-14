@@ -1,17 +1,17 @@
 
 + Professionals
-    + Count of attendees on course list
+    ~ Count of attendees on course list
     + Extra button for advertised and past professional courses
-        + Goes to a page with a list of students on the course
-        + Button to add a student (if the course is in the future)
+        ~ Goes to a page with a list of students on the course
+        ~ Button to add a student (if the course is in the future)
             - Course attended
             - Name
             - email
             - suspended flag
             - Organisation details (name/address/phone)
-                + Could default to same as other attendee for same course if there is one, or offer drop-down to fill or something
+                ~ Could default to same as other attendee for same course if there is one, or offer drop-down to fill or something
         + Make sure the same person can attend more than one course but not the same course more than once
-        + Edit a student
+        ~ Edit a student
         + Delete a student
         + Suspend a student
         + Re-send email
@@ -19,22 +19,20 @@
         + Show link to the attendee's special page
     + Adding an attendee sends them an email with a link to their own page and details of the course
     + Attendee's page:
-        + If course is in future, just says course details including instructor and promises more after the course
-        + If course doesn't exist (deleted), just says page will be available when trained
-        + If course is more than three years old, says they must retrain
-        + If attendee record is deleted/suspended, some message
-        + 404 sensibly for non-existant attendees
+        ~ If course is in future, just says course details including instructor and promises more after the course
+        X If course doesn't exist (deleted), just says page will be available when trained => 404
+        ~ If course is more than three years old, says they must retrain
+        X If attendee record is deleted/suspended, some message => 404
+        ~ 404 sensibly for non-existant attendees
         + Otherwise show:
             + Links to personalised PDFs:
                 X certificate
                 + consent form
                 + Follow-up advice
-                + advertising poster
-                    + Use existing mechanism for instructor courses
-                    + make sure it works from the instructor's profile page
+                + advertising poster telling parents about the programme's availability in the setting
             + Attendee details on file
             + Time until next CPD
-            + Contact details for trainer (link to personal page)
+            ~ Contact details for trainer (link to personal page)
     + Instructors can manage attendees
         + Search for individuals by name, email, course attended, qualifications about to expire
         + Do most of the things on the attendees page for a course

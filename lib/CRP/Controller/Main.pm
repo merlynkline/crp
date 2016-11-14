@@ -384,4 +384,27 @@ sub instructor_poster {
     );
 }
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub professional_page {
+    my $c = shift;
+    my $id = $c->stash('slug');
+
+    return $c->redirect_to('crp.pro_page', slug => CRP::Util::WordNumber::encode_number($id)) if $id && length $id < 10 && $id =~ /^\d+$/;
+
+    $id = CRP::Util::WordNumber::decode_number($id) unless $id =~ /^\d+$/;
+    return $c->reply->not_found unless $id && length $id < 10;
+    my $attendee = $c->crp->model('Professional')->find({id => $id});
+    return $c->reply->not_found unless $attendee;
+    my $course = $attendee->instructors_course;
+    return $c->reply->not_found unless $course;
+    
+    $c->stash(
+        attendee        => $attendee,
+        course          => $course,
+        is_untrained    => $course->start_date >= DateTime->now,
+        is_expired      => $course->start_date < DateTime->now()->subtract(years => 3),
+        trainer         => $c->crp->model('Profile')->find({instructor_id => $course->instructor_id}),
+    );
+}
+
 1;
