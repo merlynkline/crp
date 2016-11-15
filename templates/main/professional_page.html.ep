@@ -1,7 +1,9 @@
 %#<!DOCTYPE html>
 % layout 'default', page_id => '';
-% title 'Welcome';
-<div style="float: right; width: 408px">
+% title 'Professional training';
+% $is_untrained = 0;
+% $is_expired = 0;
+<div style="float: right; width: 380px">
     <table class="list1">
         <tr><th colspan="2">Course details</th></tr>
         <tr><td>Date:</td>           <td><%= $c->crp->format_date($course->start_date, 'short') %> - <%= $course->duration %></td></tr>
@@ -11,6 +13,18 @@
         <tr><td>Location:</td>       <td><%= $course->location %></td></tr>
         <tr><td><b>Trainer</b>:</td> <td><b><a href="<%= url_for('crp.membersite.home', slug => $trainer->web_page_slug) %>"><%= $trainer->name %></a></b></td></tr>
     </table>
+% if(!$is_expired) {
+    <table class="list1">
+        <tr><th colspan="2">Your details</th></tr>
+        <tr><td>Name:</td>           <td><%= $attendee->name %></td></tr>
+        <tr><td>Organisation:</td>   <td><%= $attendee->organisation_name %></td></tr>
+        <tr><td>Address:</td>        <td><% foreach my $line(split /[\r\n]+/, $attendee->organisation_address) { %><%= $line %><br /><% } %></td></tr>
+        <tr><td>Postcode:</td>       <td><%= $attendee->organisation_postcode %></td></tr>
+        <tr><td>Telephone:</td>      <td><%= $attendee->organisation_telephone %></td></tr>
+        <tr><td>Qualified until:</td><td><%= $c->crp->format_date($expires, 'short') %></td></tr>
+        <tr><td colspan="2" style="font-size: 75%; line-height: 120%;">If any of the information above is incorrect please contact your trainer to arrange an update.</td></tr>
+    </table>
+% }
 </div>
 <h1>Professional training</h1>
 <h2><%= $attendee->name %></h2>
@@ -39,4 +53,26 @@ assistance.
 </p>
 % }
 % else {
-}
+Thank you for training with The Children's Reflexology Programme.
+Here are your personalised resources for delivering the programme in your setting.
+Click on any of the thumbnails to download a PDF file which you can save or print as required.
+<br />
+% my $code = $course->course_type->code;
+% foreach my $document (
+%   ['TCRPANPRO',  'pro/consent_form-AN',  "Consent form for treatment"],
+%   ['TCRPANPRO',  'pro/follow_up',        "Follow-up advice for parents and carers"],
+%   ['TCRPANPRO',  'pro/leaflet-AN',       "Leaflet advertising the programme"],
+% ) {
+%   my($selector, $name, $caption) = @$document;
+%   if($code =~ /^($selector)$/) {
+%     my $url = url_for('crp.main.pro_pdf', id => $attendee->id, name => $name);
+<div class="pdf-preview">
+    <a href="<%= $url %>"><img src="<%= url_for('crp.main.pdf_image', name => $name) %>.jpg" /></a>
+    <br />
+    <a href="<%= $url %>"><%= $caption %></a>
+</div>
+%   }
+% }
+% }
+<br clear="all" />
+

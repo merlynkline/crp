@@ -397,12 +397,15 @@ sub professional_page {
     return $c->reply->not_found unless $attendee;
     my $course = $attendee->instructors_course;
     return $c->reply->not_found unless $course;
+
+    my $qualification_expiry = $course->start_date->add(years => 3);
     
     $c->stash(
         attendee        => $attendee,
         course          => $course,
         is_untrained    => $course->start_date >= DateTime->now,
-        is_expired      => $course->start_date < DateTime->now()->subtract(years => 3),
+        is_expired      => $qualification_expiry < DateTime->now,
+        expires         => $qualification_expiry,
         trainer         => $c->crp->model('Profile')->find({instructor_id => $course->instructor_id}),
     );
 }
