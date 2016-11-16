@@ -177,3 +177,4 @@
 </table>
 Your personal web site is at <a href="<%= $personal_url %>"><%= $personal_url %></a>.
 </div>
+<br clear="all" />
