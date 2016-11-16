@@ -19,7 +19,8 @@ sub format_data {
     _extract_crp_course_data($c, $data, $profile);
     _extract_crp_instructor_course_data($c, $data, $profile);
     _set_invoice_data($c, $data);
-    _set_demonstration_data($c, $data) if $profile->login->is_demo;
+    _set_demonstration_data($c, $data) if $profile && $profile->login->is_demo;
+    _extract_attendee_data($c, $data);
 
     delete $data->{profile};
     delete $data->{course};
@@ -36,6 +37,7 @@ sub _set_common_data {
 sub _set_invoice_data {
     my($c, $data) = @_;
 
+    return unless $data->{profile};
     $data->{invoice_number} = _generate_invoice_number($data);
     if(exists $data->{course_type}) {
         $data->{invoice_line_1} = 'Training course';
@@ -159,6 +161,16 @@ sub _generate_invoice_number {
     my($data) = @_;
 
     return CRP::Util::WordNumber::encipher($data->{profile}->id) . '.' . CRP::Util::WordNumber::encipher(localtime);
+}
+
+sub _extract_attendee_data {
+    my($c, $data) = @_;
+
+    return unless my $attendee = $data->{attendee};
+    return if $data->{profile};
+
+    $data->{_mark_trainee} = 0;
+    $data->{$_} = $attendee->$_ foreach(qw(name email organisation_name organisation_address organisation_telephone organisation_postcode));
 }
 
 1;

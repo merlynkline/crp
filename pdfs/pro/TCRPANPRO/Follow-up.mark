@@ -1,0 +1,39 @@
+{
+    version => 1,
+    filename => 'Follow-up advice',
+    items => [
+        {
+            action  => 'text',
+            text    => '[% name %]',
+            x       => 60,
+            y       => 90,
+            size    => 14,
+            align   => 'left',
+        },
+        {
+            action  => 'text',
+            text    => '[% email %]',
+            x       => 60,
+            y       => 76,
+            size    => 10,
+            align   => 'left',
+        },
+        {
+            action  => 'text',
+            text    => '[% organisation_name %]',
+            x       => 240,
+            y       => 90,
+            size    => 10,
+            align   => 'left',
+        },
+        {
+            action  => 'text',
+            text    => "[% organisation_address %]\n[% organisation_postcode %]\n[% organisation_telephone %]",
+            x       => 240,
+            y       => 78,
+            size    => 10,
+            align   => 'left',
+        },
+    ]
+}
+

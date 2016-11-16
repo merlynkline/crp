@@ -387,14 +387,13 @@ sub instructor_poster {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 sub professional_page {
     my $c = shift;
-    my $id = $c->stash('slug');
+    my $slug = $c->stash('slug');
 
-    return $c->redirect_to('crp.pro_page', slug => CRP::Util::WordNumber::encode_number($id)) if $id && length $id < 10 && $id =~ /^\d+$/;
+    return $c->redirect_to('crp.pro_page', slug => CRP::Util::WordNumber::encode_number($slug)) if $slug && length $slug < 10 && $slug =~ /^\d+$/;
 
-    $id = CRP::Util::WordNumber::decode_number($id) unless $id =~ /^\d+$/;
-    return $c->reply->not_found unless $id && length $id < 10;
-    my $attendee = $c->crp->model('Professional')->find({id => $id});
+    my $attendee = $c->_attendee_from_slug($slug);
     return $c->reply->not_found unless $attendee;
+
     my $course = $attendee->instructors_course;
     return $c->reply->not_found unless $course;
 
@@ -403,11 +402,58 @@ sub professional_page {
     $c->stash(
         attendee        => $attendee,
         course          => $course,
+        slug            => $slug,
         is_untrained    => $course->start_date >= DateTime->now,
         is_expired      => $qualification_expiry < DateTime->now,
         expires         => $qualification_expiry,
         trainer         => $c->crp->model('Profile')->find({instructor_id => $course->instructor_id}),
     );
+}
+
+sub _attendee_from_slug {
+    my $c = shift;
+    my($slug) = @_;
+
+    my $id = $slug;
+    $id = CRP::Util::WordNumber::decode_number($id) unless $id =~ /^\d+$/;
+    return unless $id && length $id < 10;
+    my $attendee = $c->crp->model('Professional')->find({id => $id});
+    return $attendee;
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+use CRP::Util::PDFMarkUp;
+sub professional_pdf {
+    my $c = shift;
+    my $slug = $c->stash('slug');
+    my $pdf  = $c->stash('pdf');
+
+    $pdf = $c->app->home->rel_file("pdfs/pro/$pdf.pdf");
+    return $c->reply->not_found unless -r $pdf;
+
+    my $attendee = $c->_attendee_from_slug($slug);
+    return $c->reply->not_found unless $attendee;
+
+    my $pdf_doc = CRP::Util::PDFMarkUp->new(file_path => $pdf);
+    my $pdf_data = CRP::Util::CRPDataFormatter::format_data($c, {
+        attendee => $attendee,
+    });
+    $c->render_file(
+        data                => $pdf_doc->fill_template($pdf_data),
+        format              => 'pdf',
+        content_disposition => $c->param('download') ? 'attachment' : 'inline',
+        filename            => $pdf_doc->filename,
+    );
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub professional_pdf_image {
+    my $c = shift;
+    my $name = $c->stash('name');
+
+    return $c->reply->not_found unless $name =~ m{\.jpg$}i;
+    $c->res->headers->content_type('image/jpg');
+    $c->reply->static("../pdfs/pro/$name");
 }
 
 1;

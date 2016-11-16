@@ -59,15 +59,15 @@ Click on any of the thumbnails to download a PDF file which you can save or prin
 <br />
 % my $code = $course->course_type->code;
 % foreach my $document (
-%   ['TCRPANPRO',  'pro/consent_form-AN',  "Consent form for treatment"],
-%   ['TCRPANPRO',  'pro/follow_up',        "Follow-up advice for parents and carers"],
-%   ['TCRPANPRO',  'pro/leaflet-AN',       "Leaflet advertising the programme"],
+%   ['TCRPANPRO',  'TCRPANPRO/Consent Form',     "Consent form for treatment"],
+%   ['TCRPANPRO',  'TCRPANPRO/Follow-up',        "Follow-up advice for parents and carers"],
+%   ['TCRPANPRO',  'TCRPANPRO/Leaflet',          "Leaflet advertising the programme"],
 % ) {
 %   my($selector, $name, $caption) = @$document;
 %   if($code =~ /^($selector)$/) {
-%     my $url = url_for('crp.main.pro_pdf', id => $attendee->id, name => $name);
+%     my $url = url_for('crp.pro_pdf', slug => $slug, pdf => $name);
 <div class="pdf-preview">
-    <a href="<%= $url %>"><img src="<%= url_for('crp.main.pdf_image', name => $name) %>.jpg" /></a>
+    <a href="<%= $url %>"><img src="<%= url_for('crp.pro_pdf_img', slug => $slug, name => $name) %>.jpg" /></a>
     <br />
     <a href="<%= $url %>"><%= $caption %></a>
 </div>
