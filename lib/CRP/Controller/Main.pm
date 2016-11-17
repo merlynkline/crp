@@ -397,7 +397,8 @@ sub professional_page {
     my $course = $attendee->instructors_course;
     return $c->reply->not_found unless $course;
 
-    my $qualification_expiry = $course->start_date->add(years => 3);
+    my $qualification_expiry = $course->start_date->clone;
+    $qualification_expiry->add(years => 3);
     
     $c->stash(
         attendee        => $attendee,
