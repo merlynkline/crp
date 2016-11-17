@@ -329,7 +329,9 @@ sub _display_attendee_editor {
     my $c = shift;
 
     my $attendee = $c->_get_new_or_existing_attendee;
-    $c->_load_attendee_from_defaults($attendee) unless $attendee->in_storage;
+    my $is_new_attendee = ! $attendee->in_storage;
+    $c->_load_attendee_from_defaults($attendee) if $is_new_attendee;
+    $c->stash(is_new_attendee => $is_new_attendee);
     $c->_display_attendee_editor_with($attendee);
 }
 
@@ -339,12 +341,23 @@ sub _get_new_or_existing_attendee {
     my $attendee_id = $c->param('attendee_id');
     my $attendee;
     if($attendee_id) {
-        my $course = $c->stash('course_record');
-        $attendee = $c->crp->model('Professional')->find({id => $attendee_id});
-        die "You can't edit this attendee" unless $attendee && $attendee->instructors_course_id == $course->id;
+        $attendee = $c->_get_existing_attendee($attendee_id);
     }
     else {
         $attendee = $c->crp->model('Professional')->new_result({});
+    }
+    return $attendee;
+}
+
+sub _get_existing_attendee {
+    my $c = shift;
+
+    my $attendee_id = $c->param('attendee_id');
+    my $attendee;
+    if($attendee_id) {
+        my $course = $c->stash('course_record');
+        $attendee = $c->crp->model('Professional')->find({id => $attendee_id});
+        die "You can't edit this attendee" unless $attendee && $attendee->instructors_course_id == $course->id;
     }
     return $attendee;
 }
@@ -380,8 +393,19 @@ sub _create_or_update_attendee {
         $c->_display_attendee_editor_with($attendee);
     }
     else {
-        $c->flash(msg => $attendee->in_storage ? 'attendee_update' : 'attendee_create');
+        my $is_new_attendee = ! $attendee->in_storage;
+        $c->flash(msg => $is_new_attendee ? 'attendee_create' : 'attendee_update');
         $attendee->update_or_insert;
+        if($is_new_attendee) {
+            $c->stash({
+                attendee    => $attendee,
+                slug        => CRP::Util::WordNumber::encode_number($attendee->id),
+            });
+            $c->mail(
+                to          => $c->crp->email_to($attendee->email),
+                template    => 'trainers/email/attendee_introduction',
+            );
+        }
         return $c->redirect_to('crp.trainers.attendees');
     }
 }
@@ -415,6 +439,41 @@ sub _load_attendee_from_params {
 
     return $validation;
 }
+
+sub attendee_email {
+    my $c = shift;
+
+    return unless $c->_stash_attendee_and_course;
+}
+
+sub send_attendee_email {
+    my $c = shift;
+
+    return unless my $attendee = $c->_stash_attendee_and_course;
+
+    $c->mail(
+        to          => $c->crp->email_to($attendee->email),
+        template    => 'trainers/email/attendee_introduction',
+    );
+}
+
+sub _stash_attendee_and_course {
+    my $c = shift;
+
+    $c->_stash_course($c->stash('crp_session')->variable('course_id'));
+    my $attendee = $c->_get_existing_attendee;
+    if($attendee) {
+        $c->stash({
+            attendee    => $attendee,
+            slug        => CRP::Util::WordNumber::encode_number($attendee->id),
+        });
+    }
+    else {
+        $c->reply->not_found;
+    }
+    return $attendee;
+}
+
 
 
 1;

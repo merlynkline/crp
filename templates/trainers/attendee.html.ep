@@ -4,7 +4,7 @@
 % my $course = stash('course_record');
 % my $attendee = stash('attendee_record');
 %#
-<div style="float:right; width:480px;">
+<div style="float:right; max-width:480px;">
     %= include "parts/instructors_course_details", course => $course;
 </div>
 <h1>Enter attendee details</h1>
@@ -14,6 +14,11 @@ These details will appear on documents they produce so make sure they are exactl
 The email address will be used to send important information to the attendee so must be a valid email address
 that they can receive personally.
 </p>
+% if($is_new_attendee) {
+<p>
+<em>N.B: When you create this new attendee they will be sent an email inviting them to check their details on line.</em>
+</p>
+% }
 <br clear="all" />
 <%= include 'parts/message_box', msg => flash('msg') || stash('msg'), auto_hide => 1 %>
     <fieldset>

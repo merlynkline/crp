@@ -1,5 +1,6 @@
 
 + Professionals
+    + +++++ Remove debug settings in templates/main/professional_page.html.ep: $is_untrained = 0; $is_expired = 0
     ~ Count of attendees on course list
     + Extra button for advertised and past professional courses
         ~ Goes to a page with a list of students on the course
@@ -14,9 +15,9 @@
         ~ Edit a student
         + Delete a student
         + Suspend a student
-        + Re-send email
+        ~ Re-send email
         + Get certificate PDF
-        + Show link to the attendee's special page
+        ~ Show link to the attendee's special page
     + Adding an attendee sends them an email with a link to their own page and details of the course
     + Attendee's page:
         ~ If course is in future, just says course details including instructor and promises more after the course
@@ -30,8 +31,8 @@
                 ~ consent form
                 ~ Follow-up advice
                 + advertising poster telling parents about the programme's availability in the setting
-            + Attendee details on file
-            + Time until next CPD
+            ~ Attendee details on file
+            ~ Time until next CPD
             ~ Contact details for trainer (link to personal page)
     + Instructors can manage attendees
         + Search for individuals by name, email, course attended, qualifications about to expire

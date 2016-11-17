@@ -1,0 +1,19 @@
+%# Email sent when an attendee is added to a professional course
+%#
+% stash subject => "Welcome to The Children's Reflexology Programme Professional membership";
+%#
+% my $url = url_for('crp.pro_page', slug => $slug)->to_abs;
+% layout 'default';
+<p>Dear <%= $attendee->name %>,</p>
+<p>Thank you for choosing The Children's Reflexology Programme. Your personal page is here:</p>
+<p>&nbsp;&nbsp;&nbsp;<a href="<%= $url %>"><%= $url %></a></p>
+<p>Please visit this page as soon as possible and check that the details shown are correct.</p>
+<p>Note that this page is personal to you so please do not share the address or this email
+with anyone else. Please keep this email safely so that you can return to your personal page
+easily whenever you need access to the resources available there.</p>
+<p>If you have any questions please contact your trainer directly - their details are
+available from your personal page. Note that this email is sent from an address that
+cannot receive replies.</p>
+<p>Thanks again for your interest in The Children's Reflexology Programme.</p>
+%= include 'parts/email_signature';
+

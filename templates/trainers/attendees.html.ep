@@ -3,7 +3,7 @@
 % title 'Course attendees';
 % my $course = stash('course_record');
 %#
-<div style="float:right; width:480px;">
+<div style="float:right; max-width:480px;">
     %= include "parts/instructors_course_details", course => $course;
 </div>
 <h1>Course attendees</h1>
@@ -35,6 +35,7 @@
         </td>
         <td>
             <a class="small-button" href="<%= url_for('crp.trainers.attendee')->query(attendee_id => $attendee->id) %>" title="Edit the details of this attendee">Edit</a>
+            <a class="small-button" href="<%= url_for('crp.trainers.attendee_email')->query(attendee_id => $attendee->id) %>" title="Send this attendee their joining email">Email</a>
             <br /><a href="<%= url_for 'crp.pro_page', slug => $attendee->id %>">Attendee's page</a>
         </td>
     </tr>

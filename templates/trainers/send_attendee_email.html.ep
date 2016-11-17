@@ -1,0 +1,16 @@
+%#<!DOCTYPE html>
+% layout 'member_default', page_id => 'courses';
+% title 'Attendee email';
+% my $course = stash('course_record');
+%#
+<div style="float:right; max-width:480px;">
+    %= include "parts/instructors_course_details", course => $course;
+</div>
+<h1>Attendee introduction email</h1>
+<p>
+The introduction email that was sent to this attendee when you added them
+to the course has been sent again, to <%= $attendee->email %>.
+</p>
+<p>
+<a href="<%= url_for('crp.trainers.attendees')->query(course_id => $course->id) %>">Return to list of attendees</a>
+</p>

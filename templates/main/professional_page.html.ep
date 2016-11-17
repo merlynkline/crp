@@ -3,7 +3,7 @@
 % title 'Professional training';
 % $is_untrained = 0;
 % $is_expired = 0;
-<div style="float: right; width: 380px">
+<div style="float: right; max-width: 380px">
     <table class="list1">
         <tr><th colspan="2">Course details</th></tr>
         <tr><td>Date:</td>           <td><%= $c->crp->format_date($course->start_date, 'short') %> - <%= $course->duration %></td></tr>
