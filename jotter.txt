@@ -1,6 +1,6 @@
 
 + Professionals
-    + +++++ Remove debug settings in templates/main/professional_page.html.ep: $is_untrained = 0; $is_expired = 0
+    ~ Remove debug settings in templates/main/professional_page.html.ep: $is_untrained = 0; $is_expired = 0
     ~ Count of attendees on course list
     + Extra button for advertised and past professional courses
         ~ Goes to a page with a list of students on the course
