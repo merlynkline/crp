@@ -24,7 +24,7 @@
         <th>Organisation</th>
         <th></th>
     </tr>
-    % foreach my $attendee ($course->professionals) {
+    % foreach my $attendee ($course->professionals->search(undef, {order_by => {-asc => 'email'}})) {
     <tr>
         <td><%= $attendee->name %><br /><%= $attendee->email %></td>
         <td>
