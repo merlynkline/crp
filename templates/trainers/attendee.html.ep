@@ -72,6 +72,7 @@ that they can receive personally.
         <label>Make sure you save your changes:</label>
         <div class="input-container">
             %= submit_button 'Save'
+            <a class="small-button" href="<%= url_for('crp.trainers.attendees')->query(course_id => $course->id) %>">Cancel</a>
             <%= include 'parts/error', field => '_general' %>
             <%= include 'parts/temporary_message', msg => flash 'msg' %>
         </div>

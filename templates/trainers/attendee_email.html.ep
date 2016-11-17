@@ -10,6 +10,7 @@ The introduction email that was sent to this attendee when you added them
 to the course is shown below. To send this email to the attendee again
 at <%= $attendee->email %>, click:<br /><br />
 <a class="standard-button" title="Send email" href="<%= url_for('crp.trainers.send_attendee_email')->query(attendee_id => $attendee->id) %>">Send email</a>
+<a class="small-button" href="<%= url_for('crp.trainers.attendees')->query(course_id => $course_record->id) %>">Cancel</a>
 <br clear="all" />
 <div class="email-preview">
     %= include 'trainers/email/attendee_introduction', format => 'mail';
