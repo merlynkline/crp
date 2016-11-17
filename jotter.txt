@@ -25,10 +25,10 @@
         X If attendee record is deleted/suspended, some message => 404
         ~ 404 sensibly for non-existant attendees
         + Otherwise show:
-            + Links to personalised PDFs:
+            ~ Links to personalised PDFs:
                 X certificate
-                + consent form
-                + Follow-up advice
+                ~ consent form
+                ~ Follow-up advice
                 + advertising poster telling parents about the programme's availability in the setting
             + Attendee details on file
             + Time until next CPD

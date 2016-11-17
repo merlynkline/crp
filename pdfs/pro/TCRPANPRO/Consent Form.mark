@@ -5,7 +5,7 @@
         {
             action  => 'text',
             text    => '[% name %]',
-            x       => 62,
+            x       => 314,
             y       => 653,
             size    => 12,
             align   => 'left',
@@ -13,8 +13,8 @@
         {
             action  => 'text',
             text    => '[% organisation_name %]',
-            x       => 62,
-            y       => 563,
+            x       => 314,
+            y       => 608,
             size    => 12,
             align   => 'left',
         },
