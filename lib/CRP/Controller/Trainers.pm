@@ -331,7 +331,6 @@ sub _display_attendee_editor {
     my $attendee = $c->_get_new_or_existing_attendee;
     my $is_new_attendee = ! $attendee->in_storage;
     $c->_load_attendee_from_defaults($attendee) if $is_new_attendee;
-    $c->stash(is_new_attendee => $is_new_attendee);
     $c->_display_attendee_editor_with($attendee);
 }
 
@@ -380,6 +379,8 @@ sub _display_attendee_editor_with {
     my $c = shift;
     my($attendee) = @_;
 
+    my $is_new_attendee = ! $attendee->in_storage;
+    $c->stash(is_new_attendee => $is_new_attendee);
     $c->stash('attendee_record', $attendee);
 }
 
@@ -387,13 +388,13 @@ sub _create_or_update_attendee {
     my $c = shift;
 
     my $attendee = $c->_get_new_or_existing_attendee;
+    my $is_new_attendee = ! $attendee->in_storage;
     my $validation = $c->_load_attendee_from_params($attendee);
     if($validation->has_error) {
         $c->stash(msg => 'fix_errors');
         $c->_display_attendee_editor_with($attendee);
     }
     else {
-        my $is_new_attendee = ! $attendee->in_storage;
         $c->flash(msg => $is_new_attendee ? 'attendee_create' : 'attendee_update');
         $attendee->update_or_insert;
         if($is_new_attendee) {
@@ -435,6 +436,14 @@ sub _load_attendee_from_params {
         else {
             die $error if $error;
         }
+    }
+
+    if( ! $validation->has_error && ! $attendee->in_storage) {
+        my $duplicate_attendee = $c->crp->model('Professional')->find({
+            email => $attendee->email,
+            instructors_course_id => $attendee->instructors_course_id
+        });
+        $validation->error(email => ['duplicate_email']);
     }
 
     return $validation;

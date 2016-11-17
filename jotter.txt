@@ -31,6 +31,7 @@
                 ~ consent form
                 ~ Follow-up advice
                 + advertising poster telling parents about the programme's availability in the setting
+                + Mental Capacity letter
             ~ Attendee details on file
             ~ Time until next CPD
             ~ Contact details for trainer (link to personal page)
