@@ -1,0 +1,55 @@
+%#<!DOCTYPE html>
+% layout 'default', page_id => '';
+% title 'Professional training verification';
+% $is_untrained = 0 if $c->param('trained');
+% $is_expired = 1 if $c->param('expired');
+<div style="float: right; max-width: 380px">
+    <table class="list1">
+        <tr><th colspan="2">Course details</th></tr>
+        <tr><td>Date:</td>           <td><%= $c->crp->format_date($course->start_date, 'short') %> - <%= $course->duration %></td></tr>
+        <tr><td>Type:</td>           <td><%= $course->course_type->description %></td></tr>
+        <tr><td>Trainer:</td> <td><a href="<%= url_for('crp.membersite.home', slug => $trainer->web_page_slug) %>"><%= $trainer->name %></a></td></tr>
+    </table>
+    <table class="list1">
+        <tr><th colspan="2">Professional's details</th></tr>
+        <tr><td>Name:</td>           <td><%= $attendee->name %></td></tr>
+        <tr><td>Organisation:</td>   <td><%= $attendee->organisation_name %></td></tr>
+        <tr><td>Address:</td>        <td><% foreach my $line(split /[\r\n]+/, $attendee->organisation_address) { %><%= $line %><br /><% } %></td></tr>
+        <tr><td>Postcode:</td>       <td><%= $attendee->organisation_postcode %></td></tr>
+        <tr><td>Telephone:</td>      <td><%= $attendee->organisation_telephone %></td></tr>
+% if( ! $is_untrained) {
+        <tr><td>Qualified until:</td><td><%= $c->crp->format_date($expires, 'short') %></td></tr>
+% }
+    </table>
+</div>
+<h1>Professional training verification</h1>
+<h2><%= $attendee->name %></h2>
+<%= $attendee->organisation_name %>
+<hr />
+% if($is_untrained) {
+<p>
+This page verifies that <%= $attendee->name %> is registered to train in the
+<i><%= $course->course_type->description %></i> course for
+<%= $attendee->organisation_name %> on <%= $c->crp->format_date($course->start_date, 'short') %>.
+Once they have successfully completed the course they will be qualified to work in that setting.
+</p>
+% }
+% elsif($is_expired) {
+<p>
+This page verifies that <%= $attendee->name %> trained in the
+<i><%= $course->course_type->description %></i> course for
+<%= $attendee->organisation_name %> on <%= $c->crp->format_date($course->start_date, 'short') %>.
+Please note that the <b>qualifcation has expired</b> so they are not qualified to work in that setting
+unless and until they have renewed their qualification.
+</p>
+<img src="<%= url_for '/images/Animals/Snake.jpg' %>" style="display: block; margin: 20px auto;" />
+% }
+% else {
+This page verifies that <%= $attendee->name %> trained in the
+<i><%= $course->course_type->description %></i> course for
+<%= $attendee->organisation_name %> on <%= $c->crp->format_date($course->start_date, 'short') %>
+and is thereby qualified to work in that setting.
+<img src="<%= url_for '/images/Animals/Owl.jpg' %>" style="display: block; margin: 20px auto;" />
+% }
+<br clear="all" />
+

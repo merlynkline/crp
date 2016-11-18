@@ -1,3 +1,10 @@
+        + Get certificate PDF
+        + Delete a student
+        + Suspend a student
+                + advertising poster telling parents about the programme's availability in the setting
+                + Mental Capacity letter
+        + Cancelling a professional course must delete all the attendees (and warn about that)
+
 
 + Professionals
     ~ Remove debug settings in templates/main/professional_page.html.ep: $is_untrained = 0; $is_expired = 0
@@ -18,6 +25,8 @@
         + Suspend a student
         ~ Re-send email
         + Get certificate PDF
+            + Should have a signature
+            ~ Need a certificate verification page
         ~ Show link to the attendee's special page
     ~ Adding an attendee sends them an email with a link to their own page and details of the course
     + Attendee's page:

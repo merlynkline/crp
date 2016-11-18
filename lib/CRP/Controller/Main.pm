@@ -390,23 +390,31 @@ sub professional_page {
     my $slug = $c->stash('slug');
 
     my $attendee = $c->crp->model('Professional')->find_by_slug($slug);
-    return $c->reply->not_found unless $attendee;
+    return $c->reply->not_found unless $c->_stash_attendee_qualification_details($attendee);
+}
+
+sub _stash_attendee_qualification_details {
+    my $c = shift;
+    my($attendee) = @_;
+
+    return unless $attendee;
 
     my $course = $attendee->instructors_course;
-    return $c->reply->not_found unless $course;
+    return unless $course;
 
     my $qualification_expiry = $course->start_date->clone;
     $qualification_expiry->add(years => 3);
-    
+
     $c->stash(
         attendee        => $attendee,
         course          => $course,
-        slug            => $slug,
         is_untrained    => $course->start_date >= DateTime->now,
         is_expired      => $qualification_expiry < DateTime->now,
         expires         => $qualification_expiry,
         trainer         => $c->crp->model('Profile')->find({instructor_id => $course->instructor_id}),
     );
+
+    return 1;
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -442,6 +450,15 @@ sub professional_pdf_image {
     return $c->reply->not_found unless $name =~ m{\.jpg$}i;
     $c->res->headers->content_type('image/jpg');
     $c->reply->static("../pdfs/pro/$name");
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub professional_verify_signature {
+    my $c = shift;
+    my $signature = $c->stash('signature');
+
+    my $attendee = $c->crp->model('Professional')->find_by_signature($signature);
+    return $c->reply->not_found unless $c->_stash_attendee_qualification_details($attendee);
 }
 
 1;

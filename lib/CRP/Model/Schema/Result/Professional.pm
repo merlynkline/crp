@@ -73,7 +73,11 @@ sub slug {
     return CRP::Util::WordNumber::encode_number($self->id);
 }
 
+sub signature {
+    my $self = shift;
 
+    return '-' . CRP::Util::WordNumber::encipher($self->id);
+}
 
 1;
 

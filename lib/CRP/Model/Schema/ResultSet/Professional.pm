@@ -17,5 +17,17 @@ sub find_by_slug {
     return $self->find({id => $id});
 }
 
+sub find_by_signature {
+    my $self = shift;
+    my($signature) = @_;
+
+    return unless $signature =~ /^-(\d{1,9})$/;
+    my $id = $1;
+    $id = CRP::Util::WordNumber::decode_number($id);
+    return unless $id && length $id < 10;
+    return $self->find({id => $id});
+}
+
 1;
+
 

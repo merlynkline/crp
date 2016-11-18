@@ -66,6 +66,7 @@ sub startup {
     $r->any('professional/:slug')->to('main#professional_page')->name('crp.pro_page');
     $r->any('professional/:slug/pdf/*pdf')->to('main#professional_pdf')->name('crp.pro_pdf');
     $r->any('professional/:slug/pdf_thumb/*name')->to('main#professional_pdf_image')->name('crp.pro_pdf_img');
+    $r->any('professional/:signature/verify')->to('main#professional_verify_signature')->name('crp.pro_verify');
 
     my $logged_in = $r->under('/instructor')->to('logged_in#authenticate');
     $logged_in->get('/')->to('members#welcome')->name('crp.logged_in_default');
