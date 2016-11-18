@@ -441,9 +441,9 @@ sub _load_attendee_from_params {
     if( ! $validation->has_error && ! $attendee->in_storage) {
         my $duplicate_attendee = $c->crp->model('Professional')->find({
             email => $attendee->email,
-            instructors_course_id => $attendee->instructors_course_id
+            instructors_course_id => $course->id,
         });
-        $validation->error(email => ['duplicate_email']);
+        $validation->error(email => ['duplicate_email']) if $duplicate_attendee;
     }
 
     return $validation;
