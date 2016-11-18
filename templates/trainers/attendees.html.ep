@@ -38,6 +38,7 @@
         <td>
             <a class="small-button" href="<%= url_for('crp.trainers.attendee')->query(attendee_id => $attendee->id) %>" title="Edit the details of this attendee">Edit</a>
             <a class="small-button" href="<%= url_for('crp.trainers.attendee_email')->query(attendee_id => $attendee->id) %>" title="Send this attendee their joining email">Email</a>
+            <a class="small-button" href="<%= url_for('crp.trainers.attendee_certificate')->query(attendee_id => $attendee->id) %>" title="Attendee certificate PDF">Cert</a>
             <br /><a class="supplementary-info" href="<%= url_for 'crp.pro_page', slug => $attendee->slug %>">Attendee's page</a>
             <br /><a class="supplementary-info" href="<%= url_for 'crp.pro_verify', signature => $attendee->signature %>">Verification page</a>
         </td>

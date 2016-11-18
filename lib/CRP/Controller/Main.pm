@@ -402,8 +402,7 @@ sub _stash_attendee_qualification_details {
     my $course = $attendee->instructors_course;
     return unless $course;
 
-    my $qualification_expiry = $course->start_date->clone;
-    $qualification_expiry->add(years => 3);
+    my $qualification_expiry = $course->expiry_date;
 
     $c->stash(
         attendee        => $attendee,

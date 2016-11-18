@@ -104,6 +104,7 @@ sub startup {
     $trainers->any('attendee')->to('trainers#attendee')->name('crp.trainers.attendee');
     $trainers->any('attendee_email')->to('trainers#attendee_email')->name('crp.trainers.attendee_email');
     $trainers->any('send_attendee_email')->to('trainers#send_attendee_email')->name('crp.trainers.send_attendee_email');
+    $trainers->any('attendee_certificate')->to('trainers#attendee_certificate')->name('crp.trainers.attendee_certificate');
 
     my $admin = $logged_in->under('/admin')->to('admin#authenticate');
     $admin->get('/')->to('admin#welcome')->name('crp.admin_default');

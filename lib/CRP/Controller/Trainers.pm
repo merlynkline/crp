@@ -483,6 +483,29 @@ sub _stash_attendee_and_course {
     return $attendee;
 }
 
+sub attendee_certificate {
+    my $c = shift;
+
+    return unless my $attendee = $c->_stash_attendee_and_course;
+
+    my $course  = $c->stash('course_record');
+
+    my $course_type = $course->course_type->code;
+    my $pdf = $c->app->home->rel_file("pdfs/Attendee_Certificate_$course_type.pdf");
+    $pdf = $c->app->home->rel_file("pdfs/Attendee_Certificate.pdf") unless -r $pdf;
+    my $pdf_doc = CRP::Util::PDFMarkUp->new(file_path => $pdf);
+
+    my $pdf_data = CRP::Util::CRPDataFormatter::format_data($c, {
+        instructor_course   => $course,
+        attendee            => $attendee,
+    });
+    $c->render_file(
+        data                => $pdf_doc->fill_template($pdf_data),
+        format              => 'pdf',
+        content_disposition => $c->param('download') ? 'attachment' : 'inline',
+        filename            => $pdf_doc->filename,
+    );
+}
 
 
 1;

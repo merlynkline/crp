@@ -125,6 +125,7 @@ sub _extract_crp_instructor_course_data {
     $data->{$_} = $course->$_ foreach(qw(venue duration price description));
     $data->{course_type} = $course->course_type->description;
     $data->{date} = $c->crp->format_date($course->start_date, 'stroke');
+    $data->{expiry_date}   = $c->crp->format_date($course->expiry_date, 'long');
     $data->{_mark_trainee} = 0;
 }
 
@@ -171,6 +172,10 @@ sub _extract_attendee_data {
 
     $data->{_mark_trainee} = 0;
     $data->{$_} = $attendee->$_ foreach(qw(name email organisation_name organisation_address organisation_telephone organisation_postcode));
+    my $signature = $attendee->signature;
+    $data->{signature} = $signature;
+    $data->{signature_url} = $c->url_for('crp.pro_verify', signature => $signature)->to_abs;
+    $data->{signature_date} = $c->crp->format_date(_certificate_date($attendee->instructors_course->start_date), 'cert');
 }
 
 1;
