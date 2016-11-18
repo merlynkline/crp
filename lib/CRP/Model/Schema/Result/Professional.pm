@@ -79,5 +79,11 @@ sub signature {
     return '-' . CRP::Util::WordNumber::encipher($self->id);
 }
 
+sub is_trained {
+    my $self = shift;
+
+    return $self->instructors_course->start_date < DateTime->now;
+}
+
 1;
 
