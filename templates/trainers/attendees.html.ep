@@ -12,6 +12,8 @@
     <a class="standard-button" title="Add a new attendee" href="<%= url_for 'crp.trainers.attendee' %>">Add attendee</a>
     &nbsp;
 </span>
+<p>These are the attendees currently registered for your course. Use the buttons in the list to manage them.</p>
+<p><a href="<%= url_for 'crp.trainers.courses' %>">Return to list of courses</a></p>
 <br clear="all" />
 <%= include 'parts/message_box', msg => flash('msg') || stash('msg'), auto_hide => 1 %>
 % if($course->professionals->count == 0) {
