@@ -1,8 +1,6 @@
-        + Get certificate PDF
         + Delete a student
         + Suspend a student
                 + advertising poster telling parents about the programme's availability in the setting
-                + Mental Capacity letter
         + Cancelling a professional course must delete all the attendees (and warn about that)
 
 
@@ -24,8 +22,8 @@
         + Delete a student
         + Suspend a student
         ~ Re-send email
-        + Get certificate PDF
-            + Should have a signature
+        ~ Get certificate PDF
+            ~ Should have a signature
             ~ Need a certificate verification page
         ~ Show link to the attendee's special page
     ~ Adding an attendee sends them an email with a link to their own page and details of the course
@@ -41,7 +39,7 @@
                 ~ consent form
                 ~ Follow-up advice
                 + advertising poster telling parents about the programme's availability in the setting
-                + Mental Capacity letter
+                ~ Mental Capacity letter
             ~ Attendee details on file
             ~ Time until next CPD
             ~ Contact details for trainer (link to personal page)

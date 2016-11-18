@@ -1,0 +1,29 @@
+
+{
+    version => 1,
+    filename => 'Mental Capacity form',
+    items => [
+        { action => 'text', text => '[% name %]',               x => 572, y => 776, size => 14, align => 'right', font => 'Helvetica-Bold' },
+        { action => 'text', text => '[% organisation_name %]',  x => 572, y => 759, size => 14, align => 'right', },
+        { action => 'text', text => "[% organisation_address %]\n[% organisation_postcode %]\n[% email %]\n[% organisation_telephone %]", x => 572, y => 742, size => 12, align => 'right' },
+        { action => 'text', text => '[% name %]',               x =>  34, y => 250, size => 14 },
+        {
+            action  => 'text',
+            text    => "[% name %]\n[% organisation_name %]",
+            x       => 60,
+            y       => 80,
+            size    => 9,
+            page    => 2,
+            align   => 'left',
+        },
+        {
+            action  => 'text',
+            text    => "[% organisation_address %]\n[% organisation_postcode %]\n[% email %]",
+            x       => 300,
+            y       => 80,
+            size    => 9,
+            page    => 2,
+            align   => 'center',
+        },
+  ],
+}

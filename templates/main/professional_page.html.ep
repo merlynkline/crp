@@ -25,6 +25,11 @@
 % }
         <tr><td colspan="2" style="font-size: 75%; line-height: 120%;">If any of the information above is incorrect please contact your trainer to arrange an update.</td></tr>
     </table>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
 </div>
 <h1>Professional training</h1>
 <h2><%= $attendee->name %></h2>
@@ -62,6 +67,7 @@ Click on any of the thumbnails to download a PDF file which you can save or prin
 %   ['TCRPANPRO',  'TCRPANPRO/Consent Form',     "Consent form for treatment"],
 %   ['TCRPANPRO',  'TCRPANPRO/Follow-up',        "Follow-up advice for parents and carers"],
 %   ['TCRPANPRO',  'TCRPANPRO/Leaflet',          "Leaflet advertising the programme"],
+%   ['TCRPANPRO',  'TCRPANPRO/mencap',           "Mental Capacity assessment form and letter"],
 % ) {
 %   my($selector, $name, $caption) = @$document;
 %   if($code =~ /^($selector)$/) {
