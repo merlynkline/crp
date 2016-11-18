@@ -13,7 +13,6 @@
         <tr><td>Location:</td>       <td><%= $course->location %></td></tr>
         <tr><td><b>Trainer</b>:</td> <td><b><a href="<%= url_for('crp.membersite.home', slug => $trainer->web_page_slug) %>"><%= $trainer->name %></a></b></td></tr>
     </table>
-% if(!$is_expired) {
     <table class="list1">
         <tr><th colspan="2">Your details</th></tr>
         <tr><td>Name:</td>           <td><%= $attendee->name %></td></tr>
@@ -21,10 +20,11 @@
         <tr><td>Address:</td>        <td><% foreach my $line(split /[\r\n]+/, $attendee->organisation_address) { %><%= $line %><br /><% } %></td></tr>
         <tr><td>Postcode:</td>       <td><%= $attendee->organisation_postcode %></td></tr>
         <tr><td>Telephone:</td>      <td><%= $attendee->organisation_telephone %></td></tr>
+% if( ! $is_untrained) {
         <tr><td>Qualified until:</td><td><%= $c->crp->format_date($expires, 'short') %></td></tr>
+% }
         <tr><td colspan="2" style="font-size: 75%; line-height: 120%;">If any of the information above is incorrect please contact your trainer to arrange an update.</td></tr>
     </table>
-% }
 </div>
 <h1>Professional training</h1>
 <h2><%= $attendee->name %></h2>
