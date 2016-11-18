@@ -389,9 +389,7 @@ sub professional_page {
     my $c = shift;
     my $slug = $c->stash('slug');
 
-    return $c->redirect_to('crp.pro_page', slug => CRP::Util::WordNumber::encode_number($slug)) if $slug && length $slug < 10 && $slug =~ /^\d+$/;
-
-    my $attendee = $c->_attendee_from_slug($slug);
+    my $attendee = $c->crp->model('Professional')->find_by_slug($slug);
     return $c->reply->not_found unless $attendee;
 
     my $course = $attendee->instructors_course;
@@ -411,17 +409,6 @@ sub professional_page {
     );
 }
 
-sub _attendee_from_slug {
-    my $c = shift;
-    my($slug) = @_;
-
-    my $id = $slug;
-    $id = CRP::Util::WordNumber::decode_number($id) unless $id =~ /^\d+$/;
-    return unless $id && length $id < 10;
-    my $attendee = $c->crp->model('Professional')->find({id => $id});
-    return $attendee;
-}
-
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 use CRP::Util::PDFMarkUp;
 sub professional_pdf {
@@ -432,7 +419,7 @@ sub professional_pdf {
     $pdf = $c->app->home->rel_file("pdfs/pro/$pdf.pdf");
     return $c->reply->not_found unless -r $pdf;
 
-    my $attendee = $c->_attendee_from_slug($slug);
+    my $attendee = $c->crp->model('Professional')->find_by_slug($slug);
     return $c->reply->not_found unless $attendee;
 
     my $pdf_doc = CRP::Util::PDFMarkUp->new(file_path => $pdf);

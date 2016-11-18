@@ -8,6 +8,7 @@ use base 'DBIx::Class::Core';
 use Carp;
 
 use DateTime;
+use CRP::Util::WordNumber;
 
 __PACKAGE__->load_components(qw(InflateColumn::DateTime));
 __PACKAGE__->table('professional');
@@ -65,6 +66,13 @@ sub sqlt_deploy_hook {
         $sqlt_table->add_index(name => "professional_${column}_idx", fields => [$column]);
     }
 }
+
+sub slug {
+    my $self = shift;
+
+    return CRP::Util::WordNumber::encode_number($self->id);
+}
+
 
 
 1;
