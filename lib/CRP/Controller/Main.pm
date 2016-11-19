@@ -400,7 +400,7 @@ sub _stash_attendee_qualification_details {
     return unless $attendee;
 
     my $course = $attendee->instructors_course;
-    return unless $course;
+    return unless $course && ! $course->canceled;
 
     my $qualification_expiry = $course->expiry_date;
 
@@ -427,8 +427,9 @@ sub professional_pdf {
     return $c->reply->not_found unless -r $pdf;
 
     my $attendee = $c->crp->model('Professional')->find_by_slug($slug);
-    return $c->reply->not_found unless $attendee &&
-        (($attendee->is_trained && $attendee->instructors_course->expiry_date > DateTime->now) || $c->app->mode eq 'development');
+    return $c->reply->not_found unless $attendee
+        && (($attendee->is_trained && $attendee->instructors_course->expiry_date > DateTime->now) || $c->app->mode eq 'development')
+        && ! $attendee->instructors_course->canceled;
 
     my $pdf_doc = CRP::Util::PDFMarkUp->new(file_path => $pdf);
     my $pdf_data = CRP::Util::CRPDataFormatter::format_data($c, {

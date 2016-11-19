@@ -42,7 +42,7 @@
 %#        <a class="small-button" href="<%= url_for('crp.trainersite.course', slug => stash('profile_record')->web_page_slug, course => $course->id) %>" title="See the advertisement page for this course">Adv</a>
         % }
 %#        <a class="small-button" href="<%= url_for('crp.trainers.course_docs')->query(course_id => $course->id) %>" title="Download and print PDF documents for this course (posters, booking form, register, etc)">PDF</a>
-% if($course->course_type->is_professional && $type ne 'draft' && $type ne 'canceled') {
+% if($course->course_type->is_professional && $type ne 'draft') {
           <br />
           <a class="small-button" href="<%= url_for('crp.trainers.attendees')->query(course_id => $course->id) %>"><%= $course->professionals->count %> Attendees</a>&nbsp;
 % }

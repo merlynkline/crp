@@ -309,6 +309,7 @@ sub _stash_course {
     die "You can't manage this course" unless $course && $course->instructor_id == $c->crp->logged_in_instructor_id;
     $c->stash('crp_session')->variable('course_id', $course_id);
     $c->stash('course_record', $course);
+    $c->stash('edit_restriction', $course->canceled ? 'canceled' : '');
     return $course;
 }
 
@@ -317,6 +318,7 @@ sub attendee {
     my $c = shift;
 
     my $course = $c->_stash_course($c->stash('crp_session')->variable('course_id'));
+    die "This course is canceled" if $course->canceled;
     if($c->req->method eq 'POST') {
         $c->_create_or_update_attendee;
     }
@@ -469,7 +471,8 @@ sub send_attendee_email {
 sub _stash_attendee_and_course {
     my $c = shift;
 
-    $c->_stash_course($c->stash('crp_session')->variable('course_id'));
+    my $course = $c->_stash_course($c->stash('crp_session')->variable('course_id'));
+    die "This course is canceled" if $course->canceled;
     my $attendee = $c->_get_existing_attendee;
     if($attendee) {
         $c->stash({

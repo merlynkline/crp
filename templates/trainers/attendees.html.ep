@@ -7,12 +7,20 @@
     %= include "parts/instructors_course_details", course => $course;
 </div>
 <h1>Course attendees</h1>
+% if( ! $edit_restriction) {
 <span class="highlight-box">
     To add a new attendee click:
     <a class="standard-button" title="Add a new attendee" href="<%= url_for 'crp.trainers.attendee' %>">Add attendee</a>
     &nbsp;
 </span>
-<p>These are the attendees currently registered for your course. Use the buttons in the list to manage them.</p>
+% }
+<p>These are the attendees currently registered for your course.
+% if( ! $edit_restriction) {
+Use the buttons in the list to manage them.
+% } else {
+<p>NB: This list is for information only as this course has been cancelled.</p>
+% }
+</p>
 <p><a href="<%= url_for 'crp.trainers.courses' %>">Return to list of courses</a></p>
 <br clear="all" />
 <%= include 'parts/message_box', msg => flash('msg') || stash('msg'), auto_hide => 1 %>
@@ -24,7 +32,9 @@
     <tr>
         <th>Name</th>
         <th>Organisation</th>
+% if( ! $edit_restriction) {
         <th></th>
+% }
     </tr>
     % foreach my $attendee ($course->professionals->search(undef, {order_by => {-asc => 'email'}})) {
     <tr>
@@ -35,6 +45,7 @@
             <%= $attendee->organisation_postcode %><br />
             <%= $attendee->organisation_telephone %>
         </td>
+% if( ! $edit_restriction) {
         <td>
             <a class="small-button" href="<%= url_for('crp.trainers.attendee')->query(attendee_id => $attendee->id) %>" title="Edit the details of this attendee">Edit</a>
             <a class="small-button" href="<%= url_for('crp.trainers.attendee_email')->query(attendee_id => $attendee->id) %>" title="Send this attendee their joining email">Email</a>
@@ -42,6 +53,7 @@
             <br /><a class="supplementary-info" href="<%= url_for 'crp.pro_page', slug => $attendee->slug %>">Attendee's page</a>
             <br /><a class="supplementary-info" href="<%= url_for 'crp.pro_verify', signature => $attendee->signature %>">Verification page</a>
         </td>
+% }
     </tr>
     % }
 </table>
