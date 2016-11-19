@@ -41,8 +41,7 @@ Use the buttons in the list to manage them.
         <td><%= $attendee->name %><br /><%= $attendee->email %></td>
         <td>
             <%= $attendee->organisation_name %><br />
-            <%= $attendee->organisation_address %><br />
-            <%= $attendee->organisation_postcode %><br />
+            <%= $attendee->organisation_address %> <%= $attendee->organisation_postcode %><br />
             <%= $attendee->organisation_telephone %>
         </td>
 % if( ! $edit_restriction) {
@@ -50,8 +49,8 @@ Use the buttons in the list to manage them.
             <a class="small-button" href="<%= url_for('crp.trainers.attendee')->query(attendee_id => $attendee->id) %>" title="Edit the details of this attendee">Edit</a>
             <a class="small-button" href="<%= url_for('crp.trainers.attendee_email')->query(attendee_id => $attendee->id) %>" title="Send this attendee their joining email">Email</a>
             <a class="small-button" href="<%= url_for('crp.trainers.attendee_certificate')->query(attendee_id => $attendee->id) %>" title="Attendee certificate PDF">Cert</a>
-            <br /><a class="supplementary-info" href="<%= url_for 'crp.pro_page', slug => $attendee->slug %>">Attendee's page</a>
-            <br /><a class="supplementary-info" href="<%= url_for 'crp.pro_verify', signature => $attendee->signature %>">Verification page</a>
+            <br /><a class="supplementary-info" href="<%= url_for 'crp.pro_page', slug => $attendee->slug %>" title="Go to the personal page that the attendee is sent to by the link in their introduction email">Attendee's page</a>
+            <br /><a class="supplementary-info" href="<%= url_for 'crp.pro_verify', signature => $attendee->signature %>"i title="Go to the signature verification page shown on the attendee's certificate">Verification page</a>
         </td>
 % }
     </tr>
