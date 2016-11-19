@@ -11,6 +11,9 @@
     % if($restricted) {
     <p>NB: This course is already published so there are some details that you cannot edit.</p>
     % }
+    % if($course->professionals->count > 0) {
+    <p>NB: There are <%= $course->professionals->count %> attendees registered for this course - make sure you inform them of any changes.</p>
+    % }
     <fieldset>
         <legend>Instructors/pro course details</legend>
         %= hidden_field 'course_id' => $course->id;

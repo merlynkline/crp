@@ -20,6 +20,11 @@ Note that once a course has ben canceled you cannot undo that change or re-publi
     <p>
     Please confirm that you want to cancel the instructors course shown below and withdraw it from your advertised list.
     </p>
+    % if($course->professionals->count > 0 || 1) {
+    <p>
+    <b>Warning: there are <%= $course->professionals->count %> attendees registered for this course.</b>
+    </p>
+    %}
     <div class="button-group">
         <a class="standard-button" href="<%= url_for('crp.trainers.courses') %>">Keep advertised</a>
         <a class="standard-button" href="<%= url_for('crp.trainers.do_cancel_course') %>">Withdraw</a>
