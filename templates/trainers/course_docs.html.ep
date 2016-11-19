@@ -42,6 +42,7 @@ in order to view and print them.
 %                           'trainer/TCRPINST/Micro-teach assessment',  "Micro-teach assessment form"],
 %   ['TCRPINST|TCRPANINST|TCRPREFLEXINST',
 %                           'trainer/TCRPINST/Feedback form',           "Feedback form"],
+%   ['TCRPANPRO',           'pro/feedback_form',                        "Feedback form"],
 % ) {
 %   my($selector, $name, $caption) = @$document;
 %   if($code =~ /^($selector)$/) {

@@ -1,7 +1,5 @@
-        + Delete a student
-        + advertising poster telling parents about the programme's availability in the setting
-        + Pro feedback form PDF (based on parents feedback - remove provision for children and bonding)
 
+        + advertising poster telling parents about the programme's availability in the setting
 
 + Professionals
     ~ New version of the register
@@ -21,7 +19,7 @@
         ~ Make sure the same person can attend more than one course
             ~ but not the same course more than once
         ~ Edit a student
-        + Delete a student
+        ~ Delete a student
         + Suspend a student
         ~ Re-send email
         ~ Get certificate PDF
@@ -74,8 +72,8 @@
         ~ Add certificate PDF for the qualification as pdfs/Attendee_Certificate_$code.pdf
         X Add a new PDF for the instructor course poster
         ~ Enable any existing course-specific PDFs that apply to the course
-        + Add any new course-specific PDFs
-            + Pro feedback form PDF
+        ~ Add any new course-specific PDFs
+            ~ Pro feedback form PDF
         + Update the web site to talk about the new instructor course
             + "Home" page - short mention
             + "Programme" page(s) - more details, perhaps a new page split off
