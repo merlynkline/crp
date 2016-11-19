@@ -1,9 +1,12 @@
         + Delete a student
-        + Suspend a student
         + advertising poster telling parents about the programme's availability in the setting
+        + Pro feedback form PDF (based on parents feedback - remove provision for children and bonding)
 
 
 + Professionals
+    ~ New version of the register
+    + Course poster based on pictorial poster
+    ~ Add kidsreflex.co.uk and trainers details to follow-up form, consent form, mencap form
     ~ Remove debug settings in templates/main/professional_page.html.ep: $is_untrained = 0; $is_expired = 0
     ~ Count of attendees on course list
     + Extra button for advertised and past professional courses
@@ -26,7 +29,7 @@
             ~ Need a certificate verification page
         ~ Show link to the attendee's special page
     ~ Adding an attendee sends them an email with a link to their own page and details of the course
-    + Add registered attendees to the register
+    ~ Add registered attendees to the register
     + Attendee's page:
         ~ If course is in future, just says course details including instructor and promises more after the course
         X If course doesn't exist (deleted), just says page will be available when trained => 404
@@ -70,9 +73,9 @@
     + Add resources for AN PRO course
         ~ Add certificate PDF for the qualification as pdfs/Attendee_Certificate_$code.pdf
         X Add a new PDF for the instructor course poster
-        + Enable any existing course-specific PDFs that apply to the course
+        ~ Enable any existing course-specific PDFs that apply to the course
         + Add any new course-specific PDFs
-            ? Pro feedback form
+            + Pro feedback form PDF
         + Update the web site to talk about the new instructor course
             + "Home" page - short mention
             + "Programme" page(s) - more details, perhaps a new page split off
@@ -80,6 +83,7 @@
             + "Instructors" page(s) - more details, perhaps a new page split off
             + Anything else
         + Add any new products to the shop
+            + Trainer's pack
     + Add resources for EY PRO course
         + Add certificate PDF for the qualification as pdfs/Attendee_Certificate_$code.pdf
         + Add a new PDF for the instructor course poster
