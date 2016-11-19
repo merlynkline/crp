@@ -180,7 +180,7 @@ sub _data_value {
     my($key) = @_;
 
     my $data = $self->_data;
-    return $data->{$key} if exists $data->{$key};
+    return $data->{$key} // ''  if exists $data->{$key};
     return $self->test_mode ? "[[ $key ]]" : '';
 }
 
