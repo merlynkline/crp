@@ -510,6 +510,21 @@ sub attendee_certificate {
     );
 }
 
+sub attendee_delete {
+    my $c = shift;
+
+    return unless my $attendee = $c->_stash_attendee_and_course;
+}
+
+
+sub do_attendee_delete {
+    my $c = shift;
+
+    return unless my $attendee = $c->_stash_attendee_and_course;
+    $attendee->delete;
+    return $c->redirect_to('crp.trainers.attendees');
+}
+
 
 1;
 
