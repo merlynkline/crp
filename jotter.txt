@@ -1,7 +1,6 @@
         + Delete a student
         + Suspend a student
-                + advertising poster telling parents about the programme's availability in the setting
-        + Cancelling a professional course must delete all the attendees (and warn about that)
+        + advertising poster telling parents about the programme's availability in the setting
 
 
 + Professionals
@@ -27,6 +26,7 @@
             ~ Need a certificate verification page
         ~ Show link to the attendee's special page
     ~ Adding an attendee sends them an email with a link to their own page and details of the course
+    + Add registered attendees to the register
     + Attendee's page:
         ~ If course is in future, just says course details including instructor and promises more after the course
         X If course doesn't exist (deleted), just says page will be available when trained => 404
@@ -52,11 +52,11 @@
         + Says what qualification they have and who qualified them
         + Search by organisation
     ~ Add a column to the qualification table - a boolean to indicate that the qualification is for professionals who get a controlled certificate
-    + Extend the instructor training course facilities
+    ~ Extend the instructor training course facilities
         ~ These are now intructor/professional training courses
         - Choice of course type makes the difference, by reference to the qualification earned
         ~ Lists of courses on the public site must only include instructor training courses and not professional courses
-        + Cancelling a professional course must delete all the attendees (and warn about that)
+        ~ Canceled courses must have restricted attendee features
     ~ Add a new professionals table
         ~ id
         ~ name
@@ -68,8 +68,11 @@
         ~ instructors_course_id
         ~ suspended_flag
     + Add resources for AN PRO course
-        + Add certificate PDF for the qualification as pdfs/Qualification_Certificate_$code.pdf
-        + Add a new PDF for the instructor course poster
+        ~ Add certificate PDF for the qualification as pdfs/Attendee_Certificate_$code.pdf
+        X Add a new PDF for the instructor course poster
+        + Enable any existing course-specific PDFs that apply to the course
+        + Add any new course-specific PDFs
+            ? Pro feedback form
         + Update the web site to talk about the new instructor course
             + "Home" page - short mention
             + "Programme" page(s) - more details, perhaps a new page split off
@@ -78,8 +81,10 @@
             + Anything else
         + Add any new products to the shop
     + Add resources for EY PRO course
-        + Add certificate PDF for the qualification as pdfs/Qualification_Certificate_$code.pdf
+        + Add certificate PDF for the qualification as pdfs/Attendee_Certificate_$code.pdf
         + Add a new PDF for the instructor course poster
+        + Enable any existing course-specific PDFs that apply to the course
+        + Add any new course-specific PDFs
         + Update the web site to talk about the new instructor course
             + "Home" page - short mention
             + "Programme" page(s) - more details, perhaps a new page split off
@@ -790,6 +795,8 @@ session:
         + "Instructors" page(s) - more details, perhaps a new page split off
         + Anything else
     + Add any new products to the shop
+    + Enable any existing course-specific PDFs that apply to the course in templates/trainers/course_docs.html.ep
+    + Add any new course-specific PDFs and enable in templates/trainers/course_docs.html.ep
     + Add parent course type(s) for the new qualification
 - Adding a new parent course type
     + Add record in DB by means of a schema update
