@@ -1,11 +1,11 @@
 %#<!DOCTYPE html>
 % layout 'member_default';
 % my $course = stash('course_record');
-% title 'Instructor Course documents';
-<div style="float:right; width:480px;">
+% title 'Course documents';
+<div style="float:right; max-width:480px;">
     %= include "parts/instructors_course_details", course => $course;
 </div>
-<h1>Instructor Course documents</h1>
+<h1>Course documents</h1>
 <p>
 Here is a collection of documents suitable for advertising
 and administration, each of which has details specific to
@@ -30,6 +30,7 @@ in order to view and print them.
 %   ['TCRPANINST',          'ads/trainer/A3PosterPics-TCRPANINST',      "Simple pictorial poster"],
 %   ['TCRPREFLEXINST',      'ads/trainer/A3PosterPics-TCRPREFLEXINST',  "Simple pictorial poster"],
 %   ['TCRPINST',            'trainer/TCRPINST/Booking form',            "Booking form"],
+%   ['TCRPANPRO',           'pro/booking_form',                         "Booking form"],
 %   ['TCRPINST',            'trainer/TCRPINST/Student progress',        "Student progress form"],
 %   ['TCRPINST',            'trainer/TCRPINST/Booking confirmation',    "Booking confirmation form"],
 %   ['TCRPINST|TCRPANINST|TCRPREFLEXINST|TCRPANPRO',
