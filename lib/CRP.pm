@@ -94,6 +94,7 @@ sub startup {
     $logged_in->any('course_docs')->to('members#course_docs')->name('crp.members.course_docs');
     $logged_in->any('pdf_image/*name')->to('members#pdf_image')->name('crp.members.pdf_image');
     $logged_in->any('course_pdf/:course_id/*name')->to('members#course_pdf')->name('crp.members.course_pdf');
+    $logged_in->any('fbprofilepic')->to('members#fb_profile_pic')->name('crp.members.fbprofilepic');
 
     my $trainers = $logged_in->under('/trainer')->to('trainers#authenticate');
     $trainers->any('courses')->to('trainers#courses')->name('crp.trainers.courses');

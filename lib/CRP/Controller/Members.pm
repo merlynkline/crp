@@ -600,5 +600,11 @@ sub pdf_image {
     $c->reply->static("../pdfs/$name");
 }
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub fb_profile_pic {
+    my $c = shift;
+
+}
+
 1;
 

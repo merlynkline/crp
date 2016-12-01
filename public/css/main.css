@@ -176,7 +176,7 @@ hr {
     padding:        8px 0;
     font-weight:    bold;
 }
-fieldset, legend, .message-box, .pdf-preview, .highlight-box, .instructor-photo, table.list1, .member-option-highlight, .pdf-separator {
+fieldset, legend, .message-box, .pdf-preview, .highlight-box, .instructor-photo, table.list1, .member-option-highlight, .pdf-separator, .display-box {
     border:         3px solid #589;
     background:     #bde;
     border-radius:  8px;

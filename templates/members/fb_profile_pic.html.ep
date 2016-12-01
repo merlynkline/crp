@@ -1,0 +1,34 @@
+%#<!DOCTYPE html>
+% layout 'member_default', page_id => 'members', extra_header_templates => ['parts/croppie_text_style'];
+% title 'Facebook profile picture';
+% my $profile = stash('profile_record');
+<h1><%= title %></h1>
+<p>
+You can use this tool to create a profile picture for your Facebook account that matches
+the one on this site. Use the slider underneath the picture to change the size and drag
+the picture around in the frame until you are happy with what you see in the frame and
+then press the <b>Download</b> button to download your picture.
+</p>
+
+<div style="margin: 0px auto; width: <%= config('instructor_photo')->{width} %>px;">
+    <div id="pic" class="display-box" style="width: <%= config('instructor_photo')->{width} %>px; height: <%= config('instructor_photo')->{height} %>px;" />
+    </div>
+    <img src="<%= url_for '/images/CRPLogoGlow.png' %>" style="position: relative; top: -160px; left: 128px; z-index: 3;"/>
+</div>
+
+
+<br clear="all" />
+
+<script src="<%= url_for '/js/croppie.min.js' %>"></script>
+<script>
+    var editor = $('#pic').croppie({
+        viewport: {
+            width:  168,
+            height: 168
+        }
+    });
+    editor.croppie('bind', {
+        url: '<%= $c->crp->url_for_instructor_photo($profile->instructor_id) %>'
+    });
+</script>
+
