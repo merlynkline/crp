@@ -1,6 +1,7 @@
 
 requires "Mojolicious", "6.00";
 requires "Mojolicious::Plugin::RenderFile", "0.08";
+requires "Mojolicious::Plugin::TemplateToolkit";
 requires "DBIx::Connector", "0.53";
 requires "List::MoreUtils";
 requires "DBIx::Class::Core";

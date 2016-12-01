@@ -20,6 +20,12 @@ sub startup {
     $self->plugin('CRP::Helper::Main');
     $self->plugin('CRP::Plugin::ETag');
     $self->plugin('RenderFile');
+    $self->plugin('TemplateToolkit', {template => {
+                PRE_CHOMP   => 1,
+                POST_CHOMP  => 1,
+                COMPILE_DIR => '/tmp/mojo_tcrp_ttc',
+            }},
+    );
     $self->plugin(mail => $config->{mail});
     $self->secrets([$config->{secret}]);
     $self->sessions->cookie_name($config->{session}->{cookie_name});
