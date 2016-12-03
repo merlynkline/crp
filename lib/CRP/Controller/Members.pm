@@ -604,6 +604,24 @@ sub pdf_image {
 sub fb_profile_pic {
     my $c = shift;
 
+    return $c->_send_fb_profile_pic if $c->req->method eq 'POST';
+}
+
+use CRP::Util::Graphics;
+sub _send_fb_profile_pic {
+    my $c = shift;
+
+    my %compose_params = (
+        profile_pic => $c->crp->path_for_instructor_photo($c->crp->logged_in_instructor_id),
+        image_dir   => $c->app->home->rel_file('public/images'),
+        format      => 'jpg',
+    );
+    $compose_params{$_} = $c->param($_) foreach(qw(x y r b z));
+    $c->render_file(
+        data                => CRP::Util::Graphics::compose_fb_profile_pic(\%compose_params),
+        content_disposition => 'attachment',
+        filename            => 'TCRP-FBProfilePic.jpg',
+    );
 }
 
 1;

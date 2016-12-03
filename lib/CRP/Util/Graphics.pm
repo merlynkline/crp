@@ -45,6 +45,34 @@ sub qr_code_link_jpeg_tmp_file {
     return $temp_file;
 }
 
+sub compose_fb_profile_pic {
+    my($params) = @_;
+
+    my $logo_img = Imager->new();
+    $logo_img->read(file => $params->{image_dir} . '/CRPLogoGlow.png');
+
+    my $img = Imager->new();
+    $img->read(file => $params->{profile_pic});
+
+    $img = $img->crop(
+        left    => $params->{x},
+        top     => $params->{y},
+        right   => $params->{r},
+        bottom  => $params->{b},
+    );
+    $img = $img->scale(scalefactor => $params->{z});
+
+    $img->compose(
+        src => $logo_img,
+        tx  => $img->getwidth - $logo_img->getwidth,
+        ty  => $img->getheight - $logo_img->getheight,
+    );
+
+    my $image_data;
+    $img->write(type => 'jpeg', data => \$image_data) or die $img->errstr;
+    return $image_data;
+}
+
 1;
 
 

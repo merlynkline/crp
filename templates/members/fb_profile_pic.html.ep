@@ -17,8 +17,8 @@ then press the <b>Download</b> button to download your picture.
 %= form_for 'crp.members.fbprofilepic' => (method => 'POST') => begin
 %= hidden_field 'x', => 'x', id => 'field_x';
 %= hidden_field 'y', => 'x', id => 'field_y';
-%= hidden_field 'w', => 'x', id => 'field_w';
-%= hidden_field 'h', => 'x', id => 'field_h';
+%= hidden_field 'r', => 'x', id => 'field_r';
+%= hidden_field 'b', => 'x', id => 'field_b';
 %= hidden_field 'z', => 'x', id => 'field_z';
 <br />
 <br />
@@ -39,8 +39,8 @@ then press the <b>Download</b> button to download your picture.
         update: function(cropper) {
             $('#field_x').val(cropper.points[0]);
             $('#field_y').val(cropper.points[1]);
-            $('#field_w').val(cropper.points[2]);
-            $('#field_h').val(cropper.points[3]);
+            $('#field_r').val(cropper.points[2]);
+            $('#field_b').val(cropper.points[3]);
             $('#field_z').val(cropper.zoom);
         },
     });
