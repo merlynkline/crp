@@ -13,7 +13,7 @@ then press the <b>Download</b> button to download your picture.
 <div style="margin: 0px auto; width: <%= config('instructor_photo')->{width} %>px;">
     <div id="pic" class="display-box" style="width: <%= config('instructor_photo')->{width} %>px; height: <%= config('instructor_photo')->{height} %>px;" />
     </div>
-    <img src="<%= url_for '/images/CRPLogoGlow.png' %>" style="float: left; position: relative; top: -160px; left: 128px; z-index: 3;"/>
+    <img src="<%= url_for '/images/CRPLogoGlow.png' %>" style="float: left; position: relative; top: -164px; left: 124px; z-index: 3;"/>
 %= form_for 'crp.members.fbprofilepic' => (method => 'POST') => begin
 %= hidden_field 'x', => 'x', id => 'field_x';
 %= hidden_field 'y', => 'x', id => 'field_y';

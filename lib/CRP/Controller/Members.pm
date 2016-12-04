@@ -617,6 +617,12 @@ sub _send_fb_profile_pic {
         format      => 'jpg',
     );
     $compose_params{$_} = $c->param($_) foreach(qw(x y r b z));
+
+    $compose_params{x} += 1;
+    $compose_params{y} += 1;
+    $compose_params{r} -= 2;
+    $compose_params{b} -= 2;
+
     $c->render_file(
         data                => CRP::Util::Graphics::compose_fb_profile_pic(\%compose_params),
         content_disposition => 'attachment',

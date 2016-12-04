@@ -69,7 +69,12 @@ sub compose_fb_profile_pic {
     );
 
     my $image_data;
-    $img->write(type => 'jpeg', data => \$image_data) or die $img->errstr;
+    $img->write(
+        type            => 'jpeg',
+        jpegquality     => 90,
+        jpeg_optimize   => 1,
+        data            => \$image_data,
+    ) or die $img->errstr;
     return $image_data;
 }
 
