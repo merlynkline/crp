@@ -160,6 +160,7 @@ sub register {
             my $c = shift;
             my($date, $format_name) = @_;
 
+            return '' unless $date;
             my $format = $app->config->{date_format}->{$format_name} || '%d%b%Y';
             return $date->strftime($format);
         }

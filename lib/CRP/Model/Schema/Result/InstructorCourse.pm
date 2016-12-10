@@ -149,7 +149,7 @@ sub cancel {
 sub expiry_date {
     my $self = shift;
 
-    return unless $self->course_type->is_professional;
+    return undef unless $self->course_type->is_professional;
     my $start_date = $self->start_date->clone;
     $start_date->add('years' => 3);
     return $start_date;
