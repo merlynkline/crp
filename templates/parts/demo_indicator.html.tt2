@@ -1,0 +1,8 @@
+[%#<!DOCTYPE html> %]
+[% IF logged_in AND is_demo %]
+    <div id="demo-warning">
+        WARNING: You are logged in to a demonstration account.
+        Some features are limited or disabled.
+        <a href="[% url_for('crp.members.page', page => 'demo_info') %]">More info.</a>
+    </div>
+[% END %]

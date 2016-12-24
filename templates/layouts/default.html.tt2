@@ -1,0 +1,17 @@
+[%#<!DOCTYPE html> %]
+[%
+   left_nav_menu = [
+        ['home',      '/',                  'Home'],
+        ['book',      '/page/book',         'The book'],
+        ['programme', '/page/programme',    'Programme'],
+        ['courses',   '/page/courses',      'Courses'],
+        ['tutors',    'crp.instructors',    'Instructors'],
+        ['contact',   '/page/contact',      'Contact'],
+    ];
+    IF logged_in;
+        left_nav_menu.push(['members',   '/instructor',     'Members']);
+    ELSE;
+        left_nav_menu.push(['login',     '/login',          'Log in']);
+    END;
+=%]
+[% INCLUDE 'layouts/parts/main.html.tt2' %]

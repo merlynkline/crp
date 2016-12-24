@@ -1,0 +1,16 @@
+[%#<!DOCTYPE html> %]
+[% INCLUDE 'parts/demo_indicator.html.tt2' %]
+[% IF logged_in %]
+<div id="logged_in_indicator">
+    Logged in as [%+ crp_session.variable('email') %][% IF crp_session.variable('admin_email') %]<span style="color:#fff; background:#c00"><b>&nbsp;as admin [%+ crp_session.variable('admin_email') %]&nbsp;</b></span>[% END %]&nbsp;&nbsp;<br />
+    <a href="[% url_for('crp.logged_in_default') %]">Members area</a>&nbsp;
+[% IF crp_session.variable('is_administrator') %]
+    <a href="[% url_for('crp.admin_default') %]">Admin</a>&nbsp;
+[% END %]
+    <a href="[% url_for('crp.logout') %]">Log out</a>&nbsp;&nbsp;
+</div>
+[% ELSE %]
+<div id="sm-links">
+    <a href="https://www.facebook.com/pages/The-Childrens-Reflexology-Programme/1491554257731838" target="_blank"><img src="[% url_for('/images/facebook.png') %]" border="0" /></a>
+</div>
+[% END %]

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html[% IF og_image +%] xmlns:fb="http://ogp.me/ns/fb#"[% END %] language="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="author" content="Merlyn Kline for The Children's Reflexology Programme">
+        [% IF og_image +%]        <meta property="og:image" content="[% url_for(og_image).to_abs %]" />
+[% END +%]
+        <title>[% title +%] - The Children's Reflexology Programme</title>
+        <link rel="shortcut icon" href="[% url_for('/favicon.ico') %]" />
+        <link rel="apple-touch-icon-precomposed" href="[% url_for('/favicon/favicon-152.png') %]" />
+        <meta name="msapplication-TileColor" content="#FFFFFF" />
+        <meta name="msapplication-TileImage" content="[% url_for('/favicon/favicon-144.png') %]" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
+        <link rel="stylesheet" href="[% url_for('/css/v2/main.css') %]" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+[%
+FOREACH extra_template IN c.crp.stash_list('extra_header_templates');
+  INCLUDE extra_template;
+END;
+#---------------------------------------------------------------------------
+MACRO render_old_menu_entry(menu_entry) BLOCK;
+    m_page_id = menu_entry.0;
+    m_href    = menu_entry.1.split(':');
+    m_desc    = menu_entry.2;
+    this_page = (page_id || page) == m_page_id;
+    %]
+    <!-- [% m_page_id %]:[[% m_href.0 %],[% m_href.1 %]]:[% m_desc %] -->
+<span[% IF this_page +%] class="selected"[% END %]>[% IF NOT this_page%]<a href="[% url_for(m_href.0, m_href.1, m_href.2) %]">[% END %]
+[% m_desc %]
+[% IF NOT this_page%]</a>[% END %]
+</span>
+[%
+END;
+#---------------------------------------------------------------------------
+MACRO render_menu_entry(menu_entry) BLOCK;
+    m_page_id = menu_entry.0;
+    m_href    = menu_entry.1.split(':');
+    m_desc    = menu_entry.2;
+    this_page = (page_id || page) == m_page_id;
+    %]
+    <li[% IF this_page +%] class="active"[% END %]><a href="[% url_for(m_href.0, m_href.1, m_href.2) %]">
+    [% m_desc %]
+    [% IF this_page %]<span class="sr-only">[Current]</span>[% END %]
+    </a></li>
+[%
+END;
+#---------------------------------------------------------------------------
++%]
+    </head>
+    <body class="page-body" style="padding-top: 50px;">
+        <noscript>
+            <div class="alert alert-danger" style="margin-bottom: 0;">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                This site requires JavaScript for proper operation.
+                Please enable JavaScript in your web browser.
+            </div>
+        </noscript>
+        <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-nav-collapse" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" style="padding: 4px 8px;" href="/"><img alt=" " src="[% url_for('/images/v2/logo/CRPLogo.png') %]" style="height: 42px;"></a>
+            </div>
+            <div class="collapse navbar-collapse" id="main-nav-collapse">
+                <ul class="nav navbar-nav">
+                    [%
+                    FOREACH menu_entry IN left_nav_menu;
+                    render_menu_entry(menu_entry);
+                    END;
+                    %]
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="https://www.facebook.com/pages/The-Childrens-Reflexology-Programme/1491554257731838" target="_blank" style="padding: 10px;"><img src="[% url_for('/images/facebook.png') %]" border="0" /></a></li>
+                </ul>
+            </div>
+        </div>
+        </nav>
+
+        <h1 id="heading">[% heading || "The Children's Reflexology Programme" %]</h1>
+        [%+ content +%]
+
+        <footer class="footer">
+        <div id="bottom-nav">
+            <div style="float: right; background: url('images/v2/page/btmo.jpg') right; height: 109px; width: 281px;"></div>
+            <div style="background: url('images/v2/page/btm.jpg') right; height: 109px; overflow: hidden;"></div>
+            <div style="float: left; position: relative; top: -100px;">
+                <table>
+                    <tr>
+                        <td>
+                            <a href="http://www.susanquayle.co.uk/"><img src="/images/v2/logo/SQCHLogoSmall.png" /></a>
+                        </td>
+                        <td>
+                            <ul>
+                                <li><a href="[% url_for('/page/copyright') %]">Copyright &copy;</a></li>
+                                <li><a href="[% url_for('/page/privacy') %]">Privacy policy</a></li>
+                                <li><a href="[% url_for('/page/contact') %]">Contact us</a></li>
+                                [% IF app.mode == 'development' +%]
+                                <li><a href="[% url_for('/test') %]">Testing</a></li>
+                                [% END +%]
+                            </ul>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        [% IF NOT cookies_accepted +%]
+        <div style="position: fixed; bottom: 0; width: 100%;">
+            <div class="alert alert-warning" style="margin-bottom: 0; opacity: 0.85;">
+                <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                Please note that this site places cookies on your computer
+                in order to be able to function properly.
+                See our <a href="[% url_for('/page/privacy') %]" class="alert-link">Privacy Policy</a> for details.
+                <a class="btn btn-primary btn-xs" role="button" href="[% url_for('crp.accept_cookies') %]">Got it</a>
+            </div>
+        </div>
+        <div style="height: 54px;"></div>
+        [%+ END +%]
+        </footer>
+
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-60480765-1', 'auto');
+            ga('send', 'pageview');
+
+        </script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    </body>
+</html>

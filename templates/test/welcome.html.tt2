@@ -1,0 +1,30 @@
+[%#<!DOCTYPE html> %]
+[% title = 'Test - development mode' %]
+[% page_id = 'home' %]
+[% WRAPPER 'layouts/default.html.tt2' %]
+<h1>Internal test page</h1>
+<ul>
+    <li><a href="/test/list_pdfs">PDF documents</a></li>
+    <li>Various pages that aren't directly reachable:</li>
+    <ul>
+        <li><a href="/test/template/not_found.production">Production error 404 page</a></li>
+        <li><a href="/test/template/csrf_violation">CSRF violation page</a></li>
+        <li><a href="/update_registration">Enquiry registration update code entry</a></li>
+        <li><a href="/page/registered">Enquiry registration acknowledgement thanks</a></li>
+        <li><a href="/update_registration?id=60-my-long-green-boys-shoes">Enquiry registration update</a></li>
+        <li><a href="/page/contacted">Contact form acknowledgement</a></li>
+        <li><a href="/otp">OTP entry</a></li>
+        <li><a href="/tutor_list">List of qualified instructors</a></li>
+        <li><a href="/me/1">Member's home page</a></li>
+        <li><a href="/me/1/certificate">Member's certificate</a></li>
+    </ul>
+    <li>Emails the system can send</li>
+    <ul>
+        <li><a href="/test/email/main/email/otp">Temporary password</a></li>
+        <li><a href="/test/email/members/email/profile_update">Admin notification of Instructor update</a></li>
+        <li><a href="/test/email/main/email/contact_form">Contact form</a></li>
+        <li><a href="/test/email/main/email/enquiry_confirmation">Enquiry email-address confirmation</a></li>
+        <li><a href="/test/email/members/email/course_published_to_enquirer">Enquirer email re new course</a></li>
+    </ul>
+</ul>
+[% END %]
