@@ -50,3 +50,19 @@ body {
 #bottom-nav td img {
     padding:        0 2px;
 }
+
+.tcrp-page-heading {
+    width:                  100%;
+    background-image:       linear-gradient(#fff, #bde);
+}
+.tcrp-page-heading h1 {
+    margin:     0;
+    padding:    8px;
+}
+
+.tcrp-corner-mouse {
+    width:      80px;
+    position:   fixed;
+    right:      -18px;
+    bottom:     -15px;
+}

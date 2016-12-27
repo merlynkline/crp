@@ -73,8 +73,10 @@ END;
         </div>
         </nav>
 
+        <div class="tcrp-page-heading hidden-xs">
+            <h1>[% heading %]</h1>
+        </div>
         <div class="container-fluid">
-        <h1 class="hidden-xs" id="heading">[% heading %]</h1>
         [%+ content +%]
         </div>
 
@@ -101,6 +103,7 @@ END;
                     </tr>
                 </table>
             </div>
+            <img src="/images/v2/Animals/CornerMouse.png" class="tcrp-corner-mouse" />
         </div>
         [% IF NOT cookies_accepted +%]
         <div style="position: fixed; bottom: 0; width: 100%;">
