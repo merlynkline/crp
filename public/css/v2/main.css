@@ -30,8 +30,8 @@ body {
     font-size:      12px;
     margin:         0;
     padding:        0;
-    background-color: #bddaec;
-    border-radius: 4px;
+    background-color: rgba(160, 160, 160, 0.17);
+    border-radius:  4px;
 }
 #bottom-nav td {
     height:         94px;
@@ -41,9 +41,6 @@ body {
 }
 #bottom-nav li a {
     width:          80px;
-}
-#bottom-nav li:hover {
-    background:     #edc;
 }
 #bottom-nav a {
     white-space:    nowrap;
