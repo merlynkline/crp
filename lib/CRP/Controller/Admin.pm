@@ -140,13 +140,33 @@ sub _find_acounts {
     my $c = shift;
     my($search_key) = @_;
 
-    my @matches = $c->crp->model('Login')->search(
-        [
+    my $where;
+
+    if($search_key =~ /^qualified:\s*(\d+)\s*$/i) {
+        my $qualification = $1;
+        $where = {
+            'qualifications.qualification_id'   => { '=', $qualification },
+            'qualifications.passed_date'  => [ {'<', DateTime->now} ],
+        };
+    }
+    elsif($search_key =~ /^trainee:\s*(\d+)\s*$/i) {
+        my $qualification = $1;
+        $where = {
+            'qualifications.qualification_id'   => { '=', $qualification },
+            'qualifications.passed_date'  => [ {'>', DateTime->now}, {'=', undef} ],
+        };
+    }
+    else {
+        $where = [
             {'lower(profile.name)' => { like => lc "%$search_key%"}},
             {'lower(email)' => { like => lc "%$search_key%"}},
-        ],
+        ];
+    }
+
+    my @matches = $c->crp->model('Login')->search(
+        $where,
         {
-            join => 'profile',
+            join     => [qw(profile qualifications)],
             order_by => {-asc => 'lower(email)'}
         },
     );

@@ -20,7 +20,7 @@
         <td align="right"><a href="<%= url_for('crp.admin.instructor_courses')->query(type => 'advertised') %>"><%= stash 'advertised_instructor_courses_count' %></a></td>
     </tr>
     <tr>
-        <td>Past courses:</td>      
+        <td>Past courses:</td>
         <td align="right"><a href="<%= url_for('crp.admin.parent_courses')->query(type => 'past') %>"><%= stash 'past_courses_count' %></a></td>
         <td align="right"><a href="<%= url_for('crp.admin.instructor_courses')->query(type => 'past') %>"><%= stash 'past_instructor_courses_count' %></a></td>
     </tr>
@@ -73,8 +73,24 @@
         <td><%= $qualification->code %></td>
         <td><%= $qualification->abbreviation %></td>
         <td><%= $qualification->qualification %></td>
-        <td align="right"><%= $num_instructors %></td>
-        <td align="right"><%= $num_trainees %></td>
+        <td align="right">
+% if($num_instructors) {
+<a href="<%= url_for('crp.admin.find_account')->query(query => 'qualified:' . $qualification->id) %>">
+% }
+            <%= $num_instructors %>
+% if($num_instructors) {
+</a>
+% }
+        </td>
+        <td align="right">
+% if($num_trainees) {
+<a href="<%= url_for('crp.admin.find_account')->query(query => 'trainee:' . $qualification->id) %>">
+% }
+            <%= $num_trainees %>
+% if($num_trainees) {
+</a>
+% }
+        </td>
         <td>
             % if($num_instructors > 0 || $num_trainees > 0) {
             <span class="small-button disabled-button" title="This qualifcation can't be deleted because it is in use">Del</span>
