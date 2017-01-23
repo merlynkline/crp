@@ -44,6 +44,7 @@ in order to view and print them.
 %   ['TCRPINST|TCRPANINST|TCRPREFLEXINST',
 %                           'trainer/TCRPINST/Feedback form',           "Feedback form"],
 %   ['TCRPANPRO|TCRPEYPRO', 'pro/feedback_form',                        "Feedback form"],
+%   ['TCRPEYPRO',           'pro/EYSalesLetter',                        "Sales letter and leaflet"],
 % ) {
 %   my($selector, $name, $caption) = @$document;
 %   if($code =~ /^($selector)$/) {
