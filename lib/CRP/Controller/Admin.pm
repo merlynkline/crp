@@ -140,7 +140,7 @@ sub _find_acounts {
     my $c = shift;
     my($search_key) = @_;
 
-    my $where;
+    my($where, @extra_joins);
 
     if($search_key =~ /^qualified:\s*(\d+)\s*$/i) {
         my $qualification = $1;
@@ -148,6 +148,7 @@ sub _find_acounts {
             'qualifications.qualification_id'   => { '=', $qualification },
             'qualifications.passed_date'  => [ {'<', DateTime->now} ],
         };
+        @extra_joins = ('qualifications');
     }
     elsif($search_key =~ /^trainee:\s*(\d+)\s*$/i) {
         my $qualification = $1;
@@ -155,6 +156,7 @@ sub _find_acounts {
             'qualifications.qualification_id'   => { '=', $qualification },
             'qualifications.passed_date'  => [ {'>', DateTime->now}, {'=', undef} ],
         };
+        @extra_joins = ('qualifications');
     }
     else {
         $where = [
@@ -166,7 +168,7 @@ sub _find_acounts {
     my @matches = $c->crp->model('Login')->search(
         $where,
         {
-            join     => [qw(profile qualifications)],
+            join     => [qw(profile), @extra_joins],
             order_by => {-asc => 'lower(email)'}
         },
     );
