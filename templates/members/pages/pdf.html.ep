@@ -45,6 +45,9 @@ in order to view and print them.
 % $pdf->('members/Notepaper', "Headed notepaper");
 % $pdf->('members/Compliments', "Compliments slips");
 % $pdf->('members/Gift voucher', "Gift vouchers");
+% if($quals{'TCRP-EY-PRO'}) {
+% $pdf->('pro/EYSalesLetter', "Early Years Professional sales letter and leaflet");
+% }
 
 <div class="pdf-separator">Course<br />administration</div>
 
