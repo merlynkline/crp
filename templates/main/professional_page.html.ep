@@ -64,10 +64,10 @@ Click on any of the thumbnails to download a PDF file which you can save or prin
 <br />
 % my $code = $course->course_type->code;
 % foreach my $document (
-%   ['TCRPANPRO',  'TCRPANPRO/Consent Form',     "Consent form for treatment"],
-%   ['TCRPANPRO',  'TCRPANPRO/Follow-up',        "Follow-up advice for parents and carers"],
-%   ['TCRPANPRO',  'TCRPANPRO/Leaflet',          "Leaflet advertising the programme"],
-%   ['TCRPANPRO',  'TCRPANPRO/mencap',           "Mental Capacity assessment form and letter"],
+%   ['TCRPANPRO',            'TCRPANPRO/Consent Form',     "Consent form for treatment"],
+%   ['TCRPANPRO|TCRPEYPRO',  'TCRPANPRO/Follow-up',        "Follow-up advice for parents and carers"],
+%   ['TCRPANPRO',            'TCRPANPRO/Leaflet',          "Leaflet advertising the programme"],
+%   ['TCRPANPRO',            'TCRPANPRO/mencap',           "Mental Capacity assessment form and letter"],
 % ) {
 %   my($selector, $name, $caption) = @$document;
 %   if($code =~ /^($selector)$/) {
