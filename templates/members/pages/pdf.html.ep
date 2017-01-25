@@ -53,6 +53,9 @@ in order to view and print them.
 
 % $pdf->('members/booking_form', "Generic booking form for your trainees to fill in");
 % $pdf->('members/booking_form_A5', "Generic booking form in A5 format for A4 paper");
+% if($quals{'TCRP-AN-PRO'} || $quals{'TCRP-EY-PRO'}) {
+% $pdf->('pro/booking_form', "Generic booking form for professional courses");
+% }
 % $pdf->('members/register', "Generic register to check in trainees to each session");
 % $pdf->('members/feedback_form', "Generic feedback form for your trainees to fill in");
 % $pdf->('members/feedback_form_A5', "Generic feedback form in A5 format for A4 paper");
