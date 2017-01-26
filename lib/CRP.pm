@@ -179,9 +179,10 @@ sub _before_dispatch {
         my $url  = $c->req->url->to_abs;
         my $path = $c->req->url->path;
 
-        return if $url->host =~ /^www\./;
+        return if $url->host =~ /^www\./ && $url->scheme eq 'https';
 
-        $url->host('www.' . $url->host);
+        $url->host('www.' . $url->host) unless $url->host =~ /^www\./;
+        $url->scheme('https');
         $c->res->code(301);
         $c->redirect_to($url->to_string);
     }
