@@ -177,11 +177,10 @@ sub _before_dispatch {
 
     if($c->app->mode eq 'production') {
         my $url  = $c->req->url->to_abs;
-        my $path = $c->req->url->path;
 
-        return if $url->host =~ /^www\./ && $url->scheme eq 'https';
+        return if $url->host eq 'www.kidsreflex.co.uk' && $url->scheme eq 'https';
 
-        $url->host('www.' . $url->host) unless $url->host =~ /^www\./;
+        $url->host('www.kidsreflex.co.uk');
         $url->scheme('https');
         $c->res->code(301);
         $c->redirect_to($url->to_string);
