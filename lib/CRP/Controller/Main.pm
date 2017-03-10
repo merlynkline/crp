@@ -299,7 +299,7 @@ sub instructor_booking_form {
 
     my $id = $c->crp->numeric_param('id');
     my $course = $c->crp->model('InstructorCourse')->find($id);
-    undef $course unless $course->published;
+    undef $course unless $course && $course->published;
 
     $c->stash('course', $course);
     $c->crp->stash_recaptcha();
