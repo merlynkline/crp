@@ -178,13 +178,43 @@ sub _before_dispatch {
     if($c->app->mode eq 'production') {
         my $url  = $c->req->url->to_abs;
 
-        return if $url->host eq 'www.kidsreflex.co.uk' && $url->scheme eq 'https';
+        return if $c->_is_good_url($url);
 
-        $url->host('www.kidsreflex.co.uk');
-        $url->scheme('https');
+        $url = $c->_make_good_url($url);
+
         $c->res->code(301);
         $c->redirect_to($url->to_string);
     }
+}
+
+sub _is_good_url {
+    my($c) = shift;
+    my($url) = @_;
+
+    my($host, $domain) = split /\./, $url->host, 2;
+    $domain ||= '';
+    $host   ||= '';
+    return lc $host eq 'www' && exists $c->config->{domain_names}->{lc $domain} && $url->scheme eq 'https';
+}
+
+sub _make_good_url {
+    my($c) = shift;
+    my($url) = @_;
+
+    my($host, $domain) = split /\./, $url->host, 2;
+    $domain = lc($domain || '');
+    $host   = lc($host || '');
+
+    unless($host eq 'www') {
+        $domain = "$host.$domain";
+        $host = 'www';
+    }
+
+    $domain = 'kidsreflex.co.uk' unless exists $c->config->{domain_names}->{$domain};
+
+    $url->host("$host.$domain");
+    $url->scheme('https');
+    return $url;
 }
 
 sub _after_dispatch {
