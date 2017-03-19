@@ -2,6 +2,7 @@ use Mojo::Base -strict;
 
 use Test::More;
 use Test::Mojo;
+use Test::Deep;
 use Mock::Quick;
 
 use CRP::Util::CRPDataFormatter;
@@ -44,28 +45,26 @@ my $data = {
 };
 
 $expected = {
-    url         => '/me/sluggo',
     email       => 'EMAIL',
     name        => 'NAME',
     telephone   => 'TELEPHONE',
     mobile      => 'MOBILE',
     postcode    => "POSTCODE",
     signature   => '-52560160',
-    signature_url       => '/me/-52560160/certificate',
-    signature_date      => '01 Jan 15',
     one_line_address    => "ADR1, ADR2",
     phone_numbers       => "TELEPHONE / MOBILE",
     profile_image       => $c->crp->path_for_public_file('images/Instructors/photos/default.jpg'),
+    status              => 'TRAINEE',
 };
 
 my $formatted = CRP::Util::CRPDataFormatter::format_data($c, $data);
-is_deeply($formatted, $expected, "_extract_crp_data [1]");
+cmp_deeply($formatted, superhashof($expected), "_extract_crp_data [1]");
 
 $profile->telephone(undef);
 $expected->{telephone} = undef;
 $expected->{phone_numbers} = 'MOBILE';
 $formatted = CRP::Util::CRPDataFormatter::format_data($c, $data);
-is_deeply($formatted, $expected, "_extract_crp_data [2:mobile only]");
+cmp_deeply($formatted, superhashof($expected), "_extract_crp_data [2:mobile only]");
 
 $profile->telephone('TELEPHONE');
 $profile->mobile(undef);
@@ -73,7 +72,7 @@ $expected->{telephone} = 'TELEPHONE';
 $expected->{phone_numbers} = 'TELEPHONE';
 $expected->{mobile} = undef;
 $formatted = CRP::Util::CRPDataFormatter::format_data($c, $data);
-is_deeply($formatted, $expected, "_extract_crp_data [2:telephone only]");
+cmp_deeply($formatted, superhashof($expected), "_extract_crp_data [2:telephone only]");
 
 done_testing();
 
