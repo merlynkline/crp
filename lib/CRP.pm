@@ -179,9 +179,9 @@ sub _before_dispatch {
         my $url  = $c->req->url->to_abs;
 
         return if $url->host eq 'www.kidsreflex.co.uk' && $url->scheme eq 'https';
-#        return if $c->_is_good_url($url);
+        return if _is_good_url($c, $url);
 
-#        $url = $c->_make_good_url($url);
+        $url = _make_good_url($c, $url);
         $url->host('www.kidsreflex.co.uk');
         $url->scheme('https');
 
@@ -217,6 +217,7 @@ sub _make_good_url {
 
     $url->host("$host.$domain");
     $url->scheme('https');
+    $url->port(undef);
     return $url;
 }
 
