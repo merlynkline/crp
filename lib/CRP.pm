@@ -178,7 +178,8 @@ sub _before_dispatch {
     if($c->app->mode eq 'production') {
         my $url  = $c->req->url->to_abs;
 
-        return if $c->_is_good_url($url);
+        return if $url->host eq 'www.kidsreflex.co.uk' && $url->scheme eq 'https';
+#        return if $c->_is_good_url($url);
 
 #        $url = $c->_make_good_url($url);
         $url->host('www.kidsreflex.co.uk');
