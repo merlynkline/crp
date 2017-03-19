@@ -180,7 +180,9 @@ sub _before_dispatch {
 
         return if $c->_is_good_url($url);
 
-        $url = $c->_make_good_url($url);
+#        $url = $c->_make_good_url($url);
+        $url->host('www.kidsreflex.co.uk');
+        $url->scheme('https');
 
         $c->res->code(301);
         $c->redirect_to($url->to_string);
