@@ -25,6 +25,7 @@ push @url_tests, map { [ "http://$_"      => "https://www.$_" ] }      @domain_n
 push @url_tests, map { [ "https://$_"     => "https://www.$_" ] }      @domain_names;
 push @url_tests, map { [ "http://$_"      => "https://www.$_" ] }      @domain_names;
 push @url_tests, map { [ "http://$_.junk" => $main_url ] }             @domain_names;
+push @url_tests, map { [ "http://$_.junk:3000" => $main_url ] }        @domain_names;
 
 foreach my $test (@url_tests) {
     is(CRP::_make_good_url($c, Mojo::URL->new($test->[0])), $test->[1], "_make_good_url($test->[0])");
