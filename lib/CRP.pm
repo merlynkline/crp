@@ -195,9 +195,17 @@ sub _is_good_url {
     my($url) = @_;
 
     my($host, $domain) = split /\./, $url->host, 2;
-    $domain ||= '';
-    $host   ||= '';
-    return lc $host eq 'www' && exists $c->config->{domain_names}->{lc $domain} && $url->scheme eq 'https';
+    $domain = lc($domain || '');
+    $host   = lc($host || '');
+    return lc $host eq 'www'
+        && exists $c->config->{domain_names}->{$domain}
+        && $url->scheme eq _scheme_from_type($c->config->{domain_names}->{$domain});
+}
+
+sub _scheme_from_type {
+    my($type) = @_;
+
+    return $type eq 'ssl' ? 'https' : 'http';
 }
 
 sub _make_good_url {
@@ -216,7 +224,7 @@ sub _make_good_url {
     $domain = 'kidsreflex.co.uk' unless exists $c->config->{domain_names}->{$domain};
 
     $url->host("$host.$domain");
-    $url->scheme('https');
+    $url->scheme(_scheme_from_type($c->config->{domain_names}->{$domain}));
     $url->port(undef);
     return $url;
 }
