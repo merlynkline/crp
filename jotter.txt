@@ -1,5 +1,44 @@
 
 
+https://www.metafilter.com/164487/The-Unbegun-Symphony
+
+Dudley Moore / Whistling theme: https://www.youtube.com/watch?v=GazlqD4mLvw
+August habanera: https://www.youtube.com/watch?v=P2jn_lxrrPg
+Kid Koala: Drunk Trumpet: https://www.youtube.com/watch?v=Ia5oK4PCCoM
+Compressorhead / Ace of spades: https://www.youtube.com/watch?v=3RBSkq-_St8
+holgar czukay the east is red: https://www.youtube.com/watch?v=p_pOUCkVe88
+ISB / No Sleep Blues: https://www.youtube.com/watch?v=gwzXD3HQexk
+bob brozman / threee beat ska: https://www.youtube.com/watch?v=gBrJkMiZKh0
+Kary Pamyu Pamyu / pon pon pon: https://www.youtube.com/watch?v=pb3IdLdIc6s
+Bill Bailey metallica: https://www.youtube.com/watch?v=98xNx87hRbU
+Terem Quartet / Gipsy Dance: https://www.youtube.com/watch?v=msedLtGEgrk
+George Clinton / Atomic Dog: https://www.youtube.com/watch?v=LuyS9M8T03A
+
++ Stand-alone reflexologists' course
+    - Like a professional course
+    + No expiry date
+    + Need a way to search for professionals (i.e. people that have resource pages but no login)
+    + Add resources
+        + Attendee
+            + Handout(s)
+            + Bespoke protocol form
+            + Advertising leaflet/flyer
+            + Follow-up advice
+        + Add certificate PDF for the qualification as pdfs/Attendee_Certificate_$code.pdf
+        + Add a new PDF for the instructor course poster
+        + Enable any existing course-specific PDFs that apply to the course
+        + Add any new course-specific PDFs
+            + Booking form
+            + Sales Letter
+    + Update the web site to talk about the new course
+        + "Home" page - short mention
+        + "Programme" page(s) - more details, perhaps a new page split off
+        + "Courses" page(s) - more details, perhaps a new page split off
+        + "Instructors" page(s) - more details, perhaps a new page split off
+        + Anything else
+    + Add any new products to the shop
+        + Trainer's pack
+
 + Professionals
     ~ ANPro booking form
     + Suspend a student
@@ -22,15 +61,19 @@
             + "Courses" page(s) - more details, perhaps a new page split off
             + "Instructors" page(s) - more details, perhaps a new page split off
             + Anything else
+        + Add any new course-specific PDFs
+            + Sales Letter (course specific? maybe not but only available to qualified ANPRO instructors)
         + Add any new products to the shop
             + Trainer's pack
     + Add resources for EY PRO course
-        + Add certificate PDF for the qualification as pdfs/Attendee_Certificate_$code.pdf
+        X Add certificate PDF for the qualification as pdfs/Attendee_Certificate_$code.pdf => The generic one serves
         + Add a new PDF for the instructor course poster
-        + Enable any existing course-specific PDFs that apply to the course
-        + Add any new course-specific PDFs
-            + Booking form
-            + Sales Letter
+        ~ Enable any existing course-specific PDFs that apply to the course
+        ~ Add any new course-specific PDFs
+            ~ Sales Letter (course specific? maybe not but only available to qualified EYPRO instructors)
+        + Add attendee PDFs
+            + Advertising leaflet
+            + Consent form
         + Update the web site to talk about the new course
             + "Home" page - short mention
             + "Programme" page(s) - more details, perhaps a new page split off
@@ -711,8 +754,8 @@ session:
 - Making PDF thumbnails
     + Load test PDF into Chrome
     + Zoom to 75% (or 50% for A3)
-    + Snip and copy to clipboard
-    + Paste into Xara
+    + Snip and copy to clipboard (Alt-PrtScr)
+    + Paste into Xara (use the TCRP PDF Thumbs template)
     + Set units to pixels
     + Move to pixel boundary
     + Cut out desired part (A4 is evidently 595x840px at 75%, A3 is 560x793px at 50%)
@@ -720,7 +763,7 @@ session:
     + Export as JPG with same name as PDF but .jpg extension
 - Releasing a new version
     + Make sure release note is updated (use relnote script): templates/members/faqs/updates.html.ep
-    + Make sure the release is tagge (use tagrelease script)
+    + Make sure the release is tagged (use tagrelease script)
         - Tag name is release-YYYYMMDD-NN
         - run: git tag <tag-name>
         - run: git push origin <tag-name>
