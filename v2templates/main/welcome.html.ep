@@ -1,0 +1,178 @@
+%#<!DOCTYPE html>
+% layout 'default', page_id => 'home';
+% title 'Welcome';
+% my $testimonials;
+% my $image_delay = 20000;
+% include 'main/parts/testimonial_list', list_ref => \$testimonials;
+    <p class="front-page-large">
+    Helping
+    <strong>parents</strong>
+    and
+    <strong>carers</strong>
+    and
+    <strong>children</strong>
+    of all ages to
+    <strong>cope</strong>
+    better with the
+    <strong>stresses</strong>
+    of
+    <strong>illness</strong>
+    and
+    <strong>everyday life</strong>.</p>
+    <div class="highlight-box" style="float: right; text-align: center; margin: 0 12px 0 12px;">
+        <a class="standard-button" href="<%= url_for 'crp.location_search' %>">Find a course near you</a><br><br><a class="standard-button" href="<%= url_for 'crp.instructors' %>">Become an instructor</a>
+    </div>
+    <p class="front-page-medium">
+    Our
+    <a href="<%= url_for 'crp.page',  page => 'parents' %>">fun, interactive workshops</a>
+    enable
+    <strong>anybody</strong>
+    to make use of simple, gentle
+    <strong><a href="<%= url_for 'crp.page', page => 'reflexology' %>">reflexology</a></strong>
+    to improve
+    <strong>health</strong>
+    and strengthen
+    <strong>bonds</strong>.
+    </p>
+
+    <div id="reviews">
+        <a href="<%= url_for 'crp.page',  page => 'testimonials' %>">
+            <div id="review-list" class="scroll-text">
+                <ul>
+                    <li><b>Testimonials:</b></li>
+% foreach my $testimonial (@$testimonials) {
+                    <li><%== $testimonial->[0] %>&nbsp;<span><%= $testimonial->[1] %></span></li>
+% }
+                </ul>
+            </div>
+        </a>
+        <script src="<%= url_for '/js/ScrollBox.js' %>"></script>
+        <script>
+            $('#review-list').scrollbox({
+                step:   1,
+                delay:  0,
+                speed: 10,
+                linear: 1,
+                direction: 'h'
+            });
+        </script>
+    </div>
+
+% my $row_number = 0;
+% my $row = begin
+    % my($title, $text, $images, $url) = @_;
+    % $images = [ $images ] unless ref $images;
+    % my $id = "fp_gallery_$row_number";
+<div>
+    <a href="<%= url_for $url %>" class="front-page-row"><div id="<%= $id %>" class="front-page-gallery">
+        % my $image_class=' class="active"';
+        % foreach my $image (@$images) {
+            <img src="<%= url_for '/images/Photos/' . $image %>"<%== $image_class %> />
+        %   $image_class = '';
+        % }
+        </div>
+        <div class="front-page-row-mask">
+            <div class="standard-button">More information</div>
+            <div class="front-page-row-text">
+                <h1><%= $title %></h1>
+                <%= $text %>
+            </div>
+    </div></a>
+</div>
+    % if(@$images > 1) {
+<script>
+    setTimeout(function(){ nextImage('<%= $id %>'); }, <%= $row_number * $image_delay / 5 + $image_delay %>);
+</script>
+    % }
+    % $row_number++;
+% end
+<script>
+    function nextImage(id){
+        var activeImg = $('#' + id + ' .active');
+        var nextImg = ($('#' + id + ' .active').next().length > 0) ? $('#' + id +' .active').next() : $('#' + id +' img:first');
+        activeImg.fadeOut().removeClass('active');
+        nextImg.fadeIn().addClass('active');
+        setTimeout(function(){ nextImage(id); }, <%= $image_delay %>);
+    }
+
+</script>
+<style>
+    .front-page-gallery {
+        position:   absolute;
+        width:      inherit;
+        height:     inherit;
+        background: #888;
+    }
+    .front-page-gallery img {
+        position: absolute;
+        display:  none;
+    }
+    .front-page-gallery img.active {
+        display:  block;
+    }
+    .front-page-row {
+      display:  block;
+      width:    850px;
+      height:   360px;
+      overflow: hidden;
+      margin:   20px auto;
+    }
+    .front-page-row-mask {
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5) );
+        float:      left;
+        position:   absolute;
+        width:      inherit;
+        height:     inherit;
+        display:    inline-block;
+    }
+    .front-page-row-mask:hover {
+        background: linear-gradient(to bottom, rgba(100, 100, 100, 0.5), rgba(100, 100, 100, 0) );
+    }
+    .front-page-row-mask > .standard-button {
+      position:     absolute;
+      top:          10px;
+      right:        10px;
+    }
+    .front-page-row-mask > .standard-button:hover {
+        background-image: linear-gradient(#ccc, #eee);
+    }
+    .front-page-row-text {
+      position:     absolute;
+      bottom:       0;
+      left:         0;
+      width:        95%;
+      padding:      0;
+      font-size:    150%;
+      line-height:  120%;
+      color:        white;
+      margin:       20px;
+      text-shadow:  0 0 4px black;
+    }
+    .front-page-row-text:visited {
+      color:    white;
+    }
+    .front-page-row-text > h1 {
+      display:      block;
+      margin:       4px 0;
+      line-height:  120%;
+    }
+</style>
+%= $row->("For parents and carers","Kids reflex will help you enjoy a better connection with your child and cope better with the stresses of illness and everyday life",["Course6-360.jpg", "Course7-360.jpg", "Certificates-360.jpg", "Course5-360.jpg", "Course10-360.jpg", "Course1-360.jpg" ], "/page/parents");
+%= $row->("For everyone", "Become an instructor and build your own business bringing the benefits of kids reflex to more parents and carers", ["Training4.jpg", "Training3.jpg", "Training2.jpg", "Training.jpg"], "crp.instructors");
+%= $row->("For professionals", "Bring the benefits of kids reflex to the kids in your setting and pass skills on to their parents for continuity of care", ["EYP1.jpg", "EYP2.jpg", "EYP3.jpg", "EYP4.jpg", "EYP5.jpg"], "/page/professionals");
+%= $row->("For reflexologists", "Short CPD courses to help you pass on kids reflex to your clients and get them coming back for more", ["Reflex1.jpg", "Reflex4.jpg", "Reflex3.jpg", "Reflex2.jpg"], "/page/reflexologists");
+%= $row->("Additional Needs", "There are special versions of many of our courses for children with Additional Needs and their parents and carers", "AN1.jpg", "/page/addneeds");
+<p>&nbsp;</p>
+<p class="frontpage-normal">
+<center>
+Our award-winning range of <a href="<%= url_for 'crp.page', page => 'courses' %>">courses</a> is delivered by
+specially qualified <a href="<%= url_for 'crp.page', page => 'location_search' %>">instructors</a>
+and <a href="<%= url_for 'crp.page', page => 'team' %>">trainers</a>, making simple
+<a href="<%= url_for 'crp.page', page => 'reflexology' %>">reflexology</a>
+available as a powerful tool to improve the lives of children and their carers
+at home and in childcare settings.
+</center>
+</p>
+<p>&nbsp;</p>
+%= include 'main/parts/awards'
+<div class="low-key"><a href="/tutor_list">List of qualified instructors</a></div>

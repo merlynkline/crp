@@ -1,0 +1,52 @@
+%#<!DOCTYPE html>
+% layout 'default', heading => "Susan Quayle";
+% title "About me";
+<div class="instructor-photo" style="margin-top: 16px;"><img src="<%= url_for '/images/Photos/Susan.jpg' %>" /></div>
+<p class="page-intro">
+My name is Susan Quayle. First and foremost I am a mother and a wife; huge responsibilities that
+I take incredibly seriously. However I am also an award-winning complementary therapist,
+children&apos;s author and business woman. I am the creator of The Children&apos;s Reflexology Programme
+and author of the series of books by the same name. I am an evangelist and educator for the
+benefits of simple reflexology to support and empower parents throughout the world.
+</p>
+<p>
+I come from humble beginnings: my parents were poor, my mother was illiterate, my father was
+uneducated but had a ferocious work ethic. I don&apos;t remember having many toys or books when
+I was a child. I spent the greater part of the first ten years of my life outside in nature
+digging treasure from river banks, catching newts in buckets from brooks, scrumping sour apples
+from what I now know to be cider apple orchards, picking flowers, berries, mushrooms and anything
+else that I liked the look of or thought might be edible, and crawling through ancient limestone
+caves (that if my children went near I would probably have apoplexy! Health and Safety
+just didn&apos;t exist in those days!).
+</p>
+<p>
+My childhood was idyllic I remember it with great joy and real sense of freedom.
+When I was eleven my world was shattered by my mother leaving home. A year later when I thought
+things couldn&apos;t get worse my older sister was killed in a most violent and shocking way
+that destroyed the remnants of the life I had known. My father, totally destroyed but trying
+his hardest to manage his family, turned heavily to drink and my brother followed. Some of the
+hardest years of my life followed and I left school as soon as I could without any
+qualifications and then left home.
+</p>
+<p>
+When I was nineteen I met Merlyn, my husband and general all round amazing website building genius.
+It took me a long time to find complementary therapy but once I did I knew it was exactly where
+I should be. Working with women was inevitable really after losing all the women in my life so
+early. Supporting them when they were at their most vulnerable, during conception, pregnancy and
+beyond with their children had great meaning for me.
+I always felt it was important to do something that would make a difference to someone else&apos;s
+life. It may be part of what is called survivor&apos;s guilt but it was important not to waste my life
+when my sister&apos;s was taken from her.
+</p>
+<p>
+The Children&apos;s Reflexology Programme is my great passion and was created to make a difference
+in another person&apos;s life, to offer women choices where they may not have existed before through
+support, friendship, community and the gentle healing power of reflexology and bonding touch.
+</p>
+<p>
+I dedicate my work to my sister and my father.
+</p>
+<p>
+&nbsp;
+</p>
+%= include 'main/parts/awards';

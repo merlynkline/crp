@@ -1,0 +1,8 @@
+%#<!DOCTYPE html>
+<table align="center">
+    <tr>
+        <td><a href="http://www.fht.org.uk/2016-FHT-Excellence-Awards" target="_blank"><img style="height: 160px; margin: 0 12px;" src="<%= url_for '/images/Awards/FHT2016.jpg' %>" /></a></td>
+        <td><a href="https://www.holistictherapistmagazine.com/uncategorized/holistic-business-awards-2015-winners/" target="_blank"><img style="height: 160px; margin: 0 12px;" src="<%= url_for '/images/Awards/HolisticBus2015.jpg' %>" /></a></td>
+        <td><a href="https://www.holistictherapistmagazine.com/awards/" target="_blank"><img style="height: 200px; margin: 0 12px;" src="<%= url_for '/images/Awards/HolisticBus2016.jpg' %>" /></a></td>
+    </tr>
+</table>

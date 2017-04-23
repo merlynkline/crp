@@ -1,0 +1,21 @@
+%#<!DOCTYPE html>
+<%
+    my $left_nav_menu = [
+        ['home',      '/',                    'Home'],
+        ['parents',   '/page/parents',        'Parents'],
+        ['pro',       '/page/professionals',  'Professionals'],
+        ['tutors',    'crp.instructors',      'Instructors'],
+        ['reflex',    '/page/reflexologists', 'Reflexologists'],
+        ['press',     '/page/press',          'Press'],
+        ['aboutme',   '/page/aboutme',        'About me'],
+        ['books',     '/page/books',          'Books'],
+        ['shop',      '/page/shop',           'Shop'],
+    ];
+    if(stash 'logged_in') {
+        push @$left_nav_menu, ['members',   '/instructor',     'Members'];
+    }
+    else {
+        push @$left_nav_menu, ['login',     '/login',          'Log in'];
+    }
+=%>
+%= include 'layouts/parts/main', left_nav_menu => $left_nav_menu;

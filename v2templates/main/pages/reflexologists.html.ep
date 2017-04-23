@@ -1,0 +1,38 @@
+%#<!DOCTYPE html>
+% layout 'default', heading => "For Reflexologists",page_id => "reflex";
+% title "Reflexologists";
+<img src="<%= url_for '/images/Animals/Owl.jpg' %>" class="page-logo" />
+<p class="page-intro">
+If you are a already a Reflexologist qualified to level three or
+above then you will find The Children&apos;s Reflexology Programme 
+to be a wonderful extension of your skills.
+<p>
+<div style="
+    border:         1px solid black;
+    padding:        4px 0;
+    margin:         0;
+    border-radius:  8px;
+    line-height:    120%;
+    font-size:      75%;
+    text-align:     center;
+    float:          left;
+    margin-right:   12px;
+    ">
+    <a href="http://www.aor.org.uk/" target="_blank"><img style="padding: 8px 16px 0 16px; width:66px; height:66px;" src="<%= url_for '/images/AORCPDApproved.jpg' %>"></a>
+    <a href="http://www.fht.org.uk/" target="_blank"><img style="padding: 8px 16px 0 16px; width:80px; height:66px;" src="<%= url_for '/images/FHTAccreditation.jpg' %>"></a>
+</div>
+
+Our <a href="<%= url_for '/page/courses' %>">courses</a> include a shorter version of
+our <a href="<%= url_for '/instructors' %>">instructors course</a> which will enable you to become a fully
+qualified instructor without the need to learn
+the basic reflexology and A &amp; P we teach to our other instructors. This course
+is fully CPD accredited by the AOR and the FHT.
+<div style="padding: 24px 0 12px 40px;">
+    <span class="highlight-box">
+        Interested in becoming an instructor?
+        <a class="standard-button" href="<%= url_for '/instructors' %>">Book a course now</a>
+    </span>
+</div>
+</p><p style="text-align: center;">
+<img src="<%= url_for '/images/Photos/Course10-360.jpg' %>" />
+</p>

@@ -1,0 +1,44 @@
+%#<!DOCTYPE html>
+% layout 'default', heading => "For Professionals", page_id => "pro";
+% title "Professionals";
+<img src="<%= url_for '/images/Animals/Badger.jpg' %>" class="page-logo" />
+<p class="page-intro">
+The Children&apos;s Reflexology Programme is a powerful tool for
+early years practitioners and we have courses and materials designed
+specially to help you in your setting.
+<a href="<%= url_for 'crp.page', page => 'contact' %>">Contact us</a>
+to learn more.
+</p>
+<p>
+Everyone loves The Children&apos;s Reflexology Programme!
+<a href="<%= url_for 'crp.page', page => 'testimonials' %>">See what people are saying.</a>
+</p>
+<p>
+Included in our wide range of <a href="<%= url_for 'crp.page', page => 'courses' %>">courses</a>
+we have special courses which will teach you how to use simple
+<a href="<%= url_for 'crp.page', page => 'reflexology' %>">reflexology</a> to support
+your work with children in your setting and, if you wish, how to pass
+that same knowledge on to the parents of the children in your care.
+The main course is a one day course which is typically delivered in your setting
+to enable some or all of the staff to use reflexology in the context of
+The Children&apos;s Reflexology Programme. There is also a further two day course
+available if you would like to be able to pass on this knowledge to parents - this
+is a subset of the main Instructor course. Alternatively you could
+<a href="<%= url_for '/instructors' %>">become a fully qualified instructor</a>
+and run parents courses in your setting or elsewhere.
+</p>
+<p style="text-align: center;">
+<img src="<%= url_for '/images/Photos/EYP1.jpg' %>" />
+</p>
+<p>
+We have found that The Children&apos;s Reflexology Programme is very useful
+for those who work with children with additional needs and there are special
+versions of our courses which include comprehensive material for this application.
+For more information please see the <a href="<%= url_for 'crp.page', page => 'addneeds' %>">additional needs page</a>.
+</p>
+<p>
+If you think The Children&apos;s Reflexology Programme could help you in
+your workplace, or you would just like to know more, please use our
+<a href="<%= url_for 'crp.page', page => 'contact' %>">contact page</a> to get in touch.
+We&apos;ll be happy to call you back.
+</p>

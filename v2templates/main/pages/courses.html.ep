@@ -1,0 +1,249 @@
+%#<!DOCTYPE html>
+% layout 'default', heading => "The Courses";
+% title "Courses";
+<style>
+    .course-info-text {
+        display:     none;
+        margin-left: 20px;
+    }
+</style>
+<p class="page-intro">
+We have a wide range of courses to suit different people and situations.
+Each course is delivered by a specially qualified instructor.
+</p>
+<p>
+Parent courses are delivered by a large and ever growing community of
+<a href="<%= url_for 'crp.page', page => 'location_search' %>">instructors</a>, each of whom has trained with
+one of our <a href="<%= url_for 'crp.page', page => 'team' %>">team</a> of trainers who also deliver
+the professional and other courses.
+</p>
+<table class="list1">
+    <tr>
+        <th>Course</th>
+        <th>Description</th>
+        <th>Entry</th>
+    </tr>
+%# --------------------------------------------------------------------------
+    <tr>
+        <td>
+            <a href="<%= url_for('crp.page', page => 'parents') %>">Parents</a><br />
+            <span class="course-info-button small-button">More information</span>
+        </td>
+        <td>
+            A short course of typically weekly workshops that teaches parents and carers how to give simple
+            <a href="<%= url_for('crp.page', page => 'reflexology') %>">reflexology</a>
+            to their children. This is the foundation of the programme, easily accessible to everyone,
+            with courses running all the time in a large number of locations.
+            There are special courses for children with <a href="<%= url_for 'crp.page', page => 'addneeds' %>">additional needs</a>.
+            <div class="course-info-text extra-info">
+                <p>
+                    Our instructors run a variety of workshop courses for parents of different ages of children
+                    as well as taster sessions and special antenatal courses for pregnant mums so they can
+                    prepare to give reflexology to their newborns. You will learn how and when to give simple
+                    reflexology and how beneficial it can be for you and your child. The workshops use a variety
+                    of techniques to make reflexology fun, engaging and easy to remember for parents and
+                    children alike. The courses typically include a copy of one of the lovely hard-back illustrated
+                    children's books that accompany the programme and a set of high quality materials to
+                    help you remember what you have learned.
+                </p>
+                <p>For more about why you should take this course see the <a href="<%= url_for('crp.page', page => 'parents') %>">Parents page</a></p>
+            </div>
+        </td>
+        <td>Open to anyone</td>
+    </tr>
+%# --------------------------------------------------------------------------
+    <tr>
+        <td>
+            <a href="<%= url_for('crp.instructors') %>">Instructors</a><br />
+            <span class="course-info-button small-button">More information</span>
+        </td>
+        <td>
+            Complete three day training to become an instructor so you can deliver the standard parents course.
+            Includes all your teaching materials and access to a wide range of online services to support delivery
+            of the parents course once training is complete.
+            There are special courses for children with <a href="<%= url_for 'crp.page', page => 'addneeds' %>">additional needs</a>.
+            <div class="course-info-text extra-info">
+                <p>
+                    This course enables you to work with children and parents under the banner of The Children&apos;s Reflexology Programme. It covers:
+                    <ul>
+                        <li>Safeguarding</li>
+                        <li>Techniques for teaching</li>
+                        <li>Reflexology and its application</li>
+                        <li>Reflexology techniques</li>
+                        <li>Performing simple reflexology</li>
+                        <li>Introduction to Anatomy and Physiology</li>
+                        <li>Setting expectations</li>
+                        <li>Engaging children in reflexology</li>
+                        <li>Detailed workshop timetable</li>
+                        <li>Running a business based on the programme</li>
+                        <li>Follow-up</li>
+                        </li>
+                    </ul>
+                    The course includes a detailed manual and a full set of high quality teaching materials.
+                    When you have qualified there will be a verification page on the web site to confirm your qualification
+                    for insurers etc and you will have access to a wide range of online facilites, from your own personal
+                    web page on the site where you can advertise your courses to a large and growing range of personalised
+                    documents for course administration, marketing and advertising.
+                </p>
+                <p>For more about why you should take this course see the <a href="<%= url_for('crp.instructors') %>">Instructors page</a></p>
+            </div>
+        </td>
+        <td>Open to anyone</td>
+    </tr>
+%# --------------------------------------------------------------------------
+    <tr>
+        <td>
+            <a href="<%= url_for 'crp.page', page => 'reflexologists' %>">Reflexologist Instructors</a><br />
+            <span class="course-info-button small-button">More information</span>
+        </td>
+        <td>
+            This is a two day version of the instructors course, for reflexologists with a level three qualification.
+            This course has AoR and FHT approval.
+            There are special courses for children with <a href="<%= url_for 'crp.page', page => 'addneeds' %>">additional needs</a>.
+            <div class="course-info-text extra-info">
+                <p>
+                    This course is very similar to the main Instructors course (see above) but does not
+                    include the material on reflexology or anatomy and physiology.
+                    <ul>
+                        <li>Safeguarding</li>
+                        <li>Techniques for teaching</li>
+                        <li>Setting expectations</li>
+                        <li>Engaging children in reflexology</li>
+                        <li>Detailed workshop timetable</li>
+                        <li>Running a business based on the programme</li>
+                        <li>Follow-up</li>
+                        </li>
+                    </ul>
+                    The course includes a detailed manual and a full set of high quality teaching materials.
+                    When you have qualified there will be a verification page on the web site to confirm your qualification
+                    for insurers etc and you will have access to a wide range of online facilites, from your own personal
+                    web page on the site where you can advertise your courses to a large and growing range of personalised
+                    documents for course administration, marketing and advertising.
+                </p>
+                <p>For more about why you should take this course see the <a href="<%= url_for 'crp.page', page => 'reflexologists' %>">Reflexologists page</a></p>
+            </div>
+        </td>
+        <td>Level three reflexologists</td>
+    </tr>
+%# --------------------------------------------------------------------------
+    <tr>
+        <td>
+            <a href="<%= url_for 'crp.page', page => 'professionals' %>">Professionals</a><br />
+            <span class="course-info-button small-button">More information</span>
+        </td>
+        <td>
+            A one day course for Early Years Professionals showing you how give simple
+            <a href="<%= url_for('crp.page', page => 'reflexology') %>">reflexology</a>
+            to the children in your care within your setting.
+            Includes access to personalised online documents once training is complete,
+            and online qualification verification.
+            There are special courses for children with <a href="<%= url_for 'crp.page', page => 'addneeds' %>">additional needs</a>.
+            <div class="course-info-text extra-info">
+                <p>
+                    This course enables you to work with children under the banner of The Children&apos;s Reflexology Programme,
+                    bringing the power of reflexology to your setting. You will learn how and when to give simple
+                    reflexology and how beneficial it can be for you and the children in your care. The course is typically
+                    delivered in your setting for small groups, and includes:
+                    <ul>
+                        <li>Reflexology and its application</li>
+                        <li>Reflexology techniques</li>
+                        <li>Performing simple reflexology</li>
+                        <li>Introduction to Anatomy and Physiology</li>
+                        <li>Setting expectations</li>
+                        <li>Engaging children in reflexology</li>
+                        <li>Follow-up</li>
+                        </li>
+                    </ul>
+                    The course includes a detailed manual and high quality materials.
+                    When you have qualified there will be a verification page on the web site to confirm your qualification
+                    for insurers etc and you will have access to a selection of helpful personalised documents online.
+                </p>
+                <p>For more about why you should take this course see the <a href="<%= url_for('crp.page', page => 'professionals') %>">Professionals page</a></p>
+            </div>
+        </td>
+        <td>Early Years Professionals</td>
+    </tr>
+%# --------------------------------------------------------------------------
+    <tr>
+        <td>
+            <a href="<%= url_for 'crp.page', page => 'reflexologists' %>">Independent Reflexologist</a><br />
+            <span class="course-info-button small-button">More information</span>
+        </td>
+        <td>
+            A one day course showing how to teach workshops comprising a small subset of the
+            standard parents course. This course is suitable for reflexologists who would
+            like to extend their practice and would prefer not to be
+            too closely tied to TCRP after their training -
+            there is no requirement to purchase training packs when delivering the workshops
+            to parents and carers and there is no access ongoing support or to most online services.
+            <div class="course-info-text extra-info">
+                <p>
+                    This course enables you to work with children and parents under the banner of The Children&apos;s Reflexology Programme. It is divided into two main parts, as follows:
+                    <ul>
+                        <li>
+                            Working with children, covering:
+                            <ul>
+                                <li>Safeguarding</li>
+                                <li>Setting expectations</li>
+                                <li>Engaging children in reflexology</li>
+                                <li>Adapting reflexology for children</li>
+                            </ul>
+                        </li>
+                        <li>
+                            Working with parents, covering:
+                            <ul>
+                                <li>Setting expectations</li>
+                                <li>Techniques for teaching</li>
+                                <li>Adapting reflexology for lay people</li>
+                                <li>Follow-up</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    The course includes a detailed manual and a full set of high quality teaching materials.
+                    When you have qualified there will be a verification page on the web site to confirm your qualification
+                    for insurers etc and you will have access to a selection of helpful personalised documents online.
+                </p>
+                <p>For more about why you should take this course see the <a href="<%= url_for 'crp.page', page => 'reflexologists' %>">Reflexologists page</a></p>
+            </div>
+        </td>
+        <td>Level three reflexologists</td>
+    </tr>
+%# --------------------------------------------------------------------------
+    <tr>
+        <td>
+            <a href="<%= url_for 'crp.page', page => 'professionals' %>">Parent Support</a><br />
+            <span class="course-info-button small-button">More information</span>
+        </td>
+        <td>
+            A two day course showing how to teach workshops comprising a small subset of the
+            standard parents course. This course was created in collaboration with Surestart
+            and is suitable for similar support settings, enabling staff to work with children
+            and parents.
+            <div class="course-info-text extra-info">
+                <p>
+                    This course enables you to work with children and parents under the banner of The Children&apos;s Reflexology Programme. It covers:
+                    <ul>
+                        <li>Reflexology and its application</li>
+                        <li>Reflexology techniques</li>
+                        <li>Performing simple reflexology</li>
+                        <li>Setting expectations</li>
+                        <li>Engaging children in reflexology</li>
+                        <li>Techniques for teaching</li>
+                        <li>Detailed workshop timetable</li>
+                        <li>Follow-up</li>
+                        </li>
+                    </ul>
+                    The course includes a detailed manual and a full set of high quality teaching materials.
+                </p>
+                <p>For more about why you should take this course see the <a href="<%= url_for 'crp.page', page => 'professionals' %>">Professionals page</a></p>
+            </div>
+        </td>
+        <td>Parent support centres and reflexologists</td>
+    </tr>
+%# --------------------------------------------------------------------------
+</table>
+<script>
+    $('.course-info-button').click(function() {
+        $(this).parent().next().children('.course-info-text').animate({height: "toggle"}, 500);
+    });
+</script>
