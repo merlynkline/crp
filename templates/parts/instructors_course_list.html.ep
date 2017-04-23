@@ -33,6 +33,6 @@
 % } else {
 <span class="highlight-box">
     Interested in becoming an instructor?
-    <a class="standard-button" href="<%= url_for '/page/instructor_booking' %>">Book a course now</a>
+    <a class="standard-button" href="<%= url_for '/instructor_booking_form' %>">Book a course now</a>
 </span>
 % }
