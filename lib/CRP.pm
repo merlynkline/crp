@@ -41,6 +41,8 @@ sub startup {
         });
     }
 
+    unshift @{$self->renderer->paths}, $config->{template_dir} if $config->{template_dir};
+
     # Router
     my $r = $self->routes;
 
