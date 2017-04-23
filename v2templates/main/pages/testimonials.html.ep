@@ -4,16 +4,21 @@
 % my $testimonials;
 % include 'main/parts/testimonial_list', list_ref => \$testimonials;
 % my $pics = [
-%#    "SpontaneousKids.jpg",
 %    "Course10-360.jpg",
 %    "Course5-360.jpg",
 %    "Course9-360.jpg",
+%    "Course1-360.jpg",
 %    "Course12-360.jpg",
 %    "Course8-360.jpg",
 %    "Certificates-360.jpg",
 %    "Course7-360.jpg",
 %    "Course11-360.jpg",
 %    "Course6-360.jpg",
+%    "Course20-360.jpg",
+%    "Course25-360.jpg",
+%    "Course27-360.jpg",
+%    "Course16-360.jpg",
+%    "Course3.jpg",
 %    "Autoreflex-360.jpg",
 %    "SofaKids-360.jpg",
 % ];
@@ -31,7 +36,7 @@ Here's some of the feedback we get.
 % foreach my $testimonial (@$testimonials) {
     % my $this_word_count = scalar(my @words = $testimonial->[0] =~ /\w+/g);
     % if($word_count == 0) {
-    <img style="border: 3px solid #589; border-radius: 8px; width: 45%; float: <%= $left_side ? 'left' : 'right' %>; margin: 8px <%= $left_side ? '8px' : '0' %> 8px <%= $left_side ? '0' : '8px' %>;" src="<%= url_for '/images/Photos/' . $pics->[$pic_index] %>" />
+    <img style="border: 3px solid #589; border-radius: 8px; width: 40%; float: <%= $left_side ? 'left' : 'right' %>; margin: 8px <%= $left_side ? '8px' : '0' %> 8px <%= $left_side ? '0' : '8px' %>;" src="<%= url_for '/images/Photos/' . $pics->[$pic_index] %>" />
         % $left_side = ! $left_side;
         % $pic_index++;
         % $pic_index = 0 if $pic_index == @$pics;
@@ -39,8 +44,8 @@ Here's some of the feedback we get.
         <%== $testimonial->[0] %>
         <span><%= $testimonial->[1] %></span>
         <hr />
-    % $word_count += $this_word_count;
-    % $word_count = 0 if $word_count > 120;
+    % $word_count += $this_word_count + 20;
+    % $word_count = 0 if $word_count > 110;
 % }
     </ul>
 </div>

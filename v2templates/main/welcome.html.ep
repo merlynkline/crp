@@ -157,7 +157,7 @@
       line-height:  120%;
     }
 </style>
-%= $row->("For parents and carers","Kids reflex will help you enjoy a better connection with your child and cope better with the stresses of illness and everyday life",["Course6-360.jpg", "Course7-360.jpg", "Certificates-360.jpg", "Course5-360.jpg", "Course10-360.jpg", "Course1-360.jpg" ], "/page/parents");
+%= $row->("For parents and carers","Kids reflex will help you enjoy a better connection with your child and cope better with the stresses of illness and everyday life",["Course6-360.jpg", "Course7-360.jpg", "Certificates-360.jpg", "Course5-360.jpg", "Course10-360.jpg", "Course1-360.jpg", "Course27-360.jpg", "Course25-360.jpg" ], "/page/parents");
 %= $row->("For everyone", "Become an instructor and build your own business bringing the benefits of kids reflex to more parents and carers", ["Training4.jpg", "Training3.jpg", "Training2.jpg", "Training.jpg"], "crp.instructors");
 %= $row->("For professionals", "Bring the benefits of kids reflex to the kids in your setting and pass skills on to their parents for continuity of care", ["EYP1.jpg", "EYP2.jpg", "EYP3.jpg", "EYP4.jpg", "EYP5.jpg"], "/page/professionals");
 %= $row->("For reflexologists", "Short CPD courses to help you pass on kids reflex to your clients and get them coming back for more", ["Reflex1.jpg", "Reflex4.jpg", "Reflex3.jpg", "Reflex2.jpg"], "/page/reflexologists");
