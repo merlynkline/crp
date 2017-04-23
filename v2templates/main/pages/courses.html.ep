@@ -1,6 +1,18 @@
 %#<!DOCTYPE html>
 % layout 'default', heading => "The Courses";
 % title "Courses";
+% my $page_url;
+% my $page_title;
+% my $course_title;
+% my $title_cell = begin
+        <td>
+            <a href="<%== $page_url %>"><%= $course_title %></a><br />
+            <span class="course-info-button small-button">Details</span>
+        </td>
+% end
+% my $details_footer = begin
+                <p>For more about why you should take this course see the <a href="<%== $page_url %>"><%= $page_title %> page</a></p>
+% end
 <style>
     .course-info-text {
         display:     none;
@@ -24,11 +36,11 @@ the professional and other courses.
         <th>Entry</th>
     </tr>
 %# --------------------------------------------------------------------------
+% $page_url     = url_for 'crp.page', page => 'parents';
+% $page_title   = 'Parents';
+% $course_title = 'Parents';
     <tr>
-        <td>
-            <a href="<%= url_for('crp.page', page => 'parents') %>">Parents</a><br />
-            <span class="course-info-button small-button">More information</span>
-        </td>
+        %= $title_cell->();
         <td>
             A short course of typically weekly workshops that teaches parents and carers how to give simple
             <a href="<%= url_for('crp.page', page => 'reflexology') %>">reflexology</a>
@@ -46,17 +58,17 @@ the professional and other courses.
                     children's books that accompany the programme and a set of high quality materials to
                     help you remember what you have learned.
                 </p>
-                <p>For more about why you should take this course see the <a href="<%= url_for('crp.page', page => 'parents') %>">Parents page</a></p>
+                %= $details_footer->();
             </div>
         </td>
         <td>Open to anyone</td>
     </tr>
 %# --------------------------------------------------------------------------
+% $page_url     = url_for 'crp.instructors';
+% $page_title   = 'Instructors';
+% $course_title = 'Instructors';
     <tr>
-        <td>
-            <a href="<%= url_for('crp.instructors') %>">Instructors</a><br />
-            <span class="course-info-button small-button">More information</span>
-        </td>
+        %= $title_cell->();
         <td>
             Complete three day training to become an instructor so you can deliver the standard parents course.
             Includes all your teaching materials and access to a wide range of online services to support delivery
@@ -85,17 +97,17 @@ the professional and other courses.
                     web page on the site where you can advertise your courses to a large and growing range of personalised
                     documents for course administration, marketing and advertising.
                 </p>
-                <p>For more about why you should take this course see the <a href="<%= url_for('crp.instructors') %>">Instructors page</a></p>
+                %= $details_footer->();
             </div>
         </td>
         <td>Open to anyone</td>
     </tr>
 %# --------------------------------------------------------------------------
+% $page_url     = url_for 'crp.page', page => 'reflexologists';
+% $page_title   = 'Reflexologists';
+% $course_title = 'Reflexologist Instructors';
     <tr>
-        <td>
-            <a href="<%= url_for 'crp.page', page => 'reflexologists' %>">Reflexologist Instructors</a><br />
-            <span class="course-info-button small-button">More information</span>
-        </td>
+        %= $title_cell->();
         <td>
             This is a two day version of the instructors course, for reflexologists with a level three qualification.
             This course has AoR and FHT approval.
@@ -120,17 +132,17 @@ the professional and other courses.
                     web page on the site where you can advertise your courses to a large and growing range of personalised
                     documents for course administration, marketing and advertising.
                 </p>
-                <p>For more about why you should take this course see the <a href="<%= url_for 'crp.page', page => 'reflexologists' %>">Reflexologists page</a></p>
+                %= $details_footer->();
             </div>
         </td>
         <td>Level three reflexologists</td>
     </tr>
 %# --------------------------------------------------------------------------
+% $page_url     = url_for 'crp.page', page => 'professionals';
+% $page_title   = 'Professionals';
+% $course_title = 'Professional';
     <tr>
-        <td>
-            <a href="<%= url_for 'crp.page', page => 'professionals' %>">Professionals</a><br />
-            <span class="course-info-button small-button">More information</span>
-        </td>
+        %= $title_cell->();
         <td>
             A one day course for Early Years Professionals showing you how give simple
             <a href="<%= url_for('crp.page', page => 'reflexology') %>">reflexology</a>
@@ -158,17 +170,17 @@ the professional and other courses.
                     When you have qualified there will be a verification page on the web site to confirm your qualification
                     for insurers etc and you will have access to a selection of helpful personalised documents online.
                 </p>
-                <p>For more about why you should take this course see the <a href="<%= url_for('crp.page', page => 'professionals') %>">Professionals page</a></p>
+                %= $details_footer->();
             </div>
         </td>
         <td>Early Years Professionals</td>
     </tr>
 %# --------------------------------------------------------------------------
+% $page_url     = url_for 'crp.page', page => 'reflexologists';
+% $page_title   = 'Reflexologists';
+% $course_title = 'Independent Reflexologist';
     <tr>
-        <td>
-            <a href="<%= url_for 'crp.page', page => 'reflexologists' %>">Independent Reflexologist</a><br />
-            <span class="course-info-button small-button">More information</span>
-        </td>
+        %= $title_cell->();
         <td>
             A one day course showing how to teach workshops comprising a small subset of the
             standard parents course. This course is suitable for reflexologists who would
@@ -203,17 +215,17 @@ the professional and other courses.
                     When you have qualified there will be a verification page on the web site to confirm your qualification
                     for insurers etc and you will have access to a selection of helpful personalised documents online.
                 </p>
-                <p>For more about why you should take this course see the <a href="<%= url_for 'crp.page', page => 'reflexologists' %>">Reflexologists page</a></p>
+                %= $details_footer->();
             </div>
         </td>
         <td>Level three reflexologists</td>
     </tr>
 %# --------------------------------------------------------------------------
+% $page_url     = url_for 'crp.page', page => 'professionals';
+% $page_title   = 'Professionals';
+% $course_title = 'Parent Support';
     <tr>
-        <td>
-            <a href="<%= url_for 'crp.page', page => 'professionals' %>">Parent Support</a><br />
-            <span class="course-info-button small-button">More information</span>
-        </td>
+        %= $title_cell->();
         <td>
             A two day course showing how to teach workshops comprising a small subset of the
             standard parents course. This course was created in collaboration with Surestart
@@ -235,7 +247,7 @@ the professional and other courses.
                     </ul>
                     The course includes a detailed manual and a full set of high quality teaching materials.
                 </p>
-                <p>For more about why you should take this course see the <a href="<%= url_for 'crp.page', page => 'professionals' %>">Professionals page</a></p>
+                %= $details_footer->();
             </div>
         </td>
         <td>Parent support centres and reflexologists</td>
