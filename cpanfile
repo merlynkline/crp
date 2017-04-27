@@ -20,6 +20,7 @@ requires "Mojolicious::Plugin::Mail";
 requires "DBD::Pg";
 requires "Imager::File::JPEG";
 requires "IO::Socket::SSL";
+requires "IO::Compress::Gzip";
 requires "Crypt::LE";
 requires "Mojolicious::Plugin::ReCAPTCHAv2";
 

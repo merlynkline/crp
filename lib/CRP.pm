@@ -165,6 +165,7 @@ sub startup {
 
     $self->app->hook(before_dispatch => \&_before_dispatch);
     $self->app->hook(after_dispatch => \&_after_dispatch);
+    $self->app->hook(after_render => \&_after_render);
 }
 
 sub _before_dispatch {
@@ -241,6 +242,18 @@ sub _csrf_error_handler {
     my $c = shift;
 
     $c->render(template => 'csrf_violation', status => 403);
+}
+
+use IO::Compress::Gzip 'gzip';
+sub _after_render {
+    my ($c, $output, $format) = @_;
+
+    return unless ($c->req->headers->accept_encoding // '') =~ /gzip/i;
+
+    $c->res->headers->append(Vary => 'Accept-Encoding');
+    $c->res->headers->content_encoding('gzip');
+    gzip $output, \my $compressed;
+    $$output = $compressed;
 }
 
 1;
