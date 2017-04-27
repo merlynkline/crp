@@ -11,6 +11,12 @@ body {
     line-height:    140%;
     background-color: #bbb;
 }
+.page-body {
+    background-color:   #fcf3dc;
+    background-image:   url('/images/Misc/HareBG.jpg');
+    background-repeat:  no-repeat;
+    background-size:    100%;
+}
 a {
     color:          inherit;
 }
