@@ -1,0 +1,29 @@
+%#<!DOCTYPE html>
+% my $cell_width = 46;
+% $cell_width *= 2 unless $left_list && $right_list;
+<table class="feature-list">
+    <tr>
+% if($left_list) {
+        <td width="<%= $cell_width %>%" nowrap>
+            <ul>
+% foreach my $item (@$left_list) {
+                <li><%= $item %></li>
+% }
+            </ul>
+        </td>
+% }
+        <td>
+            <%= include 'main/parts/loves_button' %>
+        </td>
+% if($right_list) {
+        <td width="<%= $cell_width %>%" nowrap>
+            <ul class="feature-list feature-right">
+% foreach my $item (@$right_list) {
+                <li><%= $item %></li>
+% }
+            </ul>
+        </td>
+% }
+    </tr>
+</table>
+

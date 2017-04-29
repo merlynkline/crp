@@ -1,6 +1,9 @@
 %#<!DOCTYPE html>
 % layout 'default', heading => "For Professionals", page_id => "pro";
 % title "Professionals";
+% my $benefits = ['Happier, calmer children and staff', 'Continuity of care with the home', 'Development, play, bonding and wellbeing', 'A great USP for your setting'];
+% my $features = ['Training in your own setting', 'High quality course materials', 'On-line resources after the course', 'Additional needs extension'];
+%= include 'main/parts/feature_list', left_list => $benefits, right_list => $features;
 <img src="<%= url_for '/images/Animals/Badger.jpg' %>" class="page-logo" />
 <p class="page-intro">
 The Children&apos;s Reflexology Programme is a powerful tool for
@@ -8,10 +11,6 @@ early years practitioners and we have courses and materials designed
 specially to help you in your setting.
 <a href="<%= url_for 'crp.page', page => 'contact' %>">Contact us</a>
 to learn more.
-</p>
-<p>
-Everyone loves The Children&apos;s Reflexology Programme!
-<a href="<%= url_for 'crp.page', page => 'testimonials' %>">See what people are saying.</a>
 </p>
 <p>
 Included in our wide range of <a href="<%= url_for 'crp.page', page => 'courses' %>">courses</a>
@@ -27,9 +26,7 @@ is a subset of the main Instructor course. Alternatively you could
 <a href="<%= url_for '/instructors' %>">become a fully qualified instructor</a>
 and run parents courses in your setting or elsewhere.
 </p>
-<p style="text-align: center;">
-<img src="<%= url_for '/images/Photos/EYP1.jpg' %>" />
-</p>
+<img src="<%= url_for '/images/Photos/EYP1.jpg' %>" class="illo-large" style="float: right;" />
 <p>
 We have found that The Children&apos;s Reflexology Programme is very useful
 for those who work with children with additional needs and there are special

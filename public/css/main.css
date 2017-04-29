@@ -182,7 +182,7 @@ hr {
     padding:        8px 0;
     font-weight:    bold;
 }
-fieldset, legend, .message-box, .pdf-preview, .highlight-box, .instructor-photo, table.list1, .member-option-highlight, .pdf-separator, .display-box {
+fieldset, legend, .message-box, .pdf-preview, .highlight-box, .instructor-photo, table.list1, .member-option-highlight, .pdf-separator, .display-box, .illo-large {
     border:         3px solid #589;
     background:     #bde;
     border-radius:  8px;
@@ -393,9 +393,9 @@ select {
     background:     url('/images/Plants/Strawberry.png');
 }
 .page-intro {
-    font-size:      140%;
-    line-height:    120%;
-    padding-top:    8px;
+    font-size:      160%;
+    line-height:    130%;
+    margin:         10px 0;
 }
 
 .instructor-photo {
@@ -609,6 +609,32 @@ div.faq-menu {
 }
 .faq-menu div.selected {
     background:     #fdd;
+}
+
+.illo-large {
+    width: 60%;
+}
+
+table.feature-list {
+    width: 100%;
+    margin-top: 16px;
+}
+.feature-list li {
+    display: block;
+    font-size: 120%;
+    line-height: 120%;
+    font-weight: bold;
+    margin: 4px;
+    padding: 1px 8px;
+    background: linear-gradient(to left, #fff, #bde);
+}
+.feature-list.feature-right li {
+    background: linear-gradient(to right, #fff, #bde);
+    text-align: right;
+}
+.feature-list ul {
+    padding: 0;
+    margin:  0;
 }
 
 .g-recaptcha {
