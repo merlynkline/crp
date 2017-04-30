@@ -17,7 +17,7 @@
         </td>
 % if($right_list) {
         <td width="<%= $cell_width %>%" nowrap>
-            <ul class="feature-list feature-right">
+            <ul class="feature-list right">
 % foreach my $item (@$right_list) {
                 <li><%= $item %></li>
 % }

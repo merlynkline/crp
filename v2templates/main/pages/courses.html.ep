@@ -144,7 +144,7 @@ the professional and other courses.
     <tr>
 %= $title_cell->();
         <td>
-            A one day course for Early Years Professionals showing you how give simple
+            A one day course for Early Years Practitioners showing you how give simple
             <a href="<%= url_for('crp.page', page => 'reflexology') %>">reflexology</a>
             to the children in your care within your setting.
             Includes access to personalised online documents once training is complete,
@@ -173,7 +173,7 @@ the professional and other courses.
 %= $details_footer->();
             </div>
         </td>
-        <td>Early Years Professionals</td>
+        <td>Early Years Practitioners</td>
     </tr>
 %# --------------------------------------------------------------------------
 % $page_url     = url_for 'crp.page', page => 'reflexologists';
@@ -250,7 +250,7 @@ the professional and other courses.
 %= $details_footer->();
             </div>
         </td>
-        <td>Parent support centres and reflexologists</td>
+        <td>Parent support centres</td>
     </tr>
 %# --------------------------------------------------------------------------
 </table>
