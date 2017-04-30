@@ -79,6 +79,11 @@
             ga('create', 'UA-60480765-1', 'auto');
             ga('send', 'pageview');
 
+            $('.testimonial-button img')
+                .mouseenter(function() {this.src = "<%= url_for '/images/Buttons/loves/hover.png' %>"})
+                .mouseleave(function() {this.src = "<%= url_for '/images/Buttons/loves/default.png' %>"})
+                .mousedown(function() {this.src = "<%= url_for '/images/Buttons/loves/down.png' %>"})
+                .mouseup(function() {this.src = "<%= url_for '/images/Buttons/loves/hover.png' %>"});
         </script>
     </body>
 </html>

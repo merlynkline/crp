@@ -9,11 +9,3 @@
 }
 </style>
 <a class="testimonial-button" href="<%= url_for 'crp.page', page => 'testimonials' %>" title="Click to see what people say"><img src="<%= url_for '/images/Buttons/loves/default.png' %>"></a>
-<script>
-    $('.testimonial-button img')
-        .mouseenter(function() {this.src = "<%= url_for '/images/Buttons/loves/hover.png' %>"})
-        .mouseleave(function() {this.src = "<%= url_for '/images/Buttons/loves/default.png' %>"})
-        .mousedown(function() {this.src = "<%= url_for '/images/Buttons/loves/down.png' %>"})
-        .mouseup(function() {this.src = "<%= url_for '/images/Buttons/loves/hover.png' %>"});
-</script>
-
