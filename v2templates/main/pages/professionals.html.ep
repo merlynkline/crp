@@ -13,7 +13,8 @@ specially to help you in your setting.
 to learn more.
 </p>
 <p>
-Using simple reflexology on the children in your care not only gives you an
+Using simple <a href="<%= url_for 'crp.page', page => 'reflexology' %>">reflexology</a>
+on the children in your care not only gives you an
 effective action to take in times of stress but also improves bonding and offers
 continuity of care with homes that may be using it themselves. The activity
 fits well with developmental objectives as well as being positive play and
