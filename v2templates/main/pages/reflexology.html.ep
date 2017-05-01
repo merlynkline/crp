@@ -1,8 +1,41 @@
 %#<!DOCTYPE html>
 % layout 'default', heading => "What is reflexology?";
 % title "Reflexology";
-<p>
+<p class="page-intro">
 Reflexology is a powerful but gentle therapy which is particularly beneficial
 with children and can be a great help in times of distress and with common
-childhood illnesses such as constipation, teething, colic and so on.
+childhood illnesses such as constipation, teething, and colic.
+</p>
+<img src="<%= url_for '/images/Photos/Course19-360.jpg' %>" class="illo-large right" />
+<p>
+According the the <i>Association of Reflexologists</i> website:
+</p>
+<p style="margin-left: 12px; padding-left: 12px; font-style: italic; border-left: 4px solid #ddd;">
+Reflexology is a non-intrusive complementary health therapy, based on the theory
+that different points on the feet, lower leg, hands, face or ears correspond with
+different areas of the body. Reflexologists work holistically with their clients
+and aim to work alongside allopathic healthcare to promote better health for their clients. 
+</p>
+<p>
+The Children&apos;s Reflexology Programme takes a small part of reflexology,
+wraps it in stories and rhyme, and binds it to colours and animal characters,
+making it accessible to all and engaging for children. This empowers everyone
+to benefit from some of the gentle power of reflexology in their own home
+or anywhere.
+</p>
+<p>
+<img src="<%= url_for '/images/Feet/PlantarComplete.jpg' %>" style="padding: 0 12px 0 0; float: left;" />
+Professional reflexologists undergo hundreds of hours of training in reflexes and
+techniques, and detailed anatomy, physiology and pathology, in order to make the
+fullest use of reflexology in their clinics. You can take advantage of some of the
+learning and experience reflexologists have accumulated over the years without the
+need to undertake such lengthy training - kids reflex will bring you simple reflexology
+quickly and easily along with the confidence of knowing that you can consult a
+fully qualified reflexolgist whenever you want to.
+</p>
+<p>
+One of the most important aspects of any complementary therapy, including reflexology, is
+that it is used alongside medical healthcare. It is essential to remember that
+reflexology is <b>not</b> a substitute for medical attention and should <b>never</b>
+be used to replace medical treatment that is ongoing or required at any time.
 </p>
