@@ -5,6 +5,7 @@ use DBIx::Connector;
 
 use CRP::Plugin::CSRFProtect;
 use CRP::Helper::Main;
+use CRP::Helper::Markdown;
 use CRP::Plugin::ETag;
 use CRP::Model::Schema;
 use CRP::Util::Session;
@@ -18,6 +19,7 @@ sub startup {
     my $config = $self->plugin('Config');
     $self->plugin('CRP::Plugin::CSRFProtect', on_error => \&_csrf_error_handler);
     $self->plugin('CRP::Helper::Main');
+    $self->plugin('CRP::Helper::Markdown');
     $self->plugin('CRP::Plugin::ETag');
     $self->plugin('RenderFile');
     $self->plugin('TemplateToolkit', {template => {
