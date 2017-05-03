@@ -900,6 +900,20 @@ DISTRIBUTIONS
       ExtUtils::MakeMaker 6.59
       Test::More 0.62
       perl 5.008001
+  Text-Markdown-1.000031
+    pathname: B/BO/BOBTFISH/Text-Markdown-1.000031.tar.gz
+    provides:
+      Text::Markdown 1.000031
+    requirements:
+      Digest::MD5 0
+      Encode 0
+      ExtUtils::MakeMaker 6.42
+      FindBin 0
+      List::MoreUtils 0
+      Test::Differences 0
+      Test::Exception 0
+      Test::More 0.42
+      Text::Balanced 0
   Type-Tiny-1.000005
     pathname: T/TO/TOBYINK/Type-Tiny-1.000005.tar.gz
     provides:
