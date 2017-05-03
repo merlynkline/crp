@@ -4,8 +4,9 @@
 % my $benefits = ['Extend your practice and business', 'Continuity of care with the home', 'Work more effectively with children', 'Encourage return visits'];
 % my $features = ['AoR and FHT approved for CPD', 'High quality course materials', 'On-line resources after the course', 'Additional needs extension'];
 %= include 'main/parts/feature_list', left_list => $benefits, right_list => $features;
+%= markdown begin
 <img src="<%= url_for '/images/Animals/Owl.jpg' %>" class="page-logo" />
-<p class="page-intro">
+<p markdown="yes" class="page-intro">
 If you are a Reflexologist qualified to level three or
 above then you will find The Children&apos;s Reflexology Programme 
 to be a wonderful extension of your skills, helping your clients'
@@ -13,20 +14,16 @@ families to benefit from reflexology at home and keeping them
 coming back for more.
 </p>
 <div style="text-align: center; padding: 12px 0;"><span class="highlight-box">Interested in becoming an instructor?<a class="standard-button" href="<%= url_for '/instructors' %>">Book a course now</a></span></div>
-<p>
+
 As a reflexologist, you already know the power of this lovely therapy. With
 kids reflex you can share that power with your clients so they can use simplified reflexology to
 help treat their children at home, ensuring continuity of care from your
 clinic to their homes. You will discover how to work more effectively
 with children and how to engage them in the whole process, bringing them
 and their parents back to you for more.
-</p>
-<p>
 
-</p>
-<p>
-Our <a href="<%= url_for 'crp.page', page => 'courses' %>">courses</a> include a shorter version of
-our <a href="<%= url_for 'crp.instructors' %>">instructors course</a> which will enable you to become a fully
+Our [courses](<%= url_for 'crp.page', page => 'courses' %>) include a shorter version of
+our [instructors course](<%= url_for 'crp.instructors' %>) which will enable you to become a fully
 qualified instructor without the need to learn
 the basic reflexology and A &amp; P we teach to our other instructors. 
 <span style="
@@ -54,22 +51,20 @@ interactive features on our website which
 supports your ongoing use of the programme and provides electronic verification of your
 qualification - everything you need from on-line advertising and booking to leaflets,
 posters, business cards and administrative forms.
-</p>
-<p>
+
 Once you have completed the training you will be fully qualified to deliver our
-<a href="<%= url_for 'crp.page', page => 'parents' %>"> parents courses</a> using
+[parents courses](<%= url_for 'crp.page', page => 'parents' %>) using
 the special materials we supply. This means that each course you deliver is accompanied
 by high quality materials including a copy of one of the delightful hardback
-<a href="<%= url_for 'crp.page', page => 'books' %>"> children's books</a>
+[children&apos;s books](<%= url_for 'crp.page', page => 'books' %>)
 that accompanies the programme.
-</p>
+
 <h2>Additional needs</h2>
-<p>
+
 We have found that The Children&apos;s Reflexology Programme is very useful
 for those who work with children with additional needs and there are special
 versions of our courses which include comprehensive material for this application.
-For more information please see the <a href="<%= url_for 'crp.page', page => 'addneeds' %>">additional needs page</a>.
-</p>
+For more information please see the [additional needs page](<%= url_for 'crp.page', page => 'addneeds' %>).
+% end
 <div style="text-align: center; padding: 12px 0;"><span class="highlight-box">Interested in becoming an instructor?<a class="standard-button" href="<%= url_for '/instructors' %>">Book a course now</a></span></div>
 %= include 'main/parts/feature_list', left_list => $benefits, right_list => $features;
-</p>

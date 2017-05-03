@@ -4,29 +4,29 @@
 % my $benefits = ['Happier, calmer children and staff', 'Continuity of care with the home', 'Development, play, bonding and wellbeing', 'A great USP for your setting'];
 % my $features = ['Training in your own setting', 'High quality course materials', 'On-line resources after the course', 'Additional needs extension'];
 %= include 'main/parts/feature_list', left_list => $benefits, right_list => $features;
+%= markdown begin
 <img src="<%= url_for '/images/Animals/Badger.jpg' %>" class="page-logo" />
-<p class="page-intro">
+<p markdown="yes" class="page-intro">
 The Children&apos;s Reflexology Programme is a powerful tool for
 early years practitioners and we have courses and materials designed
 specially to help you in your setting.
-<a href="<%= url_for 'crp.page', page => 'contact' %>">Contact us</a>
+[Contact us](<%= url_for 'crp.page', page => 'contact' %>)
 to learn more.
 </p>
-<p>
-Using simple <a href="<%= url_for 'crp.page', page => 'reflexology' %>">reflexology</a>
+
+Using simple [reflexology](<%= url_for 'crp.page', page => 'reflexology' %>)
 on the children in your care not only gives you an
 effective action to take in times of stress but also improves bonding and offers
 continuity of care with homes that may be using it themselves. The activity
 fits well with developmental objectives as well as being positive play and
 promoting wellbeing generally. Offering kids reflex as part of your service
 can also be a great USP (unique selling point) for your setting. This is a
-wonderful tool for early years pracitioners of every kind, such as <b>Day
-Care</b> facilities, <b>Nannies</b> and <b>Maternity Nurses</b> and similar.
-</p>
-<p>
-Our wide range of <a href="<%= url_for 'crp.page', page => 'courses' %>">courses</a>
+wonderful tool for early years pracitioners of every kind, such as **Day
+Care** facilities, **Nannies** and **Maternity Nurses** and similar.
+
+Our wide range of [courses](<%= url_for 'crp.page', page => 'courses' %>)
 includes special training which will teach you how to use simple
-<a href="<%= url_for 'crp.page', page => 'reflexology' %>">reflexology</a> to support
+[reflexology](<%= url_for 'crp.page', page => 'reflexology' %>) to support
 your work with children in your setting.
 The main course is a one day course which is typically delivered in your setting
 to enable some or all of the staff to use reflexology in the context of
@@ -38,16 +38,15 @@ which are all related directly to the reflexology process itself. High quality t
 materials are included, as is access to further personalised material on our website which
 supports your ongoing use of the programme and provides electronic verification of your
 qualification.
-</p>
+
 <h2>Parent support centres</h2>
-<p>
-Our <a href="<%= url_for 'crp.page', page => 'courses' %>">courses</a> also
+
+Our [courses](<%= url_for 'crp.page', page => 'courses' %>) also
 include a special two day training course which enables staff at parent support
 centres how to pass on this knowledge to parents and carers. This
-is a subset of the main <a href="<%= url_for '/instructors' %>">Instructor course</a>.
-</p>
-<p>
-This course was created in conjunction with <b>Sure Start</b> and
+is a subset of the main [instructors course](<%= url_for 'crp.instructors' %>).
+
+This course was created in conjunction with **Sure Start** and
 includes everything you need to enable you to get parents and carers started
 using this wonderful programme, from teaching techniques through simple reflexology to
 a complete and detailed teaching programme so you will be able to set up and run workshops
@@ -56,19 +55,20 @@ from beginning to end. The high quality materials include a comprehensive manual
 of teaching materials and special handouts to pass on to the parents and carers. The course
 includes plenty of hand-on pracitical work so you can be sure of confidence in passing
 this knowledge on.
-</p>
+
 <h2>Additional needs</h2>
-<p>
+
 We have found that The Children&apos;s Reflexology Programme is very useful
 for those who work with children with additional needs and there are special
 versions of our courses which include comprehensive material for this application.
-For more information please see the <a href="<%= url_for 'crp.page', page => 'addneeds' %>">additional needs page</a>.
-</p>
+For more information please see the [additional needs page](<%= url_for 'crp.page', page => 'addneeds' %>).
+
 <h2>Find out more</h2>
-<p>
+
 If you think The Children&apos;s Reflexology Programme could help you in
 your workplace, or you would just like to know more, please use our
-<a href="<%= url_for 'crp.page', page => 'contact' %>">contact page</a> to get in touch.
+[contact page](<%= url_for 'crp.page', page => 'contact' %>) to get in touch.
 We&apos;ll be happy to call you back.
-</p>
+
+% end
 %= include 'main/parts/feature_list', left_list => $benefits, right_list => $features;
