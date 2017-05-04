@@ -7,17 +7,17 @@ use Text::Markdown 'markdown';
 
 sub register {
     my $c = shift;
-    my($app) = @_;
+    my($app, $config) = @_;
 
+    my %config = %$config if $config;
     $app->helper(markdown => sub {
-        my($c, $block) = @_;
+        my $c = shift;
+        my $content = pop;
 
-        my $result = $block->()->to_string;
-        $result = markdown($result, {
-            empty_element_suffix => '/>',
-            tab_width            => 2,
-        });
-        return Mojo::ByteStream->new($result);
+        my %this_config = (%config, @_);
+        $content = $content->()->to_string if ref $content eq 'CODE';
+        $content = markdown("$content", \%this_config);
+        return Mojo::ByteStream->new($content);
     });
 }
 
