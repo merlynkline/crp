@@ -1,6 +1,7 @@
 %#<!DOCTYPE html>
 % layout 'default', extra_header_templates => 'parts/location_input';
 % title 'Course enquiry';
+% my $tab_index = 1;
 <h1>Register for course notifications</h1>
 
 %= form_for  '/main/register_interest' => (method => 'POST') => begin
@@ -13,8 +14,8 @@
 
         <label for="location-input-location">Location:</label>
         <div class="input-container">
-            %= text_field 'location' => '', onblur => 'locationInputHandler.codeAddress()', id => 'location-input-location', autofocus => 'autofocus';
-            <input type="button" value="check" onclick="locationInputHandler.codeAddress()" /><br />
+            %= text_field 'location' => '', onblur => 'locationInputHandler.codeAddress()', id => 'location-input-location', autofocus => 'autofocus', tabindex => $tab_index++;
+            <input type="button" value="check" onclick="locationInputHandler.codeAddress()" tabindex="-1" /><br />
         </div>
         %= hidden_field 'latitude' => param('latitude'), id => "location-input-latitude"
         %= hidden_field 'longitude' => param('longitude'), id => "location-input-longitude"
@@ -32,7 +33,7 @@
             <div class="field-extra-info">We won't share your email address with anyone without asking you first.</div>
         </label>
         <div class="input-container">
-            %= email_field 'email', id => 'email'
+            %= email_field 'email', id => 'email', tabindex => $tab_index++
             <%= include 'parts/error', field => 'email' %>
             % my $email_error = validation->error('email');
             % if($email_error && $email_error->[0] eq 'duplicate_email') {
@@ -45,7 +46,7 @@
             <div class="field-extra-info">Tell us your name if you would like to.</div>
         </label>
         <div class="input-container">
-            %= text_field 'name', id => 'name';
+            %= text_field 'name', id => 'name', tabindex => $tab_index++;
         </div>
 
         <label for="tell_tutors">Tell instructors?
@@ -54,21 +55,21 @@
             </div>
         </label>
         <div class="input-container">
-            %= check_box tell_tutors => 'Y', id => 'tell_tutors';
+            %= check_box tell_tutors => 'Y', id => 'tell_tutors', tabindex => $tab_index++;
         </div>
 
         <label for="newsletter">Subscribe to newsletter?
             <div class="field-extra-info">Would you like to receive an occasional newsletter from us?</div>
         </label>
         <div class="input-container">
-            %= check_box newsletter => 'Y', id => 'newsletter';
+            %= check_box newsletter => 'Y', id => 'newsletter', tabindex => $tab_index++;
         </div>
 
         <%= include 'parts/recaptcha' =%>
 
         <label>&nbsp;</label>
         <div class="input-container">
-            %= submit_button 'Go'
+            %= submit_button 'Go', tabindex => $tab_index++
             <%= include 'parts/error', field => '_general' %>
         </div>
     </fieldset>

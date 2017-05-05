@@ -14,8 +14,8 @@ You can use the search form below to find courses and instructors near you.
 
         <label for="location-input-location">Location:</label>
         <div class="input-container">
-            %= text_field 'location' => '', onblur => 'locationInputHandler.codeAddress()', id => 'location-input-location', autofocus => 'autofocus';
-            <input type="button" value="check" onclick="locationInputHandler.codeAddress()" /><br />
+            %= text_field 'location' => '', onblur => 'locationInputHandler.codeAddress()', id => 'location-input-location', autofocus => 'autofocus', tabindex => 1;
+            <input tabindex="-1" type="button" value="check" onclick="locationInputHandler.codeAddress()" /><br />
         </div>
         %= hidden_field 'latitude' => param('latitude'), id => "location-input-latitude"
         %= hidden_field 'longitude' => param('longitude'), id => "location-input-longitude"
@@ -31,7 +31,7 @@ You can use the search form below to find courses and instructors near you.
 
         <label>&nbsp;</label>
         <div class="input-container">
-            %= submit_button 'Search'
+            %= submit_button 'Search', tabindex => 2
             <%= include 'parts/error', field => '_general' %>
         </div>
     </fieldset>

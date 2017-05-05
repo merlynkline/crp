@@ -16,6 +16,7 @@
 % layout 'default', extra_header_templates => 'parts/location_input';
 % title 'Confirm registration';
 % my $info = stash('info');
+% my $tab_index = 1;
 <h1>Confirm registration</h1>
 
 % if(stash 'confirmed') {
@@ -37,8 +38,8 @@ You can change any of the details and click the update button if you wish.
         %= hidden_field do_update => 'Y';
         <label for="location-input-location">Location:</label>
         <div class="input-container">
-            %= text_field 'location' => '', onblur => 'locationInputHandler.codeAddress()', id => 'location-input-location', autofocus => 'autofocus';
-            <input type="button" value="check" onclick="locationInputHandler.codeAddress()" /><br />
+            %= text_field 'location' => '', onblur => 'locationInputHandler.codeAddress()', id => 'location-input-location', autofocus => 'autofocus', tabindex => $tab_index++;
+            <input type="button" value="check" onclick="locationInputHandler.codeAddress()" , tabindex="-1" /><br />
         </div>
         %= hidden_field 'latitude' => param('latitude'), id => "location-input-latitude"
         %= hidden_field 'longitude' => param('longitude'), id => "location-input-longitude"
@@ -56,7 +57,7 @@ You can change any of the details and click the update button if you wish.
             <div class="field-extra-info">Tell us your name if you would like to.</div>
         </label>
         <div class="input-container">
-            %= text_field 'name', id => 'name', value => $info->{name};
+            %= text_field 'name', id => 'name', value => $info->{name}, tabindex => $tab_index++;
         </div>
 
         <label for="new_courses">Course notifications?
@@ -65,7 +66,7 @@ You can change any of the details and click the update button if you wish.
             </div>
         </label>
         <div class="input-container">
-            %= check_box notify_new_courses => 'Y', id => 'new_courses';
+            %= check_box notify_new_courses => 'Y', id => 'new_courses', tabindex => $tab_index++;
         </div>
 
         <label for="tell_tutors">Tell instructors?
@@ -74,19 +75,19 @@ You can change any of the details and click the update button if you wish.
             </div>
         </label>
         <div class="input-container">
-            %= check_box tell_tutors => 'Y', id => 'tell_tutors';
+            %= check_box tell_tutors => 'Y', id => 'tell_tutors', tabindex => $tab_index++;
         </div>
 
         <label for="newsletter">Subscribe to newsletter?
             <div class="field-extra-info">Would you like to receive an occasional newsletter from us?</div>
         </label>
         <div class="input-container">
-            %= check_box newsletter => 'Y', id => 'newsletter';
+            %= check_box newsletter => 'Y', id => 'newsletter', tabindex => $tab_index++;
         </div>
 
         <label>&nbsp;</label>
         <div class="input-container">
-            %= submit_button 'Update'
+            %= submit_button 'Update', tabindex => $tab_index++
             <%= include 'parts/error', field => '_general' %>
 % if(stash 'updated') {
             <%= include 'parts/temporary_message', msg => 'registration_update' %>
