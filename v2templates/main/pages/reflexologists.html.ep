@@ -59,7 +59,7 @@ by high quality materials including a copy of one of the delightful hardback
 [children&apos;s books](<%= url_for 'crp.page', page => 'books' %>)
 that accompanies the programme.
 
-<h2>Additional needs</h2>
+## Additional needs
 
 We have found that The Children&apos;s Reflexology Programme is very useful
 for those who work with children with additional needs and there are special

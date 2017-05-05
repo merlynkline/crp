@@ -4,59 +4,49 @@
 % my $testimonials;
 % my $image_delay = 20000;
 % include 'main/parts/testimonial_list', list_ref => \$testimonials;
-    <p class="front-page-large">
-    Helping
-    <strong>parents</strong>
-    and
-    <strong>carers</strong>
-    and
-    <strong>children</strong>
-    of all ages to
-    <strong>cope</strong>
-    better with the
-    <strong>stresses</strong>
-    of
-    <strong>illness</strong>
-    and
-    <strong>everyday life</strong>.</p>
-    <div class="highlight-box" style="float: right; text-align: center; margin: 0 12px 0 12px;">
-        <a class="standard-button" href="<%= url_for 'crp.location_search' %>">Find a course near you</a><br><br><a class="standard-button" href="<%= url_for 'crp.instructors' %>">Become an instructor</a>
-    </div>
-    <p class="front-page-medium">
-    Our
-    <a href="<%= url_for 'crp.page',  page => 'parents' %>">fun, interactive workshops</a>
-    enable
-    <strong>anybody</strong>
-    to make use of simple, gentle
-    <strong><a href="<%= url_for 'crp.page', page => 'reflexology' %>">reflexology</a></strong>
-    to improve
-    <strong>health</strong>
-    and strengthen
-    <strong>bonds</strong>.
-    </p>
+%= markdown begin
 
-    <div id="reviews">
-        <a href="<%= url_for 'crp.page',  page => 'testimonials' %>">
-            <div id="review-list" class="scroll-text">
-                <ul>
-                    <li><b>Testimonials:</b></li>
+<p markdown="yes" class="front-page-large">
+Helping **parents** and **carers** and **children** of all ages to **cope**
+better with the **stresses** of **illness** and **everyday life**
+</p>
+
+<div class="highlight-box" style="float: right; text-align: center; margin: 0 12px 0 12px;">
+    <a class="standard-button" href="<%= url_for 'crp.location_search' %>">Find a course near you</a><br><br><a class="standard-button" href="<%= url_for 'crp.instructors' %>">Become an instructor</a>
+</div>
+
+<p markdown="yes" class="front-page-medium">
+Our [fun, interactive workshops](<%= url_for 'crp.page',  page => 'parents' %>)
+enable **anybody** to make use of simple, gentle
+**[reflexology](<%= url_for 'crp.page', page => 'reflexology' %>)**
+to improve **health** and strengthen **bonds**
+</p>
+
+%end
+
+<style>#review-list > ul > li > p {padding: 0; margin: 0; display: inline-block; }</style>
+<div id="reviews">
+    <a href="<%= url_for 'crp.page',  page => 'testimonials' %>">
+        <div id="review-list" class="scroll-text">
+            <ul>
+                <li markdown="yes"><b>Testimonials:</b></li>
 % foreach my $testimonial (@$testimonials) {
-                    <li><%== $testimonial->[0] %>&nbsp;<span><%= $testimonial->[1] %></span></li>
+                <li markdown="yes"><%== markdown $testimonial->[0] %>&nbsp;<span><%= $testimonial->[1] %></span></li>
 % }
-                </ul>
-            </div>
-        </a>
-        <script src="<%= url_for '/js/ScrollBox.js' %>"></script>
-        <script>
-            $('#review-list').scrollbox({
-                step:   1,
-                delay:  0,
-                speed: 10,
-                linear: 1,
-                direction: 'h'
-            });
-        </script>
-    </div>
+            </ul>
+        </div>
+    </a>
+    <script src="<%= url_for '/js/ScrollBox.js' %>"></script>
+    <script>
+        $('#review-list').scrollbox({
+            step:   1,
+            delay:  0,
+            speed: 10,
+            linear: 1,
+            direction: 'h'
+        });
+    </script>
+</div>
 
 % my $row_number = 0;
 % my $row = begin
@@ -159,20 +149,26 @@
 </style>
 %= $row->("For parents and carers","Kids reflex will help you enjoy a better connection with your child and cope better with the stresses of illness and everyday life",["Course6-360.jpg", "Course7-360.jpg", "Certificates-360.jpg", "Course5-360.jpg", "Course10-360.jpg", "Course1-360.jpg", "Course27-360.jpg", "Course25-360.jpg" ], "/page/parents");
 %= $row->("For everyone", "Become an instructor and build your own business bringing the benefits of kids reflex to more parents and carers", ["Training4.jpg", "Training3.jpg", "Training2.jpg", "Training.jpg"], "crp.instructors");
-%= $row->("For professionals", "Bring the benefits of kids reflex to the kids in your setting and pass skills on to their parents for continuity of care", ["EYP1.jpg", "EYP2.jpg", "EYP3.jpg", "EYP4.jpg", "EYP5.jpg"], "/page/professionals");
-%= $row->("For reflexologists", "Short CPD courses to help you pass on kids reflex to your clients and get them coming back for more", ["Reflex1.jpg", "Reflex4.jpg", "Reflex3.jpg", "Reflex2.jpg"], "/page/reflexologists");
+%= $row->("For professionals", "Bring the benefits of kids reflex to the kids in your setting", ["EYP1.jpg", "EYP2.jpg", "EYP3.jpg", "EYP4.jpg", "EYP5.jpg"], "/page/professionals");
+%= $row->("For reflexologists", "Short CPD courses to help you pass on kids reflex to your clients and get them coming back for more", ["Reflex1.jpg", "Reflex4.jpg", "Reflex3.jpg"], "/page/reflexologists");
 %= $row->("Additional Needs", "There are special versions of many of our courses for children with Additional Needs and their parents and carers", "AN1.jpg", "/page/addneeds");
-<p>&nbsp;</p>
-<p class="frontpage-normal">
+
+%= markdown begin
+
+&nbsp;
+
 <center>
-Our award-winning range of <a href="<%= url_for 'crp.page', page => 'courses' %>">courses</a> is delivered by
-specially qualified <a href="<%= url_for 'crp.page', page => 'location_search' %>">instructors</a>
-and <a href="<%= url_for 'crp.page', page => 'team' %>">trainers</a>, making simple
-<a href="<%= url_for 'crp.page', page => 'reflexology' %>">reflexology</a>
+Our award-winning range of [courses](<%= url_for 'crp.page', page => 'courses' %>) is delivered by
+specially qualified [instructors](<%= url_for 'crp.page', page => 'location_search' %>)
+and [trainers](<%= url_for 'crp.page', page => 'team' %>), making simple
+[reflexology](<%= url_for 'crp.page', page => 'reflexology' %>)
 available as a powerful tool to improve the lives of children and their carers
 at home and in childcare settings.
 </center>
-</p>
-<p>&nbsp;</p>
+
+<center>Awards for kids reflex</center>
+
 %= include 'main/parts/awards'
 <div class="low-key"><a href="/tutor_list">List of qualified instructors</a></div>
+
+% end

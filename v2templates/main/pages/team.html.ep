@@ -1,14 +1,15 @@
 %#<!DOCTYPE html>
 % layout 'default', heading => "Training team";
 % title "Meet the training team";
-<p class="page-intro">
-All our training <a href="<%= url_for '/page/courses' %>">courses</a>
+%= markdown begin
+<p markdown="yes" class="page-intro">
+All our training [courses](<%= url_for '/page/courses' %>)
 are delivered by our highly qualified and experienced
 team of trainers who will make sure you get everything you need to be
 successful with The Children&apos;s Reflexology Programme.
 </p>
 
-<table align="center">
+<table markdown="yes" align="center">
     <tr>
         <td align="center"><h2 style="line-height: 120%">Susan Quayle FFHT, MAR</h2></td>
         <td align="center"><h2 style="line-height: 120%">Claire Hall MAR</h2></td>
@@ -19,24 +20,25 @@ successful with The Children&apos;s Reflexology Programme.
         <td align="center"><a href="https://www.kidsreflex.co.uk/me/-16786176"><div class="instructor-photo" style="float: none; margin: 0 auto; display: inline-block;"><img src="<%= url_for '/images/Photos/Claire.jpg' %>" /></div></a></td>
         <td align="center"><a href="https://www.kidsreflex.co.uk/me/-50340098"><div class="instructor-photo" style="float: none; margin: 0 auto; display: inline-block;"><img src="<%= url_for '/images/Photos/Andrea.jpg' %>" /></div></a></td>
     </tr>
-    <tr>
+    <tr markdown="yes">
         <td style="padding: 12px" width="33%" align="center">
             Susan is the founder of The Children&apos;s Reflexology Programme
             and the author of the accompanying <a href="<%= url_for '/page/books' %>">books</a>.
-            <br/><a href="<%= url_for '/page/aboutme' %>">More about Susan</a>.
+            <br/>[More about Susan](<%= url_for '/page/aboutme' %>).
         </td>
-        <td style="padding: 12px" width="33%" align="center">
+        <td markdown="yes" style="padding: 12px" width="33%" align="center">
             Claire is an <a href="/page/addneeds">additional needs</a>
             specialist with extensive training in the field and
             co-authored much of our additional needs material.
-            <br/><a href="https://www.kidsreflex.co.uk/me/-16786176">More about Claire</a>.
+            <br/>[More about Claire](https://www.kidsreflex.co.uk/me/-16786176).
         </td>
         <td style="padding: 12px" width="33%" align="center">
             Andrea is something something something.
             something something something.
             something something something.
             something something something.
-            <br/><a href="https://www.kidsreflex.co.uk/me/-50340098">More about Andrea</a>.
+            <br/>[More about Andrea](https://www.kidsreflex.co.uk/me/-50340098).
         </td>
     </tr>
 </table>
+% end

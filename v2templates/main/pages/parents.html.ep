@@ -1,6 +1,9 @@
 %#<!DOCTYPE html>
 % layout 'default', heading => "For Parents and Carers";
 % title "Parents and Carers";
+% my $benefits = ['Learn skills for life', 'Instant help when you need it most', 'Bonding and wellbeing', 'Meet other parents and carers'];
+% my $features = ['Fun workshops with your kids', 'Lovely hardback story book', 'High quality hand-outs', 'Additional needs courses'];
+%= include 'main/parts/feature_list', left_list => $benefits, right_list => $features;
 <img src="<%= url_for '/images/Animals/Hare.jpg' %>" class="page-logo">
 <p class="page-intro">
 Our courses for parents are typically presented as several weekly
@@ -110,4 +113,6 @@ who have already attended a course have had positive results after their first
 class. Reflexology is a powerful tool and The Children&apos;s Reflexology Programme
 makes it available to you, now.
 </p>
-<%= include 'main/parts/find-course-button' %>
+%= include 'main/parts/find-course-button'
+<br />
+%= include 'main/parts/feature_list', left_list => $benefits, right_list => $features;

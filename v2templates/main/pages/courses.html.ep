@@ -88,7 +88,6 @@ the professional and other courses.
                         <li>Engaging children in reflexology</li>
                         <li>Detailed workshop timetable</li>
                         <li>Running a business based on the programme</li>
-                        <li>Follow-up</li>
                         </li>
                     </ul>
                     The course includes a detailed manual and a full set of high quality teaching materials.
@@ -123,7 +122,6 @@ the professional and other courses.
                         <li>Engaging children in reflexology</li>
                         <li>Detailed workshop timetable</li>
                         <li>Running a business based on the programme</li>
-                        <li>Follow-up</li>
                         </li>
                     </ul>
                     The course includes a detailed manual and a full set of high quality teaching materials.
@@ -144,7 +142,7 @@ the professional and other courses.
     <tr>
 %= $title_cell->();
         <td>
-            A one day course for Early Years Practitioners showing you how give simple
+            A one day course for Early Years Practitioners showing you how to give simple
             <a href="<%= url_for('crp.page', page => 'reflexology') %>">reflexology</a>
             to the children in your care within your setting.
             Includes access to personalised online documents once training is complete,
@@ -155,7 +153,7 @@ the professional and other courses.
                     This course enables you to work with children under the banner of The Children&apos;s Reflexology Programme,
                     bringing the power of reflexology to your setting. You will learn how and when to give simple
                     reflexology and how beneficial it can be for you and the children in your care. The course is typically
-                    delivered in your setting for small groups, and includes:
+                    delivered in your setting and includes:
                     <ul>
                         <li>Reflexology and its application</li>
                         <li>Reflexology techniques</li>
@@ -163,12 +161,12 @@ the professional and other courses.
                         <li>Introduction to Anatomy and Physiology</li>
                         <li>Setting expectations</li>
                         <li>Engaging children in reflexology</li>
-                        <li>Follow-up</li>
                         </li>
                     </ul>
                     The course includes a detailed manual and high quality materials.
                     When you have qualified there will be a verification page on the web site to confirm your qualification
                     for insurers etc and you will have access to a selection of helpful personalised documents online.
+                    In order to keep your qualification you will need to refresh your training every three years.
                 </p>
 %= $details_footer->();
             </div>
@@ -187,7 +185,7 @@ the professional and other courses.
             like to extend their practice and would prefer not to be
             too closely tied to TCRP after their training -
             there is no requirement to purchase training packs when delivering the workshops
-            to parents and carers and there is no access ongoing support or to most online services.
+            to parents and carers and there is no access to ongoing support or to most online services.
             <div class="course-info-text extra-info">
                 <p>
                     This course enables you to work with children and parents under the banner of The Children&apos;s Reflexology Programme. It is divided into two main parts, as follows:
@@ -207,7 +205,6 @@ the professional and other courses.
                                 <li>Setting expectations</li>
                                 <li>Techniques for teaching</li>
                                 <li>Adapting reflexology for lay people</li>
-                                <li>Follow-up</li>
                             </ul>
                         </li>
                     </ul>
@@ -242,7 +239,6 @@ the professional and other courses.
                         <li>Engaging children in reflexology</li>
                         <li>Techniques for teaching</li>
                         <li>Detailed workshop timetable</li>
-                        <li>Follow-up</li>
                         </li>
                     </ul>
                     The course includes a detailed manual and a full set of high quality teaching materials.
@@ -254,6 +250,11 @@ the professional and other courses.
     </tr>
 %# --------------------------------------------------------------------------
 </table>
+
+<p><center>Awards for kids reflex</center></p>
+
+%= include 'main/parts/awards'
+
 <script>
     $('.course-info-button').click(function() {
         $(this).parent().next().children('.course-info-text').animate({height: "toggle"}, 500);

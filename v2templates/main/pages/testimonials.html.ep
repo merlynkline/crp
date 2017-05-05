@@ -25,29 +25,26 @@
 % my $word_count = 0;
 % my $pic_index  = 0;
 % my $left_side  = 0;
-<p>
-<p class="page-intro">
+%= markdown begin
+<p markdown="yes" class="page-intro">
 Everyone loves The Children&apos;s Reflexology Programme!
 Here's some of the feedback we get.
-<p>
-<hr />
-<div id="review-page-list">
-    <ul>
+</p>
+- - - - - - - - - - - - - - - - - - -
+<div markdown="yes" id="review-page-list">
 % foreach my $testimonial (@$testimonials) {
     % my $this_word_count = scalar(my @words = $testimonial->[0] =~ /\w+/g);
     % if($word_count == 0) {
-    <img style="border: 3px solid #589; border-radius: 8px; width: 40%; float: <%= $left_side ? 'left' : 'right' %>; margin: 8px <%= $left_side ? '8px' : '0' %> 8px <%= $left_side ? '0' : '8px' %>;" src="<%= url_for '/images/Photos/' . $pics->[$pic_index] %>" />
+<img style="border: 3px solid #589; border-radius: 8px; width: 40%; float: <%= $left_side ? 'left' : 'right' %>; margin: 8px <%= $left_side ? '8px' : '0' %> 8px <%= $left_side ? '0' : '8px' %>;" src="<%= url_for '/images/Photos/' . $pics->[$pic_index] %>" />
         % $left_side = ! $left_side;
         % $pic_index++;
         % $pic_index = 0 if $pic_index == @$pics;
     % }
-        <%== $testimonial->[0] %>
-        <span><%= $testimonial->[1] %></span>
-        <hr />
+<%== $testimonial->[0] %>
+<span><%= $testimonial->[1] %></span>
+- - - - - - - - - - - - - - - - - - -
     % $word_count += $this_word_count + 20;
     % $word_count = 0 if $word_count > 110;
 % }
-    </ul>
 </div>
-</p>
-
+% end
