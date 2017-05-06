@@ -33,7 +33,6 @@ Here's some of the feedback we get.
 <p markdown="yes" style="text-align: center">
 [Take a look at our gallery too!](<%= url_for 'crp.page', page => 'gallery' %>)
 </p>
-- - - - - - - - - - - - - - - - - - -
 <div markdown="yes" id="review-page-list">
 % foreach my $testimonial (@$testimonials) {
     % my $this_word_count = scalar(my @words = $testimonial->[0] =~ /\w+/g);
@@ -43,9 +42,9 @@ Here's some of the feedback we get.
         % $pic_index++;
         % $pic_index = 0 if $pic_index == @$pics;
     % }
+- - - - - - - - - - - - - - - - - - -
 <%== $testimonial->[0] %>
 <span><%= $testimonial->[1] %></span>
-- - - - - - - - - - - - - - - - - - -
     % $word_count += $this_word_count + 20;
     % $word_count = 0 if $word_count > 110;
 % }
