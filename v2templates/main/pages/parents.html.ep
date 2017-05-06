@@ -21,7 +21,7 @@ and is supported by high quality materials including the lovely book,
 There is a special version of the course for
 parents of children with <a href="<%= url_for 'crp.page', page => 'addneeds' %>#additional">additional needs</a>.
 </p>
-<%= include 'main/parts/find-course-button' %>
+%= include 'main/parts/action-parent';
 
             <ul>
                 <li><img src="<%= url_for '/images/Photos/SpontaneousKids.jpg' %>" /></li>

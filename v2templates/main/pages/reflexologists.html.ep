@@ -13,7 +13,7 @@ to be a wonderful extension of your skills, helping your clients'
 families to benefit from reflexology at home and keeping them
 coming back for more.
 </p>
-<div style="text-align: center; padding: 12px 0;"><span class="highlight-box">Interested in becoming an instructor?<a class="standard-button" href="<%= url_for '/instructors' %>">Book a course now</a></span></div>
+%= include 'main/parts/action-instructor';
 
 As a reflexologist, you already know the power of this lovely therapy. With
 kids reflex you can share that power with your clients so they can use simplified reflexology to
@@ -66,5 +66,5 @@ for those who work with children with additional needs and there are special
 versions of our courses which include comprehensive material for this application.
 For more information please see the [additional needs page](<%= url_for 'crp.page', page => 'addneeds' %>).
 % end
-<div style="text-align: center; padding: 12px 0;"><span class="highlight-box">Interested in becoming an instructor?<a class="standard-button" href="<%= url_for '/instructors' %>">Book a course now</a></span></div>
+%= include 'main/parts/action-instructor';
 %= include 'main/parts/feature_list', left_list => $benefits, right_list => $features;

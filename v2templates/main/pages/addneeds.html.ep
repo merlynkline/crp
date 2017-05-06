@@ -1,6 +1,93 @@
 %#<!DOCTYPE html>
 % layout 'default', heading => "Additional needs";
 % title "Additional needs";
-The Children&apos;s Reflexology Programme is very useful for children with a broad range of additional needs.
-We have special courses with comprehensive material for this application.
-Co-authored with Claire.
+%= markdown begin
+
+<img src="<%= url_for '/images/Animals/Squirrel.jpg' %>" class="page-logo" />
+<p markdown="yes" class="page-intro">
+The Children&apos;s Reflexology Programme is great for Additional Needs because it is gentle,
+non-invasive and works on a deep level of relaxation that many Additional Needs children are unable to reach.
+</p>
+
+So many of the families that we have trained in our classes have found huge benefits in their everyday 
+lives through using our simple techniques. Children are more able to concentrate and focus, are empowered
+to take control of some aspects of their lives such as transitions during the day or being more independent
+in certain situations. Parents find their children are calmer, happier, settle more quickly and engage in
+family events more readily.
+
+<img src="<%= url_for '/images/Photos/AN1.jpg' %>" class="illo-large left" />
+We have special Additional Needs versions of many of our courses and one of the [books](<%= url_for 'crp.page', page => 'books' %>),
+*Mouse and the Storm*, is specially written to accompany them. These are different because we focus
+exclusively on hand reflexology and course content is specially designed for the specific needs of a
+variety of conditions related to many Additional Needs. The courses are run to support both parents
+and children so are often set up differently from our other courses.
+
+Hand reflexology is used to allow parents quick and easy access to give their children [reflexology](<%= url_for 'crp.page', page => 'reflexology' %>).
+<img src="<%= url_for '/images/Hands/PalmarComplete.jpg' %>" style="padding: 8px 0 0 12px; float: right;" />
+There is no need to remove any article of clothing or shoes and it can be given discreetly, e.g. whilst appearing to
+just be holding your child&apos;s hands, walking down the road, in the supermarket or during a melt down.
+Hand reflexology also offers children the opportunity to learn and use the reflexology as a self treatment
+to empower themselves for the rest of their lives. We have seen this make a huge difference to children&apos;s
+lives and enable them to achieve things that had been outside of their ability before learning this life skill.
+
+The Children&apos;s Reflexology Programme for Additional Needs was created in collaboration with
+[Claire Hall](<%= url_for 'crp.page', page => 'team' %>) who is a
+specialist nurse in the field of Additional Needs. All the course content has been created putting the welfare
+of children and families at the forefront of our work.
+
+## Additional Needs Parents Courses
+
+Our Additional Needs classes are based on our successful [Parents courses](<%= url_for 'crp.page', page => 'parents' %>)
+and teach hand reflexology to enable you quick and easy access to your new skills
+for life as well as enabling those children who are able to learn the techniques themselves as a strategy to
+support them throughout their day. We have found that many children who have learnt these simple techniques
+<a href="<%= url_for 'crp.page', page => 'parents' %>"><img src="<%= url_for '/images/Animals/Hare.jpg' %>" class="page-logo" style="width: 8%;" /></a>
+have been empowered to do things they were not able to before. They have become calmer, happier and felt
+more in control of themselves and their environment as a result of their learning.
+
+Classes are taught by fully qualified Instructors in The Children&apos;s Reflexology Programme for Additional Needs
+and are run as parent and child classes or parent only classes. Parent only classes are for those parents who would
+like to incorporate our protocols into their everyday lives but are unable to bring their child with them. This
+could be because they are at school or nursery or for any other reason or just because they would rather incorporate
+the programme into their child&apos;s life slowly at home.
+
+Of course [reflexology](<%= url_for 'crp.page', page => 'reflexology' %>) is a large part of what we offer but these classes are also about supporting parents of
+children with additional needs. Classes can offer you the chance of meeting like minded people, other parents
+going through similar challenges, regular group meet ups as a support network as well as just getting a break
+from your normal routine.
+
+%= include 'main/parts/action-parent';
+
+If you can't find a course in your area please
+[contact us](<%= url_for 'crp.page', page => 'contact' %>)
+to let us know of your interest and we will do our best to set one up for you.
+
+<a href="<%= url_for 'crp.instructors' %>"><img src="<%= url_for '/images/Animals/Owl.jpg' %>" class="page-logo" style="width: 10%" /></a>
+
+## Additional Needs Instructor Courses
+
+If you would like to work with families and parents of children with Additional Needs this 
+version of our [Instructors course](<%= url_for 'crp.instructors' %>) could be a great course
+for you. Our Instructor training will teach you all you need to know to support families in your communities with
+Additional Needs children. We offer specific protocols for a wide range of conditions to support children whatever
+their needs, from grief, depression or autistic spectrum disorders to severe neurological conditions.
+%= include 'main/parts/action-instructor';
+
+<a href="<%= url_for 'crp.page', page => 'professionals' %>"><img src="<%= url_for '/images/Animals/Badger.jpg' %>" class="page-logo" style="width: 18%;" /></a>
+
+## Additional Needs Programme for Professionals
+
+This training is a special version of our
+[Professional training course](<%= url_for 'crp.page', page => 'professionals' %>)
+for people who work with Additional Needs children in whatever capacity that may be.
+This can be very beneficial to support children with specific conditions such as constipation, behavioural problems,
+anxiety and many other complex conditions.
+
+This course teaches you to use the simple reflexology techniques and the specific protocols within your place of
+work on the children in your care.
+
+Insurance is a requirement and can be obtained through The Children&apos;s Reflexology Programme if your setting
+is unable to provide it.
+%= include 'main/parts/action-pro';
+
+% end
