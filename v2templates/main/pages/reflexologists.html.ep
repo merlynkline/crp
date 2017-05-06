@@ -42,7 +42,7 @@ the basic reflexology and A &amp; P we teach to our other instructors.
 </span>
 This course is fully CPD acredited by the AOR and the FHT. The course covers everything you need to know
 from safeguarding and teaching techniques through to the very simple reflexology protocols,
-%= include 'main/parts/illo-large', pic => 'Course10-360.jpg', side => 'right'
+<%= include 'main/parts/illo-large', pic => 'Course10-360.jpg', side => 'right' =%>
 carefully designed to engage
 children using techniques such as stories, rhyme, colours and animal characters
 which are all related directly to the reflexology process itself. High quality training

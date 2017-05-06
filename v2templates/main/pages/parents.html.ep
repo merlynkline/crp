@@ -17,7 +17,7 @@ take when you need it most.
 Courses are typically presented as several weekly group workshops attended by parents
 or carers and their children. You will learn a powerful skill for life which offers
 help you can use any time and anywhere, whenever you need it most, as well as
-%= include 'main/parts/illo-large', pic => 'Course5-360.jpg', side => 'left'
+<%= include 'main/parts/illo-large', pic => 'Course5-360.jpg', side => 'left' =%>
 promoting strong bonding and excellent wellbeing at all times.
 In addition to teaching you how to use simple
 [reflexology](<%= url_for 'crp.page', page => 'reflexology' %>) to help you and your child,
@@ -36,7 +36,7 @@ There is a special version of the course for
 parents of children with [additional needs](<%= url_for 'crp.page', page => 'addneeds' %>).
 
 %= include 'main/parts/action-parent';
-%= include 'main/parts/illo-large', pic => 'Course1-360.jpg', side => 'right'
+<%= include 'main/parts/illo-large', pic => 'Course1-360.jpg', side => 'right' =%>
 I am a parent and I have experienced first hand that feeling of utter
 helplessness that hits us when our child is distressed or unwell with
 conditions that we may not consider worthy of a trip to the GP. Of course it
@@ -51,7 +51,7 @@ charged, and might even be frightening for some children. Children who are
 unwell, or just distressed or upset for some reason, want to stay close to the
 people and places they know and love.
 
-%= include 'main/parts/illo-large', pic => 'SpontaneousKids-360.jpg', side => 'left'
+<%= include 'main/parts/illo-large', pic => 'SpontaneousKids-360.jpg', side => 'left' =%>
 The Children&apos;s Reflexology Programme
 solves these problems by making it possible for you to give reflexology
 treatments yourself, whenever and wherever you want. You can start helping with
@@ -68,7 +68,7 @@ for it every day – they cannot have too much reflexology! You can use the
 treatments as a way of controlling the condition and keeping your child calm,
 relaxed, happy and well.
 
-%= include 'main/parts/illo-large', pic => 'Course27-360.jpg', side => 'right'
+<%= include 'main/parts/illo-large', pic => 'Course27-360.jpg', side => 'right' =%>
 The Children&apos;s Reflexology Programme offers parents
 and carers the opportunity to easily learn enough reflexology to 
 give basic treatments to their families. It is a special

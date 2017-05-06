@@ -7,7 +7,7 @@ Reflexology is a powerful but gentle therapy which is particularly beneficial
 with children and can be a great help in times of distress and with common
 childhood illnesses such as constipation, teething, and colic.
 </p>
-%= include 'main/parts/illo-large', pic => 'Course19-360.jpg', side => 'right'
+<%= include 'main/parts/illo-large', pic => 'Course19-360.jpg', side => 'right' =%>
 
 According the the _Association of Reflexologists_ website:
 
