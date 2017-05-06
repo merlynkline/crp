@@ -1,0 +1,55 @@
+%#<!DOCTYPE html>
+% layout 'default', heading => "Gallery";
+% title "Gallery";
+% my $pics = [
+%    "Course10-360.jpg",
+%    "Course5-360.jpg",
+%    "Course9-360.jpg",
+%    "Autoreflex-360.jpg",
+%    "Course1-360.jpg",
+%    "Training4.jpg",
+%    "Course12-360.jpg",
+%    "SofaKids-360.jpg",
+%    "Course8-360.jpg",
+%    "Certificates-360.jpg",
+%    "Course22-360.jpg",
+%    "SpontaneousKids-360.jpg",
+%    "Course7-360.jpg",
+%    "Course11-360.jpg",
+%    "Training.jpg",
+%    "Course6-360.jpg",
+%    "Course4.jpg",
+%    "Course20-360.jpg",
+%    "Course19-360.jpg",
+%    "Course3.jpg",
+%    "Course25-360.jpg",
+%    "Training3.jpg",
+%    "Course24-360.jpg",
+%    "Course26-360.jpg",
+%    "Course27-360.jpg",
+%    "Course17-360.jpg",
+%    "Training2.jpg",
+%    "Course15-360.jpg",
+%    "Course14-360.jpg",
+%    "Course13-360.jpg",
+%    "AN1.jpg",
+%    "Course21-360.jpg",
+%    "Course23-360.jpg",
+%    "Course16-360.jpg",
+%    "Course3.jpg",
+% ];
+<div style="width: 1%; margin: 0 auto;">
+%= include 'main/parts/loves_button'
+</div>
+<br clear="both" />
+<p class="page-intro" style="text-align: center">
+Here are some of the pictures of kids reflex we've collected
+</p>
+<center>
+% foreach my $pic (@$pics) {
+<a name="<%= $pic %>" style="vertical-align: top"><span style="color: white">X<img style="border: 3px solid #589; border-radius: 8px; width: 95%; margin: 8px" src="<%= url_for '/images/Photos/' . $pic %>" />X</span></a>
+% }
+</center>
+<div style="width: 1%; margin: 0 auto;">
+%= include 'main/parts/loves_button'
+</div>

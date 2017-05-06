@@ -26,16 +26,19 @@
 % my $pic_index  = 0;
 % my $left_side  = 0;
 %= markdown begin
-<p markdown="yes" class="page-intro">
-Everyone loves The Children&apos;s Reflexology Programme!
+<p markdown="yes" class="page-intro" style="text-align: center">
+Everyone loves The Children&apos;s Reflexology Programme!<br />
 Here's some of the feedback we get.
+</p>
+<p markdown="yes" style="text-align: center">
+[Take a look at our gallery too!](<%= url_for 'crp.page', page => 'gallery' %>)
 </p>
 - - - - - - - - - - - - - - - - - - -
 <div markdown="yes" id="review-page-list">
 % foreach my $testimonial (@$testimonials) {
     % my $this_word_count = scalar(my @words = $testimonial->[0] =~ /\w+/g);
     % if($word_count == 0) {
-<img style="border: 3px solid #589; border-radius: 8px; width: 40%; float: <%= $left_side ? 'left' : 'right' %>; margin: 8px <%= $left_side ? '8px' : '0' %> 8px <%= $left_side ? '0' : '8px' %>;" src="<%= url_for '/images/Photos/' . $pics->[$pic_index] %>" />
+<a href="<%= url_for 'crp.page', page => 'gallery' %>#<%= $pics->[$pic_index] %>"><img style="border: 3px solid #589; border-radius: 8px; width: 40%; float: <%= $left_side ? 'left' : 'right' %>; margin: 8px <%= $left_side ? '8px' : '0' %> 8px <%= $left_side ? '0' : '8px' %>;" src="<%= url_for '/images/Photos/' . $pics->[$pic_index] %>" /></a>
         % $left_side = ! $left_side;
         % $pic_index++;
         % $pic_index = 0 if $pic_index == @$pics;

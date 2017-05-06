@@ -15,7 +15,7 @@ to take control of some aspects of their lives such as transitions during the da
 in certain situations. Parents find their children are calmer, happier, settle more quickly and engage in
 family events more readily.
 
-<img src="<%= url_for '/images/Photos/AN1.jpg' %>" class="illo-large left" />
+%= include 'main/parts/illo-large', pic => 'AN1.jpg', side => 'left'
 We have special Additional Needs versions of many of our courses and one of the [books](<%= url_for 'crp.page', page => 'books' %>),
 *Mouse and the Storm*, is specially written to accompany them. These are different because we focus
 exclusively on hand reflexology and course content is specially designed for the specific needs of a

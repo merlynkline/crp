@@ -30,7 +30,7 @@ includes special training which will teach you how to use simple
 your work with children in your setting.
 The main course is a one day course which is typically delivered in your setting
 to enable some or all of the staff to use reflexology in the context of
-<img src="<%= url_for '/images/Photos/EYP1.jpg' %>" class="illo-large left" />
+%= include 'main/parts/illo-large', pic => 'EYP1.jpg', side => 'left'
 The Children&apos;s Reflexology Programme. The course covers everything you need to learn and to make
 effective use of very simple reflexology which has been carefully designed to engage
 children using techniques such as stories, rhyme, colours and animal characters
@@ -50,7 +50,7 @@ This course was created in conjunction with **Sure Start** and
 includes everything you need to enable you to get parents and carers started
 using this wonderful programme, from teaching techniques and simple reflexology to
 a complete and detailed teaching programme so you will be able to set up and run workshops
-<img src="<%= url_for '/images/Photos/EYP4.jpg' %>" class="illo-large right" />
+%= include 'main/parts/illo-large', pic => 'EYP4.jpg', side => 'right'
 from beginning to end. The high quality materials provided for each delegate include copies of
 the [hardback books](<%= url_for 'crp.page', page => 'books' %>), a comprehensive manual, a variety
 of teaching materials, and special handouts to pass on to the parents and carers. The course
