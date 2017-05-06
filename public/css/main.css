@@ -126,6 +126,9 @@ hr {
 #bottom-nav a:hover, #instructor-nav a:hover, a.simple-link:hover, .top-nav a:hover {
     text-decoration:    underline;
 }
+.illo-large:hover, .illo-small:hover {
+    opacity: 0.8;
+}
 #corner-mouse {
     position:       fixed;
     margin-left:   855px;
@@ -195,7 +198,7 @@ hr {
     padding:        8px 0;
     font-weight:    bold;
 }
-fieldset, legend, .message-box, .pdf-preview, .highlight-box, .instructor-photo, table.list1, .member-option-highlight, .pdf-separator, .display-box, .illo-large {
+fieldset, legend, .message-box, .pdf-preview, .highlight-box, .instructor-photo, table.list1, .member-option-highlight, .pdf-separator, .display-box, .illo-large, .illo-small {
     border:         3px solid #589;
     background:     #bde;
     border-radius:  8px;
@@ -627,13 +630,14 @@ div.faq-menu {
 .illo-large {
     width: 50%;
 }
-
-.illo-large.right {
+.illo-small {
+    width: 40%;
+}
+.illo-large.right, .illo-small.right {
     float:  right;
     margin: 8px 0 12px 8px;
 }
-
-.illo-large.left {
+.illo-large.left, .illo-small.left {
     float:  left;
     margin: 8px 12px 8px 0;
 }
