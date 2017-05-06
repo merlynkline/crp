@@ -4,89 +4,62 @@
 % my $benefits = ['Learn skills for life', 'Instant help when you need it most', 'Bonding and wellbeing', 'Meet other parents and carers'];
 % my $features = ['Fun workshops with your kids', 'Lovely hardback story book', 'High quality hand-outs', 'Additional needs courses'];
 %= include 'main/parts/feature_list', left_list => $benefits, right_list => $features;
+%= markdown begin
+
 <img src="<%= url_for '/images/Animals/Hare.jpg' %>" class="page-logo">
 <p class="page-intro">
-Our courses for parents are typically presented as several weekly
-group workshops attended by parents or carers and their children. In
-addition to learning how to use simple <a href="<%= url_for('/page/reflexology') %>">reflexology</a> to help you and your child,
-these workshops are a great meet-up and a useful way to extend your support
-network.
-The course
-uses a collection of delightful rhymes, pictures and stories to
-engage children and teach the simple reflexology.
-The programme is delivered by
-<a href="<%= url_for 'crp.instructors' %>">specially qualified instructors</a>
-and is supported by high quality materials including the lovely book,
-<a href="<%= url_for 'crp.page', page => 'books' %>">The Mouse's House</a>.
-There is a special version of the course for
-parents of children with <a href="<%= url_for 'crp.page', page => 'addneeds' %>#additional">additional needs</a>.
+Our highly accessible group workshops for parents and carers will promote bonding
+and wellbeing in you and your children, and give you specific easy action to
+take when you need it most.
 </p>
 %= include 'main/parts/action-parent';
 
-            <ul>
-                <li><img src="<%= url_for '/images/Photos/SpontaneousKids.jpg' %>" /></li>
-                <li><img src="<%= url_for '/images/Photos/Course10-360.jpg' %>" /></li>
-                <li><img src="<%= url_for '/images/Photos/Course5-360.jpg' %>" /></li>
-                <li><img src="<%= url_for '/images/Photos/Course9-360.jpg' %>" /></li>
-                <li><img src="<%= url_for '/images/Photos/Course12-360.jpg' %>" /></li>
-                <li><img src="<%= url_for '/images/Photos/Course8-360.jpg' %>" /></li>
-                <li><img src="<%= url_for '/images/Photos/Certificates-360.jpg' %>" /></li>
-                <li><img src="<%= url_for '/images/Photos/Course7-360.jpg' %>" /></li>
-                <li><img src="<%= url_for '/images/Photos/Course11-360.jpg' %>" /></li>
-                <li><img src="<%= url_for '/images/Photos/Course6-360.jpg' %>" /></li>
-                <li><img src="<%= url_for '/images/Photos/Autoreflex-360.jpg' %>" /></li>
-                <li><img src="<%= url_for '/images/Photos/SofaKids-360.jpg' %>" /></li>
-            </ul>
+Courses are typically presented as several weekly group workshops attended by parents
+or carers and their children. You will learn a powerful skill for life which offers
+help you can use any time and anywhere, whenever you need it most, as well as
+%= include 'main/parts/illo-large', pic => 'Course5-360.jpg', side => 'left'
+promoting strong bonding and excellent wellbeing at all times.
+In addition to teaching you how to use simple
+[reflexology](<%= url_for 'crp.page', page => 'reflexology' %>) to help you and your child,
+these workshops are a great meet-up and a useful way to extend your support
+network.
 
-<p>
-<strong>I am a parent and I have experienced first hand that feeling of utter
+The workshops are filled with fun activities, using  uses a collection of delightful rhymes,
+pictures and stories to engage children and teach the simple reflexology.
+The programme is delivered by
+[specially qualified instructors](<%= url_for 'crp.instructors' %>)
+and is supported by high quality materials for you to take away including the 
+lovely hard-back book,
+[*The Mouse's House*](<%= url_for 'crp.page', page => 'books' %>)
+and high quality hand-outs to remind you what you've learned each week.
+There is a special version of the course for
+parents of children with [additional needs](<%= url_for 'crp.page', page => 'addneeds' %>).
+
+%= include 'main/parts/action-parent';
+%= include 'main/parts/illo-large', pic => 'Course1-360.jpg', side => 'right'
+I am a parent and I have experienced first hand that feeling of utter
 helplessness that hits us when our child is distressed or unwell with
-conditions that we may not consider worthy of a trip to the GP.</strong> Of course it
+conditions that we may not consider worthy of a trip to the GP. Of course it
 still pains us to watch them suffer and this is very dis-empowering for us as
 parents or carers and for our children too, who naturally turn to us for
 answers and to take their pain and discomfort away.
-</p>
-<p>
-The Children&apos;s Reflexology Programme is a simple course of fun, interactive
-sessions, spread over several weeks. It is taught by fully trained and insured
-instructors. It empowers parents and carers to be able to offer their
-children a non-invasive complementary therapy at home at any time of the day or
-night, from someone they love and feel safe with. The course shows you how to
-treat specific conditions of childhood and includes a series of handouts in the
-form of mini booklets that can be used by a parent or carer. A carefully
-designed series of rhymes, pictures and stories is used to engage the child and
-to help you to learn and remember the reflexology.
-</p>
-<img src="<%= url_for '/images/Photos/Course4.jpg' %>" class="centered-image" style="border: 1px solid grey;">
-<p>
-All this empowers you to do something positive to help your child. It also
-helps your child by strengthening the bond they already feel for you and
-strengthening their belief in you. This gentle therapy offers families a
-valuable relief from some of the worst feelings a parent can experience,
-powerlessness and helplessness!
-</p>
-<p>
-Reflexology is a powerful but gentle therapy which is particularly beneficial
-with children and can be a great help in times of distress and with common
-childhood illnesses such as constipation, teething, colic and so on.
+
 Unfortunately it is not always practical to visit a reflexologist, especially
 in the middle of the night! Also, a strange person in a strange place might not
 be the most helpful thing in these situations, which are often very emotionally
 charged, and might even be frightening for some children. Children who are
 unwell, or just distressed or upset for some reason, want to stay close to the
 people and places they know and love.
-</p>
-<p>
+
+%= include 'main/parts/illo-large', pic => 'SpontaneousKids-360.jpg', side => 'left'
 The Children&apos;s Reflexology Programme
-solves all these problems by making it possible for you to give reflexology
+solves these problems by making it possible for you to give reflexology
 treatments yourself, whenever and wherever you want. You can start helping with
 everything from tantrums to teething, giving you precious time to relax and
 take a step back so you can decide what to do next – a visit to a
 reflexologist, a trip to the doctor, some more of your own treatments or
 perhaps even just a cuddle is all that will be needed.
-</p>
-<div class="horizontal-divider-small"></div>
-<p>
+
 The beauty of The
 Children&apos;s Reflexology Programme is that these treatments can be given at any
 time and in any place. Your child doesn&apos;t have to be ill to give them any of
@@ -94,25 +67,17 @@ the treatments. If your child suffers with constipation give them the treatment
 for it every day – they cannot have too much reflexology! You can use the
 treatments as a way of controlling the condition and keeping your child calm,
 relaxed, happy and well.
-</p>
-<p>
+
+%= include 'main/parts/illo-large', pic => 'Course27-360.jpg', side => 'right'
 The Children&apos;s Reflexology Programme offers parents
-and carers the opportunity to learn enough reflexology to treat their family
-without having to spend thousands of pounds becoming qualified. It is a special
+and carers the opportunity to easily learn enough reflexology to 
+give basic treatments to their families. It is a special
 medicine cabinet for all your family that is completely non-invasive, that
 no-one can overdose on, that will bring you all together with love and respect
-through touch and bonding and most importantly empowers both parent/carer and
+through touch and bonding, and most importantly empowers both parent/carer and
 child. Win, win all round!
-</p>
-<p>
-The Children&apos;s Reflexology Programme is unique. It
-has been specially created to engage children through the use of animals,
-rhymes and story. It is a fun way of gathering together with friends, NCT
-groups and other parents and carers and spending time together. All the parents
-who have already attended a course have had positive results after their first
-class. Reflexology is a powerful tool and The Children&apos;s Reflexology Programme
-makes it available to you, now.
-</p>
-%= include 'main/parts/find-course-button'
-<br />
+
+% end
+<br clear="all">
+%= include 'main/parts/action-parent'
 %= include 'main/parts/feature_list', left_list => $benefits, right_list => $features;
