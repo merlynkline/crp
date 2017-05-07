@@ -1,2 +1,2 @@
 %#<!DOCTYPE html>
-<div style="text-align: center; padding: 12px 0;"><span class="highlight-box">Interested in training?<a class="standard-button" href="<%= url_for 'crp.page', page => 'contact' %>">Contact us now</a>&nbsp;<img src="/images/Plants/Pokers.png" style="width: 30px; vertical-align: middle; position: relative; top: -3px;"></span></div>
+<div style="text-align: center; padding: 12px 0;"><span class="highlight-box">Interested in training?<a class="standard-button" href="<%= url_for('crp.page', page => 'contact')->query(message => "Please tell me more about TCRP for professionals.") %>">Contact us now</a>&nbsp;<img src="/images/Plants/Pokers.png" style="width: 30px; vertical-align: middle; position: relative; top: -3px;"></span></div>

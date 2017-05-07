@@ -10,8 +10,6 @@
 The Children&apos;s Reflexology Programme is a powerful tool for
 early years practitioners and we have courses and materials designed
 specially to help you in your setting.
-[Contact us](<%= url_for 'crp.page', page => 'contact' %>)
-to learn more.
 </p>
 
 Using simple [reflexology](<%= url_for 'crp.page', page => 'reflexology' %>)
