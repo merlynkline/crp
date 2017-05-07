@@ -1,10 +1,16 @@
 % my $testimonials = [
-%
-% ["I've had a text from C this evening saying her five year old had an after school
-% melt down and she calmly got hold of her feet away from being kick and gently
-% pressed on her solar plexus reflex and she **instantly calmed down** and accepted a cuddle!!
-% She was very excited that **already she could put what she learned to good use**!!
-% We're all looking forward to next week!!","Kerri"],
+% 
+% ["A *fantastic course*, *brilliant teaching*. The **best** course I have **ever** been on, full of **fun** and **laughter**.","Julie"],
+% 
+% ["I did the digestion one on R today as he's constipated and yesterday in class **it
+% worked a treat** (sceptical me wondered if it was a coincidence) **and it worked again**. Good stuff!","Emma"],
+% 
+% ["**Great course and content**. Very knowledgeable. Fantastic group to learn with, *pleased that there was a mix of reflexologists and baby massage therapists*.","Nichola"],
+% 
+% ["A **wonderful course for families**. Beneficial to all.","Jo"],
+% 
+% ["Susan delivered this course in an interesting, clear and fun way – she is very **knowledgeable** and brings out the **“best”** in people
+% by sharing her *skills and knowledge*. One of the **best trainings** I have **ever** attended!","Marie"],
 % 
 % ["Z doesn't sleep if he doesn't use his potty before he goes to bed, **he wakes every hour**
 % because he needs to use the potty but won't. I thought I'd try the technique I had
@@ -12,6 +18,23 @@
 % him around and worked his feet in a way that he didn't even realise I was doing it.
 % **The effect was immediate**, he shouted “potty, potty, potty” and subsequently slept
 % **right through the night**. Very happy that the course has been **beneficial after only one session**.","Maria"],
+% 
+% ["I've had a text from C this evening saying her five year old had an after school
+% melt down and she calmly got hold of her feet away from being kick and gently
+% pressed on her solar plexus reflex and she **instantly calmed down** and accepted a cuddle!!
+% She was very excited that **already she could put what she learned to good use**!!
+% We're all looking forward to next week!!","Kerri"],
+% 
+% ["What a **beautiful** and **educational** time I had with you Susan, learning how to bond even more with my children
+% through the reflexology programme. **Proud** to be an **instructor** now and teaching others through your outstanding books.xx","Linda-Jayne"],
+% 
+% ["**Wonderful instructor training**, and a great programme to teach parents and carers.. Susan, your **enthusiasm** is **contagious** So pleased to be part of this","Penelope"],
+%  
+% ["**Fantastic!** Raring to go. Thank you for all the help, teaching, really enjoyed it. Looking forward to it!","Emma"],
+% 
+% ["**Blessed** to part of this *amazing journey*, just what I needed to enhance my business! Loved being here a meeting amazing people. **Susan you're an inspiration**!","Clare"],
+% 
+% ["Really enjoyed course, very relaxed, **best course** I have been on **to date**.","Emma"],
 % 
 % ["I just had to tell you before I forgot... I just caught J **teaching her Daddy how to do
 % reflexology** on her baby dolls feet!! “No daddy not like that, like this” as she showed him
@@ -21,8 +44,25 @@
 % Plus may I add she's been asking where you are and when you're coming back!!
 % Let's hope she holds true to form for Wednesday!! Xx","Kerri"],
 % 
-% ["I did the digestion one on R today as he's constipated and yesterday in class **it
-% worked a treat** (sceptical me wondered if it was a coincidence) **and it worked again**. Good stuff!","Emma"],
+% ["I have really enjoyed the course. Susan's **enthusiasm** is **infectious**. I am very excited about going out and delivering the course in my area. Thank you.","Natalie"],
+% 
+% ["An absolutely **brilliant** way to introduce simple reflexology techniques to help parents and babies with common complaints, complete with a story about a mouse, rhymes and handouts!
+% I am really looking forward to teaching the course in Weymouth and West Dorset and meeting lots of families.","Rowena"],
+% 
+% ["I was very fortunate to find *The Mouses House* book and used it for 2 years to help my **autistic son** to **sleep**.
+% I have since purchased the other two books and done the wonderful children's instructor course training with the fantastic Claire Hall.
+% I can't wait to share the courses with families in the West Midlands.","Helen"],
+% 
+% ["**Excellent** and **enjoyable** course. Your *enthusiasm* is *clear* and *contagious*. Really excited about what the future holds.","Nia"],
+% 
+% ["**Amazing course**. Thank you Susan an absolute pleasure. Really enjoyed it and can't wait to get teaching.","Emma"],
+% 
+% ["**The best course I have done ever!** Lovely relaxed style. Love Susan's openness to encourage us to take the business ideas to new levels.
+% Feel very lucky with group of ladies. Feel supported on journey to come!!
+% You have such a great way of **training and empowering people** too Susan! Don't change a thing!!" ,"Anne-Marie"],
+%
+% ["**Fabulous!** Wonderful instructors course and an amazing *skill to pass on* to families. Really have enjoyed the course.
+% A relaxed atmosphere and not too many of us. We all **felt heard** and are determined to stay in touch with one another.","Carrie"],
 % 
 % ["I attended the children's reflexology programme with my wee boy who was 3months old.
 % **I really enjoyed this programme** as I learned alot of ways to help my family if I ever need it
@@ -52,19 +92,23 @@
 % after reading that was desperate to have a session to catch up!
 % Just finished the 1-2-1 with them - such a lovely relaxing session.","Topsy Fogg, instructor"],
 % 
-% ["The lad who was delightfully defiant last week came straight in today,
-% lay down and said - MUMMY I do hope you are going to do one of my feet
-% and one of my brothers and not both of his feet and make me wait! -
-% **Wonderful progress they have been making at home**","Claire Hall, instructor"],
+% ["A **fab programme** for parents, carers and little ones. Great for bonding with your little one
+% and *feeling empowered* to soothe and support your child through common childhood ailments.","Sarah"],
 % 
 % ["Great session today with a mum and her 6 month old and 4 year old.
 % Mum is on the course as her son has had toncillitis 3 times since September,
-% with anitibiots x2 each time. Last week she arrived saying son had all the
+% with anitibiots x 2 each time. Last week she arrived saying son had all the
 % signs of toncillitis developing. Son loved first half hour but then became
 % very clingy to mum wanting cuddles. Today she arrived saying they went home
 % from last week son had an hour sleep. Temp rest of day and the next (but fine
 % to go to preschool) and **no toncillitis! She put it down to going home and
 % doing reflex**!","Claire Hall, instructor"],
+% 
+% ["The lad who was delightfully defiant last week came straight in today,
+% lay down and said - MUMMY I do hope you are going to do one of my feet
+% and one of my brothers and not both of his feet and make me wait! -
+% **Wonderful progress they have been making at home**","Claire Hall, instructor"],
+% 
 % ];
 %
 % $$list_ref = $testimonials;
