@@ -1,5 +1,5 @@
 %#<!DOCTYPE html>
-% layout 'default', page_id => 'home';
+% layout 'default', page_id => 'home', description => "Helping parents and carers and children of all ages to cope better with the stresses of illness and everyday life. Our fun, interactive workshops enable anybody to make use of simple, gentle reflexology to improve health and strengthen bonds";
 % title 'Welcome';
 % my $testimonials;
 % my $image_delay = 20000;
