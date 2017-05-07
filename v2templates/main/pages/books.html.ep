@@ -1,86 +1,62 @@
 %#<!DOCTYPE html>
 % layout 'default', heading => "The Books";
 % title "Books";
-<strong>This is where it all started!
-The Mouse&apos;s House is a unique book that combines reflexology, a gentle
-non-invasive complementary therapy, with a delightful and engaging children&apos;s
-story.</strong> The story is based on a group of animals, each one representing a
-different reflex area of the foot, with a foot map diagram to show parents
-where to work on the foot. As each character enters the story the story teller
-moves on to a new reflex area so that as the story unfolds the child receives a
-basic reflexology treatment. The programme was created by me, Susan Quayle, an
-experienced professional reflexologist. This book is the foundation of
-The Children&apos;s Reflexology Programme and is published by
-<a href="http://www.jkp.com/uk/the-mouse-s-house.html" target="_blank">Singing Dragon, an imprint of Jessica Kingsley Publishers</a>
-and is available from all good booksellers including
-<a target="_blank" href="http://www.amazon.co.uk/dp/1848192479/?_encoding=UTF8&camp=1634&creative=6738&linkCode=ur2&tag=binsta-21&linkId=YNQBSYOKWCDM2LH7">Amazon</a><img src="http://ir-uk.amazon-adsystem.com/e/ir?t=binsta-21&l=ur2&o=2" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />.
+%= markdown begin
+<p markdown="yes" class="page-intro">
+Interactive children&apos;s reflexology books telling beautifully illustrated
+rhyming stories about Mouse and her friends are the foundation of
+The Children&apos;s Reflexology Programme, making it accessible and engaging
+as well as easy to remember.
+</p>
 
-</p>
-<p>
-<a href="http://www.jkp.com/uk/the-mouse-s-house.html" target="_blank"><img src="<%= url_for '/images/BookCover.jpg' %>" class="centered-image" style="float: left; width: 460px; border: 1px solid black; margin: 0 16px 4px 0;"/></a>
-</p>
-<p>
-I specialise in maternity reflexology, which includes newborns, and came up
-with the idea as a gift to give my clients after their babies were born. I had
-been looking for a small gift to present to these wonderful women and their
-children but couldn&apos;t find anything appropriate, so I thought I&apos;d make my own.
-</p>
-<p>
-I am passionate about the benefits that reflexology can offer children and
-their parents. As a parent myself I know how it feels to stand by helplessly as
-your child suffers in pain. It is the hardest thing a mother can endure to see
-her child suffer and be unable to do anything to help. Reflexology offers
-parents the opportunity to be proactive and actually help during these times of
-distress, while children find it easier to cope knowing that a parent is
-actively trying to help. It also offers a wonderful bonding experience, which
-can be particularly effective for women who suffer from post-natal depression.
-</p>
-<p>
-Children growing up with this story will, in time, be able to use it on their
-siblings and their own children, passing on this gentle therapy and the
-importance of self care to a new generation.
-</p>
-<div class="horizontal-divider-small"></div>
-<p>
-Writing this book was an epic undertaking that involved many years in the
-making starting with the wonderful women I have the good fortune to have
-worked with – all were an inspiration with out any of us realising it at the
-time. Once the idea had been born there was the writing. I knew it had to be
-rhyming and I thank all those amazing writers like Julia Donaldson, Dr Seuss and
-Lynley Dodd, and my children for wanting me to read their books to them
-endlessly! Then there was the hours of sitting and clapping out the rhythms to
-get the meter correct. After all this was finished I had the challenge of
-finding an illustrator; I had no money and no reason to suppose the book would
-ever make any. What I did have was a very strong vision and an enormous passion
-that this was important. Then I found
-<a href="http://www.melissamuldoon.co.uk" target="_blank">Melissa</a>,
-a mum from school and the most
-wonderfully gifted artist. Melissa is a “yes” person. Her initial response was
-that she had never really done any drawing as such because she was a sculptor
-(of amazing drift wood art) but that she&apos;d have a go. As it turned out, we didn&apos;t need to redo
-any of her illustrations, they are all first drafts! I then spent months
-creating the foot diagrams - it took me so long because I had to learn to use
-the drawing program and I&apos;m not particularly technical! Once it all came
-together my wonderful husband Merlyn, creator of this fantastic website, did
-his techy magic and turned it all into an actual book.
-</p>
-<p>
-After only a couple of months of self-publishing my book I was approached by
-Jessica Kingsley Publishers who were keen to publish The Mouse&apos;s House for me.
-At the time I was flabbergasted! I wasn&apos;t anticipating this level of interest,
-in fact I had been struggling with how on Earth I was going to market my book.
-Agreeing to pass the book over to such excellent experts was the best choice I
-could have made. I found myself free to create The Children&apos;s Reflexology
-Programme and my vision to empower parents and carers through Infant
-Reflexology. And that is what I have done. These courses empower mums, dads,
-carers, grandparents, indeed anyone who works or spends time with children, giving them the
-chance to be able to do something at those times of desperation. It also offers
-these same people the opportunity to have their own business doing something
-that offers people help and hope in a positive, empowering and supported
-setting.
-</p>
-<p>
-I have already written a second book and my wonderful illustrator, Melissa
-Muldoon, has created the most beautiful pictures to go with it. We are planning
-an entire series so watch this space.
-</p>
+The idea for this story came to me in October 2012, in the bath of all places! I
+jumped out and wrote the first draft there and then. It took me a while to find
+Melissa Muldoon, my illustrator, but once I had found her I set out with my husband
+Merlyn&apos;s help to self-publish it with Create Space and the first edition
+appeared in November 2013. Shortly afterwards, in
+February 2014, I was contacted by a publisher who asked if they could publish it
+for us. The lovely book that we have now was released in November 2014 by 
+[Singing Dragon](http://singingdragon.com/), an imprint of [Jessica Kingsley](http://www.jkp.com/).
+
+<a href="http://www.jkp.com/uk/the-mouse-s-house.html" target="_blank"><img class="illo-small right" src="<%= url_for '/images/Books/TMH800.jpg' %>"></a>
+## The Mouse&apos;s House
+The Mouse&apos;s House was my first interactive reflexology children&apos;s story book and
+was the missing piece in the creation of The Children&apos;s Reflexology Programme. The story
+is based on a mouse who is trying to find a place to build her house and subsequently the
+visits she makes to each of her friends to furnish her new home with a comfy bed.
+Each of the animal characters in the book represents a different reflex on the feet and as
+the story develops your child receives a simple reflexology treatment. This book repeatedly
+returns to the solar plexus reflex which supports stress and anxiety so is a very helpful
+book for children who struggle with sleep or worry.
+This book supports The Children&apos;s Reflexology Programme and all parents who attend our
+courses receive a hardback copy of this book.
+<br clear="all" />
+
+<a href="http://www.jkp.com/uk/mouse-s-best-day-ever-34120.html" target="_blank"><img class="illo-small left" src="<%= url_for '/images/Books/MBDE800.jpg' %>"></a>
+## Mouse&apos;s Best Day Ever
+I was so excited to have a second book accepted for publication and in May 2016 book two was
+released. This is actually my favourite and was written to help with tummy aches and tooth
+aches. Those parents who attend our courses can ask to receive a hardback copy of this book
+rather than *The Mouse&apos;s House* but this should be done at the time of booking and paying.
+<br clear="all" />
+
+<a href="http://www.jkp.com/uk/mouse-and-the-storm-34882.html" target="_blank"><img class="illo-small right" src="<%= url_for '/images/Books/MATS800.jpg' %>"></a>
+## Mouse and the Storm
+In 2016 I was utterly delighted to have my third book accepted for publication. This book
+was written to support our Additional Needs course so all the reflexology in it is for the
+hands. Every parent who attends an Additional needs course with us receives a hardback copy
+of this book.
+
+<br clear="all" />
+I have been very fortunate to have such a great publisher in [Jessica Kingsley](http://www.jkp.com/),
+who can see the potential for my work and for reflexology.
+The very idea that I am sharing my passion for reflexology with
+the next generation fills me with great pride and hope that this wonderful therapy will
+be loved by children all over the world and will go on to become a very important part
+of their lives.
+<br clear="all" />
+<div style="width: 1%; margin: 0 auto;">
+%= include 'main/parts/loves_button'
+</div>
+
+% end
