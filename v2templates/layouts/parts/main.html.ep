@@ -35,20 +35,21 @@
                 Please enable JavaScript in your web browser.
             </div>
             </noscript>
-            % if( ! stash('cookies_accepted')) {
-            <div id="cookie-warning">
-                Please note that this site places cookies on your computer
-                in order to be able to function properly.
-                See our <a href="<%= url_for '/page/privacy' %>">Privacy Policy</a> for details.
-                <a class="small-button" href="<%= url_for 'crp.accept_cookies' %>">OK</a>
-            </div>
-            % }
             %= include 'parts/logged_in_indicator'
             <a href="/"><img src="<%= url_for '/images/CRPLogo.png' %>" id="heading-image"></a>
             <h1 id="heading"><%= stash('heading') || "The Children's Reflexology Programme" =%>
             </h1>
             <div id="footrow"<% if(stash 'members_area') { %> class="members-area"<% } %>></div>
-            <div class="top-nav<% if(stash 'members_area') { %> members-area<% } %>">
+            <div id="top-nav-anchor"></div>
+            <div id="top-nav" class="top-nav<% if(stash 'members_area') { %> members-area<% } %>">
+            % if( ! stash('cookies_accepted')) {
+            <div id="cookie-warning">
+                Please note that this site places cookies on your computer
+                in order to be able to function properly.
+                See our <a href="<%= url_for '/page/privacy' %>">Privacy Policy</a> for details.
+                <a class="small-button" href="<%= url_for 'crp.accept_cookies' %>">Hide</a>
+            </div>
+            % }
                 % foreach my $menu_entry (@{stash('left_nav_menu')}) {
                 %     $render_menu_entry->(@$menu_entry);
                 % }
@@ -84,6 +85,34 @@
                 .mouseleave(function() {this.src = "<%= url_for '/images/Buttons/loves/default.png' %>"})
                 .mousedown(function() {this.src = "<%= url_for '/images/Buttons/loves/down.png' %>"})
                 .mouseup(function() {this.src = "<%= url_for '/images/Buttons/loves/hover.png' %>"});
+
+            function topNavTrap() {
+                var $topNavAnchor = $("#top-nav-anchor");
+                var $topNav       = $('#top-nav');
+                var $topNavLogo   = $('#nav-bar-logo');
+
+                var onScrollHandler = function() {
+                    var windowTop = $(window).scrollTop();
+                    var anchorTop = $topNavAnchor.offset().top;
+                    if(windowTop > anchorTop) {
+                        $topNav.css({
+                            position: "fixed",
+                            top: "0px"
+                        });
+                    }
+                    else {
+                        $topNav.css({
+                            position: "relative",
+                            top: ""
+                        });
+                    }
+                };
+                $(window).scroll(onScrollHandler);
+                onScrollHandler();
+            }
+            
+            topNavTrap();
+
         </script>
     </body>
 </html>

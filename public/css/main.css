@@ -78,10 +78,10 @@ hr {
 }
 #footrow {
     width:          100%;
-    height:         100px;
+    height:         96px;
     background-image:       url('/images/FootRow.png'), linear-gradient(#fff, #bde);
     background-repeat:      repeat-x;
-    background-position:    center;
+    background-position:    center bottom;
 }
 #footrow.members-area {
     background-image:       url('/images/FootRow.png'), linear-gradient(#fff, #fdd);
@@ -93,7 +93,9 @@ hr {
 .top-nav {
     text-align:     center;
     background:     #bde;
-    padding:        0;
+    padding:        4px 0 0 0;
+    width:          inherit;
+    z-index:        1;
 }
 .top-nav.members-area, .member-option-highlight span {
     background:     #fdd;
@@ -525,7 +527,9 @@ table.list1 {
     font-family:    sans-serif;
     font-size:      14px;
     padding:        4px;
+    border-top:     1px solid black;
     border-bottom:  1px solid black;
+    margin:         0 0 2px 0;
     background:     #fe9;
 }
 #js-warning, #demo-warning {
