@@ -128,7 +128,7 @@ hr {
 #bottom-nav a:hover, #instructor-nav a:hover, a.simple-link:hover, .top-nav a:hover {
     text-decoration:    underline;
 }
-.illo-large:hover, .illo-small:hover {
+a .illo-large:hover, a .illo-small:hover {
     opacity: 0.8;
 }
 #corner-mouse {
