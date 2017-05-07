@@ -1,5 +1,5 @@
 %#<!DOCTYPE html>
-% layout 'default', heading => "The Courses";
+% layout 'default', heading => "The Courses", description => "We have a wide range of courses to suit different people and situations. Here is an overview of the content and application of the courses.";
 % title "Courses";
 % my $page_url;
 % my $page_title;
@@ -20,10 +20,10 @@
     }
 </style>
 <p class="page-intro">
-We have a wide range of courses to suit different people and situations.
-Each course is delivered by a specially qualified instructor.
+<%== stash('description') %>
 </p>
 <p>
+Each course is delivered by a specially qualified instructor. 
 Parent courses are delivered by a large and ever growing community of
 <a href="<%= url_for 'crp.page', page => 'location_search' %>">instructors</a>, each of whom has trained with
 one of our <a href="<%= url_for 'crp.page', page => 'team' %>">team</a> of trainers who also deliver

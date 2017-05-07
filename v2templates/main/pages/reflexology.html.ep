@@ -1,11 +1,9 @@
 %#<!DOCTYPE html>
-% layout 'default', heading => "What is reflexology?";
+% layout 'default', heading => "What is reflexology?", description => "Reflexology is a powerful but gentle therapy which is particularly beneficial with children and can be a great help in times of distress and with common childhood illnesses such as constipation, teething, and colic.";
 % title "Reflexology";
 %= markdown begin
 <p class="page-intro">
-Reflexology is a powerful but gentle therapy which is particularly beneficial
-with children and can be a great help in times of distress and with common
-childhood illnesses such as constipation, teething, and colic.
+<%== stash('description') %>
 </p>
 <%= include 'main/parts/illo-large', pic => 'Course19-360.jpg', side => 'right' =%>
 

@@ -1,7 +1,10 @@
 %#<!DOCTYPE html>
-% layout 'default', heading => "Certified instructors", page_id => 'tutors';
+% layout 'default', heading => "Certified instructors", page_id => 'tutors', description => "Train as an instructor and have your own business empowering parents and carers to help themselves and their children.";
 % title "Certified instructors";
-<img src="<%= url_for '/images/Animals/Owl.jpg' %>" class="page-logo">
+<img src="<%= url_for '/images/Animals/Owl.jpg' %>" class="page-logo" '>
+<p markdown="yes" class="page-intro">
+<%== stash('description') %>
+</p>
 
 <p>
 <center>

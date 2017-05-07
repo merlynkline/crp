@@ -5,12 +5,13 @@
         <% if($og_image) { %>        <meta property="og:image" content="<%= url_for($og_image)->to_abs %>" />
 <% } %>
         <title><%= title %> - The Children's Reflexology Programme</title>
-        <link rel="shortcut icon" href="<%= url_for '/favicon.ico' %>">
-        <link rel="apple-touch-icon-precomposed" href="<%= url_for '/favicon/favicon-152.png' %>">
-        <meta name="msapplication-TileColor" content="#FFFFFF">
-        <meta name="msapplication-TileImage" content="<%= url_for '/favicon/favicon-144.png' %>">
-        <meta charset="utf-8">
-        <link rel="stylesheet" href="<%= url_for '/css/main.css' %>">
+        <meta name="description" content="<%== stash('description') || "The Children&apos;s Reflexology Programme" %>" />
+        <link rel="shortcut icon" href="<%= url_for '/favicon.ico' %>" />
+        <link rel="apple-touch-icon-precomposed" href="<%= url_for '/favicon/favicon-152.png' %>" />
+        <meta name="msapplication-TileColor" content="#FFFFFF" />
+        <meta name="msapplication-TileImage" content="<%= url_for '/favicon/favicon-144.png' %>" />
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="<%= url_for '/css/main.css' %>" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 % foreach my $extra_template (@{$c->crp->stash_list('extra_header_templates')}) {
 %=   include $extra_template
@@ -37,7 +38,7 @@
             </noscript>
             %= include 'parts/logged_in_indicator'
             <a href="/"><img src="<%= url_for '/images/CRPLogo.png' %>" id="heading-image"></a>
-            <h1 id="heading"><%= stash('heading') || "The Children's Reflexology Programme" =%>
+            <h1 id="heading"><%= stash('heading') || "The Children&apos;s Reflexology Programme" =%>
             </h1>
             <div id="footrow"<% if(stash 'members_area') { %> class="members-area"<% } %>></div>
             <div id="top-nav-anchor"></div>

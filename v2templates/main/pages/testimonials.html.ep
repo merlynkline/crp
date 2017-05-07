@@ -1,5 +1,5 @@
 %#<!DOCTYPE html>
-% layout 'default', heading => "Testimonials";
+% layout 'default', heading => "Testimonials", description => "Everyone loves The Children&apos;s Reflexology Programme!<br />Here&apos;s some of the feedback we get.";
 % title "Testimonials";
 % my $testimonials;
 % include 'main/parts/testimonial_list', list_ref => \$testimonials;
@@ -27,8 +27,7 @@
 % my $left_side  = 0;
 %= markdown begin
 <p markdown="yes" class="page-intro" style="text-align: center">
-Everyone loves The Children&apos;s Reflexology Programme!<br />
-Here's some of the feedback we get.
+<%== stash('description') %>
 </p>
 <p markdown="yes" style="text-align: center">
 [Take a look at our gallery too!](<%= url_for 'crp.page', page => 'gallery' %>)

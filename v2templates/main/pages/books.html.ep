@@ -1,12 +1,9 @@
 %#<!DOCTYPE html>
-% layout 'default', heading => "The Books";
+% layout 'default', heading => "The Books", description => "Interactive children&apos;s reflexology books telling beautifully illustrated rhyming stories about Mouse and her friends are the foundation of The Children&apos;s Reflexology Programme, making it accessible and engaging as well as easy to remember.";
 % title "Books";
 %= markdown begin
 <p markdown="yes" class="page-intro">
-Interactive children&apos;s reflexology books telling beautifully illustrated
-rhyming stories about Mouse and her friends are the foundation of
-The Children&apos;s Reflexology Programme, making it accessible and engaging
-as well as easy to remember.
+<%== stash('description') %>
 </p>
 
 The idea for this story came to me in October 2012, in the bath of all places! I

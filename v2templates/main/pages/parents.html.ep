@@ -1,5 +1,5 @@
 %#<!DOCTYPE html>
-% layout 'default', heading => "For Parents and Carers";
+% layout 'default', heading => "For Parents and Carers", description => "Our highly accessible group workshops for parents and carers will promote bonding and wellbeing in you and your children, and give you specific easy action to take when you need it most.";
 % title "Parents and Carers";
 % my $benefits = ['Learn skills for life', 'Instant help when you need it most', 'Bonding and wellbeing', 'Meet other parents and carers'];
 % my $features = ['Fun workshops with your kids', 'Lovely hardback story book', 'High quality hand-outs', 'Additional needs courses'];
@@ -8,9 +8,7 @@
 
 <img src="<%= url_for '/images/Animals/Hare.jpg' %>" class="page-logo">
 <p class="page-intro">
-Our highly accessible group workshops for parents and carers will promote bonding
-and wellbeing in you and your children, and give you specific easy action to
-take when you need it most.
+<%== stash('description') %>
 </p>
 %= include 'main/parts/action-parent';
 

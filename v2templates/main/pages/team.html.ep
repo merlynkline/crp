@@ -1,12 +1,9 @@
 %#<!DOCTYPE html>
-% layout 'default', heading => "Training team";
+% layout 'default', heading => "Training team", description => "All our training courses are delivered by our highly qualified and experienced team of trainers who will make sure you get everything you need to be successful with The Children&apos;s Reflexology Programme.";
 % title "Meet the training team";
 %= markdown begin
 <p markdown="yes" class="page-intro">
-All our training [courses](<%= url_for '/page/courses' %>)
-are delivered by our highly qualified and experienced
-team of trainers who will make sure you get everything you need to be
-successful with The Children&apos;s Reflexology Programme.
+<%== stash('description') %>
 </p>
 
 <table markdown="yes" align="center">

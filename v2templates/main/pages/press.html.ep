@@ -1,6 +1,9 @@
 %#<!DOCTYPE html>
-% layout 'default', heading => "For the Press";
+% layout 'default', heading => "For the Press", description => "I often write articles about The Children&apos;s Reflexology Programme and other subjects, and have been published widely.";
 % title "Press";
+<p markdown="yes" class="page-intro">
+<%== stash('description') %>
+</p>
 If you would like to publish an article about The Children&apos;s Reflexology Programme
 then we can help you out. Here are some materials. I am an experienced author of books
 and articles. Here are some examples.

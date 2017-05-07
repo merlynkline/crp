@@ -1,5 +1,5 @@
 %#<!DOCTYPE html>
-% layout 'default', heading => "Gallery";
+% layout 'default', heading => "Gallery", description => "Here are some of the pictures of kids reflex we&apos;ve collected";
 % title "Gallery";
 % my $pics = [
 %    "Course10-360.jpg",
@@ -43,7 +43,7 @@
 </div>
 <br clear="both" />
 <p class="page-intro" style="text-align: center">
-Here are some of the pictures of kids reflex we've collected
+<%== stash('description') %>
 </p>
 <center>
 % foreach my $pic (@$pics) {

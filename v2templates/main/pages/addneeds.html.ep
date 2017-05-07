@@ -1,12 +1,11 @@
 %#<!DOCTYPE html>
-% layout 'default', heading => "Additional needs";
+% layout 'default', heading => "Additional needs", description => "The Children&apos;s Reflexology Programme is great for Additional Needs because it is gentle, non-invasive and works on a deep level of relaxation that many Additional Needs children are unable to reach.";
 % title "Additional needs";
 %= markdown begin
 
 <img src="<%= url_for '/images/Animals/Squirrel.jpg' %>" class="page-logo" />
 <p markdown="yes" class="page-intro">
-The Children&apos;s Reflexology Programme is great for Additional Needs because it is gentle,
-non-invasive and works on a deep level of relaxation that many Additional Needs children are unable to reach.
+<%== stash('description') %>
 </p>
 
 So many of the families that we have trained in our classes have found huge benefits in their everyday 

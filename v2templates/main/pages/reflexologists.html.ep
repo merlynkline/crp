@@ -1,5 +1,5 @@
 %#<!DOCTYPE html>
-% layout 'default', heading => "For Reflexologists",page_id => "reflex";
+% layout 'default', heading => "For Reflexologists", page_id => "reflex", description => "If you are a Reflexologist qualified to level three or above then you will find The Children&apos;s Reflexology Programme to be a wonderful extension of your skills, helping your clients&apos; families to benefit from reflexology at home and keeping them coming back for more.";
 % title "Reflexologists";
 % my $benefits = ['Extend your practice and business', 'Continuity of care with the home', 'Work more effectively with children', 'Encourage return visits'];
 % my $features = ['AoR and FHT approved for CPD', 'High quality course materials', 'On-line resources after the course', 'Additional needs extension'];
@@ -7,11 +7,7 @@
 %= markdown begin
 <img src="<%= url_for '/images/Animals/Owl.jpg' %>" class="page-logo" />
 <p markdown="yes" class="page-intro">
-If you are a Reflexologist qualified to level three or
-above then you will find The Children&apos;s Reflexology Programme 
-to be a wonderful extension of your skills, helping your clients'
-families to benefit from reflexology at home and keeping them
-coming back for more.
+<%== stash('description') %>
 </p>
 %= include 'main/parts/action-instructor';
 

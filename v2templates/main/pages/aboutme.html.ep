@@ -1,14 +1,10 @@
 %#<!DOCTYPE html>
-% layout 'default', heading => "Susan Quayle";
+% layout 'default', heading => "Susan Quayle", description => "My name is Susan Quayle. First and foremost I am a mother and a wife; huge responsibilities that I take incredibly seriously. However I am also an award-winning complementary therapist, children&apos;s author and business woman. I am the creator of The Children&apos;s Reflexology Programme and author of the series of books by the same name. I am an evangelist and educator for the benefits of simple reflexology to support and empower parents throughout the world.";
 % title "About me";
 %= markdown begin
 <div class="instructor-photo" style="margin-top: 16px;"><img src="<%= url_for '/images/Photos/Susan.jpg' %>" /></div>
 <p class="page-intro">
-My name is Susan Quayle. First and foremost I am a mother and a wife; huge responsibilities that
-I take incredibly seriously. However I am also an award-winning complementary therapist,
-children&apos;s author and business woman. I am the creator of The Children&apos;s Reflexology Programme
-and author of the series of books by the same name. I am an evangelist and educator for the
-benefits of simple reflexology to support and empower parents throughout the world.
+<%== stash('description') %>
 </p>
 
 I come from humble beginnings: my parents were poor, my mother was illiterate, my father was
@@ -24,7 +20,7 @@ My childhood was idyllic I remember it with great joy and real sense of freedom.
 When I was eleven my world was shattered by my mother leaving home. A year later when I thought
 things couldn&apos;t get worse my older sister was killed in a most violent and shocking way
 that destroyed the remnants of the life I had known. My father, totally destroyed but trying
-his hardest to manage his family, turned heavily to drink and my brother followed. Some of the
+his hardest to manage his family, turned heavily to drink. Some of the
 hardest years of my life followed and I left school as soon as I could without any
 qualifications and then left home.
 
