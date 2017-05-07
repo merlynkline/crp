@@ -22,21 +22,24 @@ successful with The Children&apos;s Reflexology Programme.
     </tr>
     <tr markdown="yes">
         <td style="padding: 12px" width="33%" align="center">
-            Susan is the founder of The Children&apos;s Reflexology Programme
-            and the author of the accompanying <a href="<%= url_for '/page/books' %>">books</a>.
+            Susan is is the founder and creator of
+            The Children&apos;s Reflexology Programme and author of the
+            accompanying <a href="<%= url_for '/page/books' %>">books</a>.
+            She is qualified in many different therapies and
+            specialises in fertility, maternity and children's reflexology. 
+            Susan teaches all our courses.
             <br/>[More about Susan](<%= url_for '/page/aboutme' %>).
         </td>
         <td markdown="yes" style="padding: 12px" width="33%" align="center">
-            Claire is an <a href="/page/addneeds">additional needs</a>
-            specialist with extensive training in the field and
-            co-authored much of our additional needs material.
+            Claire is a complementary therapist trained in a number of different therapies
+            including reflexology. Claire is also a Special Needs Nurse and helped write
+            our Additional Needs courses. Claire teaches all our courses.
             <br/>[More about Claire](https://www.kidsreflex.co.uk/me/-16786176).
         </td>
-        <td style="padding: 12px" width="33%" align="center">
-            Andrea is something something something.
-            something something something.
-            something something something.
-            something something something.
+        <td markdown="yes" style="padding: 12px" width="33%" align="center">
+            Andrea is a highly qualified complementary therapist with a wide range of
+            talents and qualifications including reflexology. Andrea has a busy practice
+            in Northern Ireland and teaches Instructor and Professional courses.
             <br/>[More about Andrea](https://www.kidsreflex.co.uk/me/-50340098).
         </td>
     </tr>
