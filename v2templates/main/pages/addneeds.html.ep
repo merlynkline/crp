@@ -69,7 +69,7 @@ If you would like to work with families and parents of children with Additional 
 version of our [Instructors course](<%= url_for 'crp.instructors' %>) could be a great course
 for you. Our Instructor training will teach you all you need to know to support families in your communities with
 Additional Needs children. We offer specific protocols for a wide range of conditions to support children whatever
-their needs, from grief, depression or autistic spectrum disorders to severe neurological conditions.
+their needs, from grief, depression or autistic spectrum disorders to severe neurological and degenerative conditions.
 %= include 'main/parts/action-instructor';
 
 <a href="<%= url_for 'crp.page', page => 'professionals' %>"><img src="<%= url_for '/images/Animals/Badger.jpg' %>" class="page-logo" style="width: 18%;" /></a>
