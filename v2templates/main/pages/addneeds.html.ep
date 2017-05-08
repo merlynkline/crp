@@ -52,7 +52,7 @@ the programme into their child&apos;s life slowly at home.
 
 Of course [reflexology](<%= url_for 'crp.page', page => 'reflexology' %>) is a large part of what we offer but these classes are also about supporting parents of
 children with additional needs. Classes can offer you the chance of meeting like minded people, other parents
-going through similar challenges, regular group meet ups as a support network as well as just getting a break
+going through similar challenges, regular group meet-ups as a support network as well as just getting a break
 from your normal routine.
 
 %= include 'main/parts/action-parent';
@@ -80,7 +80,7 @@ This training is a special version of our
 [Professional training course](<%= url_for 'crp.page', page => 'professionals' %>)
 for people who work with Additional Needs children in whatever capacity that may be.
 This can be very beneficial to support children with specific conditions such as constipation, behavioural problems,
-anxiety and many other complex conditions.
+anxiety, degenerative conditions and many other complex conditions.
 
 This course teaches you to use the simple reflexology techniques and the specific protocols within your place of
 work on the children in your care.
