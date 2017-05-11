@@ -7,7 +7,7 @@
         <td width="<%= $cell_width %>%" nowrap>
             <ul>
 % foreach my $item (@$left_list) {
-                <li><%= $item %></li>
+                <li><%== $item %></li>
 % }
             </ul>
         </td>
@@ -19,7 +19,7 @@
         <td width="<%= $cell_width %>%" nowrap>
             <ul class="feature-list right">
 % foreach my $item (@$right_list) {
-                <li><%= $item %></li>
+                <li><%== $item %></li>
 % }
             </ul>
         </td>
