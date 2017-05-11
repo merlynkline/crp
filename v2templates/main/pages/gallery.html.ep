@@ -47,7 +47,8 @@
 </p>
 <center>
 % foreach my $pic (@$pics) {
-<a name="<%= $pic %>" style="vertical-align: top"><span style="color: white">X<img style="border: 3px solid #589; border-radius: 8px; width: 95%; margin: 8px" src="<%= url_for '/images/Photos/' . $pic %>" />X</span></a>
+<a name="<%= $pic %>" style="vertical-align: top; position: relative; top: -46px; color: white;">X</a>
+<img style="border: 3px solid #589; border-radius: 8px; width: 95%; margin: 8px" src="<%= url_for '/images/Photos/' . $pic %>" />
 % }
 </center>
 <div style="width: 1%; margin: 0 auto;">
