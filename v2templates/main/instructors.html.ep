@@ -1,123 +1,76 @@
 %#<!DOCTYPE html>
 % layout 'default', heading => "Certified instructors", page_id => 'tutors', description => "Train as an instructor and have your own business empowering parents and carers to help themselves and their children.";
 % title "Certified instructors";
+% my $benefits = ['Make a real difference in people&apos;s lives', 'Your own business on your own terms', '----', '---'];
+% my $features = ['Accessible training from qualified trainers', 'All your training and teaching materials', 'Comprehensive online support', 'Additional needs extension'];
+%= include 'main/parts/feature_list', left_list => $benefits, right_list => $features;
+%= markdown begin
 <img src="<%= url_for '/images/Animals/Owl.jpg' %>" class="page-logo" '>
 <p markdown="yes" class="page-intro">
 <%== stash('description') %>
 </p>
 
-<p>
-<center>
-<strong>
-    The Childrens' Reflexology Programme is delivered only by qualified instructors
-    who have received the required training and use the official course materials.
-</strong>
-</center>
-</p>
-<p>
-<center>
-<span class="highlight-box">
-    Looking for an instructor?
-    <a class="standard-button" href="<%= url_for 'crp.location_search' %>">Find an instructor near you</a>
-    or
-    <a class="standard-button" href="<%= url_for 'crp.instructor_search' %>">Find a specific instructor</a>
-</span>
-</center>
-<br />
-<h1>Become a certified instructor</h1>
-<table>
-    <tr>
-        <td style="padding:0 8px 0 0; width:60%;">
-            <strong>
-                Would you like to run your own business empowering parents and carers to help themselves and their children?
-                It is now possible to become a fully qualified Children's Reflexology Programme Instructor without having to train as a reflexologist.
-            </strong>
-        </td>
-        <td>
-            <div style="
-                border:         1px solid black;
-                padding:        4px;
-                margin:         0;
-                border-radius:  8px;
-                line-height:    120%;
-                font-size:      75%;
-                text-align:     center;
-                ">
-                <table>
-                    <tr>
-                        <td>
-                            If you are already a qualified reflexologist then you can take the special two-day,
-                            AOR-approved and FHT-accredited course.<br />
-                            <a href="http://www.aor.org.uk/" target="_blank"><img style="padding: 8px 16px 0 16px; width:66px; height:66px;" src="<%= url_for '/images/AORCPDApproved.jpg' %>"></a>
-                            <a href="http://www.fht.org.uk/" target="_blank"><img style="padding: 8px 16px 0 16px; width:80px; height:66px;" src="<%= url_for '/images/FHTAccreditation.jpg' %>"></a>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </td>
-    </tr>
-</table>
-<p>
-%= include "parts/instructors_course_list", courses => stash('instructors_courses');
-</p>
-<p>
-The Children's Reflexology Programme Instructor course has been specially created to empower mums, dads, grandparents and carers to run their own businesses teaching infant reflexology to other parents and carers. Written specifically to empower women with children who may find it difficult to go back to work or secure a job because they have a child as well as older women who may feel pushed aside once they reach a certain age, this offers you the chance to run your own business with a freedom to suit you.
-</p>
+The Children&apos;s Reflexology Programme is delivered only by qualified instructors
+who have received the required training and use the official course materials.
+Our Instructors course has been specially created to empower mums, dads,
+grandparents and carers to run their own businesses teaching infant
+reflexology to other parents and carers by becoming one of these qualified instructors.
+
+<div style="text-align: center; padding: 12px 0;"><span class="highlight-box">Interested in becoming an instructor?<a class="standard-button" href="#course-list">Find a course now</a><img src="/images/Plants/Pokers.png" style="width: 30px; vertical-align: middle; position: relative; top: -3px;"></span></div>
+
 If you would like to become a certified instructor yourself you can enroll in
+<%= include 'main/parts/illo-large', pic => 'Training4.jpg', side => 'left' =%>
 the special training course which will qualify you to deliver The Children's
 Reflexology Programme and provide you with all the materials you need to give
 parents and carers the best possible experience. You will also gain access to
 the members-only areas of this site which provides all sorts of supporting
 material and helps you to advertise yourself and your courses when you're ready
 to start.
-</p>
-<img src="/images/Photos/InstructorPack.JPG" width="800" height="313" class="centered-image" />
-<p>
+
 The course is delivered over three days of intensive training
-by one of our <a href="<%= url_for '/page/team' %>">highly qualified trainers</a>
-and covers
-the content of The Children's Reflexology Programme in depth, how to teach
+by one of our [highly qualified trainers](<%= url_for '/page/team' %>) and covers
+the content of The Children&apos;s Reflexology Programme in depth, how to teach
 it to different groups, teaching techniques, relevant anatomy and
-physiology, safeguarding, running a business based on what you've learned,
-and much more. Once you have completed the course, performed a teaching
-demonstration for your group, and completed some written assignments on
+physiology, safeguarding, running a business based on what you&apos;ve learned,
+and much more.
+
+Once you have completed the course, performed a teaching
+demonstration for your group, and completed some simple written assignments on
+<%= include 'main/parts/illo-large', pic => 'Training3.jpg', side => 'right' =%>
 anatomy and physiology, parental impact and reflective practice you will
-become a fully qualified instructor, ready to take The Children's Reflexology
+become a fully qualified instructor, ready to take The Children&apos;s Reflexology
 programme to the world! The course includes a comprehensive course manual
-and everything you need to teach the Programme, as shown above, plus
-a full set of parent packs for your first course, like the one shown below.
+and everything you need to teach the Programme, plus
+a full set of parent packs for your first course enabling you to earn &pound;300 or more.
 The course is recognised by insurance companies such as
 <a href="http://www.balens.co.uk/" target="_blank">Balens</a> who hold a copy
 of the certificate and will provide the cover you need to run
-The Children's Reflexology Programme.
-</p>
-</p>
+The Children&apos;s Reflexology Programme.
+
 By attending this course you will gain the benefit of:
-<ul>
-    <li>Training in everything you need to know to run The Children's Reflexology Programme including:
+<ul markdown="yes">
+    <li>Training in everything you need to know to run The Children&apos;s Reflexology Programme including:
     <ul>
         <li>The simple reflexology you will be teaching to parents and carers.</li>
         <li>Relevant anatomy, physiology and pathology.</li>
         <li>Teaching practices and techniques.</li>
         <li>Running a business based on the programme.</li>
     </ul>
-    <li>All the teaching materials you will need, as shown in the pictures on this page.</li>
-    <li>Specially designed forms and other stationery to help with administration and marketing of your courses.</li>
+    <li>All the training and teaching materials you will need.</li>
+    <li>Specially designed forms and other stationery to help with administration and marketing of your workshops.</li>
     <li>Access to the members area of the website with all its online facilities, including:
-    <ul>
-        <li>Your own pages with all your details including courses you are running.</li>
-        <li>A geographical search and enquiry system so parents and carers can find you and your courses.</li>
-        <li>Bespoke printable documents automatically created for you and your courses including posters, flyers, business cards and administrative stationery.</li>
-        <li>Tools to help you manage your costs.</li>
-    </ul>
+        <ul>
+            <li>Your own pages with all your details including workshops you are running.</li>
+            <li>A geographical search and enquiry system so parents and carers can find you and your workshops.</li>
+            <li>Bespoke printable documents automatically created for you and your workshops including posters, flyers, business cards and administrative stationery.</li>
+        </ul>
     </li>
-    <li>Enough sets of training material, including copies of <a href="/page/book">The Mouse's House</a>, to run your first course.</li>
-    <li>Ongoing support in the future as The Children's Reflexology Programme grows with you.</li>
-    <li>The right to use all this under the banner of The Children's Reflexology Programme to improve the lives of parents and carers everywhere!</li>
+    <li markdown="yes">Enough sets of teaching material, including copies of [*The Mouse&apos;s House*](<%= url_for 'crp.page', page => 'books' %>), to run your first course.</li>
+    <li>Ongoing support in the future as The Children&apos;s Reflexology Programme grows with you.</li>
+    <li>The right to use all this under the banner of The Children&apos;s Reflexology Programme to improve the lives of parents and carers everywhere!</li>
 </ul>
-See the <a href="<%= url_for('/page/instructor_booking') %>">booking form</a> for more information.
-</p>
-<p>
+
+<a name="course-list"></a>
 %= include "parts/instructors_course_list", courses => stash('instructors_courses');
-</p>
-<img src="/images/Photos/ParentPack.JPG" width="800" height="417" class="centered-image" />
+
+%= end
