@@ -36,39 +36,33 @@ and much more.
 
 Once you have completed the course, performed a teaching
 demonstration for your group, and completed some simple written assignments on
-<%= include 'main/parts/illo-large', pic => 'Training3.jpg', side => 'right' =%>
 anatomy and physiology, parental impact and reflective practice you will
 become a fully qualified instructor, ready to take The Children&apos;s Reflexology
 programme to the world! The course includes a comprehensive course manual
 and everything you need to teach the Programme, plus
 a full set of parent packs for your first course enabling you to earn &pound;300 or more.
+<%= include 'main/parts/illo-large', pic => 'Training3.jpg', side => 'right' =%>
 The course is recognised by insurance companies such as
 <a href="http://www.balens.co.uk/" target="_blank">Balens</a> who hold a copy
 of the certificate and will provide the cover you need to run
 The Children&apos;s Reflexology Programme.
 
 By attending this course you will gain the benefit of:
-<ul markdown="yes">
-    <li>Training in everything you need to know to run The Children&apos;s Reflexology Programme including:
-    <ul>
-        <li>The simple reflexology you will be teaching to parents and carers.</li>
-        <li>Relevant anatomy, physiology and pathology.</li>
-        <li>Teaching practices and techniques.</li>
-        <li>Running a business based on the programme.</li>
-    </ul>
-    <li>All the training and teaching materials you will need.</li>
-    <li>Specially designed forms and other stationery to help with administration and marketing of your workshops.</li>
-    <li>Access to the members area of the website with all its online facilities, including:
-        <ul>
-            <li>Your own pages with all your details including workshops you are running.</li>
-            <li>A geographical search and enquiry system so parents and carers can find you and your workshops.</li>
-            <li>Bespoke printable documents automatically created for you and your workshops including posters, flyers, business cards and administrative stationery.</li>
-        </ul>
-    </li>
-    <li markdown="yes">Enough sets of teaching material, including copies of [*The Mouse&apos;s House*](<%= url_for 'crp.page', page => 'books' %>), to run your first course.</li>
-    <li>Ongoing support in the future as The Children&apos;s Reflexology Programme grows with you.</li>
-    <li>The right to use all this under the banner of The Children&apos;s Reflexology Programme to improve the lives of parents and carers everywhere!</li>
-</ul>
+
+* Training in everything you need to know to run The Children&apos;s Reflexology Programme including:
+    * The simple reflexology you will be teaching to parents and carers.
+    * Relevant anatomy, physiology and pathology.
+    * Teaching practices and techniques.
+    * Running a business based on the programme.
+* All the training and teaching materials you will need.
+* Specially designed forms and other stationery to help with administration and marketing of your workshops.
+* Access to the members area of the website with all its online facilities, including:
+    * Your own pages with all your details including workshops you are running.
+    * A geographical search and enquiry system so parents and carers can find you and your workshops.
+    * Bespoke printable documents automatically created for you and your workshops including posters, flyers, business cards and administrative stationery.
+* Enough sets of teaching material, including copies of [*The Mouse&apos;s House*](<%= url_for 'crp.page', page => 'books' %>), to run your first course.
+* Ongoing support in the future as The Children&apos;s Reflexology Programme grows with you.
+* The right to use all this under the banner of The Children&apos;s Reflexology Programme to improve the lives of parents and carers everywhere!
 
 <a name="course-list"></a>
 %= include "parts/instructors_course_list", courses => stash('instructors_courses');
