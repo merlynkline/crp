@@ -11,7 +11,7 @@
 </p>
 
 Using simple [reflexology](<%= url_for 'crp.page', page => 'reflexology' %>)
-on the children in your care not only gives you an
+on the babies and children in your care not only gives you an
 effective action to take in times of stress but also improves bonding and offers
 continuity of care with homes that may be using it themselves. The activity
 fits well with developmental objectives as well as being positive play and
@@ -23,7 +23,7 @@ Care** facilities, **Nannies** and **Maternity Nurses** and similar.
 Our wide range of [courses](<%= url_for 'crp.page', page => 'courses' %>)
 includes special training which will teach you how to use simple
 [reflexology](<%= url_for 'crp.page', page => 'reflexology' %>) to support
-your work with children in your setting.
+your work with babies and children in your setting.
 The main course is a one day course which is typically delivered in your setting
 to enable some or all of the staff to use reflexology in the context of
 <%= include 'main/parts/illo-large', pic => 'EYP1.jpg', side => 'left' =%>
@@ -40,10 +40,9 @@ qualification.
 Our [courses](<%= url_for 'crp.page', page => 'courses' %>) also
 include a special two day training course which enables staff at parent support
 centres to pass on this knowledge to parents and carers. This
-is a subset of the main [instructors course](<%= url_for 'crp.instructors' %>).
-
-This course was created in conjunction with **Sure Start** and
-includes everything you need to enable you to get parents and carers started
+is a subset of the main [instructors course](<%= url_for 'crp.instructors' %>)
+and was created in conjunction with **Sure Start**.
+It includes everything you need to enable you to get parents and carers started
 using this wonderful programme, from teaching techniques and simple reflexology to
 a complete and detailed teaching programme so you will be able to set up and run workshops
 <%= include 'main/parts/illo-large', pic => 'EYP4.jpg', side => 'right' =%>

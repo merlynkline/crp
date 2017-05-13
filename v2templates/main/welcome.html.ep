@@ -162,7 +162,7 @@ Our award-winning range of [courses](<%= url_for 'crp.page', page => 'courses' %
 specially qualified [instructors](<%= url_for 'crp.page', page => 'location_search' %>)
 and [trainers](<%= url_for 'crp.page', page => 'team' %>), making simple
 [reflexology](<%= url_for 'crp.page', page => 'reflexology' %>)
-available as a powerful tool to improve the lives of children and their carers
+available as a powerful tool to improve the lives of babies, children and their carers
 at home and in childcare settings.
 </center>
 

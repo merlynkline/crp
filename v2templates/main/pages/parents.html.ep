@@ -13,12 +13,12 @@
 %= include 'main/parts/action-parent';
 
 Courses are typically presented as several weekly group workshops attended by parents
-or carers and their children. You will learn a powerful skill for life which offers
+or carers and their babies or older children. You will learn a powerful skill for life which offers
 help you can use any time and anywhere, whenever you need it most, as well as
 <%= include 'main/parts/illo-large', pic => 'Course5-360.jpg', side => 'left' =%>
 promoting strong bonding and excellent wellbeing at all times.
 In addition to teaching you how to use simple
-[reflexology](<%= url_for 'crp.page', page => 'reflexology' %>) to help you and your child,
+[reflexology](<%= url_for 'crp.page', page => 'reflexology' %>) to help you and your baby or child,
 these workshops are a great meet-up and a useful way to extend your support
 network.
 
@@ -36,7 +36,7 @@ parents of children with [additional needs](<%= url_for 'crp.page', page => 'add
 %= include 'main/parts/action-parent';
 <%= include 'main/parts/illo-large', pic => 'Course1-360.jpg', side => 'right' =%>
 I am a parent and I have experienced first hand that feeling of utter
-helplessness that hits us when our child is distressed or unwell with
+helplessness that hits us when our baby or child is distressed or unwell with
 conditions that we may not consider worthy of a trip to the GP. Of course it
 still pains us to watch them suffer and this is very dis-empowering for us as
 parents or carers and for our children too, who naturally turn to us for
@@ -60,7 +60,7 @@ perhaps even just a cuddle is all that will be needed.
 
 The beauty of The
 Children&apos;s Reflexology Programme is that these treatments can be given at any
-time and in any place. Your child doesn&apos;t have to be ill to give them any of
+time and in any place. Your baby doesn&apos;t have to be ill to give them any of
 the treatments. If your child suffers with constipation give them the treatment
 for it every day – they cannot have too much reflexology! You can use the
 treatments as a way of controlling the condition and keeping your child calm,
