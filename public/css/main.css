@@ -672,6 +672,8 @@ table.feature-list {
     border-radius:  4px;
     border:         2px solid #589;
     background:     #eee;
+    max-width:      302px;
+    max-height:     76px;"
 }
 
 body.premium-page-body {
