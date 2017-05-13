@@ -1,8 +1,8 @@
 %#<!DOCTYPE html>
-% layout 'default', heading => "Certified instructors", page_id => 'tutors', description => "Train as an instructor and have your own business empowering parents and carers to help themselves and their children.";
+% layout 'default', heading => "Certified instructors", page_id => 'tutors', description => "Train as an instructor and have your own business empowering parents and carers to help themselves and their babies or children with fun kids reflex workshops.";
 % title "Certified instructors";
-% my $benefits = ['Make a real difference in people&apos;s lives', 'Your own business on your own terms', '----', '---'];
-% my $features = ['Accessible training from qualified trainers', 'All your training and teaching materials', 'Comprehensive online support', 'Additional needs extension'];
+% my $benefits = ['Fun, therapy and literacy in your community', 'Pass on life skills to the next generation', 'Grow your own business in your own time', 'Empower families using kids reflex'];
+% my $features = ['Quality training from qualified trainers', 'Extensive training and teaching materials', 'Comprehensive online support', 'Branded marketing material'];
 %= include 'main/parts/feature_list', left_list => $benefits, right_list => $features;
 %= markdown begin
 <img src="<%= url_for '/images/Animals/Owl.jpg' %>" class="page-logo" '>
@@ -14,8 +14,10 @@ The Children&apos;s Reflexology Programme [parents course](<%= url_for 'crp.page
 is delivered only by qualified instructors
 who have received the required training and use the official course materials.
 Our Instructors course has been specially created to empower mums, dads,
-grandparents and carers to run their own businesses teaching infant
-reflexology to other parents and carers by becoming one of these qualified instructors.
+grandparents and carers to become one of these qualified instructors.
+You will be able to run fun workshops in your own community
+teaching kids reflex to other parents and carers, and even build your
+own business empowering others with new life skills.
 
 <div style="text-align: center; padding: 12px 0;"><span class="highlight-box">Interested in becoming an instructor?<a class="standard-button" href="#course-list">Find a course now</a><img src="/images/Plants/Pokers.png" style="width: 30px; vertical-align: middle; position: relative; top: -3px;"></span></div>
 
@@ -28,7 +30,7 @@ the members-only areas of this site which provides all sorts of supporting
 material and helps you to advertise yourself and your courses when you're ready
 to start.
 
-The course is delivered over three days of intensive training
+The course is delivered over three days of training
 by one of our [highly qualified trainers](<%= url_for 'crp.page', page => 'team' %>) and covers
 the content of The Children&apos;s Reflexology Programme in depth, how to teach
 it to different groups, teaching techniques, relevant anatomy and
@@ -51,7 +53,7 @@ The Children&apos;s Reflexology Programme.
 By attending this course you will gain the benefit of:
 
 * Training in everything you need to know to run The Children&apos;s Reflexology Programme including:
-    * The simple reflexology you will be teaching to parents and carers.
+    * The simple [reflexology](<%= url_for 'crp.page', page => 'reflexology' %>) you will be teaching to parents and carers.
     * Relevant anatomy, physiology and pathology.
     * Teaching practices and techniques.
     * Running a business based on the programme.
