@@ -6,10 +6,10 @@
         ['pro',       '/page/professionals',  'Professionals'],
         ['tutors',    'crp.instructors',      'Instructors'],
         ['reflex',    '/page/reflexologists', 'Reflexologists'],
-        ['press',     '/page/press',          'Press'],
+#        ['press',     '/page/press',          'Press'],
         ['aboutme',   '/page/aboutme',        'About me'],
         ['books',     '/page/books',          'Books'],
-        ['shop',      '/page/shop',           'Shop'],
+#        ['shop',      '/page/shop',           'Shop'],
     ];
     if(stash 'logged_in') {
         push @$left_nav_menu, ['members',   '/instructor',     'Members'];
