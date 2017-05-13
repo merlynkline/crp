@@ -1,33 +1,25 @@
-
-+ Fix recaptcha
-    + Looks like hypnotoad workers don't inherit the environment. Need to communicate keys by a different means.
-
 + Spring site refresh
-    + Mention babies (anything else?)
-    + /instructors
-        + Complete re-write
-        + Links to testimonials and other new pages
-    + /page/addneeds
-        ~ Create
-        + Review text
-    + /page/team
-        + Picture and text for Andrea
-        + Get Andrea to set up her page properly
-    + /instructor_booking_form
-        + Reformat and tidy up
     + /page/press
         + Create
-    ? Instructors' pages
-        + Personal page
-        + Course adverts
-        + Booking forms
-    + Home
-        ~ review pictures
-        ~ review text
-        + Add press banner
+        + Add press banner to home page
     + Shop
         + Create
     + Pagespeed analysis
+    ~ /instructors
+        ~ Complete re-write
+        ~ Links to testimonials and other new pages
+    ~ Mention babies (anything else?)
+    ~ /instructor_booking_form
+        ~ Reformat and tidy up
+    ~ /page/team
+        ~ Picture and text for Andrea
+        X Get Andrea to set up her page properly
+    ~ /page/addneeds
+        ~ Create
+        ~ Review text
+    ~ Home
+        ~ review pictures
+        ~ review text
     X Google Sitemap?
     ~ /page/testimonials
         ~ Add more testimonials: \\REVOLVER\merlyn-home\crp\templates\main\parts\testimonial_list.html.ep
@@ -53,6 +45,10 @@
     ~ Gallery page
         ~ Create
         ~ Link from various places
+    X Instructors' pages
+        X Personal page
+        X Course adverts
+        X Booking forms
 
 + General purpose pictorial poster - version with course details    
 
@@ -80,6 +76,10 @@
         + Anything else
     + Add any new products to the shop
         + Trainer's pack
+
+
+~ Fix recaptcha
+    ~ Looks like hypnotoad workers don't inherit the environment. Need to communicate keys by a different means.
 
 + Professionals
     ~ ANPro booking form
