@@ -15,7 +15,7 @@
         <meta name="theme-color" content="#ffffff" />
         <meta name="description" content="<%== stash('description') || "The Children&apos;s Reflexology Programme" %>" />
         <meta charset="utf-8" />
-        <link rel="stylesheet" href="<%= url_for '/css/main.css' %>" />
+        <link rel="stylesheet" href="<%= url_for('/css/main.css')->query(v => 2) %>" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 % foreach my $extra_template (@{$c->crp->stash_list('extra_header_templates')}) {
 %=   include $extra_template
