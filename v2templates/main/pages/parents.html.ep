@@ -34,6 +34,7 @@ There is a special version of the course for
 parents of children with [additional needs](<%= url_for 'crp.page', page => 'addneeds' %>).
 
 %= include 'main/parts/action-parent';
+#### Being a parent isn't always easy
 <%= include 'main/parts/illo-large', pic => 'Course1-360.jpg', side => 'right' =%>
 I am a parent and I have experienced first hand that feeling of utter
 helplessness that hits us when our baby or child is distressed or unwell with
@@ -42,6 +43,7 @@ still pains us to watch them suffer and this is very dis-empowering for us as
 parents or carers and for our children too, who naturally turn to us for
 answers and to take their pain and discomfort away.
 
+#### Sometimes we don't know what to do
 Unfortunately it is not always practical to visit a reflexologist, especially
 in the middle of the night! Also, a strange person in a strange place might not
 be the most helpful thing in these situations, which are often very emotionally
@@ -50,14 +52,16 @@ unwell, or just distressed or upset for some reason, want to stay close to the
 people and places they know and love.
 
 <%= include 'main/parts/illo-large', pic => 'SpontaneousKids-360.jpg', side => 'left' =%>
+#### Kids reflex is here to help
 The Children&apos;s Reflexology Programme
 solves these problems by making it possible for you to give reflexology
 treatments yourself, whenever and wherever you want. You can start helping with
 everything from tantrums to teething, giving you precious time to relax and
 take a step back so you can decide what to do next – a visit to a
 reflexologist, a trip to the doctor, some more of your own treatments or
-perhaps even just a cuddle is all that will be needed.
+perhaps even just a loving cuddle is all that will be needed.
 
+#### Help whenever you need it
 The beauty of The
 Children&apos;s Reflexology Programme is that these treatments can be given at any
 time and in any place. Your baby doesn&apos;t have to be ill to give them any of
@@ -66,14 +70,60 @@ for it every day – they cannot have too much reflexology! You can use the
 treatments as a way of controlling the condition and keeping your child calm,
 relaxed, happy and well.
 
-<%= include 'main/parts/illo-large', pic => 'Course27-360.jpg', side => 'right' =%>
+#### Simple, safe and empowering
 The Children&apos;s Reflexology Programme offers parents
 and carers the opportunity to easily learn enough reflexology to 
 give basic treatments to their families. It is a special
+<%= include 'main/parts/illo-large', pic => 'Course27-360.jpg', side => 'right' =%>
 medicine cabinet for all your family that is completely non-invasive, that
 no-one can overdose on, that will bring you all together with love and respect
 through touch and bonding, and most importantly empowers both parent/carer and
 child. Win, win all round!
+
+#### Exactly what you need
+The workshop courses show you reflexology that you can use at any time you want,
+whenever you feel it might be helpful. Our instructors will adapt their courses
+for the particular groups of people attending and may include special protocols
+for a variety of situations, such as:
+
+<table markdown="yes"><tr markdown="yes"><td markdown="yes">
+
+* Bedtime and any time
+* Allergies
+* Stress and anxiety
+
+</td>
+<td markdown="yes">
+
+* Teething
+* Tummy upsets
+* Colic
+
+</td>
+<td markdown="yes">
+
+* Pre- and post-immunisation
+* Earache
+* Coughs and colds
+
+</td>
+<td markdown="yes">
+
+* Reflux
+* Tantrums
+* Newborns
+
+</td>
+<td markdown="yes">
+
+* Constipation
+* Night frights
+* Asthma
+
+</td></tr></table>
+
+There are also special courses for
+children with [additional needs](<%= url_for 'crp.page', page => 'addneeds' %>).
 
 % end
 <br clear="all">
