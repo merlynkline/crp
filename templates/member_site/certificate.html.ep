@@ -3,7 +3,7 @@
 % title 'Certificate';
 % my @passed_qualifications = stash('site_profile')->login->qualifications->get_passed_set;
 % my @future_qualifications = stash('site_profile')->login->qualifications->get_in_training_set;
-<link href='http://fonts.googleapis.com/css?family=Tangerine:700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Tangerine:700' rel='stylesheet' type='text/css'>
 <div class="certificate-container">
     <div class="certificate-overlay">
         <div style="opacity: 1.0;">
