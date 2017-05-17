@@ -44,7 +44,7 @@ become a fully qualified instructor, ready to take The Children&apos;s Reflexolo
 programme to the world! The course includes a comprehensive course manual
 and everything you need to teach the Programme, plus
 a full set of parent packs for your first course enabling you to earn &pound;300 or more.
-<%= include 'main/parts/illo-large', pic => 'Training3.jpg', side => 'right' =%>
+<%= include 'main/parts/illo-large', pic => 'Training5.jpg', side => 'right' =%>
 The course is recognised by insurance companies such as
 <a href="https://www.alanboswell.com/" target="_blank">Alan Boswell</a> who hold a copy
 of the certificate and will provide the cover you need to run
