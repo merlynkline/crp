@@ -1,2 +1,2 @@
 %#<!DOCTYPE html>
-<a href="<%= url_for 'crp.page', page => 'gallery' %>#<%= $pic %>"><img src="<%= url_for '/images/Photos/' . $pic %>" class="illo-large <%= $side %>" /></a>
+<a href="<%= url_for 'crp.page', page => 'gallery' %>#<%= $pic %>"><img src="<%= url_for '/images/Photos/' . $pic %>" class="illo-large fixed <%= $side %>" /></a>

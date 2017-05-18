@@ -653,6 +653,10 @@ div.faq-menu {
 .illo-large {
     width: 50%;
 }
+.illo-large.fixed {
+    width: 472px;
+    height: 200px;
+}
 .illo-small {
     width: 40%;
 }
