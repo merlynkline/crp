@@ -6,47 +6,9 @@
 % include 'main/parts/testimonial_list', list_ref => \$testimonials;
 %= markdown begin
 
-<p markdown="yes" class="front-page-large">
-Helping **parents** and **carers** and **children** of all ages to **cope**
-better with the **stresses** of **illness** and **everyday life**
-</p>
-
-<div class="highlight-box" style="float: right; text-align: center; margin: 0 12px 0 12px;">
-    <a class="standard-button" href="<%= url_for 'crp.location_search' %>">Find a course near you</a><br><br><a class="standard-button" href="<%= url_for 'crp.instructors' %>">Become an instructor</a>
-</div>
-
-<p markdown="yes" class="front-page-medium">
-Our [fun, interactive workshops](<%= url_for 'crp.page',  page => 'parents' %>)
-enable **anybody** to make use of simple, gentle
-**[reflexology](<%= url_for 'crp.page', page => 'reflexology' %>)**
-to improve **health** and strengthen **bonds**
-</p>
+<center><h1>kids reflex - soothing the early years</h1></center>
 
 %end
-
-<style>#review-list > ul > li > p {padding: 0; margin: 0; display: inline-block; }</style>
-<div id="reviews">
-    <a href="<%= url_for 'crp.page',  page => 'testimonials' %>">
-        <div id="review-list" class="scroll-text">
-            <ul>
-                <li markdown="yes"><b>Testimonials:</b></li>
-% foreach my $testimonial (@$testimonials) {
-                <li markdown="yes"><%== markdown $testimonial->[0] %>&nbsp;<span><%= $testimonial->[1] %></span></li>
-% }
-            </ul>
-        </div>
-    </a>
-    <script src="<%= url_for '/js/ScrollBox.js' %>"></script>
-    <script>
-        $('#review-list').scrollbox({
-            step:   1,
-            delay:  0,
-            speed: 10,
-            linear: 1,
-            direction: 'h'
-        });
-    </script>
-</div>
 
 % my $row_number = 0;
 % my $row = begin
@@ -148,23 +110,45 @@ to improve **health** and strengthen **bonds**
     }
 </style>
 %= $row->("For parents and carers","Kids reflex will help you enjoy a better connection with your child and cope better with the stresses of illness and everyday life",["Course6-360.jpg", "Course7-360.jpg", "Certificates-360.jpg", "Course5-360.jpg", "Course10-360.jpg", "Course1-360.jpg", "Course27-360.jpg", "Course25-360.jpg" ], "/page/parents");
-%= $row->("For everyone", "Become an instructor and build your own business bringing the benefits of kids reflex to more parents and carers", ["Training4.jpg", "Training3.jpg", "Training2.jpg", "Training.jpg"], "crp.instructors");
+%= $row->("For everyone", "Become an instructor and build your own business bringing the benefits of kids reflex to more parents and carers", ["Training4.jpg", "Training5.jpg", "Training2.jpg", "Training.jpg"], "crp.instructors");
 %= $row->("For professionals", "Bring the benefits of kids reflex to the kids in your setting", ["EYP1.jpg", "EYP2.jpg", "EYP3.jpg", "EYP4.jpg", "EYP5.jpg"], "/page/professionals");
 %= $row->("For reflexologists", "Short CPD courses to help you pass on kids reflex to your clients and get them coming back for more", ["Reflex1.jpg", "Reflex4.jpg", "Reflex3.jpg"], "/page/reflexologists");
 %= $row->("Additional Needs", "There are special versions of many of our courses for children with Additional Needs and their parents and carers", "AN1.jpg", "/page/addneeds");
 
 %= markdown begin
-
-&nbsp;
-
-<center>
+<center markdown="yes">
 Our award-winning range of [courses](<%= url_for 'crp.page', page => 'courses' %>) is delivered by
 specially qualified [instructors](<%= url_for 'crp.page', page => 'location_search' %>)
-and [trainers](<%= url_for 'crp.page', page => 'team' %>), making simple
+and [trainers](<%= url_for 'crp.page', page => 'team' %>),
+enabling anybody to make use of simple, gentle
 [reflexology](<%= url_for 'crp.page', page => 'reflexology' %>)
-available as a powerful tool to improve the lives of babies, children and their carers
+as a powerful tool to improve the lives of babies, children and their carers
 at home and in childcare settings.
 </center>
+
+<style>#review-list > ul > li > p {padding: 0; margin: 0; display: inline-block; }</style>
+<div id="reviews">
+    <a href="<%= url_for 'crp.page',  page => 'testimonials' %>">
+        <div id="review-list" class="scroll-text">
+            <ul>
+                <li markdown="yes"><b>Testimonials:</b></li>
+% foreach my $testimonial (@$testimonials) {
+                <li markdown="yes"><%== markdown $testimonial->[0] %>&nbsp;<span><%= $testimonial->[1] %></span></li>
+% }
+            </ul>
+        </div>
+    </a>
+    <script src="<%= url_for '/js/ScrollBox.js' %>"></script>
+    <script>
+        $('#review-list').scrollbox({
+            step:   1,
+            delay:  0,
+            speed: 15,
+            linear: 1,
+            direction: 'h'
+        });
+    </script>
+</div>
 
 <center>Awards for kids reflex</center>
 
