@@ -108,6 +108,7 @@ hr {
     border-top-left-radius: 4px;
     border-top-right-radius: 8px;
     background:     linear-gradient(#acd, #bde);
+    z-index:        10;
 }
 .top-nav.members-area span, .member-option-highlight span {
     background:     linear-gradient(#ecc, #fdd);
@@ -115,6 +116,24 @@ hr {
 .top-nav span.selected {
     background:     #fff;
     background:     linear-gradient(#eee, #fff);
+}
+.top-nav.v2 {
+    border-bottom:  1px solid black;
+}
+.top-nav.v2 span.selected {
+    border:         1px solid black;
+    border-bottom:  1px solid white;
+}
+.top-nav.v2 span.separator {
+    border: 0;
+    border-bottom: 1px solid black;
+    padding: 2px 0;
+    background: transparent;
+}
+.top-nav.v2 span  {
+    border-bottom:  1px solid black;
+    position:       relative;
+    top:            1px;
 }
 #members-area-menu-header {
     color:          #955;

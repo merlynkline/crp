@@ -28,8 +28,7 @@
 <span<% if($this_page) { %> class="selected"<% } %>><% if(!$this_page) { =%><a href="<%= url_for @href %>"><% } =%>
         <%= $desc =%>
 <% if(!$this_page) { =%></a><% } =%>
-</span>
-% };
+</span><span class="separator">&nbsp;</span><% }; %>
 %#---------------------------------------------------------------------------
     </head>
     <body class="page-body">
@@ -41,12 +40,12 @@
             </div>
             </noscript>
             %= include 'parts/logged_in_indicator'
-            <a href="/"><img src="<%= url_for '/images/CRPLogo.png' %>" id="heading-image"></a>
-            <h1 id="heading"><%== stash('heading') || "The Children&apos;s Reflexology Programme" =%>
-            </h1>
-            <div id="footrow"<% if(stash 'members_area') { %> class="members-area"<% } %>></div>
+            <div style="background-image: linear-gradient(#fff, <%= stash('members_area') ? '#fdd' : '#bde' %>); width: 100%; overflow: show;">
+                <a href="/" style="z-index: 5; position: relative;"><img src="<%= url_for '/images/CRPLogo.png' %>" id="heading-image" class="v2"></a>
+                <h1 id="heading" class="v2"><%== stash('heading') || "The Children&apos;s Reflexology Programme" =%></h1>
+            </div>
             <div id="top-nav-anchor"></div>
-            <div id="top-nav" class="top-nav<% if(stash 'members_area') { %> members-area<% } %>">
+            <div id="top-nav" class="top-nav v2<% if(stash 'members_area') { %> members-area<% } %>">
             % if( ! stash('cookies_accepted')) {
             <div id="cookie-warning">
                 Please note that this site places cookies on your computer
