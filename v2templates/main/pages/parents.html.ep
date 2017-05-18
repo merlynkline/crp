@@ -22,7 +22,7 @@ In addition to teaching you how to use simple
 these workshops are a great meet-up and a useful way to extend your support
 network.
 
-The workshops are filled with fun activities, using  uses a collection of delightful rhymes,
+The workshops are filled with fun activities, using a collection of delightful rhymes,
 pictures and stories to engage children and teach the simple reflexology.
 The programme is delivered by
 [specially qualified instructors](<%= url_for 'crp.instructors' %>)
