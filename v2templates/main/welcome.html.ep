@@ -6,7 +6,7 @@
 % include 'main/parts/testimonial_list', list_ref => \$testimonials;
 %= markdown begin
 
-<center><h1>kids reflex - soothing the early years</h1></center>
+<h1 class="front-page">kids reflex - soothing the early years</h1>
 
 %end
 
