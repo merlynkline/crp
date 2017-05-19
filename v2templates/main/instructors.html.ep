@@ -5,11 +5,11 @@
 % my $features = ['Quality training from qualified trainers', 'Extensive training and teaching materials', 'Comprehensive online support', 'Branded marketing material'];
 %= include 'main/parts/feature_list', left_list => $benefits, right_list => $features;
 %= markdown begin
-<img src="<%= url_for '/images/Animals/Owl.jpg' %>" class="page-logo" '>
 <p markdown="yes" class="page-intro">
 <%== stash('description') %>
 </p>
 
+<img src="<%= url_for '/images/Animals/Owl.jpg' %>" class="page-logo" '>
 The Children&apos;s Reflexology Programme [parents course](<%= url_for 'crp.page', page => 'parents' %>)
 is delivered only by qualified instructors
 who have received the required training and use the official course materials.

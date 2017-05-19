@@ -5,11 +5,11 @@
 % my $features = ['Training in your own setting', 'High quality course materials', 'On-line resources after the course', 'Additional needs extension'];
 %= include 'main/parts/feature_list', left_list => $benefits, right_list => $features;
 %= markdown begin
-<img src="<%= url_for '/images/Animals/Badger.jpg' %>" class="page-logo" />
 <p markdown="yes" class="page-intro">
 <%== stash('description') %>
 </p>
 
+<img src="<%= url_for '/images/Animals/Badger.jpg' %>" class="page-logo" />
 Using simple [reflexology](<%= url_for 'crp.page', page => 'reflexology' %>)
 on the babies and children in your care not only gives you an
 effective action to take in times of stress but also improves bonding and offers

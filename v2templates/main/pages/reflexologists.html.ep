@@ -1,17 +1,17 @@
 %#<!DOCTYPE html>
-% layout 'default', heading => "For Reflexologists", page_id => "reflex", description => "If you are a Reflexologist qualified to level three or above then you will find The Children&apos;s Reflexology Programme to be a wonderful extension of your skills, helping your clients&apos; families to benefit from reflexology at home and keeping them coming back for more.";
+% layout 'default', heading => "For Reflexologists", page_id => "reflex", description => "As a reflexologist you will find The Children&apos;s Reflexology Programme to be a wonderful extension of your skills, helping your clients&apos; families to benefit from reflexology at home and keeping them coming back for more.";
 % title "Reflexologists";
 % my $benefits = ['Extend your practice and business', 'Continuity of care with the home', 'Work more effectively with children', 'Encourage return visits'];
 % my $features = ['AoR and FHT approved for CPD', 'High quality course materials', 'On-line resources after the course', 'Additional needs extension'];
 %= include 'main/parts/feature_list', left_list => $benefits, right_list => $features;
 %= markdown begin
-<img src="<%= url_for '/images/Animals/Owl.jpg' %>" class="page-logo" />
 <p markdown="yes" class="page-intro">
 <%== stash('description') %>
 </p>
 %= include 'main/parts/action-instructor';
 
-As a reflexologist, you already know the power of this lovely therapy. With
+<img src="<%= url_for '/images/Animals/Owl.jpg' %>" class="page-logo" />
+You already know the power of this lovely therapy. With
 kids reflex you can share that power with your clients so they can use simplified reflexology to
 help treat their babies and children at home, ensuring continuity of care from your
 clinic to their homes. You will discover how to work more effectively
@@ -22,6 +22,15 @@ Our [courses](<%= url_for 'crp.page', page => 'courses' %>) include a shorter ve
 our [instructors course](<%= url_for 'crp.instructors' %>) which will enable you to become a fully
 qualified instructor without the need to learn
 the basic reflexology and A &amp; P we teach to our other instructors. 
+This course is fully CPD acredited by the AOR and the FHT. The course covers everything you need to know
+from safeguarding and teaching techniques through to the very simple reflexology protocols,
+carefully designed to engage
+<%= include 'main/parts/illo-large', pic => 'Course10-360.jpg', side => 'left' =%>
+children using techniques such as stories, rhyme, colours and animal characters
+which are all related directly to the reflexology process itself. High quality training
+and teaching materials are included, as is access to further personalised material and
+interactive features on our website which
+supports your ongoing use of the programme and provides electronic verification of your
 <span style="
     border:         1px solid black;
     padding:        4px 0;
@@ -30,21 +39,12 @@ the basic reflexology and A &amp; P we teach to our other instructors.
     line-height:    120%;
     font-size:      75%;
     text-align:     center;
-    float:          left;
-    margin:         12px 12px 0 0;
+    float:          right;
+    margin:         12px 0 0 12px;
     ">
     <a href="http://www.aor.org.uk/" target="_blank"><img style="padding: 8px 16px 0 16px; width:66px; height:66px;" src="<%= url_for '/images/AORCPDApproved.jpg' %>"></a>
     <a href="http://www.fht.org.uk/" target="_blank"><img style="padding: 8px 16px 0 16px; width:80px; height:66px;" src="<%= url_for '/images/FHTAccreditation.jpg' %>"></a>
 </span>
-This course is fully CPD acredited by the AOR and the FHT. The course covers everything you need to know
-from safeguarding and teaching techniques through to the very simple reflexology protocols,
-<%= include 'main/parts/illo-large', pic => 'Course10-360.jpg', side => 'right' =%>
-carefully designed to engage
-children using techniques such as stories, rhyme, colours and animal characters
-which are all related directly to the reflexology process itself. High quality training
-and teaching materials are included, as is access to further personalised material and
-interactive features on our website which
-supports your ongoing use of the programme and provides electronic verification of your
 qualification - everything you need from on-line advertising and booking to leaflets,
 posters, business cards and administrative forms.
 

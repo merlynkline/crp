@@ -6,12 +6,12 @@
 %= include 'main/parts/feature_list', left_list => $benefits, right_list => $features;
 %= markdown begin
 
-<img src="<%= url_for '/images/Animals/Hare.jpg' %>" class="page-logo">
 <p class="page-intro">
 <%== stash('description') %>
 </p>
 %= include 'main/parts/action-parent';
 
+<img src="<%= url_for '/images/Animals/Hare.jpg' %>" class="page-logo">
 Courses are typically presented as several weekly group workshops attended by parents
 or carers and their babies or older children. You will learn a powerful skill for life which offers
 help you can use any time and anywhere, whenever you need it most, as well as
