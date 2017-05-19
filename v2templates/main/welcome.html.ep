@@ -4,11 +4,9 @@
 % my $testimonials;
 % my $image_delay = 20000;
 % include 'main/parts/testimonial_list', list_ref => \$testimonials;
-%= markdown begin
 
+<link href="https://fonts.googleapis.com/css?family=Unna:400i" rel="stylesheet">
 <h1 class="front-page">kids reflex - soothing the early years</h1>
-
-%end
 
 % my $row_number = 0;
 % my $row = begin

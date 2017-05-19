@@ -34,11 +34,11 @@ h2 + p, h3 +p, h4 + p {
     margin-top: 0;
 }
 h1.front-page {
-    text-align: center;
-    font-size:  300%;
-    padding:    20px 0;
-    text-shadow: #8ab 0px 0px 20px;
-    color:      #8ab;
+    text-align:     center;
+    font-size:      3.5em;
+    font-weight:    normal;
+    font-family:    'Unna', serif;
+    padding:        10px 0;
 }
 blockquote {
     margin-left:  12px;
@@ -440,6 +440,8 @@ select {
     font-size:      160%;
     line-height:    130%;
     margin:         10px 0;
+    font-weight:    bold;
+    background-image: linear-gradient(to right, #fff, #cef, #cef, #cef, #cef, #fff);
 }
 
 .instructor-photo {
