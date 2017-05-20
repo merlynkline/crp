@@ -168,6 +168,7 @@ sub startup {
 
     $self->app->hook(before_dispatch => \&_before_dispatch);
     $self->app->hook(after_dispatch => \&_after_dispatch);
+    $self->app->hook(after_static => \&_after_static);
     $self->app->hook(after_render => \&_after_render);
 }
 
@@ -257,6 +258,18 @@ sub _after_render {
     $c->res->headers->content_encoding('gzip');
     gzip $output, \my $compressed;
     $$output = $compressed;
+}
+
+sub _after_static {
+    my $c = shift;
+
+    return unless $c->res->code;
+
+    my $age = 60 * 60 *24;
+
+    $c->res->headers->cache_control("max-age=$age, must-revalidate");
+    $c->res->headers->header("Cache-Control" => "public");
+    $c->res->headers->header(Expires => Mojo::Date->new(time + $age));
 }
 
 1;
