@@ -1,6 +1,7 @@
 %#<!DOCTYPE html>
 % layout 'default', heading => "Certified instructors", page_id => 'tutors', description => "Train as an instructor and have your own business empowering parents and carers to help themselves and their babies or children with fun kids reflex workshops.";
 % title "Certified instructors";
+%= include 'main/parts/json-ld-course';
 % my $benefits = ['Fun, therapy and literacy in your community', 'Pass on life skills to the next generation', 'Grow your own business in your own time', 'Empower families using kids reflex'];
 % my $features = ['Quality training from qualified trainers', 'Extensive training and teaching materials', 'Comprehensive online support', 'Branded marketing material'];
 %= include 'main/parts/feature_list', left_list => $benefits, right_list => $features;

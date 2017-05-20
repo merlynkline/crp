@@ -1,6 +1,7 @@
 %#<!DOCTYPE html>
 % layout 'default', heading => "For Professionals", page_id => "pro", description => "The Children&apos;s Reflexology Programme is a powerful tool for early years practitioners and we have courses and materials designed specially to help you in your setting.";
 % title "Professionals";
+%= include 'main/parts/json-ld-course';
 % my $benefits = ['Happier, calmer children and staff', 'Continuity of care with the home', 'Development, play, bonding and wellbeing', 'A great USP for your setting'];
 % my $features = ['Training in your own setting', 'High quality course materials', 'On-line resources after the course', 'Additional needs extension'];
 %= include 'main/parts/feature_list', left_list => $benefits, right_list => $features;

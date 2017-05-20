@@ -17,6 +17,30 @@
         <meta name="description" content="<%== stash('description') || "The Children&apos;s Reflexology Programme" %>" />
         <meta charset="utf-8" />
         <link rel="stylesheet" href="<%= url_for('/css/main.css')->query(v => 2) %>" />
+        <script type="application/ld+json">
+        {
+          "@context": "http://schema.org",
+          "@type": "Organization",
+          "name": "The Childrens Reflexology Programme",
+          "alternateName": "kids reflex",
+          "alternateName": "kidsreflex",
+          "url": "https://www.kidsreflex.co.uk",
+          "logo": "https://www.kidsreflex.co.uk/images/v2/logo/CRPLogo.png",
+          "sameAs": [
+            "https://www.facebook.com/pages/The-Childrens-Reflexology-Programme/1491554257731838"
+          ]
+        }
+        </script>
+        <script type="application/ld+json">
+        {
+          "@context": "http://schema.org",
+          "@type": "WebSite",
+          "name": "The Childrens Reflexology Programme",
+          "alternateName": "kids reflex",
+          "alternateName": "kidsreflex",
+          "url": "https://www.kidsreflex.co.uk"
+        }
+        </script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 % foreach my $extra_template (@{$c->crp->stash_list('extra_header_templates')}) {
 %=   include $extra_template

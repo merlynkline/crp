@@ -1,6 +1,7 @@
 %#<!DOCTYPE html>
 % layout 'default', heading => "For Reflexologists", page_id => "reflex", description => "As a reflexologist you will find The Children&apos;s Reflexology Programme to be a wonderful extension of your skills, helping your clients&apos; families to benefit from reflexology at home and keeping them coming back for more.";
 % title "Reflexologists";
+%= include 'main/parts/json-ld-course';
 % my $benefits = ['Extend your practice and business', 'Continuity of care with the home', 'Work more effectively with children', 'Encourage return visits'];
 % my $features = ['AoR and FHT approved for CPD', 'High quality course materials', 'On-line resources after the course', 'Additional needs extension'];
 %= include 'main/parts/feature_list', left_list => $benefits, right_list => $features;

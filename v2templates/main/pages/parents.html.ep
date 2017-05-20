@@ -1,6 +1,7 @@
 %#<!DOCTYPE html>
 % layout 'default', heading => "For Parents and Carers", description => "Our highly accessible group workshops for parents and carers will promote bonding and wellbeing in you and your children, and give you specific easy action to take when you need it most.";
 % title "Parents and Carers";
+%= include 'main/parts/json-ld-course';
 % my $benefits = ['Learn skills for life', 'Instant help when you need it most', 'Bonding and wellbeing', 'Meet other parents and carers'];
 % my $features = ['Fun workshops with your kids', 'Lovely hardback story book', 'High quality hand-outs', 'Additional needs courses'];
 %= include 'main/parts/feature_list', left_list => $benefits, right_list => $features;

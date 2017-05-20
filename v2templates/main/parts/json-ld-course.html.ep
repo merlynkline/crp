@@ -1,0 +1,14 @@
+%#<!DOCTYPE html>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Course",
+  "name": "Kids reflex <%== stash 'heading' %>",
+  "description": "<%== stash 'description' %>",
+  "provider": {
+    "@type": "Organization",
+    "name": "The Childrens Reflexology Programme",
+    "sameAs": "<%= url_for('/')->to_abs %>"
+  }
+}
+</script>
