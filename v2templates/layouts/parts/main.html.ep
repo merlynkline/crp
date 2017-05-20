@@ -11,6 +11,7 @@
         <link rel="manifest" href="/favicon/manifest.json" />
         <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5bbad5" />
         <link rel="shortcut icon" href="/favicon/favicon.ico" />
+        <meta name="google-site-verification" content="-93Fx7FeA-zaMF4WPPpIWmktFhoFqRyz2S5B3EjcibY" />
         <meta name="msapplication-config" content="/favicon/browserconfig.xml" />
         <meta name="theme-color" content="#ffffff" />
         <meta name="description" content="<%== stash('description') || "The Children&apos;s Reflexology Programme" %>" />
