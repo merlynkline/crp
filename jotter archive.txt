@@ -1,6 +1,60 @@
 
 -----------------------------------------------------------------------------
 
++ Spring site refresh
+    + /page/press
+        + Create
+        + Add press banner to home page
+    + Shop
+        + Create
+    ~ Pagespeed analysis
+    ~ /instructors
+        ~ Complete re-write
+        ~ Links to testimonials and other new pages
+    ~ Mention babies (anything else?)
+    ~ /instructor_booking_form
+        ~ Reformat and tidy up
+    ~ /page/team
+        ~ Picture and text for Andrea
+        X Get Andrea to set up her page properly
+    ~ /page/addneeds
+        ~ Create
+        ~ Review text
+    ~ Home
+        ~ review pictures
+        ~ review text
+    X Google Sitemap?
+    ~ /page/testimonials
+        ~ Add more testimonials: \\REVOLVER\merlyn-home\crp\templates\main\parts\testimonial_list.html.ep
+        ~ Check order - good variety of short ones to start
+    ~ Add descriptions to pages
+    ~ /page/parents
+        ~ Complete re-write
+        ~ Links to testimonials and other new pages
+        X Include slideshow from old front page?
+    ~ /page/professionals
+        ~ Add a little more to sell it. Maybe about USPs for settings.
+    ~ /page/reflexologists
+        ~ Add some text selling the programme to reflexologists
+    ~ /page/aboutme
+        ~ fix typos and missing words
+    ~ /page/books
+        ~ Complete re-write
+        ~ Add other books
+    ~ /page/courses
+        ~ Add a little introductory text
+    ~ /page/reflexology
+        ~ Create
+    ~ Gallery page
+        ~ Create
+        ~ Link from various places
+    X Instructors' pages
+        X Personal page
+        X Course adverts
+        X Booking forms
+
+-----------------------------------------------------------------------------
+
 + Add new Instructor Trainer qualifications
     + Instructor training courses section needs to be accessible to users with an appropriate qualification
         ~ DB updates:

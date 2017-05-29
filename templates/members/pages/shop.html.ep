@@ -57,9 +57,9 @@
 %       $has_quals = 1 if $quals{$check_qual};
 %   }
 %   return unless $has_quals || @$required_quals == 0 || ! %quals || stash('is_demo');
-    <tr><td colspan="3"><h2><%= $title %></h2></td></tr>
     <tr>
         <td style="vertical-align: top; padding: 0 12px 0 0;">
+            <h2><%= $title %></h2>
             <%= $description %>
             % $buy_buttons->($button_id, $price);
         </td>
@@ -72,14 +72,19 @@
 <p>
 This is just the most essential supplies for running your
 courses but we will be growing our product range as quickly
-as we can! <b>All prices include post and packing</b>. Just click
+as we can! <b>All prices include post and packing</b> to UK addresses. Just click
 the <b>Add to Cart</b> button for each item you want and
 click any <b>View Cart</b> button when you've finished or to
 change your order.
 </p>
+For other destinations or for larger orders please contact us first to check pricing.
+<p>
+</p></p>
 <p>
 <table>
+    % $standard_item->('GBZ5DAZ4S6WEE', [], '£22.50', "Plush Mouse toy", 329, 374, '/images/Photos/MouseToy.jpg', "Handmade plush Mouse toy with solar plexus reflex. Approximately 19cm high, not including ears!");
     % $standard_item->('BBRFSJEDVLNNL', ['TCRP', 'TCRP-REFLEX'], '£15.00', "Parent/Carer's pack", 400, 208, '/images/Photos/ParentPack.JPG', "Everything you need for one parent or carer on one of your courses. Includes a complete set of protocol handouts, a certificate for you to give out on completion and a copy of the book, The Mouse's House.");
+    % $standard_item->('ABHQLP6JMLEG4', ['TCRP-AN'], '£15.00', "Additional Needs Parent/Carer's pack", 400, 208, '/images/Photos/ANParentPack.JPG', "Everything you need for one parent or carer on one of your Additional Needs courses. Includes a complete set of protocol handouts, a certificate for you to give out on completion and a copy of the book, Mouse and the Storm.");
     % $standard_item->('5ADBUNCF24AD8', ['INST-TRAIN-AN'], '£100.00', "Instructor AN Instructor pack", 400, 243, '/images/Photos/ANInstructorPack.jpg', "Everything you need to train an existing TCRP instructor to be a TCRP AN Instructor. Includes a complete set of protocol handouts, teaching posters, training manual, spare parent certificates and a copy of the book, Mouse and the Storm.");
     % $standard_item->('4JBUMHWQQR9A6', [], '£6.50', "Pair of soft baby feet", 233, 208, '/images/Photos/SoftFeet1.jpg', "A pair of TCRP soft foam baby feet suitable for demonstration and practice of reflexology techniques.");
     % $standard_item->('GR29DKU4RSYDN', [], '£3.50', "CD  - Rhymes and Music", 282, 208, '/images/Photos/CDRhymes.jpg', "CD containing the music from the programme with and without all the different rhymes. If you choose to sell them the RRP is £4.99 but you may sell at any price you wish.");
