@@ -67,6 +67,7 @@ in order to view and print them.
 % if($quals{'TCRP-AN'}) {
 <div class="pdf-separator">Additional<br />Needs specific<br />documents</div>
 
+% $pdf->('ads/Poster - descriptive general-AN', "General purpose Additional Needs text poster");
 % $pdf->('ads/Poster - pictorial general AN', "General purpose Additional Needs poster with pictures rather than text");
 % $pdf->('ads/A3 Poster - pictorial general AN', "A3 version of general purpose Additional Needs pictorial poster");
 % $pdf->('ads/Small general descriptive-AN', "General purpose Additional Needs flyer with descriptive text");
