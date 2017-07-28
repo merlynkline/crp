@@ -117,7 +117,6 @@
 <center markdown="yes">
 Our award-winning range of [courses](<%= url_for 'crp.page', page => 'courses' %>) is delivered by
 specially qualified [instructors](<%= url_for 'crp.page', page => 'location_search' %>)
-and [trainers](<%= url_for 'crp.page', page => 'team' %>),
 enabling anybody to make use of simple, gentle
 [reflexology](<%= url_for 'crp.page', page => 'reflexology' %>)
 as a powerful tool to improve the lives of babies, children and their carers

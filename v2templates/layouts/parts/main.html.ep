@@ -91,7 +91,6 @@
                 <a href="http://www.susanquayle.co.uk/"><img src="/images/SQCHLogoSmall.png" id="sq-logo" title="Susan Quayle - The kids reflexologist"/></a>
                 <ul>
                     <li><a href="<%= url_for 'crp.page', page => 'courses' %>">Courses</a></li>
-                    <li><a href="<%= url_for 'crp.page', page => 'team' %>">Team</a></li>
                     <li><a href="<%= url_for 'crp.page', page => 'copyright' %>">Copyright &copy;</a></li>
                     <li><a href="<%= url_for 'crp.page', page => 'privacy' %>">Privacy policy</a></li>
                     <li><a href="<%= url_for 'crp.page', page => 'contact' %>">Contact us</a></li>

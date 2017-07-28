@@ -32,7 +32,7 @@ material and helps you to advertise yourself and your courses when you're ready
 to start.
 
 The course is delivered over three days of training
-by one of our [highly qualified trainers](<%= url_for 'crp.page', page => 'team' %>) and covers
+and covers
 the content of The Children&apos;s Reflexology Programme in depth, how to teach
 it to different groups, teaching techniques, relevant anatomy and
 physiology, safeguarding, running a business based on what you&apos;ve learned,
