@@ -27,7 +27,7 @@ Each course is delivered by a specially qualified instructor.
 Parent courses are delivered by a large and ever growing community of
 <a href="<%= url_for 'crp.page', page => 'location_search' %>">instructors</a>, each of whom 
 has passed our special instructor training and received the certificate which shows that they
-are fully qualified to delover these courses.
+are fully qualified to deliver these courses.
 </p>
 <table class="list1">
     <tr>
