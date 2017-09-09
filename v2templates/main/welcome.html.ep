@@ -6,6 +6,7 @@
 % include 'main/parts/testimonial_list', list_ref => \$testimonials;
 
 <link href="https://fonts.googleapis.com/css?family=Unna:400i" rel="stylesheet">
+<script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/signup-forms/popup/embed.js" data-dojo-config="usePlainJson: true, isDebug: false"></script><script type="text/javascript">require(["mojo/signup-forms/Loader"], function(L) { L.start({"baseUrl":"mc.us14.list-manage.com","uuid":"b5ef8562fcec276512760e242","lid":"b529b246b4"}) })</script>
 <h1 class="front-page">kids reflex - soothing the early years</h1>
 
 % my $row_number = 0;
