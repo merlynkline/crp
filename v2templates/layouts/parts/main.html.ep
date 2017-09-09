@@ -41,6 +41,7 @@
           "url": "https://www.kidsreflex.co.uk"
         }
         </script>
+        <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/signup-forms/popup/embed.js" data-dojo-config="usePlainJson: true, isDebug: false"></script><script type="text/javascript">require(["mojo/signup-forms/Loader"], function(L) { L.start({"baseUrl":"mc.us14.list-manage.com","uuid":"b5ef8562fcec276512760e242","lid":"b529b246b4"}) })</script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 % foreach my $extra_template (@{$c->crp->stash_list('extra_header_templates')}) {
 %=   include $extra_template
