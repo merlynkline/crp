@@ -1,3 +1,166 @@
+
+- Projects
+    - Course material for 20th September combined AN/standard course
+    - Material for 30th September attachment parenting conference
+    - Replace protocol handouts with new single-sheet versions or cards or similar
+    - Get Carly ready to teach at the college
+    - Online course: hand reflexology for existing instructors, particularly Jude
+    - Photos, pictures, logos etc for instructors to use in their own marketing (web sites, facebook)
+    - Prep for Norlands in November
+    - Simplified parent course without parent pack
+    - Other online courses
+    - Insert in the parent pack explaining how to make the most of it
+    - Animation
+
+-Ideas for new stuff
+    - New protocol handouts for parent course
+        - One new A5 leaflet with introduction, techniques and reflexes (each with animal, colour, rhyme)
+        - A set of A5 protocol cards with the description on one side and a simple list of reflexes on the other
+            - The card is intended as a reminder, not qan instruction
+            - List of reflexes would have a colour and a thumbnail of the animal and reflex diagram
+    - Insert in the parent pack explaining how to make the most of it
+        - Change sticker on the outside to make sure it's not just handed to parents
+    - New handout which effectively replaces the parent pack so you can teach a course without a pack (so no book or certificate, no weekly handouts)
+        - Based on Sure Start/CST-UK
+        - Downloadable, personalised (dated?)
+        - Buying parent packs is now optional
+    - Shop for non-members
+        - Mouse
+        - Signed books
+        - Other stuff
+    - New manual for reflexologists to help treat kids
+        - Notes on working with kids
+        - Protocols using reflexes not in the main course
+        - Downloadable PDF for those with reflex qualifications
+        - Available as a printed and bound manual in the shop
+    - Stand-alone reflexologists course
+        - Includes the stuff in the reflexologists manual
+        - No reflexology/A&P
+    - Hand reflex course for existing instructors
+
++ Funnel to capture email addresses - sign up for a free meditation
+    + Front page button leads to sign-up form
+    + Sign-up form captures email address and other info, sends an email with a confirmation link (hopefully no DB needed at this stage)
+        - Could contain all the captured info plus a campaign identifier and date, MD5 signed and base 64 encoded
+    + Confirmation link creates DB entry
+    + After confirmation grant acess to a premium page and provide an appropriate link - that's the free gift
+        - May be a specific premium page depending on the campaign
+    + Management interface
+        + Extract captured info in format suitable for (e.g.) Mail Chimp
+        + Find individual records
+        + Unsubscribe people
+            + Removes the premium access
+        + Stats
+    + Need to be able to provide an unsubscribe link
+        + Leads to a confirmation page
+        + Deletes the DB record
+        + Removes the premium access
++ Add explanatory text about trainee watermark when it will be present
++ Add further explanation in the trainee FAQ saying that you can have one course without the watermark
++ Add an FAQ on using parent packs (and accompanying insert in the pack)
+
++ Online training courses
+    + Tests need to be composed of multiple questions - change data model to allow that
+    ? How will we get courses out to live? Or will we just build them there?
+    - Types of course
+        - Members, e.g. instructors course, associated with a particular qualification. Logged-in users get access if they have the qualification (even if they haven't passed).
+        - Visitors, e.g. parents course. Anyone can do these even if they don't have an account. Maybe also available to logged-in users?
+    - UX
+        - Course landing page is main entry point
+            - Contents: list of modules
+                - Only completed modules plus the next one can be accessed. Others are shown but not available.
+                - List is structured: modules are divided into groups. "Chapters"? Or are these "Modules" and the smaller parts are... "Sections"?
+            - Links to generally useful stuff, like how to use the course
+            - Progress overview (e.g date started, modules completed/remaining, etc)
+            - Indication of whether tutor response is awaited for test (see below)
+            - Contact form for course tutor
+            - Link to personalised PDF certificate once the course is completed
+        - Each module(/section/whatever) shows, when accessed
+            - A single page of content
+            - The page may contain text, images, embedded video
+            - There might be links to local resources, e.g. downloadable (personalised) PDFs
+            - There might be links to external resources on third party sites
+            - A test which must be passed to complete the module
+                - This could be as simple as a button to click which says "OK, I understand"
+                - Multiple-choice questions may be radio (one possible answer) or checkbox (multiple answers can be selected)
+                - There could also be text questions and questions where things have to be uploaded
+                - If the questions are multiple-choice only then the system can mark the test and unlock the next module
+                - More complex tests will send an email to the course tutor to be marked and the tutor must then indicate pass or fail - typically used only for the last module in the course, to get the certificate issued.
+        - When the last module is passed the associated qualification is automatically marked as passed
+    - Data model
+        - A course is an ordered list of modules, which may appear in many courses.
+        - A module is an ordered list of pages, which may appear in many modules.
+        - A page is an ordered list of components, which may appear in many pages.
+            - Pages have nav inserted automatically, as required. next/previous buttons, course home and module home.
+            - Next button is only available when all the tests on a page are marked as completed, or if there are no tests.
+        - OLC_COURSE: Course definition record
+            - ID
+            - Name - for internal use
+            - Description - for internal use
+            - Title
+            - Landing Page ID
+        - Course/module association record
+            - Course ID
+            - Module ID
+            - Order
+        - Module definition record
+            - ID
+            - Name - for internal use
+            - Description - for internal use
+            - Title
+            - Landing page ID
+        - Module/page association record
+            - Module ID
+            - Page ID
+            - Order
+        - Page definition record
+            - ID
+            - Name - for internal use
+            - Description - for internal use
+            - Title
+        - Page/component association record
+            - Page ID
+            - Component ID
+            - Config - instance-specific config, e.g. style over-ride etc
+            - Order
+        - Component definition record
+            - ID
+            - Name - for internal use
+            - Description - for internal use
+            - Title
+            - Type - heading/paragraph/image/video/pdf/course-contents/module-contents/test/etc
+            - Data version
+            - Data - type-specific content blob
+                - Heading: a line of text and a heading style
+                - Paragraph: a block of markdown
+                - image: a type and a binary blob
+                - video: a type and a binary blob
+                - PDF: a binary blob; appears on the page as a link
+                - Course contents: no data required (a generated list of modules and pages, some being links to the relevant pages depending on whether tests are completed; no pages beyond the first with an incomplete test are available)
+                - Module contents: no data required (a generated list of pages, some being links to the relevant pages)
+                - Test: serialised data with test questions and expected answers (or tutor mark required), grade boundaries (maybe very simple pass/fail)
+        - Tutor record
+            - ID
+            - Name
+            - Email
+        - Student record
+            - ID
+            - Type (e.g. TCRP user, premium content user, etc)
+            - Foreign ID (depends on Type)
+            - Course ID
+            - Status (not started/in progress/completed/abandoned/etc)
+            - Start date
+            - Last access date
+            - Completion date
+            - Progress record - serialised answers given to questions in each test and corresponding mark for each. Identified by test ID.
+        - Test questions come in various types:
+            - Confirmation - a single button like "OK, I understand". Clicking the button passes the test.
+            - Multiple choice, single answer (radio buttons)
+            - Multiple choice, multiple answers (checkboxes)
+            - Text line - answer must match a regexp or similar
+            - Text area - tutor mark required
+            - File upload - tutor mark required
+        ? How will we personalise the course content? Store data when the course is started or refer back to the parent record (e.g. TCRP instructor record)?
 + Spring site refresh
     + /page/press
         + Create
@@ -813,6 +976,14 @@ session:
             - $height - of the image
             - $image - URL
             - $description
+    - Removing Claire's instructor trainer qualifications (28Jul17):
+        " delete
+        " from instructor_qualification iq
+        " where (select code from qualification q where q.id = iq.qualification_id) in ('INST-TRAIN', 'INST-TRAIN-AN')
+        " and (select email from login where login.id = iq.instructor_id) in ('wealdenreflexology@gmail.com')
+        " ;
+
+
 
 #----------------------------------------------------------------------------
 
