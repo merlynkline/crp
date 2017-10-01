@@ -1,8 +1,9 @@
 %#<!DOCTYPE html>
 % my @menu = (
-%   ['admin.main'       => 'Main',              'crp.admin_default' ],
-%   ['admin.premium'    => 'Premium content',   'crp.admin_premium' ],
-%   ['admin.blog'       => 'Blog',              'crp.admin_blog'    ],
+%   ['admin.main'       => 'Main',              'crp.admin_default'     ],
+%   ['admin.premium'    => 'Premium content',   'crp.admin_premium'     ],
+%   ['admin.blog'       => 'Blog',              'crp.admin_blog'        ],
+%   ['admin.olc',       => 'Online courses',    'crp.olcadmin.default'  ],
 % );
 Admin menu:
 % foreach my $entry (@menu) {

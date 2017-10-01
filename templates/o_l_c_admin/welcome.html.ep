@@ -1,0 +1,10 @@
+%#<!DOCTYPE html>
+% layout 'member_default', heading => 'Admin: Online courses', page_id => 'admin';
+% title 'Admin: Online courses';
+%= include 'admin/parts/menu', page_id => 'admin.olc';
+<br />
+<%= include 'parts/message_box', msg => flash('msg') || stash('msg'), auto_hide => 1 %>
+<span class="highlight-box">
+    To add a new course click:
+    <a class="standard-button" title="Add a new online course" href="<%= url_for 'crp.olcadmin.course' %>">Add course</a>
+</span>

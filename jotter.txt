@@ -98,38 +98,38 @@
             - Name - for internal use
             - Description - for internal use
             - Title
-            - Landing Page ID
-        - Course/module association record
-            - Course ID
-            - Module ID
+            - Landing_OLC_Page_ID
+        - OLC_COURSE_MODULE_LINK: Course/module association record
+            - OLC_Course_ID
+            - OLC_Module_ID
             - Order
-        - Module definition record
+        - OLC_MODULE: Module definition record
             - ID
             - Name - for internal use
             - Description - for internal use
             - Title
-            - Landing page ID
-        - Module/page association record
-            - Module ID
-            - Page ID
+            - Landing_OLC_Page_ID
+        - OLC_MODULE_PAGE_LINK: Module/page association record
+            - OLC_Module_ID
+            - OLC_Page_ID
             - Order
-        - Page definition record
+        - OLC_PAGE: Page definition record
             - ID
             - Name - for internal use
             - Description - for internal use
             - Title
-        - Page/component association record
-            - Page ID
-            - Component ID
+        - OLC_PAGE_COMPONENT_LINK: Page/component association record
+            - OLC_Page_ID
+            - OLC_Component_ID
             - Config - instance-specific config, e.g. style over-ride etc
             - Order
-        - Component definition record
+        - OLC_COMPONENT: Component definition record
             - ID
             - Name - for internal use
             - Description - for internal use
             - Title
             - Type - heading/paragraph/image/video/pdf/course-contents/module-contents/test/etc
-            - Data version
+            - Data_version
             - Data - type-specific content blob
                 - Heading: a line of text and a heading style
                 - Paragraph: a block of markdown
@@ -888,22 +888,22 @@ session:
  - DB changes:
     + Modify lib/CRP/Model/Schema/Result/*
     + Update version number in lib/CRP/Model/Schema.pm
-    + check status - run: ./script/crp migrate status
-    + run: ./script/crp migrate prepare
+    + check status - run: carton exec ./script/crp migrate status
+    + run: carton exec ./script/crp migrate prepare
     + check new autosql files like: share/deploy/migrations/PostgreSQL/upgrade/1-2/001-auto.sql
     + if any tweaks are needed:
         + copy new autosql to one or more numbered sql files in the same directory
         + tweak as required
         + remove 001-auto.sql
     + Add any additional scripts required (e.g. backfill for new data)
-    + run: ./script/crp migrate upgrade
+    + run: carton exec ./script/crp migrate upgrade
 - Adding new data to DB without any schema changes
     + Update version number in lib/CRP/Model/Schema.pm
-    + check status - run: ./script/crp migrate status
-    + run: ./script/crp migrate prepare
+    + check status - run: carton exec ./script/crp migrate status
+    + run: carton exec ./script/crp migrate prepare
     + check new autosql files are empty, like: share/deploy/migrations/PostgreSQL/upgrade/23-24/001-auto.sql
     + Add scripts to create new data, like: share/deploy/migrations/PostgreSQL/upgrade/23-24/create_an_qualification.sql
-    + run: ./script/crp migrate upgrade
+    + run: carton exec ./script/crp migrate upgrade
 - Making PDFs in Xara
     + Choose email/web download
     + In advanced options, choose PDF v1.3 for Adobe Reader 4

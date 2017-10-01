@@ -144,6 +144,11 @@ sub startup {
     $admin->any('blog_content')->to('admin#blog_content')->name('crp.admin_blog');
     $admin->any('blog_article')->to('admin#blog_article')->name('crp.admin.create_blog');
 
+    my $olc_admin = $admin->under('/olc');
+    $olc_admin->get('/')->to('o_l_c_admin#welcome')->name('crp.olcadmin.default');
+    $olc_admin->any('course')->to('o_l_c_admin#course')->name('crp.olcadmin.course');
+    $olc_admin->post('savecourse')->to('o_l_c_admin#savecourse')->name('crp.olcadmin.savecourse');
+
     my $member_site = $r->under('/me/:slug')->to('member_site#identify');
     $member_site->any('/')->to('member_site#welcome')->name('crp.membersite.home');
     $member_site->any('/certificate')->to('member_site#certificate')->name('crp.membersite.certificate');

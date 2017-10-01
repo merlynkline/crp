@@ -1,0 +1,48 @@
+%#<!DOCTYPE html>
+% layout 'member_default', heading => 'Admin: Edit online course', page_id => 'admin';
+% title 'Admin: Edit online course';
+%= include 'admin/parts/menu', page_id => 'admin.olc';
+<br />
+<h1>Enter online course details</h1>
+<%= include 'parts/message_box', msg => flash('msg') || stash('msg'), auto_hide => 1 %>
+%= form_for 'crp.olcadmin.savecourse' => (method => 'POST') => begin
+<p>Please enter the course details below.</p>
+    <fieldset>
+        <legend>Online course details</legend>
+        %= hidden_field 'course_id' => $course->{id};
+
+        <label for="name">Name:
+            <div class="field-extra-info">Enter a short recognisable name. This is for internal admin use only and is not visible to other users.</div>
+        </label>
+        <div class="input-container">
+            %= text_field 'name', id => 'name', autofocus => 'autofocus', required => 'required', value => $course->{name}, maxlength => 50;
+            <%= include 'parts/error', field => 'name' %>
+        </div>
+
+        <label for="description">Description:
+            <div class="field-extra-info">This is for internal admin use only and is not visible to other users.</div>
+        </label>
+        <div class="input-container">
+            %= text_area 'description' => $course->{description}, rows => '4', cols => '45', id => 'description';
+            <%= include 'parts/error', field => 'description' %>
+        </div>
+
+        <label for="title">Title:
+            <div class="field-extra-info">The course title that users will see.</div>
+        </label>
+        <div class="input-container">
+            %= text_field 'title', id => 'title', required => 'required', value => $course->{title}, maxlength => 50;
+            <%= include 'parts/error', field => 'name' %>
+        </div>
+
+        <label>&nbsp;</label>
+        <label>Make sure you save your changes:</label>
+        <div class="input-container">
+            %= submit_button 'Save'
+            <%= include 'parts/error', field => '_general' %>
+            <%= include 'parts/temporary_message', msg => flash 'msg' %>
+        </div>
+    </fieldset>
+</p>
+
+%= end
