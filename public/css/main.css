@@ -311,7 +311,7 @@ legend {
     font-style:     italic;
     font-size:      12px;
 }
-#reviews a, #pics a {
+#reviews a, #pics a, .standard-button a {
     text-decoration: none;
 }
 #review-page-list li {
@@ -344,9 +344,12 @@ label {
 .standard-button, .small-button {
     border-radius:  4px;
     font-family:    inherit;
-    color:          inherit;
     background:     white;
+    color:          #354;
     text-decoration:    none;
+}
+input, textarea, select {
+    color:          inherit;
 }
 input, textarea, .standard-button, select {
     border-radius:  4px;
@@ -356,7 +359,6 @@ input, textarea, .standard-button, select {
     padding:        4px;
     font-weight:    bold;
     font-family:    inherit;
-    color:          inherit;
 }
 input:disabled, select:disabled {
     color:          #bbb;
@@ -632,7 +634,7 @@ table.list1 {
     border-bottom:  1px solid;
 }
 .page-logo {
-    margin:         12px 4px 4px 4px;
+    margin:         0 4px 4px 4px;
     float:          right;
 }
 div.faq-menu {
