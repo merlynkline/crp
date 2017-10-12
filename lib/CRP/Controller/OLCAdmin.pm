@@ -4,12 +4,15 @@ use Mojo::Base 'Mojolicious::Controller';
 
 use Try::Tiny;
 
-use CRP::Model::OLCCourse;
+use CRP::Model::OLC::Course;
+use CRP::Model::OLC::CourseSet;
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 sub welcome {
     my $c = shift;
+
+    $c->stash(course_list => CRP::Model::OLC::CourseSet->new(dbh => $c->crp->model)->get_data_for_template);
 
 }
 
@@ -27,7 +30,7 @@ sub course {
 sub savecourse {
     my $c = shift;
 
-    my $course = CRP::Model::OLCCourse->new(id => $c->param('course_id'), dbh => $c->crp->model);
+    my $course = CRP::Model::OLC::Course->new(id => $c->param('course_id'), dbh => $c->crp->model);
 
     my $course_input = {};
     foreach my $field (qw(name description title)) {
@@ -54,7 +57,7 @@ sub savecourse {
         $c->_display_course_editor($course);
     }
     else {
-        $c->flash(msg => $course->id ? 'course_create' : 'course_update');
+        $c->flash(msg => $course->id ? 'olc_update' : 'olc_create');
         $course->create_or_update;
         return $c->redirect_to('crp.olcadmin.default');
     }
@@ -64,7 +67,7 @@ sub _display_course_editor {
     my $c = shift;
     my($course) = @_;
 
-    $course = CRP::Model::OLCCourse->new(id => $c->param('course_id'), dbh => $c->crp->model) unless $course;
+    $course = CRP::Model::OLC::Course->new(id => $c->param('course_id'), dbh => $c->crp->model) unless $course;
     $c->stash(course => $course->get_data_for_template);
     $c->render(template => 'o_l_c_admin/course_editor');
 }

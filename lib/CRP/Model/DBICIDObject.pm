@@ -1,19 +1,23 @@
-package CRP::Model::OLCCourse;
-use Moose;
+package CRP::Model::DBICIDObject;
+use Moose::Role;
+use namespace::autoclean;
 
 use Carp;
 
-use constant _DB_FIELDS => qw(name description title);
+requires qw(
+    _DB_FIELDS
+    _RESULTSET_NAME
+);
 
 has id          => (is => 'ro', isa => 'Maybe[Str]', writer => '_set_id');
 has dbh         => (is => 'ro', required => 1);
-has _db_record  => (is => 'ro', isa => 'CRP::Model::Schema::Result::OLCCourse', builder => '_build_db_record', lazy => 1, handles => [_DB_FIELDS]);
+has _db_record  => (is => 'ro', builder => '_build_db_record', lazy => 1);
 
 sub get_data_for_template {
     my $self = shift;
 
     my $template_data = {};
-    foreach my $field ('id', _DB_FIELDS) {
+    foreach my $field ('id', @{$self->_DB_FIELDS}) {
         $template_data->{$field} = $self->$field;
     }
 
@@ -30,11 +34,11 @@ sub create_or_update {
 sub _build_db_record {
     my $self = shift;
 
-    my $resultset = $self->dbh->resultset('OLCCourse');
+    my $resultset = $self->dbh->resultset($self->_RESULTSET_NAME);
     my $res;
     if($self->id) {
         $res = $resultset->find($self->id);
-        croak "Couldn't load OLC course ID '" . $self->id . "'" unless $res;
+        croak "Couldn't load " . $self->_RESULTSET_NAME ." ID '" . $self->id . "'" unless $res;
     }
     else {
         $res = $resultset->new_result({});

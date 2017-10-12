@@ -168,7 +168,7 @@
     + Shop
         + Create
 
-+ General purpose pictorial poster - version with course details    
++ General purpose pictorial poster - version with course details
 
 + Stand-alone reflexologists' course
     - Like a professional course
@@ -445,7 +445,7 @@
     + Qualifications with complete assignments have their certificates available as PDFs with "COPY" stamped on them
     + Check these things happen (they probably do already)
         + Membership certificates show trainee status for qualifications with incomplate assignments
-        
+
 
 + AN parent course
     * Make the new parent packs
@@ -715,7 +715,7 @@ session:
     + Instructors can easily get a PDF copy of their most recent renewal certificate by a link in their control panel
     + Administrators can create and revoke certificates
     + Administrators can get PDFs of certificates without the scanned issuer's manual signature, for the issuer to actually sign
-    
+
 + Carers' area
     ~ Search for instructors by location
     + More information about CRP
@@ -867,7 +867,7 @@ session:
         + Articles are not necessarily directly CRP related
         + Similar approach for generating and maintaining instructors' newsletters
     + Log out
- 
+
  + Possible feature to track course assessments
     - On intial sign-up, each new instructor must do some post-training assessments by certain dates
     + Each assignment has a description, a response from the assessor, and a 'done' flag
@@ -877,12 +877,12 @@ session:
     + Instructors accounts are eventually disabled if assignments not completed
     + Administrators can extend due dates on assignments
     + Administrators can add new assignments at any time
- 
+
  + Could each instructor have their own shop which earns them commission? (accounting problems? liability? perhaps they just earn credit)
- 
- 
+
+
 #----------------------------------------------------------------------------
- 
+
  Workflow notes
  --------------
  - DB changes:
@@ -1065,23 +1065,23 @@ Vultr setup:
     # mkdir /var/backup
     # # Create /var/backup/backup:
         " #!/bin/sh
-        " 
-        " 
+        "
+        "
         " BACKUP_DIR=var/backup
-        " 
+        "
         " cd /
         " su - postgres -c "pg_dumpall -c" | gzip > $BACKUP_DIR/postgres_backup.gz
         " tar -zcf $BACKUP_DIR/backup.tar.gz \
         "   $BACKUP_DIR/postgres_backup.gz \
         "   $BACKUP_DIR/backup \
         "   home/crp/crp/public/images/Instructors/photos/ \
-        " 
+        "
         " rm -rf $BACKUP_DIR/postgres_backup.gz
         " scp -q $BACKUP_DIR/backup.tar.gz crpbackup@home.binary.co.uk:crp.backup.tar.gz
     # echo "1 1 * * * /var/backup/backup" >> /var/spool/cron/crontabs/root
     # echo "7 3 * * * kill -USR2 `cat /home/crp/crp/script/hypnotoad.pid`" >> /var/spool/cron/crontabs/crp
     # chown crp.crontab /var/spool/cron/crontabs/crp
     # chmod 600 /var/spool/cron/crontabs/crp
-    
+
 
 
