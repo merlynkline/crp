@@ -35,7 +35,10 @@ sub run {
         my $schema = CRP::Model::Schema->connect(
             $dsn,
             $config->{username},
-            $config->{password}
+            $config->{password},
+            {
+                quote_char => '"',
+            }
         );
         $schema->deploy;
     }

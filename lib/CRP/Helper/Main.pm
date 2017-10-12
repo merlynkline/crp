@@ -24,6 +24,7 @@ sub register {
         'crp.model' => sub {
             my ($c, $resultset) = @_;
             my $dbh = CRP::Model::Schema->connect(sub {return $connector->dbh});
+            $dbh->storage->sql_maker->quote_char('"');
             return $resultset ? $dbh->resultset($resultset) : $dbh;
         }
     );
