@@ -1,19 +1,14 @@
 package CRP::Model::DBICIDObject;
-use Moose::Role;
+use Moose;
 use namespace::autoclean;
 
 use Carp;
-
-requires qw(
-    _DB_FIELDS
-    _RESULTSET_NAME
-);
 
 has id          => (is => 'ro', isa => 'Maybe[Str]', writer => '_set_id');
 has dbh         => (is => 'ro', required => 1);
 has _db_record  => (is => 'ro', builder => '_build_db_record', lazy => 1);
 
-sub get_data_for_template {
+sub view_data {
     my $self = shift;
 
     my $template_data = {};
@@ -45,6 +40,8 @@ sub _build_db_record {
     }
     return $res;
 }
+
+__PACKAGE__->meta->make_immutable;
 
 1;
 

@@ -2,13 +2,12 @@ package CRP::Model::OLC::ModuleSet;
 use Moose;
 use namespace::autoclean;
 
-use constant _MEMBER_CLASS => 'CRP::Model::OLC::Module';
+extends 'CRP::Model::DBICIDObjectSet';
 
-with 'CRP::Model::DBICIDObjectSet';
-
-sub _where_clause {
-    return {};
-}
+use constant {
+    _RESULTSET_NAME => 'OLCModule',
+    _MEMBER_CLASS   => 'CRP::Model::OLC::Module',
+};
 
 __PACKAGE__->meta->make_immutable;
 

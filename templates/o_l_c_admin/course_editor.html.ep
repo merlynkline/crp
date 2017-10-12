@@ -6,7 +6,6 @@
 <h1>Enter online course details</h1>
 <%= include 'parts/message_box', msg => flash('msg') || stash('msg'), auto_hide => 1 %>
 %= form_for 'crp.olcadmin.savecourse' => (method => 'POST') => begin
-<p>Please enter the course details below.</p>
     <fieldset>
         <legend>Online course details</legend>
         %= hidden_field 'course_id' => $course->{id};
@@ -43,6 +42,9 @@
             <%= include 'parts/temporary_message', msg => flash 'msg' %>
         </div>
     </fieldset>
-</p>
-
 %= end
+<h2>Modules in this course</h2>
+% if(@{$course->{modules}}) {
+% } else {
+None
+% }

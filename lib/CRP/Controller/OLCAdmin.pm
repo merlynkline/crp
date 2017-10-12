@@ -12,7 +12,7 @@ use CRP::Model::OLC::CourseSet;
 sub welcome {
     my $c = shift;
 
-    $c->stash(course_list => CRP::Model::OLC::CourseSet->new(dbh => $c->crp->model)->get_data_for_template);
+    $c->stash(course_list => CRP::Model::OLC::CourseSet->new(dbh => $c->crp->model)->view_data);
 
 }
 
@@ -68,7 +68,7 @@ sub _display_course_editor {
     my($course) = @_;
 
     $course = CRP::Model::OLC::Course->new(id => $c->param('course_id'), dbh => $c->crp->model) unless $course;
-    $c->stash(course => $course->get_data_for_template);
+    $c->stash(course => $course->view_data);
     $c->render(template => 'o_l_c_admin/course_editor');
 }
 
