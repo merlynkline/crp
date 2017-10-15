@@ -127,7 +127,7 @@ sub _extract_crp_instructor_course_data {
     $data->{date} = $c->crp->format_date($course->start_date, 'stroke');
     $data->{expiry_date}   = $c->crp->format_date($course->expiry_date, 'long');
     my $attendee_counter = 0;
-    foreach my $attendee ($course->professionals->search(undef, {order_by => {-asc => \'lower(name)'}})) {
+    foreach my $attendee ($course->professionals->search(undef, {order_by => {-asc => \['lower(name)']}})) {
         $attendee_counter++;
         $data->{"attendee_name_$attendee_counter"} = $attendee->name;
         $data->{"attendee_phone_$attendee_counter"} = $attendee->organisation_telephone;

@@ -12,6 +12,8 @@
     - Insert in the parent pack explaining how to make the most of it
     - Animation
 
+- Fix subscription pop-up not to appear on member sites?
+
 -Ideas for new stuff
     - New protocol handouts for parent course
         - One new A5 leaflet with introduction, techniques and reflexes (each with animal, colour, rhyme)

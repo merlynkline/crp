@@ -142,7 +142,7 @@ sub _case_insensitive_login_email_find {
     my $c = shift;
     my($email) = @_;
 
-    return $c->crp->model('Login')->find({'lower(me.email)' => lc $email});
+    return $c->crp->model('Login')->search(\['lower(me.email) = ?', lc $email])->first;
 }
 
 sub _send_otp {

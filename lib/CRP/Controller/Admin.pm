@@ -160,8 +160,8 @@ sub _find_acounts {
     }
     else {
         $where = [
-            {'lower(profile.name)' => { like => lc "%$search_key%"}},
-            {'lower(email)' => { like => lc "%$search_key%"}},
+            \['lower(profile.name) like ?', lc "%$search_key%"],
+            \['lower(email) like  ?', lc "%$search_key%"],
         ];
     }
 
@@ -169,7 +169,7 @@ sub _find_acounts {
         $where,
         {
             join     => [qw(profile), @extra_joins],
-            order_by => {-asc => 'lower(email)'}
+            order_by => {-asc => \['lower(email)']}
         },
     );
 
@@ -251,7 +251,7 @@ sub _get_and_validate_instructor_email_param {
     my $email = $c->_get_and_validate_email_param();
     my $validation = $c->validation;
     unless($validation->has_error) {
-        my $login_record = $c->crp->model('Login')->find({'lower(me.email)' => lc $email});
+        my $login_record = $c->crp->model('Login')->search(\['lower(me.email) = ?', lc $email]);
         $validation->error(email => ['duplicate_email']) if $login_record;
     }
     return $email;

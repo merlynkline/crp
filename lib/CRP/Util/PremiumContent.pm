@@ -53,10 +53,10 @@ sub paths {
 sub id_from_email_and_dir {
     my($c, $email, $dir) = @_;
 
-    my $auth_record = $c->crp->model('PremiumAuthorisation')->find(
-        {'lower(me.email)' => lc $email},
+    my $auth_record = $c->crp->model('PremiumAuthorisation')->search(
+        \['lower(me.email) = ?', lc $email],
         {directory         => $dir},
-    );
+    )->first;
 
     return $auth_record ? $auth_record->id : 0;
 }

@@ -135,7 +135,7 @@ sub _case_insensitive_enquiry_email_find {
     my $c = shift;
     my($email) = @_;
 
-    return $c->crp->model('Enquiry')->find({'lower(me.email)' => lc $email});
+    return $c->crp->model('Enquiry')->search(\['lower(me.email) =?', lc $email])->first;
 }
 
 sub _enquiry_housekeeping {
@@ -241,8 +241,8 @@ sub _find_instructors {
     my($search_key) = @_;
 
     my @matches = $c->crp->model('Profile')->search_live_profiles(
-        {'lower(name)' => { like => lc "%$search_key%"}},
-        {order_by => {-asc => 'lower(name)'}},
+        \['lower(name) like ?', lc "%$search_key%"],
+        {order_by => {-asc => \['lower(name)']}},
     );
     return \@matches if @matches;
     return;
@@ -273,7 +273,7 @@ sub location_search {
             $longitude,
             $c->config->{'instructor_search_distance'},
             {},
-            { order_by => {-asc => 'lower(name)'} },
+            { order_by => {-asc => \['lower(name)']} },
         );
 
         $c->stash(instructors_list => \@instructors_list);
