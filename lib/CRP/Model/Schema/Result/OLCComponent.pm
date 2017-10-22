@@ -5,7 +5,7 @@ use warnings;
 
 use base 'DBIx::Class::Core';
 
-__PACKAGE__->table('olc_Component');
+__PACKAGE__->table('olc_component');
 __PACKAGE__->add_columns(
     id => {
         data_type           => 'integer',
@@ -19,7 +19,7 @@ __PACKAGE__->add_columns(
         data_type           => 'text',
         is_nullable         => 1,
     },
-    description => {
+    notes => {
         data_type           => 'text',
         is_nullable         => 1,
     },

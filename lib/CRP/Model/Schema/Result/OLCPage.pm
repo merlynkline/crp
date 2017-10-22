@@ -19,6 +19,10 @@ __PACKAGE__->add_columns(
         data_type           => 'text',
         is_nullable         => 1,
     },
+    notes => {
+        data_type           => 'text',
+        is_nullable         => 1,
+    },
     description => {
         data_type           => 'text',
         is_nullable         => 1,
