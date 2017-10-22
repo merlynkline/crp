@@ -1,0 +1,64 @@
+%#<!DOCTYPE html>
+% layout 'member_default', heading => 'Admin: Edit online course module', page_id => 'admin';
+% title 'Admin: Edit online course module';
+%= include 'admin/parts/menu', page_id => 'admin.olc';
+<br />
+% if($module->{id}) {
+<h1>Edit online course module</h1>
+% } else {
+<h1>Create new online course module</h1>
+% }
+<%= include 'parts/message_box', msg => flash('msg') || stash('msg'), auto_hide => 1 %>
+%= form_for 'crp.olcadmin.module.save' => (method => 'POST') => begin
+    <fieldset>
+        <legend>Online course module details</legend>
+        %= hidden_field 'id' => $module->{id};
+
+        <label for="name">Name:
+            <div class="field-extra-info">Enter a short recognisable name. This is for internal admin use only and is not visible to other users.</div>
+        </label>
+        <div class="input-container">
+            %= text_field 'name', id => 'name', autofocus => 'autofocus', required => 'required', value => $module->{name}, maxlength => 50;
+            <%= include 'parts/error', field => 'name' %>
+        </div>
+
+        <label for="description">Description:
+            <div class="field-extra-info">This is for internal admin use only and is not visible to other users.</div>
+        </label>
+        <div class="input-container">
+            %= text_area 'description' => $module->{description}, rows => '4', cols => '45', id => 'description';
+            <%= include 'parts/error', field => 'description' %>
+        </div>
+
+        <label for="title">Title:
+            <div class="field-extra-info">The module title that users will see.</div>
+        </label>
+        <div class="input-container">
+            %= text_field 'title', id => 'title', required => 'required', value => $module->{title}, maxlength => 50;
+            <%= include 'parts/error', field => 'title' %>
+        </div>
+
+        <label>&nbsp;</label>
+        <label>Make sure you save your changes:</label>
+        <div class="input-container">
+            %= submit_button 'Save'
+            <%= include 'parts/error', field => '_general' %>
+            <%= include 'parts/temporary_message', msg => flash 'msg' %>
+        </div>
+    </fieldset>
+%= end
+<table class="list1">
+    <tr><th colspan="2">Pages in this module</th><th align="right"><span class="standard-button"><a title="Add a new page" href="<%= url_for 'crp.olcadmin.page.edit' %>">Add</a></span></th></tr>
+    <tr><th>Title</th><th align="right">Components</th><th></th></tr>
+    % if(@{$module->{pages}}) {
+    %   foreach my $page (@{$module->{pages}}) {
+    <tr>
+        <td><%= $page->{name} %></td>
+        <td></td>
+        <td><a class="small-button" href="<%= url_for('crp.olcadmin.page.edit')->query(id => $page->{id}) %>">Edit</a></td>
+    </tr>
+    %   }
+    % } else {
+    <tr><td colspan=3>(No pages defined)</td></tr>
+    % }
+</table>

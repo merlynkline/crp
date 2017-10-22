@@ -3,12 +3,16 @@
 % title 'Admin: Edit online course';
 %= include 'admin/parts/menu', page_id => 'admin.olc';
 <br />
-<h1>Enter online course details</h1>
+% if($course->{id}) {
+<h1>Edit online course</h1>
+% } else {
+<h1>Create new online course</h1>
+% }
 <%= include 'parts/message_box', msg => flash('msg') || stash('msg'), auto_hide => 1 %>
-%= form_for 'crp.olcadmin.savecourse' => (method => 'POST') => begin
+%= form_for 'crp.olcadmin.course.save' => (method => 'POST') => begin
     <fieldset>
         <legend>Online course details</legend>
-        %= hidden_field 'course_id' => $course->{id};
+        %= hidden_field 'id' => $course->{id};
 
         <label for="name">Name:
             <div class="field-extra-info">Enter a short recognisable name. This is for internal admin use only and is not visible to other users.</div>
@@ -31,7 +35,7 @@
         </label>
         <div class="input-container">
             %= text_field 'title', id => 'title', required => 'required', value => $course->{title}, maxlength => 50;
-            <%= include 'parts/error', field => 'name' %>
+            <%= include 'parts/error', field => 'title' %>
         </div>
 
         <label>&nbsp;</label>
@@ -43,8 +47,20 @@
         </div>
     </fieldset>
 %= end
-<h2>Modules in this course</h2>
-% if(@{$course->{modules}}) {
-% } else {
-None
+% if($course->{id}) {
+<table class="list1">
+    <tr><th colspan="2">Modules in this course</th><th align="right"><span class="standard-button"><a title="Add a new module" href="<%= url_for 'crp.olcadmin.module.edit' %>">Add</a></span></th></tr>
+    <tr><th>Title</th><th align="right">Pages</th><th></th></tr>
+    % if(@{$course->{modules}}) {
+    %   foreach my $module (@{$course->{modules}}) {
+    <tr>
+        <td><%= $module->{name} %></td>
+        <td></td>
+        <td><a class="small-button" href="<%= url_for('crp.olcadmin.module.edit')->query(id => $module->{id}) %>">Edit</a></td>
+    </tr>
+    %   }
+    % } else {
+    <tr><td colspan=3>(No modules defined)</td></tr>
+    % }
+</table>
 % }

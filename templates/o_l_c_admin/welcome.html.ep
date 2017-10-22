@@ -6,17 +6,17 @@
 <br />
 <%= include 'parts/message_box', msg => flash('msg') || stash('msg'), auto_hide => 1 %>
 <table class="list1">
-    <tr><th colspan="2">Courses</th><th align="right"><span class="standard-button"><a title="Add a new online course" href="<%= url_for 'crp.olcadmin.course' %>">Add</a></span></th></tr>
+    <tr><th colspan="2">Courses</th><th align="right"><span class="standard-button"><a title="Add a new online course" href="<%= url_for 'crp.olcadmin.course.edit' %>">Add</a></span></th></tr>
     <tr><th>Title</th><th align="right">Modules</th><th></th></tr>
     % if(@$course_list) {
     %   foreach my $course (@$course_list) {
     <tr>
         <td><%= $course->{name} %></td>
         <td></td>
-        <td><a class="small-button" href="<%= url_for('crp.olcadmin.course')->query(course_id => $course->{id}) %>">Edit</a></td>
+        <td><a class="small-button" href="<%= url_for('crp.olcadmin.course.edit')->query(id => $course->{id}) %>">Edit</a></td>
     </tr>
     %   }
-% } else {
+    % } else {
     <tr><td colspan=3>(No courses defined)</td></tr>
-% }
+    % }
 </table>
