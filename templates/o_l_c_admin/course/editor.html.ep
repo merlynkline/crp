@@ -2,6 +2,18 @@
 % layout 'member_default', heading => 'Admin: Edit online course', page_id => 'admin';
 % title 'Admin: Edit online course';
 %= include 'admin/parts/menu', page_id => 'admin.olc';
+%
+% my $action_button = begin
+% my($action, $label, $module_id, $disabled) = @_;
+<div style="display: inline-block">
+    %= form_for "crp.olcadmin.course.module.$action" => (method => 'POST') => begin
+    %= hidden_field 'course_id' => $course->{id};
+    %= hidden_field 'module_id' => $module_id;
+    %= submit_button $label, class => 'small-button', $disabled ? (disabled => 'disabled') : ();
+    %= end
+</div>
+% end
+%
 <br />
 % if($course->{id}) {
 <h1>Edit online course</h1>
@@ -60,15 +72,26 @@
     <tr><th colspan="2">Modules in this course</th><th align="right"><span class="standard-button"><a title="Add a new module" href="<%= url_for('crp.olcadmin.course.pickmodules')->query(course_id => $course->{id}) %>">Add</a></span></th></tr>
     <tr><th>Title</th><th align="right">Pages</th><th></th></tr>
     % if(@{$course->{modules}}) {
+    %   my $is_first = 1;
+    %   my $is_last = 0;
+    %   my $counter = 0;
     %   foreach my $module (@{$course->{modules}}) {
+    %     $counter++;
+    %     $is_last = $counter == @{$course->{modules}};
     <tr>
-        <td><%= $module->{name} %></td>
+        <td title="<%= $module->{notes} %>"><%= $module->{name} %></td>
         <td></td>
-        <td><a class="small-button" href="<%= url_for('crp.olcadmin.module.edit')->query(id => $module->{id}, course_id => $course->{id}) %>">Edit</a></td>
+        <td>
+            <a class="small-button" href="<%= url_for('crp.olcadmin.module.edit')->query(id => $module->{id}, course_id => $course->{id}) %>">Edit</a>
+            %= $action_button->('moveup',   'Up',   $module->{id}, $is_first);
+            %= $action_button->('movedown', 'Down', $module->{id}, $is_last);
+        </td>
     </tr>
+    %     $is_first = 0;
     %   }
     % } else {
     <tr><td colspan=3>(No modules defined)</td></tr>
     % }
 </table>
 % }
+

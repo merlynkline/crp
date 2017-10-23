@@ -62,6 +62,8 @@
 + Add an FAQ on using parent packs (and accompanying insert in the pack)
 
 + Online training courses
+	- To do
+		+ When editing an online module, show what courses it's in
     + Tests need to be composed of multiple questions - change data model to allow that
     ? How will we get courses out to live? Or will we just build them there?
     - Types of course
@@ -166,6 +168,7 @@
             - Text area - tutor mark required
             - File upload - tutor mark required
         ? How will we personalise the course content? Store data when the course is started or refer back to the parent record (e.g. TCRP instructor record)?
+
 + Spring site refresh
     + /page/press
         + Create

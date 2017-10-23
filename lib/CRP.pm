@@ -151,6 +151,8 @@ sub startup {
     $olc_admin_course->post('save')->to('o_l_c_admin-course#save')->name('crp.olcadmin.course.save');
     $olc_admin_course->any('pickmodules')->to('o_l_c_admin-course#pickmodules')->name('crp.olcadmin.course.pickmodules');
     $olc_admin_course->any('addmodules')->to('o_l_c_admin-course#addmodules')->name('crp.olcadmin.course.addmodules');
+    $olc_admin_course->post('moduleup')->to('o_l_c_admin-course#moduleup')->name('crp.olcadmin.course.module.moveup');
+    $olc_admin_course->post('moduledown')->to('o_l_c_admin-course#moduledown')->name('crp.olcadmin.course.module.movedown');
     my $olc_admin_module = $olc_admin->under('/module');
     $olc_admin_module->any('/')->to('o_l_c_admin-module#edit')->name('crp.olcadmin.module.edit');
     $olc_admin_module->post('save')->to('o_l_c_admin-module#save')->name('crp.olcadmin.module.save');
