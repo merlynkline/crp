@@ -1,0 +1,37 @@
+%#<!DOCTYPE html>
+% layout 'member_default', heading => 'Admin: Edit online course - add modules', page_id => 'admin';
+% title 'Admin: Edit online course - add modules';
+%= include 'admin/parts/menu', page_id => 'admin.olc';
+<br />
+<h1>Add modules to '<%= $course->{name} %>'</h1>
+<%= include 'parts/message_box', msg => flash('msg') || stash('msg'), auto_hide => 1 %>
+%= form_for 'crp.olcadmin.course.addmodules' => (method => 'POST') => begin
+%= hidden_field 'course_id' => $course->{id};
+% if($course->{id}) {
+<table class="list1">
+    <tr><th colspan="2">Available modules</th><th align="right"><span class="standard-button"><a title="Create a new module" href="<%= url_for('crp.olcadmin.module.edit')->query(course_id => $course->{id}) %>">Add</a></span></th></tr>
+    <tr><th>Title</th><th align="right">Pages</th><th></th></tr>
+    % if(@$modules) {
+    %   foreach my $module (sort {lc $a->{name} cmp lc $b->{name}} @$modules) {
+    <tr>
+        <td title="<%= $module->{notes} %>"><%= $module->{name} %></td>
+        <td></td>
+        <td>
+            % if($module->{_already_in_course}) {
+                (Already included)
+            % } else {
+                <%= check_box 'add_module' => $module->{id} %>
+            % }
+        </td>
+    </tr>
+    %   }
+    <tr>
+        <td colspan=2></td>
+        <td><%= submit_button 'Save' %></td>
+    </tr>
+    % } else {
+    <tr><td colspan=3>(No modules defined - use the <strong>Add</strong> button to create one.)</td></tr>
+    % }
+</table>
+%= end
+% }

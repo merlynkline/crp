@@ -2,6 +2,8 @@ package CRP::Model::DBICIDObjectSet;
 use Moose;
 use namespace::autoclean;
 
+use List::Util;
+
 has dbh  => (is => 'ro', required => 1);
 has _ids => (is => 'ro', isa => 'ArrayRef', builder => '_build_ids', lazy => 1);
 
@@ -15,6 +17,13 @@ sub view_data {
     my $self = shift;
 
     return [ map $_->view_data, @{$self->all} ];
+}
+
+sub includes_id {
+    my $self = shift;
+    my($id) = @_;
+
+    return List::Util::any { $_ == $id } @{$self->_ids};
 }
 
 sub _build_ids {

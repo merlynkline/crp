@@ -146,10 +146,14 @@ sub startup {
 
     my $olc_admin = $admin->under('/olc');
     $olc_admin->get('/')->to('o_l_c_admin#welcome')->name('crp.olcadmin.default');
-    $olc_admin->any('course')->to('o_l_c_admin-course#edit')->name('crp.olcadmin.course.edit');
-    $olc_admin->post('savecourse')->to('o_l_c_admin-course#save')->name('crp.olcadmin.course.save');
-    $olc_admin->any('module')->to('o_l_c_admin-module#edit')->name('crp.olcadmin.module.edit');
-    $olc_admin->post('savemodule')->to('o_l_c_admin-module#save')->name('crp.olcadmin.module.save');
+    my $olc_admin_course = $olc_admin->under('/course');
+    $olc_admin_course->any('/')->to('o_l_c_admin-course#edit')->name('crp.olcadmin.course.edit');
+    $olc_admin_course->post('save')->to('o_l_c_admin-course#save')->name('crp.olcadmin.course.save');
+    $olc_admin_course->any('pickmodules')->to('o_l_c_admin-course#pickmodules')->name('crp.olcadmin.course.pickmodules');
+    $olc_admin_course->any('addmodules')->to('o_l_c_admin-course#addmodules')->name('crp.olcadmin.course.addmodules');
+    my $olc_admin_module = $olc_admin->under('/module');
+    $olc_admin_module->any('/')->to('o_l_c_admin-module#edit')->name('crp.olcadmin.module.edit');
+    $olc_admin_module->post('save')->to('o_l_c_admin-module#save')->name('crp.olcadmin.module.save');
 
     my $member_site = $r->under('/me/:slug')->to('member_site#identify');
     $member_site->any('/')->to('member_site#welcome')->name('crp.membersite.home');

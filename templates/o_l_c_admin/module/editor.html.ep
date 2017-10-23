@@ -13,6 +13,7 @@
     <fieldset>
         <legend>Online course module details</legend>
         %= hidden_field 'id' => $module->{id};
+        %= hidden_field 'course_id' => $course_id;
 
         <label for="name">Name:
             <div class="field-extra-info">Enter a short recognisable name. This is for internal admin use only and is not visible to other users.</div>
@@ -22,12 +23,12 @@
             <%= include 'parts/error', field => 'name' %>
         </div>
 
-        <label for="description">Description:
+        <label for="description">Notes:
             <div class="field-extra-info">This is for internal admin use only and is not visible to other users.</div>
         </label>
         <div class="input-container">
-            %= text_area 'description' => $module->{description}, rows => '4', cols => '45', id => 'description';
-            <%= include 'parts/error', field => 'description' %>
+            %= text_area 'notes' => $module->{notes}, rows => '4', cols => '45', id => 'notes';
+            <%= include 'parts/error', field => 'notes' %>
         </div>
 
         <label for="title">Title:
@@ -38,7 +39,14 @@
             <%= include 'parts/error', field => 'title' %>
         </div>
 
-        <label>&nbsp;</label>
+        <label for="description">Description:
+            <div class="field-extra-info">This is the description that users will see.</div>
+        </label>
+        <div class="input-container">
+            %= text_area 'description' => $module->{description}, rows => '4', cols => '45', id => 'description';
+            <%= include 'parts/error', field => 'description' %>
+        </div>
+
         <label>Make sure you save your changes:</label>
         <div class="input-container">
             %= submit_button 'Save'
@@ -47,6 +55,7 @@
         </div>
     </fieldset>
 %= end
+% if($module->{id}) {
 <table class="list1">
     <tr><th colspan="2">Pages in this module</th><th align="right"><span class="standard-button"><a title="Add a new page" href="<%= url_for 'crp.olcadmin.page.edit' %>">Add</a></span></th></tr>
     <tr><th>Title</th><th align="right">Components</th><th></th></tr>
@@ -62,3 +71,4 @@
     <tr><td colspan=3>(No pages defined)</td></tr>
     % }
 </table>
+% }

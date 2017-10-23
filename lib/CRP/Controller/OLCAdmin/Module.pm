@@ -22,7 +22,7 @@ sub save {
     my $module = CRP::Model::OLC::Module->new(id => $c->param('id'), dbh => $c->crp->model);
 
     my $module_input = {};
-    foreach my $field (qw(name description title)) {
+    foreach my $field (qw(name notes description title)) {
         $module_input->{$field} = $c->crp->trimmed_param($field);
     }
 
@@ -46,9 +46,17 @@ sub save {
         $c->_display_module_editor($module);
     }
     else {
-        $c->flash(msg => $module->id ? 'olc_module_update' : 'olc_module_create');
+        my $url;
+        if($module->id) {
+            $c->flash(msg => 'olc_module_update');
+            $url = $c->url_for('crp.olcadmin.course.edit')->query(id => $c->param('course_id'));
+        }
+        else {
+            $c->flash(msg => 'olc_module_create');
+            $url = $c->url_for('crp.olcadmin.course.pickmodules')->query(course_id => $c->param('course_id'));
+        }
         $module->create_or_update;
-        return $c->redirect_to('crp.olcadmin.default');
+        return $c->redirect_to($url);
     }
 }
 
@@ -58,8 +66,11 @@ sub _display_module_editor {
     my($module) = @_;
 
     $module = CRP::Model::OLC::Module->new(id => $c->param('id'), dbh => $c->crp->model) unless $module;
-    $c->stash(module => $module->view_data);
-    $c->render(template => 'o_l_c_admin/module_editor');
+    $c->stash(
+        module      => $module->view_data,
+        course_id   => $c->param('course_id'),
+    );
+    $c->render(template => 'o_l_c_admin/module/editor');
 }
 
 

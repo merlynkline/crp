@@ -22,12 +22,12 @@
             <%= include 'parts/error', field => 'name' %>
         </div>
 
-        <label for="description">Description:
+        <label for="description">Notes:
             <div class="field-extra-info">This is for internal admin use only and is not visible to other users.</div>
         </label>
         <div class="input-container">
-            %= text_area 'description' => $course->{description}, rows => '4', cols => '45', id => 'description';
-            <%= include 'parts/error', field => 'description' %>
+            %= text_area 'notes' => $course->{notes}, rows => '4', cols => '45', id => 'notes';
+            <%= include 'parts/error', field => 'notes' %>
         </div>
 
         <label for="title">Title:
@@ -38,7 +38,15 @@
             <%= include 'parts/error', field => 'title' %>
         </div>
 
-        <label>&nbsp;</label>
+        <label for="description">Description:
+            <div class="field-extra-info">This is the description that users will see.</div>
+        </label>
+        <div class="input-container">
+            %= text_area 'description' => $course->{description}, rows => '4', cols => '45', id => 'description';
+            <%= include 'parts/error', field => 'description' %>
+        </div>
+
+
         <label>Make sure you save your changes:</label>
         <div class="input-container">
             %= submit_button 'Save'
@@ -49,14 +57,14 @@
 %= end
 % if($course->{id}) {
 <table class="list1">
-    <tr><th colspan="2">Modules in this course</th><th align="right"><span class="standard-button"><a title="Add a new module" href="<%= url_for 'crp.olcadmin.module.edit' %>">Add</a></span></th></tr>
+    <tr><th colspan="2">Modules in this course</th><th align="right"><span class="standard-button"><a title="Add a new module" href="<%= url_for('crp.olcadmin.course.pickmodules')->query(course_id => $course->{id}) %>">Add</a></span></th></tr>
     <tr><th>Title</th><th align="right">Pages</th><th></th></tr>
     % if(@{$course->{modules}}) {
     %   foreach my $module (@{$course->{modules}}) {
     <tr>
         <td><%= $module->{name} %></td>
         <td></td>
-        <td><a class="small-button" href="<%= url_for('crp.olcadmin.module.edit')->query(id => $module->{id}) %>">Edit</a></td>
+        <td><a class="small-button" href="<%= url_for('crp.olcadmin.module.edit')->query(id => $module->{id}, course_id => $course->{id}) %>">Edit</a></td>
     </tr>
     %   }
     % } else {
