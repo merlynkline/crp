@@ -2,6 +2,8 @@ package CRP::Model::OLC::CourseSet;
 use Moose;
 use namespace::autoclean;
 
+use CRP::Model::OLC::Course;
+
 extends 'CRP::Model::DBICIDObjectSet';
 
 use constant {

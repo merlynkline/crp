@@ -6,7 +6,7 @@ use Try::Tiny;
 
 use CRP::Model::OLC::Module;
 use CRP::Model::OLC::ModuleSet;
-
+use CRP::Model::OLC::CourseSet::WithModule;
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 sub edit {
@@ -66,13 +66,14 @@ sub _display_module_editor {
     my($module) = @_;
 
     $module = CRP::Model::OLC::Module->new(id => $c->param('id'), dbh => $c->crp->model) unless $module;
+    my $module_courses = CRP::Model::OLC::CourseSet::WithModule->new(module_id => $module->id, dbh => $c->crp->model);
     $c->stash(
-        module      => $module->view_data,
-        course_id   => $c->param('course_id'),
+        module         => $module->view_data,
+        course_id      => $c->param('course_id'),
+        module_courses => $module_courses->view_data,
     );
     $c->render(template => 'o_l_c_admin/module/editor');
 }
-
 
 1;
 

@@ -63,7 +63,7 @@
 
 + Online training courses
 	- To do
-		+ When editing an online module, show what courses it's in
+		~ When editing an online module, show what courses it's in
     + Tests need to be composed of multiple questions - change data model to allow that
     ? How will we get courses out to live? Or will we just build them there?
     - Types of course
