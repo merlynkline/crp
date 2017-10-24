@@ -58,7 +58,7 @@ This module is in use in <%= scalar @$module_courses %> course(s) - see below.
 %= end
 % if($module->{id}) {
 <table class="list1">
-    <tr><th colspan="2">Pages in this module</th><th align="right"><span class="standard-button"><a title="Add a new page" href="<%= url_for 'crp.olcadmin.page.edit' %>">Add</a></span></th></tr>
+    <tr><th colspan="2">Pages in this module</th><th align="right"><span class="standard-button"><a title="Add a new page" href="<%= url_for('crp.olcadmin.module.pickpages')->query(module_id => $module->{id}, course_id => $course_id) %>">Add</a></span></th></tr>
     <tr><th>Title</th><th align="right">Components</th><th></th></tr>
     % if(@{$module->{pages}}) {
     %   foreach my $page (@{$module->{pages}}) {

@@ -157,6 +157,7 @@ sub startup {
     my $olc_admin_module = $olc_admin->under('/module');
     $olc_admin_module->any('/')->to('o_l_c_admin-module#edit')->name('crp.olcadmin.module.edit');
     $olc_admin_module->post('save')->to('o_l_c_admin-module#save')->name('crp.olcadmin.module.save');
+    $olc_admin_module->any('pickpages')->to('o_l_c_admin-module#pickpages')->name('crp.olcadmin.module.pickpages');
 
     my $member_site = $r->under('/me/:slug')->to('member_site#identify');
     $member_site->any('/')->to('member_site#welcome')->name('crp.membersite.home');

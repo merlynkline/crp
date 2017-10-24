@@ -3,7 +3,7 @@
 % title 'Admin: Edit online course - add modules';
 %= include 'admin/parts/menu', page_id => 'admin.olc';
 <br />
-<h1>Add modules to '<%= $course->{name} %>'</h1>
+<h1>Add modules to course '<%= $course->{name} %>'</h1>
 <%= include 'parts/message_box', msg => flash('msg') || stash('msg'), auto_hide => 1 %>
 %= form_for 'crp.olcadmin.course.addmodules' => (method => 'POST') => begin
 %= hidden_field 'course_id' => $course->{id};

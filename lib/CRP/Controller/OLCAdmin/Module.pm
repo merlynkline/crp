@@ -60,16 +60,62 @@ sub save {
     }
 }
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub pickpages {
+    my $c = shift;
+
+    my $course          = CRP::Model::OLC::Course->new(id => $c->_course_id, dbh => $c->crp->model);
+    my $module          = CRP::Model::OLC::Module->new(id => $c->_module_id, dbh => $c->crp->model);
+    my $pages           = CRP::Model::OLC::PageSet->new(dbh => $c->crp->model);
+    my $module_courses  = CRP::Model::OLC::CourseSet::WithModule->new(module_id => $module->id, dbh => $c->crp->model);
+    my $module_pages    = $c->_module_page_set;
+    my $pages_view_data = $pages->view_data;
+    foreach my $page (@$pages_view_data) {
+        $page->{_already_in_module} = $module_pages->includes_id($page->{id});
+    }
+    $c->stash(
+        course         => $course->view_data,
+        module         => $module->view_data,
+        pages          => $pages_view_data,
+        module_courses => $module_courses->view_data,
+    );
+}
+
+sub _module_page_set {
+    my $c = shift;
+
+    return CRP::Model::OLC::PageSet::ForModule->new(module_id => $c->_module_id, dbh => $c->crp->model);
+}
+
+sub _restart_editor {
+    my $c = shift;
+
+    return $c->redirect_to($c->url_for('crp.olcadmin.module.edit')->query(module_id => $c->_module_id));
+}
+
+sub _module_id {
+    my $c = shift;
+
+    my $module_id = $c->param('module_id');
+    return $module_id;
+}
+
+sub _course_id {
+    my $c = shift;
+
+    my $course_id = $c->param('course_id');
+    return $course_id;
+}
 
 sub _display_module_editor {
     my $c = shift;
     my($module) = @_;
 
-    $module = CRP::Model::OLC::Module->new(id => $c->param('module_id'), dbh => $c->crp->model) unless $module;
+    $module = CRP::Model::OLC::Module->new(id => $c->_module_id, dbh => $c->crp->model) unless $module;
     my $module_courses = CRP::Model::OLC::CourseSet::WithModule->new(module_id => $module->id, dbh => $c->crp->model);
     $c->stash(
         module         => $module->view_data,
-        course_id      => $c->param('course_id'),
+        course_id      => $c->_course_id,
         module_courses => $module_courses->view_data,
     );
     $c->render(template => 'o_l_c_admin/module/editor');
