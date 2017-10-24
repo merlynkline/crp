@@ -20,7 +20,7 @@ sub edit {
 sub save {
     my $c = shift;
 
-    my $course = CRP::Model::OLC::Course->new(id => $c->param('id'), dbh => $c->crp->model);
+    my $course = CRP::Model::OLC::Course->new(id => $c->_course_id, dbh => $c->crp->model);
 
     my $course_input = {};
     foreach my $field (qw(name notes description title)) {
@@ -57,7 +57,7 @@ sub save {
 sub pickmodules {
     my $c = shift;
 
-    my $course_id       = $c->param('course_id');
+    my $course_id       = $c->_course_id;
     my $course          = CRP::Model::OLC::Course->new(id => $course_id, dbh => $c->crp->model);
     my $modules         = CRP::Model::OLC::ModuleSet->new(dbh => $c->crp->model);
     my $course_modules  = CRP::Model::OLC::ModuleSet::ForCourse->new(course_id => $course_id, dbh => $c->crp->model);
@@ -75,44 +75,70 @@ sub pickmodules {
 sub addmodules {
     my $c = shift;
 
-    my $course_id = $c->param('course_id');
+    my $course_id = $c->_course_id;
     my $course_modules = CRP::Model::OLC::ModuleSet::ForCourse->new(course_id => $course_id, dbh => $c->crp->model);
     foreach my $module_id (@{$c->every_param('add_module')}) {
         $course_modules->add_module($module_id);
     }
 
-    return $c->redirect_to($c->url_for('crp.olcadmin.course.edit')->query(id => $course_id));
+    $c->_restart_editor;
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 sub moduleup {
     my $c = shift;
 
-    my $course_id = $c->param('course_id');
-    my $module_id = $c->param('module_id');
-    my $course_modules = CRP::Model::OLC::ModuleSet::ForCourse->new(course_id => $course_id, dbh => $c->crp->model);
-    $course_modules->move_up($module_id);
-
-    return $c->redirect_to($c->url_for('crp.olcadmin.course.edit')->query(id => $course_id));
+    $c->_course_module_set->move_up($c->_module_id);
+    $c->_restart_editor;
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 sub moduledown {
     my $c = shift;
 
-    my $course_id = $c->param('course_id');
-    my $module_id = $c->param('module_id');
-    my $course_modules = CRP::Model::OLC::ModuleSet::ForCourse->new(course_id => $course_id, dbh => $c->crp->model);
-    $course_modules->move_down($module_id);
+    $c->_course_module_set->move_down($c->_module_id);
+    $c->_restart_editor;
+}
 
-    return $c->redirect_to($c->url_for('crp.olcadmin.course.edit')->query(id => $course_id));
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub moduledelete {
+    my $c = shift;
+
+    $c->_course_module_set->delete($c->_module_id);
+    $c->_restart_editor;
+}
+
+sub _course_module_set {
+    my $c = shift;
+
+    return CRP::Model::OLC::ModuleSet::ForCourse->new(course_id => $c->_course_id, dbh => $c->crp->model);
+}
+
+sub _restart_editor {
+    my $c = shift;
+
+    return $c->redirect_to($c->url_for('crp.olcadmin.course.edit')->query(course_id => $c->_course_id));
+}
+
+sub _module_id {
+    my $c = shift;
+
+    my $module_id = $c->param('module_id');
+    return $module_id;
+}
+
+sub _course_id {
+    my $c = shift;
+
+    my $course_id = $c->param('course_id');
+    return $course_id;
 }
 
 sub _display_course_editor {
     my $c = shift;
     my($course) = @_;
 
-    $course = CRP::Model::OLC::Course->new(id => $c->param('id'), dbh => $c->crp->model) unless $course;
+    $course = CRP::Model::OLC::Course->new(id => $c->_course_id, dbh => $c->crp->model) unless $course;
     $c->stash(course => $course->view_data);
     $c->render(template => 'o_l_c_admin/course/editor');
 }

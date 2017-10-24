@@ -13,7 +13,7 @@
     <tr>
         <td><%= $course->{name} %></td>
         <td></td>
-        <td><a class="small-button" href="<%= url_for('crp.olcadmin.course.edit')->query(id => $course->{id}) %>">Edit</a></td>
+        <td><a class="small-button" href="<%= url_for('crp.olcadmin.course.edit')->query(course_id => $course->{id}) %>">Edit</a></td>
     </tr>
     %   }
     % } else {

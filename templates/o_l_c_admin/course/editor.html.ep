@@ -24,7 +24,7 @@
 %= form_for 'crp.olcadmin.course.save' => (method => 'POST') => begin
     <fieldset>
         <legend>Online course details</legend>
-        %= hidden_field 'id' => $course->{id};
+        %= hidden_field 'course_id' => $course->{id};
 
         <label for="name">Name:
             <div class="field-extra-info">Enter a short recognisable name. This is for internal admin use only and is not visible to other users.</div>
@@ -85,6 +85,7 @@
             <a class="small-button" href="<%= url_for('crp.olcadmin.module.edit')->query(id => $module->{id}, course_id => $course->{id}) %>">Edit</a>
             %= $action_button->('moveup',   'Up',   $module->{id}, $is_first);
             %= $action_button->('movedown', 'Down', $module->{id}, $is_last);
+            %= $action_button->('delete',   'Del',  $module->{id});
         </td>
     </tr>
     %     $is_first = 0;

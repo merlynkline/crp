@@ -50,7 +50,7 @@ sub move_up {
     return unless $index > 0;
 
     my $previous_id = $self->_ids->[$index - 1];
-    $self->swap_ids($id, $previous_id);
+    $self->_swap_ids($id, $previous_id);
 }
 
 sub move_down {
@@ -62,10 +62,10 @@ sub move_down {
     return unless $index < $self->count - 1;
 
     my $next_id = $self->_ids->[$index + 1];
-    $self->swap_ids($id, $next_id);
+    $self->_swap_ids($id, $next_id);
 }
 
-sub swap_ids {
+sub _swap_ids {
     my $self = shift;
     my($id1, $id2) = @_;
 
@@ -82,6 +82,16 @@ sub swap_ids {
     $record2->update;
 
     ($self->_ids->[$index1], $self->_ids->[$index2]) = ($self->_ids->[$index2], $self->_ids->[$index1]);
+}
+
+sub delete {
+    my $self = shift;
+    my($id) = @_;
+
+    my $index = $self->index_of($id);
+    return unless $index;
+    $self->_resultset->find({olc_course_id => $self->course_id, olc_module_id => $id})->delete;
+    splice @{$self->_ids}, $index, 1;
 }
 
 sub _resultset {
