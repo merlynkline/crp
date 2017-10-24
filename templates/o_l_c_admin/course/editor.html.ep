@@ -69,7 +69,10 @@
 %= end
 % if($course->{id}) {
 <table class="list1">
-    <tr><th colspan="2">Modules in this course</th><th align="right"><span class="standard-button"><a title="Add a new module" href="<%= url_for('crp.olcadmin.course.pickmodules')->query(course_id => $course->{id}) %>">Add</a></span></th></tr>
+    <tr>
+        <th colspan="2">Modules in this course</th>
+        <th style="text-align: right"><span class="standard-button"><a title="Add a new module" href="<%= url_for('crp.olcadmin.course.pickmodules')->query(course_id => $course->{id}) %>">Add</a></span></th>
+    </tr>
     <tr><th>Title</th><th align="right">Pages</th><th></th></tr>
     % if(@{$course->{modules}}) {
     %   my $is_first = 1;
@@ -78,10 +81,10 @@
     %   foreach my $module (@{$course->{modules}}) {
     %     $counter++;
     %     $is_last = $counter == @{$course->{modules}};
-    <tr>
+    <tr class="hover-controls">
         <td title="<%= $module->{notes} %>"><%= $module->{name} %></td>
         <td></td>
-        <td>
+        <td class="hover-controls hidden">
             <a class="small-button" href="<%= url_for('crp.olcadmin.module.edit')->query(id => $module->{id}, course_id => $course->{id}) %>">Edit</a>
             %= $action_button->('moveup',   'Up',   $module->{id}, $is_first);
             %= $action_button->('movedown', 'Down', $module->{id}, $is_last);
@@ -94,5 +97,15 @@
     <tr><td colspan=3>(No modules defined)</td></tr>
     % }
 </table>
+<script>
+    $('tr.hover-controls').hover(
+        function() {
+            $("td.hover-controls", this).removeClass('hidden');
+        },
+        function() {
+            $("td.hover-controls", this).addClass('hidden');
+        }
+    )
+</script>
 % }
 
