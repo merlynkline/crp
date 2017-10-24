@@ -13,7 +13,7 @@ This module is in use in <%= scalar @$module_courses %> course(s) - see below.
 %= form_for 'crp.olcadmin.module.save' => (method => 'POST') => begin
     <fieldset>
         <legend>Online course module details</legend>
-        %= hidden_field 'id' => $module->{id};
+        %= hidden_field 'module_id' => $module->{id};
         %= hidden_field 'course_id' => $course_id;
 
         <label for="name">Name:

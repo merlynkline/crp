@@ -19,7 +19,7 @@ sub edit {
 sub save {
     my $c = shift;
 
-    my $module = CRP::Model::OLC::Module->new(id => $c->param('id'), dbh => $c->crp->model);
+    my $module = CRP::Model::OLC::Module->new(id => $c->param('module_id'), dbh => $c->crp->model);
 
     my $module_input = {};
     foreach my $field (qw(name notes description title)) {
@@ -49,7 +49,7 @@ sub save {
         my $url;
         if($module->id) {
             $c->flash(msg => 'olc_module_update');
-            $url = $c->url_for('crp.olcadmin.course.edit')->query(id => $c->param('course_id'));
+            $url = $c->url_for('crp.olcadmin.course.edit')->query(course_id => $c->param('course_id'));
         }
         else {
             $c->flash(msg => 'olc_module_create');
@@ -65,7 +65,7 @@ sub _display_module_editor {
     my $c = shift;
     my($module) = @_;
 
-    $module = CRP::Model::OLC::Module->new(id => $c->param('id'), dbh => $c->crp->model) unless $module;
+    $module = CRP::Model::OLC::Module->new(id => $c->param('module_id'), dbh => $c->crp->model) unless $module;
     my $module_courses = CRP::Model::OLC::CourseSet::WithModule->new(module_id => $module->id, dbh => $c->crp->model);
     $c->stash(
         module         => $module->view_data,
