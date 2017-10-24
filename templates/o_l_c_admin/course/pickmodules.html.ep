@@ -9,13 +9,13 @@
 %= hidden_field 'course_id' => $course->{id};
 % if($course->{id}) {
 <table class="list1">
-    <tr><th colspan="2">Available modules</th><th align="right"><span class="standard-button"><a title="Create a new module" href="<%= url_for('crp.olcadmin.module.edit')->query(course_id => $course->{id}) %>">Add</a></span></th></tr>
-    <tr><th>Title</th><th align="right">Pages</th><th></th></tr>
+    <tr><th colspan="2">Available modules</th><th class="text-right"><span class="standard-button"><a title="Create a new module" href="<%= url_for('crp.olcadmin.module.edit')->query(course_id => $course->{id}) %>">Add</a></span></th></tr>
+    <tr><th>Title</th><th class="text-right">Pages</th><th></th></tr>
     % if(@$modules) {
     %   foreach my $module (sort {lc $a->{name} cmp lc $b->{name}} @$modules) {
     <tr>
         <td title="<%= $module->{notes} %>"><%= $module->{name} %></td>
-        <td></td>
+        <td class="text-right"></td>
         <td>
             % if($module->{_already_in_course}) {
                 (Already included)
@@ -27,7 +27,7 @@
     %   }
     <tr>
         <td colspan=2></td>
-        <td><%= submit_button 'Save' %></td>
+        <td class="text-right"><%= submit_button 'Save' %></td>
     </tr>
     % } else {
     <tr><td colspan=3>(No modules defined - use the <strong>Add</strong> button to create one.)</td></tr>

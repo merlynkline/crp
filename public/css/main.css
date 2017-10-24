@@ -464,9 +464,11 @@ table.list1 {
     margin:         20px;
     padding:        0;
 }
+th {
+    text-align: left;
+}
 .list1 > tbody > tr > th {
     vertical-align: top;
-    text-align: left;
     margin:     0;
     border:     0;
     padding:    4px 8px;
@@ -793,5 +795,9 @@ body.premium-page-body {
 
 .hover-controls.hidden {
     opacity: 0.2;
+}
+
+.text-right {
+    text-align: right;
 }
 
