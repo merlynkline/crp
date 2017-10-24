@@ -60,7 +60,7 @@ sub pickmodules {
     my $course_id       = $c->_course_id;
     my $course          = CRP::Model::OLC::Course->new(id => $course_id, dbh => $c->crp->model);
     my $modules         = CRP::Model::OLC::ModuleSet->new(dbh => $c->crp->model);
-    my $course_modules  = CRP::Model::OLC::ModuleSet::ForCourse->new(course_id => $course_id, dbh => $c->crp->model);
+    my $course_modules  = $c->_course_module_set;
     my $modules_view_data = $modules->view_data;
     foreach my $module (@$modules_view_data) {
         $module->{_already_in_course} = $course_modules->includes_id($module->{id});
