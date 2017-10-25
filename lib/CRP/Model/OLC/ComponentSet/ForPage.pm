@@ -1,34 +1,34 @@
-package CRP::Model::OLC::PageSet::ForModule;
+package CRP::Model::OLC::ComponentSet::ForPage;
 use Moose;
 use namespace::autoclean;
 
-extends 'CRP::Model::OLC::PageSet';
+extends 'CRP::Model::OLC::ComponentSet';
 
-has module_id => (is => 'ro', required => 1);
+has page_id => (is => 'ro', required => 1);
 
 sub _build_ids {
     my $self = shift;
 
     return [
-        map $_->olc_page_id, $self->_resultset->search(
-            {olc_module_id => $self->module_id},
+        map $_->olc_component_id, $self->_resultset->search(
+            {olc_page_id => $self->page_id},
             {
-                columns     => 'olc_page_id',
+                columns     => 'olc_component_id',
                 order_by    => 'order',
             }
         )
     ];
 }
 
-sub add_page {
+sub add_component {
     my $self = shift;
     my($id) = @_;
 
     return if $self->includes_id($id);
     $self->_resultset->create({
-        olc_page_id   => $id,
-        olc_module_id => $self->module_id,
-        order         => $self->max_order + 1,
+        olc_component_id => $id,
+        olc_page_id      => $self->page_id,
+        order            => $self->max_order + 1,
     });
     push @{$self->_ids}, $id;
 }
@@ -37,7 +37,7 @@ sub max_order {
     my $self = shift;
 
     return $self->_resultset->search(
-            {olc_module_id => $self->module_id}
+        {olc_page_id => $self->page_id}
     )->get_column('order')->max || 0;
 }
 
@@ -73,9 +73,9 @@ sub _swap_ids {
     my $index2 = $self->index_of($id2);
     return unless defined $index1 && defined $index2;
 
-    my $record1 = $self->_resultset->find({olc_module_id => $self->module_id, olc_page_id => $id1});
+    my $record1 = $self->_resultset->find({olc_page_id => $self->page_id, olc_component_id => $id1});
     my $order1  = $record1->order;
-    my $record2 = $self->_resultset->find({olc_module_id => $self->module_id, olc_page_id => $id2});
+    my $record2 = $self->_resultset->find({olc_page_id => $self->page_id, olc_component_id => $id2});
     $record1->order($record2->order);
     $record2->order($order1);
     $record1->update;
@@ -90,14 +90,14 @@ sub delete {
 
     my $index = $self->index_of($id);
     return unless $index;
-    $self->_resultset->find({olc_module_id => $self->module_id, olc_page_id => $id})->delete;
+    $self->_resultset->find({olc_page_id => $self->page_id, olc_component_id => $id})->delete;
     splice @{$self->_ids}, $index, 1;
 }
 
 sub _resultset {
     my $self = shift;
 
-    return $self->dbh->resultset('OLCModulePageLink');
+    return $self->dbh->resultset('OLCPageComponentLink');
 }
 
 

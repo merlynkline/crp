@@ -31,11 +31,11 @@ sub save {
         my $url;
         if($page->id) {
             $c->flash(msg => 'olc_page_update');
-            $url = $c->url_for('crp.olcadmin.course.edit')->query(course_id => $c->_course_id);
+            $url = $c->url_for('crp.olcadmin.module.edit')->query(course_id => $c->_course_id, module_id => $c->_module_id);
         }
         else {
             $c->flash(msg => 'olc_page_create');
-            $url = $c->url_for('crp.olcadmin.course.pickpages')->query(course_id => $c->_course_id, module_id => $c->_module_id);
+            $url = $c->url_for('crp.olcadmin.module.pickpages')->query(course_id => $c->_course_id, module_id => $c->_module_id);
         }
         $page->create_or_update;
         return $c->redirect_to($url);

@@ -2,7 +2,9 @@
 % layout 'member_default', heading => 'Admin: Edit online course module - add pages', page_id => 'admin';
 % title 'Admin: Edit online course module - add pages';
 %= include 'admin/parts/menu', page_id => 'admin.olc';
-<br />
+Back to:
+<a href="<%= url_for('crp.olcadmin.course.edit')->query(course_id => $course->{id}) %>">Course</a>
+<a href="<%= url_for('crp.olcadmin.module.edit')->query(course_id => $course->{id}, module_id => $module->{id}) %>">Module</a>
 <h1>Add pages to module '<%= $module->{name} %>'</h1>
 This module is in use in <%= scalar @$module_courses %> course(s) - see below.
 <%= include 'parts/message_box', msg => flash('msg') || stash('msg'), auto_hide => 1 %>

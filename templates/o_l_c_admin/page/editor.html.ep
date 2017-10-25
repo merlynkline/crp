@@ -2,9 +2,11 @@
 % layout 'member_default', heading => 'Admin: Edit online course module page', page_id => 'admin';
 % title 'Admin: Edit online course module page';
 %= include 'admin/parts/menu', page_id => 'admin.olc';
-<br />
+Back to:
+<a href="<%= url_for('crp.olcadmin.course.edit')->query(course_id => $course_id) %>">Course</a>
+<a href="<%= url_for('crp.olcadmin.module.edit')->query(course_id => $course_id, module_id => $module_id) %>">Module</a>
 % if($page->{id}) {
-<h1>Edit online course module</h1>
+<h1>Edit online course module page</h1>
 This page is in use in <%= scalar @$page_modules %> module(s) - see below.
 % } else {
 <h1>Create new online course module page</h1>

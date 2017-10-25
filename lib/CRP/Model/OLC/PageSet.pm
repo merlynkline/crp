@@ -2,6 +2,8 @@ package CRP::Model::OLC::PageSet;
 use Moose;
 use namespace::autoclean;
 
+use CRP::Model::OLC::Page;
+
 extends 'CRP::Model::DBICIDObjectSet';
 
 use constant {

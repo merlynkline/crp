@@ -158,6 +158,10 @@ sub startup {
     $olc_admin_module->any('/')->to('o_l_c_admin-module#edit')->name('crp.olcadmin.module.edit');
     $olc_admin_module->post('save')->to('o_l_c_admin-module#save')->name('crp.olcadmin.module.save');
     $olc_admin_module->any('pickpages')->to('o_l_c_admin-module#pickpages')->name('crp.olcadmin.module.pickpages');
+    $olc_admin_module->any('addpages')->to('o_l_c_admin-module#addpages')->name('crp.olcadmin.module.addpages');
+    $olc_admin_module->post('pageup')->to('o_l_c_admin-module#pageup')->name('crp.olcadmin.module.page.moveup');
+    $olc_admin_module->post('pagedown')->to('o_l_c_admin-module#pagedown')->name('crp.olcadmin.module.page.movedown');
+    $olc_admin_module->post('pagedelete')->to('o_l_c_admin-module#pagedelete')->name('crp.olcadmin.module.page.delete');
     my $olc_admin_page = $olc_admin->under('/page');
     $olc_admin_page->any('/')->to('o_l_c_admin-page#edit')->name('crp.olcadmin.page.edit');
     $olc_admin_page->post('save')->to('o_l_c_admin-page#save')->name('crp.olcadmin.page.save');

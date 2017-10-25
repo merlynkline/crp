@@ -1,4 +1,10 @@
 
++ Common code in these modules:
+	- ComponentSet/ForPage.pm
+	- ModuleSet/ForCourse.pm
+	- PageSet/ForModule.pm
+
+
 - Projects
     - Course material for 20th September combined AN/standard course
     - Material for 30th September attachment parenting conference

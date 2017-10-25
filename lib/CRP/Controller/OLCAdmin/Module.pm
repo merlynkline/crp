@@ -64,6 +64,42 @@ sub pickpages {
     );
 }
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub addpages {
+    my $c = shift;
+
+    my $module_pages = $c->_module_page_set;
+    foreach my $page_id (@{$c->every_param('add_page')}) {
+        $module_pages->add_page($page_id);
+    }
+
+    $c->_restart_editor;
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub pageup {
+    my $c = shift;
+
+    $c->_module_page_set->move_up($c->_page_id);
+    $c->_restart_editor;
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub pagedown {
+    my $c = shift;
+
+    $c->_module_page_set->move_down($c->_page_id);
+    $c->_restart_editor;
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub pagedelete {
+    my $c = shift;
+
+    $c->_module_page_set->delete($c->_page_id);
+    $c->_restart_editor;
+}
+
 sub _module_page_set {
     my $c = shift;
 
@@ -73,7 +109,7 @@ sub _module_page_set {
 sub _restart_editor {
     my $c = shift;
 
-    return $c->redirect_to($c->url_for('crp.olcadmin.module.edit')->query(module_id => $c->_module_id));
+    return $c->redirect_to($c->url_for('crp.olcadmin.module.edit')->query(course_id => $c->_course_id, module_id => $c->_module_id));
 }
 
 sub _display_module_editor {

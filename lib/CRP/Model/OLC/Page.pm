@@ -4,7 +4,7 @@ use namespace::autoclean;
 
 extends 'CRP::Model::DBICIDObject';
 
-# use CRP::Model::OLC::ComponentSet::ForPage;
+use CRP::Model::OLC::ComponentSet::ForPage;
 
 use constant {
     _DB_FIELDS      => [qw(name notes description title)],
@@ -13,13 +13,13 @@ use constant {
 
 has '+_db_record' => (handles => _DB_FIELDS);
 
-# has component_set    => (is => 'ro', lazy => 1, builder => '_build_component_set', init_arg => undef);
+has component_set => (is => 'ro', lazy => 1, builder => '_build_component_set', init_arg => undef);
 
 sub view_data {
     my $self = shift;
 
     my $data = $self->SUPER::view_data();
-#    $data->{components} = $self->component_set->view_data;
+    $data->{components} = $self->component_set->view_data;
 
     return $data;
 }

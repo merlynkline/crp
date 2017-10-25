@@ -57,8 +57,7 @@ sub pickmodules {
 sub addmodules {
     my $c = shift;
 
-    my $course_id = $c->_course_id;
-    my $course_modules = CRP::Model::OLC::ModuleSet::ForCourse->new(course_id => $course_id, dbh => $c->crp->model);
+    my $course_modules = $c->_course_module_set;
     foreach my $module_id (@{$c->every_param('add_module')}) {
         $course_modules->add_module($module_id);
     }
