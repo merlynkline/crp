@@ -24,5 +24,6 @@ requires "IO::Compress::Gzip";
 requires "Crypt::LE";
 requires "Mojolicious::Plugin::ReCAPTCHAv2";
 requires "Text::Markdown";
+requires "Mojo::Role";
 
 

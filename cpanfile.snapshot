@@ -621,6 +621,17 @@ DISTRIBUTIONS
       Math::Complex 1.39
       Test::More 0.9301
       perl 5.006001
+  Mojo-Role-0.022
+    pathname: D/DV/DVINCI/Mojo-Role-0.022.tar.gz
+    provides:
+      Mojo::Role 0.022
+    requirements:
+      ExtUtils::MakeMaker 0
+      Mojo::Base 0
+      Mojo::Util 0
+      Role::Tiny 0
+      Role::Tiny::With 0
+      perl 5.010000
   Mojolicious-Plugin-ReCAPTCHAv2-0.4
     pathname: H/HJ/HJANSEN/Mojolicious-Plugin-ReCAPTCHAv2-0.4.tar.gz
     provides:
