@@ -2,12 +2,12 @@ package CRP::Controller::OLCAdmin::Course;
 
 use Mojo::Base 'Mojolicious::Controller';
 
-use Try::Tiny;
+use Mojo::Role -with;
+with 'CRP::Controller::OLCAdmin::EditorRole';
 
 use CRP::Model::OLC::Course;
 use CRP::Model::OLC::CourseSet;
 use CRP::Model::OLC::ModuleSet;
-
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 sub edit {
@@ -22,25 +22,7 @@ sub save {
 
     my $course = CRP::Model::OLC::Course->new(id => $c->_course_id, dbh => $c->crp->model);
 
-    my $course_input = {};
-    foreach my $field (qw(name notes description title)) {
-        $course_input->{$field} = $c->crp->trimmed_param($field);
-    }
-
-    foreach my $field (keys %$course_input) {
-        try {
-            $course->$field($course_input->{$field});
-        }
-        catch {
-            my $error = $_;
-            if($error =~ m{^CRP::Util::Types::(.+?) }) {
-                $c->validation->error($field => ["invalid_column_$1"]);
-            }
-            else {
-                die "$field: $error";
-            }
-        }
-    }
+    $c->_collect_input($course, [qw(name notes description title)]);
 
     if($c->validation->has_error) {
         $c->stash(msg => 'fix_errors');
@@ -118,20 +100,6 @@ sub _restart_editor {
     my $c = shift;
 
     return $c->redirect_to($c->url_for('crp.olcadmin.course.edit')->query(course_id => $c->_course_id));
-}
-
-sub _module_id {
-    my $c = shift;
-
-    my $module_id = $c->param('module_id');
-    return $module_id;
-}
-
-sub _course_id {
-    my $c = shift;
-
-    my $course_id = $c->param('course_id');
-    return $course_id;
 }
 
 sub _display_course_editor {
