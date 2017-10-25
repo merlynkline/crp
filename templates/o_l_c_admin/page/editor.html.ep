@@ -1,0 +1,85 @@
+%#<!DOCTYPE html>
+% layout 'member_default', heading => 'Admin: Edit online course module page', page_id => 'admin';
+% title 'Admin: Edit online course module page';
+%= include 'admin/parts/menu', page_id => 'admin.olc';
+<br />
+% if($page->{id}) {
+<h1>Edit online course module</h1>
+This page is in use in <%= scalar @$page_modules %> module(s) - see below.
+% } else {
+<h1>Create new online course module page</h1>
+% }
+<%= include 'parts/message_box', msg => flash('msg') || stash('msg'), auto_hide => 1 %>
+%= form_for 'crp.olcadmin.page.save' => (method => 'POST') => begin
+    <fieldset>
+        <legend>Online course module page details</legend>
+        %= hidden_field 'page_id' => $page->{id};
+        %= hidden_field 'module_id' => $module_id;
+        %= hidden_field 'course_id' => $course_id;
+
+        <label for="name">Name:
+            <div class="field-extra-info">Enter a short recognisable name. This is for internal admin use only and is not visible to other users.</div>
+        </label>
+        <div class="input-container">
+            %= text_field 'name', id => 'name', autofocus => 'autofocus', required => 'required', value => $page->{name}, maxlength => 50;
+            <%= include 'parts/error', field => 'name' %>
+        </div>
+
+        <label for="description">Notes:
+            <div class="field-extra-info">This is for internal admin use only and is not visible to other users.</div>
+        </label>
+        <div class="input-container">
+            %= text_area 'notes' => $page->{notes}, rows => '4', cols => '45', id => 'notes';
+            <%= include 'parts/error', field => 'notes' %>
+        </div>
+
+        <label for="title">Title:
+            <div class="field-extra-info">The page title that users will see.</div>
+        </label>
+        <div class="input-container">
+            %= text_field 'title', id => 'title', required => 'required', value => $page->{title}, maxlength => 50;
+            <%= include 'parts/error', field => 'title' %>
+        </div>
+
+        <label for="description">Description:
+            <div class="field-extra-info">This is the description that users will see.</div>
+        </label>
+        <div class="input-container">
+            %= text_area 'description' => $page->{description}, rows => '4', cols => '45', id => 'description';
+            <%= include 'parts/error', field => 'description' %>
+        </div>
+
+        <label>Make sure you save your changes:</label>
+        <div class="input-container">
+            %= submit_button 'Save'
+            <%= include 'parts/error', field => '_general' %>
+            <%= include 'parts/temporary_message', msg => flash 'msg' %>
+        </div>
+    </fieldset>
+%= end
+% if($page->{id}) {
+<table class="list1">
+    <tr><th colspan="2">Pages in this page</th><th align="right"><span class="standard-button"><a title="Add a new component" href="<%= url_for('crp.olcadmin.page.pickcomponents')->query(page_id => $page->{id}, module_id => $module_id, course_id => $course_id) %>">Add</a></span></th></tr>
+    <tr><th>Title</th><th align="right">Components</th><th></th></tr>
+    % if(@{$page->{components}}) {
+    %   foreach my $component (@{$page->{components}}) {
+    <tr>
+        <td><%= $component->{name} %></td>
+        <td></td>
+        <td><a class="small-button" href="<%= url_for('crp.olcadmin.component.edit')->query(course_id => $course_id, module_id => $module_id, page_id => $page->{id}, component_id => $component->{id}) %>">Edit</a></td>
+    </tr>
+    %   }
+    % } else {
+    <tr><td colspan=3>(No components defined)</td></tr>
+    % }
+</table>
+<h2>Modules using this page</h2>
+<p>
+Changing this page will affect all the modules it is included in, which are:
+<ul>
+    % foreach my $module (@$page_modules) {
+    <li><%= $module->{name} %></li>
+    % }
+</ul>
+</p>
+% }

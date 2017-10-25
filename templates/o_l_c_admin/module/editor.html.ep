@@ -65,7 +65,7 @@ This module is in use in <%= scalar @$module_courses %> course(s) - see below.
     <tr>
         <td><%= $page->{name} %></td>
         <td></td>
-        <td><a class="small-button" href="<%= url_for('crp.olcadmin.page.edit')->query(id => $page->{id}) %>">Edit</a></td>
+        <td><a class="small-button" href="<%= url_for('crp.olcadmin.page.edit')->query(course_id => $course_id, module_id => $module->{id}, page_id => $page->{id}) %>">Edit</a></td>
     </tr>
     %   }
     % } else {

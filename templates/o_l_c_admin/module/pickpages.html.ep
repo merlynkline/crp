@@ -1,0 +1,46 @@
+%#<!DOCTYPE html>
+% layout 'member_default', heading => 'Admin: Edit online course module - add pages', page_id => 'admin';
+% title 'Admin: Edit online course module - add pages';
+%= include 'admin/parts/menu', page_id => 'admin.olc';
+<br />
+<h1>Add pages to module '<%= $module->{name} %>'</h1>
+This module is in use in <%= scalar @$module_courses %> course(s) - see below.
+<%= include 'parts/message_box', msg => flash('msg') || stash('msg'), auto_hide => 1 %>
+%= form_for 'crp.olcadmin.module.addpages' => (method => 'POST') => begin
+%= hidden_field 'course_id' => $course->{id};
+%= hidden_field 'module_id' => $module->{id};
+<table class="list1">
+    <tr><th colspan="2">Available pages</th><th class="text-right"><span class="standard-button"><a title="Create a new page" href="<%= url_for('crp.olcadmin.page.edit')->query(course_id => $course->{id}, module_id => $module->{id}) %>">Add</a></span></th></tr>
+    <tr><th>Title</th><th class="text-right">Components</th><th></th></tr>
+    % if(@$pages) {
+    %   foreach my $page (sort {lc $a->{name} cmp lc $b->{name}} @$pages) {
+    <tr>
+        <td title="<%= $page->{notes} %>"><%= $page->{name} %></td>
+        <td class="text-right"></td>
+        <td>
+            % if($page->{_already_in_module}) {
+                (Already included)
+            % } else {
+                <%= check_box 'add_page' => $page->{id} %>
+            % }
+        </td>
+    </tr>
+    %   }
+    <tr>
+        <td colspan=2></td>
+        <td class="text-right"><%= submit_button 'Save' %></td>
+    </tr>
+    % } else {
+    <tr><td colspan=3>(No pages defined - use the <strong>Add</strong> button to create one.)</td></tr>
+    % }
+</table>
+<h2>Courses using this module</h2>
+<p>
+Changing this module will affect all the courses it is included in, which are:
+<ul>
+    % foreach my $course (@$module_courses) {
+    <li><%= $course->{name} %></li>
+    % }
+</ul>
+</p>
+% }

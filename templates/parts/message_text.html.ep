@@ -22,6 +22,8 @@
 %   olc_update              => 'Your online course has been updated.',
 %   olc_module_create       => 'Your new online course module has been created.',
 %   olc_module_update       => 'Your online course module has been updated.',
+%   olc_page_create         => 'Your new online course module page has been created.',
+%   olc_page_update         => 'Your online course module page has been updated.',
 %   password_set            => 'Your password has been updated.',
 %   premium_create          => 'Premium authorisation created.',
 %   profile_incomplete      => 'Your profile is not complete - please <a href="' . url_for('crp.members.profile') . '">update it here</a>.',
