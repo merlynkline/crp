@@ -62,12 +62,12 @@ This page is in use in <%= scalar @$page_modules %> module(s) - see below.
 % if($page->{id}) {
 <table class="list1">
     <tr><th colspan="2">Components in this page</th><th align="right"><span class="standard-button"><a title="Add a new component" href="<%= url_for('crp.olcadmin.page.pickcomponents')->query(page_id => $page->{id}, module_id => $module_id, course_id => $course_id) %>">Add</a></span></th></tr>
-    <tr><th>Title</th><th align="right">Components</th><th></th></tr>
+    <tr><th>Title</th><th>Type</th><th></th></tr>
     % if(@{$page->{components}}) {
     %   foreach my $component (@{$page->{components}}) {
     <tr>
         <td><%= $component->{name} %></td>
-        <td></td>
+        <td><%= $component->{type} %></td>
         <td><a class="small-button" href="<%= url_for('crp.olcadmin.component.edit')->query(course_id => $course_id, module_id => $module_id, page_id => $page->{id}, component_id => $component->{id}) %>">Edit</a></td>
     </tr>
     %   }

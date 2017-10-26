@@ -82,7 +82,7 @@
     %     $is_last = $counter == @{$course->{modules}};
     <tr class="hover-controls">
         <td title="<%= $module->{notes} %>"><%= $module->{name} %></td>
-        <td class="text-right"></td>
+        <td class="text-right"><%= scalar @{$module->{pages}} %></td>
         <td class="hover-controls hidden">
             <a class="small-button" href="<%= url_for('crp.olcadmin.module.edit')->query(module_id => $module->{id}, course_id => $course->{id}) %>">Edit</a>
             %= $action_button->('moveup',   'Up',   $module->{id}, $is_first);

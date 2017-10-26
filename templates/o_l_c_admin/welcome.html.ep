@@ -7,12 +7,12 @@
 <%= include 'parts/message_box', msg => flash('msg') || stash('msg'), auto_hide => 1 %>
 <table class="list1">
     <tr><th colspan="2">Courses</th><th align="right"><span class="standard-button"><a title="Add a new online course" href="<%= url_for 'crp.olcadmin.course.edit' %>">Add</a></span></th></tr>
-    <tr><th>Title</th><th align="right">Modules</th><th></th></tr>
+    <tr><th>Title</th><th class="text-right">Modules</th><th></th></tr>
     % if(@$course_list) {
     %   foreach my $course (@$course_list) {
     <tr>
         <td><%= $course->{name} %></td>
-        <td></td>
+        <td class="text-right"><%= scalar @{$course->{modules}} %></td>
         <td><a class="small-button" href="<%= url_for('crp.olcadmin.course.edit')->query(course_id => $course->{id}) %>">Edit</a></td>
     </tr>
     %   }

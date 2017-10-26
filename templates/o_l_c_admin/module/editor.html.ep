@@ -86,7 +86,7 @@ This module is in use in <%= scalar @$module_courses %> course(s) - see below.
     %     $is_last = $counter == @{$module->{pages}};
     <tr class="hover-controls">
         <td title="<%= $page->{notes} %>"><%= $page->{name} %></td>
-        <td class="text-right"></td>
+        <td class="text-right"><%= scalar @{$page->{components}} %></td>
         <td class="hover-controls hidden">
             <a class="small-button" href="<%= url_for('crp.olcadmin.page.edit')->query(course_id => $course_id, page_id => $page->{id}, module_id => $module->{id}) %>">Edit</a>
             %= $action_button->('moveup',   'Up',   $page->{id}, $is_first);
