@@ -110,23 +110,6 @@ This module is in use in <%= scalar @$module_courses %> course(s) - see below.
         }
     )
 </script>
-% }
-% if($module->{id}) {
-<table class="list1">
-    <tr><th colspan="2">Pages in this module</th><th align="right"><span class="standard-button"><a title="Add a new page" href="<%= url_for('crp.olcadmin.module.pickpages')->query(module_id => $module->{id}, course_id => $course_id) %>">Add</a></span></th></tr>
-    <tr><th>Title</th><th align="right">Components</th><th></th></tr>
-    % if(@{$module->{pages}}) {
-    %   foreach my $page (@{$module->{pages}}) {
-    <tr>
-        <td><%= $page->{name} %></td>
-        <td></td>
-        <td><a class="small-button" href="<%= url_for('crp.olcadmin.page.edit')->query(course_id => $course_id, module_id => $module->{id}, page_id => $page->{id}) %>">Edit</a></td>
-    </tr>
-    %   }
-    % } else {
-    <tr><td colspan=3>(No pages defined)</td></tr>
-    % }
-</table>
 <h2>Courses using this module</h2>
 <p>
 Changing this module will affect all the courses it is included in, which are:
