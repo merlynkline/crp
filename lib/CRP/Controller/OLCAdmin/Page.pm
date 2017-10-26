@@ -7,6 +7,7 @@ with 'CRP::Controller::OLCAdmin::EditorRole';
 
 use CRP::Model::OLC::Page;
 use CRP::Model::OLC::PageSet;
+use CRP::Model::OLC::ModuleSet::WithPage;
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 sub edit {
@@ -53,12 +54,12 @@ sub _display_page_editor {
     my($page) = @_;
 
     $page = CRP::Model::OLC::Page->new(id => $c->_page_id, dbh => $c->crp->model) unless $page;
-#    my $page_modules = CRP::Model::OLC::ModuleSet::WithPage->new(page_id => $page->id, dbh => $c->crp->model);
+    my $page_modules = CRP::Model::OLC::ModuleSet::WithPage->new(page_id => $page->id, dbh => $c->crp->model);
     $c->stash(
         page           => $page->view_data,
         course_id      => $c->_course_id,
         module_id      => $c->_module_id,
-        page_modules   => [{}]#$page_modules->view_data,
+        page_modules   => $page_modules->view_data,
     );
     $c->render(template => 'o_l_c_admin/page/editor');
 }
