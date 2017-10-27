@@ -133,7 +133,7 @@ schema:
           type: NORMAL
       name: audit
       options: []
-      order: 8
+      order: 7
     course:
       constraints:
         - deferrable: 1
@@ -365,7 +365,7 @@ schema:
           type: NORMAL
       name: course
       options: []
-      order: 17
+      order: 16
     course_type:
       constraints:
         - deferrable: 1
@@ -501,7 +501,7 @@ schema:
           type: NORMAL
       name: course_type
       options: []
-      order: 9
+      order: 8
     enquiry:
       constraints:
         - deferrable: 1
@@ -995,7 +995,7 @@ schema:
           type: NORMAL
       name: instructors_course
       options: []
-      order: 18
+      order: 17
     login:
       constraints:
         - deferrable: 1
@@ -1153,7 +1153,30 @@ schema:
           reference_fields: []
           reference_table: ''
           type: PRIMARY KEY
+        - deferrable: 1
+          expression: ''
+          fields:
+            - olc_page_id
+          match_type: ''
+          name: olc_component_fk_olc_page_id
+          on_delete: CASCADE
+          on_update: CASCADE
+          options: []
+          reference_fields:
+            - id
+          reference_table: olc_page
+          type: FOREIGN KEY
       fields:
+        build_order:
+          data_type: integer
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: build_order
+          order: 3
+          size:
+            - 0
         data:
           data_type: text
           default_value: ~
@@ -1192,27 +1215,17 @@ schema:
           is_primary_key: 0
           is_unique: 0
           name: name
-          order: 2
-          size:
-            - 0
-        notes:
-          data_type: text
-          default_value: ~
-          is_nullable: 1
-          is_primary_key: 0
-          is_unique: 0
-          name: notes
-          order: 3
-          size:
-            - 0
-        title:
-          data_type: text
-          default_value: ~
-          is_nullable: 1
-          is_primary_key: 0
-          is_unique: 0
-          name: title
           order: 4
+          size:
+            - 0
+        olc_page_id:
+          data_type: integer
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: olc_page_id
+          order: 2
           size:
             - 0
         type:
@@ -1225,10 +1238,20 @@ schema:
           order: 5
           size:
             - 0
-      indices: []
+      indices:
+        - fields:
+            - olc_page_id
+          name: olc_component_idx_olc_page_id
+          options: []
+          type: NORMAL
+        - fields:
+            - olc_page_id
+          name: olc_component_olc_page_id_idx
+          options: []
+          type: NORMAL
       name: olc_component
       options: []
-      order: 3
+      order: 9
     olc_course:
       constraints:
         - deferrable: 1
@@ -1412,7 +1435,7 @@ schema:
           type: NORMAL
       name: olc_course_module_link
       options: []
-      order: 19
+      order: 18
     olc_module:
       constraints:
         - deferrable: 1
@@ -1666,103 +1689,7 @@ schema:
       indices: []
       name: olc_page
       options: []
-      order: 4
-    olc_page_component_link:
-      constraints:
-        - deferrable: 1
-          expression: ''
-          fields:
-            - olc_page_id
-            - olc_component_id
-          match_type: ''
-          name: ''
-          on_delete: ''
-          on_update: ''
-          options: []
-          reference_fields: []
-          reference_table: ''
-          type: PRIMARY KEY
-        - deferrable: 1
-          expression: ''
-          fields:
-            - olc_component_id
-          match_type: ''
-          name: olc_page_component_link_fk_olc_component_id
-          on_delete: CASCADE
-          on_update: CASCADE
-          options: []
-          reference_fields:
-            - id
-          reference_table: olc_component
-          type: FOREIGN KEY
-        - deferrable: 1
-          expression: ''
-          fields:
-            - olc_page_id
-          match_type: ''
-          name: olc_page_component_link_fk_olc_page_id
-          on_delete: CASCADE
-          on_update: CASCADE
-          options: []
-          reference_fields:
-            - id
-          reference_table: olc_page
-          type: FOREIGN KEY
-      fields:
-        config:
-          data_type: text
-          default_value: ~
-          is_nullable: 1
-          is_primary_key: 0
-          is_unique: 0
-          name: config
-          order: 3
-          size:
-            - 0
-        olc_component_id:
-          data_type: integer
-          default_value: ~
-          is_nullable: 0
-          is_primary_key: 1
-          is_unique: 0
-          name: olc_component_id
-          order: 2
-          size:
-            - 0
-        olc_page_id:
-          data_type: integer
-          default_value: ~
-          is_nullable: 0
-          is_primary_key: 1
-          is_unique: 0
-          name: olc_page_id
-          order: 1
-          size:
-            - 0
-        order:
-          data_type: integer
-          default_value: ~
-          is_nullable: 1
-          is_primary_key: 0
-          is_unique: 0
-          name: order
-          order: 4
-          size:
-            - 0
-      indices:
-        - fields:
-            - olc_component_id
-          name: olc_page_component_link_idx_olc_component_id
-          options: []
-          type: NORMAL
-        - fields:
-            - olc_page_id
-          name: olc_page_component_link_idx_olc_page_id
-          options: []
-          type: NORMAL
-      name: olc_page_component_link
-      options: []
-      order: 16
+      order: 3
     premium_authorisation:
       constraints:
         - deferrable: 1
@@ -1848,7 +1775,7 @@ schema:
           type: NORMAL
       name: premium_authorisation
       options: []
-      order: 5
+      order: 4
     premium_cookie_log:
       constraints:
         - deferrable: 1
@@ -2065,7 +1992,7 @@ schema:
           type: NORMAL
       name: professional
       options: []
-      order: 20
+      order: 19
     profile:
       constraints:
         - deferrable: 1
@@ -2319,7 +2246,7 @@ schema:
           type: NORMAL
       name: qualification
       options: []
-      order: 6
+      order: 5
     session:
       constraints:
         - deferrable: 1
@@ -2380,7 +2307,7 @@ schema:
       indices: []
       name: session
       options: []
-      order: 7
+      order: 6
   triggers: {}
   views: {}
 translator:
@@ -2402,7 +2329,6 @@ translator:
       - OLCModule
       - OLCModulePageLink
       - OLCPage
-      - OLCPageComponentLink
       - PremiumAuthorisation
       - PremiumCookieLog
       - Professional

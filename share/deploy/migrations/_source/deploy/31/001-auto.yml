@@ -1139,7 +1139,7 @@ schema:
       name: login
       options: []
       order: 2
-    olc_Component:
+    olc_component:
       constraints:
         - deferrable: 1
           expression: ''
@@ -1226,7 +1226,7 @@ schema:
           size:
             - 0
       indices: []
-      name: olc_Component
+      name: olc_component
       options: []
       order: 3
     olc_course:
@@ -1663,7 +1663,7 @@ schema:
           options: []
           reference_fields:
             - id
-          reference_table: olc_Component
+          reference_table: olc_component
           type: FOREIGN KEY
         - deferrable: 1
           expression: ''

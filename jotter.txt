@@ -131,24 +131,19 @@
 			- Notes - for internal use
             - Title
             - Description
-        - OLC_PAGE_COMPONENT_LINK: Page/component association record
-            - OLC_Page_ID
-            - OLC_Component_ID
-            - Config - instance-specific config, e.g. style over-ride etc
-            - Order
         - OLC_COMPONENT: Component definition record
             - ID
+			- OLC_Page_ID (indexed)
             - Name - for internal use
-			- Notes - for internal use
-            - Title
+			- build_order
             - Type - heading/paragraph/image/video/pdf/course-contents/module-contents/test/etc
             - Data_version
             - Data - type-specific content blob
                 - Heading: a line of text and a heading style
                 - Paragraph: a block of markdown
-                - image: a type and a binary blob
-                - video: a type and a binary blob
-                - PDF: a binary blob; appears on the page as a link
+                - image: a pathname, style info (size? alignment?)
+                - video: a pathname
+                - PDF: a pathname; appears on the page as a link
                 - Course contents: no data required (a generated list of modules and pages, some being links to the relevant pages depending on whether tests are completed; no pages beyond the first with an incomplete test are available)
                 - Module contents: no data required (a generated list of pages, some being links to the relevant pages)
                 - Test: serialised data with test questions and expected answers (or tutor mark required), grade boundaries (maybe very simple pass/fail)

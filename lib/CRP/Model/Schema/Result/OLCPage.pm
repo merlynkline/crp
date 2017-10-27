@@ -34,8 +34,8 @@ __PACKAGE__->add_columns(
 );
 
 __PACKAGE__->set_primary_key('id');
-__PACKAGE__->has_many('module_links'    => 'CRP::Model::Schema::Result::OLCModulePageLink',    {'foreign.olc_page_id' => 'self.id'});
-__PACKAGE__->has_many('component_links' => 'CRP::Model::Schema::Result::OLCPageComponentLink', {'foreign.olc_page_id' => 'self.id'});
+__PACKAGE__->has_many('module_links' => 'CRP::Model::Schema::Result::OLCModulePageLink', {'foreign.olc_page_id' => 'self.id'});
+__PACKAGE__->has_many('components'   => 'CRP::Model::Schema::Result::OLCComponent',      {'foreign.olc_page_id' => 'self.id'});
 
 1;
 
