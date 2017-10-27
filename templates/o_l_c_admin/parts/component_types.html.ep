@@ -1,0 +1,14 @@
+%#<!DOCTYPE html>
+% my %TYPES = (
+%   HEADING     => 'Heading',
+%   PARAGRAPH   => 'Paragraph',
+%   IMAGE       => 'Image',
+%   VIDEO       => 'Video',
+%   PDF         => 'PDF Document',
+%   COURSE_IDX  => 'Course contents table',
+%   MODULE_IDX  => 'Module contents table',
+%   TEST        => 'Test',
+% );
+% while (my($key, $value) = each %TYPES) {
+%   $types->{$key} = $value;
+% }

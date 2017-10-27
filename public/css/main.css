@@ -349,7 +349,7 @@ label {
     text-decoration:    none;
 }
 input, textarea, select {
-    color:          inherit;
+    color:          #354;
 }
 input, textarea, .standard-button, select {
     border-radius:  4px;

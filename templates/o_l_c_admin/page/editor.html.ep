@@ -60,8 +60,21 @@ This page is in use in <%= scalar @$page_modules %> module(s) - see below.
     </fieldset>
 %= end
 % if($page->{id}) {
+%   my $types = {};
+%   include 'o_l_c_admin/parts/component_types', types => $types;
+%   my $type_options = [
+%       map  { [ $types->{$_} => $_ ] }
+%       sort { lc $types->{$a} cmp lc $types->{$b} }
+%       keys %$types
+%   ];
 <table class="list1">
-    <tr><th colspan="2">Components in this page</th><th align="right"><span class="standard-button"><a title="Add a new component" href="<%= url_for('crp.olcadmin.page.pickcomponents')->query(page_id => $page->{id}, module_id => $module_id, course_id => $course_id) %>">Add</a></span></th></tr>
+    <tr>
+        <th colspan="2">Components in this page</th>
+        <th align="right">
+            %= select_field type => [ ['Please select...' => ''], @$type_options ];
+            <span class="standard-button"><a title="Add a new component" href="<%= url_for('crp.olcadmin.page.pickcomponents')->query(page_id => $page->{id}, module_id => $module_id, course_id => $course_id) %>">Add</a></span>
+        </th>
+    </tr>
     <tr><th>Title</th><th>Type</th><th></th></tr>
     % if(@{$page->{components}}) {
     %   foreach my $component (@{$page->{components}}) {
