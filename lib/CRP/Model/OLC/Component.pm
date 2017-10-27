@@ -5,7 +5,7 @@ use namespace::autoclean;
 extends 'CRP::Model::DBICIDObject';
 
 use constant {
-    _DB_FIELDS      => [qw(name notes title type data_version data)],
+    _DB_FIELDS      => [qw(olc_page_id name build_order type data_version data)],
     _RESULTSET_NAME => 'OLCComponent',
 };
 
