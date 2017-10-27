@@ -165,6 +165,9 @@ sub startup {
     my $olc_admin_page = $olc_admin->under('/page');
     $olc_admin_page->any('/')->to('o_l_c_admin-page#edit')->name('crp.olcadmin.page.edit');
     $olc_admin_page->post('save')->to('o_l_c_admin-page#save')->name('crp.olcadmin.page.save');
+    $olc_admin_page->any('addcomponent')->to('o_l_c_admin-page#addcomponent')->name('crp.olcadmin.page.addcomponent');
+    my $olc_admin_component = $olc_admin->under('/component');
+    $olc_admin_component->any('/')->to('o_l_c_admin-component#edit')->name('crp.olcadmin.component.edit');
 
     my $member_site = $r->under('/me/:slug')->to('member_site#identify');
     $member_site->any('/')->to('member_site#welcome')->name('crp.membersite.home');

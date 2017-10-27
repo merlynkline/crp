@@ -43,6 +43,19 @@ sub save {
     }
 }
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub addcomponent {
+    my $c = shift;
+
+    my $component;
+    $c->validation->error(type => ['no_component_type']);
+    if($c->validation->has_error) {
+        return $c->_display_page_editor;
+    }
+    my $url = $c->url_for('crp.olcadmin.component.edit')->query(course_id => $c->_course_id, module_id => $c->_module_id, component_id => $component->_id);
+    return $c->redirect_to($url);
+}
+
 sub _restart_editor {
     my $c = shift;
 

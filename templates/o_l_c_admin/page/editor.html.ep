@@ -71,8 +71,14 @@ This page is in use in <%= scalar @$page_modules %> module(s) - see below.
     <tr>
         <th colspan="2">Components in this page</th>
         <th align="right">
+            %= form_for "crp.olcadmin.page.addcomponent" => (method => 'GET') => begin
+            %= hidden_field 'course_id' => $course_id;
+            %= hidden_field 'module_id' => $module_id;
+            %= hidden_field 'page_id' => $page->{id};
             %= select_field type => [ ['Please select...' => ''], @$type_options ];
-            <span class="standard-button"><a title="Add a new component" href="<%= url_for('crp.olcadmin.page.pickcomponents')->query(page_id => $page->{id}, module_id => $module_id, course_id => $course_id) %>">Add</a></span>
+            %= submit_button 'Add', class => 'standard-button';
+            %= end
+            <%= include 'parts/error', field => 'type' %>
         </th>
     </tr>
     <tr><th>Title</th><th>Type</th><th></th></tr>
