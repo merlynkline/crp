@@ -1,4 +1,6 @@
 
+requires "File::Remove";
+requires "inc::Module::Install";
 requires "Mojolicious", "6.00";
 requires "Mojolicious::Plugin::RenderFile", "0.08";
 requires "Mojolicious::Plugin::TemplateToolkit";

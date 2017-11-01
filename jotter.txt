@@ -1091,6 +1091,7 @@ Vultr setup:
     # echo "7 3 * * * kill -USR2 `cat /home/crp/crp/script/hypnotoad.pid`" >> /var/spool/cron/crontabs/crp
     # chown crp.crontab /var/spool/cron/crontabs/crp
     # chmod 600 /var/spool/cron/crontabs/crp
+- Change root email in /etc/aliases: root: www.kidsreflex.co.uk+root@binary.co.uk
 
 
 

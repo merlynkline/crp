@@ -4,6 +4,7 @@
 BEGIN;
 
 ;
+DROP TABLE "olc_page_component_link" CASCADE;
 CREATE TABLE "olc_page_component_link" (
   "olc_page_id" integer NOT NULL,
   "olc_component_id" integer NOT NULL,
