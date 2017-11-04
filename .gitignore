@@ -5,4 +5,8 @@ c_r_p.conf.secret
 c_r_p.conf.private
 devrun
 /premium/test
+
+# Vim files
 Session.vim
+*.swp
+
