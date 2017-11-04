@@ -2,6 +2,8 @@ package CRP::Controller::OLCAdmin::Page;
 
 use Mojo::Base 'Mojolicious::Controller';
 
+use Try::Tiny;
+
 use Mojo::Role -with;
 with 'CRP::Controller::OLCAdmin::EditorRole';
 
@@ -48,11 +50,32 @@ sub addcomponent {
     my $c = shift;
 
     my $component;
-    $c->validation->error(type => ['no_component_type']);
+    my $component_type = $c->crp->trimmed_param('type');
+
+    if($component_type) {
+        try {
+            $component = CRP::Model::OLC::Component->new({dbh => $c->crp->model, type => $component_type});
+            $component->create_or_update;
+        }
+        catch {
+            my $error = $_;
+            warn "Failed to create component type '$component_type': $error";
+            $c->validation->error(type => ['bad_component_type']);
+        };
+    }
+    else {
+        $c->validation->error(type => ['no_component_type']);
+    }
+
     if($c->validation->has_error) {
         return $c->_display_page_editor;
     }
-    my $url = $c->url_for('crp.olcadmin.component.edit')->query(course_id => $c->_course_id, module_id => $c->_module_id, component_id => $component->_id);
+    my $url = $c->url_for('crp.olcadmin.component.edit')->query(
+        course_id    => $c->_course_id,
+        module_id    => $c->_module_id,
+        component_id => $component->_id,
+        type         => $component_type,
+    );
     return $c->redirect_to($url);
 }
 

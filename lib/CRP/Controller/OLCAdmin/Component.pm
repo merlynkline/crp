@@ -12,6 +12,10 @@ use CRP::Model::OLC::ComponentSet;
 sub edit {
     my $c = shift;
 
+    my $type = $c->trimmed_param('type');
+    my $component = CRP::Model::OLC::Component->new;
+    $component->type($type);
+    _display_component_editor($component);
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -51,13 +55,12 @@ sub _display_component_editor {
     my $c = shift;
     my($component) = @_;
 
-    $component = CRP::Model::OLC::Component->new(id => $c->_component_id, dbh => $c->crp->model) unless $component;
     my $component_pages = CRP::Model::OLC::PageSet::WithComponent->new(component_id => $component->id, dbh => $c->crp->model);
     $c->stash(
-        component           => $component->view_data,
-        course_id      => $c->_course_id,
-        page_id      => $c->_page_id,
-        component_pages   => $component_pages->view_data,
+        component       => $component->view_data,
+        course_id       => $c->_course_id,
+        page_id         => $c->_page_id,
+        component_pages => $component_pages->view_data,
     );
     $c->render(template => 'o_l_c_admin/component/editor');
 }
