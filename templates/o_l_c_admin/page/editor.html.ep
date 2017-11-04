@@ -71,7 +71,7 @@ This page is in use in <%= scalar @$page_modules %> module(s) - see below.
     <tr>
         <th colspan="2">Components in this page</th>
         <th align="right">
-            %= form_for "crp.olcadmin.page.addcomponent" => (method => 'GET') => begin
+            %= form_for "crp.olcadmin.page.addcomponent" => (method => 'POST') => begin
             %= hidden_field 'course_id' => $course_id;
             %= hidden_field 'module_id' => $module_id;
             %= hidden_field 'page_id' => $page->{id};

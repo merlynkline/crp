@@ -12,9 +12,7 @@ use CRP::Model::OLC::ComponentSet;
 sub edit {
     my $c = shift;
 
-    my $type = $c->trimmed_param('type');
     my $component = CRP::Model::OLC::Component->new;
-    $component->type($type);
     _display_component_editor($component);
 }
 

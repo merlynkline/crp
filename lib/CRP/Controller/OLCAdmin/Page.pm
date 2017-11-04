@@ -54,14 +54,18 @@ sub addcomponent {
 
     if($component_type) {
         try {
-            $component = CRP::Model::OLC::Component->new({dbh => $c->crp->model, type => $component_type});
+            $component = CRP::Model::OLC::Component->new({
+                    dbh         => $c->crp->model,
+                    type        => $component_type,
+                    olc_page_id => $c->_page_id,
+                });
             $component->create_or_update;
         }
         catch {
             my $error = $_;
             warn "Failed to create component type '$component_type': $error";
             $c->validation->error(type => ['bad_component_type']);
-        };
+        }
     }
     else {
         $c->validation->error(type => ['no_component_type']);
@@ -73,8 +77,8 @@ sub addcomponent {
     my $url = $c->url_for('crp.olcadmin.component.edit')->query(
         course_id    => $c->_course_id,
         module_id    => $c->_module_id,
-        component_id => $component->_id,
-        type         => $component_type,
+        page_id      => $c->_page_id,
+        component_id => $component->id,
     );
     return $c->redirect_to($url);
 }
