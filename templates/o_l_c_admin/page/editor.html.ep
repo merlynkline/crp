@@ -60,12 +60,12 @@ This page is in use in <%= scalar @$page_modules %> module(s) - see below.
     </fieldset>
 %= end
 % if($page->{id}) {
-%   my $types = {};
-%   include 'o_l_c_admin/parts/component_types', types => $types;
+%   my $type_names = {};
+%   include 'o_l_c_admin/parts/component_types', types => $type_names;
 %   my $type_options = [
-%       map  { [ $types->{$_} => $_ ] }
-%       sort { lc $types->{$a} cmp lc $types->{$b} }
-%       keys %$types
+%       map  { [ $type_names->{$_} => $_ ] }
+%       sort { lc $type_names->{$a} cmp lc $type_names->{$b} }
+%       keys %$type_names
 %   ];
 <table class="list1">
     <tr>
@@ -86,7 +86,7 @@ This page is in use in <%= scalar @$page_modules %> module(s) - see below.
     %   foreach my $component (@{$page->{components}}) {
     <tr>
         <td><%= $component->{name} %></td>
-        <td><%= $component->{type} %></td>
+        <td><%= $type_names->{$component->{type}} %></td>
         <td><a class="small-button" href="<%= url_for('crp.olcadmin.component.edit')->query(course_id => $course_id, module_id => $module_id, page_id => $page->{id}, component_id => $component->{id}) %>">Edit</a></td>
     </tr>
     %   }
