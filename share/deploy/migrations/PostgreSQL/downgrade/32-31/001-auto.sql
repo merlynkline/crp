@@ -4,10 +4,10 @@
 BEGIN;
 
 ;
-ALTER TABLE olc_Component DROP COLUMN notes;
+ALTER TABLE olc_component DROP COLUMN notes;
 
 ;
-ALTER TABLE olc_Component ADD COLUMN description text;
+ALTER TABLE olc_component ADD COLUMN description text;
 
 ;
 ALTER TABLE olc_course DROP COLUMN notes;

@@ -47,9 +47,9 @@ CREATE TABLE "login" (
 
 ;
 --
--- Table: olc_Component
+-- Table: olc_component
 --
-CREATE TABLE "olc_Component" (
+CREATE TABLE "olc_component" (
   "id" serial NOT NULL,
   "name" text,
   "description" text,
@@ -408,7 +408,7 @@ ALTER TABLE "olc_module_page_link" ADD CONSTRAINT "olc_module_page_link_fk_olc_p
 
 ;
 ALTER TABLE "olc_page_component_link" ADD CONSTRAINT "olc_page_component_link_fk_olc_component_id" FOREIGN KEY ("olc_component_id")
-  REFERENCES "olc_Component" ("id") ON DELETE CASCADE ON UPDATE CASCADE DEFERRABLE;
+  REFERENCES "olc_component" ("id") ON DELETE CASCADE ON UPDATE CASCADE DEFERRABLE;
 
 ;
 ALTER TABLE "olc_page_component_link" ADD CONSTRAINT "olc_page_component_link_fk_olc_page_id" FOREIGN KEY ("olc_page_id")

@@ -11,7 +11,7 @@ ALTER TABLE professional ADD CONSTRAINT professional_fk_instructors_course_id FO
   REFERENCES instructors_course (id) DEFERRABLE;
 
 ;
-DROP TABLE olc_Component CASCADE;
+DROP TABLE olc_component CASCADE;
 
 ;
 DROP TABLE olc_page CASCADE;
