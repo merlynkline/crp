@@ -33,7 +33,7 @@ __PACKAGE__->add_columns(
     },
     data_version => {
         data_type           => 'integer',
-        is_nullable         => 0,
+        is_nullable         => 1,
     },
     data => {
         data_type           => 'text',
