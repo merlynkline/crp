@@ -97,8 +97,8 @@ sub _display_page_editor {
     my $page_modules = CRP::Model::OLC::ModuleSet::WithPage->new(page_id => $page->id, dbh => $c->crp->model);
     $c->stash(
         page           => $page->view_data,
-        course_id      => $c->_course_id,
-        module_id      => $c->_module_id,
+        olc_course_id  => $c->_course_id,
+        olc_module_id  => $c->_module_id,
         page_modules   => $page_modules->view_data,
     );
     $c->render(template => 'o_l_c_admin/page/editor');

@@ -3,8 +3,8 @@
 % title 'Admin: Edit online course module page';
 %= include 'admin/parts/menu', page_id => 'admin.olc';
 Back to:
-<a href="<%= url_for('crp.olcadmin.course.edit')->query(course_id => $course_id) %>">Course</a>
-<a href="<%= url_for('crp.olcadmin.module.edit')->query(course_id => $course_id, module_id => $module_id) %>">Module</a>
+<a href="<%= url_for('crp.olcadmin.course.edit')->query(course_id => $olc_course_id) %>">Course</a>
+<a href="<%= url_for('crp.olcadmin.module.edit')->query(course_id => $olc_course_id, module_id => $olc_module_id) %>">Module</a>
 % if($page->{id}) {
 <h1>Edit online course module page</h1>
 This page is in use in <%= scalar @$page_modules %> module(s) - see below.
@@ -16,8 +16,8 @@ This page is in use in <%= scalar @$page_modules %> module(s) - see below.
     <fieldset>
         <legend>Online course module page details</legend>
         %= hidden_field 'page_id' => $page->{id};
-        %= hidden_field 'module_id' => $module_id;
-        %= hidden_field 'course_id' => $course_id;
+        %= hidden_field 'module_id' => $olc_module_id;
+        %= hidden_field 'course_id' => $olc_course_id;
 
         <label for="name">Name:
             <div class="field-extra-info">Enter a short recognisable name. This is for internal admin use only and is not visible to other users.</div>
@@ -72,8 +72,8 @@ This page is in use in <%= scalar @$page_modules %> module(s) - see below.
         <th colspan="2">Components in this page</th>
         <th align="right">
             %= form_for "crp.olcadmin.page.addcomponent" => (method => 'POST') => begin
-            %= hidden_field 'course_id' => $course_id;
-            %= hidden_field 'module_id' => $module_id;
+            %= hidden_field 'course_id' => $olc_course_id;
+            %= hidden_field 'module_id' => $olc_module_id;
             %= hidden_field 'page_id' => $page->{id};
             %= select_field type => [ ['Please select...' => ''], @$type_options ];
             %= submit_button 'Add', class => 'standard-button';
@@ -87,7 +87,7 @@ This page is in use in <%= scalar @$page_modules %> module(s) - see below.
     <tr>
         <td><%= $component->{name} %></td>
         <td><%= $type_names->{$component->{type}} %></td>
-        <td><a class="small-button" href="<%= url_for('crp.olcadmin.component.edit')->query(course_id => $course_id, module_id => $module_id, page_id => $page->{id}, component_id => $component->{id}) %>">Edit</a></td>
+        <td><a class="small-button" href="<%= url_for('crp.olcadmin.component.edit')->query(course_id => $olc_course_id, module_id => $olc_module_id, page_id => $page->{id}, component_id => $component->{id}) %>">Edit</a></td>
     </tr>
     %   }
     % } else {

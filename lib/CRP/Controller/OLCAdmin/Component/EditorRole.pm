@@ -12,9 +12,9 @@ sub _display_component_editor {
 
     $c->stash(
         component      => $c->_component->view_data,
-        page_id        => $c->_page_id,
-        course_id      => $c->_course_id,
-        module_id      => $c->_module_id,
+        olc_page_id    => $c->_page_id,
+        olc_course_id  => $c->_course_id,
+        olc_module_id  => $c->_module_id,
         page_modules   => $page_modules->view_data,
     );
     $c->render(template => $template);

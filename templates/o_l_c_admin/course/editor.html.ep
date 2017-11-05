@@ -4,11 +4,11 @@
 %= include 'admin/parts/menu', page_id => 'admin.olc';
 %
 % my $action_button = begin
-% my($action, $label, $module_id, $disabled) = @_;
+% my($action, $label, $olc_module_id, $disabled) = @_;
 <div style="display: inline-block">
     %= form_for "crp.olcadmin.course.module.$action" => (method => 'POST') => begin
     %= hidden_field 'course_id' => $course->{id};
-    %= hidden_field 'module_id' => $module_id;
+    %= hidden_field 'module_id' => $olc_module_id;
     %= submit_button $label, class => 'small-button', $disabled ? (disabled => 'disabled') : ();
     %= end
 </div>

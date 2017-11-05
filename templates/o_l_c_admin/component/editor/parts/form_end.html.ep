@@ -1,0 +1,19 @@
+%#<!DOCTYPE html>
+
+        <label>Make sure you save your changes:</label>
+        <div class="input-container">
+            %= submit_button 'Save'
+            <%= include 'parts/error', field => '_general' %>
+            <%= include 'parts/temporary_message', msg => flash 'msg' %>
+        </div>
+    </fieldset>
+
+    <h2>Modules using the page this component is on</h2>
+    <p>
+    Changing this component will affect all the modules it is included in, which are:
+    <ul>
+        % foreach my $module (@$page_modules) {
+        <li><%= $module->{name} %></li>
+        % }
+    </ul>
+    </p>

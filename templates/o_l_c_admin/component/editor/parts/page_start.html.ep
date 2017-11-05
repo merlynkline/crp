@@ -1,0 +1,9 @@
+%#<!DOCTYPE html>
+% title 'Admin: Edit online course module page ' . $component_name;
+%= include 'admin/parts/menu', page_id => 'admin.olc';
+Back to:
+<a href="<%= url_for('crp.olcadmin.course.edit')->query(course_id => $olc_course_id) %>">Course</a>
+<a href="<%= url_for('crp.olcadmin.module.edit')->query(course_id => $olc_course_id, module_id => $olc_module_id) %>">Module</a>
+<a href="<%= url_for('crp.olcadmin.page.edit')->query(course_id => $olc_course_id, olc_module_id => $olc_module_id, page_id => $olc_page_id) %>">Page</a>
+<h1>Edit online course module page <%= $component_name %></h1>
+<%= include 'parts/message_box', msg => flash('msg') || stash('msg'), auto_hide => 1 %>

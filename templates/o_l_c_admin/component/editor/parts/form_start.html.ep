@@ -1,0 +1,16 @@
+%#<!DOCTYPE html>
+    <fieldset>
+        <legend>Online course module page heading details</legend>
+        %= hidden_field 'component_id' => $component->{id};
+        %= hidden_field 'page_id' => $olc_page_id;
+        %= hidden_field 'module_id' => $olc_module_id;
+        %= hidden_field 'course_id' => $olc_course_id;
+
+        <label for="name">Name:
+            <div class="field-extra-info">Enter a short recognisable name. This is for internal admin use only and is not visible to other users.</div>
+        </label>
+        <div class="input-container">
+            %= text_field 'name', id => 'name', autofocus => 'autofocus', required => 'required', value => $component->{name}, maxlength => 50;
+            <%= include 'parts/error', field => 'name' %>
+        </div>
+

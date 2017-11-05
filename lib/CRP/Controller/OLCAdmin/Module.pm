@@ -120,7 +120,7 @@ sub _display_module_editor {
     my $module_courses = CRP::Model::OLC::CourseSet::WithModule->new(module_id => $module->id, dbh => $c->crp->model);
     $c->stash(
         module         => $module->view_data,
-        course_id      => $c->_course_id,
+        olc_course_id  => $c->_course_id,
         module_courses => $module_courses->view_data,
     );
     $c->render(template => 'o_l_c_admin/module/editor');

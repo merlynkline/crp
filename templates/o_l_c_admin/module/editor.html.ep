@@ -4,19 +4,19 @@
 %= include 'admin/parts/menu', page_id => 'admin.olc';
 %
 % my $action_button = begin
-% my($action, $label, $page_id, $disabled) = @_;
+% my($action, $label, $olc_page_id, $disabled) = @_;
 <div style="display: inline-block">
     %= form_for "crp.olcadmin.module.page.$action" => (method => 'POST') => begin
-    %= hidden_field 'course_id' => $course_id;
+    %= hidden_field 'course_id' => $olc_course_id;
     %= hidden_field 'module_id' => $module->{id};
-    %= hidden_field 'page_id' => $page_id;
+    %= hidden_field 'page_id' => $olc_page_id;
     %= submit_button $label, class => 'small-button', $disabled ? (disabled => 'disabled') : ();
     %= end
 </div>
 % end
 %
 Back to:
-<a href="<%= url_for('crp.olcadmin.course.edit')->query(course_id => $course_id) %>">Course</a>
+<a href="<%= url_for('crp.olcadmin.course.edit')->query(course_id => $olc_course_id) %>">Course</a>
 % if($module->{id}) {
 <h1>Edit online course module</h1>
 This module is in use in <%= scalar @$module_courses %> course(s) - see below.
@@ -28,7 +28,7 @@ This module is in use in <%= scalar @$module_courses %> course(s) - see below.
     <fieldset>
         <legend>Online course module details</legend>
         %= hidden_field 'module_id' => $module->{id};
-        %= hidden_field 'course_id' => $course_id;
+        %= hidden_field 'course_id' => $olc_course_id;
 
         <label for="name">Name:
             <div class="field-extra-info">Enter a short recognisable name. This is for internal admin use only and is not visible to other users.</div>
@@ -74,7 +74,7 @@ This module is in use in <%= scalar @$module_courses %> course(s) - see below.
 <table class="list1">
     <tr>
         <th colspan="2">Pages in this module</th>
-        <th class="text-right"><span class="standard-button"><a title="Add a new page" href="<%= url_for('crp.olcadmin.module.pickpages')->query(course_id => $course_id, module_id => $module->{id}) %>">Add</a></span></th>
+        <th class="text-right"><span class="standard-button"><a title="Add a new page" href="<%= url_for('crp.olcadmin.module.pickpages')->query(course_id => $olc_course_id, module_id => $module->{id}) %>">Add</a></span></th>
     </tr>
     <tr><th>Title</th><th class="text-right">Components</th><th></th></tr>
     % if(@{$module->{pages}}) {
@@ -88,7 +88,7 @@ This module is in use in <%= scalar @$module_courses %> course(s) - see below.
         <td title="<%= $page->{notes} %>"><%= $page->{name} %></td>
         <td class="text-right"><%= scalar @{$page->{components}} %></td>
         <td class="hover-controls hidden">
-            <a class="small-button" href="<%= url_for('crp.olcadmin.page.edit')->query(course_id => $course_id, page_id => $page->{id}, module_id => $module->{id}) %>">Edit</a>
+            <a class="small-button" href="<%= url_for('crp.olcadmin.page.edit')->query(course_id => $olc_course_id, page_id => $page->{id}, module_id => $module->{id}) %>">Edit</a>
             %= $action_button->('moveup',   'Up',   $page->{id}, $is_first);
             %= $action_button->('movedown', 'Down', $page->{id}, $is_last);
             %= $action_button->('delete',   'Del',  $page->{id});
