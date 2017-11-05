@@ -1,0 +1,4 @@
+
+" Add to path to make automatic file opening more useful
+set path +=lib
+
