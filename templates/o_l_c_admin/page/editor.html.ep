@@ -2,6 +2,20 @@
 % layout 'member_default', heading => 'Admin: Edit online course module page', page_id => 'admin';
 % title 'Admin: Edit online course module page';
 %= include 'admin/parts/menu', page_id => 'admin.olc';
+%
+% my $action_button = begin
+% my($action, $label, $olc_component_id, $disabled) = @_;
+<div style="display: inline-block">
+    %= form_for "crp.olcadmin.page.component.$action" => (method => 'POST') => begin
+    %= hidden_field 'course_id' => $olc_course_id;
+    %= hidden_field 'module_id' => $olc_module_id;
+    %= hidden_field 'page_id' => $page->{id};
+    %= hidden_field 'component_id' => $olc_component_id;
+    %= submit_button $label, class => 'small-button', $disabled ? (disabled => 'disabled') : ();
+    %= end
+</div>
+% end
+%
 Back to:
 <a href="<%= url_for('crp.olcadmin.course.edit')->query(course_id => $olc_course_id) %>">Course</a>
 <a href="<%= url_for('crp.olcadmin.module.edit')->query(course_id => $olc_course_id, module_id => $olc_module_id) %>">Module</a>
@@ -71,7 +85,7 @@ This page is in use in <%= scalar @$page_modules %> module(s) - see below.
     <tr>
         <th colspan="2">Components in this page</th>
         <th align="right">
-            %= form_for "crp.olcadmin.page.addcomponent" => (method => 'POST') => begin
+            %= form_for "crp.olcadmin.page.component.add" => (method => 'POST') => begin
             %= hidden_field 'course_id' => $olc_course_id;
             %= hidden_field 'module_id' => $olc_module_id;
             %= hidden_field 'page_id' => $page->{id};
@@ -83,17 +97,38 @@ This page is in use in <%= scalar @$page_modules %> module(s) - see below.
     </tr>
     <tr><th>Title</th><th>Type</th><th></th></tr>
     % if(@{$page->{components}}) {
+    %   my $is_first = 1;
+    %   my $is_last = 0;
+    %   my $counter = 0;
     %   foreach my $component (@{$page->{components}}) {
-    <tr>
+    %     $counter++;
+    %     $is_last = $counter == @{$page->{components}};
+    <tr class="hover-controls">
         <td><%= $component->{name} %></td>
         <td><%= $type_names->{$component->{type}} %></td>
-        <td><a class="small-button" href="<%= url_for('crp.olcadmin.component.edit')->query(course_id => $olc_course_id, module_id => $olc_module_id, page_id => $page->{id}, component_id => $component->{id}) %>">Edit</a></td>
+        <td class="hover-controls hidden">
+            <a class="small-button" href="<%= url_for('crp.olcadmin.component.edit')->query(course_id => $olc_course_id, module_id => $olc_module_id, page_id => $page->{id}, component_id => $component->{id}) %>">Edit</a>
+            %= $action_button->('moveup',   'Up',   $component->{id}, $is_first);
+            %= $action_button->('movedown', 'Down', $component->{id}, $is_last);
+            %= $action_button->('delete',   'Del',  $component->{id});
+        </td>
     </tr>
+    %     $is_first = 0;
     %   }
     % } else {
     <tr><td colspan=3>(No components defined)</td></tr>
     % }
 </table>
+<script>
+    $('tr.hover-controls').hover(
+        function() {
+            $("td.hover-controls", this).removeClass('hidden');
+        },
+        function() {
+            $("td.hover-controls", this).addClass('hidden');
+        }
+    )
+</script>
 <h2>Modules using this page</h2>
 <p>
 Changing this page will affect all the modules it is included in, which are:

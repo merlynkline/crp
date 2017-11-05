@@ -165,7 +165,10 @@ sub startup {
     my $olc_admin_page = $olc_admin->under('/page');
     $olc_admin_page->any('/')->to('o_l_c_admin-page#edit')->name('crp.olcadmin.page.edit');
     $olc_admin_page->post('save')->to('o_l_c_admin-page#save')->name('crp.olcadmin.page.save');
-    $olc_admin_page->any('addcomponent')->to('o_l_c_admin-page#addcomponent')->name('crp.olcadmin.page.addcomponent');
+    $olc_admin_page->any('addcomponent')->to('o_l_c_admin-page#addcomponent')->name('crp.olcadmin.page.component.add');
+    $olc_admin_page->post('componentup')->to('o_l_c_admin-page#componentup')->name('crp.olcadmin.page.component.moveup');
+    $olc_admin_page->post('componentdown')->to('o_l_c_admin-page#componentdown')->name('crp.olcadmin.page.component.movedown');
+    $olc_admin_page->post('componentdelete')->to('o_l_c_admin-page#componentdelete')->name('crp.olcadmin.page.component.delete');
     my $olc_admin_component = $olc_admin->under('/component');
     $olc_admin_component->any('/edit')->to('o_l_c_admin-component#edit')->name('crp.olcadmin.component.edit');
     $olc_admin_component->any('/heading/edit')->to('o_l_c_admin-component-heading#edit')->name('crp.olcadmin.component.heading.edit');

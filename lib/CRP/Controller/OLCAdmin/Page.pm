@@ -10,6 +10,7 @@ with 'CRP::Controller::OLCAdmin::EditorRole';
 use CRP::Model::OLC::Page;
 use CRP::Model::OLC::PageSet;
 use CRP::Model::OLC::ModuleSet::WithPage;
+use CRP::Model::OLC::ComponentSet::ForPage;
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 sub edit {
@@ -59,6 +60,7 @@ sub addcomponent {
                     type        => $component_type,
                     olc_page_id => $c->_page_id,
                 });
+            $component->build_order($c->_page_component_set->max_order + 1);
             $component->create_or_update;
         }
         catch {
@@ -81,6 +83,36 @@ sub addcomponent {
         component_id => $component->id,
     );
     return $c->redirect_to($url);
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub componentup {
+    my $c = shift;
+
+    $c->_page_component_set->move_up($c->_component_id);
+    $c->_restart_editor;
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub componentdown {
+    my $c = shift;
+
+    $c->_page_component_set->move_down($c->_component_id);
+    $c->_restart_editor;
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub componentdelete {
+    my $c = shift;
+
+    $c->_page_component_set->delete($c->_component_id);
+    $c->_restart_editor;
+}
+
+sub _page_component_set {
+    my $c = shift;
+
+    return CRP::Model::OLC::ComponentSet::ForPage->new(page_id => $c->_page_id, dbh => $c->crp->model);
 }
 
 sub _restart_editor {

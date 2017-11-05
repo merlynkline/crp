@@ -1,6 +1,7 @@
 
 + Outstanding tasks for OLC admin:
-    + Duplicates in component editor templates
+    + page preview
+    + more component types
     + CRP::Model::OLC::Component::view_data() smells of a missing object layer
     + Common code in these modules:
         - ComponentSet/ForPage.pm
