@@ -23,21 +23,19 @@ use constant {
 
 enum ComponentType => [keys %{_TYPES()}];
 
-has type        => (is => 'ro', isa => 'Maybe[ComponentType]');
-has olc_page_id => (is => 'ro', isa => 'Maybe[Int]');
-has id          => (is => 'ro', isa => 'Maybe[Str]', writer => '_set_id');
-has dbh         => (is => 'ro', required => 1);
+has _type        => (is => 'ro', isa => 'Maybe[ComponentType]', init_arg => 'type');
+has _olc_page_id => (is => 'ro', isa => 'Maybe[Int]',           init_arg => 'olc_page_id');
+has id           => (is => 'ro', isa => 'Maybe[Str]', writer => '_set_id');
+has dbh          => (is => 'ro', required => 1);
 
 has _component => (is => 'ro', lazy => 1, builder => '_build_component', init_arg => undef, handles => [qw(
-    name build_order data_version data
+    name build_order data_version data olc_page_id type
     view_data
 )]);
 
 sub create_or_update {
     my $self = shift;
 
-    $self->_component->olc_page_id($self->olc_page_id);
-    $self->_component->type($self->type);
     $self->_component->create_or_update;
     $self->_set_id($self->_component->id);
 }
@@ -45,7 +43,12 @@ sub create_or_update {
 sub _build_component {
     my $self = shift;
 
-    return CRP::Model::OLC::UntypedComponent->new({dbh => $self->dbh, id => $self->id});
+    my $component = CRP::Model::OLC::UntypedComponent->new({dbh => $self->dbh, id => $self->id});
+    unless($self->id) {
+        $component->olc_page_id($self->_olc_page_id);
+        $component->type($self->_type);
+    }
+    return $component;
 }
 
 sub BUILD {

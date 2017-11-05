@@ -29,6 +29,13 @@ sub _collect_input {
     }
 }
 
+sub _component_id {
+    my $c = shift;
+
+    my $component_id = $c->param('component_id');
+    return $component_id;
+}
+
 sub _page_id {
     my $c = shift;
 
