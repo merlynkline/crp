@@ -47,6 +47,9 @@ sub view_data {
     if($type eq 'HEADING') {
         $data->{heading_text} = $self->_component->data;
     }
+    elsif($type eq 'PARAGRAPH') {
+        $data->{paragraph_text} = $self->_component->data;
+    }
 
     return $data;
 }
