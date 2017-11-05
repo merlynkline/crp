@@ -11,13 +11,13 @@ use constant {
     _DB_FIELDS      => [qw(name build_order data_version data type olc_page_id)],
     _TYPES          => {
         HEADING         => 1,
-#        PARAGRAPH       => 1,
-#        IMAGE           => 1,
-#        VIDEO           => 1,
-#        PDF             => 1,
-#        COURSE_IDX      => 1,
-#        MODULE_IDX      => 1,
-#        TEST            => 1,
+        PARAGRAPH       => 1,
+        IMAGE           => 1,
+        VIDEO           => 1,
+        PDF             => 1,
+        COURSE_IDX      => 1,
+        MODULE_IDX      => 1,
+        TEST            => 1,
     },
 };
 
@@ -30,7 +30,6 @@ has dbh          => (is => 'ro', required => 1);
 
 has _component => (is => 'ro', lazy => 1, builder => '_build_component', init_arg => undef, handles => [qw(
     name build_order data_version data olc_page_id type
-    view_data
 )]);
 
 sub create_or_update {
@@ -38,6 +37,18 @@ sub create_or_update {
 
     $self->_component->create_or_update;
     $self->_set_id($self->_component->id);
+}
+
+sub view_data {
+    my $self = shift;
+
+    my $data = $self->_component->view_data;
+    my $type = $self->type // '';
+    if($type eq 'HEADING') {
+        $data->{heading_text} = $self->_component->data;
+    }
+
+    return $data;
 }
 
 sub _build_component {

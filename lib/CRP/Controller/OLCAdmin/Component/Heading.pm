@@ -16,6 +16,16 @@ sub edit {
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+sub save {
+    my $c = shift;
+
+    my $component = $c->_component;
+    $component->data_version(1);
+    $component->name($c->crp->trimmed_param('name'));
+    $component->data($c->crp->trimmed_param('heading_text'));
+    $component->create_or_update;
+    $c->_return_to_page_editor;
+}
 
 1;
 

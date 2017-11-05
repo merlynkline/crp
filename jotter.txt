@@ -1,9 +1,12 @@
 
-+ Common code in these modules:
-	- ComponentSet/ForPage.pm
-	- ModuleSet/ForCourse.pm
-	- PageSet/ForModule.pm
-
++ Outstanding tasks for OLC admin:
+    + Common code in these modules:
+        - ComponentSet/ForPage.pm
+        - ModuleSet/ForCourse.pm
+        - PageSet/ForModule.pm
+    + Adding a new page component should always result in a redirect, even on error
+    + Landing page editor for courses and modules (perhaps just say the first page [of the first module] is it?)
+    + Object model causes lots of unnecessary repoeated calls to methods, e.g. loading a page component editor calls the view_data method for all the components on the page lots of times
 
 - Projects
     - Course material for 20th September combined AN/standard course
