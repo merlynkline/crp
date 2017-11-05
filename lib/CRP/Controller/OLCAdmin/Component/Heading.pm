@@ -12,8 +12,7 @@ use CRP::Model::OLC::Component;
 sub edit {
     my $c = shift;
 
-    my $component = CRP::Model::OLC::Component->new({dbh => $c->crp->model, id => $c->_component_id});
-    $c->render(text => "Edit heading");
+    $c->_display_component_editor('o_l_c_admin/component/editor/heading');
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

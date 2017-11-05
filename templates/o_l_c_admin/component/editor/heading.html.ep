@@ -1,0 +1,52 @@
+%#<!DOCTYPE html>
+% layout 'member_default', heading => 'Admin: Edit online course module page heading', page_id => 'admin';
+% title 'Admin: Edit online course module page heading';
+%= include 'admin/parts/menu', page_id => 'admin.olc';
+Back to:
+<a href="<%= url_for('crp.olcadmin.course.edit')->query(course_id => $course_id) %>">Course</a>
+<a href="<%= url_for('crp.olcadmin.module.edit')->query(course_id => $course_id, module_id => $module_id) %>">Module</a>
+<a href="<%= url_for('crp.olcadmin.page.edit')->query(course_id => $course_id, module_id => $module_id, page_id => $page_id) %>">Page</a>
+<h1>Edit online course module page heading</h1>
+<%= include 'parts/message_box', msg => flash('msg') || stash('msg'), auto_hide => 1 %>
+%= form_for 'crp.olcadmin.component.heading.save' => (method => 'POST') => begin
+    <fieldset>
+        <legend>Online course module page heading details</legend>
+        %= hidden_field 'component_id' => $component->{id};
+        %= hidden_field 'page_id' => $page_id;
+        %= hidden_field 'module_id' => $module_id;
+        %= hidden_field 'course_id' => $course_id;
+
+        <label for="name">Name:
+            <div class="field-extra-info">Enter a short recognisable name. This is for internal admin use only and is not visible to other users.</div>
+        </label>
+        <div class="input-container">
+            %= text_field 'name', id => 'name', autofocus => 'autofocus', required => 'required', value => $component->{name}, maxlength => 50;
+            <%= include 'parts/error', field => 'name' %>
+        </div>
+
+        <label for="title">Heading text:
+            <div class="field-extra-info">The text of the heading.</div>
+        </label>
+        <div class="input-container">
+            %= text_field 'heading_text', id => 'heading_text', required => 'required', value => $component->{heading_text}, maxlength => 50;
+            <%= include 'parts/error', field => 'heading_text' %>
+        </div>
+
+        <label>Make sure you save your changes:</label>
+        <div class="input-container">
+            %= submit_button 'Save'
+            <%= include 'parts/error', field => '_general' %>
+            <%= include 'parts/temporary_message', msg => flash 'msg' %>
+        </div>
+    </fieldset>
+
+    <h2>Modules using the page this component is on</h2>
+    <p>
+    Changing this component will affect all the modules it is included in, which are:
+    <ul>
+        % foreach my $module (@$page_modules) {
+        <li><%= $module->{name} %></li>
+        % }
+    </ul>
+    </p>
+% }
