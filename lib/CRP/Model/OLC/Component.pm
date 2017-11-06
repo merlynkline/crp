@@ -46,9 +46,14 @@ sub view_data {
     my $type = $self->type // '';
     if($type eq 'HEADING') {
         $data->{heading_text} = $self->_component->data;
+        $data->{preview} = substr $self->_component->data, 0, 50;
     }
     elsif($type eq 'PARAGRAPH') {
         $data->{paragraph_text} = $self->_component->data;
+        my $preview = $self->_component->data;
+        $preview =~ s/<.*?>/ /g;
+        $preview =~ s/\&.*?;/ /g;
+        $data->{preview} = substr $preview, 0, 50;
     }
 
     return $data;

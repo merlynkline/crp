@@ -1,0 +1,3 @@
+%#<!DOCTYPE html>
+<div class="olc-paragraph"><%== $component->{paragraph_text} %></div>
+

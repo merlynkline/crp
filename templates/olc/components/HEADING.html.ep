@@ -1,0 +1,2 @@
+%#<!DOCTYPE html>
+<h2><%= $component->{heading_text} %></h2>
