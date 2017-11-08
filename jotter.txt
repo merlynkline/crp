@@ -10,6 +10,21 @@
     + Adding a new page component should always result in a redirect, even on error
     + Landing page editor for courses and modules (perhaps just say the first page [of the first module] is it?)
     + Object model causes lots of unnecessary repoeated calls to methods, e.g. loading a page component editor calls the view_data method for all the components on the page lots of times
+- OLC Admin: Adding a new page object type
+    - Make sure it's in the template templates/o_l_c_admin/parts/component_types.html.ep
+    - In lib/CRP/Model/OLC/Component.pm
+        - Add to the valid _TYPES list
+        - Add a view data extractor to view_data()
+    - Add the route in lib/CRP/Controller/OLCAdmin/Component.pm
+    - Create a new module lib/CRP/Controller/OLCAdmin/Component/<type>.pm
+        - save()
+        - edit()
+    - Create new template(s) for editor, e.g: o_l_c_admin/component/editor/<type>.html.ep
+    - Add routes to the new module in lib/CRP/pm:
+        - crp.olcadmin.component.<route>.edit
+        - crp.olcadmin.component.<route>.save
+    - Add a template templates/olc/components/<TYPE>.html.ep
+
 
 - Projects
     - Course material for 20th September combined AN/standard course

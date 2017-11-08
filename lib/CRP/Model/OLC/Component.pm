@@ -18,6 +18,7 @@ use constant {
         COURSE_IDX      => 1,
         MODULE_IDX      => 1,
         TEST            => 1,
+        MARKDOWN        => 1,
     },
 };
 
@@ -53,6 +54,13 @@ sub view_data {
         my $preview = $self->_component->data;
         $preview =~ s/<.*?>/ /g;
         $preview =~ s/\&.*?;/ /g;
+        $preview =~ s/\s+/ /g;
+        $data->{preview} = substr $preview, 0, 50;
+    }
+    elsif($type eq 'MARKDOWN') {
+        $data->{markdown_text} = $self->_component->data;
+        my $preview = $self->_component->data;
+        $preview =~ s/\s+/ /g;
         $data->{preview} = substr $preview, 0, 50;
     }
 

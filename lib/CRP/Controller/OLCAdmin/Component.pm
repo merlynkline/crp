@@ -15,6 +15,7 @@ sub edit {
     my $route = {
         HEADING   => 'heading',
         PARAGRAPH => 'paragraph',
+        MARKDOWN  => 'markdown',
     }->{$component->type};
     die "Don't know how to edit component type '" . $component->type . "'" unless $route;
     return $c->redirect_to($c->url_for("crp.olcadmin.component.$route.edit")->query(

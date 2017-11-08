@@ -1,0 +1,8 @@
+
+%#<!DOCTYPE html>
+<div class="olc-paragraph" markdown="yes">
+%=markdown begin
+%= $component->{markdown_text}
+% end
+</div>
+

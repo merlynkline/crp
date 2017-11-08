@@ -1,0 +1,18 @@
+
+%#<!DOCTYPE html>
+% layout 'member_default', heading => 'Admin: Edit online course module page markdown text', page_id => 'admin';
+%= include 'o_l_c_admin/component/editor/parts/page_start', component_name => 'markdown';
+%= form_for 'crp.olcadmin.component.markdown.save' => (method => 'POST') => begin
+%= include 'o_l_c_admin/component/editor/parts/form_start';
+
+        <label for="title">Markdown text:
+            <div class="field-extra-info">The text of the markdown.</div>
+        </label>
+        <div class="input-container">
+            %= text_area 'markdown_text' => $component->{markdown_text}, rows => '8', cols => '45', id => 'markdown_text';
+            <%= include 'parts/error', field => 'markdown_text' %>
+        </div>
+
+%= include 'o_l_c_admin/component/editor/parts/form_end';
+% end
+
