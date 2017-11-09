@@ -58,13 +58,13 @@
         {action => 'text', text => '[% attendee_name_7 %]',  x => 55, y => 263, size => 12},  {action => 'text', text => '[% attendee_phone_7 %]',  x => 285, y => 263, size => 12},
         {action => 'text', text => '[% attendee_name_8 %]',  x => 55, y => 241, size => 12},  {action => 'text', text => '[% attendee_phone_8 %]',  x => 285, y => 241, size => 12},
         {action => 'text', text => '[% attendee_name_9 %]',  x => 55, y => 219, size => 12},  {action => 'text', text => '[% attendee_phone_9 %]',  x => 285, y => 219, size => 12},
-        {action => 'text', text => '[% attendee_name_10 %]', x => 55, y => 329, size => 12},  {action => 'text', text => '[% attendee_phone_10 %]', x => 285, y => 329, size => 12},
-        {action => 'text', text => '[% attendee_name_11 %]', x => 55, y => 197, size => 12},  {action => 'text', text => '[% attendee_phone_11 %]', x => 285, y => 197, size => 12},
-        {action => 'text', text => '[% attendee_name_12 %]', x => 55, y => 175, size => 12},  {action => 'text', text => '[% attendee_phone_12 %]', x => 285, y => 175, size => 12},
-        {action => 'text', text => '[% attendee_name_13 %]', x => 55, y => 153, size => 12},  {action => 'text', text => '[% attendee_phone_13 %]', x => 285, y => 153, size => 12},
-        {action => 'text', text => '[% attendee_name_14 %]', x => 55, y => 131, size => 12},  {action => 'text', text => '[% attendee_phone_14 %]', x => 285, y => 131, size => 12},
-        {action => 'text', text => '[% attendee_name_15 %]', x => 55, y => 109, size => 12},  {action => 'text', text => '[% attendee_phone_15 %]', x => 285, y => 109, size => 12},
-        {action => 'text', text => '[% attendee_name_16 %]', x => 55, y =>  87, size => 12},  {action => 'text', text => '[% attendee_phone_16 %]', x => 285, y =>  87, size => 12},
+        {action => 'text', text => '[% attendee_name_10 %]', x => 55, y => 197, size => 12},  {action => 'text', text => '[% attendee_phone_10 %]', x => 285, y => 197, size => 12},
+        {action => 'text', text => '[% attendee_name_11 %]', x => 55, y => 175, size => 12},  {action => 'text', text => '[% attendee_phone_11 %]', x => 285, y => 175, size => 12},
+        {action => 'text', text => '[% attendee_name_12 %]', x => 55, y => 153, size => 12},  {action => 'text', text => '[% attendee_phone_12 %]', x => 285, y => 153, size => 12},
+        {action => 'text', text => '[% attendee_name_13 %]', x => 55, y => 131, size => 12},  {action => 'text', text => '[% attendee_phone_13 %]', x => 285, y => 131, size => 12},
+        {action => 'text', text => '[% attendee_name_14 %]', x => 55, y => 109, size => 12},  {action => 'text', text => '[% attendee_phone_14 %]', x => 285, y => 109, size => 12},
+        {action => 'text', text => '[% attendee_name_15 %]', x => 55, y =>  87, size => 12},  {action => 'text', text => '[% attendee_phone_15 %]', x => 285, y =>  87, size => 12},
+        {action => 'text', text => '[% attendee_name_16 %]', x => 55, y =>  65, size => 12},  {action => 'text', text => '[% attendee_phone_16 %]', x => 285, y =>  65, size => 12},
     ]
 }
 
