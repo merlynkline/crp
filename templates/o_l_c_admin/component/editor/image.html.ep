@@ -1,0 +1,26 @@
+%#<!DOCTYPE html>
+% layout 'member_default', heading => 'Admin: Edit online course module page image', page_id => 'admin';
+%= include 'o_l_c_admin/component/editor/parts/page_start', component_name => 'image';
+%= form_for 'crp.olcadmin.component.image.save' => (method => 'POST') => begin
+%= include 'o_l_c_admin/component/editor/parts/form_start';
+
+        <label for="image_format">Image position:
+        </label>
+        <div class="input-container">
+            % my $current_format = $component->{image_format};
+            % my @format_options;
+            % foreach my $option (
+            %    ['Large centre', 'FULL'],
+            %    ['Small right',  'RIGHT'],
+            %    ['Small left',   'LEFT'],
+            % ) {
+            %   push @$option, selected => 'selected' if $current_format eq $option->[1];
+            %   push @format_options, $option;
+            % }
+            %= select_field image_format => \@format_options, id => 'image_format';
+            <%= include 'parts/error', field => 'image_format' %>
+        </div>
+
+%= include 'o_l_c_admin/component/editor/parts/form_end';
+% end
+

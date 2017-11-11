@@ -1,0 +1,8 @@
+%#<!DOCTYPE html>
+% my $path = $component->{image_path} || 'system/missing.jpg';
+% $path = url_for('/images/olc/' . $path);
+% my $class = $component->{image_format} // '';
+% $class = $class eq 'LEFT'  ? 'small-left'
+%        : $class eq 'RIGHT' ? 'small-right'
+%        : 'full';
+<img src="<%= $path %>"<%== $class ? qq{ class="olc-img-$class"} : '' %>>

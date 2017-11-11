@@ -1,9 +1,12 @@
 package CRP::Model::OLC::Component;
+# TODO:Break this up into a module per component type
 use Moose;
 use Moose::Util::TypeConstraints;
 use namespace::autoclean;
 
 use Carp;
+
+use Mojo::JSON qw(decode_json encode_json);
 
 use CRP::Model::OLC::UntypedComponent;
 use CRP::Model::OLC::Course;
@@ -32,7 +35,7 @@ has id           => (is => 'ro', isa => 'Maybe[Str]', writer => '_set_id');
 has dbh          => (is => 'ro', required => 1);
 
 has _component => (is => 'ro', lazy => 1, builder => '_build_component', init_arg => undef, handles => [qw(
-    name build_order data_version data olc_page_id type
+    name build_order data_version olc_page_id type
 )]);
 
 sub create_or_update {
@@ -49,20 +52,18 @@ sub view_data {
     my $data = $self->_component->view_data;
     my $type = $self->type // '';
     if($type eq 'HEADING') {
-        $data->{heading_text} = $self->_component->data;
-        $data->{preview} = substr $self->_component->data, 0, 50;
+        my $preview = $data->{heading_text} = $self->data;
+        $data->{preview} = substr $preview, 0, 50;
     }
     elsif($type eq 'PARAGRAPH') {
-        $data->{paragraph_text} = $self->_component->data;
-        my $preview = $self->_component->data;
+        my $preview = $data->{paragraph_text} = $self->data;
         $preview =~ s/<.*?>/ /g;
         $preview =~ s/\&.*?;/ /g;
         $preview =~ s/\s+/ /g;
         $data->{preview} = substr $preview, 0, 50;
     }
     elsif($type eq 'MARKDOWN') {
-        $data->{markdown_text} = $self->_component->data;
-        my $preview = $self->_component->data;
+        my $preview = $data->{markdown_text} = $self->data;
         $preview =~ s/\s+/ /g;
         $data->{preview} = substr $preview, 0, 50;
     }
@@ -76,7 +77,36 @@ sub view_data {
         $data->{module} = $module_context->view_data;
         $data->{preview} = $module_context->name;
     }
+    elsif($type eq 'IMAGE') {
+        my $component_data = $self->data;
+        my $preview = $data->{image_path} = $component_data->{path} // '';
+        $data->{image_format} = $component_data->{format} // '';
+        $preview =~ s{^.+/}{};
+        $data->{preview} = $preview;
+    }
 
+    return $data;
+}
+
+sub data {
+    my $self = shift;
+
+    my $data;
+    if(@_) {
+        ($data) = @_;
+        my $encoded_data = $data;
+        if($self->type eq 'IMAGE') {
+            $encoded_data = encode_json($data) if $data;
+        }
+        $self->_component->data($encoded_data);
+    }
+    else {
+        $data = $self->_component->data;
+        if($self->type eq 'IMAGE') {
+            $data = decode_json($data) if $data;
+            $data ||= {};
+        }
+    }
     return $data;
 }
 
