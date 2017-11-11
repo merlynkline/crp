@@ -19,7 +19,7 @@ sub view_data {
     my $self = shift;
 
     my $data = $self->SUPER::view_data();
-    $data->{pages} = $self->page_set->view_data;
+    $data->{pages} = $self->page_set->view_data_without_components;
 
     return $data;
 }

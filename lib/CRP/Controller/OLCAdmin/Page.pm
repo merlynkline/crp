@@ -126,9 +126,11 @@ sub _display_page_editor {
     my($page) = @_;
 
     $page = CRP::Model::OLC::Page->new(id => $c->_page_id, dbh => $c->crp->model) unless $page;
+    my $module = CRP::Model::OLC::Module->new(id => $c->_module_id, dbh => $c->crp->model);
+    my $course = CRP::Model::OLC::Course->new(id => $c->_course_id, dbh => $c->crp->model);
     my $page_modules = CRP::Model::OLC::ModuleSet::WithPage->new(page_id => $page->id, dbh => $c->crp->model);
     $c->stash(
-        page           => $page->view_data,
+        page           => $page->view_data($module, $course),
         olc_course_id  => $c->_course_id,
         olc_module_id  => $c->_module_id,
         page_modules   => $page_modules->view_data,

@@ -1,4 +1,23 @@
 
+
+- course
+    - lazy list of modules
+        - lazy list of pages (may include some from other modules)
+            - lazy list of components
+                - component view data may include
+                    - a list of pages in the same module, not including their components
+                    - a list of modules in the same course, each with
+                        - a list of pages in the module, not including their components (possibly with dups from other modules)
+    - Requirements
+        + A way to avoid fetching the same page twice
+        ~ page to get view data without its components
+        ~ module to get view data for its pages without components
+        + course to get view data for its modules (with their pages without components)
+        + component to get view data for its course's modules (with their pages without components)
+        + component to get view data for its module's pages without components
+
+
+
 + Outstanding tasks for OLC admin:
     + page preview
     + more component types
@@ -9,7 +28,7 @@
         - PageSet/ForModule.pm
     + Adding a new page component should always result in a redirect, even on error
     + Landing page editor for courses and modules (perhaps just say the first page [of the first module] is it?)
-    + Object model causes lots of unnecessary repoeated calls to methods, e.g. loading a page component editor calls the view_data method for all the components on the page lots of times
+    + Object model causes lots of unnecessary repeated calls to methods, e.g. loading a page component editor calls the view_data method for all the components on the page lots of times
 - OLC Admin: Adding a new page object type
     - Make sure it's in the template templates/o_l_c_admin/parts/component_types.html.ep
     - In lib/CRP/Model/OLC/Component.pm

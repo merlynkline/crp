@@ -1,0 +1,7 @@
+%#<!DOCTYPE html>
+<ol class="olc-course-idx">
+% foreach my $module (@{$component->{course}->{modules}}) {
+<li><%= $module->{title} %></li>
+%= include 'olc/components/parts/MODULE_IDX', module => $module;
+%}
+</ol>

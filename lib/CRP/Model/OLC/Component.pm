@@ -6,6 +6,8 @@ use namespace::autoclean;
 use Carp;
 
 use CRP::Model::OLC::UntypedComponent;
+use CRP::Model::OLC::Course;
+use CRP::Model::OLC::Module;
 
 use constant {
     _DB_FIELDS      => [qw(name build_order data_version data type olc_page_id)],
@@ -42,6 +44,7 @@ sub create_or_update {
 
 sub view_data {
     my $self = shift;
+    my($module_context, $course_context) = @_;
 
     my $data = $self->_component->view_data;
     my $type = $self->type // '';
@@ -62,6 +65,17 @@ sub view_data {
         my $preview = $self->_component->data;
         $preview =~ s/\s+/ /g;
         $data->{preview} = substr $preview, 0, 50;
+    }
+    elsif($type eq 'COURSE_IDX') {
+        confess "You must supply a course context" unless ref $course_context eq 'CRP::Model::OLC::Course';
+        $data->{course} = $course_context->view_data;
+        $data->{module} = $module_context->view_data;
+        $data->{preview} = $course_context->name;
+    }
+    elsif($type eq 'MODULE_IDX') {
+        confess "You must supply a module context" unless ref $module_context eq 'CRP::Model::OLC::Module';
+        $data->{module} = $module_context->view_data;
+        $data->{preview} = $module_context->name;
     }
 
     return $data;

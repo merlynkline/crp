@@ -11,7 +11,13 @@ use constant {
     _MEMBER_CLASS   => 'CRP::Model::OLC::Page',
 };
 
-__PACKAGE__->meta->make_immutable;
+sub view_data_without_components {
+    my $self = shift;
 
+    return [ map $_->view_data_without_components, @{$self->all} ];
+}
+
+
+__PACKAGE__->meta->make_immutable;
 1;
 

@@ -17,11 +17,18 @@ has component_set => (is => 'ro', lazy => 1, builder => '_build_component_set', 
 
 sub view_data {
     my $self = shift;
+    my($module_context, $course_context) = @_;
 
-    my $data = $self->SUPER::view_data();
-    $data->{components} = $self->component_set->view_data;
+    my $data = $self->view_data_without_components;
+    $data->{components} = $self->component_set->view_data($module_context, $course_context);
 
     return $data;
+}
+
+sub view_data_without_components {
+    my $self = shift;
+
+    return $self->SUPER::view_data;
 }
 
 sub _build_component_set {

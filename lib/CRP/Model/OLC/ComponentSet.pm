@@ -11,6 +11,13 @@ use constant {
     _MEMBER_CLASS   => 'CRP::Model::OLC::Component',
 };
 
+sub view_data {
+    my $self = shift;
+    my($module_context, $course_context) = @_;
+
+    return [ map $_->view_data($module_context, $course_context), @{$self->all} ];
+}
+
 __PACKAGE__->meta->make_immutable;
 
 1;

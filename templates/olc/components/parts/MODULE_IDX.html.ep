@@ -1,0 +1,6 @@
+%#<!DOCTYPE html>
+<ol class="olc-module-idx">
+% foreach my $page (@{$module->{pages}}) {
+    <li><%= $page->{title} %></li>
+% }
+</ol>
