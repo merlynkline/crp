@@ -69,7 +69,6 @@ sub view_data {
     elsif($type eq 'COURSE_IDX') {
         confess "You must supply a course context" unless ref $course_context eq 'CRP::Model::OLC::Course';
         $data->{course} = $course_context->view_data;
-        $data->{module} = $module_context->view_data;
         $data->{preview} = $course_context->name;
     }
     elsif($type eq 'MODULE_IDX') {

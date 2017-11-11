@@ -1,0 +1,10 @@
+
+%#<!DOCTYPE html>
+% layout 'member_default', heading => 'Admin: Edit online course module page module index', page_id => 'admin';
+%= include 'o_l_c_admin/component/editor/parts/page_start', component_name => 'module index';
+%= form_for 'crp.olcadmin.component.moduleidx.save' => (method => 'POST') => begin
+%= include 'o_l_c_admin/component/editor/parts/form_start';
+
+%= include 'o_l_c_admin/component/editor/parts/form_end';
+% end
+

@@ -179,6 +179,8 @@ sub startup {
     $olc_admin_component->post('/markdown/save')->to('o_l_c_admin-component-markdown#save')->name('crp.olcadmin.component.markdown.save');
     $olc_admin_component->any('/courseidx/edit')->to('o_l_c_admin-component-course_i_d_x#edit')->name('crp.olcadmin.component.courseidx.edit');
     $olc_admin_component->post('/courseidx/save')->to('o_l_c_admin-component-course_i_d_x#save')->name('crp.olcadmin.component.courseidx.save');
+    $olc_admin_component->any('/moduleidx/edit')->to('o_l_c_admin-component-module_i_d_x#edit')->name('crp.olcadmin.component.moduleidx.edit');
+    $olc_admin_component->post('/moduleidx/save')->to('o_l_c_admin-component-module_i_d_x#save')->name('crp.olcadmin.component.moduleidx.save');
 
     my $member_site = $r->under('/me/:slug')->to('member_site#identify');
     $member_site->any('/')->to('member_site#welcome')->name('crp.membersite.home');

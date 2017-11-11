@@ -11,7 +11,7 @@ sub _display_component_editor {
     my $page_modules = CRP::Model::OLC::ModuleSet::WithPage->new(page_id => $c->_page_id, dbh => $c->crp->model);
 
     $c->stash(
-        component      => $c->_component->view_data,
+        component      => $c->_component->view_data($c->_module, $c->_course),
         olc_page_id    => $c->_page_id,
         olc_course_id  => $c->_course_id,
         olc_module_id  => $c->_module_id,

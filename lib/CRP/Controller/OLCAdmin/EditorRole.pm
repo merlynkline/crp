@@ -50,11 +50,23 @@ sub _module_id {
     return $module_id;
 }
 
+sub _module {
+    my $c = shift;
+
+    return CRP::Model::OLC::Module->new(id => $c->_module_id, dbh => $c->crp->model);
+}
+
 sub _course_id {
     my $c = shift;
 
     my $course_id = $c->param('course_id');
     return $course_id;
+}
+
+sub _course {
+    my $c = shift;
+
+    return CRP::Model::OLC::Course->new(id => $c->_course_id, dbh => $c->crp->model);
 }
 
 1;
