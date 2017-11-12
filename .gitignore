@@ -7,6 +7,14 @@ devrun
 /premium/test
 
 # Vim files
-Session.vim
 *.swp
 
+# logs
+/log
+
+# Instructors' uploaded photos
+/public/images/Instructors/photos
+!/public/images/Instructors/photos/default.jpg
+
+# Uploaded images for online courses
+/public/images/olc/uploaded
