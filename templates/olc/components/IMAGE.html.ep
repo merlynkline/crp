@@ -1,8 +1,10 @@
 %#<!DOCTYPE html>
-% my $path = $component->{image_path} || 'system/missing.jpg';
-% $path = url_for('/images/olc/' . $path);
+% my $file = $component->{image_file};
+% $file = "uploaded/$file" if $file;
+% $file ||= 'system/missing.jpg';
+% $file = url_for('/olc/images/' . $file);
 % my $class = $component->{image_format} // '';
 % $class = $class eq 'LEFT'  ? 'small-left'
 %        : $class eq 'RIGHT' ? 'small-right'
 %        : 'full';
-<img src="<%= $path %>"<%== $class ? qq{ class="olc-img-$class"} : '' %>>
+<img src="<%= $file %>"<%== $class ? qq{ class="olc-img-$class"} : '' %>>

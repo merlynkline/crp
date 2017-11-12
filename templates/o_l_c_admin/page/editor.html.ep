@@ -162,6 +162,7 @@ Changing this page will affect all the modules it is included in, which are:
         border-radius:  8px;
         margin:         4px auto;
         display:        block;
+        width:          90%;
     }
 
     .olc-content img.olc-img-small-right {

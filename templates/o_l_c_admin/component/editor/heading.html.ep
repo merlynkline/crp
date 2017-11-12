@@ -4,7 +4,7 @@
 %= form_for 'crp.olcadmin.component.heading.save' => (method => 'POST') => begin
 %= include 'o_l_c_admin/component/editor/parts/form_start';
 
-        <label for="title">Heading text:
+        <label for="heading_text">Heading text:
             <div class="field-extra-info">The text of the heading.</div>
         </label>
         <div class="input-container">

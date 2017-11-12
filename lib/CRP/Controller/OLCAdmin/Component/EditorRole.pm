@@ -6,7 +6,7 @@ use CRP::Model::OLC::ModuleSet::WithPage;
 
 sub _display_component_editor {
     my $c = shift;
-    my($template) = @_;
+    my($template, $extra_data) = @_;
 
     my $page_modules = CRP::Model::OLC::ModuleSet::WithPage->new(page_id => $c->_page_id, dbh => $c->crp->model);
 
@@ -16,6 +16,7 @@ sub _display_component_editor {
         olc_course_id  => $c->_course_id,
         olc_module_id  => $c->_module_id,
         page_modules   => $page_modules->view_data,
+        extra_data     => $extra_data,
     );
     $c->render(template => $template);
 }

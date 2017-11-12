@@ -90,6 +90,13 @@ sub register {
         }
     );
 
+    # Online course uploaded image file location within public files
+    $app->helper(
+        'crp.olc_uploaded_image_location' => sub {
+            return 'olc/images/uploaded';
+        }
+    );
+
     # Instructor photo file location within public files
     $app->helper(
         'crp.instructor_photo_location' => sub {

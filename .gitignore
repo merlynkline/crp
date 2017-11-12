@@ -16,5 +16,5 @@ devrun
 /public/images/Instructors/photos
 !/public/images/Instructors/photos/default.jpg
 
-# Uploaded images for online courses
-/public/images/olc/uploaded
+# Uploaded files for online courses
+/public/olc/images/uploaded
