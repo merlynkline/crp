@@ -182,8 +182,17 @@ Changing this page will affect all the modules it is included in, which are:
 <h2>Page preview</h2>
 <div class="olc-content olc-preview-container">
 <div id="edit-controls" style="display: block; position: absolute; top: -1000px; left: -1000px; background: #888; border: 1px solid black; padding: 2px; opacity: 0.75;">
-%= $action_button->('moveup',   'Up',   '', 0, 1);
-%= $action_button->('movedown', 'Down', '', 0, 1);
+    <div style="display: inline-block">
+        %= form_for "crp.olcadmin.component.edit" => (method => 'GET') => begin
+        %= hidden_field 'course_id' => $olc_course_id;
+        %= hidden_field 'module_id' => $olc_module_id;
+        %= hidden_field 'page_id' => $page->{id};
+        %= hidden_field 'component_id' => '', class => 'olc-edit-controls-component-id';
+        %= submit_button 'Edit', class => 'small-button';
+        %= end
+    </div>
+    %= $action_button->('moveup',   'Up',   '', 0, 1);
+    %= $action_button->('movedown', 'Down', '', 0, 1);
 </div>
 % foreach my $component (@{$page->{components}}) {
 %=   include 'olc/components/' . $component->{type}, component => $component, editable => $component->{id};
@@ -191,14 +200,30 @@ Changing this page will affect all the modules it is included in, which are:
 <br clear="both">
 % }
 <script>
+    function highlight_element(element) {
+        $(element).fadeOut(200);
+        $(element).fadeIn(200);
+    }
+
+    var last_editable_component_id = 0;
     $('.editable-component').hover(
         function() {
-            var target = $(this).offset();
-            target.top +=4;
-            target.left +=4;
-            $("#edit-controls").offset(target);
-console.log($(this).attr('editablecomponentid'));
-            $(".olc-edit-controls-component-id").val($(this).attr('editablecomponentid'));
+            var editable_component_id = $(this).attr('editablecomponentid');
+            if(editable_component_id && editable_component_id != last_editable_component_id) {
+                last_editable_component_id = editable_component_id;
+                var target = $(this).offset();
+                target.top +=4;
+                target.left +=4;
+                $("#edit-controls").offset(target);
+                $(".olc-edit-controls-component-id").val(editable_component_id);
+            }
         }
     )
+% if($component_id) {
+    $(document).ready(function() {
+        var element = $("[editablecomponentid='<%= $component_id %>']");
+        $('html,body').animate({scrollTop: element.offset().top - $(window).height() / 2}, 0);
+        highlight_element(element);
+    });
+% }
 </script>
