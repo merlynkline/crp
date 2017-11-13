@@ -32,14 +32,28 @@
 
 %= include 'o_l_c_admin/component/editor/parts/form_end';
 <style>
+.olcadmin-image-picker-container {
+    display:     inline-block;
+    width:       200px;
+    height:      200px;
+    line-height: 200px;
+    text-align:  center;
+    margin:      4px;
+}
 .olcadmin-image-picker {
-    max-width:  200px;
-    max-height: 200px;
-    cursor:     pointer;
+    max-width:      200px;
+    max-height:     200px;
+    cursor:         pointer;
+    display:        inline-block;
+    vertical-align: middle;
+    border:         2px solid #589;
+    border-radius:  4px;
 }
 </style>
 % foreach my $image (@{$extra_data->{files}}) {
+<div class="olcadmin-image-picker-container">
 <img src="<%= $extra_data->{file_base_url} . '/' . $image %>" title="<%= $image %>" class="olcadmin-image-picker">
+</div>
 % }
 <script>
 $('.olcadmin-image-picker').click(function() {
