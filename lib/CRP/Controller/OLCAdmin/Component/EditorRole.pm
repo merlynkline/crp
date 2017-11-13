@@ -31,9 +31,10 @@ sub _return_to_page_editor {
     my $c = shift;
 
     return $c->redirect_to($c->url_for('crp.olcadmin.page.edit')->query(
-        page_id => $c->_page_id,
-        module_id => $c->_module_id,
-        course_id => $c->_course_id
+        page_id      => $c->_page_id,
+        module_id    => $c->_module_id,
+        course_id    => $c->_course_id,
+        component_id => $c->_component_id,
     ));
 }
 

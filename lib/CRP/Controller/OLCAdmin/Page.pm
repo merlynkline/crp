@@ -118,7 +118,12 @@ sub _page_component_set {
 sub _restart_editor {
     my $c = shift;
 
-    return $c->redirect_to($c->url_for('crp.olcadmin.page.edit')->query(page_id => $c->_page_id, module_id => $c->_module_id, course_id => $c->_course_id));
+    return $c->redirect_to($c->url_for('crp.olcadmin.page.edit')->query(
+            page_id      => $c->_page_id,
+            module_id    => $c->_module_id,
+            component_id => $c->_component_id,
+            course_id    => $c->_course_id,
+    ));
 }
 
 sub _display_page_editor {
@@ -131,6 +136,7 @@ sub _display_page_editor {
         page           => $page->view_data($c->_module, $c->_course),
         olc_course_id  => $c->_course_id,
         olc_module_id  => $c->_module_id,
+        component_id   => $c->_component_id,
         page_modules   => $page_modules->view_data,
     );
     $c->render(template => 'o_l_c_admin/page/editor');
