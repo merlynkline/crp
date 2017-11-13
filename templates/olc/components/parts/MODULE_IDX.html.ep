@@ -1,5 +1,6 @@
 %#<!DOCTYPE html>
-<ol class="olc-module-idx">
+% $editable = $editable ? qq{ editablecomponentid="$editable"} : '';
+<ol class="olc-module-idx<%= $editable ? ' editable-component' : '' %>"<%== $editable %>>
 % foreach my $page (@{$module->{pages}}) {
     <li><%= $page->{title} %></li>
 % }

@@ -1,5 +1,6 @@
 %#<!DOCTYPE html>
-<div class="olc-paragraph">
+% $editable = $editable ? qq{ editablecomponentid="$editable"} : '';
+<div class="olc-paragraph<%= $editable ? ' editable-component' : '' %>"<%== $editable %>>
 %=markdown begin
 %= $component->{markdown_text}
 % end

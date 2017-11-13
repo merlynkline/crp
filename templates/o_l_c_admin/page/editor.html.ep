@@ -4,13 +4,15 @@
 %= include 'admin/parts/menu', page_id => 'admin.olc';
 %
 % my $action_button = begin
-% my($action, $label, $olc_component_id, $disabled) = @_;
+% my($action, $label, $olc_component_id, $disabled, $component_id_class) = @_;
+% my @id_class;
+% @id_class = (class => 'olc-edit-controls-component-id');
 <div style="display: inline-block">
     %= form_for "crp.olcadmin.page.component.$action" => (method => 'POST') => begin
     %= hidden_field 'course_id' => $olc_course_id;
     %= hidden_field 'module_id' => $olc_module_id;
     %= hidden_field 'page_id' => $page->{id};
-    %= hidden_field 'component_id' => $olc_component_id;
+    %= hidden_field 'component_id' => $olc_component_id, @id_class;
     %= submit_button $label, class => 'small-button', $disabled ? (disabled => 'disabled') : ();
     %= end
 </div>
@@ -179,9 +181,24 @@ Changing this page will affect all the modules it is included in, which are:
 </style>
 <h2>Page preview</h2>
 <div class="olc-content olc-preview-container">
+<div id="edit-controls" style="display: block; position: absolute; top: -1000px; left: -1000px; background: #888; border: 1px solid black; padding: 2px; opacity: 0.75;">
+%= $action_button->('moveup',   'Up',   '', 0, 1);
+%= $action_button->('movedown', 'Down', '', 0, 1);
+</div>
 % foreach my $component (@{$page->{components}}) {
-%=   include 'olc/components/' . $component->{type}, component => $component;
+%=   include 'olc/components/' . $component->{type}, component => $component, editable => $component->{id};
 % }
 <br clear="both">
-</div>
 % }
+<script>
+    $('.editable-component').hover(
+        function() {
+            var target = $(this).offset();
+            target.top +=4;
+            target.left +=4;
+            $("#edit-controls").offset(target);
+console.log($(this).attr('editablecomponentid'));
+            $(".olc-edit-controls-component-id").val($(this).attr('editablecomponentid'));
+        }
+    )
+</script>

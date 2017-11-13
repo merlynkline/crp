@@ -1,2 +1,3 @@
 %#<!DOCTYPE html>
-<h2><%= $component->{heading_text} %></h2>
+% $editable = $editable ? qq{ editablecomponentid="$editable"} : '';
+<h2<%== $editable ? ' class="editable-component"' : '' %><%== $editable %>><%= $component->{heading_text} %></h2>

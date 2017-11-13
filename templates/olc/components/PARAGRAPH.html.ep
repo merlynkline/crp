@@ -1,3 +1,4 @@
 %#<!DOCTYPE html>
-<div class="olc-paragraph"><%== $component->{paragraph_text} %></div>
+% $editable = $editable ? qq{ editablecomponentid="$editable"} : '';
+<div class="olc-paragraph<%= $editable ? ' editable-component' : '' %>"<%== $editable %>><%== $component->{paragraph_text} %></div>
 
