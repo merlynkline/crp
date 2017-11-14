@@ -20,6 +20,12 @@ sub _resize_or_return_error_code {
 
     my $img = Imager->new();
     $img->read(file => $filename) or return 'BAD_FILE';
+    return _resize_img_or_return_error_code($img, $filename, $width, $height);
+}
+
+sub _resize_img_or_return_error_code {
+    my($img, $filename, $width, $height) = @_;
+
     $img = $img->scale(xpixels => $width, ypixels => $height, qtype => 'mixing');
     $img = $img->crop(width  => $width, height => $height);
     unless($img->write(file => $filename, type => 'jpeg')) {
@@ -27,6 +33,22 @@ sub _resize_or_return_error_code {
         return 'WRITE_FAIL';
     }
     return;
+}
+
+sub limit_size {
+    my($filename, $width, $height) = @_;
+
+    my $error_code = _limit_size_or_return_error_code(@_);
+    return ! $error_code;
+}
+
+sub _limit_size_or_return_error_code {
+    my($filename, $width, $height) = @_;
+
+    my $img = Imager->new();
+    $img->read(file => $filename) or return 'BAD_FILE';
+    return if $img->getwidth <= $width && $img->getheight <= $height;
+    return _resize_img_or_return_error_code($img, $filename, $width, $height);
 }
 
 sub qr_code_link_jpeg_tmp_file {

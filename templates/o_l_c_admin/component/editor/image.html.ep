@@ -1,7 +1,7 @@
 %#<!DOCTYPE html>
 % layout 'member_default', heading => 'Admin: Edit online course module page image', page_id => 'admin';
 %= include 'o_l_c_admin/component/editor/parts/page_start', component_name => 'image';
-%= form_for 'crp.olcadmin.component.image.save' => (method => 'POST') => begin
+%= form_for 'crp.olcadmin.component.image.save' => (method => 'POST', enctype => 'multipart/form-data') => begin
 %= include 'o_l_c_admin/component/editor/parts/form_start';
 
         <label for="image_format">Image position:
@@ -25,9 +25,21 @@
             <div class="field-extra-info">Name of uploaded file. Click one of the images shown below to set this.</div>
         </label>
         <div class="input-container">
-            <div class="instructor-photo" style="margin-top: 0; border-width: 2px; border-radius: 4px;"><img id="preview" src="<%= $extra_data->{file_base_url} . '/' . $component->{image_file} %>" style="max-width: 80px; max-height: 80px;"></div>
             %= text_field 'image_file', id => 'image_file', value => $component->{image_file}, maxlength => 50;
             <%= include 'parts/error', field => 'image_file' %>
+        </div>
+
+        <label for="upload">Or upload one:
+            <div class="field-extra-info">
+                If the image you want isn't already available then you can
+                upload a .jpg or .png file. The uploaded image will be resized to
+                1200 pixels wide if it is any bigger. It is best to choose a good
+                name for your image file before uploading it,
+            </div>
+        </label>
+        <div class="input-container">
+            %= file_field 'upload', id => 'upload';
+            <%= include 'parts/error', field => 'upload' %>
         </div>
 
 %= include 'o_l_c_admin/component/editor/parts/form_end';
