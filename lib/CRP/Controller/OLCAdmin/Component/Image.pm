@@ -1,7 +1,4 @@
-
 package CRP::Controller::OLCAdmin::Component::Image;
-
-use Try::Tiny;
 
 use Mojo::Base 'Mojolicious::Controller';
 
@@ -9,7 +6,7 @@ use Mojo::Role -with;
 with 'CRP::Controller::OLCAdmin::EditorRole';
 with 'CRP::Controller::OLCAdmin::Component::EditorRole';
 
-use CRP::Model::OLC::Component;
+use Try::Tiny;
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 sub edit {

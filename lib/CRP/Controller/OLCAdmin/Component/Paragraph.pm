@@ -6,8 +6,6 @@ use Mojo::Role -with;
 with 'CRP::Controller::OLCAdmin::EditorRole';
 with 'CRP::Controller::OLCAdmin::Component::EditorRole';
 
-use CRP::Model::OLC::Component;
-
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 sub edit {
     my $c = shift;

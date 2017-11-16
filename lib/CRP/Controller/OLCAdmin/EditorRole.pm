@@ -4,6 +4,9 @@ use Mojo::Role;
 
 use Try::Tiny;
 
+use CRP::Model::OLC::Course;
+use CRP::Model::OLC::Module;
+
 sub _collect_input {
     my $c = shift;
     my($store, $fields) = @_;

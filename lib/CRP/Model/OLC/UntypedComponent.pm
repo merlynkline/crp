@@ -1,11 +1,8 @@
 package CRP::Model::OLC::UntypedComponent;
 use Moose;
-use Moose::Util::TypeConstraints;
 use namespace::autoclean;
 
 extends 'CRP::Model::DBICIDObject';
-
-use Carp;
 
 use constant {
     _DB_FIELDS      => [qw(name build_order data_version data type olc_page_id)],
