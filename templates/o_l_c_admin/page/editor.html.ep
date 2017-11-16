@@ -181,7 +181,7 @@ Changing this page will affect all the modules it is included in, which are:
 </style>
 <h2>Page preview</h2>
 <div class="olc-content olc-preview-container">
-<div id="edit-controls" style="display: block; position: absolute; top: -1000px; left: -1000px; background: #888; border: 1px solid black; padding: 2px; opacity: 0.75;">
+<div id="edit-controls" style="display: block; position: absolute; top: -1000px; left: -1000px; background: #888; border: 1px solid black; padding: 2px; opacity: 0.75;" class="olc-floating-edit-controls">
     <div style="display: inline-block">
         %= form_for "crp.olcadmin.component.edit" => (method => 'GET') => begin
         %= hidden_field 'course_id' => $olc_course_id;
@@ -215,7 +215,7 @@ Changing this page will affect all the modules it is included in, which are:
                 target.top +=4;
                 target.left +=4;
                 $("#edit-controls").offset(target);
-                $(".olc-edit-controls-component-id").val(editable_component_id);
+                $(".olc-floating-edit-controls .olc-edit-controls-component-id").val(editable_component_id);
             }
         }
     )
