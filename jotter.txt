@@ -3,7 +3,6 @@
 + Outstanding tasks for OLC admin:
     + Work out style for bulleted lists so they work OK next to a float-left image
     + more component types
-    + CRP::Model::OLC::Component::view_data() smells of a missing object layer
     + Common code in these modules:
         - ComponentSet/ForPage.pm
         - ModuleSet/ForCourse.pm
