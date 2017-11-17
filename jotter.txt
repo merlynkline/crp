@@ -1,8 +1,6 @@
 
 
 + Outstanding tasks for OLC admin:
-    + Image editor image preview
-    + Work out style for bulleted lists so they work OK next to a float-left image
     + more component types (video, test, pdf)
     + Common code in these modules:
         - ComponentSet/ForPage.pm

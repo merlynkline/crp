@@ -178,6 +178,10 @@ Changing this page will affect all the modules it is included in, which are:
         float:          left;
         margin:         2px 8px 8px 2px;
     }
+
+    .olc-content ol, .olc-content ul {
+        overflow:       hidden;
+    }
 </style>
 <h2>Page preview</h2>
 <div class="olc-content olc-preview-container">
