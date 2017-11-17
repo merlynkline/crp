@@ -11,23 +11,24 @@ override 'view_data' => sub {
 
     my $data = super();
     my $component_data = $self->data;
-    my $preview = $data->{image_path} = $component_data->{path} // '';
     $data->{image_format} = $component_data->{format} // '';
     $data->{image_file} = $component_data->{file} // '';
+    my $preview = $data->{image_file};
     $preview =~ s{^.+/}{};
     $data->{preview} = $preview;
     return $data;
 };
 
-override 'data' => sub {
+around 'data' => sub {
+    my $orig = shift;
     my $self = shift;
 
     if(@_) {
         my ($data) = @_;
         $data = encode_json($data) if $data;
-        return super($data);
+        return $self->$orig($data);
     }
-    my $data = super();
+    my $data = $self->$orig;
     $data = decode_json($data) if $data;
     return $data;
 };
