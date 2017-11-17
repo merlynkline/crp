@@ -25,6 +25,7 @@
             <div class="field-extra-info">Name of uploaded file. Click one of the images shown below to set this.</div>
         </label>
         <div class="input-container">
+            <div class="instructor-photo" style="margin-top: 0; border-width: 2px; border-radius: 4px;"><img id="preview" src="<%= $extra_data->{file_base_url} . '/' . $component->{image_file} %>" style="max-width: 80px; max-height: 80px;"></div>
             %= text_field 'image_file', id => 'image_file', value => $component->{image_file}, maxlength => 50;
             <%= include 'parts/error', field => 'image_file' %>
         </div>
