@@ -19,6 +19,12 @@ sub view_data {
     return [ map $_->view_data, @{$self->all} ];
 }
 
+sub state_data {
+    my $self = shift;
+
+    return [ map $_->state_data, @{$self->all} ];
+}
+
 sub includes_id {
     my $self = shift;
     my($id) = @_;

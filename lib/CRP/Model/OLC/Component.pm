@@ -51,6 +51,15 @@ sub create_or_update {
     $self->_set_id($self->_component->id);
 }
 
+sub state_data  {
+    my $self = shift;
+
+    my $data = $self->_component->state_data;
+    $data->{type} = $self->_type;
+
+    return $data;
+}
+
 sub _build_component {
     my $self = shift;
 

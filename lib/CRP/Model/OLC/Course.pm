@@ -15,14 +15,23 @@ has '+_db_record' => (handles => _DB_FIELDS);
 
 has module_set    => (is => 'ro', lazy => 1, builder => '_build_module_set', init_arg => undef);
 
-sub view_data {
+override view_data => sub {
     my $self = shift;
 
-    my $data = $self->SUPER::view_data();
+    my $data = super();
     $data->{modules} = $self->module_set->view_data;
 
     return $data;
-}
+};
+
+override state_data => sub {
+    my $self = shift;
+
+    my $data = super();
+    $data->{modules} = $self->module_set->state_data;
+
+    return $data;
+};
 
 sub _build_module_set {
     my $self = shift;

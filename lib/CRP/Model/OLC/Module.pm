@@ -15,14 +15,23 @@ has '+_db_record' => (handles => _DB_FIELDS);
 
 has page_set    => (is => 'ro', lazy => 1, builder => '_build_page_set', init_arg => undef);
 
-sub view_data {
+override view_data => sub {
     my $self = shift;
 
-    my $data = $self->SUPER::view_data();
+    my $data = super;
     $data->{pages} = $self->page_set->view_data_without_components;
 
     return $data;
-}
+};
+
+override state_data => sub {
+    my $self = shift;
+
+    my $data = super();
+    $data->{pages} = $self->page_set->state_data;
+
+    return $data;
+};
 
 sub _build_page_set {
     my $self = shift;

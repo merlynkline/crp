@@ -15,15 +15,24 @@ has '+_db_record' => (handles => _DB_FIELDS);
 
 has component_set => (is => 'ro', lazy => 1, builder => '_build_component_set', init_arg => undef);
 
-sub view_data {
+override view_data => sub {
     my $self = shift;
     my($module_context, $course_context) = @_;
 
-    my $data = $self->view_data_without_components;
+    my $data = super();
     $data->{components} = $self->component_set->view_data($module_context, $course_context);
 
     return $data;
-}
+};
+
+override state_data => sub {
+    my $self = shift;
+
+    my $data = super();
+    $data->{components} = $self->component_set->state_data;
+
+    return $data;
+};
 
 sub view_data_without_components {
     my $self = shift;

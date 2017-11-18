@@ -22,6 +22,15 @@ sub view_data {
     return $template_data;
 }
 
+sub state_data {
+    my $self = shift;
+
+    return {
+        guid                => $self->guid,
+        last_update_date    => $self->last_update_date,
+    };
+}
+
 sub create_or_update {
     my $self = shift;
     my($as_at_date) = @_;
