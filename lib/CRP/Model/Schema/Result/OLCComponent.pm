@@ -5,6 +5,7 @@ use warnings;
 
 use base 'DBIx::Class::Core';
 
+__PACKAGE__->load_components(qw(InflateColumn::DateTime));
 __PACKAGE__->table('olc_component');
 __PACKAGE__->add_columns(
     id => {
@@ -39,6 +40,15 @@ __PACKAGE__->add_columns(
         data_type           => 'text',
         is_nullable         => 1,
     },
+    guid => {
+        data_type           => 'text',
+        is_nullable         => 1,
+    },
+    last_update_date => {
+        data_type           => 'timestamptz',
+        timezone            => 'UTC',
+        is_nullable         => 1,
+    },
 );
 
 __PACKAGE__->set_primary_key('id');
@@ -47,7 +57,7 @@ __PACKAGE__->belongs_to(page => 'CRP::Model::Schema::Result::OLCPage',      {'fo
 sub sqlt_deploy_hook {
     my ($self, $sqlt_table) = @_;
 
-    foreach my $column (qw(olc_page_id)) {
+    foreach my $column (qw(olc_page_id guid)) {
         $sqlt_table->add_index(name => "olc_component_${column}_idx", fields => [$column]);
     }
 }
