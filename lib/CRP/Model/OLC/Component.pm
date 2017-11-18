@@ -19,7 +19,6 @@ use CRP::Model::OLC::Component::Test;
 use CRP::Model::OLC::Component::Video;
 
 use constant {
-    _DB_FIELDS      => [qw(name build_order data_version data type olc_page_id)],
     _TYPES          => {
         COURSE_IDX      => 'CourseIndex',
         HEADING         => 'Heading',
@@ -46,8 +45,9 @@ has _component => (is => 'ro', lazy => 1, builder => '_build_component', init_ar
 
 sub create_or_update {
     my $self = shift;
+    my($as_at_date) = @_;
 
-    $self->_component->create_or_update;
+    $self->_component->create_or_update($as_at_date);
     $self->_set_id($self->_component->id);
 }
 

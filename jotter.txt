@@ -1,5 +1,3 @@
-
-
 + Outstanding tasks for OLC admin:
     + more component types (video, test, pdf)
     + Common code in these modules:
@@ -11,9 +9,12 @@
     + Object model causes lots of unnecessary repeated calls to methods, e.g. loading a page component editor calls the view_data method for all the components on the page lots of times
 - OLC Admin: Adding a new page object type
     - Make sure it's in the template templates/o_l_c_admin/parts/component_types.html.ep
+    - Create a new class for the component in lib/CRP/Model/OLC/Component/
+        - At minimum, override the view_data method
+        - May also need to add an around modifier for the data method
     - In lib/CRP/Model/OLC/Component.pm
+        - use the new class
         - Add to the valid _TYPES list
-        - Add a view data extractor to view_data()
     - Add the route in lib/CRP/Controller/OLCAdmin/Component.pm
     - Create a new module lib/CRP/Controller/OLCAdmin/Component/<type>.pm
         - save()
@@ -26,13 +27,10 @@
 
 
 - Projects
-    - Course material for 20th September combined AN/standard course
-    - Material for 30th September attachment parenting conference
     - Replace protocol handouts with new single-sheet versions or cards or similar
     - Get Carly ready to teach at the college
     - Online course: hand reflexology for existing instructors, particularly Jude
     - Photos, pictures, logos etc for instructors to use in their own marketing (web sites, facebook)
-    - Prep for Norlands in November
     - Simplified parent course without parent pack
     - Other online courses
     - Insert in the parent pack explaining how to make the most of it
@@ -88,10 +86,18 @@
 + Add an FAQ on using parent packs (and accompanying insert in the pack)
 
 + Online training courses
-	- To do
-		~ When editing an online module, show what courses it's in
     + Tests need to be composed of multiple questions - change data model to allow that
-    ? How will we get courses out to live? Or will we just build them there?
+    ~ How will we get courses out to live? Or will we just build them there?
+        + Add a UUID for each course/module/page/component
+        + Add a last_updated date for each course/module/page/component
+            + For normal editing/creation this is set automatically to sysdate
+            + Can also be set to a specific date when importing a course
+        + Make a means of reading and writing the last_update (mtime?) time for resource files (e.g. images, PDFs, videos etc used in the courses)
+        + Add webservice APIs protected by shared secrets, that can:
+            + Receive a data structure describing a course and return one describing, for that course, a comparison against the local copy of it saying which parts are new, missing, present but older and present but newer
+            + Return the content of a course/module/page/component/resource
+        + Add an admin tool that uses the above APIs to query the status of a course on a remote server. If we have something that is newer than or not present on the remote then complain, otherwise fetch and update anything that's newer.
+            + How to handle huge resources (e.g. video)? May need to spawn an independant worker track it? Fetch to temp files in case of interruption.
     - Types of course
         - Members, e.g. instructors course, associated with a particular qualification. Logged-in users get access if they have the qualification (even if they haven't passed).
         - Visitors, e.g. parents course. Anyone can do these even if they don't have an account. Maybe also available to logged-in users?

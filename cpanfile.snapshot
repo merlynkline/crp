@@ -943,6 +943,20 @@ DISTRIBUTIONS
       Exporter 0
       ExtUtils::MakeMaker 0
       perl 5.006
+  Data-GUID-0.049
+    pathname: R/RJ/RJBS/Data-GUID-0.049.tar.gz
+    provides:
+      Data::GUID 0.049
+    requirements:
+      Carp 0
+      Data::UUID 1.148
+      ExtUtils::MakeMaker 0
+      Sub::Exporter 0.90
+      Sub::Install 0.03
+      bytes 0
+      overload 0
+      strict 0
+      warnings 0
   Data-OptList-0.110
     pathname: R/RJ/RJBS/Data-OptList-0.110.tar.gz
     provides:
