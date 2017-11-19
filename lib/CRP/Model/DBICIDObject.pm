@@ -41,6 +41,13 @@ sub create_or_update {
     $self->_set_id($self->_db_record->id);
 }
 
+sub touch {
+    my $self = shift;
+
+    $self->last_update_date(DateTime->now);
+    $self->_db_record->update;
+}
+
 sub _build_db_record {
     my $self = shift;
 

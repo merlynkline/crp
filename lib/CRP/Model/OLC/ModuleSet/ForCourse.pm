@@ -12,6 +12,7 @@ use constant {
     _link_table         => 'OLCCourseModuleLink',
     _parent_id_column   => 'olc_course_id',
     _child_id_column    => 'olc_module_id',
+    _parent_class       => 'CRP::Model::OLC::Course',
 };
 
 sub _parent_id { goto &course_id }

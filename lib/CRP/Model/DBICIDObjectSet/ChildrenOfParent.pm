@@ -7,6 +7,7 @@ requires qw(
     _parent_id_column
     _child_id_column
     _parent_id
+    _parent_class
 );
 
 sub _build_ids {
@@ -35,6 +36,7 @@ sub add_child {
         $self->_parent_id_column  => $self->_parent_id,
         order                     => $self->max_order + 1,
     });
+    $self->_touch_parent;
     push @{$self->_ids}, $id;
 }
 
@@ -85,6 +87,7 @@ sub _swap_ids {
     $record2->order($order1);
     $record1->update;
     $record2->update;
+    $self->_touch_parent;
 
     ($self->_ids->[$index1], $self->_ids->[$index2]) = ($self->_ids->[$index2], $self->_ids->[$index1]);
 }
@@ -96,6 +99,7 @@ sub delete {
     my $index = $self->index_of($id);
     return unless defined $index;
     $self->_resultset->find({$self->_parent_id_column => $self->_parent_id, $self->_child_id_column => $id})->delete;
+    $self->_touch_parent;
 
     splice @{$self->_ids}, $index, 1;
 }
@@ -104,6 +108,12 @@ sub _resultset {
     my $self = shift;
 
     return $self->dbh->resultset($self->_link_table);
+}
+
+sub _touch_parent {
+    my $self = shift;
+
+    $self->_parent_class->new({dbh => $self->dbh, id => $self->_parent_id})->touch;
 }
 
 

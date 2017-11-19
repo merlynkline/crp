@@ -50,18 +50,12 @@ sub save {
 sub addcomponent {
     my $c = shift;
 
-    my $component;
     my $component_type = $c->crp->trimmed_param('type');
 
+    my $component_id;
     if($component_type) {
         try {
-            $component = CRP::Model::OLC::Component->new({
-                    dbh         => $c->crp->model,
-                    type        => $component_type,
-                    olc_page_id => $c->_page_id,
-                });
-            $component->build_order($c->_page_component_set->max_order + 1);
-            $component->create_or_update;
+            $component_id = $c->_page_component_set->add($component_type);
         }
         catch {
             my $error = $_;
@@ -76,11 +70,12 @@ sub addcomponent {
     if($c->validation->has_error) {
         return $c->_display_page_editor;
     }
+warn ">> $component_id";
     my $url = $c->url_for('crp.olcadmin.component.edit')->query(
         course_id    => $c->_course_id,
         module_id    => $c->_module_id,
         page_id      => $c->_page_id,
-        component_id => $component->id,
+        component_id => $component_id,
     );
     return $c->redirect_to($url);
 }
