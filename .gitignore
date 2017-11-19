@@ -4,6 +4,7 @@
 c_r_p.conf.secret
 c_r_p.conf.private
 devrun
+apirun
 /premium/test
 
 # Vim files

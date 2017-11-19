@@ -88,12 +88,13 @@
 + Online training courses
     + Tests need to be composed of multiple questions - change data model to allow that
     ~ How will we get courses out to live? Or will we just build them there?
-        + Add a UUID for each course/module/page/component
-        + Add a last_updated date for each course/module/page/component
-            + For normal editing/creation this is set automatically to sysdate
-            + Can also be set to a specific date when importing a course
+        ~ Add a UUID for each course/module/page/component
+        ~ Add a last_updated date for each course/module/page/component
+            ~ For normal editing/creation this is set automatically to sysdate
+            ~ Can also be set to a specific date when importing a course
         + Make a means of reading and writing the last_update (mtime?) time for resource files (e.g. images, PDFs, videos etc used in the courses)
         + Add webservice APIs protected by shared secrets, that can:
+            + Recover a list of courses for which updates can be requested
             + Receive a data structure describing a course and return one describing, for that course, a comparison against the local copy of it saying which parts are new, missing, present but older and present but newer
             + Return the content of a course/module/page/component/resource
         + Add an admin tool that uses the above APIs to query the status of a course on a remote server. If we have something that is newer than or not present on the remote then complain, otherwise fetch and update anything that's newer.
@@ -132,7 +133,7 @@
         - OLC_COURSE: Course definition record
             - ID
             - Name - for internal use
-			- Notes - for internal use
+            - Notes - for internal use
             - Title
             - Description
             - Landing_OLC_Page_ID
@@ -143,7 +144,7 @@
         - OLC_MODULE: Module definition record
             - ID
             - Name - for internal use
-			- Notes - for internal use
+            - Notes - for internal use
             - Title
             - Description
             - Landing_OLC_Page_ID
@@ -154,14 +155,14 @@
         - OLC_PAGE: Page definition record
             - ID
             - Name - for internal use
-			- Notes - for internal use
+            - Notes - for internal use
             - Title
             - Description
         - OLC_COMPONENT: Component definition record
             - ID
-			- OLC_Page_ID (indexed)
+            - OLC_Page_ID (indexed)
             - Name - for internal use
-			- build_order
+            - build_order
             - Type - heading/paragraph/image/video/pdf/course-contents/module-contents/test/etc
             - Data_version
             - Data - type-specific content blob
@@ -650,7 +651,7 @@ X Is there a memory leak somewhere? PDF rendering?
 + Add pic of course materials to courses page
 
 + More FB opengraph stuff
-	+ Home page
+    + Home page
 
 + Refactoring
     + Move duplicate code from the instructor and ordinary course models into a common module
@@ -781,7 +782,7 @@ session:
         + Books
         + Squeezy feet?
         + Merchandise
-		+ Colouring books
+        + Colouring books
     + Carer's contact form (for contacting CRP as a carer)
     + For each course registered by a instructor there will be a page describing that course that the instructor can link to
         ~ Sensible static URL so Google can index it
@@ -853,13 +854,13 @@ session:
                 ~ Business cards: Avery C32011, C32016, C32025, C32026, C32050, C32055, C32075  - 10 off 85*54mm
                 + Name labels for carers
                 + Talk/presentation
-				+ Course log/diary pages
+                + Course log/diary pages
             ~ QR codes for web pages?
         + Signed-up instructor's contact form (for contacting admins)
         + Submit (an idea for) a newsletter article
         + instructors' forum using same login
         + Link to shop
-		+ Course costing calculator(s) - JS versions of the spreadsheets
+        + Course costing calculator(s) - JS versions of the spreadsheets
         + External resources: bibliography
         ~ Log out
 + Administrators' area

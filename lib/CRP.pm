@@ -146,6 +146,8 @@ sub startup {
 
     my $olc_admin = $admin->under('/olc');
     $olc_admin->get('/')->to('o_l_c_admin#welcome')->name('crp.olcadmin.default');
+    $olc_admin->get('/remote')->to('o_l_c_admin#remote')->name('crp.olcadmin.remote');
+    $olc_admin->get('/remoteupdate')->to('o_l_c_admin#remote_update')->name('crp.olcadmin.remoteupdate');
     my $olc_admin_course = $olc_admin->under('/course');
     $olc_admin_course->any('/')->to('o_l_c_admin-course#edit')->name('crp.olcadmin.course.edit');
     $olc_admin_course->post('save')->to('o_l_c_admin-course#save')->name('crp.olcadmin.course.save');
@@ -204,6 +206,9 @@ sub startup {
     $r->any($self->config->{premium}->{root} . '/:dir/_control/link_request_sent')->to('premium#link_request_sent')->name('crp.premium.linkrequestsent');
     $r->any($self->config->{premium}->{root} . '/:dir/*subpath')->to('premium#content')->name('crp.premium.page');
     $r->any($self->config->{premium}->{root} . '/:dir')->to('premium#content');
+
+    my $api = $r->under('/api')->to('a_p_i#authenticate');
+    $api->any('/courses')->to('a_p_i#courses');
 
 
     $self->app->hook(before_dispatch => \&_before_dispatch);

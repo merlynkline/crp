@@ -1,0 +1,37 @@
+%#<!DOCTYPE html>
+% layout 'member_default', heading => 'Admin: Online courses remote update', page_id => 'admin';
+% title 'Admin: Online courses remote update';
+%= include 'admin/parts/menu', page_id => 'admin.olc';
+% $course_list //= [];
+<br />
+<%= include 'parts/message_box', msg => flash('msg') || stash('msg'), auto_hide => 1 %>
+<table class="list1">
+    <tr><th colspan="4">Courses on remote</th></tr>
+    <tr><th>Name</th><th>Title</th><th>Last updated</th><th></th></tr>
+    % if(@$course_list) {
+    %   foreach my $course (@$course_list) {
+    <tr>
+        <td><%= $course->{name} %></td>
+        <td><%= $course->{title} %></td>
+        <td><%= $course->{last_update_date} %></td>
+        <td>
+            %= form_for "crp.olcadmin.remoteupdate" => begin
+            %= hidden_field 'guid' => $course->{guid};
+            %= hidden_field 'name' => $course->{name};
+            %= hidden_field 'title' => $course->{title};
+            %= submit_button 'Update', class => 'small-button';
+            %= end
+        </td>
+    </tr>
+    %   }
+    % } else {
+    <tr><td colspan="4">
+    % if($error) {
+        ERROR retrieving course list: <%= $error %>
+    % } else {
+    (No courses available)
+    % }
+    </td></tr>
+    % }
+</table>
+
