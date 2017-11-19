@@ -7,7 +7,7 @@ extends 'CRP::Model::DBICIDObject';
 use CRP::Model::OLC::ModuleSet::ForCourse;
 
 use constant {
-    _DB_FIELDS      => [qw(name notes description title guid last_update_date)],
+    _DB_FIELDS      => [qw(name notes description title last_update_date)],
     _RESULTSET_NAME => 'OLCCourse',
 };
 
