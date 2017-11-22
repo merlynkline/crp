@@ -38,6 +38,7 @@ sub create_or_update {
 
     $self->_set_guid($self->_get_new_guid) unless $self->guid;
     $self->last_update_date($as_at_date // DateTime->now);
+    $self->_db_record->guid($self->guid);
     $self->_db_record->update_or_insert;
     $self->_set_id($self->_db_record->id);
 }
