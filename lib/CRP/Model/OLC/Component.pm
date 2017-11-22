@@ -5,7 +5,6 @@ use namespace::autoclean;
 
 use Carp;
 
-use CRP::Model::OLC::UntypedComponent;
 use CRP::Model::OLC::Course;
 use CRP::Model::OLC::Module;
 use CRP::Model::OLC::Component::CourseIndex;
