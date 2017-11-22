@@ -5,6 +5,7 @@ use namespace::autoclean;
 extends 'CRP::Model::OLC::ComponentSet';
 
 use CRP::Model::OLC::Page;
+use CRP::Model::OLC::Component;
 
 has page_id => (is => 'ro', required => 1);
 
@@ -32,12 +33,14 @@ sub add {
     my $self = shift;
     my($component_type) = @_;
 
-    my $component = $self->_resultset->new({
+    my $component = CRP::Model::OLC::Component->new({
+            dbh         => $self->dbh,
             type        => $component_type,
             olc_page_id => $self->page_id,
         });
     $component->build_order($self->max_order + 1);
-    $component->insert;
+    $component->create_or_update;
+    push @{$self->_ids}, $component->id;
 
     $self->_touch_parent;
 
