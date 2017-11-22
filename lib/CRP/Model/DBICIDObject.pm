@@ -59,7 +59,7 @@ sub _build_db_record {
         croak "Couldn't load " . $self->_RESULTSET_NAME ." ID '" . $self->id . "'" unless $res;
         $self->_set_guid($res->guid);
     }
-    if($self->guid) {
+    elsif($self->guid) {
         $res = $resultset->find({guid => $self->guid});
         croak "Couldn't load " . $self->_RESULTSET_NAME ." GUID '" . $self->guid . "'" unless $res;
         $self->_set_id($res->id);
