@@ -70,7 +70,6 @@ sub addcomponent {
     if($c->validation->has_error) {
         return $c->_display_page_editor;
     }
-warn ">> $component_id";
     my $url = $c->url_for('crp.olcadmin.component.edit')->query(
         course_id    => $c->_course_id,
         module_id    => $c->_module_id,
