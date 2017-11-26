@@ -33,6 +33,25 @@ override state_data => sub {
     return $data;
 };
 
+sub default_module {
+    my $self = shift;
+
+    foreach my $module (@{$self->module_set->all}) {
+        my $page = $module->default_page;
+        return $module if $page;
+    }
+
+    return undef;
+}
+
+sub has_module {
+    my $self = shift;
+    my($module) = @_;
+
+    my $module_id = $module->id;
+    return any {$_->id eq $module_id} @{$self->module_set->all};
+}
+
 sub _build_module_set {
     my $self = shift;
 

@@ -210,6 +210,12 @@ sub startup {
     my $api = $r->under('/api')->to('a_p_i#authenticate');
     $api->any('/courses')->to('a_p_i#courses');
 
+    my $olc = $r->under('/olc');
+    $olc->get('/:slug/:course_id/:module_id/:page_id')->to('o_l_c#show_page')->name('crp.olc.showpage');
+    $olc->get('/:slug/:course_id/:module_id')->to('o_l_c#show_page')->name('crp.olc.showpage');
+    $olc->get('/:slug/:course_id')->to('o_l_c#show_page')->name('crp.olc.showpage');
+
+
 
     $self->app->hook(before_dispatch => \&_before_dispatch);
     $self->app->hook(after_dispatch => \&_after_dispatch);

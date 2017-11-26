@@ -33,6 +33,23 @@ override state_data => sub {
     return $data;
 };
 
+sub default_page {
+    my $self = shift;
+
+    my $pages = $self->page_set->all;
+    return $pages->[0] if @$pages;
+
+    return undef;
+}
+
+sub has_page {
+    my $self = shift;
+    my($page) = @_;
+
+    my $page_id = $page->id;
+    return any {$_->id eq $page_id} @{$self->page_set->all};
+}
+
 sub _build_page_set {
     my $self = shift;
 

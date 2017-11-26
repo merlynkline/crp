@@ -1,0 +1,40 @@
+div.olc-preview-container {
+    width:          85%;
+    padding:        4px;
+    box-shadow:     5px 5px 5px lightgrey;
+    border:         3px solid #589;
+    border-radius:  8px;
+    margin:         4px auto;
+}
+
+.olc-content h2 {
+    border-bottom:  1px solid #589;
+}
+
+.olc-content p {
+    margin:         0 0 0 8px;
+}
+
+.olc-content img {
+    border:         3px solid #589;
+    border-radius:  8px;
+    margin:         4px auto;
+    display:        block;
+    width:          90%;
+}
+
+.olc-content img.olc-img-small-right {
+    width:          40%;
+    float:          right;
+    margin:         2px 2px 8px 8px;
+}
+
+.olc-content img.olc-img-small-left {
+    width:          40%;
+    float:          left;
+    margin:         2px 8px 8px 2px;
+}
+
+.olc-content ol, .olc-content ul {
+    overflow:       hidden;
+}

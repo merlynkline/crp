@@ -4,6 +4,7 @@ use namespace::autoclean;
 
 use Carp;
 
+use Try::Tiny;
 use Data::GUID;
 use DateTime;
 
@@ -48,6 +49,17 @@ sub touch {
 
     $self->last_update_date(DateTime->now);
     $self->_db_record->update;
+}
+
+sub exists {
+    my $self = shift;
+
+    my $exists = '';
+    try {
+        $exists = $self->id && $self->_db_record;
+    };
+
+    return ! ! $exists;
 }
 
 sub _build_db_record {
