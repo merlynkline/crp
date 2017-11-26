@@ -15,11 +15,11 @@ sub show_page {
     my $page_id = $c->stash('page_id');
 
     my $course = $c->_course;
-    return $c->_not_found('COURSE') unless $course->exists;
+    return $c->_not_found('COURSE') unless $course && $course->exists;
     my $module = $c->_module;
-    return $c->_not_found('MODULE') unless $module->exists;
+    return $c->_not_found('MODULE') unless $module && $module->exists;
     my $page = $c->_page;
-    return $c->_not_found('PAGE') unless $page->exists;
+    return $c->_not_found('PAGE') unless $page && $page->exists;
 
     $c->stash(
         page        => $page->view_data($module, $course),
@@ -46,8 +46,8 @@ my $_cached_module;
 sub _module {
     my $c = shift;
 
-    my $course = $c->_course;
     my $module_id = $c->stash('module_id') || 0;
+    my $course = $c->_course;
     return $_cached_module if $_cached_module && $_cached_module->id == $module_id && $course->id == $_cached_module_course_id;
     my $_cached_module = CRP::Model::OLC::Module->new(id => $module_id, dbh => $c->crp->model);
     $_cached_module = $course->default_module unless $_cached_module->exists && $course->has_module($_cached_module);
@@ -61,8 +61,8 @@ my $_cached_page;
 sub _page {
     my $c = shift;
 
-    my $module = $c->_module;
     my $page_id = $c->stash('page_id') || 0;
+    my $module = $c->_module;
     return $_cached_page if $_cached_page && $_cached_page->id == $page_id && $module->id == $_cached_page_module_id;
     my $_cached_page = CRP::Model::OLC::Page->new(id => $page_id, dbh => $c->crp->model);
     $_cached_page = $module->default_page unless $_cached_page->exists && $module->has_page($_cached_page);

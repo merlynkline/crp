@@ -4,6 +4,8 @@ use namespace::autoclean;
 
 extends 'CRP::Model::DBICIDObject';
 
+use List::Util;
+
 use CRP::Model::OLC::ModuleSet::ForCourse;
 
 use constant {
@@ -49,7 +51,7 @@ sub has_module {
     my($module) = @_;
 
     my $module_id = $module->id;
-    return any {$_->id eq $module_id} @{$self->module_set->all};
+    return List::Util::any { $_->id eq $module_id} @{$self->module_set->all};
 }
 
 sub _build_module_set {
