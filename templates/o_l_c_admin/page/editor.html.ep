@@ -1,5 +1,5 @@
 %#<!DOCTYPE html>
-% layout 'member_default', heading => 'Admin: Edit online course module page', page_id => 'admin';
+% layout 'member_default', heading => 'Admin: Edit online course module page', page_id => 'admin', extra_header_templates => 'olc/parts/css_link';
 % title 'Admin: Edit online course module page';
 %= include 'admin/parts/menu', page_id => 'admin.olc';
 %
@@ -141,50 +141,19 @@ Changing this page will affect all the modules it is included in, which are:
     % }
 </ul>
 </p>
-<style>
-    div.olc-preview-container {
-        width:          85%;
-        padding:        4px;
-        box-shadow:     5px 5px 5px lightgrey;
-        border:         3px solid #589;
-        border-radius:  8px;
-        margin:         4px auto;
-    }
-
-    .olc-content h2 {
-        border-bottom:  1px solid #589;
-    }
-
-    .olc-content p {
-        margin:         0 0 0 8px;
-    }
-
-    .olc-content img {
-        border:         3px solid #589;
-        border-radius:  8px;
-        margin:         4px auto;
-        display:        block;
-        width:          90%;
-    }
-
-    .olc-content img.olc-img-small-right {
-        width:          40%;
-        float:          right;
-        margin:         2px 2px 8px 8px;
-    }
-
-    .olc-content img.olc-img-small-left {
-        width:          40%;
-        float:          left;
-        margin:         2px 8px 8px 2px;
-    }
-
-    .olc-content ol, .olc-content ul {
-        overflow:       hidden;
-    }
-</style>
 <h2>Page preview</h2>
-<div class="olc-content olc-preview-container">
+<div class="olc-content" style="
+    width:          85%;
+    padding:        4px;
+    box-shadow:     5px 5px 5px lightgrey;
+    border:         3px solid #589;
+    border-radius:  8px;
+    margin:         4px auto;
+">
+% foreach my $component (@{$page->{components}}) {
+%=   include 'olc/components/' . $component->{type}, component => $component, editable => $component->{id};
+% }
+<br clear="both">
 <div id="edit-controls" style="display: block; position: absolute; top: -1000px; left: -1000px; background: #888; border: 1px solid black; padding: 2px; opacity: 0.75;" class="olc-floating-edit-controls">
     <div style="display: inline-block">
         %= form_for "crp.olcadmin.component.edit" => (method => 'GET') => begin
@@ -198,10 +167,6 @@ Changing this page will affect all the modules it is included in, which are:
     %= $action_button->('moveup',   'Up',   '', 0, 1);
     %= $action_button->('movedown', 'Down', '', 0, 1);
 </div>
-% foreach my $component (@{$page->{components}}) {
-%=   include 'olc/components/' . $component->{type}, component => $component, editable => $component->{id};
-% }
-<br clear="both">
 % }
 <script>
     function highlight_element(element) {

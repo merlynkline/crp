@@ -1,14 +1,49 @@
+html {
+    overflow-y:     scroll;
+    height:         100%;
+}
+
+body {
+    height:         100%;
+    padding:        0;
+    margin:         0;
+}
+
 div.olc-preview-container {
     width:          85%;
-    padding:        4px;
     box-shadow:     5px 5px 5px lightgrey;
     border:         3px solid #589;
     border-radius:  8px;
     margin:         4px auto;
 }
 
+div.olc-content {
+    font-family:    sans-serif;
+    line-height:    140%;
+    background-color: #fff;
+    color:          #354;
+    padding:        8px;
+}
+
+.olc-content a, .olc-content a:visited {
+    color:          inherit;
+    border:         none;
+}
+
+.olc-content h1, .olc-content h2, .olc-content h3, .olc-content h4 {
+    margin-bottom:  4px;
+}
+
+.olc-content h2:first-child {
+    margin-top:     0;
+}
+
+.olc-content h1 + p, .olc-content h2 + p, .olc-content h3 + p, .olc-content h4 + p {
+    margin-top:     0;
+}
+
 .olc-content h2 {
-    border-bottom:  1px solid #589;
+    border-bottom:  1px solid #354;
 }
 
 .olc-content p {
@@ -16,7 +51,7 @@ div.olc-preview-container {
 }
 
 .olc-content img {
-    border:         3px solid #589;
+    border:         3px solid #354;
     border-radius:  8px;
     margin:         4px auto;
     display:        block;
