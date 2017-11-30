@@ -1,3 +1,9 @@
++ Outstanding tasks for olc page renderer
+    + Module contents to reflect progress
+    + Header showing course/module/page title, user details, progress info
+    + olc/not_found template
+    + more component types (video, test, pdf)
+    + CSS
 + Outstanding tasks for OLC admin:
     + more component types (video, test, pdf)
     + Common code in these modules:

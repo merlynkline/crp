@@ -12,7 +12,7 @@
     <body>
         <div  class="olc-content">
 % foreach my $component (@{$page->{components}}) {
-%=   include 'olc/components/' . $component->{type}, component => $component, editable => $component->{id};
+%=   include 'olc/components/' . $component->{type}, component => $component, editable => 0;
 % }
         </div>
     </body>

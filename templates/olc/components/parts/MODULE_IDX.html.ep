@@ -1,7 +1,15 @@
 %#<!DOCTYPE html>
-% $editable = $editable ? qq{ editablecomponentid="$editable"} : '';
-<ol class="olc-module-idx<%= $editable ? ' editable-component' : '' %>"<%== $editable %>>
+% my $edit_id = $editable ? qq{ editablecomponentid="$editable"} : '';
+<ol class="olc-module-idx<%= $editable ? ' editable-component' : '' %>"<%== $edit_id %>>
 % foreach my $page (@{$module->{pages}}) {
-    <li><%= $page->{title} %></li>
+<li>
+    % if( ! $editable) {
+    <a href="<%= url_for 'crp.olc.showpage', {module_id => $module->{id}, page_id => $page->{id}} %>">
+    % }
+        <%= $page->{title} %>
+    % if( ! $editable) {
+    </a>
+    % }
+</li>
 % }
 </ol>

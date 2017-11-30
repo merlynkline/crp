@@ -1,2 +1,2 @@
 %#<!DOCTYPE html>
-%= include 'olc/components/parts/MODULE_IDX', module => $component->{module}, editable => $editable;
+%= include 'olc/components/parts/MODULE_IDX', module => $component->{module};

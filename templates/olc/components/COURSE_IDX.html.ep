@@ -3,6 +3,6 @@
 <ol class="olc-course-idx<%= $editable ? ' editable-component' : '' %>"<%== $editable %>>
 % foreach my $module (@{$component->{course}->{modules}}) {
 <li><%= $module->{title} %></li>
-%= include 'olc/components/parts/MODULE_IDX', module => $module, editable => '';
+%= include 'olc/components/parts/MODULE_IDX', module => $module;
 %}
 </ol>
