@@ -271,7 +271,7 @@ legend {
     line-height:    120%;
     height:         30px;
 }
-#review-list, #pic-list {
+#review-list, #pic-list, .scroll-pics {
     overflow:       hidden;
     width:          100%;
     font-size:      16px;
@@ -279,12 +279,12 @@ legend {
 #review-list {
     height:         32px;
 }
-#review-list ul, #pic-list ul {
+#review-list ul, #pic-list ul, .scroll-pics ul {
     padding:        0;
     margin:         0;
     width:          200000px;
 }
-#review-list li, #pic-list li {
+#review-list li, #pic-list li, .scroll-pics li {
     display:        inline-block;
     list-style:     none;
     margin:         0 8px;
@@ -305,6 +305,14 @@ legend {
 #pic-list img {
     margin:     0 auto;
     height:     299px;
+    display:    block;
+}
+.scroll-pics li {
+    border-style:   none;
+}
+.scroll-pics img {
+    margin:     0 auto;
+    padding:    0;
     display:    block;
 }
 #review-list span {
@@ -670,8 +678,14 @@ div.faq-menu {
     width: 472px;
     height: 200px;
 }
+.illo-large.fixed-width {
+    width: 472px;
+}
 .illo-small {
     width: 40%;
+}
+.illo-small.fixed-width {
+    width: 378px;
 }
 .illo-large.right, .illo-small.right {
     float:  right;

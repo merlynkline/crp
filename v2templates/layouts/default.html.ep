@@ -10,7 +10,7 @@
         ['aboutme',   '/page/aboutme',        'About me'],
         ['books',     '/page/books',          'Books'],
 #        ['shop',      '/page/shop',           'Shop'],
-        ['contact',   '/page/contact',      'Contact'],
+        ['contact',   '/page/contact',        'Contact'],
     ];
     if(stash 'logged_in') {
         push @$left_nav_menu, ['members',   '/instructor',     'Members'];

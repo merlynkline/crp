@@ -1,0 +1,81 @@
+%#<!DOCTYPE html>
+%
+% my $view_cart = sub {
+                    <td nowrap="nowrap">
+                        <form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post" >
+                            <input type="hidden" name="cmd" value="_s-xclick">
+                            <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+                            ">
+                            <input type="image" src="https://www.paypalobjects.com/en_GB/i/btn/btn_viewcart_SM.gif" border="0" name="submit" alt="PayPal – The safer, easier way to pay online.">
+                            <img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
+                        </form>
+                    </td>
+% };
+%
+% my $price_display = sub {
+%   my($price) = @_;
+%   $price = sprintf '&pound;%.02f', $price;
+                    <td style="padding: 5px 0 0 0;"><strong><%== $price %></strong></td>
+% };
+%
+% my $add_to_cart = sub {
+%   my($button_id) = @_;
+                    <td nowrap="nowrap">
+                        <form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+                            <input type="hidden" name="cmd" value="_s-xclick">
+                            <input type="hidden" name="hosted_button_id" value="<%= $button_id %>">
+                            <input type="image" src="https://www.paypalobjects.com/en_GB/i/btn/btn_cart_SM.gif" border="0" name="submit" alt="PayPal – The safer, easier way to pay online.">
+                            <img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
+                        </form>
+                    </td>
+% };
+%
+% my $buy_buttons = sub {
+%   my($button_id, $price) = @_;
+            <br clear="right">
+            <table align="right">
+                <tr>
+                    % $price_display->($price);
+                    % $add_to_cart->($button_id);
+                    % &$view_cart;
+                </tr>
+            </table>
+% };
+%
+% my $standard_item = sub {
+%   my($item) = @_;
+%   my($button_id, $price, $title, $images, $description) = @$item{qw(button_id price title images description)};
+    <tr>
+        <td style="vertical-align: top; padding: 0 12px 0 0;">
+            <h2><%= $title %></h2>
+            %= markdown begin
+            <%== $description %>
+            % end
+            % $buy_buttons->($button_id, $price);
+        </td>
+        <td style="vertical-align: top">
+            % if(@$images <= 1) {
+            <img class="illo-large fixed-width" src="/images/<%= $images->[0] %>" />
+            % } else {
+            <div id="product-pics-<%= $button_id %>" class="scroll-pics" style="width: 500px">
+                <ul>
+                %   foreach my $image (@$images) {
+                    <li style="margin: 0 32px 0 0; padding: 0;"><img class="illo-large fixed-width" src="/images/<%= $image %>" /></li>
+                %   }
+                </ul>
+                <script>
+                    $('#product-pics-<%= $button_id %>').scrollbox({
+                        distance:   512,
+                        speed:       64,
+                        delay:        6,
+                        startDelay:   7,
+                        direction:   'h'
+                    });
+                </script>
+            </div>
+            % }
+        </td>
+    </tr>
+% };
+%
+% $standard_item->($product);

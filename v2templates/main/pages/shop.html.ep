@@ -1,0 +1,81 @@
+%#<!DOCTYPE html>
+% layout 'default', heading => "Shop", description => "Buy Kids Reflex products on line.";
+% title "Shop";
+%
+% my $products = [
+%   {
+%       button_id   => 'GBZ5DAZ4S6WEE',
+%       price       => '22.50',
+%       title       => 'Plush Mouse toy',
+%       images      => ['Photos/MouseToy.jpg'],
+%       description => 'Handmade plush Mouse toy with solar plexus reflex. Approximately 19cm high, not including ears!',
+%   },
+%   {
+%       button_id   => 'GR29DKU4RSYDN',
+%       price       => '3.5',
+%       title       => 'CD  - Rhymes and Music',
+%       images      => ['Photos/CDRhymes.jpg'],
+%       description => 'CD containing the music from the programme with and without all the different rhymes.',
+%   },
+%   {
+%       button_id   => 'x0',
+%       price       => '5',
+%       title       => 'Special delivery',
+%       images      => ['Misc/RapidDelivery.jpg'],
+%       description => 'This extra charge covers the additional cost of priority delivery or delivery to international destinations.</p><p class="extra-info">Unfortunately the cost of delivery does vary greatly depending on the size of your order and the country it is being sent to. If the cost is too great we might have to contact you prior to dispatch to request a further payment although this is very unusual.',
+%   },
+%   {
+%       button_id   => 'x1',
+%       price       => '9.99',
+%       title       => 'Signed book: The Mouse\'s House',
+%       images      => ['Books/TMH800.jpg','Books/MBDE800.jpg'],
+%       description => 'A signed copy of the book that started it all - The Mouse\'s House.',
+%   },
+%   {
+%       button_id   => 'x2',
+%       price       => '9.99',
+%       title       => 'Signed book: Mouse\'s Best Day Ever',
+%       images      => ['Books/MBDE800.jpg'],
+%       description => 'A signed copy of another book.',
+%   },
+%   {
+%       button_id   => 'x3',
+%       price       => '9.99',
+%       title       => 'Signed book: Mouse and the Storm',
+%       images      => ['Books/MATS800.jpg'],
+%       description => 'A signed copy of another book.',
+%   },
+%   {
+%       button_id   => '',
+%       price       => '',
+%       title       => '',
+%       images      => [],
+%       description => '',
+%   },
+% ];
+<script src="<%= url_for '/js/ScrollBox.js' %>"></script>
+<p markdown="yes" class="page-intro">
+<%== stash('description') %>
+</p>
+
+<p markdown="yes">
+%= markdown begin
+Here in our shop you can buy a small selection of Kids Reflex products.
+Prices **include delivery** to UK mainland addresses in **six working days**.
+For faster delivery or for other addresses please add the *Special Delivery*
+item to your cart before completing your purchase.
+<p markdown="yes">
+</p>
+To order, just click the **Add to Cart** button for each item you want and
+click any **View Cart** button when you've finished or to change your order.
+% end
+</p>
+
+<p>
+<table>
+    % foreach my $product (@$products) {
+    %   next unless $product->{button_id};
+    %= include 'main/parts/shop_code', product => $product;
+    % }
+</table>
+</p>

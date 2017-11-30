@@ -72,12 +72,17 @@
 <p>
 This is just the most essential supplies for running your
 courses but we will be growing our product range as quickly
-as we can! <b>All prices include post and packing</b> to UK addresses. Just click
-the <b>Add to Cart</b> button for each item you want and
+as we can! All prices <b>include delivery</b> to UK mainland addresses
+in <b>six working days</b>. If you need your order more quickly,
+or delivery is to an address outside the UK, please add the
+<b>Special delivery</b> item to your order.
+</p>
+<p>
+Just click the <b>Add to Cart</b> button for each item you want and
 click any <b>View Cart</b> button when you've finished or to
 change your order.
 </p>
-For other destinations or for larger orders please contact us first to check pricing.
+
 <p>
 </p></p>
 <p>
@@ -88,6 +93,7 @@ For other destinations or for larger orders please contact us first to check pri
     % $standard_item->('5ADBUNCF24AD8', ['INST-TRAIN-AN'], '£100.00', "Instructor AN Instructor pack", 400, 243, '/images/Photos/ANInstructorPack.jpg', "Everything you need to train an existing TCRP instructor to be a TCRP AN Instructor. Includes a complete set of protocol handouts, teaching posters, training manual, spare parent certificates and a copy of the book, Mouse and the Storm.");
     % $standard_item->('4JBUMHWQQR9A6', [], '£6.50', "Pair of soft baby feet", 233, 208, '/images/Photos/SoftFeet1.jpg', "A pair of TCRP soft foam baby feet suitable for demonstration and practice of reflexology techniques.");
     % $standard_item->('GR29DKU4RSYDN', [], '£3.50', "CD  - Rhymes and Music", 282, 208, '/images/Photos/CDRhymes.jpg', "CD containing the music from the programme with and without all the different rhymes. If you choose to sell them the RRP is £4.99 but you may sell at any price you wish.");
+    %# $standard_item->('XXXXXXXXXXXXX', [], '£5.00', "Special delivery", 282, 155, '/images/Misc/RapidDelivery.jpg', "Please add this item to your order if you need rapid delivery or you are requesting delivery to a non-UK address. Note that while the amount covers most orders, delivery costs can vary enormously so in some cases I may have to contact you to change the price.");
 </table>
 
 
