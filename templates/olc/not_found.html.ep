@@ -1,0 +1,2 @@
+%#<!DOCTYPE html>
+Sorry - couldn't find that <%= $reason %>

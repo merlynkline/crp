@@ -75,7 +75,6 @@ sub _not_found {
     my $c = shift;
     my($reason) = @_;
 
-    return $c->reply->not_found;
     $c->stash(reason => $reason);
     return $c->render(template => 'olc/not_found', status => 404);
 }
