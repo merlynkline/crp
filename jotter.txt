@@ -1,6 +1,7 @@
 + Outstanding tasks for olc page renderer
     + Module contents to reflect progress
     + Header showing course/module/page title, user details, progress info
+        + Proper auth in OLC::authenticate()
     + olc/not_found template
     + more component types (video, test, pdf)
     + CSS
@@ -44,6 +45,11 @@
 
 - Fix subscription pop-up not to appear on member sites?
 
++ Public-facing shop
+    + Review page intro in v2templates/main/pages/shop.html.ep
+    + Add items (see workflow notes)
+    + Enable by uncommenting the menu entry in v2templates/layouts/default.html.ep
+
 -Ideas for new stuff
     - New protocol handouts for parent course
         - One new A5 leaflet with introduction, techniques and reflexes (each with animal, colour, rhyme)
@@ -56,10 +62,6 @@
         - Based on Sure Start/CST-UK
         - Downloadable, personalised (dated?)
         - Buying parent packs is now optional
-    - Shop for non-members
-        - Mouse
-        - Signed books
-        - Other stuff
     - New manual for reflexologists to help treat kids
         - Notes on working with kids
         - Protocols using reflexes not in the main course
@@ -997,7 +999,7 @@ session:
     + Create and show the right parent course online booking form for the parent course type
     + Create and show the right parent course PDF booking form for the parent course type
     + Add any new products to the shop (parent packs etc)
-- Adding a new product to the shop
+- Adding a new product to the members' shop
     - Log in to the PayPal account and:
         + Go to tools>all tools and use the paypal buttons tool
         + Click the Action menu on an existing button and choose 'Create similar button'
@@ -1018,12 +1020,17 @@ session:
             - $height - of the image
             - $image - URL
             - $description
-    - Removing Claire's instructor trainer qualifications (28Jul17):
-        " delete
-        " from instructor_qualification iq
-        " where (select code from qualification q where q.id = iq.qualification_id) in ('INST-TRAIN', 'INST-TRAIN-AN')
-        " and (select email from login where login.id = iq.instructor_id) in ('wealdenreflexology@gmail.com')
-        " ;
+- Adding a new product to the public-facing shop
+    + Create suitable images in a sensible place (like public/images/Photos/shop). These will be displayed 472px wide.
+    + Create a PayPal button as per the members' shop
+    + Write description
+    + Add the product to v2templates/main/pages/shop.html.ep
+- Removing Claire's instructor trainer qualifications (28Jul17):
+    " delete
+    " from instructor_qualification iq
+    " where (select code from qualification q where q.id = iq.qualification_id) in ('INST-TRAIN', 'INST-TRAIN-AN')
+    " and (select email from login where login.id = iq.instructor_id) in ('wealdenreflexology@gmail.com')
+    " ;
 
 
 

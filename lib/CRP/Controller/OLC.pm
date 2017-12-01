@@ -5,7 +5,21 @@ use Mojo::Base 'Mojolicious::Controller';
 use CRP::Model::OLC::Course;
 use CRP::Model::OLC::Module;
 use CRP::Model::OLC::Page;
+use CRP::Model::OLC::Student;
 
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub authenticate {
+    my $c = shift;
+
+    my $student = CRP::Model::OLC::Student->new;
+
+    $c->stash(olc => {
+            student => $student,
+        });
+
+    return 1;
+}
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 sub show_page {
@@ -25,6 +39,7 @@ sub show_page {
         page        => $page->view_data($module, $course),
         module      => $module->view_data,
         course      => $course->view_data,
+        student     => $c->stash('olc')->{student}->view_data,
     );
 
     $c->render(template => 'olc/page');

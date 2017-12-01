@@ -10,7 +10,18 @@
         <meta charset="utf-8">
     </head>
     <body>
-        <div  class="olc-content">
+        <div class="olc-head">
+            <%= $course->{title} %>
+            -
+            <%= $module->{title} %>
+            -
+            <%= $page->{title} %>
+            -
+            <%= $student->{name} %>
+            -
+            <%= $student->{email} %>
+        </div>
+        <div class="olc-content">
 % foreach my $component (@{$page->{components}}) {
 %=   include 'olc/components/' . $component->{type}, component => $component, editable => 0;
 % }
