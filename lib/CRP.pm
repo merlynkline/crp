@@ -316,7 +316,7 @@ sub _after_static {
 
     return unless $c->res->code;
 
-    my $age = 60 * 60 * 24 * 30;
+    my $age = 60 * 60 * 4;
 
     $c->res->headers->cache_control("max-age=$age, must-revalidate");
     $c->res->headers->header("Cache-Control" => "public");
