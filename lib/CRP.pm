@@ -315,8 +315,8 @@ sub _after_static {
     my $c = shift;
 
     return unless $c->res->code;
-
     my $age = 60 * 60 * 4;
+    $age = 0 if $c->app->mode eq 'development' && $c->req->url->path->parts->[-1] =~ /\.css$/;
 
     $c->res->headers->cache_control("max-age=$age, must-revalidate");
     $c->res->headers->header("Cache-Control" => "public");
