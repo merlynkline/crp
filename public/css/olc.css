@@ -4,9 +4,23 @@ html {
 }
 
 body {
-    height:         100%;
-    padding:        0;
-    margin:         0;
+    height:             100%;
+    padding:            0;
+    margin:             0;
+    background-color:   #fcf3dc;
+    background-image:   url('/images/Misc/HareBG.jpg');
+    background-repeat:  no-repeat;
+    background-size:    100%;
+    background-attachment: fixed;
+}
+
+a, a:visited {
+    color:           inherit;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
 }
 
 div.olc-preview-container {
@@ -17,12 +31,24 @@ div.olc-preview-container {
     margin:         4px auto;
 }
 
-div.olc-content {
+div.olc-page {
     font-family:    sans-serif;
     line-height:    140%;
-    background-color: #fff;
     color:          #354;
-    padding:        8px;
+}
+
+div.olc-content-container {
+    max-width:      850px;
+    margin:         0 auto;
+    border-left:    1px solid black;
+    border-right:   1px solid black;
+    padding:        60px 0 0 0;
+}
+
+div.olc-content {
+    max-width:      850px;
+    padding:        16px;
+    background-color: #eef;
 }
 
 .olc-content a, .olc-content a:visited {
@@ -72,4 +98,56 @@ div.olc-content {
 
 .olc-content ol, .olc-content ul {
     overflow:       hidden;
+}
+
+.olc-head-container {
+    position:       fixed;
+    width:          100%;
+}
+
+.olc-head-positioned {
+    max-width:      850px;
+    margin:         0 auto;
+    border-bottom:  1px solid black;
+    border-left:    1px solid black;
+    border-right:   1px solid black;
+    background-image: linear-gradient(#fff, #bde);
+}
+
+.olc-head {
+    height:         62px;
+    padding:        2px 4px;
+}
+
+.olc-head h1 {
+    font-size:      1.5em;
+}
+
+.olc-head h2 {
+    font-size:      1.0em;
+    padding-left:   2px;
+}
+
+.olc-head h3 {
+    font-size:      0.9em;
+    padding-left:   4px;
+}
+
+.olc-head-part {
+    display:        inline-block;
+}
+
+.olc-head h1, .olc-head h2, .olc-head h3 {
+    line-height:    100%;
+    margin:         2px 0;
+}
+
+.olc-right {
+    float:          right;
+    text-align:     right;
+}
+
+#heading-image {
+    margin:         0 4px;
+    width:          44px;
 }

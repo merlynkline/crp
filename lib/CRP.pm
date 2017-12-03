@@ -212,8 +212,8 @@ sub startup {
 
     my $olc = $r->under('/olc')->to('o_l_c#authenticate');
     $olc->get('/:slug/:course_id/:module_id/:page_id')->to('o_l_c#show_page')->name('crp.olc.showpage');
-    $olc->get('/:slug/:course_id/:module_id')->to('o_l_c#show_page')->name('crp.olc.showpage');
-    $olc->get('/:slug/:course_id')->to('o_l_c#show_page')->name('crp.olc.showpage');
+    $olc->get('/:slug/:course_id/:module_id')->to('o_l_c#show_page')->name('crp.olc.showmodule');
+    $olc->get('/:slug/:course_id')->to('o_l_c#show_page')->name('crp.olc.showcourse');
 
 
 
