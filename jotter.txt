@@ -1,10 +1,12 @@
 + Outstanding tasks for olc page renderer
-    + Module contents to reflect progress
-    + Header showing course/module/page title, user details, progress info
-        + Proper auth in OLC::authenticate()
+    + Module contents page to reflect progress
+    + Header progress info
+    + Proper auth in OLC::authenticate()
+    + Progress tracking
     + olc/not_found template
     + more component types (video, test, pdf)
     + CSS
+    + CSS for print media
 + Outstanding tasks for OLC admin:
     + more component types (video, test, pdf)
     + Common code in these modules:

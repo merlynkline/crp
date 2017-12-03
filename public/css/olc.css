@@ -37,8 +37,11 @@ div.olc-page {
     color:          #354;
 }
 
-div.olc-content-container {
+div.olc-content-container, div.olc-content, .olc-head-positioned, .olc-foot-positioned {
     max-width:      850px;
+}
+
+div.olc-content-container {
     margin:         0 auto;
     border-left:    1px solid black;
     border-right:   1px solid black;
@@ -46,7 +49,6 @@ div.olc-content-container {
 }
 
 div.olc-content {
-    max-width:      850px;
     padding:        16px;
     background-color: #eef;
 }
@@ -58,10 +60,13 @@ div.olc-content {
 
 .olc-content h1, .olc-content h2, .olc-content h3, .olc-content h4 {
     margin-bottom:  4px;
+    padding-top:    4px;
+    letter-spacing: 0.05em;
 }
 
 .olc-content h2:first-child {
     margin-top:     0;
+    border-top:     none;
 }
 
 .olc-content h1 + p, .olc-content h2 + p, .olc-content h3 + p, .olc-content h4 + p {
@@ -69,7 +74,7 @@ div.olc-content {
 }
 
 .olc-content h2 {
-    border-bottom:  1px solid #354;
+    border-top:  1px dashed #6a8;
 }
 
 .olc-content p {
@@ -105,18 +110,27 @@ div.olc-content {
     width:          100%;
 }
 
-.olc-head-positioned {
-    max-width:      850px;
+.olc-head-positioned, .olc-foot-positioned {
     margin:         0 auto;
-    border-bottom:  1px solid black;
     border-left:    1px solid black;
     border-right:   1px solid black;
+}
+
+.olc-head-positioned {
     background-image: linear-gradient(#fff, #bde);
+}
+
+.olc-head-positioned {
+    border-bottom:  1px solid #6a8;
+}
+
+.olc-head, .olc-foot {
+    padding:        2px 4px;
+    overflow:       hidden;
 }
 
 .olc-head {
     height:         62px;
-    padding:        2px 4px;
 }
 
 .olc-head h1 {
@@ -145,6 +159,34 @@ div.olc-content {
 .olc-right {
     float:          right;
     text-align:     right;
+}
+
+.olc-foot-container {
+    clear:          both;
+    width:          100%;
+}
+
+.olc-foot-positioned {
+    background-image: linear-gradient(#eef, #bde);
+}
+
+.olc-foot ul {
+    display:        inline;
+    padding:        0;
+    margin:         0 0 0 40px;
+}
+
+.olc-foot li {
+    display:        inline;
+    list-style:     none;
+    font-size:      12px;
+    margin:         0 0 20px 0;
+    padding:        0 20px;
+}
+
+#sq-logo {
+    vertical-align:     text-bottom;
+    margin-left:        16px;
 }
 
 #heading-image {
