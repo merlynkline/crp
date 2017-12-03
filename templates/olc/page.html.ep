@@ -15,8 +15,9 @@
                 <div class="olc-head-positioned">
                     <div class="olc-head">
                         <div class="olc-head-part olc-right">
-                            <%= $student->{name} %><br/>
-                            <%= $student->{email} %>
+                            <strong><%= $student->{name} %></strong><br />
+                            <%= $student->{email} %><br />
+                            <%= include 'olc/parts/progress_indicator', pages => $course->{page_count}, current => $page_index, done => $progress->{current_page_index} %>
                         </div>
                         <a href="/"><img src="<%= url_for '/images/CRPLogo.png' %>" id="heading-image"></a>
                         <div class="olc-head-part">
@@ -39,6 +40,9 @@
                 <div class="olc-content">
                     % foreach my $component (@{$page->{components}}) {
                     %=   include 'olc/components/' . $component->{type}, component => $component, editable => 0;
+                    % }
+                    % if(@{$page->{components}} == 0) {
+                    %= include 'olc/parts/empty-page';
                     % }
                     <br clear="all" />
                 </div>

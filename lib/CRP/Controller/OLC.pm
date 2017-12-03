@@ -6,6 +6,7 @@ use CRP::Model::OLC::Course;
 use CRP::Model::OLC::Module;
 use CRP::Model::OLC::Page;
 use CRP::Model::OLC::Student;
+use CRP::Model::OLC::StudentProgress;
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -15,7 +16,7 @@ sub authenticate {
     my $student = CRP::Model::OLC::Student->new;
 
     $c->stash(olc => {
-            student => $student,
+            student_record => $student,
         });
 
     return 1;
@@ -34,12 +35,15 @@ sub show_page {
     return $c->_not_found('MODULE') unless $module && $module->exists;
     my $page = $c->_page;
     return $c->_not_found('PAGE') unless $page && $page->exists;
+    my $progress = CRP::Model::OLC::StudentProgress->new({student => $c->stash('olc')->{student_record}, course => $course});
 
     $c->stash(
         page        => $page->view_data($module, $course),
         module      => $module->view_data,
         course      => $course->view_data,
-        student     => $c->stash('olc')->{student}->view_data,
+        student     => $c->stash('olc')->{student_record}->view_data,
+        page_index  => $course->module_page_index($module, $page) + 1,
+        progress    => $progress->view_data,
     );
 
     $c->render(template => 'olc/page');

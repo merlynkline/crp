@@ -1,14 +1,21 @@
 + Outstanding tasks for olc page renderer
-    + Module contents page to reflect progress
-    + Header progress info
+    + Consider selecting pages by page_index in the URL, rather than module_id/page_id
+    X Module contents page to reflect progress
+    ~ Header progress info
     + Proper auth in OLC::authenticate()
     + Progress tracking
+        ~ Indicate percentage progress (percentage of pages completed)
+        ~ Indicate percentage through that currently displayed page is
+        + Disable any page links more than one beyond progress point
+        + Provide next/previous page links (what if you're on the first/last page?) (</>)
+        + Provide a "resume" link to the last unfinished page (what if all done?) (>>)
+        + provide a "start" link to the first page (<<)
+        + Handle an attempt to see a page past current completion point
     + olc/not_found template
-    + more component types (video, test, pdf)
-    + CSS
+    + more component types (video, test, pdf, progress)
     + CSS for print media
 + Outstanding tasks for OLC admin:
-    + more component types (video, test, pdf)
+    + more component types (video, test, pdf, progress)
     + Common code in these modules:
         - ComponentSet/ForPage.pm
         - ModuleSet/ForCourse.pm

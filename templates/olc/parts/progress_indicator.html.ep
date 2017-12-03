@@ -1,0 +1,30 @@
+%#<!DOCTYPE html>
+% my $width = 240;
+% my $height = "12px";
+% my $done_width = int($done / $pages * $width + 0.5);
+% my $current_width = int($current / $pages * $width + 0.5);
+% my $done_desc = $done ? "$done page" : "none";
+% $done_desc .= "s" if $done > 1;
+% $done_desc = "everything already" if $done == $pages;
+<div style="
+    border:     1px solid black;
+    width:      <%= $width%>px;
+    height:     <%= $height %>;
+    display:    inline-block;
+    text-align: left;
+"
+title="You are viewing page <%= $current %> of <%= $pages %> and have completed <%= $done_desc %> (<%= int($done / $pages * 100 + 0.5) %>%)"
+><div style="
+        width:          <%= $done_width %>px;
+        height:         <%= $height %>;
+        background:     #7d8;
+        border-right:   2px solid #595;
+        display:        inline-block;
+        position:       absolute;
+    "></div><div style="
+        width:          <%= $current_width %>px;
+        height:         <%= $height %>;
+        border-right:   2px solid red;
+        display:        inline-block;
+        position:       absolute;
+    "></div></div>

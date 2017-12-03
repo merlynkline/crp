@@ -15,13 +15,16 @@ use constant {
 
 has '+_db_record' => (handles => _DB_FIELDS);
 
-has module_set    => (is => 'ro', lazy => 1, builder => '_build_module_set', init_arg => undef);
+has module_set    => (is => 'ro', lazy => 1, builder => '_build_module_set', init_arg => undef, handles => [qw(page_count)]);
 
 override view_data => sub {
     my $self = shift;
 
-    my $data = super();
-    $data->{modules} = $self->module_set->view_data;
+    my $data = {
+        %{super()},
+        modules     => $self->module_set->view_data,
+        page_count  => $self->page_count,
+    };
 
     return $data;
 };
@@ -52,6 +55,15 @@ sub has_module {
 
     my $module_id = $module->id;
     return List::Util::any { $_->id eq $module_id} @{$self->module_set->all};
+}
+
+sub module_page_index {
+    my $self = shift;
+    my($module, $page) = @_;
+
+    my $module_page = $module->id . '/' . $page->id;
+    my $module_page_list = $self->module_set->module_page_list;
+    return List::Util::first { $module_page_list->[$_] eq $module_page } (0 .. $#$module_page_list);
 }
 
 sub _build_module_set {
