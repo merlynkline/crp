@@ -29,7 +29,7 @@ sub module_page_list {
     foreach my $module (@{$self->all}) {
         my $module_id = $module->id;
         push @module_page_list,
-            map { "$module_id/" . $_->id }
+            map { "$module_id:" . $_->id }
             @{$module->page_set->all};
     }
 

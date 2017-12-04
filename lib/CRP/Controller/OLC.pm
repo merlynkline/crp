@@ -26,27 +26,52 @@ sub authenticate {
 sub show_page {
     my $c = shift;
 
-    my $module_id = $c->stash('moudule_id');
-    my $page_id = $c->stash('page_id');
+    return $c->_not_found('COURSE') unless $c->_course && $c->_course->exists;
+    my $progress = CRP::Model::OLC::StudentProgress->new({student => $c->stash('olc')->{student_record}, course => $c->_course});
 
-    my $course = $c->_course;
-    return $c->_not_found('COURSE') unless $course && $course->exists;
-    my $module = $c->_module;
-    return $c->_not_found('MODULE') unless $module && $module->exists;
-    my $page = $c->_page;
-    return $c->_not_found('PAGE') unless $page && $page->exists;
-    my $progress = CRP::Model::OLC::StudentProgress->new({student => $c->stash('olc')->{student_record}, course => $course});
+    $c->_decode_page_index_indicator($c->stash('module_id'), $progress);
+    return $c->_not_found('MODULE') unless $c->_module && $c->_module->exists;
+    return $c->_not_found('PAGE') unless $c->_page && $c->_page->exists;
+
+    my $page_index = $c->_course->module_page_index($c->_module, $c->_page);
+    if($page_index > $progress->current_page_index) {
+        $page_index = $progress->current_page_index;
+        $c->_decode_page_index($page_index, $progress);
+    }
 
     $c->stash(
-        page        => $page->view_data($module, $course),
-        module      => $module->view_data,
-        course      => $course->view_data,
+        page        => $c->_page->view_data($c->_module, $c->_course),
+        module      => $c->_module->view_data,
+        course      => $c->_course->view_data,
         student     => $c->stash('olc')->{student_record}->view_data,
-        page_index  => $course->module_page_index($module, $page) + 1,
+        page_index  => $page_index,
         progress    => $progress->view_data,
     );
 
     $c->render(template => 'olc/page');
+}
+
+sub _decode_page_index_indicator {
+    my $c = shift;
+    my($page_index_indicator, $progress) = @_;
+
+    return unless $page_index_indicator =~ /^x(\d+)/i;
+    $c->_decode_page_index($1, $progress);
+}
+
+sub _decode_page_index {
+    my $c = shift;
+    my($page_index, $progress) = @_;
+
+    my $page_index = $1 // 1;
+    $page_index = 1 if $page_index < 1;
+    $page_index = $progress->current_page_index if $page_index > $progress->current_page_index;
+
+    my $course = $c->_course;
+    $c->stash(
+        page_id     => $course->page_id_from_page_index($page_index),
+        module_id   => $course->module_id_from_page_index($page_index),
+    );
 }
 
 my $_cached_course;
