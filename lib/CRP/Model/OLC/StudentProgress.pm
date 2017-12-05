@@ -10,11 +10,11 @@ sub view_data {
     my $self = shift;
 
     return {
-        current_page_index  => $self->current_page_index,
+        completed_pages_count  => $self->completed_pages_count,
     };
 }
 
-sub current_page_index {
+sub completed_pages_count {
     return 3;
 }
 

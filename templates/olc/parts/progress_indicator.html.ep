@@ -1,6 +1,6 @@
 %#<!DOCTYPE html>
 % my $width = 240;
-% my $height = "12px";
+% my $height = "12";
 % my $done_width = int($done / $pages * $width + 0.5);
 % my $current_left  = int(($current - 1 ) / $pages * $width + 0.5);
 % my $current_width = int($width / $pages + 0.5);
@@ -15,19 +15,24 @@
     text-align: left;
 "
 title="You are viewing page <%= $current %> of <%= $pages %> and have completed <%= $done_desc %> (<%= int($done / $pages * 100 + 0.5) %>%)"
-><div style="
+>
+% if($done) {
+<div style="
         width:          <%= $done_width %>px;
-        height:         <%= $height %>;
+        height:         <%= $height %>px;
         background:     #7d8;
         border-right:   2px solid #595;
         display:        inline-block;
         position:       absolute;
-    "></div><div style="
+    "></div>
+% }
+<div style="
         margin-left:    <%= $current_left %>;
-        margin-top:     <%= int($height / 4 + 0.5) %>;
-        height:         <%= int($height / 2 + 0.5) %>;
+        margin-top:     <%= int($height / 4 + 0.5) %>px;
+        height:         <%= int($height / 2 + 0.5) %>px;
         width:          <%= $current_width %>px;
         background:     green;
         display:        inline-block;
         position:       absolute;
-    "></div></div>
+    "></div>
+</div>

@@ -90,7 +90,7 @@ sub _module_page_from_page_index {
 
     my $module_page_list = $self->module_set->module_page_list;
     $page_index = 1 if ($page_index // 0) < 1;
-    $page_index = @$module_page_list if $page_index > @$module_page_list;
+    $page_index = $self->page_count if $page_index > $self->page_count;
     return $module_page_list->[$page_index - 1];
 }
 

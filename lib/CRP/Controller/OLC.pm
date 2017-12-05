@@ -33,11 +33,7 @@ sub show_page {
     return $c->_not_found('MODULE') unless $c->_module && $c->_module->exists;
     return $c->_not_found('PAGE') unless $c->_page && $c->_page->exists;
 
-    my $page_index = $c->_course->module_page_index($c->_module, $c->_page);
-    if($page_index > $progress->current_page_index) {
-        $page_index = $progress->current_page_index;
-        $c->_decode_page_index($page_index, $progress);
-    }
+    my $page_index = $c->_decode_and_limit_page_index($c->_course->module_page_index($c->_module, $c->_page), $progress);
 
     $c->stash(
         page        => $c->_page->view_data($c->_module, $c->_course),
@@ -56,22 +52,27 @@ sub _decode_page_index_indicator {
     my($page_index_indicator, $progress) = @_;
 
     return unless $page_index_indicator =~ /^x(\d+)/i;
-    $c->_decode_page_index($1, $progress);
+    $c->_decode_and_limit_page_index($1, $progress);
 }
 
-sub _decode_page_index {
+sub _decode_and_limit_page_index {
     my $c = shift;
     my($page_index, $progress) = @_;
 
-    my $page_index = $1 // 1;
-    $page_index = 1 if $page_index < 1;
-    $page_index = $progress->current_page_index if $page_index > $progress->current_page_index;
-
     my $course = $c->_course;
+
+    $page_index //= 1;
+    $page_index = 1 if $page_index < 1;
+
+    my $max_allowed_page_index = List::Util::min $progress->completed_pages_count + 1, $course->page_count;
+    $page_index = $max_allowed_page_index if $page_index > $max_allowed_page_index;
+
     $c->stash(
         page_id     => $course->page_id_from_page_index($page_index),
         module_id   => $course->module_id_from_page_index($page_index),
     );
+warn ">>>$page_index";
+    return $page_index;
 }
 
 my $_cached_course;

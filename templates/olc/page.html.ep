@@ -17,7 +17,7 @@
                         <div class="olc-head-part olc-right">
                             <strong><%= $student->{name} %></strong><br />
                             <%= $student->{email} %><br />
-                            <%= include 'olc/parts/progress_indicator', pages => $course->{page_count}, current => $page_index, done => $progress->{current_page_index} %>
+                            <%= include 'olc/parts/progress_indicator', pages => $course->{page_count}, current => $page_index, done => $progress->{completed_pages_count} %>
                         </div>
                         <a href="/"><img src="<%= url_for '/images/CRPLogo.png' %>" id="heading-image"></a>
                         <div class="olc-head-part">
