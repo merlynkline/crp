@@ -2,7 +2,8 @@
 % my $width = 240;
 % my $height = "12px";
 % my $done_width = int($done / $pages * $width + 0.5);
-% my $current_width = int($current / $pages * $width + 0.5);
+% my $current_left  = int(($current - 1 ) / $pages * $width + 0.5);
+% my $current_width = int($width / $pages + 0.5);
 % my $done_desc = $done ? "$done page" : "none";
 % $done_desc .= "s" if $done > 1;
 % $done_desc = "everything already" if $done == $pages;
@@ -22,9 +23,11 @@ title="You are viewing page <%= $current %> of <%= $pages %> and have completed 
         display:        inline-block;
         position:       absolute;
     "></div><div style="
+        margin-left:    <%= $current_left %>;
+        margin-top:     <%= int($height / 4 + 0.5) %>;
+        height:         <%= int($height / 2 + 0.5) %>;
         width:          <%= $current_width %>px;
-        height:         <%= $height %>;
-        border-right:   2px solid red;
+        background:     green;
         display:        inline-block;
         position:       absolute;
     "></div></div>
