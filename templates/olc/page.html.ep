@@ -17,7 +17,15 @@
                         <div class="olc-head-part olc-right">
                             <strong><%= $student->{name} %></strong><br />
                             <%= $student->{email} %><br />
+                            % if($page_index > 1) {
+                            <a href="<%= url_for('crp.olc.showpage', {module_id => 'X1'}) %>">&lt;&lt;</a>
+                            <a href="<%= url_for('crp.olc.showpage', {module_id => 'X' . ($page_index - 1)}) %>">&lt;</a>
+                            % }
                             <%= include 'olc/parts/progress_indicator', pages => $course->{page_count}, current => $page_index, done => $progress->{completed_pages_count} %>
+                            % if($page_index < $max_page_index) {
+                            <a href="<%= url_for('crp.olc.showpage', {module_id => 'X' . ($page_index + 1)}) %>">&gt;</a>
+                            <a href="<%= url_for('crp.olc.showpage', {module_id => 'X' . $max_page_index}) %>">&gt;&gt;</a>
+                            % }
                         </div>
                         <a href="/"><img src="<%= url_for '/images/CRPLogo.png' %>" id="heading-image"></a>
                         <div class="olc-head-part">

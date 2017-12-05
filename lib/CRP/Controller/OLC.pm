@@ -36,12 +36,13 @@ sub show_page {
     my $page_index = $c->_decode_and_limit_page_index($c->_course->module_page_index($c->_module, $c->_page), $progress);
 
     $c->stash(
-        page        => $c->_page->view_data($c->_module, $c->_course),
-        module      => $c->_module->view_data,
-        course      => $c->_course->view_data,
-        student     => $c->stash('olc')->{student_record}->view_data,
-        page_index  => $page_index,
-        progress    => $progress->view_data,
+        page            => $c->_page->view_data($c->_module, $c->_course),
+        module          => $c->_module->view_data,
+        course          => $c->_course->view_data,
+        student         => $c->stash('olc')->{student_record}->view_data,
+        page_index      => $page_index,
+        progress        => $progress->view_data,
+        max_page_index  => List::Util::min($progress->completed_pages_count + 1, $c->_course->page_count),
     );
 
     $c->render(template => 'olc/page');
@@ -71,7 +72,7 @@ sub _decode_and_limit_page_index {
         page_id     => $course->page_id_from_page_index($page_index),
         module_id   => $course->module_id_from_page_index($page_index),
     );
-warn ">>>$page_index";
+
     return $page_index;
 }
 
