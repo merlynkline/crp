@@ -35,4 +35,5 @@ title="You are viewing page <%= $current %> of <%= $pages %> and have completed 
         display:        inline-block;
         position:       absolute;
     "></div>
-</div>
+</div><%#
+ =%>

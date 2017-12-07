@@ -192,6 +192,37 @@ div.olc-content {
     color:      #6a8;
 }
 
+.olc-nav-button {
+    border:           1px solid black;
+    border-radius:    3px;
+    margin:           0;
+    height:           12px;
+    display:          inline-block;
+    background-image: linear-gradient(#fff, #ddd);
+    overflow:         hidden;
+}
+
+.olc-nav-button:hover {
+    background-image: linear-gradient(#ccc, #eee);
+}
+
+.olc-nav-button a:hover  {
+    text-decoration:  none;
+}
+
+.olc-nav-button span  {
+    position:   relative;
+    top:        -4px;
+    padding:    2px;
+    font-size:  10px;
+    overflow:   hidden;
+}
+
+.olc-nav-button.disabled, .olc-nav-button.disabled:hover {
+    border-color: #666;
+    background:   #ccc;
+}
+
 #sq-logo {
     vertical-align:     text-bottom;
     margin-left:        16px;

@@ -1,5 +1,5 @@
 + Outstanding tasks for olc page renderer
-    + Handle allowing display of first *incomplete* page. What is current_page? maybe that's it, actually. What when the whole course is complete? Perhaps max-page-index limiting will handle this anyway.
+    ~ Handle allowing display of first *incomplete* page. What is current_page? maybe that's it, actually. What when the whole course is complete? Perhaps max-page-index limiting will handle this anyway.
     ~ Change progres indicator so current page is a bar thw width of the page
     ~ Consider selecting pages by page_index in the URL, rather than module_id/page_id
     X Module contents page to reflect progress
@@ -9,13 +9,35 @@
         ~ Indicate percentage progress (percentage of pages completed)
         ~ Indicate percentage through that currently displayed page is
         + Disable any page links more than one beyond progress point
-        + Provide next/previous page links (what if you're on the first/last page?) (</>)
-        + Provide a "resume" link to the last unfinished page (what if all done?) (>>)
-        + provide a "start" link to the first page (<<)
+        ~ Provide next/previous page links (what if you're on the first/last page?) (</>)
+        ~ Provide a "resume" link to the last unfinished page (what if all done?) (>>)
+        ~ provide a "start" link to the first page (<<)
         ~ Handle an attempt to see a page past current completion point
     + olc/not_found template
     + more component types (video, test, pdf, progress)
     + CSS for print media
+    + Moving on to the next page
+        - Completion states are page-complete(PC)/page-incomplete(PI)/course-complete(CC)
+        ? Indicate completion state in the title?
+        ? CC link to certificate page (w/ download for logged-in users?)?
+        + PI: Add a form element to the page
+        + Style the "I've finished" button
+        + Style the "I've finished" link
+        ~ PC/CC - just add a "next page" button except on the last page
+        + Last page footer
+            + PI text should say "to finish the course"
+            + CC just say "you've reached the end" or something
+            - PC implies CC
+        + Add the form handler
+            + Record progress when the answers are right/wrong
+            + Redirect to the right place for right/wrong answers
+        + Initialise the answers to questions on the page
+            - PI might still have incomplete/wrong answers stored
+        + Handle displaying wrong answers on the page
+            + Information at the top
+            + Information next to the "I've finished" button
+            + Messages and highlights on specific questions
+        ? Different completion form on the last page of the course?
 + Outstanding tasks for OLC admin:
     + more component types (video, test, pdf, progress)
     + Common code in these modules:
@@ -117,7 +139,7 @@
             + Receive a data structure describing a course and return one describing, for that course, a comparison against the local copy of it saying which parts are new, missing, present but older and present but newer
             + Return the content of a course/module/page/component/resource
         + Add an admin tool that uses the above APIs to query the status of a course on a remote server. If we have something that is newer than or not present on the remote then complain, otherwise fetch and update anything that's newer.
-            + How to handle huge resources (e.g. video)? May need to spawn an independant worker track it? Fetch to temp files in case of interruption.
+            + How to handle huge resources (e.g. video)? May need to spawn an independant worker to track it? Fetch to temp files in case of interruption.
     - Types of course
         - Members, e.g. instructors course, associated with a particular qualification. Logged-in users get access if they have the qualification (even if they haven't passed).
         - Visitors, e.g. parents course. Anyone can do these even if they don't have an account. Maybe also available to logged-in users?
@@ -143,6 +165,19 @@
                 - If the questions are multiple-choice only then the system can mark the test and unlock the next module
                 - More complex tests will send an email to the course tutor to be marked and the tutor must then indicate pass or fail - typically used only for the last module in the course, to get the certificate issued.
         - When the last module is passed the associated qualification is automatically marked as passed
+    - Electronic inline certificates with link from QR code on PDF
+    - Admin tools for online courses:
+        - Get stats
+        - Investigate individual candidates to see what they are signed up for, progress, issue certificates etc
+    - Sign-up mechanisms for candidates
+        - Through existing TCRP system
+        - Independant for some courses
+            - Pay with PayPal for immediate access
+            - Email verification needed
+            - May need course materials sent
+                - status of this could be shown in page headers or somewhere
+                - Course admin needs to be told to send and be able to mark when done
+                - Need to capture postal address for these courses
     - Data model
         - A course is an ordered list of modules, which may appear in many courses.
         - A module is an ordered list of pages, which may appear in many modules.
