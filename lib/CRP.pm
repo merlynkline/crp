@@ -211,9 +211,9 @@ sub startup {
     $api->any('/courses')->to('a_p_i#courses');
 
     my $olc = $r->under('/olc')->to('o_l_c#authenticate');
-    $olc->get('/:slug/:course_id/:module_id/:page_id')->to('o_l_c#show_page')->name('crp.olc.showpage');
-    $olc->get('/:slug/:course_id/:module_id')->to('o_l_c#show_page')->name('crp.olc.showmodule');
-    $olc->get('/:slug/:course_id')->to('o_l_c#show_page')->name('crp.olc.showcourse');
+    $olc->get('/:slug/show/:course_id/:module_id/:page_id')->to('o_l_c#show_page')->name('crp.olc.showpage');
+    $olc->get('/:slug/show/:course_id/:module_id')->to('o_l_c#show_page')->name('crp.olc.showmodule');
+    $olc->get('/:slug/show/:course_id')->to('o_l_c#show_page')->name('crp.olc.showcourse');
 
 
 

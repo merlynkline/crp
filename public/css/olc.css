@@ -64,7 +64,7 @@ div.olc-content {
     letter-spacing: 0.05em;
 }
 
-.olc-content h2:first-child {
+.olc-content h2:first-child, .olc-content form h2:first-child {
     margin-top:     0;
     border-top:     none;
 }

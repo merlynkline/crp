@@ -54,6 +54,10 @@
             </div>
             <div class="olc-content-container">
                 <div class="olc-content">
+                    % if( ! $is_page_completed) {
+                        <form target="<%= url_for('crp.olc.check_page') %>" method="post">
+                    % }
+                    %
                     % my $has_questions;
                     % my %QUESTION_TYPES = map { $_ => 1 } qw();
                     % foreach my $component (@{$page->{components}}) {
@@ -89,6 +93,12 @@
                             click this button to move on:
                             <div style="text-align: right;"><input type="submit" value="I've finished"></div>
                         % }
+                    % }
+                    % if( ! $is_page_completed) {
+                        %= hidden_field 'course_id', => $course_id;
+                        %= hidden_field 'module_id', => $module_id;
+                        %= hidden_field 'page_id', => $page_id;
+                        </form>
                     % }
                 </div>
             </div>
