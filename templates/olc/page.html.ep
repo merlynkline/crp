@@ -7,7 +7,7 @@
 %
 <% my $nav_button = begin =%>
 <%  my($page_index, $disabled, $label) = @_; =%>
-<div class="olc-nav-button<%= $disabled ? ' disabled' : '' %>"><span><% if( ! $disabled) { %><a href="<%= url_for('crp.olc.showpage', {module_id => "X$page_index"})  %>"><% } =%>
+<div class="olc-nav-button<%= $disabled ? ' disabled' : '' %>"><span><% if( ! $disabled) { %><a href="<%= url_for('crp.olc.showmodule', {module_id => "X$page_index"})  %>"><% } =%>
         <%= $label =%>
     <% if( ! $disabled) { =%></a><% } =%></span>
 </div><%= end =%>
@@ -69,7 +69,7 @@
                         % if($is_course_completed) {
                             You&apos;ve already finished this course - well done!
                             When you&apos;ve finished reviewing you can click this button to return to the first page:
-                            <div style="text-align: right;"><a class="button" href="<%= url_for('crp.olc.showpage', {module_id => 'X1'}) %>">I&apos;ve finished</a></div>
+                            <div style="text-align: right;"><a class="button" href="<%= url_for('crp.olc.showmodule', {module_id => 'X1'}) %>">I&apos;ve finished</a></div>
                         % } else {
                             This is the last page in this course.
                             When you have completed everything on this page
@@ -82,7 +82,7 @@
                         % if($is_page_completed) {
                             You&apos;ve already finished this page - well done!
                             When you&apos;ve finished reviewing you can click this button to move to the next page:
-                            <div style="text-align: right;"><a class="button" href="<%= url_for('crp.olc.showpage', {module_id => 'X' . ($page_index + 1)}) %>">I&apos;ve finished</a></div>
+                            <div style="text-align: right;"><a class="button" href="<%= url_for('crp.olc.showmodule', {module_id => 'X' . ($page_index + 1)}) %>">I&apos;ve finished</a></div>
                         % } else {
                             When you have completed everything on this page
                             <%= $has_questions ? 'and answered all the questions,' : '' %>
