@@ -15,9 +15,10 @@ use CRP::Model::OLC::Component::ModuleIndex;
 use CRP::Model::OLC::Component::PDF;
 use CRP::Model::OLC::Component::Paragraph;
 use CRP::Model::OLC::Component::Video;
+use CRP::Model::OLC::Component::SingleOption;
 
 use constant {
-    _TYPES          => {
+    _TYPE_CLASS     => {
         COURSE_IDX      => 'CourseIndex',
         HEADING         => 'Heading',
         IMAGE           => 'Image',
@@ -26,10 +27,11 @@ use constant {
         PARAGRAPH       => 'Paragraph',
         PDF             => 'PDF',
         VIDEO           => 'Video',
+        QPICKONE        => 'SingleOption',
     },
 };
 
-enum ComponentType => [keys %{_TYPES()}];
+enum ComponentType => [keys %{_TYPE_CLASS()}];
 
 has _type        => (is => 'ro', isa => 'Maybe[ComponentType]', init_arg => 'type');
 has _olc_page_id => (is => 'ro', isa => 'Maybe[Int]',           init_arg => 'olc_page_id');
@@ -68,7 +70,7 @@ sub _build_component {
         $type = $self->_type;
     }
 
-    my $class = 'CRP::Model::OLC::Component::' . _TYPES->{$type};
+    my $class = 'CRP::Model::OLC::Component::' . _TYPE_CLASS->{$type};
     my $component = $class->new({dbh => $self->dbh, id => $self->id});
     unless($self->id) {
         $component->olc_page_id($self->_olc_page_id);

@@ -59,7 +59,7 @@
                     % }
                     %
                     % my $has_questions;
-                    % my %QUESTION_TYPES = map { $_ => 1 } qw();
+                    % my %QUESTION_TYPES = map { $_ => 1 } qw(QPICKONE);
                     % foreach my $component (@{$page->{components}}) {
                     %    $has_questions = 1 if exists $QUESTION_TYPES{$component->{type}};
                     %=   include 'olc/components/' . $component->{type}, component => $component, editable => 0;

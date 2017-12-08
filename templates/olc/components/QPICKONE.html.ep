@@ -1,0 +1,6 @@
+%#<!DOCTYPE html>
+% $editable = $editable ? qq{ editablecomponentid="$editable"} : '';
+<div class="olc-question<%= $editable ? ' editable-component' : '' %>"<%== $editable %>>
+<h3>Question</h3>
+<%= $component->{prompt} %>
+</div>

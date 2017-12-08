@@ -155,7 +155,7 @@ sub check_page {
     return $c->_not_found($failure_code) if $failure_code;
 
     my $pass = 1;
-    foreach my $question (@{$c->_page->questions) {
+    foreach my $question (@{$c->_page->questions}) {
         my $answer = $c->crp->trimmed_param($question->field_name);
         $pass = 0 unless $question->is_good_answer($answer);
     }

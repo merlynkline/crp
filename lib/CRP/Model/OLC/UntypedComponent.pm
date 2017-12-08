@@ -2,6 +2,8 @@ package CRP::Model::OLC::UntypedComponent;
 use Moose;
 use namespace::autoclean;
 
+use Mojo::JSON qw(decode_json encode_json);
+
 extends 'CRP::Model::DBICIDObject';
 
 use constant {
@@ -10,6 +12,20 @@ use constant {
 };
 
 has '+_db_record' => (handles => _DB_FIELDS);
+
+sub _json_encoder {
+    my $orig = shift;
+    my $self = shift;
+
+    if(@_) {
+        my ($data) = @_;
+        $data = encode_json($data) if $data;
+        return $self->$orig($data);
+    }
+    my $data = $self->$orig;
+    $data = decode_json($data) if $data;
+    return $data;
+}
 
 __PACKAGE__->meta->make_immutable;
 

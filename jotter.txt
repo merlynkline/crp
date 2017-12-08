@@ -51,16 +51,16 @@
     - Make sure it's in the template templates/o_l_c_admin/parts/component_types.html.ep
     - Create a new class for the component in lib/CRP/Model/OLC/Component/
         - At minimum, override the view_data method
-        - May also need to add an around modifier for the data method
+        - May also need to add an around modifier for the data method (e.g. in Image.pm)
     - In lib/CRP/Model/OLC/Component.pm
         - use the new class
-        - Add to the valid _TYPES list
+        - Add to the valid _TYPE_CLASS list
     - Add the route in lib/CRP/Controller/OLCAdmin/Component.pm
-    - Create a new module lib/CRP/Controller/OLCAdmin/Component/<type>.pm
+    - Create a new module lib/CRP/Controller/OLCAdmin/Component/<type>.pm as named in the _TYPE_CLASS list
         - save()
         - edit()
-    - Create new template(s) for editor, e.g: templates/o_l_c_admin/component/editor/<type>.html.ep
-    - Add routes to the new module in lib/CRP/pm:
+    - Create new template(s) for editor as used in the edit() method above, e.g: templates/o_l_c_admin/component/editor/<type>.html.ep
+    - Add routes to the new module in lib/CRP/pm using the rout name defined in lib/CRP/Controller/OLCAdmin/Component.pm:
         - crp.olcadmin.component.<route>.edit
         - crp.olcadmin.component.<route>.save
     - Add a template templates/olc/components/<TYPE>.html.ep

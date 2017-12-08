@@ -69,7 +69,7 @@ div.olc-content {
     border-top:     none;
 }
 
-.olc-content h1 + p, .olc-content h2 + p, .olc-content h3 + p, .olc-content h4 + p {
+.olc-content h1 + p, .olc-content h2 + p, .olc-content h3 + p, .olc-content h4 + p, h3:first-child {
     margin-top:     0;
 }
 
@@ -221,6 +221,15 @@ div.olc-content {
 .olc-nav-button.disabled, .olc-nav-button.disabled:hover {
     border-color: #666;
     background:   #ccc;
+}
+
+.olc-question {
+    border:         1px dashed #354;
+    border-radius:  8px;
+    background: white;
+    clear: both;
+    padding: 12px;
+    margin: 8px 20px;
 }
 
 #sq-logo {

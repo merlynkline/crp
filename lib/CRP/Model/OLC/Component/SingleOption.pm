@@ -1,8 +1,6 @@
-package CRP::Model::OLC::Component::Image;
+package  CRP::Model::OLC::Component::SingleOption;
 use Moose;
 use namespace::autoclean;
-
-use Mojo::JSON qw(decode_json encode_json);
 
 extends 'CRP::Model::OLC::UntypedComponent';
 
@@ -11,15 +9,15 @@ override 'view_data' => sub {
 
     my $data = super();
     my $component_data = $self->data;
-    $data->{image_format} = $component_data->{format} // '';
-    $data->{image_file} = $component_data->{file} // '';
-    my $preview = $data->{image_file};
-    $preview =~ s{^.+/}{};
-    $data->{preview} = $preview;
+    $data->{prompt} = $component_data->{prompt} // '';
+    $data->{options} = $component_data->{options} // [];
+    my $preview = $component_data->{prompt};
+    $data->{preview} = substr $preview, 0, 50;
     return $data;
 };
 
 around 'data' => __PACKAGE__->can('_json_encoder');
+
 
 __PACKAGE__->meta->make_immutable;
 

@@ -8,6 +8,7 @@
 %   COURSE_IDX  => 'Contents table, course',
 %   MODULE_IDX  => 'Contents table, module',
 %   MARKDOWN    => 'Paragraph, markdown',
+%   QPICKONE    => 'Mutliple choice, single-answer',
 % );
 % while (my($key, $value) = each %TYPES) {
 %   $types->{$key} = $value;
