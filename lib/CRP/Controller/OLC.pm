@@ -14,10 +14,7 @@ sub authenticate {
     my $c = shift;
 
     my $student = CRP::Model::OLC::Student->new;
-
-    $c->stash(olc => {
-            student_record => $student,
-        });
+    $c->_student_record($student);
 
     return 1;
 }
@@ -26,26 +23,51 @@ sub authenticate {
 sub show_page {
     my $c = shift;
 
-    return $c->_not_found('COURSE') unless $c->_course && $c->_course->exists;
-    my $progress = CRP::Model::OLC::StudentProgress->new({student => $c->stash('olc')->{student_record}, course => $c->_course});
+    my $failure_code = $c->_validate_page_id_params;
+    return $c->_not_found($failure_code) if $failure_code;
 
-    $c->_decode_page_index_indicator($c->stash('module_id'), $progress);
-    return $c->_not_found('MODULE') unless $c->_module && $c->_module->exists;
-    return $c->_not_found('PAGE') unless $c->_page && $c->_page->exists;
-
-    my $page_index = $c->_decode_and_limit_page_index($c->_course->module_page_index($c->_module, $c->_page), $progress);
+    my $page_index = $c->_decode_and_limit_page_index($c->_course->module_page_index($c->_module, $c->_page), $c->_progress_record);
 
     $c->stash(
         page            => $c->_page->view_data($c->_module, $c->_course),
         module          => $c->_module->view_data,
         course          => $c->_course->view_data,
-        student         => $c->stash('olc')->{student_record}->view_data,
+        student         => $c->_student_record->view_data,
         page_index      => $page_index,
-        progress        => $progress->view_data,
-        max_page_index  => List::Util::min($progress->completed_pages_count + 1, $c->_course->page_count),
+        progress        => $c->_progress_record->view_data,
+        max_page_index  => List::Util::min($c->_progress_record->completed_pages_count + 1, $c->_course->page_count),
     );
 
     $c->render(template => 'olc/page');
+}
+
+sub _validate_page_id_params {
+    my $c = shift;
+
+    return 'COURSE' unless $c->_course && $c->_course->exists;
+    $c->_progress_record(CRP::Model::OLC::StudentProgress->new({student => $c->_student_record, course => $c->_course}));
+
+    $c->_decode_page_index_indicator($c->stash('module_id'), $c->_progress_record);
+    return 'MODULE' unless $c->_module && $c->_module->exists;
+    return 'PAGE' unless $c->_page && $c->_page->exists;
+
+    return;
+}
+
+my $_cached_student_record;
+sub _student_record {
+    my $c = shift;
+    ($_cached_student_record) = @_ if @_;
+
+    return $_cached_student_record;
+}
+
+my $_cached_progress_record;
+sub _progress_record {
+    my $c = shift;
+    ($_cached_progress_record) = @_ if @_;
+
+    return $_cached_progress_record;
 }
 
 sub _decode_page_index_indicator {
@@ -123,6 +145,22 @@ sub _not_found {
 
     $c->stash(reason => $reason);
     return $c->render(template => 'olc/not_found', status => 404);
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub check_page {
+    my $c = shift;
+
+    my $failure_code = $c->_validate_page_id_params;
+    return $c->_not_found($failure_code) if $failure_code;
+
+    my $pass = 1;
+    foreach my $question (@{$c->_page->questions) {
+        my $answer = $c->crp->trimmed_param($question->field_name);
+        $pass = 0 unless $question->is_good_answer($answer);
+    }
+
+
 }
 
 1;

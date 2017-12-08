@@ -24,9 +24,9 @@
         + Style the "I've finished" button
         + Style the "I've finished" link
         ~ PC/CC - just add a "next page" button except on the last page
-        + Last page footer
-            + PI text should say "to finish the course"
-            + CC just say "you've reached the end" or something
+        ~ Last page footer
+            ~ PI text should say "to finish the course"
+            ~ CC just say "you've reached the end" or something
             - PC implies CC
         + Add the form handler
             + Record progress when the answers are right/wrong
@@ -59,7 +59,7 @@
     - Create a new module lib/CRP/Controller/OLCAdmin/Component/<type>.pm
         - save()
         - edit()
-    - Create new template(s) for editor, e.g: o_l_c_admin/component/editor/<type>.html.ep
+    - Create new template(s) for editor, e.g: templates/o_l_c_admin/component/editor/<type>.html.ep
     - Add routes to the new module in lib/CRP/pm:
         - crp.olcadmin.component.<route>.edit
         - crp.olcadmin.component.<route>.save

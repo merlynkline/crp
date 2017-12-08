@@ -214,6 +214,7 @@ sub startup {
     $olc->get('/:slug/show/:course_id/:module_id/:page_id')->to('o_l_c#show_page')->name('crp.olc.showpage');
     $olc->get('/:slug/show/:course_id/:module_id')->to('o_l_c#show_page')->name('crp.olc.showmodule');
     $olc->get('/:slug/show/:course_id')->to('o_l_c#show_page')->name('crp.olc.showcourse');
+    $olc->post('/:slug/check/:course_id/:module_id/:page_id')->to('o_l_c#check_page')->name('crp.olc.checkpage');
 
 
 

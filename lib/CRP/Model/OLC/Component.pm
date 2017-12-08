@@ -14,7 +14,6 @@ use CRP::Model::OLC::Component::Markdown;
 use CRP::Model::OLC::Component::ModuleIndex;
 use CRP::Model::OLC::Component::PDF;
 use CRP::Model::OLC::Component::Paragraph;
-use CRP::Model::OLC::Component::Test;
 use CRP::Model::OLC::Component::Video;
 
 use constant {
@@ -26,7 +25,6 @@ use constant {
         MODULE_IDX      => 'ModuleIndex',
         PARAGRAPH       => 'Paragraph',
         PDF             => 'PDF',
-        TEST            => 'Test',
         VIDEO           => 'Video',
     },
 };

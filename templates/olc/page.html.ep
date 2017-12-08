@@ -55,7 +55,7 @@
             <div class="olc-content-container">
                 <div class="olc-content">
                     % if( ! $is_page_completed) {
-                        <form target="<%= url_for('crp.olc.check_page') %>" method="post">
+                        <form target="<%= url_for('crp.olc.checkpage', {{module_id => "X$page_index"}}) %>" method="post">
                     % }
                     %
                     % my $has_questions;
@@ -95,9 +95,6 @@
                         % }
                     % }
                     % if( ! $is_page_completed) {
-                        %= hidden_field 'course_id', => $course_id;
-                        %= hidden_field 'module_id', => $module_id;
-                        %= hidden_field 'page_id', => $page_id;
                         </form>
                     % }
                 </div>

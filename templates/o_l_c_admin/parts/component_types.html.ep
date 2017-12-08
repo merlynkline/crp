@@ -5,10 +5,9 @@
 %   IMAGE       => 'Image',
 %   VIDEO       => 'Video',
 %   PDF         => 'PDF Document',
-%   COURSE_IDX  => 'Course contents table',
-%   MODULE_IDX  => 'Module contents table',
-%   TEST        => 'Test',
-%   MARKDOWN    => 'Markdown text',
+%   COURSE_IDX  => 'Contents table, course',
+%   MODULE_IDX  => 'Contents table, module',
+%   MARKDOWN    => 'Paragraph, markdown',
 % );
 % while (my($key, $value) = each %TYPES) {
 %   $types->{$key} = $value;
