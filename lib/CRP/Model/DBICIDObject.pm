@@ -17,7 +17,7 @@ sub view_data {
     my $self = shift;
 
     my $template_data = {};
-    foreach my $field ('id', @{$self->_DB_FIELDS}) {
+    foreach my $field ('id', 'guid', @{$self->_DB_FIELDS}) {
         $template_data->{$field} = $self->$field;
     }
 

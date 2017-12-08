@@ -226,10 +226,46 @@ div.olc-content {
 .olc-question {
     border:         1px dashed #354;
     border-radius:  8px;
-    background: white;
-    clear: both;
-    padding: 12px;
-    margin: 8px 20px;
+    background:     white;
+    clear:          both;
+    padding:        0;
+    margin:         8px 20px;
+    overflow:       hidden;
+}
+
+.olc-question .head {
+    padding:        4px 8px;
+    background:     #ddd;
+}
+
+.olc-question .body {
+    padding:        4px 12px;
+}
+
+.olc-question .prompt {
+    font-weight:    bold;
+    font-style:     italic;
+}
+
+.olc-question .instructions {
+    font-size:      70%;
+}
+
+.olc-content label {
+    padding:        0;
+    width:          inherit;
+    float:          none;
+    text-align:     left;
+    display:        inline;
+}
+
+.olc-content input[type="checkbox"], .olc-content input[type="radio"] {
+    width:          15px;
+    height:         15px;
+    margin:         0 0 0 2px;
+    color:          inherit;
+    position:       relative;
+    top:            2px;
 }
 
 #sq-logo {

@@ -1,6 +1,19 @@
 %#<!DOCTYPE html>
 % $editable = $editable ? qq{ editablecomponentid="$editable"} : '';
 <div class="olc-question<%= $editable ? ' editable-component' : '' %>"<%== $editable %>>
-<h3>Question</h3>
-<%= $component->{prompt} %>
+    <div class="head">
+        <h3>Question</h3>
+    </div>
+    <div class="body">
+        <div class="prompt"><%= $component->{prompt} %></div>
+        <div class="instructions">Please select one of the options by clicking on the button next to it.</div>
+        % my $name = 'answer-' . $component->{id};
+        % my $answer_num = 0;
+        % foreach my $option (@{$component->{options}}) {
+            % my $id = 'answer-' . $component->{id} . "-$answer_num";
+            %= radio_button $name => $answer_num, id => $id, ($component->{current_answer} // -1) == $answer_num ? (checked => 'checked') : ();
+            <label for="<%= $id %>"><%= $option %></label><br />
+            % $answer_num++;
+        % }
+    </div>
 </div>
