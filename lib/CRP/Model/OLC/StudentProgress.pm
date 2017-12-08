@@ -8,10 +8,19 @@ has course  => (is => 'ro', isa => 'CRP::Model::OLC::Course');
 
 sub view_data {
     my $self = shift;
+    my($page) = @_;
 
-    return {
+    my $data = {
         completed_pages_count  => $self->completed_pages_count,
     };
+
+    if($page) {
+        $data->{current_answer} = {
+            52 => 1,
+        }
+    }
+
+    return $data;
 }
 
 sub completed_pages_count {

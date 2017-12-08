@@ -34,7 +34,7 @@ sub show_page {
         course          => $c->_course->view_data,
         student         => $c->_student_record->view_data,
         page_index      => $page_index,
-        progress        => $c->_progress_record->view_data,
+        progress        => $c->_progress_record->view_data($c->_page),
         max_page_index  => List::Util::min($c->_progress_record->completed_pages_count + 1, $c->_course->page_count),
     );
 
