@@ -16,6 +16,7 @@ use CRP::Model::OLC::Component::PDF;
 use CRP::Model::OLC::Component::Paragraph;
 use CRP::Model::OLC::Component::Video;
 use CRP::Model::OLC::Component::SingleOption;
+use CRP::Model::OLC::Component::MultipleOption;
 
 use constant {
     _TYPE_CLASS     => {
@@ -28,6 +29,7 @@ use constant {
         PDF             => 'PDF',
         VIDEO           => 'Video',
         QPICKONE        => 'SingleOption',
+        QPICKMANY       => 'MultipleOption',
     },
 };
 

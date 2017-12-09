@@ -152,7 +152,7 @@ Changing this page will affect all the modules it is included in, which are:
     ">
     <div class="olc-content">
     % foreach my $component (@{$page->{components}}) {
-    %=   include 'olc/components/' . $component->{type}, component => $component, editable => $component->{id};
+    %=   include 'olc/components/' . $component->{type}, component => $component, editable => $component->{id}, has_error => 0, progress => undef;
     % }
     <br clear="both">
     <div id="edit-controls" style="display: block; position: absolute; top: -1000px; left: -1000px; background: #888; border: 1px solid black; padding: 2px; opacity: 0.75;" class="olc-floating-edit-controls">

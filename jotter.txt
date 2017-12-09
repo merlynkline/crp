@@ -34,17 +34,18 @@
     - Create a new class for the component in lib/CRP/Model/OLC/Component/
         - At minimum, override the view_data method
         - May also need to add an around modifier for the data method (e.g. in Image.pm)
+        - Question components need an is_good_answer() method
     - In lib/CRP/Model/OLC/Component.pm
         - use the new class
         - Add to the valid _TYPE_CLASS list
     - Add the route in lib/CRP/Controller/OLCAdmin/Component.pm
+    - Add routes to the new module in lib/CRP/pm using the route name defined in lib/CRP/Controller/OLCAdmin/Component.pm:
+        - crp.olcadmin.component.<route>.edit
+        - crp.olcadmin.component.<route>.save
     - Create a new module lib/CRP/Controller/OLCAdmin/Component/<type>.pm as named in the _TYPE_CLASS list
         - save()
         - edit()
     - Create new template(s) for editor as used in the edit() method above, e.g: templates/o_l_c_admin/component/editor/<type>.html.ep
-    - Add routes to the new module in lib/CRP/pm using the rout name defined in lib/CRP/Controller/OLCAdmin/Component.pm:
-        - crp.olcadmin.component.<route>.edit
-        - crp.olcadmin.component.<route>.save
     - Add a template templates/olc/components/<TYPE>.html.ep
 
 

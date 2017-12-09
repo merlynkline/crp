@@ -187,6 +187,8 @@ sub startup {
     $olc_admin_component->post('/image/save')->to('o_l_c_admin-component-image#save')->name('crp.olcadmin.component.image.save');
     $olc_admin_component->any('/singleopt/edit')->to('o_l_c_admin-component-single_option#edit')->name('crp.olcadmin.component.singleopt.edit');
     $olc_admin_component->post('/singleopt/save')->to('o_l_c_admin-component-single_option#save')->name('crp.olcadmin.component.singleopt.save');
+    $olc_admin_component->any('/multipleopt/edit')->to('o_l_c_admin-component-multiple_option#edit')->name('crp.olcadmin.component.multipleopt.edit');
+    $olc_admin_component->post('/multipleopt/save')->to('o_l_c_admin-component-multiple_option#save')->name('crp.olcadmin.component.multipleopt.save');
 
     my $member_site = $r->under('/me/:slug')->to('member_site#identify');
     $member_site->any('/')->to('member_site#welcome')->name('crp.membersite.home');

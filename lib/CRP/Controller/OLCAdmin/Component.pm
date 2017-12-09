@@ -20,6 +20,7 @@ sub edit {
         MODULE_IDX => 'moduleidx',
         IMAGE      => 'image',
         QPICKONE   => 'singleopt',
+        QPICKMANY  => 'multipleopt',
     }->{$component->type};
     die "Don't know how to edit component type '" . $component->type . "'" unless $route;
     return $c->redirect_to($c->url_for("crp.olcadmin.component.$route.edit")->query(

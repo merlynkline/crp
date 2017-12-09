@@ -1,0 +1,28 @@
+%#<!DOCTYPE html>
+% layout 'member_default', heading => 'Admin: Edit online course module page question', page_id => 'admin';
+%= include 'o_l_c_admin/component/editor/parts/page_start', component_name => 'question';
+%= form_for 'crp.olcadmin.component.multipleopt.save' => (method => 'POST', enctype => 'multipart/form-data') => begin
+%= include 'o_l_c_admin/component/editor/parts/form_start';
+
+        <label for="prompt">Question prompt:
+            <div class="field-extra-info">This is the main text of the question presented to the user.</div>
+        </label>
+        <div class="input-container">
+            %= text_field 'prompt', id => 'prompt', value => $component->{prompt}, maxlength => 50, size => 50;
+            <%= include 'parts/error', field => 'prompt' %>
+        </div>
+
+        <label for="answer_0">Answers:
+            <div class="field-extra-info">Fill in the possible answers and mark the ones that are required for a correct answer.</div>
+        </label>
+        <div class="input-container">
+            % foreach my $answer_num (0..4) {
+            %= text_field "answer_$answer_num", value  => $component->{options}->[$answer_num], size => 50;
+            %= check_box "required_answer_$answer_num" => $answer_num, exists $component->{correct_answer}->{$answer_num} ? (checked => 'checked') : ();
+            <br />
+            % }
+        </div>
+
+%= include 'o_l_c_admin/component/editor/parts/form_end';
+% end
+
