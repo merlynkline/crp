@@ -13,6 +13,10 @@ use constant {
 
 has '+_db_record' => (handles => _DB_FIELDS);
 
+sub is_question {
+    return ! ! shift->can('is_good_answer');
+}
+
 sub _json_encoder {
     my $orig = shift;
     my $self = shift;

@@ -54,9 +54,7 @@
             </div>
             <div class="olc-content-container">
                 <div class="olc-content">
-                    % if( ! $is_page_completed) {
-                        <form target="<%= url_for('crp.olc.checkpage', {module_id => "X$page_index"}) %>" method="post">
-                    % }
+                    %= form_for 'crp.olc.checkmodule', {slug => $slug, course_id => $course->{id}, module_id => "X$page_index"} => begin
                     %
                     % my $has_questions;
                     % my %QUESTION_TYPES = map { $_ => 1 } qw(QPICKONE);
@@ -94,9 +92,7 @@
                             <div style="text-align: right;"><input type="submit" value="I've finished"></div>
                         % }
                     % }
-                    % if( ! $is_page_completed) {
-                        </form>
-                    % }
+                    % end
                 </div>
             </div>
             <div class="olc-foot-container">

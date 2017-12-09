@@ -39,7 +39,7 @@ has id           => (is => 'ro', isa => 'Maybe[Str]', writer => '_set_id');
 has dbh          => (is => 'ro', required => 1);
 
 has _component => (is => 'ro', lazy => 1, builder => '_build_component', init_arg => undef, handles => [qw(
-    name build_order data_version olc_page_id type data view_data
+    name build_order data_version olc_page_id type data view_data is_question is_good_answer
 )]);
 
 sub create_or_update {

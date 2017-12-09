@@ -20,6 +20,12 @@ override 'view_data' => sub {
 
 around 'data' => __PACKAGE__->can('_json_encoder');
 
+sub is_good_answer {
+    my $self = shift;
+    my($answer) = @_;
+
+    return ($answer->[0] // -1) == ($self->data->{correct_answer} // -2);
+}
 
 __PACKAGE__->meta->make_immutable;
 

@@ -155,12 +155,19 @@ sub check_page {
     return $c->_not_found($failure_code) if $failure_code;
 
     my $pass = 1;
-    foreach my $question (@{$c->_page->questions}) {
-        my $answer = $c->crp->trimmed_param($question->field_name);
-        $pass = 0 unless $question->is_good_answer($answer);
+    my $current_answer = {};
+    foreach my $component (@{$c->_page->component_set->all}) {
+        next unless $component->is_question;
+        my $answer = $c->every_param('answer-' . $component->id);
+        $current_answer->{$component->id} = $answer;
+        $pass = 0 unless $component->is_good_answer($answer);
     }
 
-
+# Store answers
+# update _progress_record->completed_pages_coun
+# redirect with error messages if the answer is wrong (flash?)
+    my $page_index = $c->_course->module_page_index($c->_module, $c->_page);
+    return $c->redirect_to($c->url_for('crp.olc.showmodule', {module_id => "X$page_index"}));
 }
 
 1;
