@@ -1,51 +1,33 @@
 + Outstanding tasks for olc page renderer
-    ~ Handle allowing display of first *incomplete* page. What is current_page? maybe that's it, actually. What when the whole course is complete? Perhaps max-page-index limiting will handle this anyway.
-    ~ Change progres indicator so current page is a bar thw width of the page
-    ~ Consider selecting pages by page_index in the URL, rather than module_id/page_id
-    X Module contents page to reflect progress
-    ~ Header progress info
     + Proper auth in OLC::authenticate()
-    + Progress tracking
-        ~ Indicate percentage progress (percentage of pages completed)
-        ~ Indicate percentage through that currently displayed page is
-        + Disable any page links more than one beyond progress point
-        ~ Provide next/previous page links (what if you're on the first/last page?) (</>)
-        ~ Provide a "resume" link to the last unfinished page (what if all done?) (>>)
-        ~ provide a "start" link to the first page (<<)
-        ~ Handle an attempt to see a page past current completion point
+    + Disable any page links more than one beyond progress point
     + olc/not_found template
-    + more component types (video, test, pdf, progress)
+    + more component types (video, questions, pdf, progress)
     + CSS for print media
     + Moving on to the next page
         - Completion states are page-complete(PC)/page-incomplete(PI)/course-complete(CC)
         ? Indicate completion state in the title?
         ? CC link to certificate page (w/ download for logged-in users?)?
-        + PI: Add a form element to the page
         + Style the "I've finished" button
         + Style the "I've finished" link
-        ~ PC/CC - just add a "next page" button except on the last page
-        ~ Last page footer
-            ~ PI text should say "to finish the course"
-            ~ CC just say "you've reached the end" or something
-            - PC implies CC
         + Add the form handler
             + Record progress when the answers are right/wrong
             + Redirect to the right place for right/wrong answers
-        + Initialise the answers to questions on the page
-            - PI might still have incomplete/wrong answers stored
         + Handle displaying wrong answers on the page
             + Information at the top
             + Information next to the "I've finished" button
             + Messages and highlights on specific questions
         ? Different completion form on the last page of the course?
 + Outstanding tasks for OLC admin:
-    + more component types (video, test, pdf, progress)
+    + more component types (video, questions, pdf, progress)
     + Common code in these modules:
         - ComponentSet/ForPage.pm
         - ModuleSet/ForCourse.pm
         - PageSet/ForModule.pm
     + Adding a new page component should always result in a redirect, even on error
-    + Landing page editor for courses and modules (perhaps just say the first page [of the first module] is it?)
+    X Landing page editor for courses and modules (perhaps just say the first page [of the first module] is it?)
+    + Remove landing pages for courses and modules
+    + Consider not actually deleting courses/modules/pages but just marking them deleted
     + Object model causes lots of unnecessary repeated calls to methods, e.g. loading a page component editor calls the view_data method for all the components on the page lots of times
 - OLC Admin: Adding a new page object type
     - Make sure it's in the template templates/o_l_c_admin/parts/component_types.html.ep

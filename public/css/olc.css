@@ -269,6 +269,22 @@ div.olc-content {
     top:            2px;
 }
 
+.olc-component-anchor {
+    display:        inline-block;
+    width:          0;
+    height:         0;
+    position:       relative;
+    top:            -66px;
+}
+
+.olc-content .error {
+    color:          #c00;
+}
+
+.olc-question .head.error {
+    background:     #fbb;
+}
+
 #sq-logo {
     vertical-align:     text-bottom;
     margin-left:        16px;

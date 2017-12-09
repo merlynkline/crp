@@ -29,13 +29,14 @@ sub show_page {
     my $page_index = $c->_decode_and_limit_page_index($c->_course->module_page_index($c->_module, $c->_page), $c->_progress_record);
 
     $c->stash(
-        page            => $c->_page->view_data($c->_module, $c->_course),
-        module          => $c->_module->view_data,
-        course          => $c->_course->view_data,
-        student         => $c->_student_record->view_data,
-        page_index      => $page_index,
-        progress        => $c->_progress_record->view_data($c->_page),
-        max_page_index  => List::Util::min($c->_progress_record->completed_pages_count + 1, $c->_course->page_count),
+        page                => $c->_page->view_data($c->_module, $c->_course),
+        module              => $c->_module->view_data,
+        course              => $c->_course->view_data,
+        student             => $c->_student_record->view_data,
+        page_index          => $page_index,
+        progress            => $c->_progress_record->view_data($c->_page),
+        error_component_ids => { map { $_ => 1 } split ',', $c->flash('error_component_ids') },
+        max_page_index      => List::Util::min($c->_progress_record->completed_pages_count + 1, $c->_course->page_count),
     );
 
     $c->render(template => 'olc/page');
@@ -155,19 +156,30 @@ sub check_page {
     return $c->_not_found($failure_code) if $failure_code;
 
     my $pass = 1;
+    my @error_component_ids;
     my $current_answer = {};
     foreach my $component (@{$c->_page->component_set->all}) {
         next unless $component->is_question;
         my $answer = $c->every_param('answer-' . $component->id);
         $current_answer->{$component->id} = $answer;
-        $pass = 0 unless $component->is_good_answer($answer);
+        unless($component->is_good_answer($answer)) {
+            push @error_component_ids, $component->id;
+            $pass = 0;
+        }
     }
 
 # Store answers
-# update _progress_record->completed_pages_coun
-# redirect with error messages if the answer is wrong (flash?)
-    my $page_index = $c->_course->module_page_index($c->_module, $c->_page);
-    return $c->redirect_to($c->url_for('crp.olc.showmodule', {module_id => "X$page_index"}));
+    my $next_page_index = $c->_course->module_page_index($c->_module, $c->_page);
+    if($pass) {
+# update _progress_record->completed_pages_count
+# Handle completing the course if this is the last page
+        ++$next_page_index;
+    }
+
+    my $url = $c->url_for('crp.olc.showmodule', {module_id => "X$next_page_index"});
+    $url->fragment('anchor-' . $error_component_ids[0]) if @error_component_ids;
+    $c->flash(error_component_ids => join ',', @error_component_ids);
+    return $c->redirect_to($url);
 }
 
 1;

@@ -57,10 +57,13 @@
                     %= form_for 'crp.olc.checkmodule', {slug => $slug, course_id => $course->{id}, module_id => "X$page_index"} => begin
                     %
                     % my $has_questions;
+                    % my $has_error;
                     % my %QUESTION_TYPES = map { $_ => 1 } qw(QPICKONE);
                     % foreach my $component (@{$page->{components}}) {
                     %    $has_questions = 1 if exists $QUESTION_TYPES{$component->{type}};
-                    %=   include 'olc/components/' . $component->{type}, component => $component, editable => 0;
+                    %    $has_error = exists $error_component_ids->{$component->{id}};
+                    <a name="<%= 'anchor-' . $component->{id} %>" class="olc-component-anchor">&nbsp;</a>
+                    %=   include 'olc/components/' . $component->{type}, component => $component, editable => 0, has_error => $has_error;
                     % }
                     % if(@{$page->{components}} == 0) {
                     %= include 'olc/parts/empty-page';
@@ -88,6 +91,9 @@
                         % } else {
                             When you have completed everything on this page
                             <%= $has_questions ? 'and answered all the questions,' : '' %>
+                            % if(%$error_component_ids) {
+                            <span class="error">including fixing the highlighted errors,</span>
+                            %}
                             click this button to move on:
                             <div style="text-align: right;"><input type="submit" value="I've finished"></div>
                         % }

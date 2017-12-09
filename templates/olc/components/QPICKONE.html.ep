@@ -1,12 +1,17 @@
 %#<!DOCTYPE html>
 % $editable = $editable ? qq{ editablecomponentid="$editable"} : '';
 <div class="olc-question<%= $editable ? ' editable-component' : '' %>"<%== $editable %>>
-    <div class="head">
+    <div class="head<%= $has_error ? ' error' : '' %>">
         <h3>Question</h3>
     </div>
     <div class="body">
         <div class="prompt"><%= $component->{prompt} %></div>
-        <div class="instructions">Please select one of the options by clicking on the button next to it.</div>
+        <div class="instructions<%= $has_error ? ' error' : '' %>">
+            Please select one of the options by clicking on the button next to it.
+            % if($has_error) {
+            The one you have already chosen is not the right one.
+            % }
+        </div>
         % my $name = 'answer-' . $component->{id};
         % my $current_answer = $progress->{current_answer}->{$component->{id}} // -1;
         % my $answer_num = 0;
