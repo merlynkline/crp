@@ -432,6 +432,7 @@ sub edit_qualification {
     $c->param(abbreviation  => $qualification->abbreviation);
     $c->param(qualification => $qualification->qualification);
     $c->param(code          => $qualification->code);
+    $c->param(olccodes      => $qualification->olccodes);
     return $c->page('edit_qualification');
 }
 
@@ -473,6 +474,7 @@ sub save_qualification {
     $qualification->abbreviation($abbreviation);
     $qualification->qualification($qualification_name);
     $qualification->code($code) unless $id;
+    $qualification->olccodes($c->crp->trimmed_param('olccodes'));
     $qualification->update_or_insert;
 
     return $c->redirect_to($c->url_for('crp.admin_default'));

@@ -31,6 +31,14 @@
         <%= include 'parts/error', field => 'code' =%>
     </div>
 
+    <label for="abbreviation">Online courses:
+            <div class="field-extra-info">Enter a comma-separated list of online course codes associated with this qualification.</div>
+    </label>
+    <div class="input-container">
+        %= text_field 'olccodes', id => 'olccodes', maxlength => 30, required => 'required';
+        <%= include 'parts/error', field => 'olccodes' =%>
+    </div>
+
     <label>&nbsp;</label>
     <div class="input-container">
         <%= submit_button 'Save', name => 'save' %>
