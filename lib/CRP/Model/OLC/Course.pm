@@ -5,17 +5,30 @@ use namespace::autoclean;
 extends 'CRP::Model::DBICIDObject';
 
 use List::Util;
+use Carp;
 
 use CRP::Model::OLC::ModuleSet::ForCourse;
 
 use constant {
-    _DB_FIELDS      => [qw(name notes description title last_update_date)],
+    _DB_FIELDS      => [qw(name code notes description title last_update_date)],
     _RESULTSET_NAME => 'OLCCourse',
 };
 
 has '+_db_record' => (handles => _DB_FIELDS);
 
 has module_set    => (is => 'ro', lazy => 1, builder => '_build_module_set', init_arg => undef, handles => [qw(page_count)]);
+
+sub load_by_code {
+    my $self = shift;
+    my($code) = @_;
+
+    croak "You can't load a course that's already loaded" if $self->id;
+    my $resultset = $self->dbh->resultset($self->_RESULTSET_NAME);
+    my $res = $resultset->find({code => $code});
+    croak "Couldn't load " . $self->_RESULTSET_NAME . " CODE '$code'" unless $res;
+    $self->_set_id($res->id);
+    return;
+}
 
 override view_data => sub {
     my $self = shift;

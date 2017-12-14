@@ -5,6 +5,8 @@ use Mojo::Base 'Mojolicious::Controller';
 use Mojo::Role -with;
 with 'CRP::Controller::OLCAdmin::EditorRole';
 
+use Try::Tiny;
+
 use CRP::Model::OLC::Course;
 use CRP::Model::OLC::CourseSet;
 use CRP::Model::OLC::ModuleSet;
@@ -22,7 +24,16 @@ sub save {
 
     my $course = CRP::Model::OLC::Course->new(id => $c->_course_id, dbh => $c->crp->model);
 
-    $c->_collect_input($course, [qw(name notes description title)]);
+    $c->_collect_input($course, [qw(name code notes description title)]);
+
+    my $existing_course = CRP::Model::OLC::Course->new(dbh => $c->crp->model);
+    try {
+        $existing_course->load_by_code($course->code);
+        $c->validation->error('code' => ['code_already_exists']) if !$c->_course_id || $existing_course->id != $c->_course_id;
+    };
+    $c->validation->required('code');
+    $c->validation->required('name');
+    $c->validation->required('title');
 
     if($c->validation->has_error) {
         $c->stash(msg => 'fix_errors');

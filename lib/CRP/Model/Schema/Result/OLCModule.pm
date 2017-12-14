@@ -32,10 +32,6 @@ __PACKAGE__->add_columns(
         data_type           => 'text',
         is_nullable         => 1,
     },
-    landing_olc_page_id => {
-        data_type           => 'integer',
-        is_nullable         => 1,
-    },
     guid => {
         data_type           => 'text',
         is_nullable         => 1,

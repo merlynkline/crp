@@ -32,10 +32,6 @@ __PACKAGE__->add_columns(
         data_type           => 'text',
         is_nullable         => 1,
     },
-    landing_olc_page_id => {
-        data_type           => 'integer',
-        is_nullable         => 1,
-    },
     guid => {
         data_type           => 'text',
         is_nullable         => 1,
@@ -43,6 +39,10 @@ __PACKAGE__->add_columns(
     last_update_date => {
         data_type           => 'timestamptz',
         timezone            => 'UTC',
+        is_nullable         => 1,
+    },
+    code => {
+        data_type           => 'text',
         is_nullable         => 1,
     },
 );
@@ -54,7 +54,7 @@ __PACKAGE__->has_many('module_links' => 'CRP::Model::Schema::Result::OLCCourseMo
 sub sqlt_deploy_hook {
     my ($self, $sqlt_table) = @_;
 
-    foreach my $column (qw(guid)) {
+    foreach my $column (qw(guid code)) {
         $sqlt_table->add_index(name => "olc_course_${column}_idx", fields => [$column]);
     }
 }

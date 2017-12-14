@@ -35,7 +35,7 @@ sub show_page {
         student             => $c->_student_record->view_data,
         page_index          => $page_index,
         progress            => $c->_progress_record->view_data($c->_page),
-        error_component_ids => { map { $_ => 1 } split ',', $c->flash('error_component_ids') },
+        error_component_ids => { map { $_ => 1 } split ',', $c->flash('error_component_ids') // '' },
         max_page_index      => List::Util::min($c->_progress_record->completed_pages_count + 1, $c->_course->page_count),
     );
 
@@ -75,7 +75,7 @@ sub _decode_page_index_indicator {
     my $c = shift;
     my($page_index_indicator, $progress) = @_;
 
-    return unless $page_index_indicator =~ /^x(\d+)/i;
+    return unless $page_index_indicator && $page_index_indicator =~ /^x(\d+)/i;
     $c->_decode_and_limit_page_index($1, $progress);
 }
 

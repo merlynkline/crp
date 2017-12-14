@@ -15,6 +15,7 @@ sub _build_ids {
 
     my $parent_id_column = $self->_parent_id_column;
     my $child_id_column = $self->_child_id_column;
+    return [] unless length $self->_parent_id;
     return [
         map $_->$child_id_column, $self->_resultset->search(
             {$parent_id_column => $self->_parent_id},

@@ -3,6 +3,7 @@
 % my $error_message = {
 %   bad_component_type      => 'Unrecognised component type - please try a different one',
 %   create_record           => "Sorry - we couldn't record your information. Please try again",
+%   code_already_exists     => 'That code is already in use - please try a different one',
 %   confirm_delete          => "Please tick the tickbox to confirm you want to delete this qualification",
 %   before_qualification    => 'Please enter a date after you qualify to teach this course',
 %   duplicate_code          => 'That code is already in use. Please choose another',
