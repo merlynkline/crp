@@ -214,12 +214,12 @@ sub startup {
     my $api = $r->under('/api')->to('a_p_i#authenticate');
     $api->any('/courses')->to('a_p_i#courses');
 
-    my $olc = $r->under('/olc')->to('o_l_c#authenticate');
-    $olc->get('/:slug/show/:course_id/:module_id/:page_id')->to('o_l_c#show_page')->name('crp.olc.showpage');
-    $olc->get('/:slug/show/:course_id/:module_id')->to('o_l_c#show_page')->name('crp.olc.showmodule');
-    $olc->get('/:slug/show/:course_id')->to('o_l_c#show_page')->name('crp.olc.showcourse');
-    $olc->post('/:slug/check/:course_id/:module_id/:page_id')->to('o_l_c#check_page')->name('crp.olc.checkpage');
-    $olc->post('/:slug/check/:course_id/:module_id')->to('o_l_c#check_page')->name('crp.olc.checkmodule');
+    my $olc = $r->under('/olc/:slug/:course_id')->to('o_l_c#authenticate');
+    $olc->get('/show/:module_id/:page_id')->to('o_l_c#show_page')->name('crp.olc.showpage');
+    $olc->get('/show/:module_id')->to('o_l_c#show_page')->name('crp.olc.showmodule');
+    $olc->get('/show')->to('o_l_c#show_page')->name('crp.olc.showcourse');
+    $olc->post('/check/:module_id/:page_id')->to('o_l_c#check_page')->name('crp.olc.checkpage');
+    $olc->post('/check/:module_id')->to('o_l_c#check_page')->name('crp.olc.checkmodule');
 
 
 

@@ -3,13 +3,92 @@ package CRP::Model::OLC::Student;
 use Moose;
 use namespace::autoclean;
 
+use Carp;
+use DateTime;
+use Mojo::JSON qw(decode_json encode_json);
+
+use constant {
+    _RESULTSET_NAME     => 'OLCStudent',
+    _DELEGATED_FIELDS   => [qw(status start_date last_access_date completion_date email name)],
+    _LOCAL_FIELDS       => [qw(id_type id_foreign_key course_id)],
+
+};
+
+has id              => (is => 'ro', isa => 'Maybe[Str]', writer => '_set_id');
+has dbh             => (is => 'ro', required => 1);
+has _db_record      => (is => 'ro', builder => '_build_db_record', lazy => 1, handles => _DELEGATED_FIELDS);
+has id_type         => (is => 'rw', isa => 'Str');
+has id_foreign_key  => (is => 'rw', isa => 'Str');
+has course_id       => (is => 'rw', isa => 'Str');
+
+sub progress {
+    my $self = shift;
+
+    if(@_) {
+        my ($data) = @_;
+        $data = encode_json($data) if defined $data;
+        $self->_db_record->progress($data);
+    }
+    my $data = $self->_db_record->progress;
+    $data = decode_json($data) if $data;
+    return $data || {};
+}
+
 sub view_data {
     my $self = shift;
 
-    return {
-        name    => 'Student Olc',
-        email   => 'student.olc@binary.co.uk',
-    };
+    my $template_data = {};
+    foreach my $field ('id', @{$self->_DELEGATED_FIELDS}) {
+        $template_data->{$field} = $self->$field;
+    }
+    return $template_data;
+}
+
+sub create_or_update {
+    my $self = shift;
+
+    $self->last_access_date(DateTime->now);
+    $self->status('IN_PROGRESS') unless $self->status;
+    foreach my $attribute(@{$self->_LOCAL_FIELDS}) {
+        $self->_db_record->$attribute($self->$attribute);
+    }
+    $self->_db_record->update_or_insert;
+    $self->_set_id($self->_db_record->id);
+}
+
+sub _build_db_record {
+    my $self = shift;
+
+    my $resultset = $self->dbh->resultset($self->_RESULTSET_NAME);
+    my $res;
+    if($self->id) {
+        $res = $resultset->find($self->id);
+        croak "Couldn't load " . $self->_RESULTSET_NAME . " ID '" . $self->id . "'" unless $res;
+        foreach my $attribute(@{$self->_LOCAL_FIELDS}) {
+            $self->$attribute($res->$attribute);
+        }
+    }
+    elsif($self->course_id && $self->id_type && $self->id_foreign_key) {
+        my $identity = {
+            id_foreign_key  => $self->id_foreign_key,
+            id_type         => $self->id_type,
+            course_id       => $self->course_id,
+        };
+        $res = $resultset->find($identity);
+    #        croak "Couldn't load " . $self->_RESULTSET_NAME . " FKID '" . $self->id_foreign_key . "', TYPE '" . $self->id_type . "', CID '" . $self->course_id . "'" unless $res;
+        $res = $resultset->new_result($identity) unless $res;
+        $self->_set_id($res->id);
+    }
+    else {
+        $res = $resultset->new_result({});
+    }
+    return $res;
+}
+
+sub BUILD {
+    my $self = shift;
+
+    $self->_db_record; # Force load
 }
 
 __PACKAGE__->meta->make_immutable;

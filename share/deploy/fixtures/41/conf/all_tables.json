@@ -1,0 +1,93 @@
+{
+   "might_have" : {
+      "fetch" : 0
+   },
+   "sets" : [
+      {
+         "class" : "Course",
+         "quantity" : "all"
+      },
+      {
+         "class" : "Professional",
+         "quantity" : "all"
+      },
+      {
+         "quantity" : "all",
+         "class" : "OLCModule"
+      },
+      {
+         "quantity" : "all",
+         "class" : "OLCCourse"
+      },
+      {
+         "quantity" : "all",
+         "class" : "OLCCourseModuleLink"
+      },
+      {
+         "quantity" : "all",
+         "class" : "OLCComponent"
+      },
+      {
+         "class" : "OLCStudent",
+         "quantity" : "all"
+      },
+      {
+         "quantity" : "all",
+         "class" : "OLCModulePageLink"
+      },
+      {
+         "class" : "PremiumAuthorisation",
+         "quantity" : "all"
+      },
+      {
+         "quantity" : "all",
+         "class" : "InstructorQualification"
+      },
+      {
+         "quantity" : "all",
+         "class" : "InstructorCourse"
+      },
+      {
+         "class" : "Profile",
+         "quantity" : "all"
+      },
+      {
+         "class" : "Login",
+         "quantity" : "all"
+      },
+      {
+         "quantity" : "all",
+         "class" : "Enquiry"
+      },
+      {
+         "quantity" : "all",
+         "class" : "Qualification"
+      },
+      {
+         "class" : "Audit",
+         "quantity" : "all"
+      },
+      {
+         "class" : "PremiumCookieLog",
+         "quantity" : "all"
+      },
+      {
+         "quantity" : "all",
+         "class" : "Session"
+      },
+      {
+         "quantity" : "all",
+         "class" : "OLCPage"
+      },
+      {
+         "quantity" : "all",
+         "class" : "CourseType"
+      }
+   ],
+   "belongs_to" : {
+      "fetch" : 0
+   },
+   "has_many" : {
+      "fetch" : 0
+   }
+}

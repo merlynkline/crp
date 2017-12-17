@@ -48,7 +48,6 @@ __PACKAGE__->add_columns(
 );
 
 __PACKAGE__->set_primary_key('id');
-__PACKAGE__->belongs_to(landing_page => 'CRP::Model::Schema::Result::OLCPage', {'foreign.id' => 'self.landing_olc_page_id'});
 __PACKAGE__->has_many('module_links' => 'CRP::Model::Schema::Result::OLCCourseModuleLink', {'foreign.olc_course_id' => 'self.id'});
 
 sub sqlt_deploy_hook {

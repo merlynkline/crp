@@ -2,6 +2,8 @@ package CRP::Controller::OLC;
 
 use Mojo::Base 'Mojolicious::Controller';
 
+use Try::Tiny;
+
 use CRP::Model::OLC::Course;
 use CRP::Model::OLC::Module;
 use CRP::Model::OLC::Page;
@@ -13,10 +15,112 @@ use CRP::Model::OLC::StudentProgress;
 sub authenticate {
     my $c = shift;
 
-    my $student = CRP::Model::OLC::Student->new;
-    $c->_student_record($student);
+    my $identity;
+    my $authorised = 0;
 
-    return 1;
+    my $student_id = $c->session('olc_student_id');
+    if($student_id) {
+        my $student;
+        try {
+            $student = CRP::Model::OLC::Student->new(id => $student_id, dbh => $c->crp->model);
+            if($student->course_id == $c->_course_id) {
+                $c->_authorised_student($student);
+                $authorised = 1;
+            }
+            else {
+                $identity = {
+                    type    => $student->id_type,
+                    key     => $student->id_foreign_key,
+                };
+            }
+        };
+    }
+
+    unless($authorised) {
+
+        $identity = $c->_tcrp_identity unless $identity;
+
+        if($identity) {
+            $c->_check_authority_and_get_details($identity);
+            if($identity->{authorised}) {
+                my $student = $c->_student_from_identity($identity);
+                $c->_authorised_student($student);
+                $authorised = 1;
+            }
+        }
+    }
+
+    $c->redirect_to('crp.login') unless $authorised;
+    return $authorised;
+}
+
+sub _authorised_student {
+    my $c = shift;
+    my($student) = @_;
+
+    $c->_student_record($student);
+    $student->create_or_update;
+    $c->session(olc_student_id => $student->id);
+}
+
+sub _student_from_identity {
+    my $c = shift;
+    my($identity) = @_;
+
+    my $student = CRP::Model::OLC::Student->new(
+        dbh             => $c->crp->model,
+        id_type         => $identity->{type},
+        id_foreign_key  => $identity->{key},
+        course_id       => $c->_course_id,
+    );
+    $student->name($identity->{name});
+    $student->email($identity->{email});
+    return $student;
+}
+
+sub _tcrp_identity {
+    my($c) = @_;
+
+    my $key = $c->crp->logged_in_instructor_id;
+    return {
+        type    => 'TCRP',
+        key     => $key,
+    } if($key);
+
+    return undef;
+}
+
+sub _check_authority_and_get_details {
+    my $c = shift;
+    my($identity) = @_;
+
+    $c->_check_authority_and_get_details_tcrp($identity) if $identity->{type} eq 'TCRP';
+}
+
+sub _check_authority_and_get_details_tcrp {
+    my $c = shift;
+    my($identity) = @_;
+
+    my $profile = $c->crp->model('Profile')->find({instructor_id => $identity->{key}});
+    return unless $profile;
+
+    my $authorised = $profile->login->is_administrator;
+
+    unless($authorised) {
+        my $course_code = $c->_course->code;
+        my @qualificatons = $profile->login->qualifications;
+        foreach my $instructor_qualification (@qualificatons) {
+            my $olc_codes = $instructor_qualification->qualification->olccodes // '';
+            if(index(",$olc_codes,", ",$course_code,") >= 0) {
+                $authorised = 1;
+                last;
+            }
+        }
+    }
+
+    @$identity{qw(authorised name email)} = (1, $profile->name, $profile->login->email) if $authorised;
+
+    return;
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -103,11 +207,17 @@ my $_cached_course;
 sub _course {
     my $c = shift;
 
-    my $course_id = $c->stash('course_id') || 0;
+    my $course_id = $c->_course_id;
     return $_cached_course if $_cached_course && $_cached_course->id == $course_id;
     $_cached_course = CRP::Model::OLC::Course->new(id => $course_id, dbh => $c->crp->model);
 
     return $_cached_course;
+}
+
+sub _course_id {
+    my $c = shift;
+
+    return $c->stash('course_id') || 0;
 }
 
 my $_cached_module_course_id;

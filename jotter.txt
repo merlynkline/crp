@@ -1,15 +1,3 @@
-+ Auth/ID
-    + Unexpired olc session cookie identifies student record if present
-    - Get identity first, then get auth for that identity
-    + Student record has a type that links to a source of ID/auth
-        + TCRP
-        + Local
-        ? Mixed? E.g an oauth source that identifies a local record of what courses are available?
-            - I guess this is local auth with 3rd party ID
-    + In the absence of an olc session cookie:
-        + enumerate known 3rd party ID/auth sources (one class for each) looking for live auth (e.g. a TCRP cookie)
-        + If you find 3rd party ID/auth find or create a corresponding student record
-    + If you still don't have a suitable student record, request login with options to use known 3rd parties
 + Outstanding tasks for olc page renderer
     + Proper auth in OLC::authenticate()
     + Disable any page links more than one beyond progress point

@@ -4,7 +4,6 @@ use Moose;
 use namespace::autoclean;
 
 has student => (is => 'ro', isa => 'CRP::Model::OLC::Student');
-has course  => (is => 'ro', isa => 'CRP::Model::OLC::Course');
 
 sub view_data {
     my $self = shift;

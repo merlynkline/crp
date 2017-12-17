@@ -44,7 +44,6 @@ __PACKAGE__->add_columns(
 );
 
 __PACKAGE__->set_primary_key('id');
-__PACKAGE__->belongs_to(landing_page => 'CRP::Model::Schema::Result::OLCPage', {'foreign.id' => 'self.landing_olc_page_id'});
 __PACKAGE__->has_many('course_links' => 'CRP::Model::Schema::Result::OLCCourseModuleLink', {'foreign.olc_module_id' => 'self.id'});
 __PACKAGE__->has_many('page_links'   => 'CRP::Model::Schema::Result::OLCModulePageLink',   {'foreign.olc_module_id' => 'self.id'});
 
