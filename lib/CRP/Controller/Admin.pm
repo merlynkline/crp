@@ -251,7 +251,7 @@ sub _get_and_validate_instructor_email_param {
     my $email = $c->_get_and_validate_email_param();
     my $validation = $c->validation;
     unless($validation->has_error) {
-        my $login_record = $c->crp->model('Login')->search(\['lower(me.email) = ?', lc $email]);
+        my $login_record = $c->crp->model('Login')->search(\['lower(me.email) = ?', lc $email])->first;
         $validation->error(email => ['duplicate_email']) if $login_record;
     }
     return $email;
