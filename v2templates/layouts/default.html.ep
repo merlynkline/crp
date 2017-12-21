@@ -9,7 +9,7 @@
 #        ['press',     '/page/press',          'Press'],
         ['aboutme',   '/page/aboutme',        'About me'],
         ['books',     '/page/books',          'Books'],
-#        ['shop',      '/page/shop',           'Shop'],
+        ['shop',      '/page/shop',           'Shop'],
         ['contact',   '/page/contact',        'Contact'],
     ];
     if(stash 'logged_in') {
