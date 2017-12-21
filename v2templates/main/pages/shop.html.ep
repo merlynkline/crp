@@ -18,6 +18,13 @@
 %       description => 'Handmade Finger Puppet of Mouse complete with solar plexus pink swirl, pink ears and tail.',
 %   },
 %   {
+%       button_id   => '75USYZV2VQBAW',
+%       price       => '12.99',
+%       title       => 'Pair of Soft Foam Feet',
+%       images      => ['Photos/Shop/FoamFeet1.jpg'],
+%       description => 'Soft foam little feet, ideal for practicing your reflexology on. Keep out of the reach of children. Choking hazard.',
+%   },
+%   {
 %       button_id   => 'BMJ7SGQJMZMPY',
 %       price       => '11.99',
 %       title       => 'Signed book: The Mouse\'s House',
