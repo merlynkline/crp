@@ -1,0 +1,142 @@
+%#<!DOCTYPE html>
+% layout 'default', heading => "Affirmation", description => "Affirmation";
+% title "Affirmation";
+% my $affirmations = [
+%   "I Am Beautiful",
+%   "I Am Slender",
+%   "I Am Abundant",
+%   "I Am Wealthy",
+%   "I Am Healthy",
+%   "I Am Happy",
+%   "I Am Fabulous",
+%   "I Am Kind",
+%   "I Am Gentle",
+%   "I Am Warm",
+%   "I Am Brilliant",
+%   "I Am Generous",
+%   "I Am Sexy",
+%   "I Am Amazing",
+%   "I Am Free",
+%   "I Am Creative",
+%   "I Am Calm",
+%   "I Am Rich",
+%   "I Am Enough",
+%   "I Am Clever",
+%   "I Am Intelligent",
+%   "I Am Smart",
+%   "I Am Energetic",
+%   "I Am Awesome",
+%   "I Am Active",
+%   "I Am Allowed",
+%   "I Am Safe",
+%   "I Am Brave",
+%   "I Am Bountiful",
+%   "I Am Gifted",
+%   "I Am Fertile",
+%   "I Am Charming",
+%   "I Am Caring",
+%   "I Am Divine",
+%   "I Am Excellent",
+%   "I Am Eloquent",
+%   "I Am Able",
+%   "I Am Great",
+%   "I Am Grateful",
+%   "I Am Human",
+%   "I Am Incredible",
+%   "I Am Inspiring",
+%   "I Am Fun",
+%   "I Am Marvellous",
+%   "I Am Magnificent",
+%   "I Am A Mother",
+%   "I Am A Father",
+%   "I Am A Proud Parent",
+%   "I Am Strong",
+%   "I Am Playful",
+%   "I Am Patient",
+%   "I Am Thoughtful",
+%   "I Am Valued",
+%   "I Am Unique",
+% ];
+% my $backgrounds = [
+%   '#f92',
+%   '#8d0',
+%   '#79d',
+%   '#ff9',
+% ];
+<style>
+.card {
+    width:       500px;
+    height:      300px;
+    line-height: 300px;
+    margin:      40px auto;
+    cursor:      pointer;
+}
+.card .front, .card .back {
+    border:         3px solid #589;
+    text-align:     center;
+    padding:        0;
+    border-radius:  8px;
+    overflow:       hidden;
+    width:          100%;
+    height:         100%;
+    box-shadow:     5px 5px 5px lightgrey;
+}
+.card .back span {
+    vertical-align: middle;
+    display:        inline-block;
+    padding:        20px;
+    font-size:      40px;
+    font-weight:    bold;
+    line-height:    120%;
+}
+</style>
+<script src="<%= url_for '/js/jquery.flip.min.js' %>"></script>
+<center>
+    <h2>Here is your affirmation card - click to reveal...</h2>
+</center>
+<div id="affirmation" class="card">
+    <div class="front">
+        <img src="<%= url_for '/images/Animals/MouseInNest.jpg' %>" width=500 height=300>
+    </div>
+    <div class="back" style="background: <%= $backgrounds->[int rand @$backgrounds] %>;">
+        <span>
+            <%= $affirmations->[int rand @$affirmations] %>
+        </span>
+    </div>
+</div>
+<script>
+
+function pick_random(list) {
+    return list[ Math.floor(Math.random() * list.length) ];
+}
+
+function rot13(str) {
+    return str.replace(/[a-zA-Z]/g, function(chr) {
+        var start = chr <= 'Z' ? 65 : 97;
+        return String.fromCharCode(start + (chr.charCodeAt(0) - start + 13) % 26);
+    });
+}
+
+function flipper(selector, affirmations, colours) {
+    var timer;
+
+    $(selector).flip({trigger: 'manual'});
+    $(selector + ' .back').click(function() {
+        clearTimeout(timer);
+        $(selector).flip(false);
+    });
+    $(selector + ' .front').click(function() {
+        $(selector + ' .back').css('background-color', pick_random(colours))
+        $(selector + ' .back span').text(rot13(pick_random(affirmations)));
+        $(selector).flip(true);
+        timer = setTimeout(function() {
+            $(selector).flip(false);
+        }, 5000);
+    });
+}
+
+var affirmations = [ <%== join ', ', map { qq{"$_"} } map { tr/A-Za-z/N-ZA-Mn-za-m/r } @$affirmations %> ];
+var colours      = [ <%== join ', ', map { qq{"$_"} } @$backgrounds %> ];
+flipper('#affirmation', affirmations, colours);
+
+</script>
