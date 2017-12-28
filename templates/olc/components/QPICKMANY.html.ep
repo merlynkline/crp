@@ -13,7 +13,7 @@
             % }
         </div>
         % my $name = 'answer-' . $component->{id};
-        % my $current_answer = { map { $_ => 1 } @{$progress->{current_answer}->{$component->{id}} // []} };
+        % my $current_answer = { map { $_ => 1 } @{$student->{progress}->{current_answer}->{$component->{id}} // []} };
         % my $answer_num = 0;
         % foreach my $option (@{$component->{options}}) {
             % my $id = 'answer-' . $component->{id} . "-$answer_num";

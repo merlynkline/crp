@@ -2,8 +2,8 @@
 % my $is_first_page        = $page_index <= 1;
 % my $is_last_allowed_page = $page_index >= $max_page_index;
 % my $is_last_course_page  = $page_index == $course->{page_count};
-% my $is_page_completed    = $page_index <= $progress->{completed_pages_count};
-% my $is_course_completed  = $progress->{completed_pages_count} == $course->{page_count};
+% my $is_page_completed    = $page_index <= $student->{progress}->{completed_pages_count};
+% my $is_course_completed  = $student->{progress}->{completed_pages_count} == $course->{page_count};
 %
 <% my $nav_button = begin =%>
 <%  my($page_index, $disabled, $label) = @_; =%>
@@ -31,7 +31,7 @@
                             <%= $student->{email} %><br />
                             <%= $nav_button->(1, $is_first_page, '<<'); =%>
                             <%= $nav_button->($page_index - 1, $is_first_page, '<'); =%>
-                            <%= include 'olc/parts/progress_indicator', pages => $course->{page_count}, current => $page_index, done => $progress->{completed_pages_count} =%>
+                            <%= include 'olc/parts/progress_indicator', pages => $course->{page_count}, current => $page_index, done => $student->{progress}->{completed_pages_count} =%>
                             <%= $nav_button->($page_index + 1, $is_last_allowed_page, '>'); =%>
                             <%= $nav_button->($max_page_index, $is_last_allowed_page, '>>'); =%>
                         </div>

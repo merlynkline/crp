@@ -8,7 +8,6 @@ use CRP::Model::OLC::Course;
 use CRP::Model::OLC::Module;
 use CRP::Model::OLC::Page;
 use CRP::Model::OLC::Student;
-use CRP::Model::OLC::StudentProgress;
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -130,17 +129,16 @@ sub show_page {
     my $failure_code = $c->_validate_page_id_params;
     return $c->_not_found($failure_code) if $failure_code;
 
-    my $page_index = $c->_decode_and_limit_page_index($c->_course->module_page_index($c->_module, $c->_page), $c->_progress_record);
+    my $page_index = $c->_decode_and_limit_page_index($c->_course->module_page_index($c->_module, $c->_page), $c->_student_record);
 
     $c->stash(
         page                => $c->_page->view_data($c->_module, $c->_course),
         module              => $c->_module->view_data,
         course              => $c->_course->view_data,
-        student             => $c->_student_record->view_data,
+        student             => $c->_student_record->view_data($c->_page),
         page_index          => $page_index,
-        progress            => $c->_progress_record->view_data($c->_page),
         error_component_ids => { map { $_ => 1 } split ',', $c->flash('error_component_ids') // '' },
-        max_page_index      => List::Util::min($c->_progress_record->completed_pages_count + 1, $c->_course->page_count),
+        max_page_index      => List::Util::min($c->_student_record->completed_pages_count + 1, $c->_course->page_count),
     );
 
     $c->render(template => 'olc/page');
@@ -150,9 +148,8 @@ sub _validate_page_id_params {
     my $c = shift;
 
     return 'COURSE' unless $c->_course && $c->_course->exists;
-    $c->_progress_record(CRP::Model::OLC::StudentProgress->new({student => $c->_student_record, course => $c->_course}));
 
-    $c->_decode_page_index_indicator($c->stash('module_id'), $c->_progress_record);
+    $c->_decode_page_index_indicator($c->stash('module_id'), $c->_student_record);
     return 'MODULE' unless $c->_module && $c->_module->exists;
     return 'PAGE' unless $c->_page && $c->_page->exists;
 
@@ -167,32 +164,24 @@ sub _student_record {
     return $_cached_student_record;
 }
 
-my $_cached_progress_record;
-sub _progress_record {
-    my $c = shift;
-    ($_cached_progress_record) = @_ if @_;
-
-    return $_cached_progress_record;
-}
-
 sub _decode_page_index_indicator {
     my $c = shift;
-    my($page_index_indicator, $progress) = @_;
+    my($page_index_indicator, $student) = @_;
 
     return unless $page_index_indicator && $page_index_indicator =~ /^x(\d+)/i;
-    $c->_decode_and_limit_page_index($1, $progress);
+    $c->_decode_and_limit_page_index($1, $student);
 }
 
 sub _decode_and_limit_page_index {
     my $c = shift;
-    my($page_index, $progress) = @_;
+    my($page_index, $student) = @_;
 
     my $course = $c->_course;
 
     $page_index //= 1;
     $page_index = 1 if $page_index < 1;
 
-    my $max_allowed_page_index = List::Util::min $progress->completed_pages_count + 1, $course->page_count;
+    my $max_allowed_page_index = List::Util::min $student->completed_pages_count + 1, $course->page_count;
     $page_index = $max_allowed_page_index if $page_index > $max_allowed_page_index;
 
     $c->stash(
