@@ -1,18 +1,18 @@
 + Outstanding tasks for olc page renderer
     + Proper auth in OLC::authenticate()
-    + Disable any page links more than one beyond progress point
+    ~ Disable any page links more than one beyond progress point
     + olc/not_found template
     + more component types (video, questions, pdf, progress)
     + CSS for print media
-    + Moving on to the next page
+    ~ Moving on to the next page
         - Completion states are page-complete(PC)/page-incomplete(PI)/course-complete(CC)
         ? Indicate completion state in the title?
         ? CC link to certificate page (w/ download for logged-in users?)?
-        + Style the "I've finished" button
-        + Style the "I've finished" link
-        + Add the form handler
-            + Record progress when the answers are right/wrong
-            + Redirect to the right place for right/wrong answers
+        ~ Style the "I've finished" button
+        ~ Style the "I've finished" link
+        ~ Add the form handler
+            ~ Record progress when the answers are right/wrong
+            ~ Redirect to the right place for right/wrong answers
         ~ Handle displaying wrong answers on the page
             X Information at the top
             ~ Information next to the "I've finished" button

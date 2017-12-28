@@ -122,7 +122,7 @@ sub current_answer {
     my $component = shift;
 
     my $progress_field = 'current_answer.' . $page->id;
-    $progress_field .= '.' . $component->idi if $component;
+    $progress_field .= '.' . $component->id if $component;
     return $self->_progress_field($progress_field, @_);
 }
 

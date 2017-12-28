@@ -3,7 +3,7 @@
 <ol class="olc-module-idx<%= $editable ? ' editable-component' : '' %>"<%== $edit_id %>>
 % foreach my $page (@{$module->{pages}}) {
 <li>
-    % if( ! $editable) {
+    % if( ! $editable && $page->{_accessible}) {
     <a href="<%= url_for 'crp.olc.showpage', {module_id => $module->{id}, page_id => $page->{id}} %>">
     % }
         <%= $page->{title} %>

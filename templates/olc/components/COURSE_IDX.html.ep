@@ -3,13 +3,7 @@
 <ol class="olc-course-idx<%= $editable ? ' editable-component' : '' %>"<%== $editable %>>
 % foreach my $module (@{$component->{course}->{modules}}) {
 <li>
-    % if( ! $editable) {
-    <a href="<%= url_for 'crp.olc.showmodule', {module_id => $module->{id}} %>">
-    % }
     <%= $module->{title} %>
-    % if( ! $editable) {
-    </a>
-    % }
 </li>
 %= include 'olc/components/parts/MODULE_IDX', module => $module;
 %}

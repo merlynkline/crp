@@ -140,8 +140,43 @@ sub show_page {
         error_component_ids => { map { $_ => 1 } split ',', $c->flash('error_component_ids') // '' },
         max_page_index      => List::Util::min($c->_student_record->completed_pages_count + 1, $c->_course->page_count),
     );
+    $c->_set_page_accessibility_flags;
 
     $c->render(template => 'olc/page');
+}
+
+sub _set_page_accessibility_flags {
+    my $c = shift;
+
+    my $completed_pages_count = $c->_student_record->completed_pages_count;
+
+    my $module_start_page_index = 0;
+    my $current_module_id = $c->_module->id;
+    my $course_data = $c->stash('course');
+    foreach my $module_data (@{$course_data->{modules}}) {
+        last if $module_data->{id} == $current_module_id;
+        $module_start_page_index += @{$module_data->{pages}};
+    }
+
+    my $page_data = $c->stash('page');
+    foreach my $component_data (@{$page_data->{components}}) {
+        if($component_data->{type} eq 'COURSE_IDX') {
+            my $page_index = 0;
+            foreach my $module_data (@{$component_data->{course}->{modules}}) {
+                foreach my $page_data (@{$module_data->{pages}}) {
+                    $page_data->{_accessible} = $page_index <= $completed_pages_count;
+                    $page_index++;
+                }
+            }
+        }
+        elsif($component_data->{type} eq 'MODULE_IDX') {
+            my $page_index = $module_start_page_index;
+            foreach my $page_data (@{$component_data->{module}->{pages}}) {
+                $page_data->{_accessible} = $page_index <= $completed_pages_count;
+                $page_index++;
+            }
+        }
+    }
 }
 
 sub _validate_page_id_params {
@@ -260,20 +295,19 @@ sub check_page {
     foreach my $component (@{$c->_page->component_set->all}) {
         next unless $component->is_question;
         my $answer = $c->every_param('answer-' . $component->id);
-        $current_answer->{$component->id} = $answer;
+        $c->_student_record->current_answer($c->_page, $component, $answer);
         unless($component->is_good_answer($answer)) {
             push @error_component_ids, $component->id;
             $pass = 0;
         }
     }
 
-# Store answers
     my $next_page_index = $c->_course->module_page_index($c->_module, $c->_page);
     if($pass) {
-# update _progress_record->completed_pages_count
-# Handle completing the course if this is the last page
+        $c->_student_record->completed_pages_count($next_page_index);
         ++$next_page_index;
     }
+    $c->_student_record->create_or_update;
 
     my $url = $c->url_for('crp.olc.showmodule', {module_id => "X$next_page_index"});
     $url->fragment('anchor-' . $error_component_ids[0]) if @error_component_ids;

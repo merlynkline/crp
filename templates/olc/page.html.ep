@@ -63,7 +63,7 @@
                     %    $has_questions = 1 if exists $QUESTION_TYPES{$component->{type}};
                     %    $has_error = exists $error_component_ids->{$component->{id}};
                     <a name="<%= 'anchor-' . $component->{id} %>" class="olc-component-anchor">&nbsp;</a>
-                    %=   include 'olc/components/' . $component->{type}, component => $component, editable => 0, has_error => $has_error;
+                    %=   include 'olc/components/' . $component->{type}, component => $component, editable => 0, has_error => $has_error, is_page_completed => $is_page_completed;
                     % }
                     % if(@{$page->{components}} == 0) {
                     %= include 'olc/parts/empty-page';
@@ -74,7 +74,7 @@
                         % if($is_course_completed) {
                             You&apos;ve already finished this course - well done!
                             When you&apos;ve finished reviewing you can click this button to return to the first page:
-                            <div style="text-align: right;"><a class="button" href="<%= url_for('crp.olc.showmodule', {module_id => 'X1'}) %>">I&apos;ve finished</a></div>
+                            <div style="text-align: right;"><a class="olc-button" href="<%= url_for('crp.olc.showmodule', {module_id => 'X1'}) %>">I&apos;ve finished</a></div>
                         % } else {
                             This is the last page in this course.
                             When you have completed everything on this page
@@ -87,7 +87,7 @@
                         % if($is_page_completed) {
                             You&apos;ve already finished this page - well done!
                             When you&apos;ve finished reviewing you can click this button to move to the next page:
-                            <div style="text-align: right;"><a class="button" href="<%= url_for('crp.olc.showmodule', {module_id => 'X' . ($page_index + 1)}) %>">I&apos;ve finished</a></div>
+                            <div style="text-align: right;"><a class="olc-button" href="<%= url_for('crp.olc.showmodule', {module_id => 'X' . ($page_index + 1)}) %>">I&apos;ve finished</a></div>
                         % } else {
                             When you have completed everything on this page
                             <%= $has_questions ? 'and answered all the questions,' : '' %>

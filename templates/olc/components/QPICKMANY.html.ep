@@ -1,15 +1,18 @@
 %#<!DOCTYPE html>
 % $editable = $editable ? qq{ editablecomponentid="$editable"} : '';
+% my @disabler = $is_page_completed ? (disabled => 'disabled') : ();
 <div class="olc-question<%= $editable ? ' editable-component' : '' %>"<%== $editable %>>
     <div class="head<%= $has_error ? ' error' : '' %>">
-        <h3>Question</h3>
+        <h3><%= $is_page_completed ? 'Answered ' : '' %>Question</h3>
     </div>
     <div class="body">
         <div class="prompt"><%= $component->{prompt} %></div>
         <div class="instructions<%= $has_error ? ' error' : '' %>">
-            Please select the right options by clicking the checkboxes next to them.
-            % if($has_error) {
-            The ones you have already chosen are not the right ones.
+            % if( ! $is_page_completed) {
+                Please select the right options by clicking the checkboxes next to them.
+                % if($has_error) {
+                The ones you have already chosen are not the right ones.
+                % }
             % }
         </div>
         % my $name = 'answer-' . $component->{id};
@@ -17,7 +20,7 @@
         % my $answer_num = 0;
         % foreach my $option (@{$component->{options}}) {
             % my $id = 'answer-' . $component->{id} . "-$answer_num";
-            %= check_box $name => $answer_num, id => $id, exists $current_answer->{$answer_num} ? (checked => 'checked') : ();
+            %= check_box $name => $answer_num, id => $id, exists $current_answer->{$answer_num} ? (checked => 'checked') : (), @disabler;
             <label for="<%= $id %>"><%= $option %></label><br />
             % $answer_num++;
         % }
