@@ -1,0 +1,23 @@
+%#<!DOCTYPE html>
+% layout 'olc-page', include_nav_bar => undef, page_index => undef, max_page_index => undef, module => undef, page => undef;
+<center>
+    <p>&nbsp;</p>
+    <h1>Congratulations!</h1>
+    <p>&nbsp;</p>
+    <p><img src="/images/Plants/Pokers.png"></p>
+    <p>&nbsp;</p>
+    <p>You have succesfully completed the course:</p>
+    <p>&nbsp;</p>
+    <h2><%= $course->{title} %></h2>
+    <p>&nbsp;</p>
+    <p>as of <%= $c->crp->format_date($student->{completion_date}, 'short')  %></p>
+    <p>&nbsp;</p>
+    <hr />
+    <p>&nbsp;</p>
+    <a class="olc-button" href="<%= url_for('crp.olc.showmodule', {module_id => "X1"}) %>">Review the course</a>
+    <a class="olc-button" href="">View public certificate</a>
+    <a class="olc-button" href="">Download certificate</a>
+    <p>&nbsp;</p>
+    <hr />
+    <p>&nbsp;</p>
+</center>

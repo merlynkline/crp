@@ -87,6 +87,7 @@ sub create_or_update {
     my $self = shift;
 
     $self->last_access_date(DateTime->now);
+    $self->start_date(DateTime->now) unless $self->start_date;
     $self->status('IN_PROGRESS') unless $self->status;
     foreach my $attribute(@{$self->_LOCAL_FIELDS}) {
         $self->_db_record->$attribute($self->$attribute);
@@ -126,6 +127,15 @@ sub current_answer {
     return $self->_progress_field($progress_field, @_);
 }
 
+sub mark_completed {
+    my $self = shift;
+
+    if($self->status ne 'COMPLETED') {
+        $self->status('COMPLETED');
+        $self->completion_date(DateTime->now);
+    }
+}
+
 sub _build_db_record {
     my $self = shift;
 
@@ -145,7 +155,6 @@ sub _build_db_record {
             course_id       => $self->course_id,
         };
         $res = $resultset->find($identity);
-    #        croak "Couldn't load " . $self->_RESULTSET_NAME . " FKID '" . $self->id_foreign_key . "', TYPE '" . $self->id_type . "', CID '" . $self->course_id . "'" unless $res;
         $res = $resultset->new_result($identity) unless $res;
         $self->_set_id($res->id);
     }

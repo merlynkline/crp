@@ -311,13 +311,41 @@ sub check_page {
     if($pass) {
         $c->_student_record->completed_pages_count($next_page_index);
         ++$next_page_index;
+        $c->_student_record->mark_completed if $next_page_index > $c->_course->page_count;
     }
     $c->_student_record->create_or_update;
 
-    my $url = $c->url_for('crp.olc.showmodule', {module_id => "X$next_page_index"});
-    $url->fragment('anchor-' . $error_component_ids[0]) if @error_component_ids;
-    $c->flash(error_component_ids => join ',', @error_component_ids);
+    my $url;
+    if($next_page_index > $c->_course->page_count) {
+        $url = 'crp.olc.completed';
+    }
+    else {
+        $url = $c->url_for('crp.olc.showmodule', {module_id => "X$next_page_index"});
+        $url->fragment('anchor-' . $error_component_ids[0]) if @error_component_ids;
+        $c->flash(error_component_ids => join ',', @error_component_ids);
+    }
     return $c->redirect_to($url);
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub completed {
+    my $c = shift;
+
+    my $failure_code = $c->_validate_page_id_params;
+    return $c->_not_found($failure_code) if $failure_code;
+
+    if($c->_student_record->status ne 'COMPLETED') {
+        my $page_index = $c->_student_record->completed_pages_count + 1;
+        my $url = $c->url_for('crp.olc.showmodule', {module_id => "X$page_index"});
+        return $c->redirect_to($url);
+    }
+
+    $c->stash(
+        course              => $c->_course->view_data,
+        student             => $c->_student_record->view_data($c->_page),
+    );
+
+    return $c->render(template => 'olc/completed');
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 

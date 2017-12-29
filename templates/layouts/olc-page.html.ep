@@ -1,0 +1,116 @@
+%#<!DOCTYPE html>
+% my $is_first_page        = $page_index <= 1;
+% my $is_last_allowed_page = $page_index >= $max_page_index;
+% my $is_last_course_page  = $page_index == $course->{page_count};
+% my $is_page_completed    = $page_index <= $student->{progress}->{completed_pages_count};
+% my $is_course_completed  = $student->{progress}->{completed_pages_count} == $course->{page_count};
+%
+<% my $nav_button = begin =%>
+<%  my($page_index, $disabled, $label) = @_; =%>
+<div class="olc-nav-button<%= $disabled ? ' disabled' : '' %>"><span><% if( ! $disabled) { %><a href="<%= url_for('crp.olc.showmodule', {module_id => "X$page_index"})  %>"><% } =%>
+        <%= $label =%>
+    <% if( ! $disabled) { =%></a><% } =%></span>
+</div><%= end =%>
+<html>
+    <head>
+        <title><%= $page ? $page->{title} . ' - ' : '' %><%= $course->{title} %> - The Children's Reflexology Programme</title>
+%= include 'olc/parts/css_link'
+        <link rel="shortcut icon" href="<%= url_for '/favicon.ico' %>">
+        <link rel="apple-touch-icon-precomposed" href="<%= url_for '/favicon/favicon-152.png' %>">
+        <meta name="msapplication-TileColor" content="#FFFFFF">
+        <meta name="msapplication-TileImage" content="<%= url_for '/favicon/favicon-144.png' %>">
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <div class="olc-page">
+            <div class="olc-head-container">
+                <div class="olc-head-positioned">
+                    <div class="olc-head">
+                        <div class="olc-head-part olc-right">
+                            <strong><%= $student->{name} %></strong>
+                            <div class="olc-nav-button"><span><a href="<%= url_for 'crp.olc.logout' %>">Log out</a></span></div><br />
+                            <%= $student->{email} %><br />
+                            % if($include_nav_bar) {
+                            <%= $nav_button->(1, $is_first_page, '<<'); =%>
+                            <%= $nav_button->($page_index - 1, $is_first_page, '<'); =%>
+                            <%= include 'olc/parts/progress_indicator', pages => $course->{page_count}, current => $page_index, done => $student->{progress}->{completed_pages_count} =%>
+                            <%= $nav_button->($page_index + 1, $is_last_allowed_page, '>'); =%>
+                            <%= $nav_button->($max_page_index, $is_last_allowed_page, '>>'); =%>
+                            % }
+                        </div>
+                        <a href="/"><img src="<%= url_for '/images/v2/logo/CRPLogo.png' %>" id="heading-image"></a>
+                        <div class="olc-head-part">
+                            <h1>
+                                <a href="<%= url_for 'crp.olc.showcourse' %>" title="Course home page">
+                                    <%= $course->{title} %>
+                                </a>
+                            </h1>
+                            <h2>
+                                % if($module) {
+                                <a href="<%= url_for 'crp.olc.showmodule', {module_id => $module->{id}} %>" title="Module home page">
+                                    <%= $module->{title} %>
+                                </a>
+                                % } else {
+                                &nbsp;
+                                % }
+                            </h2>
+                            <h3>
+                                % if($page) {
+                                <%= $page->{title} %>
+                                % } else {
+                                &nbsp;
+                                % }
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                % if($is_course_completed && $include_nav_bar) {
+                <div class="olc-head-course-complete" style="
+                    background:     #fcb;
+                    border-radius:  8px;
+                    border:         2px solid #b20;
+                    color:          #b20;
+                    font-weight:    bold;
+                    margin:         0 auto;
+                    opacity:        0.8;
+                    padding:        0 0 4px 0;
+                    position:       relative;
+                    text-align:     center;
+                    top:            -60px;
+                    white-space:    nowrap;
+                    width:          260px;
+                ">
+                    You have completed this course!<br />
+                    <div class="olc-nav-button"><span><a href="<%= url_for('crp.olc.completed') %>">Get certificate</a></span></div>
+                </div>
+                % }
+            </div>
+            <div class="olc-content-container">
+                <div class="olc-content">
+%= content
+                </div>
+            </div>
+            <div class="olc-foot-container">
+                <div class="olc-foot-positioned">
+                    <div class="olc-foot">
+                        <a href="http://www.susanquayle.co.uk/"><img src="/images/SQCHLogoSmall.png" id="sq-logo" /></a>
+                        <ul>
+                            <li><a href="<%= url_for '/page/copyright' %>">Copyright &copy;</a></li>
+                            <li><a href="<%= url_for '/page/privacy' %>">Privacy policy</a></li>
+                            <li><a href="<%= url_for '/page/contact' %>">Contact us</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+            ga('create', 'UA-60480765-1', 'auto');
+            ga('send', 'pageview');
+        </script>
+    </body>
+</html>
+

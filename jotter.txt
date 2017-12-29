@@ -1,18 +1,16 @@
 + Outstanding tasks for olc page renderer
-    ~ Log-out button
-    ~ olc/not_found template
+    + logging in via TCRP for auth, flash the page URL for post-login return
     + more component types (video, questions, pdf, progress)
-    + CSS for print media
-    ~ Moving on to the next page
+    - Moving on to the next page
         - Completion states are page-complete(PC)/page-incomplete(PI)/course-complete(CC)
-        + Indicate completion state in the title
-            + Link to congratulatory completion page
+        ~ Indicate completion state in the title
+            ~ Link to congratulatory completion page
         - On the last page of the course
             + Show different wording on the completion form
             + Show a congratulatory page when fully completed
                 + Certificate with download
                 + Link to public certificate
-            + Mark the course state as complete and set completion date
+            ~ Mark the course state as complete and set completion date
 + OLC link in TCRP
     + Provide OLC link when qualification allows, in the "Qualifications" section of instructor home
         + Link to last page of course, or certofocate page if completed

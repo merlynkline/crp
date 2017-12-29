@@ -221,6 +221,7 @@ sub startup {
     $olc->post('/check/:module_id/:page_id')->to('o_l_c#check_page')->name('crp.olc.checkpage');
     $olc->post('/check/:module_id')->to('o_l_c#check_page')->name('crp.olc.checkmodule');
     $olc->any('/logout')->to('o_l_c#logout')->name('crp.olc.logout');
+    $olc->any('/completed')->to('o_l_c#completed')->name('crp.olc.completed');
 
 
     $self->app->hook(before_dispatch => \&_before_dispatch);

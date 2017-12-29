@@ -7,10 +7,7 @@
 % $class = $class eq 'LEFT'  ? 'small-left'
 %        : $class eq 'RIGHT' ? 'small-right'
 %        : 'full';
-% $class = "olc-img-$class" if $class;
+% $class = "olc-img olc-img-$class";
 % $editable = $editable ? qq{ editablecomponentid="$editable"} : '';
-% if($editable) {
-%   $class .= ' ' if $class;
-%   $class .= 'editable-component';
-% }
+% $class .= ' editable-component' if $editable;
 <img src="<%= $file %>"<%== $class ? qq{ class="$class"} : '' %><%== $editable %>>

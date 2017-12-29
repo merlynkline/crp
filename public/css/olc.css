@@ -77,11 +77,14 @@ div.olc-content {
     margin:         0 0 0 8px;
 }
 
-.olc-content img {
+.olc-content img.olc-img  {
     border:         3px solid #354;
     border-radius:  8px;
-    margin:         4px auto;
     display:        block;
+}
+
+.olc-content img.olc-img-full  {
+    margin:         4px auto;
     width:          90%;
 }
 

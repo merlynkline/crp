@@ -1,128 +1,52 @@
 %#<!DOCTYPE html>
-% my $is_first_page        = $page_index <= 1;
-% my $is_last_allowed_page = $page_index >= $max_page_index;
+% layout 'olc-page', include_nav_bar => 1;
 % my $is_last_course_page  = $page_index == $course->{page_count};
 % my $is_page_completed    = $page_index <= $student->{progress}->{completed_pages_count};
 % my $is_course_completed  = $student->{progress}->{completed_pages_count} == $course->{page_count};
 %
-<% my $nav_button = begin =%>
-<%  my($page_index, $disabled, $label) = @_; =%>
-<div class="olc-nav-button<%= $disabled ? ' disabled' : '' %>"><span><% if( ! $disabled) { %><a href="<%= url_for('crp.olc.showmodule', {module_id => "X$page_index"})  %>"><% } =%>
-        <%= $label =%>
-    <% if( ! $disabled) { =%></a><% } =%></span>
-</div><%= end =%>
-<html>
-    <head>
-        <title><%= $page->{title} %> - <%= $course->{title} %> - The Children's Reflexology Programme</title>
-%= include 'olc/parts/css_link'
-        <link rel="shortcut icon" href="<%= url_for '/favicon.ico' %>">
-        <link rel="apple-touch-icon-precomposed" href="<%= url_for '/favicon/favicon-152.png' %>">
-        <meta name="msapplication-TileColor" content="#FFFFFF">
-        <meta name="msapplication-TileImage" content="<%= url_for '/favicon/favicon-144.png' %>">
-        <meta charset="utf-8">
-    </head>
-    <body>
-        <div class="olc-page">
-            <div class="olc-head-container">
-                <div class="olc-head-positioned">
-                    <div class="olc-head">
-                        <div class="olc-head-part olc-right">
-                            <strong><%= $student->{name} %></strong>
-                            <div class="olc-nav-button"><span><a href="<%= url_for 'crp.olc.logout' %>">Log out</a></span></div><br />
-                            <%= $student->{email} %><br />
-                            <%= $nav_button->(1, $is_first_page, '<<'); =%>
-                            <%= $nav_button->($page_index - 1, $is_first_page, '<'); =%>
-                            <%= include 'olc/parts/progress_indicator', pages => $course->{page_count}, current => $page_index, done => $student->{progress}->{completed_pages_count} =%>
-                            <%= $nav_button->($page_index + 1, $is_last_allowed_page, '>'); =%>
-                            <%= $nav_button->($max_page_index, $is_last_allowed_page, '>>'); =%>
-                        </div>
-                        <a href="/"><img src="<%= url_for '/images/CRPLogo.png' %>" id="heading-image"></a>
-                        <div class="olc-head-part">
-                            <h1>
-                                <a href="<%= url_for 'crp.olc.showcourse' %>" title="Course home page">
-                                    <%= $course->{title} %>
-                                </a>
-                            </h1>
-                            <h2>
-                                <a href="<%= url_for 'crp.olc.showmodule', {module_id => $module->{id}} %>" title="Module home page">
-                                    <%= $module->{title} %>
-                                </a>
-                            </h2>
-                            <h3><%= $page->{title} %></h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="olc-content-container">
-                <div class="olc-content">
-                    %= form_for 'crp.olc.checkmodule', {slug => $slug, course_id => $course->{id}, module_id => "X$page_index"} => begin
-                    %
-                    % my $has_questions;
-                    % my $has_error;
-                    % my %QUESTION_TYPES = map { $_ => 1 } qw(QPICKONE);
-                    % foreach my $component (@{$page->{components}}) {
-                    %    $has_questions = 1 if exists $QUESTION_TYPES{$component->{type}};
-                    %    $has_error = exists $error_component_ids->{$component->{id}};
-                    <a name="<%= 'anchor-' . $component->{id} %>" class="olc-component-anchor">&nbsp;</a>
-                    %=   include 'olc/components/' . $component->{type}, component => $component, editable => 0, has_error => $has_error, is_page_completed => $is_page_completed;
-                    % }
-                    % if(@{$page->{components}} == 0) {
-                    %= include 'olc/parts/empty-page';
-                    % }
-                    <br clear="all" />
-                    % if($is_last_course_page) {
-                        <h2>Finish this course</h2>
-                        % if($is_course_completed) {
-                            You&apos;ve already finished this course - well done!
-                            When you&apos;ve finished reviewing you can click this button to return to the first page:
-                            <div style="text-align: right;"><a class="olc-button" href="<%= url_for('crp.olc.showmodule', {module_id => 'X1'}) %>">I&apos;ve finished</a></div>
-                        % } else {
-                            This is the last page in this course.
-                            When you have completed everything on this page
-                            <%= $has_questions ? 'and answered all the questions,' : '' %>
-                            click this button to finish the course:
-                            <div style="text-align: right;"><input type="submit" value="I've finished"></div>
-                        % }
-                    % } else {
-                        <h2>Finish this page</h2>
-                        % if($is_page_completed) {
-                            You&apos;ve already finished this page - well done!
-                            When you&apos;ve finished reviewing you can click this button to move to the next page:
-                            <div style="text-align: right;"><a class="olc-button" href="<%= url_for('crp.olc.showmodule', {module_id => 'X' . ($page_index + 1)}) %>">I&apos;ve finished</a></div>
-                        % } else {
-                            When you have completed everything on this page
-                            <%= $has_questions ? 'and answered all the questions,' : '' %>
-                            % if(%$error_component_ids) {
-                            <span class="error">including fixing the highlighted errors,</span>
-                            %}
-                            click this button to move on:
-                            <div style="text-align: right;"><input type="submit" value="I've finished"></div>
-                        % }
-                    % }
-                    % end
-                </div>
-            </div>
-            <div class="olc-foot-container">
-                <div class="olc-foot-positioned">
-                    <div class="olc-foot">
-                        <a href="http://www.susanquayle.co.uk/"><img src="/images/SQCHLogoSmall.png" id="sq-logo" /></a>
-                        <ul>
-                            <li><a href="<%= url_for '/page/copyright' %>">Copyright &copy;</a></li>
-                            <li><a href="<%= url_for '/page/privacy' %>">Privacy policy</a></li>
-                            <li><a href="<%= url_for '/page/contact' %>">Contact us</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <script>
-            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-            ga('create', 'UA-60480765-1', 'auto');
-            ga('send', 'pageview');
-        </script>
-    </body>
-</html>
-
+%
+%= form_for 'crp.olc.checkmodule', {slug => $slug, course_id => $course->{id}, module_id => "X$page_index"} => begin
+%
+% my $has_questions;
+% my $has_error;
+% my %QUESTION_TYPES = map { $_ => 1 } qw(QPICKONE);
+% foreach my $component (@{$page->{components}}) {
+%    $has_questions = 1 if exists $QUESTION_TYPES{$component->{type}};
+%    $has_error = exists $error_component_ids->{$component->{id}};
+<a name="<%= 'anchor-' . $component->{id} %>" class="olc-component-anchor">&nbsp;</a>
+%=   include 'olc/components/' . $component->{type}, component => $component, editable => 0, has_error => $has_error, is_page_completed => $is_page_completed;
+% }
+% if(@{$page->{components}} == 0) {
+%= include 'olc/parts/empty-page';
+% }
+<br clear="all" />
+% if($is_last_course_page) {
+    <h2>Finish this course</h2>
+    % if($is_course_completed) {
+        You&apos;ve already finished this course - well done!
+        When you&apos;ve finished reviewing you can click this button to return to the first page:
+        <div style="text-align: right;"><a class="olc-button" href="<%= url_for('crp.olc.showmodule', {module_id => 'X1'}) %>">I&apos;ve finished</a></div>
+    % } else {
+        This is the last page in this course.
+        When you have completed everything on this page
+        <%= $has_questions ? 'and answered all the questions,' : '' %>
+        click this button to finish the course:
+        <div style="text-align: right;"><input type="submit" value="I've finished"></div>
+    % }
+% } else {
+    <h2>Finish this page</h2>
+    % if($is_page_completed) {
+        You&apos;ve already finished this page - well done!
+        When you&apos;ve finished reviewing you can click this button to move to the next page:
+        <div style="text-align: right;"><a class="olc-button" href="<%= url_for('crp.olc.showmodule', {module_id => 'X' . ($page_index + 1)}) %>">I&apos;ve finished</a></div>
+    % } else {
+        When you have completed everything on this page
+        <%= $has_questions ? 'and answered all the questions,' : '' %>
+        % if(%$error_component_ids) {
+        <span class="error">including fixing the highlighted errors,</span>
+        %}
+        click this button to move on:
+        <div style="text-align: right;"><input type="submit" value="I've finished"></div>
+    % }
+% }
+% end
