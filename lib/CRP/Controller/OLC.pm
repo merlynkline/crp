@@ -17,6 +17,11 @@ sub authenticate {
     my $identity;
     my $authorised = 0;
 
+    unless($c->_course && $c->_course->exists) {
+        $c->_not_found('COURSE');
+        return $authorised;
+    }
+
     my $student_id = $c->session('olc_student_id');
     if($student_id) {
         my $student;
@@ -41,7 +46,7 @@ sub authenticate {
 
         if($identity) {
             $c->_check_authority_and_get_details($identity);
-            if($identity->{authorised}) {
+             if($identity->{authorised}) {
                 my $student = $c->_student_from_identity($identity);
                 $c->_authorised_student($student);
                 $authorised = 1;

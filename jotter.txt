@@ -1,6 +1,6 @@
 + Outstanding tasks for olc page renderer
     ~ Log-out button
-    + olc/not_found template
+    ~ olc/not_found template
     + more component types (video, questions, pdf, progress)
     + CSS for print media
     ~ Moving on to the next page
