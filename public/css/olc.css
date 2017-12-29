@@ -60,7 +60,7 @@ div.olc-content {
     letter-spacing: 0.05em;
 }
 
-.olc-content h2:first-child, .olc-content form h2:first-child {
+.olc-content h2:first-of-type {
     margin-top:     0;
     border-top:     none;
 }
@@ -308,4 +308,38 @@ div.olc-content {
 #heading-image {
     margin:         0 4px;
     width:          44px;
+}
+
+
+
+@media print {
+
+    body {
+        background-color: #fff;
+    }
+
+    div.olc-page {
+        color: #000;
+    }
+
+    div.olc-content {
+        background-color: #fff;
+        padding: 0;
+    }
+
+    div.olc-content-container {
+        border:  0;
+    }
+
+    .olc-head-container {
+        position: absolute;
+    }
+
+    .olc-content input[type="submit"], .olc-content input[type="button"], .olc-button, .olc-nav-button {
+        display: none;
+    }
+
+    .olc-content h2:first-of-type {
+        margin-top: 10px;
+    }
 }
