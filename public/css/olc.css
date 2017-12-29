@@ -200,6 +200,7 @@ div.olc-content {
     display:          inline-block;
     background-image: linear-gradient(#eee, #ccc);
     overflow:         hidden;
+    color:            #354;
 }
 
 .olc-nav-button:hover {

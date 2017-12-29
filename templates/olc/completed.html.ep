@@ -15,8 +15,8 @@
     <hr />
     <p>&nbsp;</p>
     <a class="olc-button" href="<%= url_for('crp.olc.showmodule', {module_id => "X1"}) %>">Review the course</a>
-    <a class="olc-button" href="">View public certificate</a>
-    <a class="olc-button" href="">Download certificate</a>
+    <a class="olc-button" href="<%= url_for('crp.olc.public_certificate', {signature => $signature}) %>">View public certificate</a>
+    <a class="olc-button" href="<%= url_for('crp.olc.pdf_certificate') %>">Download certificate</a>
     <p>&nbsp;</p>
     <hr />
     <p>&nbsp;</p>

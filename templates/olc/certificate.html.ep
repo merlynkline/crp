@@ -1,0 +1,19 @@
+%#<!DOCTYPE html>
+% layout 'default', page_id => 'olc.certificate', heading => 'Certificate for ' . $student->{name};
+% title 'Certificate';
+<link href='https://fonts.googleapis.com/css?family=Tangerine:700' rel='stylesheet' type='text/css'>
+<div class="certificate-container">
+    <div class="certificate-overlay">
+        <div style="opacity: 1.0;">
+            <img src="<%= url_for '/images/Plants/LavenderHorizontal2.png' %>" style="display: block; margin: 0 auto;" />
+            <p class="certificate-emphasised">This page certifies that</p>
+            <p class="certificate-writing"><%= $student->{name} %></p>
+            <p>Has completed the online training course</p>
+            <p class="certificate-emphasised"><%= $course->{title} %></p>
+            <p>as of <%= $c->crp->format_date($student->{completion_date}, 'long') %>. </p>
+            <p class="certificate-extra">
+            The signature ID for this certificate is '<%= $signature %>'.<br />
+            </p>
+        </div>
+    </div>
+</div>

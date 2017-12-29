@@ -1,8 +1,9 @@
 %#<!DOCTYPE html>
 % my $explanation
-%   = $reason eq 'COURSE' ? "That course doesn't exist"
-%   : $reason eq 'MODULE' ? "There is no such module in this course"
-%   : $reason eq 'PAGE'   ? "There is no such page in this module"
+%   = $reason eq 'COURSE'    ? "That course doesn't exist."
+%   : $reason eq 'MODULE'    ? "There is no such module in this course."
+%   : $reason eq 'PAGE'      ? "There is no such page in this module."
+%   : $reason eq 'SIGNATURE' ? "I can't decode that signature."
 %   : "";
 <%= include 'parts/error_page',
     title   => "Course page not found",

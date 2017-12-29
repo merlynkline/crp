@@ -8,6 +8,7 @@ use CRP::Model::OLC::Course;
 use CRP::Model::OLC::Module;
 use CRP::Model::OLC::Page;
 use CRP::Model::OLC::Student;
+use CRP::Util::WordNumber;
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -341,8 +342,9 @@ sub completed {
     }
 
     $c->stash(
-        course              => $c->_course->view_data,
-        student             => $c->_student_record->view_data($c->_page),
+        course      => $c->_course->view_data,
+        student     => $c->_student_record->view_data($c->_page),
+        signature   => '-' . CRP::Util::WordNumber::encipher($c->_student_record->id),
     );
 
     return $c->render(template => 'olc/completed');
@@ -360,6 +362,30 @@ sub logout {
     }
 
     return $c->redirect_to('crp.logout');
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub public_certificate {
+    my $c = shift;
+
+    my $signature = $c->stash('signature');
+    my $student;
+    if($signature =~ /^-(\d{1,9})$/) {
+        my $student_id = CRP::Util::WordNumber::decipher($1);
+        try {
+            $student = CRP::Model::OLC::Student->new(id => $student_id, dbh => $c->crp->model);
+        }
+    }
+
+    return $c->_not_found('SIGNATURE') unless $student && $student->status eq 'COMPLETED';
+
+    my $course = CRP::Model::OLC::Course->new(id => $student->course_id, dbh => $c->crp->model);
+    $c->stash(
+        course  => $course->view_data,
+        student => $student->view_data,
+    );
+
+    return $c->render(template => 'olc/certificate');
 }
 
 1;
