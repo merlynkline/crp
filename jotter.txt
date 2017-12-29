@@ -1,23 +1,23 @@
 + Outstanding tasks for olc page renderer
-    + Proper auth in OLC::authenticate()
-    ~ Disable any page links more than one beyond progress point
+    ~ Log-out button
     + olc/not_found template
     + more component types (video, questions, pdf, progress)
     + CSS for print media
     ~ Moving on to the next page
         - Completion states are page-complete(PC)/page-incomplete(PI)/course-complete(CC)
-        ? Indicate completion state in the title?
-        ? CC link to certificate page (w/ download for logged-in users?)?
-        ~ Style the "I've finished" button
-        ~ Style the "I've finished" link
-        ~ Add the form handler
-            ~ Record progress when the answers are right/wrong
-            ~ Redirect to the right place for right/wrong answers
-        ~ Handle displaying wrong answers on the page
-            X Information at the top
-            ~ Information next to the "I've finished" button
-            ~ Messages and highlights on specific questions
-        ? Different completion form on the last page of the course?
+        + Indicate completion state in the title
+            + Link to congratulatory completion page
+        - On the last page of the course
+            + Show different wording on the completion form
+            + Show a congratulatory page when fully completed
+                + Certificate with download
+                + Link to public certificate
+            + Mark the course state as complete and set completion date
++ OLC link in TCRP
+    + Provide OLC link when qualification allows, in the "Qualifications" section of instructor home
+        + Link to last page of course, or certofocate page if completed
+            - Could be a link to the completion page, which redirects to last completed page if course is not complete
+    ? Add a new qualifications page that expands the "Qualifications" section for better UX
 + Outstanding tasks for OLC admin:
     + more component types (video, questions, pdf, progress)
     + Common code in these modules:
@@ -51,7 +51,6 @@
 
 - Projects
     - Replace protocol handouts with new single-sheet versions or cards or similar
-    - Get Carly ready to teach at the college
     - Online course: hand reflexology for existing instructors, particularly Jude
     - Photos, pictures, logos etc for instructors to use in their own marketing (web sites, facebook)
     - Simplified parent course without parent pack

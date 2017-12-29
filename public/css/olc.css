@@ -195,7 +195,7 @@ div.olc-content {
     margin:           0;
     height:           12px;
     display:          inline-block;
-    background-image: linear-gradient(#fff, #ddd);
+    background-image: linear-gradient(#eee, #ccc);
     overflow:         hidden;
 }
 
@@ -218,6 +218,7 @@ div.olc-content {
 .olc-nav-button.disabled, .olc-nav-button.disabled:hover {
     border-color: #666;
     background:   #ccc;
+    color:        #888;
 }
 
 .olc-question {

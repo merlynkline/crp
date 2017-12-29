@@ -27,7 +27,8 @@
                 <div class="olc-head-positioned">
                     <div class="olc-head">
                         <div class="olc-head-part olc-right">
-                            <strong><%= $student->{name} %></strong><br />
+                            <strong><%= $student->{name} %></strong>
+                            <div class="olc-nav-button"><span><a href="<%= url_for 'crp.olc.logout' %>">Log out</a></span></div><br />
                             <%= $student->{email} %><br />
                             <%= $nav_button->(1, $is_first_page, '<<'); =%>
                             <%= $nav_button->($page_index - 1, $is_first_page, '<'); =%>

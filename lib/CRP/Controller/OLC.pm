@@ -315,4 +315,18 @@ sub check_page {
     return $c->redirect_to($url);
 }
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub logout {
+    my $c = shift;
+
+    $c->session(olc_student_id => '');
+
+    my $type = $c->_student_record->id_type;
+    if($type eq 'TCRP') {
+        return $c->redirect_to('crp.logout');
+    }
+
+    return $c->redirect_to('crp.logout');
+}
+
 1;
