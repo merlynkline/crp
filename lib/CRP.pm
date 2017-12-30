@@ -222,6 +222,7 @@ sub startup {
     $olc->post('/check/:module_id')->to('o_l_c#check_page')->name('crp.olc.checkmodule');
     $olc->any('/logout')->to('o_l_c#logout')->name('crp.olc.logout');
     $olc->any('/completed')->to('o_l_c#completed')->name('crp.olc.completed');
+    $olc->any('/certificate')->to('o_l_c#pdf_certificate')->name('crp.olc.pdf_certificate');
     $r->any('/olc-certificate/:signature')->to('o_l_c#public_certificate')->name('crp.olc.public_certificate');
 
 

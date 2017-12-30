@@ -388,4 +388,31 @@ sub public_certificate {
     return $c->render(template => 'olc/certificate');
 }
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+use CRP::Util::PDFMarkUp;
+sub pdf_certificate {
+    my $c = shift;
+
+    my $failure_code = $c->_validate_page_id_params;
+    return $c->_not_found($failure_code) if $failure_code;
+
+    return $c->_not_found('SIGNATURE') if($c->_student_record->status ne 'COMPLETED');
+
+    my $pdf = $c->app->home->rel_file("pdfs/olc/Certificate.pdf")->to_string;
+    my $pdf_doc = CRP::Util::PDFMarkUp->new(file_path => $pdf);
+    my $signature = '-' . CRP::Util::WordNumber::encipher($c->_student_record->id);
+    my $pdf_data = {
+        signature      => $signature,
+        signature_url  => $c->url_for('crp.olc.public_certificate', {signature => $signature})->to_abs,
+        name           => $c->_student_record->name,
+        course_title   => $c->_course->title,
+        signature_date => $c->crp->format_date($c->_student_record->completion_date, 'cert'),
+    };
+    $c->render_file(
+        data                => $pdf_doc->fill_template($pdf_data),
+        format              => 'pdf',
+        content_disposition => $c->param('download') ? 'attachment' : 'inline',
+        filename            => $pdf_doc->filename,
+    );
+}
 1;
