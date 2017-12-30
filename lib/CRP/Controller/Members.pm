@@ -147,7 +147,7 @@ sub get_pdf {
     my $c = shift;
 
     my $pdf = shift // $c->stash('pdf');
-    $pdf = $c->app->home->rel_file("pdfs/$pdf.pdf");
+    $pdf = $c->app->home->rel_file("pdfs/$pdf.pdf")->to_string;
     return $c->reply->not_found unless -r $pdf;
 
     my $pdf_doc = CRP::Util::PDFMarkUp->new(file_path => $pdf);
@@ -163,7 +163,7 @@ sub course_pdf {
     my $name = $c->stash('name');
     my $course = $c->crp->model('Course')->find({id => $course_id});
     die "You can't download a PDF for this course" unless $course && $course->instructor_id == $c->crp->logged_in_instructor_id;
-    my $pdf = $c->app->home->rel_file("pdfs/${name}.pdf");
+    my $pdf = $c->app->home->rel_file("pdfs/${name}.pdf")->to_string;
     my $pdf_doc = CRP::Util::PDFMarkUp->new(file_path => $pdf);
 
     $c->_send_pdf_response($pdf_doc, {course  => $course});
@@ -613,7 +613,7 @@ sub _send_fb_profile_pic {
 
     my %compose_params = (
         profile_pic => $c->crp->path_for_instructor_photo($c->crp->logged_in_instructor_id),
-        image_dir   => $c->app->home->rel_file('public/images'),
+        image_dir   => $c->app->home->rel_file('public/images')->to_string,
         format      => 'jpg',
     );
     $compose_params{$_} = $c->param($_) foreach(qw(x y r b z));

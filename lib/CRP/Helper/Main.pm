@@ -86,7 +86,7 @@ sub register {
             my $c = shift;
 
             my($path) = @_;
-            return $c->app->home->rel_file("public/$path");
+            return $c->app->home->rel_file("public/$path")->to_string;
         }
     );
 

@@ -36,7 +36,7 @@ sub list_pdfs {
 
     my @files;
     use File::Find;
-    my $base_dir = $c->app->home->rel_file('pdfs');
+    my $base_dir = $c->app->home->rel_file('pdfs')->to_string;
     find({ wanted => sub {
                 s{^$base_dir}{};
                 push @files, $_ if m{^[^.].*\.pdf$};
@@ -55,11 +55,11 @@ sub pdf {
     my $c = shift;
 
     my $pdf = shift // $c->stash('pdf');
-    $pdf = $c->app->home->rel_file("pdfs/$pdf");
+    $pdf = $c->app->home->rel_file("pdfs/$pdf")->to_string;
     return $c->reply->not_found unless -r $pdf;
 
     my $data = {
-        profile_image => $c->app->home->rel_file('public/images/Instructors/photos/default.jpg'),
+        profile_image => $c->app->home->rel_file('public/images/Instructors/photos/default.jpg')->to_string,
     };
     my $pdf_doc = CRP::Util::PDFMarkUp->new(file_path => $pdf, test_mode => 1);
     $c->render_file(

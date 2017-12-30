@@ -370,7 +370,7 @@ sub instructor_poster {
     return $c->reply->not_found unless $course;
 
     my $code = $course->course_type->code;
-    my $pdf = $c->app->home->rel_file("pdfs/ads/trainer/A3PosterPics-$code.pdf");
+    my $pdf = $c->app->home->rel_file("pdfs/ads/trainer/A3PosterPics-$code.pdf")->to_string;
     my $pdf_doc = CRP::Util::PDFMarkUp->new(file_path => $pdf);
     my $pdf_data = CRP::Util::CRPDataFormatter::format_data($c, {
         profile           => $c->crp->model('Profile')->find({instructor_id => $course->instructor_id}),
@@ -423,7 +423,7 @@ sub professional_pdf {
     my $slug = $c->stash('slug');
     my $pdf  = $c->stash('pdf');
 
-    $pdf = $c->app->home->rel_file("pdfs/pro/$pdf.pdf");
+    $pdf = $c->app->home->rel_file("pdfs/pro/$pdf.pdf")->to_string;
     return $c->reply->not_found unless -r $pdf;
 
     my $attendee = $c->crp->model('Professional')->find_by_slug($slug);

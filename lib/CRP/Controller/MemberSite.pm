@@ -106,8 +106,8 @@ sub booking_form {
 
     return unless $c->_stash_published_course_and_past_flag_or_404;
     my $code = $c->stash('course')->course_type->code;
-    my $pdf = $c->app->home->rel_file("pdfs/members/booking_form-$code.pdf");
-    $pdf = $c->app->home->rel_file('pdfs/members/booking_form.pdf') unless -f $pdf;
+    my $pdf = $c->app->home->rel_file("pdfs/members/booking_form-$code.pdf")->to_string;
+    $pdf = $c->app->home->rel_file('pdfs/members/booking_form.pdf')->to_string unless -f $pdf;
     my $pdf_doc = CRP::Util::PDFMarkUp->new(file_path => $pdf);
     my $data = CRP::Util::CRPDataFormatter::format_data($c, {
             profile => $c->stash('site_profile'),
@@ -126,7 +126,7 @@ sub booking_form {
 sub mencap_form {
     my $c = shift;
 
-    my $pdf = $c->app->home->rel_file("pdfs/members/mencap.pdf");
+    my $pdf = $c->app->home->rel_file("pdfs/members/mencap.pdf")->to_string;
     my $pdf_doc = CRP::Util::PDFMarkUp->new(file_path => $pdf);
     my $data = CRP::Util::CRPDataFormatter::format_data($c, {
             profile => $c->stash('site_profile'),

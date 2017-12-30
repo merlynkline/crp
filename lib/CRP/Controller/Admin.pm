@@ -275,7 +275,7 @@ sub certificate {
     my $id = $c->param('id') || shift || return $c->welcome;
     my $code = $c->param('code') || '';
     my $login = $c->crp->model('Login')->find($id) || return $c->welcome;
-    my $pdf = $c->app->home->rel_file("pdfs/Qualification_Certificate_$code.pdf");
+    my $pdf = $c->app->home->rel_file("pdfs/Qualification_Certificate_$code.pdf")->to_string;
     return $c->reply->not_found unless -r $pdf;
 
     my $pdf_doc = CRP::Util::PDFMarkUp->new(file_path => $pdf);

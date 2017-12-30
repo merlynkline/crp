@@ -49,7 +49,7 @@ sub startup {
     # Router
     my $r = $self->routes;
 
-    my $sq_app = $self->app->home->rel_file('../sq/script/sq');
+    my $sq_app = $self->app->home->rel_file('../sq/script/sq')->to_string;
     if(-e $sq_app) {
         $sq_app = Mojo::Server->new->load_app($sq_app) if -e $sq_app;
         $r->get('/')->over(headers => {Host => qr/(^|\.)susanquayle\.co\./})->detour(app => $sq_app);

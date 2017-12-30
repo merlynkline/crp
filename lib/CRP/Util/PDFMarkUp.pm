@@ -25,7 +25,7 @@ has _pdf        => (is => 'rw', isa => 'PDF::API2');
 
 use constant QRCODE_SCALE => 0.33;
 
-use Mojo::Util;
+use File::Slurp;
 
 use warnings;
 use strict;
@@ -61,12 +61,12 @@ sub fill_template {
 
 sub _load_markup {
     my $self = shift;
-    
+
     my $file_path = $self->file_path;
     $file_path =~ s{\.pdf$}{};
     $file_path .= '.mark';
     if(-r $file_path) {
-        my $markup_file = Mojo::Util::slurp($file_path);
+        my $markup_file = read_file($file_path);
         $markup_file = eval $markup_file;
         unless($@) {
             eval {

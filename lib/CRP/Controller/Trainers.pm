@@ -269,7 +269,7 @@ sub course_pdf {
 
     my $course  = $c->_stash_course($c->stash('course_id'));
     my $name    = $c->stash('name');
-    my $pdf     = $c->app->home->rel_file("pdfs/${name}.pdf");
+    my $pdf     = $c->app->home->rel_file("pdfs/${name}.pdf")->to_string;
     my $pdf_doc = CRP::Util::PDFMarkUp->new(file_path => $pdf);
 
     $c->_send_pdf_response($pdf_doc, {instructor_course  => $course});
@@ -494,8 +494,8 @@ sub attendee_certificate {
     my $course  = $c->stash('course_record');
 
     my $course_type = $course->course_type->code;
-    my $pdf = $c->app->home->rel_file("pdfs/Attendee_Certificate_$course_type.pdf");
-    $pdf = $c->app->home->rel_file("pdfs/Attendee_Certificate.pdf") unless -r $pdf;
+    my $pdf = $c->app->home->rel_file("pdfs/Attendee_Certificate_$course_type.pdf")->to_string;
+    $pdf = $c->app->home->rel_file("pdfs/Attendee_Certificate.pdf")->to_string unless -r $pdf;
     my $pdf_doc = CRP::Util::PDFMarkUp->new(file_path => $pdf);
 
     my $pdf_data = CRP::Util::CRPDataFormatter::format_data($c, {
