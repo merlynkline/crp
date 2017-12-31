@@ -1,5 +1,4 @@
 + Outstanding tasks for olc page renderer
-    + When logging in via TCRP for auth, flash the page URL for post-login return
     + more component types (video, questions, pdf, progress)
     + New question type: short text (reasonable fuzzy match required)
 + Tutor-managed course completion
