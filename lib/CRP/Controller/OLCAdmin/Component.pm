@@ -13,14 +13,15 @@ sub edit {
 
     my $component = CRP::Model::OLC::Component->new({dbh => $c->crp->model, id => $c->_component_id});
     my $route = {
-        HEADING    => 'heading',
-        PARAGRAPH  => 'paragraph',
-        MARKDOWN   => 'markdown',
-        COURSE_IDX => 'courseidx',
-        MODULE_IDX => 'moduleidx',
-        IMAGE      => 'image',
-        QPICKONE   => 'singleopt',
-        QPICKMANY  => 'multipleopt',
+        HEADING         => 'heading',
+        PARAGRAPH       => 'paragraph',
+        MARKDOWN        => 'markdown',
+        COURSE_IDX      => 'courseidx',
+        MODULE_IDX      => 'moduleidx',
+        IMAGE           => 'image',
+        QPICKONE        => 'singleopt',
+        QPICKMANY       => 'multipleopt',
+        QTUTORMARKED    => 'tutormarked',
     }->{$component->type};
     die "Don't know how to edit component type '" . $component->type . "'" unless $route;
     return $c->redirect_to($c->url_for("crp.olcadmin.component.$route.edit")->query(

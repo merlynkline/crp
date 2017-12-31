@@ -1,0 +1,22 @@
+%#<!DOCTYPE html>
+% $editable = $editable ? qq{ editablecomponentid="$editable"} : '';
+% my @disabler = $is_page_completed ? (disabled => 'disabled') : ();
+<div class="olc-question<%= $editable ? ' editable-component' : '' %>"<%== $editable %>>
+    <div class="head<%= $has_error ? ' error' : '' %>">
+        <h3><%= $is_page_completed ? 'Answered ' : '' %>Question</h3>
+    </div>
+    <div class="body">
+        <div class="prompt"><%= $component->{prompt} %></div>
+        <div class="instructions<%= $has_error ? ' error' : '' %>">
+            % if( ! $is_page_completed) {
+                You must ask your tutor to mark this question as passed for you by following the
+                instructions above. When you are ready for your tutor to mark the question please
+                tick the checkbox and then finish the page.
+            % }
+        </div>
+        % my $name = 'answer-' . $component->{id};
+        % my $current_answer = { map { $_ => 1 } @{$student->{progress}->{current_answer}->{$component->{id}} // []} };
+        %= check_box $name => 0, id => "answer-$component->{id}", exists $student->{progress}->{current_answer}->{$component->{id}} ? (checked => 'checked') : (), @disabler;
+        <label for="<%= "answer-$component->{id}" %>">This question is ready for marking</label><br />
+    </div>
+</div>

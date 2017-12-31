@@ -1,0 +1,17 @@
+%#<!DOCTYPE html>
+% layout 'member_default', heading => 'Admin: Edit online course module page question', page_id => 'admin';
+%= include 'o_l_c_admin/component/editor/parts/page_start', component_name => 'question';
+%= form_for 'crp.olcadmin.component.singleopt.save' => (method => 'POST', enctype => 'multipart/form-data') => begin
+%= include 'o_l_c_admin/component/editor/parts/form_start';
+
+        <label for="prompt">Instructions:
+            <div class="field-extra-info">Enter instructions telling the user how to get this question marked by the tutor.</div>
+        </label>
+        <div class="input-container">
+            %= text_area 'prompt' => $component->{prompt}, id => 'prompt', rows => 4, cols => 45;
+            <%= include 'parts/error', field => 'prompt' %>
+        </div>
+
+%= include 'o_l_c_admin/component/editor/parts/form_end';
+% end
+

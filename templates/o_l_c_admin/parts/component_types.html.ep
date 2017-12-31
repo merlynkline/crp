@@ -1,15 +1,16 @@
 %#<!DOCTYPE html>
 % my %TYPES = (
-%   HEADING     => 'Heading',
-%   PARAGRAPH   => 'Paragraph',
-%   IMAGE       => 'Image',
-%   VIDEO       => 'Video',
-%   PDF         => 'PDF Document',
-%   COURSE_IDX  => 'Contents table, course',
-%   MODULE_IDX  => 'Contents table, module',
-%   MARKDOWN    => 'Paragraph, markdown',
-%   QPICKONE    => 'Mutliple choice, single-answer',
-%   QPICKMANY   => 'Mutliple choice, multiple-answer',
+%   HEADING       => 'Heading',
+%   PARAGRAPH     => 'Paragraph',
+%   IMAGE         => 'Image',
+%   VIDEO         => 'Video',
+%   PDF           => 'PDF Document',
+%   COURSE_IDX    => 'Contents table, course',
+%   MODULE_IDX    => 'Contents table, module',
+%   MARKDOWN      => 'Paragraph, markdown',
+%   QPICKONE      => 'Mutliple choice, single-answer',
+%   QPICKMANY     => 'Mutliple choice, multiple-answer',
+%   QTUTORMARKED  => 'Tutor-marked task',
 % );
 % while (my($key, $value) = each %TYPES) {
 %   $types->{$key} = $value;

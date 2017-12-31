@@ -17,6 +17,7 @@ use CRP::Model::OLC::Component::Paragraph;
 use CRP::Model::OLC::Component::Video;
 use CRP::Model::OLC::Component::SingleOption;
 use CRP::Model::OLC::Component::MultipleOption;
+use CRP::Model::OLC::Component::TutorMarked;
 
 use constant {
     _TYPE_CLASS     => {
@@ -30,6 +31,7 @@ use constant {
         VIDEO           => 'Video',
         QPICKONE        => 'SingleOption',
         QPICKMANY       => 'MultipleOption',
+        QTUTORMARKED    => 'TutorMarked',
     },
 };
 

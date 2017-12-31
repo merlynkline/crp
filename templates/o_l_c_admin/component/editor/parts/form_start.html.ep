@@ -1,6 +1,6 @@
 %#<!DOCTYPE html>
     <fieldset>
-        <legend>Online course module page heading details</legend>
+        <legend>Online course page component details</legend>
         %= hidden_field 'component_id' => $component->{id};
         %= hidden_field 'page_id' => $olc_page_id;
         %= hidden_field 'module_id' => $olc_module_id;
