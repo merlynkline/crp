@@ -55,7 +55,13 @@ sub authenticate {
         }
     }
 
-    $c->redirect_to('crp.login') unless $authorised;
+    unless($authorised) {
+        my $format = $c->stash('format') || 'html';
+        if($c->req->method eq 'GET' && $format eq 'html') {
+            $c->flash(post_login_url => $c->req->url->to_string);
+        }
+        $c->redirect_to('crp.login');
+    }
     return $authorised;
 }
 

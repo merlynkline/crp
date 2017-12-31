@@ -132,8 +132,10 @@ sub _show_login {
     my $c = shift;
 
     if($c->stash('crp_session')) {
-        $c->stash('reason', $c->stash('crp_session')->variable('login_reason') // '');
-        $c->stash('crp_session')->variable('login_reason', undef);
+        my $crp_session = $c->stash('crp_session');
+        $c->flash(post_login_url => $c->flash('post_login_url'));
+        $c->stash('reason', $crp_session->variable('login_reason') // '');
+        $crp_session->variable('login_reason', undef);
     }
     $c->render(template => "logged_in/login");
 }
@@ -194,7 +196,7 @@ sub otp {
         sleep 3;
     }
     return $c->render(template => 'logged_in/otp') if($validation->has_error);
-    
+
     $login_record->otp_expiry_date(undef);
     $login_record->otp_hash(undef);
     $login_record->update();
@@ -209,7 +211,7 @@ sub _do_login {
 
 # TODO: handle auto-login flag
     my $crp_session = $c->stash('crp_session');
-    my $destination = $crp_session->variable('interstitial_destination');
+    my $destination = $c->flash('post_login_url') // $crp_session->variable('interstitial_destination');
     $login_record->last_login_date(DateTime->now);
     $login_record->update();
     $crp_session->create_new();
