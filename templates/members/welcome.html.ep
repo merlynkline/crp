@@ -3,13 +3,28 @@
 % title 'Control panel';
 % my $profile = stash('profile_record');
 % my $personal_url = url_for('crp.membersite.home', slug => $profile_record->web_page_slug)->to_abs;
+%
+% my @olc_courses;
+% my %olc_course_seen;
+% foreach my $qualification ($profile->login->qualifications) {
+%   if(@{$qualification->qualification->olc_courses}) {
+%       foreach my $olc_course (@{$qualification->qualification->olc_courses}) {
+%           if( ! exists $olc_course_seen{$olc_course->id}) {
+%               $olc_course_seen{$olc_course->id} = 1;
+%               push @olc_courses, $olc_course;
+%           }
+%       }
+%   }
+% }
+
+%
 % my $contact_row_block = begin
 % my($name, $value) = @_;
 % if($value) {
 <tr><td><%= $name %>:</td><td nowrap="nowrap"><%= $value %></td></tr>
 % }
 % end
-<h1>Member's area<% if(stash('profile_record')->name) { %> for <%= stash('profile_record')->name %><% } %></h1>
+<h1>Member's area<% if(stash('profile_record')->name) { %> for <a href="<%= $personal_url %>"><%= stash('profile_record')->name %></a><% } %></h1>
 %= include 'parts/demo_indicator'
 % if(param('msg')) {
 <%= include 'parts/message_box', msg => param('msg'), auto_hide => 1 %>
@@ -57,19 +72,29 @@
                 % }
             </table>
             <table class="list1" style="max-width: 300px;">
-                <tr><th colspan="2">Qualifications</th></tr>
+                <tr><th>Qualifications</th></tr>
                 % my @qualifications = $profile->login->qualifications;
                 % if(@qualifications) {
                     % foreach my $qualification (@qualifications) {
                     % my $url = url_for('crp.membersite.home', slug => $qualification->trainer->profile->web_page_slug)->to_abs;
                     <tr>
-                        <td nowrap="nowrap">
-                            <%= $qualification->passed_date ? $c->crp->format_date($qualification->passed_date, 'short') : '' %>
-                            <%= $qualification->is_trainee ? '(Trainee)' : '' %>
-                        </td>
-                        <td>
-                            <%= $qualification->qualification->qualification; %><br />
-                            Tutor: <a href="<%= $url %>"><%= $qualification->trainer->profile->name %></a><br>
+                        <td style="padding: 4px 8px; line-height: 115%;">
+                            <%= $qualification->qualification->qualification; %>
+                            <div class="extra-info" style="padding-top: 4px;">
+                                <%= $qualification->passed_date ? 'Gained: ' . $c->crp->format_date($qualification->passed_date, 'short') : '' %>
+                                <%= $qualification->is_trainee ? '(Trainee)' : '' %>
+                                <br />
+                                Tutor: <a href="<%= $url %>"><%= $qualification->trainer->profile->name %></a>
+                                % if(@{$qualification->qualification->olc_courses}) {
+                                <br />
+                                Online tuition:<br />
+                                <ul style="padding: 0 0 0 16px; margin: 0; overflow: hidden;";>
+                                    % foreach my $olc_course (@{$qualification->qualification->olc_courses}) {
+                                    <li><span style="position: relative; left: -6px;"><a href="<%= url_for 'crp.olc.completed', course_id => $olc_course->id, slug => 'kidsreflex' %>"><%= $olc_course->title %></a></span></li>
+                                    % }
+                                </ul>
+                                % }
+                            </div>
                         </td>
                     </tr>
                     % }
@@ -88,6 +113,14 @@
     You can find everything through the options in the menu and you should explore them to
     see what's there. Some of the more frequently used features are highlighted below.
     </p>
+    % }
+    % if(@olc_courses) {
+    <table class="list1" style="width: 585px; margin: 0;">
+        <tr><th colspan="3">Online tuition you have access to</th></tr>
+        % foreach my $olc_course (@olc_courses) {
+        <tr><td><a href="<%= url_for 'crp.olc.completed', course_id => $olc_course->id, slug => 'kidsreflex' %>"><%= $olc_course->title %></a></td></tr>
+        % }
+    </table>
     % }
     <p>
     % if(stash 'incomplete_profile') {
@@ -160,7 +193,7 @@
 </p>
 <br clear="left" />
 % if(@{stash('instructors_trained')}) {
-<table class="list1">
+<table class="list1" style="width: 585px; margin: 0;">
     <tr><th colspan="3">Instructors you've trained</th></tr>
     <tr><th>Date</th><th>Instructor</th><th>Qualification</th></tr>
     % foreach my $qualification (@{stash('instructors_trained')}) {

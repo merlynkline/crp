@@ -1,12 +1,7 @@
 + Outstanding tasks for olc page renderer
-    + logging in via TCRP for auth, flash the page URL for post-login return
+    + When logging in via TCRP for auth, flash the page URL for post-login return
     + more component types (video, questions, pdf, progress)
     + New question type: short text (reasonable fuzzy match required)
-+ OLC link in TCRP
-    + Provide OLC link when qualification allows, in the "Qualifications" section of instructor home
-        + Link to last page of course, or certofocate page if completed
-            - Could be a link to the completion page, which redirects to last completed page if course is not complete
-    ? Add a new qualifications page that expands the "Qualifications" section for better UX
 + Tutor-managed course completion
     + Question state "pending" with explanation
     + Tutor marks pending question good

@@ -53,5 +53,22 @@ sub sqlt_deploy_hook {
     }
 }
 
+use CRP::Model::OLC::Course;
+use Try::Tiny;
+sub olc_courses {
+    my $self = shift;
+
+    my @courses;
+    foreach my $code (split ',', $self->olccodes // '') {
+        my $course = CRP::Model::OLC::Course->new(dbh => $self->result_source->schema);
+        try {
+            $course->load_by_code($code);
+        };
+        push @courses, $course if $course->id;
+    }
+
+    return \@courses;
+}
+
 1;
 
