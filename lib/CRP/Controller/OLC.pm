@@ -307,8 +307,9 @@ sub check_page {
     foreach my $component (@{$c->_page->component_set->all}) {
         next unless $component->is_question;
         my $answer = $c->every_param('answer-' . $component->id);
+        $c->_request_assignment_mark_if_requested($component, $answer);
         $c->_student_record->current_answer($c->_page, $component, $answer);
-        unless($component->is_good_answer($answer)) {
+        unless($component->is_good_answer($answer) || $c->_student_record->assignment_passed($c->_page, $component)) {
             push @error_component_ids, $component->id;
             $pass = 0;
         }
@@ -332,6 +333,27 @@ sub check_page {
         $c->flash(error_component_ids => join ',', @error_component_ids);
     }
     return $c->redirect_to($url);
+}
+
+sub _request_assignment_mark_if_requested {
+    my($c) = shift;
+    my($component, $answer) = @_;
+
+    return unless $component->type eq 'QTUTORMARKED';
+    return unless ! ! $answer->[0];
+    return if $c->_student_record->current_answer($c->_page, $component)->[0];
+
+    $c->mail(
+        to          => $c->crp->email_to($c->app->config->{email_addresses}->{user_admin}),
+        template    => 'olc/email/request_assignment_mark',
+        info        => {
+            page      => $c->_page->view_data($c->_module, $c->_course),
+            module    => $c->_module->view_data,
+            course    => $c->_course->view_data,
+            student   => $c->_student_record->view_data($c->_page),
+            component => $component->view_data,
+        },
+    );
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 

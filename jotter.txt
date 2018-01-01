@@ -1,13 +1,17 @@
 + Outstanding tasks for olc page renderer
-    + more component types (video, pdf)
+    + more component types
+        + PDF
+            + Gets marked up using named markup file or a default markup file if no named one exists
+            + Need to allow upload of markup files
+        + Video
 + Tutor-managed course completion
     - Workflow:
-        - User checks box saying assignment ready for marking
-        - Question state "pending" with explanation
-        - Send an email to the tutor requesting mark
-        - Tutor can find outstanding questions from OLC Admin
-        - Tutor marks pending question good. This could also mark the page completed.
-        - Send an email to the user with a link to the completion page (which might redirect to the next page)
+        ~ User checks box saying assignment ready for marking
+        ~ Question state "pending" with explanation
+        ~ Send an email to the tutor requesting mark
+        + Tutor can find outstanding questions from OLC Admin
+        + Tutor marks pending question good. This could also mark the page completed.
+        + Send an email to the user with a link to the completion page (which might redirect to the next page)
 + Outstanding tasks for OLC admin:
     + more component types (video, pdf)
     + Common code in these modules:

@@ -18,6 +18,11 @@ use constant {
                 "<component_id>" => ['Str'],
             },
         },
+        assignment_passed     => {
+            "<page_id>" => {
+                "<component_id>" => ['Str'],
+            },
+        },
     },
 };
 
@@ -125,6 +130,17 @@ sub current_answer {
     my $progress_field = 'current_answer.' . $page->id;
     $progress_field .= '.' . $component->id if $component;
     return $self->_progress_field($progress_field, @_);
+}
+
+sub assignment_passed {
+    my $self = shift;
+    my $page = shift;
+    my $component = shift;
+
+    my $progress_field = 'assignment_passed.' . $page->id . '.' . $component->id;
+    my @value = @_;
+    $value[0] = [ $value[0] ] if @value;
+    return $self->_progress_field($progress_field, @value)->[0];
 }
 
 sub mark_completed {

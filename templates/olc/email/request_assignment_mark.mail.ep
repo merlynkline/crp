@@ -1,0 +1,28 @@
+% stash subject => "Online course assignement mark request: The Children's Reflexology Programme";
+%#
+% layout 'default';
+% my $row = begin
+% my($label, $value) = @_;
+    <tr>
+        <td valign="top">&nbsp;&nbsp;&nbsp;<%= $label %>:&nbsp;&nbsp;</td>
+        <td valign="top"><%= $value %></td>
+    </tr>
+% end
+<p>
+An online course student has requested that an assignment be marked.
+</p>
+<p>
+<table border="0">
+%= $row->('Student',    $info->{student}->{name});
+%= $row->('email',      $info->{student}->{email});
+%= $row->('Course',     $info->{course}->{title});
+%= $row->('Module',     $info->{module}->{title});
+%= $row->('Page',       $info->{page}->{title});
+%= $row->('Assignment', $info->{component}->{name});
+</table>
+</p>
+Please review the assignment and mark it as passed when you are happy with it.
+<p>
+</p>
+%= include 'parts/email_signature';
+
