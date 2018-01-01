@@ -1,10 +1,10 @@
 
 requires "File::Remove";
 requires "inc::Module::Install";
-requires "Mojolicious", "6.00";
-requires "Mojolicious::Plugin::RenderFile", "0.08";
+requires "Mojolicious";
+requires "Mojolicious::Plugin::RenderFile";
 requires "Mojolicious::Plugin::TemplateToolkit";
-requires "DBIx::Connector", "0.53";
+requires "DBIx::Connector";
 requires "List::MoreUtils";
 requires "DBIx::Class::Core";
 requires "DBIx::Class::Schema";
