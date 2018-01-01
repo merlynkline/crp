@@ -1,20 +1,21 @@
 + Outstanding tasks for olc page renderer
-    + more component types (video, questions, pdf, progress)
-    + New question type: short text (reasonable fuzzy match required)
+    + more component types (video, pdf)
 + Tutor-managed course completion
-    + Question state "pending" with explanation
-    + Tutor marks pending question good
-    + Send an email with a link to the completion page
+    - Workflow:
+        - User checks box saying assignment ready for marking
+        - Question state "pending" with explanation
+        - Send an email to the tutor requesting mark
+        - Tutor can find outstanding questions from OLC Admin
+        - Tutor marks pending question good. This could also mark the page completed.
+        - Send an email to the user with a link to the completion page (which might redirect to the next page)
 + Outstanding tasks for OLC admin:
-    + more component types (video, questions, pdf, progress)
-    + New question type: short text (reasonable fuzzy match required)
+    + more component types (video, pdf)
     + Common code in these modules:
         - ComponentSet/ForPage.pm
         - ModuleSet/ForCourse.pm
         - PageSet/ForModule.pm
     + Adding a new page component should always result in a redirect, even on error
-    X Landing page editor for courses and modules (perhaps just say the first page [of the first module] is it?)
-    + Remove landing pages for courses and modules
+    + Remove landing pages for courses and modules from data model
     + Consider not actually deleting courses/modules/pages but just marking them deleted
     + Object model causes lots of unnecessary repeated calls to methods, e.g. loading a page component editor calls the view_data method for all the components on the page lots of times
 - OLC Admin: Adding a new page object type

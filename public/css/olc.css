@@ -231,7 +231,7 @@ div.olc-content {
     background:     white;
     clear:          both;
     padding:        0;
-    margin:         8px 20px;
+    margin:         8px 0px;
     overflow:       hidden;
 }
 
@@ -302,6 +302,10 @@ div.olc-content {
 
 .olc-question .head.error {
     background:     #fbb;
+}
+
+.olc-question .head.error h3::before {
+    content:        "* ";
 }
 
 #sq-logo {

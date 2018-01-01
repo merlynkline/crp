@@ -43,7 +43,7 @@
         When you have completed everything on this page
         <%= $has_questions ? 'and answered all the questions,' : '' %>
         % if(%$error_component_ids) {
-        <span class="error">including fixing the highlighted errors,</span>
+        <span class="error">including fixing the * highlighted errors,</span>
         %}
         click this button to move on:
         <div style="text-align: right;"><input type="submit" value="I've finished"></div>
