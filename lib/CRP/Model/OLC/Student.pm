@@ -24,6 +24,11 @@ use constant {
             },
         },
     },
+    _VALID_STATUS       => {
+        COMPLETED   => 'Course completed and passed',
+        PENDING     => 'Awaiting a tutor to mark an assignment',
+        IN_PROGRESS => 'Study in progress',
+    },
 };
 
 has id              => (is => 'ro', isa => 'Maybe[Str]', writer => '_set_id');
@@ -93,7 +98,7 @@ sub create_or_update {
 
     $self->last_access_date(DateTime->now);
     $self->start_date(DateTime->now) unless $self->start_date;
-    $self->status('IN_PROGRESS') unless $self->status;
+    $self->set_status('IN_PROGRESS') unless $self->status;
     foreach my $attribute(@{$self->_LOCAL_FIELDS}) {
         $self->_db_record->$attribute($self->$attribute);
     }
@@ -143,13 +148,14 @@ sub assignment_passed {
     return $self->_progress_field($progress_field, @value)->[0];
 }
 
-sub mark_completed {
+sub set_status {
     my $self = shift;
+    my($status) = @_;
 
-    if($self->status ne 'COMPLETED') {
-        $self->status('COMPLETED');
-        $self->completion_date(DateTime->now);
-    }
+    croak "Unrecognised status '$status'" unless exists _VALID_STATUS->{$status};
+    return if $self->status eq $status;
+    $self->status($status);
+    $self->completion_date(DateTime->now) if $status eq 'COMPLETED';
 }
 
 sub _build_db_record {

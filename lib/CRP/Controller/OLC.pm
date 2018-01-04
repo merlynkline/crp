@@ -319,7 +319,7 @@ sub check_page {
     if($pass) {
         $c->_student_record->completed_pages_count($next_page_index);
         ++$next_page_index;
-        $c->_student_record->mark_completed if $next_page_index > $c->_course->page_count;
+        $c->_student_record->set_status('COMPLETED') if $next_page_index > $c->_course->page_count;
     }
     $c->_student_record->create_or_update;
 
@@ -343,6 +343,7 @@ sub _request_assignment_mark_if_requested {
     return unless ! ! $answer->[0];
     return if $c->_student_record->current_answer($c->_page, $component)->[0];
 
+    $c->_student_record->set_status('PENDING');
     $c->mail(
         to          => $c->crp->email_to($c->app->config->{email_addresses}->{user_admin}),
         template    => 'olc/email/request_assignment_mark',
