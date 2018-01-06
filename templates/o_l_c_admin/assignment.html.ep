@@ -21,18 +21,18 @@
     </tr>
     % if(@{$student->{assignments}}) {
     %   foreach my $component (@{$student->{assignments}}) {
-    %       my $assignment_passed = $student->{progress}->{assignment_passed}->{$page->{id}}->{$component->{id}};
+    %       my $assignment_passed = $student->{progress}->{assignment_passed}->{$component->{id}};
     <tr>
         <td><%= $component->{name} %></td>
         <td><%= $component->{prompt} %></td>
         <td>
             % if($assignment_passed) {
-            PASSED
+            <strong>PASSED</strong>
             % } else {
-            %= form_for 'crp.olcadmin.course.edit' => (method => 'POST') => begin
-            %= hidden_field component_id => $component->{id};
-            %= hidden_field student_id => $student->{id};
-            %= hidden_field page_id => $page->{id};
+            %= form_for 'crp.olcadmin.assignment' => (method => 'POST') => begin
+            %= hidden_field component => $component->{id};
+            %= hidden_field student => $student->{id};
+            %= hidden_field page => $page->{id};
             %= submit_button 'Mark as passed', class => 'small-button';
             %= end
             % }

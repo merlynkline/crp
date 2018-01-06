@@ -353,6 +353,7 @@ sub _request_assignment_mark_if_requested {
             course    => $c->_course->view_data,
             student   => $c->_student_record->view_data({page => $c->_page}),
             component => $component->view_data,
+            mark_url  => $c->url_for('crp.olcadmin.assignment')->query(student => $c->_student_record->id)->to_abs,
         },
     );
 }

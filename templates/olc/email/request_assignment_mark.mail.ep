@@ -1,4 +1,4 @@
-% stash subject => "Online course assignement mark request: The Children's Reflexology Programme";
+% stash subject => "Online course assignment mark request: The Children's Reflexology Programme";
 %#
 % layout 'default';
 % my $row = begin
@@ -21,8 +21,10 @@ An online course student has requested that an assignment be marked.
 %= $row->('Assignment', $info->{component}->{name});
 </table>
 </p>
-Please review the assignment and mark it as passed when you are happy with it.
 <p>
+Please
+<a href="<%= $info->{mark_url} %>">review the assignment</a>
+and mark it as passed when you are happy with it.
 </p>
 %= include 'parts/email_signature';
 

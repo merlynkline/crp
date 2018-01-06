@@ -11,6 +11,7 @@ use List::Util;
 use CRP::Model::OLC::Course;
 use CRP::Model::OLC::CourseSet;
 use CRP::Model::OLC::Page;
+use CRP::Model::OLC::Component;
 use CRP::Model::OLC::Student;
 use CRP::Model::OLC::StudentSet::Pending;
 
@@ -32,9 +33,12 @@ sub assignment {
     my $student_id = $c->param('student');
     my $student;
     try { $student = CRP::Model::OLC::Student->new({dbh => $c->crp->model, id => $student_id}) };
-    return $c->redirect_to('crp.olcadmin.default') unless $student && $student->status eq 'PENDING';
+    return $c->redirect_to('crp.olcadmin.default') unless $student;
 
-    return $c->_mark_assignment($student) if $c->req->method eq 'POST';
+    if($c->req->method eq 'POST') {
+        $c->_mark_assignment($student);
+        return $c->redirect_to($c->url_for('crp.olcadmin.assignment')->query(student => $student->id));
+    }
 
     my $last_page = CRP::Model::OLC::Page->new({dbh => $c->crp->model, id => $student->last_allowed_page_id});
     $c->stash(
@@ -44,6 +48,44 @@ sub assignment {
             page        => $last_page,
         }),
         page    => $last_page->view_data,
+    );
+}
+
+sub _mark_assignment {
+    my $c = shift;
+    my($student) = @_;
+
+    my $page_id = $student->last_allowed_page_id;
+    return unless $page_id == $c->param('page');
+    my $page = CRP::Model::OLC::Page->new({dbh => $c->crp->model, id => $page_id});
+
+    my $component_id = $c->param('component');
+    return unless $page->component_set->includes_id($component_id);
+    my $component = CRP::Model::OLC::Component->new({dbh => $c->crp->model, id => $component_id});
+    return unless $component->type eq 'QTUTORMARKED';
+    return if $student->assignment_passed($page, $component);
+
+    $student->assignment_passed($page, $component, 'PASS');
+    $student->create_or_update_access_unchanged;
+
+    $c->_send_student_notification_email($student) if $student->status eq 'IN_PROGRESS';
+
+    return;
+}
+
+sub _send_student_notification_email {
+    my $c = shift;
+    my($student) = @_;
+
+    my $course = $student->course;
+    $c->mail(
+        to          => $c->crp->email_to($student->email),
+        template    => 'olc/email/assignment_mark_notification',
+        info        => {
+            course     => $course->view_data,
+            student    => $student->view_data,
+            course_url => $c->url_for('crp.olc.completed', course_id => $course->id, slug => 'kidsreflex')->to_abs,
+        },
     );
 }
 

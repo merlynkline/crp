@@ -1,6 +1,7 @@
 %#<!DOCTYPE html>
+% $page_index //= 0;
 % my $is_first_page        = $page_index <= 1;
-% my $is_last_allowed_page = $page_index >= $max_page_index;
+% my $is_last_allowed_page = $page_index >= ($max_page_index // 0);
 % my $is_last_course_page  = $page_index == $course->{page_count};
 % my $is_page_completed    = $page_index <= $student->{progress}->{completed_pages_count};
 % my $is_course_completed  = $student->{progress}->{completed_pages_count} == $course->{page_count};

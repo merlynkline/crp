@@ -65,6 +65,9 @@ sub sqlt_deploy_hook {
     my ($self, $sqlt_table) = @_;
 
     $sqlt_table->add_index(name => "student_identity_idx", fields => [qw(course_id id_type id_foreign_key)]);
+    foreach my $column (qw(status)) {
+        $sqlt_table->add_index(name => "olc_student_${column}_idx", fields => [$column]);
+    }
 }
 
 1;

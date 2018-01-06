@@ -1,16 +1,17 @@
 %#<!DOCTYPE html>
 % $editable = $editable ? qq{ editablecomponentid="$editable"} : '';
 % my $is_checked = ! ! $student->{progress}->{current_answer}->{$component->{id}}->[0];
+% my $is_passed  = ! ! $student->{progress}->{assignment_passed}->{$component->{id}};
 % my @disabler = $is_page_completed || $is_checked ? (disabled => 'disabled') : ();
 <div class="olc-question<%= $editable ? ' editable-component' : '' %>"<%== $editable %>>
     <div class="head<%= $has_error ? ' error' : '' %>">
-        <h3><%= $is_page_completed ? 'Completed ' : '' %>Assignment</h3>
+        <h3><%= $is_passed ? 'Passed ' : '' %>Assignment</h3>
     </div>
     <div class="body">
         <div class="prompt"><%= $component->{prompt} %></div>
         % my $name = 'answer-' . $component->{id};
         <div class="instructions<%= $has_error ? ' error' : '' %>">
-            % if( ! $is_page_completed) {
+            % if( ! $is_page_completed && ! $is_passed) {
                 % if($is_checked) {
                     %= hidden_field $name => 'Y';
                     % $name .= '-dummy';
@@ -24,7 +25,12 @@
                 % }
             % }
         </div>
+        % if($is_passed) {
+        %= check_box $name => 'Y', id => "answer-$component->{id}", checked => 'checked', disabled => 'disabled';
+        <label for="<%= "answer-$component->{id}" %>">This assignment has been marked as <strong>PASSED</strong> by your tutor so you can move on</label><br />
+        % } else {
         %= check_box $name => 'Y', id => "answer-$component->{id}", $is_checked ? (checked => 'checked') : (), @disabler;
         <label for="<%= "answer-$component->{id}" %>">This assignment is ready for marking</label><br />
+        % }
     </div>
 </div>

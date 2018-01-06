@@ -8,6 +8,7 @@ use DateTime;
 use Mojo::JSON qw(decode_json encode_json);
 
 use CRP::Model::OLC::Course;
+use CRP::Model::OLC::Page;
 use CRP::Model::OLC::ComponentSet::AssignmentsForPage;
 
 use constant {
@@ -23,7 +24,7 @@ use constant {
         },
         assignment_passed     => {
             "<page_id>" => {
-                "<component_id>" => ['Str'],
+                "<component_id>" => 'Str',
             },
         },
     },
@@ -133,6 +134,12 @@ sub create_or_update {
     my $self = shift;
 
     $self->last_access_date(DateTime->now);
+    $self->create_or_update_access_unchanged;
+}
+
+sub create_or_update_access_unchanged {
+    my $self = shift;
+
     $self->start_date(DateTime->now) unless $self->start_date;
     $self->set_status('IN_PROGRESS') unless $self->status;
     foreach my $attribute(@{$self->_LOCAL_FIELDS}) {
@@ -182,8 +189,30 @@ sub assignment_passed {
     my $progress_field = 'assignment_passed.' . $page->id;
     $progress_field .= '.' . $component->id if $component;
     my @value = @_;
-    $value[0] = [ $value[0] ] if @value;
-    return $self->_progress_field($progress_field, @value);
+    if(@value) {
+        croak 'You can only set an assignment as passed for a specific component' unless $component;
+        croak "You can't set an assgnment as passed for a component type '" . $component->type . "'" unless $component->type eq 'QTUTORMARKED';
+    }
+
+    my $res = $self->_progress_field($progress_field, @value);
+
+    $self->_match_course_pending_status_to_assignment_pending_status if @value && $value[0];
+
+    return $res;
+}
+
+sub _match_course_pending_status_to_assignment_pending_status {
+    my $self = shift;
+
+    my $page = CRP::Model::OLC::Page->new({dbh => $self->dbh, id => $self->last_allowed_page_id});
+    my $assignments = $self->current_page_assignments;
+    my $status = 'IN_PROGRESS';
+    foreach my $component (@{$assignments->all}) {
+        next if $self->assignment_passed($page, $component);
+        $status = 'PENDING';
+        last;
+    }
+    $self->set_status($status);
 }
 
 sub set_status {
@@ -191,7 +220,7 @@ sub set_status {
     my($status) = @_;
 
     croak "Unrecognised status '$status'" unless exists _VALID_STATUS->{$status};
-    return if $self->status eq $status;
+    return if ($self->status // '') eq $status;
     $self->status($status);
     $self->completion_date(DateTime->now) if $status eq 'COMPLETED';
 }

@@ -1,0 +1,18 @@
+% stash subject => "PASSED: Online course assignment marked: The Children's Reflexology Programme";
+%#
+% layout 'default';
+<p>
+Dear <%= $info->{student}->{name} %>,
+</p>
+<p>
+Congratulations! Your assignment has been marked as PASSED and your online course
+<em><a href="<%= $info->{course_url} %>"><%= $info->{course}->{title} %></a></em>
+is now ready for you to move on.
+</p>
+<p>
+Please
+<a href="<%= $info->{course_url} %>">return to your course</a>
+as soon as you are ready to continue learning.
+</p>
+%= include 'parts/email_signature';
+
