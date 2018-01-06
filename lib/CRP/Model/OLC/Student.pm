@@ -7,6 +7,8 @@ use Carp;
 use DateTime;
 use Mojo::JSON qw(decode_json encode_json);
 
+use CRP::Model::OLC::Course;
+
 use constant {
     _RESULTSET_NAME     => 'OLCStudent',
     _DELEGATED_FIELDS   => [qw(status start_date last_access_date completion_date email name)],
@@ -84,13 +86,24 @@ sub _valid_part {
 
 sub view_data {
     my $self = shift;
-    my($page) = @_;
+    my($including) = @_;
 
-    my $template_data = {progress => $self->view_data_progress($page)};
+    $including //= {};
+
+    my $template_data = {progress => $self->view_data_progress($including->{page})};
     foreach my $field ('id', @{$self->_DELEGATED_FIELDS}) {
         $template_data->{$field} = $self->$field;
     }
+
+    $template_data->{course} = $self->course->view_data if exists $including->{course};
+
     return $template_data;
+}
+
+sub course {
+    my $self = shift;
+
+    return CRP::Model::OLC::Course->new({dbh => $self->dbh, id => $self->course_id});
 }
 
 sub create_or_update {

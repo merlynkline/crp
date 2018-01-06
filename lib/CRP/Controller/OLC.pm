@@ -147,7 +147,7 @@ sub show_page {
         page                => $c->_page->view_data($c->_module, $c->_course),
         module              => $c->_module->view_data,
         course              => $c->_course->view_data,
-        student             => $c->_student_record->view_data($c->_page),
+        student             => $c->_student_record->view_data({page => $c->_page}),
         page_index          => $page_index,
         error_component_ids => { map { $_ => 1 } split ',', $c->flash('error_component_ids') // '' },
         max_page_index      => List::Util::min($c->_student_record->completed_pages_count + 1, $c->_course->page_count),
@@ -351,7 +351,7 @@ sub _request_assignment_mark_if_requested {
             page      => $c->_page->view_data($c->_module, $c->_course),
             module    => $c->_module->view_data,
             course    => $c->_course->view_data,
-            student   => $c->_student_record->view_data($c->_page),
+            student   => $c->_student_record->view_data({page => $c->_page}),
             component => $component->view_data,
         },
     );
@@ -372,7 +372,7 @@ sub completed {
 
     $c->stash(
         course      => $c->_course->view_data,
-        student     => $c->_student_record->view_data($c->_page),
+        student     => $c->_student_record->view_data({page => $c->_page}),
         signature   => '-' . CRP::Util::WordNumber::encipher($c->_student_record->id),
     );
 

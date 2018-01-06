@@ -9,13 +9,17 @@ use Try::Tiny;
 
 use CRP::Model::OLC::Course;
 use CRP::Model::OLC::CourseSet;
+use CRP::Model::OLC::StudentSet::Pending;
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 sub welcome {
     my $c = shift;
 
-    $c->stash(course_list => CRP::Model::OLC::CourseSet->new(dbh => $c->crp->model)->view_data);
+    $c->stash(
+        course_list  => CRP::Model::OLC::CourseSet->new(dbh => $c->crp->model)->view_data,
+        pending_list => CRP::Model::OLC::StudentSet::Pending->new(dbh => $c->crp->model)->view_data({course => 1}),
+    );
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
