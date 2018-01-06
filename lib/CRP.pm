@@ -148,6 +148,7 @@ sub startup {
     $olc_admin->get('/')->to('o_l_c_admin#welcome')->name('crp.olcadmin.default');
     $olc_admin->get('/remote')->to('o_l_c_admin#remote')->name('crp.olcadmin.remote');
     $olc_admin->get('/remoteupdate')->to('o_l_c_admin#remote_update')->name('crp.olcadmin.remoteupdate');
+    $olc_admin->any('/assignment')->to('o_l_c_admin#assignment')->name('crp.olcadmin.assignment');
     my $olc_admin_course = $olc_admin->under('/course');
     $olc_admin_course->any('/')->to('o_l_c_admin-course#edit')->name('crp.olcadmin.course.edit');
     $olc_admin_course->post('save')->to('o_l_c_admin-course#save')->name('crp.olcadmin.course.save');

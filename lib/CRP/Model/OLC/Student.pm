@@ -8,6 +8,7 @@ use DateTime;
 use Mojo::JSON qw(decode_json encode_json);
 
 use CRP::Model::OLC::Course;
+use CRP::Model::OLC::ComponentSet::AssignmentsForPage;
 
 use constant {
     _RESULTSET_NAME     => 'OLCStudent',
@@ -96,6 +97,7 @@ sub view_data {
     }
 
     $template_data->{course} = $self->course->view_data if exists $including->{course};
+    $template_data->{assignments} = $self->current_page_assignments->view_data if exists $including->{assignments};
 
     return $template_data;
 }
@@ -104,6 +106,27 @@ sub course {
     my $self = shift;
 
     return CRP::Model::OLC::Course->new({dbh => $self->dbh, id => $self->course_id});
+}
+
+sub current_page_assignments {
+    my $self = shift;
+
+    return CRP::Model::OLC::ComponentSet::AssignmentsForPage->new({dbh => $self->dbh, page_id => $self->last_allowed_page_id});
+}
+
+sub max_allowed_page_index {
+    my $self = shift;
+    my($course) = @_;
+
+    return List::Util::min $self->completed_pages_count + 1, $course->page_count;
+}
+
+sub last_allowed_page_id {
+    my $self = shift;
+
+    my $course     = $self->course;
+    my $page_index = $self->max_allowed_page_index($course);
+    return $course->page_id_from_page_index($page_index);
 }
 
 sub create_or_update {
@@ -128,7 +151,8 @@ sub view_data_progress {
     };
 
     if($page) {
-        $data->{current_answer} = $self->current_answer($page);
+        $data->{current_answer}     = $self->current_answer($page);
+        $data->{assignment_passed}  = $self->assignment_passed($page);
     }
 
     return $data;
@@ -155,10 +179,11 @@ sub assignment_passed {
     my $page = shift;
     my $component = shift;
 
-    my $progress_field = 'assignment_passed.' . $page->id . '.' . $component->id;
+    my $progress_field = 'assignment_passed.' . $page->id;
+    $progress_field .= '.' . $component->id if $component;
     my @value = @_;
     $value[0] = [ $value[0] ] if @value;
-    return $self->_progress_field($progress_field, @value)->[0];
+    return $self->_progress_field($progress_field, @value);
 }
 
 sub set_status {

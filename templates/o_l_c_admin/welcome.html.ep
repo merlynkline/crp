@@ -6,12 +6,13 @@
 <br />
 <%= include 'parts/message_box', msg => flash('msg') || stash('msg'), auto_hide => 1 %>
 <table class="list1">
-    <tr><th colspan="4">Assignments awaiting marking</th></tr>
+    <tr><th colspan="5">Assignments awaiting marking</th></tr>
     <tr>
         <th>Name</th>
         <th>email</th>
         <th>Started</th>
         <th>Last access</th>
+        <th></th>
     </tr>
     % if(@$pending_list) {
     %   foreach my $student (@$pending_list) {
@@ -20,10 +21,11 @@
         <td><%= $student->{email} %></td>
         <td><%= $c->crp->format_date($student->{start_date}, 'short') %></td>
         <td><%= $c->crp->format_date($student->{last_access_date}, 'short') %></td>
+        <td><a class="small-button" href="<%= url_for('crp.olcadmin.assignment')->query(student => $student->{id}) %>">Mark</a></td>
     </tr>
     %   }
     % } else {
-    <tr><td colspan=4>(No assignments awaiting marking)</td></tr>
+    <tr><td colspan="5">(No assignments awaiting marking)</td></tr>
     % }
 </table>
 

@@ -20,7 +20,7 @@ override view_data => sub {
     my($module_context, $course_context) = @_;
 
     my $data = super();
-    $data->{components} = $self->component_set->view_data($module_context, $course_context);
+    $data->{components} = $self->component_set->view_data($module_context, $course_context) if $module_context && $course_context;
 
     return $data;
 };

@@ -150,7 +150,7 @@ sub show_page {
         student             => $c->_student_record->view_data({page => $c->_page}),
         page_index          => $page_index,
         error_component_ids => { map { $_ => 1 } split ',', $c->flash('error_component_ids') // '' },
-        max_page_index      => List::Util::min($c->_student_record->completed_pages_count + 1, $c->_course->page_count),
+        max_page_index      => $c->_student_record->max_allowed_page_index($c->_course),
     );
     $c->_set_page_accessibility_flags;
 
@@ -228,7 +228,7 @@ sub _decode_and_limit_page_index {
     $page_index //= 1;
     $page_index = 1 if $page_index < 1;
 
-    my $max_allowed_page_index = List::Util::min $student->completed_pages_count + 1, $course->page_count;
+    my $max_allowed_page_index = $c->_student_record->max_allowed_page_index($c->_course);
     $page_index = $max_allowed_page_index if $page_index > $max_allowed_page_index;
 
     $c->stash(

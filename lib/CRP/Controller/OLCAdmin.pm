@@ -6,9 +6,12 @@ use Mojo::JSON qw(decode_json);
 
 
 use Try::Tiny;
+use List::Util;
 
 use CRP::Model::OLC::Course;
 use CRP::Model::OLC::CourseSet;
+use CRP::Model::OLC::Page;
+use CRP::Model::OLC::Student;
 use CRP::Model::OLC::StudentSet::Pending;
 
 
@@ -19,6 +22,28 @@ sub welcome {
     $c->stash(
         course_list  => CRP::Model::OLC::CourseSet->new(dbh => $c->crp->model)->view_data,
         pending_list => CRP::Model::OLC::StudentSet::Pending->new(dbh => $c->crp->model)->view_data({course => 1}),
+    );
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub assignment {
+    my $c = shift;
+
+    my $student_id = $c->param('student');
+    my $student;
+    try { $student = CRP::Model::OLC::Student->new({dbh => $c->crp->model, id => $student_id}) };
+    return $c->redirect_to('crp.olcadmin.default') unless $student && $student->status eq 'PENDING';
+
+    return $c->_mark_assignment($student) if $c->req->method eq 'POST';
+
+    my $last_page = CRP::Model::OLC::Page->new({dbh => $c->crp->model, id => $student->last_allowed_page_id});
+    $c->stash(
+        student => $student->view_data({
+            course      => 1,
+            assignments => 1,
+            page        => $last_page,
+        }),
+        page    => $last_page->view_data,
     );
 }
 

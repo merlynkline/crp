@@ -1,0 +1,46 @@
+%#<!DOCTYPE html>
+% layout 'member_default', heading => 'Admin: Online course assignments', page_id => 'admin';
+% title 'Admin: Online course assignments';
+%= include 'admin/parts/menu', page_id => 'admin.olc';
+<br />
+<%= include 'parts/message_box', msg => flash('msg') || stash('msg'), auto_hide => 1 %>
+<table class="list1">
+    <tr><th colspan="22">Student progress</th></tr>
+    <tr><td>Name</td><td><%= $student->{name} %></td></tr>
+    <tr><td>email</td><td><%= $student->{email} %></td></tr>
+    <tr><td>Course</td><td><%= $student->{course}->{title} %></td></tr>
+    <tr><td>Start date</td><td><%= $c->crp->format_date($student->{start_date}, 'short') %></td></tr>
+    <tr><td>Last access</td><td><%= $c->crp->format_date($student->{last_access_date}, 'short') %></td></tr>
+    <tr><td>Page</td><td><%= $page->{title} %><br/><span class='extra-info'><%= $page->{description} %></span></td></tr>
+    <tr><td></td><td><%= $page->{name} %><br/><span class='extra-info'><%= $page->{notes} %></span></td></tr>
+</table>
+
+<table class="list1">
+    <tr><th colspan="5">Assignments awaiting marking</th></tr>
+    <tr>
+    </tr>
+    % if(@{$student->{assignments}}) {
+    %   foreach my $component (@{$student->{assignments}}) {
+    %       my $assignment_passed = $student->{progress}->{assignment_passed}->{$page->{id}}->{$component->{id}};
+    <tr>
+        <td><%= $component->{name} %></td>
+        <td><%= $component->{prompt} %></td>
+        <td>
+            % if($assignment_passed) {
+            PASSED
+            % } else {
+            %= form_for 'crp.olcadmin.course.edit' => (method => 'POST') => begin
+            %= hidden_field component_id => $component->{id};
+            %= hidden_field student_id => $student->{id};
+            %= hidden_field page_id => $page->{id};
+            %= submit_button 'Mark as passed', class => 'small-button';
+            %= end
+            % }
+        </td>
+    </tr>
+    %   }
+    % } else {
+    <tr><td colspan="5">(No assignments awaiting marking)</td></tr>
+    % }
+</table>
+
