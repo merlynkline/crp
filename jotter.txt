@@ -1,9 +1,21 @@
 + Outstanding tasks for olc page renderer
     + more component types
         + PDF
+            + Fix up class for the component in lib/CRP/Model/OLC/Component/
+            + Create lib/CRP/Controller/OLCAdmin/Component/PDF.pm
+                + save()
+                + edit()
+            + Create new template(s) for editor as used in the edit() method above, e.g: templates/o_l_c_admin/component/editor/pdf.html.ep
+            + Add a template templates/olc/components/PDF.html.ep
             + Gets marked up using named markup file or a default markup file if no named one exists
             + Need to allow upload of markup files
         + Video
+            + Fix up class for the component in lib/CRP/Model/OLC/Component/
+            + Create lib/CRP/Controller/OLCAdmin/Component/PDF.pm
+                + save()
+                + edit()
+            + Create new template(s) for editor as used in the edit() method above, e.g: templates/o_l_c_admin/component/editor/video.html.ep
+            + Add a template templates/olc/components/VIDEO.html.ep
 + Outstanding tasks for OLC admin:
     + more component types (video, pdf)
     + Common code in these modules:
@@ -44,11 +56,6 @@
     - Animation
 
 - Fix subscription pop-up not to appear on member sites?
-
-+ Public-facing shop
-    + Review page intro in v2templates/main/pages/shop.html.ep
-    + Add items (see workflow notes)
-    + Enable by uncommenting the menu entry in v2templates/layouts/default.html.ep
 
 -Ideas for new stuff
     - New protocol handouts for parent course

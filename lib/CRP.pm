@@ -192,6 +192,10 @@ sub startup {
     $olc_admin_component->post('/multipleopt/save')->to('o_l_c_admin-component-multiple_option#save')->name('crp.olcadmin.component.multipleopt.save');
     $olc_admin_component->any('/tutormarked/edit')->to('o_l_c_admin-component-tutor_marked#edit')->name('crp.olcadmin.component.tutormarked.edit');
     $olc_admin_component->post('/tutormarked/save')->to('o_l_c_admin-component-tutor_marked#save')->name('crp.olcadmin.component.tutormarked.save');
+    $olc_admin_component->any('/video/edit')->to('o_l_c_admin-component-video#edit')->name('crp.olcadmin.component.video.edit');
+    $olc_admin_component->post('/video/save')->to('o_l_c_admin-component-video#save')->name('crp.olcadmin.component.video.save');
+    $olc_admin_component->any('/pdf/edit')->to('o_l_c_admin-component-pdf#edit')->name('crp.olcadmin.component.pdf.edit');
+    $olc_admin_component->post('/pdf/save')->to('o_l_c_admin-component-pdf#save')->name('crp.olcadmin.component.pdf.save');
 
     my $member_site = $r->under('/me/:slug')->to('member_site#identify');
     $member_site->any('/')->to('member_site#welcome')->name('crp.membersite.home');
