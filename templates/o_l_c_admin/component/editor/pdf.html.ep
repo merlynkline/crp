@@ -1,0 +1,69 @@
+%#<!DOCTYPE html>
+% layout 'member_default', heading => 'Admin: Edit online course module page PDF', page_id => 'admin';
+%= include 'o_l_c_admin/component/editor/parts/page_start', component_name => 'PDF';
+%= form_for 'crp.olcadmin.component.pdf.save' => (method => 'POST', enctype => 'multipart/form-data') => begin
+%= include 'o_l_c_admin/component/editor/parts/form_start';
+
+        <label for="title">Title:
+            <div class="field-extra-info">Title for this PDF which will be visible to students.</div>
+        </label>
+        <div class="input-container">
+            %= text_field 'title', id => 'title', value => $component->{title}, maxlength => 200, size => 50;
+            <%= include 'parts/error', field => 'title' %>
+        </div>
+
+        <label for="pdf_file">PDF filename:
+            <div class="field-extra-info">Name of uploaded file. Click one of the PDFs shown below to set this.</div>
+        </label>
+        <div class="input-container">
+            %= text_field 'pdf_file', id => 'pdf_file', value => $component->{pdf_file}, maxlength => 50;
+            <%= include 'parts/error', field => 'pdf_file' %>
+        </div>
+
+        <label for="upload">Or upload one:
+            <div class="field-extra-info">
+                If the PDF you want isn't already available then you can
+                upload one. It is best to choose a good
+                name for your PDF file before uploading it,
+            </div>
+        </label>
+        <div class="input-container">
+            %= file_field 'upload', id => 'upload';
+            <%= include 'parts/error', field => 'upload' %>
+        </div>
+
+%= include 'o_l_c_admin/component/editor/parts/form_end';
+<style>
+.olcadmin-image-picker-container {
+    display:     inline-block;
+    width:       200px;
+    height:      200px;
+    line-height: 200px;
+    text-align:  center;
+    margin:      4px;
+}
+.olcadmin-image-picker {
+    max-width:      200px;
+    max-height:     200px;
+    cursor:         pointer;
+    display:        inline-block;
+    vertical-align: middle;
+    border:         2px solid #589;
+    border-radius:  4px;
+}
+</style>
+% foreach my $pdf (@{$extra_data->{files}}) {
+<div class="olcadmin-image-picker-container">
+<span class="olcadmin-image-picker" title="<%= $pdf %>"><%= $pdf %></span>
+</div>
+% }
+<script>
+$('.olcadmin-image-picker').click(function() {
+    $('#pdf_file').val(this.title);
+    $(this).fadeOut(100);
+    $(this).fadeIn(100);
+    $('html,body').animate({scrollTop: 0}, 500);
+});
+</script>
+% end
+

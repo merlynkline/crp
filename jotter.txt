@@ -1,14 +1,11 @@
++ Components don't really need names
++ Link from course editor to the individual pages of the course
 + Outstanding tasks for olc page renderer
     + more component types
         + PDF
-            + Fix up class for the component in lib/CRP/Model/OLC/Component/
-            + Create lib/CRP/Controller/OLCAdmin/Component/PDF.pm
-                + save()
-                + edit()
-            + Create new template(s) for editor as used in the edit() method above, e.g: templates/o_l_c_admin/component/editor/pdf.html.ep
-            + Add a template templates/olc/components/PDF.html.ep
-            + Gets marked up using named markup file or a default markup file if no named one exists
+            + formatting on PDF file list in editor
             + Need to allow upload of markup files
+            + Validate uploaded PDFs - need to be right PDF version
         + Video
             + Fix up class for the component in lib/CRP/Model/OLC/Component/
             + Create lib/CRP/Controller/OLCAdmin/Component/PDF.pm
@@ -26,7 +23,15 @@
     + Remove landing pages for courses and modules from data model
     + Consider not actually deleting courses/modules/pages but just marking them deleted
     + Object model causes lots of unnecessary repeated calls to methods, e.g. loading a page component editor calls the view_data method for all the components on the page lots of times
-- OLC Admin: Adding a new page object type
+
++ Change premium pages
+    + Re-purpose auth system for one-off access to online courses
+    + Tweak online courses to better support courses with just one or two pages
+        + Progress tracker at top of page
+        ? End condition workflow?
+    ? What if s(e.g.) a TCRP instructor does a premium-page type olc? Should be OK. Check.
+
+- OLC: Adding a new page object type
     - Make sure it's in the template templates/o_l_c_admin/parts/component_types.html.ep
     - Create a new class for the component in lib/CRP/Model/OLC/Component/
         - At minimum, override the view_data method

@@ -194,8 +194,8 @@ sub startup {
     $olc_admin_component->post('/tutormarked/save')->to('o_l_c_admin-component-tutor_marked#save')->name('crp.olcadmin.component.tutormarked.save');
     $olc_admin_component->any('/video/edit')->to('o_l_c_admin-component-video#edit')->name('crp.olcadmin.component.video.edit');
     $olc_admin_component->post('/video/save')->to('o_l_c_admin-component-video#save')->name('crp.olcadmin.component.video.save');
-    $olc_admin_component->any('/pdf/edit')->to('o_l_c_admin-component-pdf#edit')->name('crp.olcadmin.component.pdf.edit');
-    $olc_admin_component->post('/pdf/save')->to('o_l_c_admin-component-pdf#save')->name('crp.olcadmin.component.pdf.save');
+    $olc_admin_component->any('/pdf/edit')->to('o_l_c_admin-component-p_d_f#edit')->name('crp.olcadmin.component.pdf.edit');
+    $olc_admin_component->post('/pdf/save')->to('o_l_c_admin-component-p_d_f#save')->name('crp.olcadmin.component.pdf.save');
 
     my $member_site = $r->under('/me/:slug')->to('member_site#identify');
     $member_site->any('/')->to('member_site#welcome')->name('crp.membersite.home');
@@ -230,6 +230,7 @@ sub startup {
     $olc->any('/logout')->to('o_l_c#logout')->name('crp.olc.logout');
     $olc->any('/completed')->to('o_l_c#completed')->name('crp.olc.completed');
     $olc->any('/certificate')->to('o_l_c#pdf_certificate')->name('crp.olc.pdf_certificate');
+    $olc->any('/pdf/:file')->to('o_l_c#pdf')->name('crp.olc.pdf');
     $r->any('/olc-certificate/:signature')->to('o_l_c#public_certificate')->name('crp.olc.public_certificate');
 
 

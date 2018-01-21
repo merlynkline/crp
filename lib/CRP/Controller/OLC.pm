@@ -291,7 +291,7 @@ sub _not_found {
     my($reason) = @_;
 
     $c->stash(reason => $reason);
-    return $c->render(template => 'olc/not_found', status => 404);
+    return $c->render(template => 'olc/not_found', format => 'html', status => 404);
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -445,4 +445,36 @@ sub pdf_certificate {
         filename            => $pdf_doc->filename,
     );
 }
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub pdf {
+    my $c = shift;
+
+    my $failure_code = $c->_validate_page_id_params;
+    return $c->_not_found($failure_code) if $failure_code;
+
+    my $pdf = $c->app->home->rel_file("pdfs/olc/uploaded/" . $c->param('file'))->to_string;
+    $pdf .= '.' . $c->stash('format');
+    return $c->_not_found('DOCUMENT') unless -r $pdf;
+
+    my $pdf_data = {};
+    my $add_data = sub {
+        my($prefix, $data, $keys) = @_;
+        $pdf_data->{"$prefix-$_"} = $data->{$_} foreach @$keys;
+    };
+    &$add_data('course',  $c->_course->view_data,           [qw(title description)]);
+    &$add_data('student', $c->_student_record->view_data(), [qw(name email)]);
+
+    my $pdf_doc = CRP::Util::PDFMarkUp->new(
+        file_path                => $pdf,
+        default_markup_file_path => $c->app->home->rel_file("pdfs/olc/_Default_uploaded.mark")->to_string,
+    );
+    $c->render_file(
+        data                => $pdf_doc->fill_template($pdf_data),
+        format              => 'pdf',
+        content_disposition => 'attachment',
+        filename            => $pdf_doc->filename,
+    );
+}
+
 1;

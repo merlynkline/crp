@@ -1,8 +1,9 @@
 package CRP::Util::PDFMarkUp;
 use Moose;
 
-has file_path => (is => 'ro', isa => 'Str', required => 1);
-has test_mode => (is => 'ro', isa => 'Bool', default => 0);
+has file_path                => (is => 'ro', isa => 'Str', required => 1);
+has default_markup_file_path => (is => 'ro', isa => 'Str', required => 0);
+has test_mode                => (is => 'ro', isa => 'Bool', default => 0);
 
 has _temp_file_list => (
     traits  => ['Array'],
@@ -65,6 +66,7 @@ sub _load_markup {
     my $file_path = $self->file_path;
     $file_path =~ s{\.pdf$}{};
     $file_path .= '.mark';
+    $file_path = $self->default_markup_file_path // '' unless -r $file_path;
     if(-r $file_path) {
         my $markup_file = read_file($file_path);
         $markup_file = eval $markup_file;
@@ -111,8 +113,23 @@ sub _markup_pdf_text {
     my $self = shift;
     my($markup_item) = @_;
 
+    my $page = $markup_item->{page} // '';
+    if($page eq 'all') {
+        for my $page_number (1 .. $self->_pdf->pages) {
+            $self->_markup_pdf_page_text($markup_item, $page_number);
+        }
+    }
+    else {
+        $self->_markup_pdf_page_text($markup_item, $page);
+    }
+}
+
+sub _markup_pdf_page_text {
+    my $self = shift;
+    my($markup_item, $page) = @_;
+
     my $string = $self->_replace_place_holders($markup_item->{text} || '');
-    my $page = $self->_pdf->openpage($markup_item->{page} || 1);
+    my $page = $self->_pdf->openpage($page || 1);
     my $font = $self->_pdf->corefont($markup_item->{font} || 'Helvetica', -dokern => 1);
     my $text = $page->text();
     my $y = $self->_get_y_coordinate($markup_item->{y});

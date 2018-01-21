@@ -8,32 +8,18 @@ with 'CRP::Controller::OLCAdmin::Component::EditorRole';
 
 use Try::Tiny;
 
+use CRP::Util::Misc;
+
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 sub edit {
     my $c = shift;
 
+    my $dir = $c->crp->path_for_public_file($c->crp->olc_uploaded_image_location);
     my $extra_data = {
-        files         => $c->_get_file_list(),
+        files         => CRP::Util::Misc::get_file_list($dir),
         file_base_url => $c->url_for($c->crp->olc_uploaded_image_location)->to_abs,
     };
     $c->_display_component_editor('o_l_c_admin/component/editor/image', $extra_data);
-}
-
-sub _get_file_list {
-    my $c = shift;
-
-    my @files;
-    use File::Find;
-    my $base_dir = $c->crp->path_for_public_file($c->crp->olc_uploaded_image_location);
-    find({wanted => sub {
-                s{^$base_dir}{};
-                push @files, $1 if m{^/([^.].+)$};
-            },
-            no_chdir => 1,
-        },
-        $base_dir
-    );
-    return [sort {lc $a cmp lc $b} @files];
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -100,14 +86,7 @@ sub _get_unique_uploaded_image_file_name {
     my($proposed_name) = @_;
 
     my $base_dir = $c->crp->path_for_public_file($c->crp->olc_uploaded_image_location);
-    my $try_count = 0;
-    while(-f "$base_dir/$proposed_name") {
-        $proposed_name =~ s/(^.+?)(\d*)(\.[^.]+)$/$1 . (($2 || 0) + 1) . $3/e;
-        $try_count ++;
-        $proposed_name = int(rand(10)) . $proposed_name if $try_count % 10 == 0;
-    }
-
-    return "$base_dir/$proposed_name";
+    return CRP::Util::Misc::get_unique_file_name($base_dir, $proposed_name);
 }
 
 1;

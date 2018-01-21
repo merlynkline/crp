@@ -14,13 +14,13 @@ body {
     background-attachment: fixed;
 }
 
-a, a:visited {
-    color:           inherit;
+.olc-page a, .olc-page a:visited {
+    color:           #589;
     border:          none;
     text-decoration: none;
 }
 
-a:hover {
+.olc-page a:hover {
     text-decoration: underline;
 }
 
@@ -30,6 +30,13 @@ div.olc-preview-container {
     border:         3px solid #589;
     border-radius:  8px;
     margin:         4px auto;
+}
+
+.olc-extra-info {
+    padding:        0;
+    text-align:     left;
+    font-size:      11px;
+    line-height:    110%;
 }
 
 div.olc-page {
@@ -70,7 +77,9 @@ div.olc-content {
 }
 
 .olc-content h2 {
-    border-top:  1px dashed #6a8;
+    border-top:     1px dashed #6a8;
+    margin-bottom:  8px;
+    padding-top:    8px;
 }
 
 .olc-content p {
@@ -225,22 +234,36 @@ div.olc-content {
     color:        #888;
 }
 
-.olc-question {
-    border:         1px dashed #354;
+.olc-question, .olc-pdf {
+    border:         1px solid #354;
     border-radius:  8px;
-    background:     white;
     clear:          both;
     padding:        0;
     margin:         8px 0px;
     overflow:       hidden;
+    background:     #e6e6ff;
 }
 
-.olc-question .head {
+.olc-question {
+    border:         1px dashed #354;
+    background:     white;
+}
+
+.olc-pdf .icon {
+    float:          left;
+    padding:        4px 4px 8px 0;
+}
+
+.olc-pdf .icon img {
+    height:         60px;
+}
+
+.olc-question .head, .olc-pdf .head {
     padding:        4px 8px;
     background:     #ddd;
 }
 
-.olc-question .body {
+.olc-question .body, .olc-pdf .body {
     padding:        4px 12px;
 }
 

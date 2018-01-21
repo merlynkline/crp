@@ -1,10 +1,12 @@
 %#<!DOCTYPE html>
-% my $explanation
-%   = $reason eq 'COURSE'    ? "That course doesn't exist."
-%   : $reason eq 'MODULE'    ? "There is no such module in this course."
-%   : $reason eq 'PAGE'      ? "There is no such page in this module."
-%   : $reason eq 'SIGNATURE' ? "I can't decode that signature."
-%   : "";
+% my $explanations = {
+%   COURSE     => "That course doesn't exist.",
+%   MODULE     => "There is no such module in this course.",
+%   PAGE       => "There is no such page in this module.",
+%   SIGNATURE  => "I can't decode that signature.",
+%   DOCUMENT   => "The document you are trying to download seems to have gone missing.",
+% };
+% my $explanation = $explanations->{$reason} // '';
 <%= include 'parts/error_page',
     title   => "Course page not found",
     code    => 404,
