@@ -16,7 +16,7 @@ sub edit {
 
     my $dir = $c->app->home->rel_file('pdfs/olc/uploaded')->to_string;
     my $extra_data = {
-        files => CRP::Util::Misc::get_file_list($dir, qr{^/([^.].*)\.pdf$}i),
+        files => CRP::Util::Misc::get_file_list($dir, qr{^/([^.].*\.pdf)$}i),
     };
     $c->_display_component_editor('o_l_c_admin/component/editor/pdf', $extra_data);
 }

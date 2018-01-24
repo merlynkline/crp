@@ -34,31 +34,21 @@
 
 %= include 'o_l_c_admin/component/editor/parts/form_end';
 <style>
-.olcadmin-image-picker-container {
+.olcadmin-pdf-picker-container {
     display:     inline-block;
-    width:       200px;
-    height:      200px;
-    line-height: 200px;
+    width:       300px;
     text-align:  center;
-    margin:      4px;
+    margin:      2px;
+    background:  #fdd;
+    padding:     4px;
 }
-.olcadmin-image-picker {
-    max-width:      200px;
-    max-height:     200px;
-    cursor:         pointer;
-    display:        inline-block;
-    vertical-align: middle;
-    border:         2px solid #589;
-    border-radius:  4px;
+.olcadmin-pdf-picker {
+    cursor:      pointer;
 }
 </style>
-% foreach my $pdf (@{$extra_data->{files}}) {
-<div class="olcadmin-image-picker-container">
-<span class="olcadmin-image-picker" title="<%= $pdf %>"><%= $pdf %></span>
-</div>
-% }
+<% foreach my $pdf (@{$extra_data->{files}}) { %><div class="olcadmin-pdf-picker-container"><span class="olcadmin-pdf-picker" title="<%= $pdf %>"><%= $pdf %></span></div><% } %>
 <script>
-$('.olcadmin-image-picker').click(function() {
+$('.olcadmin-pdf-picker').click(function() {
     $('#pdf_file').val(this.title);
     $(this).fadeOut(100);
     $(this).fadeIn(100);
