@@ -66,21 +66,7 @@
                     </div>
                 </div>
                 % if($is_course_completed && $include_nav_bar) {
-                <div class="olc-head-course-complete" style="
-                    background:     #fcb;
-                    border-radius:  8px;
-                    border:         2px solid #b20;
-                    color:          #b20;
-                    font-weight:    bold;
-                    margin:         0 auto;
-                    opacity:        0.8;
-                    padding:        0 0 4px 0;
-                    position:       relative;
-                    text-align:     center;
-                    top:            -60px;
-                    white-space:    nowrap;
-                    width:          260px;
-                ">
+                <div class="olc-head-course-complete">
                     You have completed this course!<br />
                     <div class="olc-nav-button"><span><a href="<%= url_for('crp.olc.completed') %>">Get certificate</a></span></div>
                 </div>
