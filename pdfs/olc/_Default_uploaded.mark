@@ -13,7 +13,7 @@
         },
         {
             action  => 'text',
-            text    => 'Copyright 2018 all rights reserved - do not copy or distribute',
+            text    => 'Copyright © [% this_year %] Susan Quayle. All rights reserved. Please do not copy or distribute.',
             x       => 297.6,
             y       => 811,
             size    => 6,
@@ -33,7 +33,7 @@
         },
         {
             action  => 'text',
-            text    => 'Copyright 2018 all rights reserved - do not copy or distribute',
+            text    => 'Copyright © [% this_year %] Susan Quayle. All rights reserved. Please do not copy or distribute.',
             x       => 297.6,
             y       => 32,
             size    => 6,

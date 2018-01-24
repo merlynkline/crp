@@ -3,6 +3,7 @@ package CRP::Controller::OLC;
 use Mojo::Base 'Mojolicious::Controller';
 
 use Try::Tiny;
+use DateTime;
 
 use CRP::Model::OLC::Course;
 use CRP::Model::OLC::Module;
@@ -457,7 +458,10 @@ sub pdf {
     $pdf .= '.' . $c->stash('format');
     return $c->_not_found('DOCUMENT') unless -r $pdf;
 
-    my $pdf_data = {};
+    my $pdf_data = {
+        this_year => DateTime->now->year,
+    };
+
     my $add_data = sub {
         my($prefix, $data, $keys) = @_;
         $pdf_data->{"$prefix-$_"} = $data->{$_} foreach @$keys;

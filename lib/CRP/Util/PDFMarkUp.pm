@@ -26,8 +26,6 @@ has _pdf        => (is => 'rw', isa => 'PDF::API2');
 
 use constant QRCODE_SCALE => 0.33;
 
-use File::Slurp;
-
 use warnings;
 use strict;
 
@@ -68,7 +66,7 @@ sub _load_markup {
     $file_path .= '.mark';
     $file_path = $self->default_markup_file_path // '' unless -r $file_path;
     if(-r $file_path) {
-        my $markup_file = read_file($file_path);
+        my $markup_file = _read_utf8_file($file_path);
         $markup_file = eval $markup_file;
         unless($@) {
             eval {
@@ -92,6 +90,17 @@ sub _load_markup {
         }
         warn "PDF Markup error in '$file_path': $@" if $@;
     }
+}
+
+sub _read_utf8_file {
+    my($path) = @_;
+
+    open(my $fh, "<:encoding(UTF-8)", $path) || die "Can't open '$path': $!";
+
+    my $res;
+    { local $/; $res = <$fh>; }
+
+    return $res;
 }
 
 sub _markup_pdf {
@@ -126,10 +135,10 @@ sub _markup_pdf_text {
 
 sub _markup_pdf_page_text {
     my $self = shift;
-    my($markup_item, $page) = @_;
+    my($markup_item, $page_number) = @_;
 
     my $string = $self->_replace_place_holders($markup_item->{text} || '');
-    my $page = $self->_pdf->openpage($page || 1);
+    my $page = $self->_pdf->openpage($page_number || 1);
     my $font = $self->_pdf->corefont($markup_item->{font} || 'Helvetica', -dokern => 1);
     my $text = $page->text();
     my $y = $self->_get_y_coordinate($markup_item->{y});
