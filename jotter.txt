@@ -3,9 +3,7 @@
 + Outstanding tasks for olc page renderer
     + more component types
         + PDF
-            + formatting on PDF file list in editor
             + Need to allow upload of markup files
-            + Validate uploaded PDFs - need to be right PDF version
         + Video
             + Fix up class for the component in lib/CRP/Model/OLC/Component/
             + Create lib/CRP/Controller/OLCAdmin/Component/PDF.pm
