@@ -13,7 +13,7 @@ override 'view_data' => sub {
         prompt         => $component_data->{prompt} // '',
         options        => $component_data->{options} // [],
         correct_answer => $component_data->{correct_answer} // 0,
-        preview        => substr($component_data->{prompt}, 0, 50),
+        preview        => substr($component_data->{prompt} // '', 0, 50),
     };
     return $data;
 };
