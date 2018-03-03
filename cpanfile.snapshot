@@ -1058,6 +1058,20 @@ DISTRIBUTIONS
       strict 0
       vars 0
       warnings 0
+  DateTime-Format-Duration-1.04
+    pathname: E/ET/ETHER/DateTime-Format-Duration-1.04.tar.gz
+    provides:
+      DateTime::Format::Duration 1.04
+    requirements:
+      Carp 0
+      Data::Dumper 0
+      DateTime::Duration 0
+      Exporter 0
+      ExtUtils::MakeMaker 0
+      Params::Validate 0
+      constant 0
+      perl 5.006
+      strict 0
   DateTime-Format-MySQL-0.06
     pathname: X/XM/XMIKEW/DateTime-Format-MySQL-0.06.tar.gz
     provides:
@@ -1614,6 +1628,15 @@ DISTRIBUTIONS
       Time::Local 0
       strict 0
       warnings 0
+  Encode-Locale-1.05
+    pathname: G/GA/GAAS/Encode-Locale-1.05.tar.gz
+    provides:
+      Encode::Locale 1.05
+    requirements:
+      Encode 2
+      Encode::Alias 0
+      ExtUtils::MakeMaker 0
+      perl 5.008
   Eval-Closure-0.14
     pathname: D/DO/DOY/Eval-Closure-0.14.tar.gz
     provides:
@@ -1761,6 +1784,19 @@ DISTRIBUTIONS
       File::Which 0.05
       POSIX 0
       perl 5.005003
+  File-Listing-6.04
+    pathname: G/GA/GAAS/File-Listing-6.04.tar.gz
+    provides:
+      File::Listing 6.04
+      File::Listing::apache 6.04
+      File::Listing::dosftp 6.04
+      File::Listing::netware 6.04
+      File::Listing::unix 6.04
+      File::Listing::vms 6.04
+    requirements:
+      ExtUtils::MakeMaker 0
+      HTTP::Date 6
+      perl 5.006002
   File-Remove-1.57
     pathname: S/SH/SHLOMIF/File-Remove-1.57.tar.gz
     provides:
@@ -1816,6 +1852,18 @@ DISTRIBUTIONS
       perl 5.006
       strict 0
       warnings 0
+  File-Slurp-9999.19
+    pathname: U/UR/URI/File-Slurp-9999.19.tar.gz
+    provides:
+      File::Slurp 9999.19
+      FileSlurp_12 9999.13
+    requirements:
+      Carp 0
+      Exporter 0
+      ExtUtils::MakeMaker 0
+      Fcntl 0
+      POSIX 0
+      perl 5.004
   File-Which-1.22
     pathname: P/PL/PLICEASE/File-Which-1.22.tar.gz
     provides:
@@ -1943,6 +1991,92 @@ DISTRIBUTIONS
       HTML::Tagset 3.20
     requirements:
       ExtUtils::MakeMaker 0
+  HTTP-Cookies-6.04
+    pathname: O/OA/OALDERS/HTTP-Cookies-6.04.tar.gz
+    provides:
+      HTTP::Cookies 6.04
+      HTTP::Cookies::Microsoft 6.04
+      HTTP::Cookies::Netscape 6.04
+    requirements:
+      Carp 0
+      ExtUtils::MakeMaker 0
+      HTTP::Date 6
+      HTTP::Headers::Util 6
+      HTTP::Request 0
+      Time::Local 0
+      locale 0
+      perl 5.008001
+      strict 0
+      vars 0
+  HTTP-Daemon-6.01
+    pathname: G/GA/GAAS/HTTP-Daemon-6.01.tar.gz
+    provides:
+      HTTP::Daemon 6.01
+      HTTP::Daemon::ClientConn 6.01
+    requirements:
+      ExtUtils::MakeMaker 0
+      HTTP::Date 6
+      HTTP::Request 6
+      HTTP::Response 6
+      HTTP::Status 6
+      IO::Socket 0
+      LWP::MediaTypes 6
+      Sys::Hostname 0
+      perl 5.008001
+  HTTP-Date-6.02
+    pathname: G/GA/GAAS/HTTP-Date-6.02.tar.gz
+    provides:
+      HTTP::Date 6.02
+    requirements:
+      ExtUtils::MakeMaker 0
+      Time::Local 0
+      perl 5.006002
+  HTTP-Message-6.14
+    pathname: O/OA/OALDERS/HTTP-Message-6.14.tar.gz
+    provides:
+      HTTP::Config 6.14
+      HTTP::Headers 6.14
+      HTTP::Headers::Auth 6.14
+      HTTP::Headers::ETag 6.14
+      HTTP::Headers::Util 6.14
+      HTTP::Message 6.14
+      HTTP::Request 6.14
+      HTTP::Request::Common 6.14
+      HTTP::Response 6.14
+      HTTP::Status 6.14
+    requirements:
+      Carp 0
+      Compress::Raw::Zlib 0
+      Encode 2.21
+      Encode::Locale 1
+      Exporter 5.57
+      ExtUtils::MakeMaker 0
+      HTTP::Date 6
+      IO::Compress::Bzip2 2.021
+      IO::Compress::Deflate 0
+      IO::Compress::Gzip 0
+      IO::HTML 0
+      IO::Uncompress::Bunzip2 2.021
+      IO::Uncompress::Gunzip 0
+      IO::Uncompress::Inflate 0
+      IO::Uncompress::RawInflate 0
+      LWP::MediaTypes 6
+      MIME::Base64 2.1
+      MIME::QuotedPrint 0
+      Storable 0
+      URI 1.10
+      base 0
+      perl 5.008001
+      strict 0
+      warnings 0
+  HTTP-Negotiate-6.01
+    pathname: G/GA/GAAS/HTTP-Negotiate-6.01.tar.gz
+    provides:
+      HTTP::Negotiate 6.01
+    requirements:
+      ExtUtils::MakeMaker 0
+      HTTP::Headers 6
+      perl 5.008001
   Hash-Merge-0.200
     pathname: R/RE/REHSACK/Hash-Merge-0.200.tar.gz
     provides:
@@ -1972,6 +2106,15 @@ DISTRIBUTIONS
       ExtUtils::MakeMaker 0
       Scalar::Util 0
       perl 5.008001
+  IO-HTML-1.001
+    pathname: C/CJ/CJM/IO-HTML-1.001.tar.gz
+    provides:
+      IO::HTML 1.001
+    requirements:
+      Carp 0
+      Encode 2.10
+      Exporter 5.57
+      ExtUtils::MakeMaker 6.30
   IO-Socket-SSL-2.052
     pathname: S/SU/SULLR/IO-Socket-SSL-2.052.tar.gz
     provides:
@@ -2038,6 +2181,14 @@ DISTRIBUTIONS
       Scalar::Util 1
       Test::More 0.99
       XSLoader 0
+  Imager-File-GIF-0.91
+    pathname: T/TO/TONYC/Imager-File-GIF-0.91.tar.gz
+    provides:
+      Imager::File::GIF 0.91
+    requirements:
+      ExtUtils::MakeMaker 0
+      Imager 0.94
+      XSLoader 0
   Imager-QRCode-0.035
     pathname: K/KU/KURIHARA/Imager-QRCode-0.035.tar.gz
     provides:
@@ -2080,6 +2231,13 @@ DISTRIBUTIONS
       JSON::PP 2.27300
       Scalar::Util 0
       perl 5.006
+  LWP-MediaTypes-6.02
+    pathname: G/GA/GAAS/LWP-MediaTypes-6.02.tar.gz
+    provides:
+      LWP::MediaTypes 6.02
+    requirements:
+      ExtUtils::MakeMaker 0
+      perl 5.006002
   Lexical-SealRequireHints-0.011
     pathname: Z/ZE/ZEFRAM/Lexical-SealRequireHints-0.011.tar.gz
     provides:
@@ -3344,6 +3502,25 @@ DISTRIBUTIONS
       ExtUtils::MakeMaker 0
       Test 0
       perl 5.006
+  Net-HTTP-6.17
+    pathname: O/OA/OALDERS/Net-HTTP-6.17.tar.gz
+    provides:
+      Net::HTTP 6.17
+      Net::HTTP::Methods 6.17
+      Net::HTTP::NB 6.17
+      Net::HTTPS 6.17
+    requirements:
+      Carp 0
+      Compress::Raw::Zlib 0
+      ExtUtils::MakeMaker 0
+      IO::Socket::INET 0
+      IO::Uncompress::Gunzip 0
+      URI 0
+      base 0
+      perl 5.006002
+      strict 0
+      vars 0
+      warnings 0
   Net-SSLeay-1.81
     pathname: M/MI/MIKEM/Net-SSLeay-1.81.tar.gz
     provides:
@@ -4052,6 +4229,21 @@ DISTRIBUTIONS
       perl 5.006
       strict 0
       warnings 0
+  Sysadm-Install-0.48
+    pathname: M/MS/MSCHILLI/Sysadm-Install-0.48.tar.gz
+    provides:
+      Sysadm::Install 0.48
+    requirements:
+      Cwd 0
+      ExtUtils::MakeMaker 0
+      File::Basename 0
+      File::Copy 0
+      File::Path 0
+      File::Temp 0.16
+      File::Which 1.09
+      LWP::Simple 0
+      Log::Log4perl 1.28
+      Term::ReadKey 0
   Task-Weaken-1.04
     pathname: A/AD/ADAMK/Task-Weaken-1.04.tar.gz
     provides:
@@ -4123,6 +4315,12 @@ DISTRIBUTIONS
       File::Spec 0.8
       File::Temp 0.12
       Scalar::Util 0
+  TermReadKey-2.37
+    pathname: J/JS/JSTOWE/TermReadKey-2.37.tar.gz
+    provides:
+      Term::ReadKey 2.37
+    requirements:
+      ExtUtils::MakeMaker 6.58
   Test-Deep-1.127
     pathname: R/RJ/RJBS/Test-Deep-1.127.tar.gz
     provides:
@@ -4329,6 +4527,70 @@ DISTRIBUTIONS
       perl 5.006
       strict 0
       warnings 0
+  URI-1.73
+    pathname: E/ET/ETHER/URI-1.73.tar.gz
+    provides:
+      URI 1.73
+      URI::Escape 3.31
+      URI::Heuristic 4.20
+      URI::IRI 1.73
+      URI::QueryParam 1.73
+      URI::Split 1.73
+      URI::URL 5.04
+      URI::WithBase 2.20
+      URI::data 1.73
+      URI::file 4.21
+      URI::file::Base 1.73
+      URI::file::FAT 1.73
+      URI::file::Mac 1.73
+      URI::file::OS2 1.73
+      URI::file::QNX 1.73
+      URI::file::Unix 1.73
+      URI::file::Win32 1.73
+      URI::ftp 1.73
+      URI::gopher 1.73
+      URI::http 1.73
+      URI::https 1.73
+      URI::ldap 1.73
+      URI::ldapi 1.73
+      URI::ldaps 1.73
+      URI::mailto 1.73
+      URI::mms 1.73
+      URI::news 1.73
+      URI::nntp 1.73
+      URI::pop 1.73
+      URI::rlogin 1.73
+      URI::rsync 1.73
+      URI::rtsp 1.73
+      URI::rtspu 1.73
+      URI::sftp 1.73
+      URI::sip 1.73
+      URI::sips 1.73
+      URI::snews 1.73
+      URI::ssh 1.73
+      URI::telnet 1.73
+      URI::tn3270 1.73
+      URI::urn 1.73
+      URI::urn::isbn 1.73
+      URI::urn::oid 1.73
+    requirements:
+      Carp 0
+      Cwd 0
+      Data::Dumper 0
+      Encode 0
+      Exporter 5.57
+      ExtUtils::MakeMaker 0
+      MIME::Base64 2
+      Net::Domain 0
+      Scalar::Util 0
+      constant 0
+      integer 0
+      overload 0
+      parent 0
+      perl 5.008001
+      strict 0
+      utf8 0
+      warnings 0
   Variable-Magic-0.61
     pathname: V/VP/VPIT/Variable-Magic-0.61.tar.gz
     provides:
@@ -4348,6 +4610,30 @@ DISTRIBUTIONS
       base 0
       lib 0
       perl 5.008
+  Video-FrameGrab-0.07
+    pathname: M/MS/MSCHILLI/Video-FrameGrab-0.07.tar.gz
+    provides:
+      Video::FrameGrab 0.07
+    requirements:
+      DateTime 0.47
+      DateTime::Format::Duration 1.03
+      ExtUtils::MakeMaker 0
+      File::Temp 0
+      Imager 0.7
+      Log::Log4perl 1.0
+      Sysadm::Install 0.17
+  WWW-RobotRules-6.02
+    pathname: G/GA/GAAS/WWW-RobotRules-6.02.tar.gz
+    provides:
+      WWW::RobotRules 6.02
+      WWW::RobotRules::AnyDBM_File 6.00
+      WWW::RobotRules::InCore 6.02
+    requirements:
+      AnyDBM_File 0
+      ExtUtils::MakeMaker 0
+      Fcntl 0
+      URI 1.10
+      perl 5.008001
   XML-Writer-0.625
     pathname: J/JO/JOSEPHW/XML-Writer-0.625.tar.gz
     provides:
@@ -4451,6 +4737,66 @@ DISTRIBUTIONS
       XSLoader 0
       lib 0
       perl 5.008001
+  libwww-perl-6.31
+    pathname: E/ET/ETHER/libwww-perl-6.31.tar.gz
+    provides:
+      LWP 6.31
+      LWP::Authen::Basic 6.31
+      LWP::Authen::Digest 6.31
+      LWP::Authen::Ntlm 6.31
+      LWP::ConnCache 6.31
+      LWP::Debug 6.31
+      LWP::Debug::TraceHTTP 6.31
+      LWP::DebugFile 6.31
+      LWP::MemberMixin 6.31
+      LWP::Protocol 6.31
+      LWP::Protocol::cpan 6.31
+      LWP::Protocol::data 6.31
+      LWP::Protocol::file 6.31
+      LWP::Protocol::ftp 6.31
+      LWP::Protocol::gopher 6.31
+      LWP::Protocol::http 6.31
+      LWP::Protocol::loopback 6.31
+      LWP::Protocol::mailto 6.31
+      LWP::Protocol::nntp 6.31
+      LWP::Protocol::nogo 6.31
+      LWP::RobotUA 6.31
+      LWP::Simple 6.31
+      LWP::UserAgent 6.31
+      libwww::perl undef
+    requirements:
+      Digest::MD5 0
+      Encode 2.12
+      Encode::Locale 0
+      ExtUtils::MakeMaker 0
+      File::Copy 0
+      File::Listing 6
+      Getopt::Long 0
+      HTML::Entities 0
+      HTML::HeadParser 0
+      HTTP::Cookies 6
+      HTTP::Daemon 6
+      HTTP::Date 6
+      HTTP::Negotiate 6
+      HTTP::Request 6
+      HTTP::Request::Common 6
+      HTTP::Response 6
+      HTTP::Status 6
+      IO::Select 0
+      IO::Socket 0
+      LWP::MediaTypes 6
+      MIME::Base64 2.1
+      Net::FTP 2.58
+      Net::HTTP 6.07
+      Scalar::Util 0
+      Try::Tiny 0
+      URI 1.10
+      URI::Escape 0
+      WWW::RobotRules 6
+      base 0
+      perl 5.008001
+      strict 0
+      warnings 0
   multidimensional-0.013
     pathname: I/IL/ILMARI/multidimensional-0.013.tar.gz
     provides:

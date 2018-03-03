@@ -14,6 +14,7 @@ requires "DBIx::Class::Migration";
 requires "Getopt::Long";
 requires "Imager";
 requires "Imager::QRCode";
+requires "Imager::File::GIF";
 requires "Mojo::Util";
 requires "Moose";
 requires "PDF::API2";
@@ -28,4 +29,5 @@ requires "Mojolicious::Plugin::ReCAPTCHAv2";
 requires "Text::Markdown";
 requires "Mojo::Role";
 requires "Data::GUID";
+requires "Video::FrameGrab";
 
