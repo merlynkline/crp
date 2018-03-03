@@ -97,6 +97,20 @@ sub register {
         }
     );
 
+    # Online course uploaded video thumbnail location within public files
+    $app->helper(
+        'crp.olc_uploaded_video_thumb_location' => sub {
+            return 'olc/video-thumbs/uploaded';
+        }
+    );
+
+    # Online course uploaded video file location
+    $app->helper(
+        'crp.olc_uploaded_video_location' => sub {
+            return 'videos/olc/uploaded';
+        }
+    );
+
     # Instructor photo file location within public files
     $app->helper(
         'crp.instructor_photo_location' => sub {

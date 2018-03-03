@@ -1,0 +1,69 @@
+%#<!DOCTYPE html>
+% layout 'member_default', heading => 'Admin: Edit online course module page video', page_id => 'admin';
+%= include 'o_l_c_admin/component/editor/parts/page_start', component_name => 'video';
+%= form_for 'crp.olcadmin.component.video.save' => (method => 'POST', enctype => 'multipart/form-data') => begin
+%= include 'o_l_c_admin/component/editor/parts/form_start';
+
+        <label for="title">Title:
+            <div class="field-extra-info">Title for this video which will be visible to students.</div>
+        </label>
+        <div class="input-container">
+            %= text_field 'title', id => 'title', value => $component->{title}, maxlength => 200, size => 50;
+            <%= include 'parts/error', field => 'title' %>
+        </div>
+
+        <label for="video_file">video filename:
+            <div class="field-extra-info">Name of uploaded file. Click one of the videos shown below to set this.</div>
+        </label>
+        <div class="input-container">
+            %= text_field 'video_file', id => 'video_file', value => $component->{video_file}, maxlength => 50;
+            <%= include 'parts/error', field => 'video_file' %>
+        </div>
+
+        <label for="upload">Or upload one:
+            <div class="field-extra-info">
+                If the video you want isn't already available then you can
+                upload one. It is best to choose a good
+                name for your video file before uploading it,
+            </div>
+        </label>
+        <div class="input-container">
+            %= file_field 'upload', id => 'upload';
+            <%= include 'parts/error', field => 'upload' %>
+        </div>
+
+%= include 'o_l_c_admin/component/editor/parts/form_end';
+<style>
+.olcadmin-video-picker-container {
+    display:     inline-block;
+    width:       200px;
+    height:      200px;
+    line-height: 200px;
+    text-align:  center;
+    margin:      4px;
+}
+.olcadmin-video-picker {
+    max-width:      200px;
+    max-height:     200px;
+    cursor:         pointer;
+    display:        inline-block;
+    vertical-align: middle;
+    border:         2px solid #589;
+    border-radius:  4px;
+}
+</style>
+% foreach my $video (@{$extra_data->{files}}) {
+<div class="olcadmin-video-picker-container">
+<img src="<%= $extra_data->{file_base_url} . '/' . $video . '.thumb.gif' %>" title="<%= $video %>" class="olcadmin-video-picker">
+</div>
+% }
+<script>
+$('.olcadmin-video-picker').click(function() {
+    $('#video_file').val(this.title);
+    $(this).fadeOut(100);
+    $(this).fadeIn(100);
+    $('html,body').animate({scrollTop: 0}, 500);
+});
+</script>
+% end
+

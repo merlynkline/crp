@@ -16,6 +16,7 @@
 %   incorrect_password      => "Sorry - that's the wrong password",
 %   invalid_date            => 'Please enter a valid date',
 %   invalid_pdf             => 'Unrecognised PDF format - please try a different file (PDF v1.4 or lower)',
+%   invalid_video           => 'Unrecognised video format - please try a different file',
 %   like                    => 'Please enter something sensible',
 %   no_component_type       => 'Please choose a component type',
 %   no_course_type          => 'Please choose a course type',

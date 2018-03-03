@@ -19,5 +19,7 @@ apirun
 
 # Uploaded files for online courses
 /public/olc/images/uploaded
+/public/olc/video-thumbs/uploaded
 /pdfs/olc/uploaded/
+/videos/olc/uploaded/
 

@@ -5,14 +5,14 @@
         + PDF
             + Need to allow upload of markup files
         + Video
-            + Fix up class for the component in lib/CRP/Model/OLC/Component/
-            + Create lib/CRP/Controller/OLCAdmin/Component/PDF.pm
-                + save()
-                + edit()
-            + Create new template(s) for editor as used in the edit() method above, e.g: templates/o_l_c_admin/component/editor/video.html.ep
+            ~ Fix up class for the component in lib/CRP/Model/OLC/Component/
+            ~ Create lib/CRP/Controller/OLCAdmin/Component/Video.pm
+                ~ save()
+                ~ edit()
+            ~ Create new template(s) for editor as used in the edit() method above, e.g: templates/o_l_c_admin/component/editor/video.html.ep
+            ~ Thumbnail extractor/validator - use mplayer and Video::FrameGrab? Note to install on live server
             + Add a template templates/olc/components/VIDEO.html.ep
 + Outstanding tasks for OLC admin:
-    + more component types (video, pdf)
     + Common code in these modules:
         - ComponentSet/ForPage.pm
         - ModuleSet/ForCourse.pm
@@ -1113,9 +1113,11 @@ Vultr setup:
     # aptitude install bsd-mailx
     # aptitude install postgresql-server-dev-9.1
     # aptitude install libjpeg-dev
+    # aptitude install libgif-dev
     # aptitude install openssl
     # aptitude install libio-socket-ssl-perl
     # aptitude install libssl-dev
+    # aptitude install mplayer
     # hostname www.kidsreflex.co.uk
     # cpanm carton
     # su - crp
