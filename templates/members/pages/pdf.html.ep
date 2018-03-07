@@ -36,6 +36,9 @@ in order to view and print them.
 % $pdf->('ads/A3 Poster - descriptive general', "A3 version of general purpose text poster");
 % $pdf->('ads/Poster - pictorial general', "General purpose poster with pictures rather than text");
 % $pdf->('ads/A3 Poster - pictorial general', "A3 version of general purpose pictorial poster");
+% $pdf->('ads/Poster - babys coming', "Antenatal course poster with photo");
+% $pdf->('ads/Poster - helping mum', "General purose  poster with photo of kids");
+% $pdf->('ads/Poster - dreaming baby', "General purose  poster with photo of dreaming baby");
 % $pdf->('ads/Small general descriptive', "General purpose flyer with descriptive text");
 % $pdf->('ads/Small general pictorial', "General purpose flyer with pictures rather than text");
 % $pdf->('ads/Roll-up-banner-small-1', "Roller banner, 2m tall and 85cm wide (also fits 80 cm wide). Warning: large file (about 8MB)");
