@@ -127,11 +127,12 @@ sub _display_page_editor {
     $page = CRP::Model::OLC::Page->new(id => $c->_page_id, dbh => $c->crp->model) unless $page;
     my $page_modules = CRP::Model::OLC::ModuleSet::WithPage->new(page_id => $page->id, dbh => $c->crp->model);
     $c->stash(
-        page           => $page->view_data($c->_module, $c->_course),
-        olc_course_id  => $c->_course_id,
-        olc_module_id  => $c->_module_id,
-        component_id   => $c->_component_id,
-        page_modules   => $page_modules->view_data,
+        page                 => $page->view_data($c->_module, $c->_course),
+        olc_course_id        => $c->_course_id,
+        olc_module_id        => $c->_module_id,
+        component_id         => $c->_component_id,
+        page_modules         => $page_modules->view_data,
+        video_thumb_base_url => $c->url_for($c->crp->olc_uploaded_video_thumb_location)->to_abs,
     );
     $c->render(template => 'o_l_c_admin/page/editor');
 }

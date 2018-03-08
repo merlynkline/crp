@@ -145,13 +145,15 @@ sub show_page {
     my $page_index = $c->_decode_and_limit_page_index($c->_course->module_page_index($c->_module, $c->_page), $c->_student_record);
 
     $c->stash(
-        page                => $c->_page->view_data($c->_module, $c->_course),
-        module              => $c->_module->view_data,
-        course              => $c->_course->view_data,
-        student             => $c->_student_record->view_data({page => $c->_page}),
-        page_index          => $page_index,
-        error_component_ids => { map { $_ => 1 } split ',', $c->flash('error_component_ids') // '' },
-        max_page_index      => $c->_student_record->max_allowed_page_index($c->_course),
+        page                 => $c->_page->view_data($c->_module, $c->_course),
+        module               => $c->_module->view_data,
+        course               => $c->_course->view_data,
+        student              => $c->_student_record->view_data({page => $c->_page}),
+        page_index           => $page_index,
+        error_component_ids  => { map { $_ => 1 } split ',', $c->flash('error_component_ids') // '' },
+        max_page_index       => $c->_student_record->max_allowed_page_index($c->_course),
+        video_base_url       => $c->url_for('crp.olc.video')->to_abs,
+        video_thumb_base_url => $c->url_for($c->crp->olc_uploaded_video_thumb_location)->to_abs,
     );
     $c->_set_page_accessibility_flags;
 
@@ -479,6 +481,24 @@ sub pdf {
         content_disposition => 'attachment',
         filename            => $pdf_doc->filename,
     );
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub video {
+    my $c = shift;
+
+    my $failure_code = $c->_validate_page_id_params;
+    return $c->_not_found($failure_code) if $failure_code;
+
+    my $video = $c->param('file');
+
+    my $types = $c->app->types;
+    my $type = $video =~ /\.(\w+)$/ ? $types->type($1) : undef;
+    $c->res->headers->content_type($type || $types->type('txt'));
+
+    $video = '../' . $c->crp->olc_uploaded_video_location . '/' . $video;
+    my $asset = $c->app->static->file($video);
+    $c->reply->asset($asset);
 }
 
 1;

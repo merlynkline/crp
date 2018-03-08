@@ -231,6 +231,7 @@ sub startup {
     $olc->any('/completed')->to('o_l_c#completed')->name('crp.olc.completed');
     $olc->any('/certificate')->to('o_l_c#pdf_certificate')->name('crp.olc.pdf_certificate');
     $olc->any('/pdf/:file')->to('o_l_c#pdf')->name('crp.olc.pdf');
+    $olc->any('/video/*file')->to('o_l_c#video')->name('crp.olc.video');
     $r->any('/olc-certificate/:signature')->to('o_l_c#public_certificate')->name('crp.olc.public_certificate');
 
 

@@ -1,18 +1,13 @@
+
+
 + Components don't really need names
 + Link from course editor to the individual pages of the course
 + Outstanding tasks for olc page renderer
-    + more component types
-        + PDF
-            + Need to allow upload of markup files
-        + Video
-            ~ Fix up class for the component in lib/CRP/Model/OLC/Component/
-            ~ Create lib/CRP/Controller/OLCAdmin/Component/Video.pm
-                ~ save()
-                ~ edit()
-            ~ Create new template(s) for editor as used in the edit() method above, e.g: templates/o_l_c_admin/component/editor/video.html.ep
-            ~ Thumbnail extractor/validator - use mplayer and Video::FrameGrab? Note to install on live server
-            + Add a template templates/olc/components/VIDEO.html.ep
+    + Video - use a static banner
 + Outstanding tasks for OLC admin:
+    + Video - create a static banner
+    + PDF - Need to allow upload of markup files
+    + Mechanism for getting courses out to the live server
     + Common code in these modules:
         - ComponentSet/ForPage.pm
         - ModuleSet/ForCourse.pm
@@ -22,13 +17,13 @@
     + Consider not actually deleting courses/modules/pages but just marking them deleted
     + Object model causes lots of unnecessary repeated calls to methods, e.g. loading a page component editor calls the view_data method for all the components on the page lots of times
 
+
 + Change premium pages
     + Re-purpose auth system for one-off access to online courses
     + Tweak online courses to better support courses with just one or two pages
         + Progress tracker at top of page
         ? End condition workflow?
     ? What if s(e.g.) a TCRP instructor does a premium-page type olc? Should be OK. Check.
-
 - OLC: Adding a new page object type
     - Make sure it's in the template templates/o_l_c_admin/parts/component_types.html.ep
     - Create a new class for the component in lib/CRP/Model/OLC/Component/

@@ -86,15 +86,21 @@ div.olc-content {
     margin:         0 0 0 8px;
 }
 
-.olc-content img.olc-img  {
+.olc-content img.olc-img, .olc-video-wrapper {
     border:         3px solid #354;
     border-radius:  8px;
     display:        block;
+    width:          700px;
+    margin:         8px auto;
 }
 
-.olc-content img.olc-img-full  {
+.olc-content img.olc-img-full {
     margin:         4px auto;
     width:          90%;
+}
+
+.olc-content img.olc-video {
+    width:          700px;
 }
 
 .olc-content img.olc-img-small-right {

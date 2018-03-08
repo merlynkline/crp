@@ -1,0 +1,23 @@
+%#<!DOCTYPE html>
+% my $file = $component->{video_file};
+% $file = "$video_thumb_base_url/$file.thumb.gif" if $file;
+% $file ||= url_for('/olc/images/system/missing.jpg');
+% my $class = "olc-video";
+% $editable = $editable ? qq{ editablecomponentid="$editable"} : '';
+% $class .= ' editable-component' if $editable;
+<center>
+<div class="olc-video-wrapper">
+% if( $editable) {
+<img src="<%= $file %>"<%== $class ? qq{ class="$class"} : '' %><%== $editable %>>
+% } else {
+<video id="test-video" class="video-js" controls preload="auto" width="700" height="" poster="<%= $file %>" data-setup="{}">
+    <source src="<%= $video_base_url . $component->{video_file} %>">
+        <p class="vjs-no-js">
+        To view this video please enable JavaScript, and consider upgrading to a web browser that
+        <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+        </p>
+</video>
+% }
+</div>
+<em><%= $component->{title} %></em>
+</center>

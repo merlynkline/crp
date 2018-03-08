@@ -63,9 +63,10 @@ sub _process_uploaded_video {
 
         my $error;
         try {
+            die "Video must be MP4 H264+MP3" unless $video->filename =~ /\.mp4$/i;
             $video->move_to($temp_file);
             use File::Copy;
-            $actual_video_file_name = $c->_get_unique_uploaded_video_file_name($c->req->upload('upload')->filename);
+            $actual_video_file_name = $c->_get_unique_uploaded_video_file_name($video->filename);
             move $temp_file, $actual_video_file_name or die "Failed to move '$temp_file' to '$actual_video_file_name': $!";
         }
         catch {
