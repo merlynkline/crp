@@ -2,10 +2,7 @@
 
 + Components don't really need names
 + Link from course editor to the individual pages of the course
-+ Outstanding tasks for olc page renderer
-    + Video - use a static banner
 + Outstanding tasks for OLC admin:
-    + Video - create a static banner
     + PDF - Need to allow upload of markup files
     + Mechanism for getting courses out to the live server
     + Common code in these modules:

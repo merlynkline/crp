@@ -76,12 +76,13 @@ sub _process_uploaded_video {
         unlink $temp_file;
 
         if( ! $validation_error) {
-            $validation_error = $c->_make_video_thumbnail($actual_video_file_name);
+            $validation_error = $c->_make_video_thumbnail_and_banner($actual_video_file_name);
         }
 
         if($validation_error) {
             unlink $actual_video_file_name;
             unlink $c->_get_video_thumbnail_path($actual_video_file_name);
+            unlink $c->_get_video_banner_path($actual_video_file_name);
         }
     }
 
@@ -94,11 +95,12 @@ sub _process_uploaded_video {
     return $actual_video_file_name;
 }
 
-sub _make_video_thumbnail {
+sub _make_video_thumbnail_and_banner {
     my $c = shift;
     my($video_path) = @_;
 
     my $validation_error;
+    my $banner_made;
     try {
         use Video::FrameGrab;
         use Imager;
@@ -110,6 +112,14 @@ sub _make_video_thumbnail {
             my $jpeg_snapshot = $grabber->snap($snap_time);
             my $imager = Imager->new;
             $imager->read(data => $jpeg_snapshot);
+            unless($banner_made) {
+                $banner_made = 1;
+                $imager = $imager->scale(xpixels => 500);
+                $imager->write(
+                    file => $c->_get_video_banner_path($video_path),
+                    type => 'jpeg'
+                ) or die 'Failed to write jpg banner: ' . $imager->errstr;
+            }
             $imager = $imager->scale(xpixels => 200);
             push @snap_frames, $imager;
         }
@@ -122,9 +132,10 @@ sub _make_video_thumbnail {
                 gif_loop  => 0
             },
             @snap_frames
-        ) or die $imager->errstr;
+        ) or die 'Failed to write gif thumbnail: ' . $imager->errstr;
     }
     catch {
+        warn "Error processing video '$video_path': $_\n";
         $validation_error = 'invalid_video';
     };
 
@@ -143,8 +154,22 @@ sub _get_video_thumbnail_path {
     my $c = shift;
     my($video_path) = @_;
 
+    return $c->_get_video_static_resource_location($video_path) . '.thumb.gif';
+}
+
+sub _get_video_banner_path {
+    my $c = shift;
+    my($video_path) = @_;
+
+    return $c->_get_video_static_resource_location($video_path) . '.banner.jpg';
+}
+
+sub _get_video_static_resource_location {
+    my $c = shift;
+    my($video_path) = @_;
+
     $video_path =~ s/^.*\///;
-    my $thumb_path = $c->crp->path_for_public_file($c->crp->olc_uploaded_video_thumb_location) . "/$video_path.thumb.gif";
+    my $thumb_path = $c->crp->path_for_public_file($c->crp->olc_uploaded_video_thumb_location) . "/$video_path";
 }
 
 1;

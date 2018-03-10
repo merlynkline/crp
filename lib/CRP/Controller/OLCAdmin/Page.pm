@@ -133,6 +133,7 @@ sub _display_page_editor {
         component_id         => $c->_component_id,
         page_modules         => $page_modules->view_data,
         video_thumb_base_url => $c->url_for($c->crp->olc_uploaded_video_thumb_location)->to_abs,
+        video_base_url       => undef,
     );
     $c->render(template => 'o_l_c_admin/page/editor');
 }

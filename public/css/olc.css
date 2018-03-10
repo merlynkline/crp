@@ -92,6 +92,7 @@ div.olc-content {
     display:        block;
     width:          700px;
     margin:         8px auto;
+    line-height:    0%;
 }
 
 .olc-content img.olc-img-full {

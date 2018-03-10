@@ -1,6 +1,6 @@
 %#<!DOCTYPE html>
 % my $file = $component->{video_file};
-% $file = "$video_thumb_base_url/$file.thumb.gif" if $file;
+% $file = "$video_thumb_base_url/$file.banner.jpg" if $file;
 % $file ||= url_for('/olc/images/system/missing.jpg');
 % my $class = "olc-video";
 % $editable = $editable ? qq{ editablecomponentid="$editable"} : '';
