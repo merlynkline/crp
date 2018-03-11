@@ -89,7 +89,15 @@
     %     $counter++;
     %     $is_last = $counter == @{$course->{modules}};
     <tr class="hover-controls">
-        <td title="<%= $module->{notes} %>"><%= $module->{name} %></td>
+        <td title="<%= $module->{notes} %>">
+            % if(@{$module->{pages}}) {
+            <a href="<%= url_for('crp.olc.showmodule', {slug => 'preview', course_id => $course->{id}, module_id => $module->{id}}) %>" target="_blank">
+            % }
+            <%= $module->{name} %>
+            % if(@{$module->{pages}}) {
+            </a>
+            % }
+        </td>
         <td class="text-right"><%= scalar @{$module->{pages}} %></td>
         <td class="hover-controls hidden">
             <a class="small-button" href="<%= url_for('crp.olcadmin.module.edit')->query(module_id => $module->{id}, course_id => $course->{id}) %>">Edit</a>

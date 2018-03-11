@@ -1,7 +1,6 @@
 
 
 + Components don't really need names
-+ Link from course editor to the individual pages of the course
 + Outstanding tasks for OLC admin:
     + PDF - Need to allow upload of markup files
     + Mechanism for getting courses out to the live server
