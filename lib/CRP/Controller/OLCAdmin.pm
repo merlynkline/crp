@@ -95,8 +95,9 @@ sub remote {
 
     my($error, $course_list);
     my $ua  = Mojo::UserAgent->new;
+    my $url = $c->config->{API}->{urlbase} . 'courses';
     try {
-        my $res = $ua->get($c->url_for($c->config->{API}->{urlbase} . 'courses')->query(key => $c->config->{API}->{secret}))->result;
+        my $res = $ua->get($c->url_for($url)->query(key => $c->config->{API}->{secret}))->result;
         if($res->is_success) {
             $course_list = decode_json($res->body);
         }
@@ -108,7 +109,7 @@ sub remote {
         $error = $_;
     };
     $c->stash(
-        error       => $error,
+        error       => "Fetching '$url': $error",
         course_list => $course_list,
     );
 }
