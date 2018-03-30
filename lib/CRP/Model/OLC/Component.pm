@@ -58,7 +58,7 @@ sub state_data  {
     my $self = shift;
 
     my $data = $self->_component->state_data;
-    $data->{type} = $self->_type;
+    $data->{type} = $self->type;
 
     return $data;
 }

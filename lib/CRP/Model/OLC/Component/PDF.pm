@@ -17,6 +17,17 @@ override 'view_data' => sub {
     return $data;
 };
 
+override 'state_data' => sub {
+    my $self = shift;
+
+    my $data = super();
+    $data->{content} = {
+        timestamp   => "TIME",
+        file        => $self->data->{file},
+    };
+    return $data;
+};
+
 around 'data' => __PACKAGE__->can('_json_encoder');
 
 __PACKAGE__->meta->make_immutable;

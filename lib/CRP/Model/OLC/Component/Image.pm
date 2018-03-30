@@ -2,8 +2,6 @@ package CRP::Model::OLC::Component::Image;
 use Moose;
 use namespace::autoclean;
 
-use Mojo::JSON qw(decode_json encode_json);
-
 extends 'CRP::Model::OLC::UntypedComponent';
 
 override 'view_data' => sub {
@@ -16,6 +14,17 @@ override 'view_data' => sub {
     my $preview = $data->{image_file};
     $preview =~ s{^.+/}{};
     $data->{preview} = $preview;
+    return $data;
+};
+
+override 'state_data' => sub {
+    my $self = shift;
+
+    my $data = super();
+    $data->{content} = {
+        timestamp   => "TIME",
+        file        => $self->data->{file},
+    };
     return $data;
 };
 

@@ -2,7 +2,7 @@ package CRP::Controller::OLCAdmin;
 
 use Mojo::Base 'Mojolicious::Controller';
 use Mojo::UserAgent;
-use Mojo::JSON qw(decode_json);
+use Mojo::JSON qw(decode_json encode_json);
 
 
 use Try::Tiny;
@@ -138,8 +138,7 @@ sub remote_update {
         };
     }
 
-    use Data::Dumper; 
-    $c->render(text => Dumper($course));
+    $c->render(text => encode_json($course));
 }
 
 1;
