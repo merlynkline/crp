@@ -2,3 +2,5 @@
 " Add to path to make automatic file opening more useful
 set path +=lib
 
+let g:ale_perl_perl_options = '-c -Mwarnings -I local/lib/perl5 -Ilib -It/lib'
+
