@@ -29,7 +29,7 @@ override state_data => sub {
     my $self = shift;
 
     my $data = super();
-    $data->{components} = $self->component_set->state_data;
+    $data->{components} = $self->component_set->state_data(@_);
 
     return $data;
 };

@@ -57,7 +57,7 @@ sub create_or_update {
 sub state_data  {
     my $self = shift;
 
-    my $data = $self->_component->state_data;
+    my $data = $self->_component->state_data(@_);
     $data->{type} = $self->type;
 
     return $data;

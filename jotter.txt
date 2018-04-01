@@ -2,6 +2,7 @@
 
 + Components don't really need names
 + Outstanding tasks for OLC admin:
+    + Use new ResourceStore for all OLC resources and remove the Helpers that set the paths
     + PDF - Need to allow upload of markup files
     + Mechanism for getting courses out to the live server
     + Common code in these modules:
@@ -20,6 +21,7 @@
         + Progress tracker at top of page
         ? End condition workflow?
     ? What if s(e.g.) a TCRP instructor does a premium-page type olc? Should be OK. Check.
+
 - OLC: Adding a new page object type
     - Make sure it's in the template templates/o_l_c_admin/parts/component_types.html.ep
     - Create a new class for the component in lib/CRP/Model/OLC/Component/
@@ -94,7 +96,7 @@
 + Add further explanation in the trainee FAQ saying that you can have one course without the watermark
 + Add an FAQ on using parent packs (and accompanying insert in the pack)
 
-+ Online training courses
++ Online training courses OLC
     + Tests need to be composed of multiple questions - change data model to allow that
     ~ How will we get courses out to live? Or will we just build them there?
         ~ Add a UUID for each course/module/page/component
@@ -106,7 +108,7 @@
             + Recover a list of courses for which updates can be requested
             + Receive a data structure describing a course and return one describing, for that course, a comparison against the local copy of it saying which parts are new, missing, present but older and present but newer
             + Return the content of a course/module/page/component/resource
-        + Add an admin tool that uses the above APIs to query the status of a course on a remote server. If we have something that is newer than or not present on the remote then complain, otherwise fetch and update anything that's newer.
+        + Add an admin tool that uses the above APIs to query the status of a course on a remote server. If we have something that is newer than or not present on the remote then complain, otherwise fetch and update anything that's newer. Cater for guids and resources appearing more than once in the same course (i.e. don't fetch multiple times for the same update)
             + How to handle huge resources (e.g. video)? May need to spawn an independant worker to track it? Fetch to temp files in case of interruption.
     - Types of course
         - Members, e.g. instructors course, associated with a particular qualification. Logged-in users get access if they have the qualification (even if they haven't passed).

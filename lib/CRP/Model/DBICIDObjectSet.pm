@@ -23,7 +23,7 @@ sub view_data {
 sub state_data {
     my $self = shift;
 
-    return [ map $_->state_data, @{$self->all} ];
+    return [ map $_->state_data(@_), @{$self->all} ];
 }
 
 sub includes_id {

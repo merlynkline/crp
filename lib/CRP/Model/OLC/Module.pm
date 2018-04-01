@@ -30,7 +30,7 @@ override state_data => sub {
     my $self = shift;
 
     my $data = super();
-    $data->{pages} = $self->page_set->state_data;
+    $data->{pages} = $self->page_set->state_data(@_);
 
     return $data;
 };

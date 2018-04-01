@@ -12,6 +12,7 @@ use constant {
 };
 
 has '+_db_record' => (handles => _DB_FIELDS);
+has _resources => (is => 'ro', lazy => 1, builder => '_build__resources');
 
 sub is_question {
     return ! ! shift->can('is_good_answer');
@@ -29,6 +30,32 @@ sub _json_encoder {
     my $data = $self->$orig;
     $data = decode_json($data) if $data;
     return $data;
+}
+
+override state_data => sub {
+    my $self = shift;
+    my($resource_store) = @_;
+
+    my $data = super();
+
+    my $id = 1;
+    if(@{$self->_resources}) {
+        $data->{resources} = [
+            map {
+                    id          => $id++,
+                    type        => $_->type,
+                    name        => $_->name,
+                    last_update => $_->mtime,
+                },
+            map { $resource_store->get_resource($_->{name}, $_->{type}) }
+            @{$self->_resources}
+        ];
+    }
+    return $data;
+};
+
+sub _build__resources {
+    return [];
 }
 
 __PACKAGE__->meta->make_immutable;

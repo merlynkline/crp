@@ -46,7 +46,7 @@ override state_data => sub {
     my $self = shift;
 
     my $data = super();
-    $data->{modules} = $self->module_set->state_data;
+    $data->{modules} = $self->module_set->state_data(@_);
 
     return $data;
 };
