@@ -4,7 +4,7 @@ use namespace::autoclean;
 
 extends 'CRP::Model::OLC::UntypedComponent';
 
-override 'view_data' => sub {
+override view_data => sub {
     my $self = shift;
 
     my $data = super();
@@ -17,16 +17,12 @@ override 'view_data' => sub {
     return $data;
 };
 
-override 'state_data' => sub {
+sub _build__resources {
     my $self = shift;
-
-    my $data = super();
-    $data->{content} = {
-        timestamp   => "TIME",
-        file        => $self->data->{file},
-    };
-    return $data;
-};
+    return [
+        { name => $self->data->{file}, type => 'file/image' },
+    ];
+}
 
 around 'data' => __PACKAGE__->can('_json_encoder');
 

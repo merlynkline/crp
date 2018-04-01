@@ -14,6 +14,7 @@ use CRP::Model::OLC::Page;
 use CRP::Model::OLC::Component;
 use CRP::Model::OLC::Student;
 use CRP::Model::OLC::StudentSet::Pending;
+use CRP::Model::OLC::ResourceStore;
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -123,10 +124,11 @@ sub remote_update {
         $course = CRP::Model::OLC::Course->new(guid => $c->param('guid'), dbh => $c->crp->model);
     };
     if($course) {
+        my $resource_store = CRP::Model::OLC::ResourceStore->new(app => $c->app);
         $course = {
             name    => $course->name,
             title   => $course->title,
-            state   => $course->state_data,
+            state   => $course->state_data($resource_store),
             action  => 'UPDATE',
         };
     }
