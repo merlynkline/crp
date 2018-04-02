@@ -15,8 +15,8 @@ sub path_name {
     my $self = shift;
     my($name, $type) = @_;
 
-    my $path = $self->_resource_store->_base_path($self->type) . '/' . $self->name;
-    return $self->_resource_store->app->home->rel_file($path)->to_string;
+    my $path = $self->_resource_store->file_base_path($self->type) . '/' . $self->name;
+    return $self->_resource_store->c->app->home->rel_file($path)->to_string;
 }
 
 sub mtime {

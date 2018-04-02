@@ -8,16 +8,17 @@ with 'CRP::Controller::OLCAdmin::Component::EditorRole';
 
 use Try::Tiny;
 
-use CRP::Util::Misc;
+use CRP::Model::OLC::ResourceStore;
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 sub edit {
     my $c = shift;
 
-    my $dir = $c->crp->path_for_public_file($c->crp->olc_uploaded_image_location);
+    my $resource_store = CRP::Model::OLC::ResourceStore->new(c => $c);
+    my $resources = $resource_store->get_resource_list('file/image');
     my $extra_data = {
-        files         => CRP::Util::Misc::get_file_list($dir),
-        file_base_url => $c->url_for($c->crp->olc_uploaded_image_location)->to_abs,
+        files         => [ map { $_->name } @$resources ],
+        file_base_url => $resource_store->url_base('file/image'),
     };
     $c->_display_component_editor('o_l_c_admin/component/editor/image', $extra_data);
 }

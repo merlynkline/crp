@@ -1,6 +1,7 @@
 
 
 + Components don't really need names
++ Members area main page when there are no online courses available to them is silly
 + Outstanding tasks for OLC admin:
     + Use new ResourceStore for all OLC resources and remove the Helpers that set the paths
     + PDF - Need to allow upload of markup files

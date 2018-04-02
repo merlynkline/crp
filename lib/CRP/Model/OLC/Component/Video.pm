@@ -19,6 +19,8 @@ override view_data => sub {
 
 sub _build__resources {
     my $self = shift;
+
+    return [] unless defined $self->data;
     return [
         { name => $self->data->{file}, type => 'file/video' },
     ];

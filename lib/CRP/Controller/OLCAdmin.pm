@@ -124,7 +124,7 @@ sub remote_update {
         $course = CRP::Model::OLC::Course->new(guid => $c->param('guid'), dbh => $c->crp->model);
     };
     if($course) {
-        my $resource_store = CRP::Model::OLC::ResourceStore->new(app => $c->app);
+        my $resource_store = CRP::Model::OLC::ResourceStore->new(c => $c);
         $course = {
             name    => $course->name,
             title   => $course->title,
