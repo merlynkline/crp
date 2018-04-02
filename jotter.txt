@@ -1,7 +1,7 @@
 
 
 + Components don't really need names
-+ Members area main page when there are no online courses available to them is silly
++ DBICIDObject::BUILD should not force load because that means these objects aren't as lightweight as we'd like. This was originally only done for GUID loads - perhaps that could be done by the caller instead. Why did I add doing this for id loads too? something to do with olc remote updates, perhaps?
 + Outstanding tasks for OLC admin:
     + Use new ResourceStore for all OLC resources and remove the Helpers that set the paths
     + PDF - Need to allow upload of markup files
