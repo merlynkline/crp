@@ -8,6 +8,7 @@ use File::stat;
 use DateTime;
 
 use CRP::Model::OLC::Resource;
+use CRP::Util::Misc;
 
 has c => (is => 'ro');
 
@@ -54,6 +55,19 @@ sub url_base {
     }
 
     croak "url_base doesn't know about type '$type' yet";
+}
+
+sub move_file_to_store {
+    my $self = shift;
+    my($file, $name, $type) = @_;
+
+    my($class, $sub_class) = $self->_get_class($type);
+
+    my $base_dir = $self->file_base_path($type);
+    my $actual_name = CRP::Util::Misc::get_unique_file_name($base_dir, $name);
+    use File::Copy;
+    move $file, $actual_name or die "Failed to move '$file' to '$actual_name': $!";
+    return $actual_name;
 }
 
 sub _get_class {

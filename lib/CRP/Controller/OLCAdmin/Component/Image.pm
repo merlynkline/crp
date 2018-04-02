@@ -64,9 +64,8 @@ sub _process_uploaded_image {
                 $c->config->{olc}->{max_image_width} || 1200,
                 $c->config->{olc}->{max_image_height} || 1200,
             )) {
-            use File::Copy;
-            $actual_file_name = $c->_get_unique_uploaded_image_file_name($c->req->upload('upload')->filename);
-            move $temp_file, $actual_file_name or die "Failed to move '$temp_file' to '$actual_file_name': $!";
+            my $resource_store = CRP::Model::OLC::ResourceStore->new(c => $c);
+            $actual_file_name = $resource_store->move_file_to_store($temp_file, $c->req->upload('upload')->filename, 'file/image');
         }
         else {
             $c->validation->error(upload => ['invalid_image_file']);
@@ -80,14 +79,6 @@ sub _process_uploaded_image {
 
     $actual_file_name =~ s/^.*\///;
     return $actual_file_name;
-}
-
-sub _get_unique_uploaded_image_file_name {
-    my $c = shift;
-    my($proposed_name) = @_;
-
-    my $base_dir = $c->crp->path_for_public_file($c->crp->olc_uploaded_image_location);
-    return CRP::Util::Misc::get_unique_file_name($base_dir, $proposed_name);
 }
 
 1;
