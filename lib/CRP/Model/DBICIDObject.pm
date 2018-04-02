@@ -86,7 +86,7 @@ sub _build_db_record {
 sub BUILD {
     my $self = shift;
 
-    $self->_db_record; # Force load to validate
+    $self->_db_record if $self->guid || $self->id; # Force load to validate
 }
 
 sub _get_new_guid {
