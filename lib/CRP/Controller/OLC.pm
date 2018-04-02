@@ -9,6 +9,7 @@ use CRP::Model::OLC::Course;
 use CRP::Model::OLC::Module;
 use CRP::Model::OLC::Page;
 use CRP::Model::OLC::Student;
+use CRP::Model::OLC::ResourceStore;
 use CRP::Util::WordNumber;
 
 
@@ -456,7 +457,8 @@ sub pdf {
     my $failure_code = $c->_validate_page_id_params;
     return $c->_not_found($failure_code) if $failure_code;
 
-    my $pdf = $c->app->home->rel_file("pdfs/olc/uploaded/" . $c->param('file'))->to_string;
+    my $resource_store = CRP::Model::OLC::ResourceStore->new(c => $c);
+    my $pdf = $resource_store->file_path($c->param('file'), 'file/pdf')->to_string;
     $pdf .= '.' . $c->stash('format');
     return $c->_not_found('DOCUMENT') unless -r $pdf;
 

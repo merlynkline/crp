@@ -8,16 +8,18 @@ with 'CRP::Controller::OLCAdmin::Component::EditorRole';
 
 use Try::Tiny;
 
-use CRP::Util::Misc;
+use CRP::Model::OLC::ResourceStore;
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 sub edit {
     my $c = shift;
 
-    my $dir = $c->app->home->rel_file('pdfs/olc/uploaded')->to_string;
+    my $resource_store = CRP::Model::OLC::ResourceStore->new(c => $c);
+    my $resources = $resource_store->get_resource_list('file/pdf');
     my $extra_data = {
-        files => CRP::Util::Misc::get_file_list($dir, qr{^/([^.].*\.pdf)$}i),
+        files         => [ map { $_->name } @$resources ],
     };
+
     $c->_display_component_editor('o_l_c_admin/component/editor/pdf', $extra_data);
 }
 
@@ -63,9 +65,9 @@ sub _process_uploaded_pdf {
         my $error;
         try {
             $pdf->move_to($temp_file);
+            my $resource_store = CRP::Model::OLC::ResourceStore->new(c => $c);
+            $actual_file_name = $resource_store->move_file_to_store($temp_file, $c->req->upload('upload')->filename, 'file/pdf');
             use File::Copy;
-            $actual_file_name = $c->_get_unique_uploaded_pdf_file_name($c->req->upload('upload')->filename);
-            move $temp_file, $actual_file_name or die "Failed to move '$temp_file' to '$actual_file_name': $!";
         }
         catch {
             $error = $_;
@@ -100,14 +102,6 @@ sub _validate_pdf {
     };
 
     return $validation_error;
-}
-
-sub _get_unique_uploaded_pdf_file_name {
-    my $c = shift;
-    my($proposed_name) = @_;
-
-    my $base_dir = $c->app->home->rel_file('pdfs/olc/uploaded')->to_string;
-    return CRP::Util::Misc::get_unique_file_name($base_dir, $proposed_name);
 }
 
 1;
