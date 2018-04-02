@@ -95,22 +95,14 @@ sub remote {
     my $c = shift;
 
     my($error, $course_list);
-    my $ua  = Mojo::UserAgent->new;
-    my $url = $c->config->{API}->{urlbase} . 'courses';
     try {
-        my $res = $ua->get($c->url_for($url)->query(key => $c->config->{API}->{secret}))->result;
-        if($res->is_success) {
-            $course_list = decode_json($res->body);
-        }
-        else {
-            $error = $res->code . ' - ' . $res->message;
-        }
+        $course_list = $c->_fetch_remote_data('courses');
     }
     catch {
         $error = $_;
     };
     $c->stash(
-        error       => "Fetching '$url': $error",
+        error       => $error,
         course_list => $course_list,
     );
 }
@@ -140,8 +132,33 @@ sub remote_update {
         };
     }
 
-    $c->render(text => encode_json($course));
+    my $remote_course = $c->_fetch_remote_data('course', {guid => $c->param('guid')});
+
+    $c->render(text => encode_json({remote => $remote_course, local => $course}));
 }
+
+sub _fetch_remote_data {
+    my $c = shift;
+    my($path, $query) = @_;
+
+    my($error, $data);
+    my $ua  = Mojo::UserAgent->new;
+    my $url = $c->config->{API}->{urlbase} . $path;
+
+    my %query = %{$query // {}};
+    $query{key} = $c->config->{API}->{secret};
+
+    my $res = $ua->get($c->url_for($url)->query(%query))->result;
+    if($res->is_success) {
+        $data = decode_json($res->body);
+    }
+    else {
+        die "Fetching '$url': " . $res->code . ' - ' . $res->message;
+    }
+
+    return $data;
+}
+
 
 1;
 
