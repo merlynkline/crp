@@ -2,6 +2,8 @@ package CRP::Controller::API;
 use Mojo::Base 'Mojolicious::Controller';
 
 use CRP::Model::OLC::CourseSet;
+use CRP::Model::OLC::Course;
+use CRP::Model::OLC::ResourceStore;
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 sub authenticate {
@@ -26,6 +28,16 @@ sub courses {
     ];
 
     $c->render(json => $courses);
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub course {
+    my $c = shift;
+
+    my $course = CRP::Model::OLC::Course->new(dbh => $c->crp->model, guid => $c->param('guid'));
+    my $resource_store = CRP::Model::OLC::ResourceStore->new(c => $c);
+
+    $c->render(json => $course->state_data($resource_store));
 }
 
 1;
