@@ -11,6 +11,7 @@ use CRP::Model::OLC::Page;
 use CRP::Model::OLC::PageSet;
 use CRP::Model::OLC::ModuleSet::WithPage;
 use CRP::Model::OLC::ComponentSet::ForPage;
+use CRP::Model::OLC::ResourceStore;
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 sub edit {
@@ -132,7 +133,7 @@ sub _display_page_editor {
         olc_module_id        => $c->_module_id,
         component_id         => $c->_component_id,
         page_modules         => $page_modules->view_data,
-        video_thumb_base_url => $c->url_for($c->crp->olc_uploaded_video_thumb_location)->to_abs,
+        video_thumb_base_url => CRP::Model::OLC::ResourceStore->new(c => $c)->url_base('file/video_thumb'),
         video_base_url       => undef,
     );
     $c->render(template => 'o_l_c_admin/page/editor');

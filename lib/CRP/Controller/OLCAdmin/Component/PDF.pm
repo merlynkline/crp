@@ -62,10 +62,10 @@ sub _process_uploaded_pdf {
         my($fh, $temp_file) = tmpnam();
         close $fh;
 
+        my $resource_store = CRP::Model::OLC::ResourceStore->new(c => $c);
         my $error;
         try {
             $pdf->move_to($temp_file);
-            my $resource_store = CRP::Model::OLC::ResourceStore->new(c => $c);
             $actual_file_name = $resource_store->move_file_to_store($temp_file, $c->req->upload('upload')->filename, 'file/pdf');
             use File::Copy;
         }
@@ -75,8 +75,8 @@ sub _process_uploaded_pdf {
         unlink $temp_file;
         die $error if $error;
 
-        $validation_error = $c->_validate_pdf($actual_file_name);
-        unlink $actual_file_name if $validation_error;
+        $validation_error = $c->_validate_pdf($resource_store->file_path($actual_file_name, 'file/pdf'));
+        $resource_store->remove($actual_file_name, 'file/pdf') if $validation_error;
     }
 
     if($validation_error) {
@@ -84,7 +84,6 @@ sub _process_uploaded_pdf {
         return;
     }
 
-    $actual_file_name =~ s/^.*\///;
     return $actual_file_name;
 }
 

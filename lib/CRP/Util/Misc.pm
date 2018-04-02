@@ -34,7 +34,7 @@ sub get_unique_file_name {
         $proposed_name = int(rand(10)) . $proposed_name if $try_count % 10 == 0;
     }
 
-    return "$base_dir/$proposed_name";
+    return $proposed_name;
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 

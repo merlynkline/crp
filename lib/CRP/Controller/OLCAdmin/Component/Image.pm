@@ -77,7 +77,6 @@ sub _process_uploaded_image {
     unlink $temp_file;
     die $error if $error;
 
-    $actual_file_name =~ s/^.*\///;
     return $actual_file_name;
 }
 

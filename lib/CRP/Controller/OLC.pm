@@ -154,7 +154,7 @@ sub show_page {
         error_component_ids  => { map { $_ => 1 } split ',', $c->flash('error_component_ids') // '' },
         max_page_index       => $c->_student_record->max_allowed_page_index($c->_course),
         video_base_url       => $c->url_for('crp.olc.video')->to_abs,
-        video_thumb_base_url => $c->url_for($c->crp->olc_uploaded_video_thumb_location)->to_abs,
+        video_thumb_base_url => CRP::Model::OLC::ResourceStore->new(c => $c)->url_base('file/video_thumb'),
     );
     $c->_set_page_accessibility_flags;
 
@@ -498,7 +498,7 @@ sub video {
     my $type = $video =~ /\.(\w+)$/ ? $types->type($1) : undef;
     $c->res->headers->content_type($type || $types->type('txt'));
 
-    $video = '../' . $c->crp->olc_uploaded_video_location . '/' . $video;
+    $video = CRP::Model::OLC::ResourceStore->new(c => $c)->file_path_relative_to_static($video, 'file/video');
     my $asset = $c->app->static->file($video);
     $c->reply->asset($asset);
 }

@@ -22,6 +22,7 @@ my %FILE_TYPE_INFO = (
     },
     video       => {
         path    => 'videos/olc/uploaded',
+        match   => qr{^/([^.].*\.(?:mp4|wmv))$}i,
     },
     video_thumb => {
         path    => 'public/olc/video-thumbs/uploaded',
@@ -60,6 +61,15 @@ sub file_path {
     return $self->c->app->home->rel_file($self->_file_base_path($type) . "/$name");
 }
 
+sub file_path_relative_to_static {
+    my $self = shift;
+    my($name, $type) = @_;
+
+    my $static_path = $self->c->app->static->paths->[0];
+    my $file_path = $self->file_path($name, $type);
+    return $self->file_path($name, $type)->to_rel($static_path);
+}
+
 sub url_base {
     my $self = shift;
     my($type) = @_;
@@ -84,8 +94,15 @@ sub move_file_to_store {
     my $base_dir = $self->_file_base_path($type);
     my $actual_name = CRP::Util::Misc::get_unique_file_name($base_dir, $name);
     use File::Copy;
-    move $file, $actual_name or die "Failed to move '$file' to '$actual_name': $!";
+    move $file, "$base_dir/$actual_name" or die "Failed to move '$file' to '$actual_name': $!";
     return $actual_name;
+}
+
+sub remove {
+    my $self = shift;
+    my($name, $type) = @_;
+
+    unlink $self->file_path($name, $type);
 }
 
 sub _get_class {

@@ -9,9 +9,9 @@ override view_data => sub {
 
     my $data = super();
     my $component_data = $self->data;
-    $data->{file} = $component_data->{file} // '';
+    $data->{pdf_file} = $component_data->{file} // '';
     $data->{title} = $component_data->{title} || $data->{file};
-    my $preview = $data->{file};
+    my $preview = $data->{pdf_file};
     $preview =~ s{^.+/}{};
     $data->{preview} = $preview;
     return $data;
