@@ -4,6 +4,8 @@ use namespace::autoclean;
 
 use Carp;
 
+use Mojo::JSON qw(decode_json encode_json);
+
 use Try::Tiny;
 use Data::GUID;
 use DateTime;
@@ -12,6 +14,17 @@ has id          => (is => 'ro', isa => 'Maybe[Str]', writer => '_set_id');
 has guid        => (is => 'ro', isa => 'Maybe[Str]', writer => '_set_guid');
 has dbh         => (is => 'ro', required => 1);
 has _db_record  => (is => 'ro', builder => '_build_db_record', lazy => 1);
+
+sub serialised {
+    my $self = shift;
+
+    my $data = {};
+    foreach my $field ('guid', @{$self->_DB_FIELDS}) {
+        $data->{$field} = $self->$field;
+    }
+
+    return encode_json($data);
+}
 
 sub view_data {
     my $self = shift;

@@ -220,7 +220,8 @@ sub startup {
 
     my $api = $r->under('/api')->to('a_p_i#authenticate');
     $api->any('/courses')->to('a_p_i#courses');
-    $api->any('/course')->to('a_p_i#course');
+    $api->any('/course/state')->to('a_p_i#course_state');
+    $api->any('/object_definition')->to('a_p_i#object_definition');
 
     my $olc = $r->under('/olc/:slug/:course_id')->to('o_l_c#authenticate');
     $olc->get('/show/:module_id/:page_id')->to('o_l_c#show_page')->name('crp.olc.showpage');

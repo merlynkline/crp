@@ -44,7 +44,7 @@ has guid         => (is => 'ro', isa => 'Maybe[Str]', writer => '_set_guid');
 has dbh          => (is => 'ro', required => 1);
 
 has _component => (is => 'ro', lazy => 1, builder => '_build_component', init_arg => undef, handles => [qw(
-    name build_order data_version olc_page_id type data view_data is_question is_good_answer last_update_date
+    name build_order data_version olc_page_id type data view_data is_question is_good_answer last_update_date serialised
 )]);
 
 sub create_or_update {

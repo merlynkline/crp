@@ -3,6 +3,9 @@ use Mojo::Base 'Mojolicious::Controller';
 
 use CRP::Model::OLC::CourseSet;
 use CRP::Model::OLC::Course;
+use CRP::Model::OLC::Module;
+use CRP::Model::OLC::Page;
+use CRP::Model::OLC::Component;
 use CRP::Model::OLC::ResourceStore;
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -31,13 +34,34 @@ sub courses {
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-sub course {
+sub course_state {
     my $c = shift;
 
     my $course = CRP::Model::OLC::Course->new(dbh => $c->crp->model, guid => $c->param('guid'));
     my $resource_store = CRP::Model::OLC::ResourceStore->new(c => $c);
 
     $c->render(json => $course->state_data($resource_store));
+}
+
+my $OBJECT_CONFIG = {
+    course    => 'Course',
+    module    => 'Module',
+    page      => 'Page',
+    component => 'Component',
+};
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub object_definition {
+    my $c = shift;
+
+    my $type = $c->param('type');
+    my $class = $OBJECT_CONFIG->{$type} or die "Unknown object type '$type'";
+    $class = "CRP::Model::OLC::$class";
+
+    my $guid = $c->param('guid');
+    my $object = $class->new(dbh => $c->crp->model, guid => $guid) or die "Couldn't find object type '$type' with guid '$guid'";
+
+    $c->render(json => $object->serialised);
 }
 
 1;
