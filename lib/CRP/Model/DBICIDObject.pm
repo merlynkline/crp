@@ -4,6 +4,8 @@ use namespace::autoclean;
 
 use Carp;
 
+use Mojo::JSON qw(decode_json encode_json);
+
 use Try::Tiny;
 use Data::GUID;
 use DateTime;
@@ -12,6 +14,19 @@ has id          => (is => 'ro', isa => 'Maybe[Str]', writer => '_set_id');
 has guid        => (is => 'ro', isa => 'Maybe[Str]', writer => '_set_guid');
 has dbh         => (is => 'ro', required => 1);
 has _db_record  => (is => 'ro', builder => '_build_db_record', lazy => 1);
+
+sub deserialise {
+    my $self = shift;
+    my($serialised_data) = @_;
+
+    my $data = decode_json($serialised_data);
+    $self->_set_guid($data->{guid});
+    foreach my $field (@{$self->_DB_FIELDS}) {
+        $self->$field($data->{$field});
+    }
+
+    return;
+}
 
 sub view_data {
     my $self = shift;
