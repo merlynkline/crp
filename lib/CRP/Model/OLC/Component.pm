@@ -40,10 +40,11 @@ enum ComponentType => [keys %{_TYPE_CLASS()}];
 has _type        => (is => 'ro', isa => 'Maybe[ComponentType]', init_arg => 'type');
 has _olc_page_id => (is => 'ro', isa => 'Maybe[Int]',           init_arg => 'olc_page_id');
 has id           => (is => 'ro', isa => 'Maybe[Str]', writer => '_set_id');
+has guid         => (is => 'ro', isa => 'Maybe[Str]', writer => '_set_guid');
 has dbh          => (is => 'ro', required => 1);
 
 has _component => (is => 'ro', lazy => 1, builder => '_build_component', init_arg => undef, handles => [qw(
-    name build_order data_version olc_page_id type data view_data is_question is_good_answer
+    name build_order data_version olc_page_id type data view_data is_question is_good_answer last_update_date
 )]);
 
 sub create_or_update {
@@ -52,6 +53,7 @@ sub create_or_update {
 
     $self->_component->create_or_update($as_at_date);
     $self->_set_id($self->_component->id);
+    $self->_set_guid($self->_component->guid);
 }
 
 sub state_data  {
@@ -68,15 +70,18 @@ sub _build_component {
 
     my $type;
     if($self->id) {
-        $type = $self->dbh->resultset('OLCComponent')->find($self->id)->type;
+        $type = $self->dbh->resultset('OLCComponent')->find({id => $self->id})->type;
+    }
+    elsif($self->guid) {
+        $type = $self->dbh->resultset('OLCComponent')->find({guid => $self->guid})->type;
     }
     else {
         $type = $self->_type;
     }
 
     my $class = 'CRP::Model::OLC::Component::' . _TYPE_CLASS->{$type};
-    my $component = $class->new({dbh => $self->dbh, id => $self->id});
-    unless($self->id) {
+    my $component = $class->new({dbh => $self->dbh, id => $self->id, guid => $self->guid});
+    unless($self->id || $self->guid) {
         $component->olc_page_id($self->_olc_page_id);
         $component->type($self->_type);
     }
@@ -87,9 +92,9 @@ sub _build_component {
 sub BUILD {
     my $self = shift;
 
-    return if $self->id;
+    return if $self->id || $self->guid;
     return if $self->olc_page_id && $self->type;
-    croak __PACKAGE__ . ' requires an id or both an olc_page_id and a type';
+    croak __PACKAGE__ . ' requires an id, a guid or both an olc_page_id and a type';
 }
 
 __PACKAGE__->meta->make_immutable;
