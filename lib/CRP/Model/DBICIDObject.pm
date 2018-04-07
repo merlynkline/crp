@@ -26,6 +26,19 @@ sub serialised {
     return encode_json($data);
 }
 
+sub deserialise {
+    my $self = shift;
+    my($serialised_data) = @_;
+
+    my $data = decode_json($serialised_data);
+    $self->_set_guid($data->{guid});
+    foreach my $field (@{$self->_DB_FIELDS}) {
+        $self->$field($data->{$field});
+    }
+
+    return;
+}
+
 sub view_data {
     my $self = shift;
 

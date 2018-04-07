@@ -1,5 +1,4 @@
 
-
 + Components don't really need names
 + DBICIDObject::BUILD should not force load because that means these objects aren't as lightweight as we'd like. This was originally only done for GUID loads - perhaps that could be done by the caller instead. Why did I add doing this for id loads too? something to do with olc remote updates, perhaps?
 + Outstanding tasks for OLC admin:

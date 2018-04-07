@@ -111,30 +111,64 @@ sub remote {
 sub remote_update {
     my $c = shift;
 
-    my $course;
-    try {
-        $course = CRP::Model::OLC::Course->new(guid => $c->param('guid'), dbh => $c->crp->model);
-    };
-    if($course) {
-        my $resource_store = CRP::Model::OLC::ResourceStore->new(c => $c);
-        $course = {
-            name    => $course->name,
-            title   => $course->title,
-            state   => $course->state_data($resource_store),
-            action  => 'UPDATE',
-        };
-    }
-    else {
-        $course = {
-            name    => $c->param('name'),
-            title   => $c->param('title'),
-            action  => 'NEW',
-        };
-    }
+    my $course_guid = $c->param('guid');
+    my $resource_store = CRP::Model::OLC::ResourceStore->new(c => $c);
+    my %guid_seen;
 
-    my $remote_course = $c->_fetch_remote_data('course', {guid => $c->param('guid')});
+    my $remote_course = $c->_fetch_remote_data('course/state', {guid => $course_guid});
 
-    $c->render(text => encode_json({remote => $remote_course, local => $course}));
+    my $update_count = $c->_update_object_if_required($remote_course, 'course');
+
+    $c->render(text => encode_json({update_count => $update_count}));
+}
+
+my $OBJECT_CONFIG = {
+    course    => { class => 'Course',      component_list => 'modules',    component_type => 'module' },
+    module    => { class => 'Module',      component_list => 'pages',      component_type => 'page' },
+    page      => { class => 'Page',        component_list => 'components', component_type => 'component' },
+    component => { class => 'Component' },
+};
+
+sub _update_object_if_required {
+    my $c = shift;
+    my($remote_object, $type, $guids_seen) = @_;
+
+    my $update_count = 0;
+    my $config = $OBJECT_CONFIG->{$type} or die "Unrecognised object type: '$type'";
+    my $guid = $remote_object->{guid};
+    my $class = "CRP::Model::OLC::$config->{class}";
+    my $object;
+    try { $object = $class->new(guid => $guid, dbh => $c->crp->model); };
+    if( ! $object || _is_older($object->last_update_date, $remote_object->{last_update_date}, "$type: $guid")) {
+        if($config->{component_list}) {
+            foreach my $remote_part (@{$remote_object->{$config->{component_list}}}) {
+                next if $guids_seen->{$remote_part->{guid}};
+                $update_count += $c->_update_object_if_required($remote_part, $config->{component_type}, $guids_seen);
+                $guids_seen->{$remote_part->{guid}} = 1;
+            }
+        }
+        $c->_update_object_from_remote($object, $remote_object, $type);
+        $update_count++;
+    }
+    return $update_count;
+}
+
+sub _update_object_from_remote {
+    my $c = shift;
+    my($object, $remote_object, $type) = @_;
+
+    my $serialised_data = $c->_fetch_remote_data('object_definition', {guid => $remote_object->{guid}, type => $type});
+warn $serialised_data;
+
+    return 1;
+}
+
+sub _is_older {
+    my($local_date, $remote_date, $description) = @_;
+
+    return '' if $local_date eq $remote_date;
+    die "$description - local is newer than remote!" if $local_date gt $remote_date;
+    return 1;
 }
 
 sub _fetch_remote_data {
