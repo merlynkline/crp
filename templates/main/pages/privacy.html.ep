@@ -3,12 +3,28 @@
 % title "Privacy";
 <h1>Privacy</h1>
 <p>We take your privacy very seriously.</p>
-<p>We collect and store only the minimum details necessary for us to conduct business with you.</p>
+<p>
+We collect and store only the minimum details necessary for us to conduct business with you.
+You may ask us to supply a complete copy of all the information about you we have stored at any time
+and you may request its complete removal from our systems. We will always provide a timely response.
+</p>
+<p>
+The data we store and process is used only as strictly necessary for the provision of our services
+to you, e.g. if you have requested notification of the availability of future courses then
+we will store your email address and use it to send that notification and for no other purpose. If
+you have an account with us then we will store your email address and use it to identify your
+account so that we may provide the associated services. Additional information stored in your account
+is used only as strictly necessary to provide these services and is under your direct control when
+you log in, e.g. if you request a personalised poster with your name on it then we will store your name
+and use it to create that poster, and you may edit or remove your name at any time.
+</p>
 <p>
 We will never pass any of your details on to any third party without
 obtaining your explicit consent except when we are required to do so
-by a legal instrument such as a court order.
+by a legal instrument such as a court order or as strictly necessary
+for the provision of our services.
 </p>
+
 <div class="horizontal-divider-small"></div>
 <h1>Cookies</h1>
 <p>
@@ -27,10 +43,44 @@ device for this purpose. You can learn more about
 <a href="http://www.google.com/policies/technologies/cookies/" target="_blank">Google cookies on their site, here</a>.
 Google offer a facility to
 <a href="https://tools.google.com/dlpage/gaoptout" target="_blank">stop their cookies being placed on your computer, here</a>.
+If you are interested, you can
+<a href="https://ico.org.uk/for-the-public/online/cookies.aspx" target="_blank">find out more about cookies here</a>.
+</p>
+
+<div class="horizontal-divider-small"></div>
+<h1>Third parties</h1>
+<p>
+In addition to Google Analytics, we also use other third party services as follows:
 </p>
 <p>
-If you are interested, you can
-<a href="https://ico.org.uk/for-the-public/online/cookies.aspx" target="_blank">Find out more about cookies here</a>.
+This web site and its supporting infrastructure are hosted on virtual servers
+based in the UK and operated by <a href="https://www.vultr.com/">Vultr</a>. We do
+not grant access to these servers to any third party, including the service provider.
 </p>
-<div class="page-text-terminator"></div>
+<p>
+We sometimes use <a href="https://mailchimp.com/">MailChimp</a> to send email to
+multiple recipients who have explicitly requested it. The information shared with
+them is the minimum necessary to enable them to provide this service. In addition
+to our own data management provisions, MailChimp also offer the facility to remove
+your email address from their lists independently of us.
+</p>
+<p>
+For our own internal email, including messages sent to us when you fill in forms
+on the web site (e.g. the contact and booking forms), we use
+<a href="www.gmail.com">GMail</a> to read, store and send email.
+</p>
+<p>
+Other data services, e.g. backups and day-to-day processing, are entirely in-house
+on systems owned, managed and controlled by us.
+</p>
 
+<div class="horizontal-divider-small"></div>
+<h1>Contact</h1>
+<p>
+Should you require further information on these or any other subjects please use our
+<a href="/page/contact">contact form</a> to get in touch. If you have difficulty
+making contact through that route you can write to us at
+2 Snows Cottages, Mamhead, EX6 8HW, UK.
+</p>
+
+<div class="page-text-terminator"></div>
