@@ -1,0 +1,29 @@
+%#<!DOCTYPE html>
+% layout 'default', heading => 'Sign up for our newsletter';
+% title 'Newsletter signup';
+
+<p>If you would like to receive an occasional newsletter from us please fill in the form below.</p>
+%= form_for 'https://kidsreflex.us14.list-manage.com/subscribe/post?u=b5ef8562fcec276512760e242&amp;id=b529b246b4' => (method => 'POST') => begin
+    <fieldset>
+        <legend>Newsletter signup form</legend>
+        <label for="mce-FNAME">Your first name:</label>
+        <div class="input-container">
+            <%= text_field 'FNAME', size => '30', id => 'mce-FNAME', autofocus => "autofocus", required => "required" =%>
+        </div>
+        <label for="mce-LNAME">Your Last name:</label>
+        <div class="input-container">
+            <%= text_field 'LNAME', size => '30', id => 'mce-LNAME' =%>
+        </div>
+        <label for="mce-EMAIL">Your email address:</label>
+        <div class="input-container">
+            <%= text_field 'EMAIL', size => '30', id => 'mce-EMAIL', required => "required" =%>
+        </div>
+        <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_b5ef8562fcec276512760e242_b529b246b4" tabindex="-1" value=""></div>
+        <label>&nbsp;</label>
+        <div class="input-container">
+            <%= submit_button 'Subscribe', name => 'subscribe' %>
+        </div>
+    </fieldset>
+% end
+You will receive an email asking you to confirm that you want to subscribe, after which you will receive an occasional email from us. You can easily unsubscribe at any time.
+We will not use the information you enter here for any other purpose - see our <a href="/page/privacy">Privacy Policy</a> for further information.
