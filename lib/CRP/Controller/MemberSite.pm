@@ -163,6 +163,11 @@ sub send_booking {
         $info{$param} =~ s{\n}{<br \\>\n}g;
     }
     $c->mail(
+        to              => $c->crp->email_to($c->app->config->{email_addresses}->{contact_form}),
+        template        => 'member_site/email/course_booking_notification',
+        info            => {%info, '000_instructor' => $c->stash('site_profile')->login->email},
+    );
+    $c->mail(
         reply_to        => $c->crp->email_decorated($c->crp->trimmed_param('050_email'), $c->crp->trimmed_param('040_name')),
         to              => $c->crp->email_to($c->stash('site_profile')->login->email),
         template        => 'member_site/email/course_booking_form',
