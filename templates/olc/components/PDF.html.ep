@@ -1,7 +1,7 @@
 %#<!DOCTYPE html>
 % $editable = $editable ? qq{ editablecomponentid="$editable"} : '';
 % my @disabler = $is_page_completed ? (disabled => 'disabled') : ();
-% my $pdf_url = $editable ? '' : url_for('crp.olc.pdf', {file => $component->{file}});
+% my $pdf_url = $editable ? '' : url_for('crp.olc.pdf', {file => $component->{data}->{file}});
 <div class="olc-pdf<%= $editable ? ' editable-component' : '' %>"<%== $editable %>>
     <div class="head">
         <h3>Document</h3>
