@@ -8,7 +8,7 @@ override 'view_data' => sub {
     my $self = shift;
 
     my $data = super();
-    my $preview = $data->{paragraph_text} = $self->data;
+    my $preview = $data->{paragraph_text} = $self->data // '';
     $preview =~ s/<.*?>/ /g;
     $preview =~ s/\&.*?;/ /g;
     $preview =~ s/\s+/ /g;
