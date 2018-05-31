@@ -480,7 +480,7 @@ sub pdf {
     $c->render_file(
         data                => $pdf_doc->fill_template($pdf_data),
         format              => 'pdf',
-        content_disposition => 'attachment',
+        content_disposition => 'inline',
         filename            => $pdf_doc->filename,
     );
 }
