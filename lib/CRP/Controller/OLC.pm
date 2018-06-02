@@ -143,7 +143,7 @@ sub show_page {
     my $failure_code = $c->_validate_page_id_params;
     return $c->_not_found($failure_code) if $failure_code;
 
-    my $page_index = $c->_decode_and_limit_page_index($c->_course->module_page_index($c->_module, $c->_page), $c->_student_record);
+    my $page_index = $c->_decode_and_limit_page_index($c->_course->module_page_index($c->_module, $c->_page));
 
     $c->stash(
         page                 => $c->_page->view_data($c->_module, $c->_course),
@@ -200,7 +200,7 @@ sub _validate_page_id_params {
 
     return 'COURSE' unless $c->_course && $c->_course->exists;
 
-    $c->_decode_page_index_indicator($c->stash('module_id'), $c->_student_record);
+    $c->_decode_page_index_in_module_id($c->stash('module_id'));
     return 'MODULE' unless $c->_module && $c->_module->exists;
     return 'PAGE' unless $c->_page && $c->_page->exists;
 
@@ -215,17 +215,17 @@ sub _student_record {
     return $_cached_student_record;
 }
 
-sub _decode_page_index_indicator {
+sub _decode_page_index_in_module_id {
     my $c = shift;
-    my($page_index_indicator, $student) = @_;
+    my($page_index_indicator) = @_;
 
     return unless $page_index_indicator && $page_index_indicator =~ /^x(\d+)/i;
-    $c->_decode_and_limit_page_index($1, $student);
+    $c->_decode_and_limit_page_index($1);
 }
 
 sub _decode_and_limit_page_index {
     my $c = shift;
-    my($page_index, $student) = @_;
+    my($page_index) = @_;
 
     my $course = $c->_course;
 
@@ -268,7 +268,7 @@ sub _module {
     my $module_id = $c->stash('module_id') || 0;
     my $course = $c->_course;
     return $_cached_module if $_cached_module && $_cached_module->id == $module_id && $course->id == $_cached_module_course_id;
-    my $_cached_module = CRP::Model::OLC::Module->new(id => $module_id, dbh => $c->crp->model);
+    $_cached_module = CRP::Model::OLC::Module->new(id => $module_id, dbh => $c->crp->model);
     $_cached_module = $course->default_module unless $_cached_module->exists && $course->has_module($_cached_module);
     $_cached_module_course_id = $course->id;
 
@@ -283,7 +283,7 @@ sub _page {
     my $page_id = $c->stash('page_id') || 0;
     my $module = $c->_module;
     return $_cached_page if $_cached_page && $_cached_page->id == $page_id && $module->id == $_cached_page_module_id;
-    my $_cached_page = CRP::Model::OLC::Page->new(id => $page_id, dbh => $c->crp->model);
+    $_cached_page = CRP::Model::OLC::Page->new(id => $page_id, dbh => $c->crp->model);
     $_cached_page = $module->default_page unless $_cached_page->exists && $module->has_page($_cached_page);
     $_cached_page_module_id = $module->id;
 
