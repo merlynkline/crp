@@ -207,6 +207,37 @@ sub register {
         }
     );
 
+    our $debug_start_time = 0;
+    our $debug_last_time = 0;
+    $app->helper(
+        'crp.debug' => sub {
+            my $c = shift;
+
+            return if $c->app->mode eq 'production';
+            require Time::HiRes;
+            my $time = Time::HiRes::time();
+            if( ! @_) {
+                push @_, 'TIMER RESET';
+                $debug_start_time = 0;
+            }
+            $debug_start_time = $debug_last_time = $time if $debug_start_time == 0;
+
+            my $message = '';
+            require Data::Dumper;
+            {
+                no warnings 'once';
+                local $Data::Dumper::Indent = 0;
+                local $Data::Dumper::Terse = 1;
+                $message .= ' ' . Data::Dumper::Dumper(\@_);
+            }
+
+            $message = sprintf "DEBUG: %7.4f %7.4f %s\n", $time - $debug_start_time, $time - $debug_last_time, $message;
+            warn $message;
+
+            $debug_last_time = $time;
+        }
+    );
+
 }
 
 1;
