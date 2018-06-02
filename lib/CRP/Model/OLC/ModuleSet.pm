@@ -8,6 +8,8 @@ use List::Util 'sum';
 
 use CRP::Model::OLC::Module;
 
+has module_page_list => (is => 'ro', isa => 'ArrayRef', builder => '_build_module_page_list');
+
 use constant {
     _RESULTSET_NAME => 'OLCModule',
     _MEMBER_CLASS   => 'CRP::Model::OLC::Module',
@@ -22,7 +24,7 @@ sub page_count {
         @{$self->all};
 }
 
-sub module_page_list {
+sub _build_module_page_list {
     my $self = shift;
 
     my @module_page_list;
