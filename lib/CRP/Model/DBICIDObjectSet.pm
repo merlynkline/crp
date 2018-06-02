@@ -7,7 +7,9 @@ has dbh  => (is => 'ro', required => 1);
 has _ids        => (is => 'ro', isa => 'ArrayRef', builder => '_build_ids', lazy => 1);
 has _resultset  => (is => 'ro', builder => '_build_resultset', lazy => 1);
 
-sub all {
+has all         => (is => 'ro', builder => '_build_all', clearer => '_clear_cache', lazy => 1, init_arg => undef);
+
+sub _build_all {
     my $self = shift;
 
     return [ map $self->_MEMBER_CLASS->new(dbh => $self->dbh, id => $_), @{$self->_ids} ];
@@ -78,6 +80,7 @@ sub delete {
     $self->_resultset->find($id)->delete;
 
     splice @{$self->_ids}, $index, 1;
+    $self->_clear_cache;
 }
 
 __PACKAGE__->meta->make_immutable;
