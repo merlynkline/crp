@@ -1,10 +1,23 @@
 %#<!DOCTYPE html>
 % $editable = $editable ? qq{ editablecomponentid="$editable"} : '';
-<ol class="olc-course-idx<%= $editable ? ' editable-component' : '' %>"<%== $editable %>>
+<div class="olc-course-idx<%= $editable ? ' editable-component' : '' %>"<%== $editable %>>
+    <h2>Course contents</h2>
+    <ul>
+% my $module_number = 1;
 % foreach my $module (@{$component->{course}->{modules}}) {
-<li>
-    <%= $module->{title} %>
-</li>
+        <li>
+            <div class="olc-course-idx-module">
+                <div class="olc-course-idx-module-title" onclick="olcToggleModuleIdxContainer(<%=  $module->{id} %>)" title="Click to see details of the contents of this module">
+                    <h3>
+                        Module <%= $module_number++ %>: <%= $module->{title} %>
+                        <div class="olc-nav-button"><span><a><%= scalar @{$module->{pages}} %> page<%= @{$module->{pages}} > 1 ? 's' : '' %></a></span></div>
+                    </h3>
+                </div>
+                <div class="olc-course-idx-module-idx-container" id="olc-course-idx-module-idx-<%= $module->{id} %>">
 %= include 'olc/components/parts/MODULE_IDX', module => $module;
+                </div>
+            </div>
+        </li>
 %}
-</ol>
+    </ul>
+</div>

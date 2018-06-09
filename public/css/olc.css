@@ -217,6 +217,7 @@ div.olc-content {
     background-image: linear-gradient(#eee, #ccc);
     overflow:         hidden;
     color:            #354;
+    letter-spacing:   0;
 }
 
 .olc-nav-button:hover {
@@ -364,6 +365,13 @@ div.olc-head-course-complete {
     width:          260px;
 }
 
+.olc-course-idx-module-idx-container {
+    display: none;
+}
+
+.olc-course-idx-module-title {
+    cursor: pointer;
+}
 
 @media print {
 
@@ -406,5 +414,9 @@ div.olc-head-course-complete {
 
     div.olc-head-course-complete {
         display: none;
+    }
+
+    .olc-course-idx-module-idx-container {
+        display: block !important;
     }
 }

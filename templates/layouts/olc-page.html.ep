@@ -23,6 +23,15 @@
         <meta charset="utf-8">
         <link href="http://vjs.zencdn.net/5.11.9/video-js.css" rel="stylesheet">
         <script src="http://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script>
+
+function olcToggleModuleIdxContainer(moduleId) {
+    var containerId = '#olc-course-idx-module-idx-' + moduleId;
+    $(containerId).toggle(400);
+}
+
+        </script>
     </head>
     <body>
         <div class="olc-page">

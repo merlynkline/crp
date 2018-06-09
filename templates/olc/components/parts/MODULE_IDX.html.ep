@@ -2,9 +2,9 @@
 % my $edit_id = $editable ? qq{ editablecomponentid="$editable"} : '';
 <ol class="olc-module-idx<%= $editable ? ' editable-component' : '' %>"<%== $edit_id %>>
 % foreach my $page (@{$module->{pages}}) {
-<li>
+<li<% if( ! $editable && ! $page->{_accessible}) { %> title="You can't look at this page until you have finished all the preceding pages"<% } %>>
     % if( ! $editable && $page->{_accessible}) {
-    <a href="<%= url_for 'crp.olc.showpage', {module_id => $module->{id}, page_id => $page->{id}} %>">
+    <a href="<%= url_for 'crp.olc.showpage', {module_id => $module->{id}, page_id => $page->{id}} %>" title="Click to review this page which you have already finished">
     % }
         <%= $page->{title} %>
     % if( ! $editable) {
