@@ -304,7 +304,7 @@ div.olc-content {
 
 .olc-content input[type="submit"], .olc-content input[type="button"], .olc-button {
     border-radius:  4px;
-    border:         2px solid #589;
+    border:         2px solid #589 !important;
     color:          #354;
     font-family:    inherit;
     font-size:      16px;
@@ -316,7 +316,7 @@ div.olc-content {
 .olc-content input[type="submit"]:hover, .olc-content input[type="button"]:hover, .olc-button:hover {
     background-image: linear-gradient(#ccc, #eee);
     cursor:           pointer;
-    text-decoration:  none;
+    text-decoration:  none !important;
 }
 
 .olc-component-anchor {
