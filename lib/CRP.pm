@@ -44,6 +44,8 @@ sub startup {
         });
     }
 
+    $self->app->max_request_size(512 * 1024 * 1024);
+
     unshift @{$self->renderer->paths}, $config->{template_dir} if $config->{template_dir};
 
     # Router
