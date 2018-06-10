@@ -14,7 +14,7 @@
 %    $has_questions = 1 if exists $QUESTION_TYPES{$component->{type}};
 %    $has_error = exists $error_component_ids->{$component->{id}};
 <a name="<%= 'anchor-' . $component->{id} %>" class="olc-component-anchor">&nbsp;</a>
-%=   include 'olc/components/' . $component->{type}, component => $component, editable => 0, has_error => $has_error, is_page_completed => $is_page_completed;
+%=   include 'olc/components/' . $component->{type}, component => $component, editable => 0, has_error => $has_error, is_page_completed => $is_page_completed, page_id => $page->{id};
 % }
 % if(@{$page->{components}} == 0) {
 %= include 'olc/parts/empty-page';

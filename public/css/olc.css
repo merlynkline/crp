@@ -373,6 +373,10 @@ div.olc-head-course-complete {
     cursor: pointer;
 }
 
+.olc-module-idx-page-title-current {
+    font-weight: bold;
+}
+
 @media print {
 
     body {
