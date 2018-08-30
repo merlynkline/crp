@@ -38,22 +38,23 @@
     display:     inline-block;
     width:       200px;
     height:      200px;
-    line-height: 200px;
     text-align:  center;
     margin:      4px;
+    font-size:   75%;
 }
 .olcadmin-video-picker {
     max-width:      200px;
     max-height:     200px;
     cursor:         pointer;
     display:        inline-block;
-    vertical-align: middle;
+    vertical-align: bottom;
     border:         2px solid #589;
     border-radius:  4px;
 }
 </style>
 % foreach my $video (@{$extra_data->{files}}) {
 <div class="olcadmin-video-picker-container">
+<%= $video %><br>
 <img src="<%= $extra_data->{file_base_url} . '/' . $video . '.thumb.gif' %>" title="<%= $video %>" class="olcadmin-video-picker">
 </div>
 % }
