@@ -28,13 +28,16 @@ sub get_unique_file_name {
     my($base_dir, $proposed_name) = @_;
 
     my $try_count = 0;
-    while(-f "$base_dir/$proposed_name") {
-        $proposed_name =~ s/(^.+?)(\d*)(\.[^.]+)$/$1 . (($2 || 0) + 1) . $3/e;
+    my $ext = '';
+    ($proposed_name, $ext) = ($1, $2) if $proposed_name =~ /^(.+)(\.[^.]+)$/;
+    while(-f "$base_dir/$proposed_name$ext") {
+        $proposed_name .= ' [0]' unless $proposed_name =~ / \[\d+]$/;
+        $proposed_name =~ s/(^.+?)(\d*)]$/$1 . (($2 || 0) + 1) . ']'/e;
         $try_count ++;
-        $proposed_name = int(rand(10)) . $proposed_name if $try_count % 10 == 0;
+        $proposed_name = int(rand(10)) . "-$proposed_name" if $try_count % 10 == 0;
     }
 
-    return $proposed_name;
+    return "$proposed_name$ext";
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
