@@ -1,6 +1,6 @@
 %#<!DOCTYPE html>
 %# Google location API support in page header
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAv7Z_VkzGt4qRPF7gbyYhWUH9R35rHQuY&v=3.exp"></script>
     <script>
         var locationInputHandler = {
             geocoder:   null,
