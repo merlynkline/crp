@@ -1,4 +1,23 @@
 
+
+**** New booking forms git-stashed
+
+
++ GDRP etc
+    + Advice for instructors in FAQ
+    + Clear out enquiry table records >2 years old
+    + Change booking forms (online and paper)
+        + ask what medical conditions they are interested in (rather than have)
+        + ask if they want to join a mailing list
+
++ Add a sign-up form for mailing lists to the site
+
+? How will people sign up for online courses?
+    ? PayPal API?
+    ? What if there is physical material to be sent?
+
++ Adverts in the instructor homepage, tailored for the instructor
+
 + Components don't really need names
 + DBICIDObject::BUILD should not force load because that means these objects aren't as lightweight as we'd like. This was originally only done for GUID loads - perhaps that could be done by the caller instead. Why did I add doing this for id loads too? something to do with olc remote updates, perhaps?
 + Outstanding tasks for OLC admin:
@@ -14,13 +33,14 @@
     + Consider not actually deleting courses/modules/pages but just marking them deleted
     + Object model causes lots of unnecessary repeated calls to methods, e.g. loading a page component editor calls the view_data method for all the components on the page lots of times
 
++ Qualys SSL lab test
 
 + Change premium pages
     + Re-purpose auth system for one-off access to online courses
     + Tweak online courses to better support courses with just one or two pages
         + Progress tracker at top of page
         ? End condition workflow?
-    ? What if s(e.g.) a TCRP instructor does a premium-page type olc? Should be OK. Check.
+    ? What if (e.g.) a TCRP instructor does a premium-page type olc? Should be OK. Check.
 
 - OLC: Adding a new page object type
     - Make sure it's in the template templates/o_l_c_admin/parts/component_types.html.ep
@@ -1149,6 +1169,12 @@ Vultr setup:
     # echo "7 3 * * * kill -USR2 `cat /home/crp/crp/script/hypnotoad.pid`" >> /var/spool/cron/crontabs/crp
     # chown crp.crontab /var/spool/cron/crontabs/crp
     # chmod 600 /var/spool/cron/crontabs/crp
+    # vi /etc/exim4/exim4.conf.template
+        - Add a line in the main/02_exim4-config_options section:
+            " disable_ipv6=true
+        - Save and run commands to update config and restart exim:
+            # update-exim4.conf
+            # service exim4 restart
 - Change root email in /etc/aliases: root: www.kidsreflex.co.uk+root@binary.co.uk
 
 
