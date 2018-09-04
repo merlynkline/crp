@@ -18,6 +18,16 @@ sub is_question {
     return ! ! shift->can('is_good_answer');
 }
 
+
+sub _prepare_data_for_serialisation {
+    my $self = shift;
+    my($data) = @_;
+
+    $data->{olc_page_id} = $self->_db_record->page->guid;
+
+    return $data;
+}
+
 sub _json_encoder {
     my $orig = shift;
     my $self = shift;
