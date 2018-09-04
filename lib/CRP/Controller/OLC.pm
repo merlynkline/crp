@@ -282,6 +282,7 @@ sub _page {
 
     my $page_id = $c->stash('page_id') || 0;
     my $module = $c->_module;
+    undef $_cached_page if $c->app->mode ne 'production';
     return $_cached_page if $_cached_page && $_cached_page->id == $page_id && $module->id == $_cached_page_module_id;
     $_cached_page = CRP::Model::OLC::Page->new(id => $page_id, dbh => $c->crp->model);
     $_cached_page = $module->default_page unless $_cached_page->exists && $module->has_page($_cached_page);

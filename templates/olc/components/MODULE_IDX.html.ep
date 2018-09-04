@@ -1,2 +1,3 @@
 %#<!DOCTYPE html>
+<h2>Module contents</h2>
 %= include 'olc/components/parts/MODULE_IDX', module => $component->{module};

@@ -24,7 +24,16 @@ sub serialised {
         $data->{$field} = $self->$field;
     }
 
+    $self->_prepare_data_for_serialisation($data);
+
     return encode_json($data);
+}
+
+sub _prepare_data_for_serialisation {
+    my $self = shift;
+    my($data) = @_;
+
+    return $data;
 }
 
 sub deserialise {
