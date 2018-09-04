@@ -140,6 +140,8 @@ sub _update_object_if_required {
     my $object;
     try { $object = $class->new(guid => $guid, dbh => $c->crp->model); };
     if( ! $object || _is_older($object->last_update_date, $remote_object->{last_update_date}, "$type: $guid")) {
+        $c->_update_object_from_remote($object, $remote_object, $type);
+        $update_count++;
         if($config->{component_list}) {
             foreach my $remote_part (@{$remote_object->{$config->{component_list}}}) {
                 next if $guids_seen->{$remote_part->{guid}};
@@ -147,8 +149,6 @@ sub _update_object_if_required {
                 $guids_seen->{$remote_part->{guid}} = 1;
             }
         }
-        $c->_update_object_from_remote($object, $remote_object, $type);
-        $update_count++;
     }
     return $update_count;
 }
@@ -158,7 +158,18 @@ sub _update_object_from_remote {
     my($object, $remote_object, $type) = @_;
 
     my $serialised_data = $c->_fetch_remote_data('object_definition', {guid => $remote_object->{guid}, type => $type});
-warn $serialised_data;
+
+    if($object) {
+        $object->deserialise($serialised_data);
+    }
+    else {
+        my $config = $OBJECT_CONFIG->{$type} or die "Unrecognised object type: '$type'";
+        my $class = "CRP::Model::OLC::$config->{class}";
+        $object = $class->new(dbh => $c->crp->model, serialised_data => $serialised_data);
+    }
+
+warn "Create: $type $remote_object->{guid}";
+    $object->create_or_update;
 
     return 1;
 }

@@ -5,6 +5,8 @@ use namespace::autoclean;
 
 use Carp;
 
+use Mojo::JSON qw(decode_json);
+
 use CRP::Model::OLC::Course;
 use CRP::Model::OLC::Module;
 use CRP::Model::OLC::Component::CourseIndex;
@@ -37,11 +39,12 @@ use constant {
 
 enum ComponentType => [keys %{_TYPE_CLASS()}];
 
-has _type        => (is => 'ro', isa => 'Maybe[ComponentType]', init_arg => 'type');
-has _olc_page_id => (is => 'ro', isa => 'Maybe[Int]',           init_arg => 'olc_page_id');
-has id           => (is => 'ro', isa => 'Maybe[Str]', writer => '_set_id');
-has guid         => (is => 'ro', isa => 'Maybe[Str]', writer => '_set_guid');
-has dbh          => (is => 'ro', required => 1);
+has _type            => (is => 'ro', isa => 'Maybe[ComponentType]', writer => '_set_type', init_arg => 'type');
+has _olc_page_id     => (is => 'ro', isa => 'Maybe[Int]',                                  init_arg => 'olc_page_id');
+has id               => (is => 'ro', isa => 'Maybe[Str]',           writer => '_set_id');
+has guid             => (is => 'ro', isa => 'Maybe[Str]',           writer => '_set_guid');
+has dbh              => (is => 'ro', required => 1);
+has _serialised_data => (is => 'ro', isa => 'Str',                                          init_arg => 'serialised_data');
 
 has _component => (is => 'ro', lazy => 1, builder => '_build_component', init_arg => undef, handles => [qw(
     name build_order data_version olc_page_id type data view_data is_question is_good_answer last_update_date serialised
@@ -89,9 +92,20 @@ sub _build_component {
     return $component;
 }
 
+sub deserialise {
+    my $self = shift;
+    my($serialised_data) = @_;
+
+    my $data = decode_json($serialised_data);
+    $self->_set_type($data->{type});
+    $self->_component->deserialise($serialised_data);
+}
+
 sub BUILD {
     my $self = shift;
 
+    $self->_component if $self->guid || $self->id; # Force load to validate
+    $self->deserialise($self->_serialised_data) if $self->_serialised_data;
     return if $self->id || $self->guid;
     return if $self->olc_page_id && $self->type;
     croak __PACKAGE__ . ' requires an id, a guid or both an olc_page_id and a type';

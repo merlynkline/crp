@@ -10,10 +10,11 @@ use Try::Tiny;
 use Data::GUID;
 use DateTime;
 
-has id          => (is => 'ro', isa => 'Maybe[Str]', writer => '_set_id');
-has guid        => (is => 'ro', isa => 'Maybe[Str]', writer => '_set_guid');
-has dbh         => (is => 'ro', required => 1);
-has _db_record  => (is => 'ro', builder => '_build_db_record', lazy => 1);
+has id               => (is => 'ro', isa => 'Maybe[Str]', writer => '_set_id');
+has guid             => (is => 'ro', isa => 'Maybe[Str]', writer => '_set_guid');
+has _serialised_data => (is => 'ro', isa => 'Str',        init_arg => 'serialised_data');
+has dbh              => (is => 'ro', required => 1);
+has _db_record       => (is => 'ro', builder => '_build_db_record', lazy => 1);
 
 sub serialised {
     my $self = shift;
@@ -40,10 +41,10 @@ sub deserialise {
     my($serialised_data) = @_;
 
     my $data = decode_json($serialised_data);
-    $self->_set_guid($data->{guid});
     foreach my $field (@{$self->_DB_FIELDS}) {
         $self->$field($data->{$field});
     }
+    $self->_set_guid($data->{guid});
 
     return;
 }
@@ -122,6 +123,7 @@ sub BUILD {
     my $self = shift;
 
     $self->_db_record if $self->guid || $self->id; # Force load to validate
+    $self->deserialise($self->_serialised_data) if $self->_serialised_data;
 }
 
 sub _get_new_guid {
