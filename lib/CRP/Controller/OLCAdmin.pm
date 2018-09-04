@@ -159,6 +159,8 @@ sub _update_object_from_remote {
 
     my $serialised_data = $c->_fetch_remote_data('object_definition', {guid => $remote_object->{guid}, type => $type});
 
+use Data::Dumper; warn Dumper($serialised_data);
+
     if($object) {
         $object->deserialise($serialised_data);
     }
@@ -169,7 +171,19 @@ sub _update_object_from_remote {
     }
 
 warn "Create: $type $remote_object->{guid}";
-    $object->create_or_update;
+    my $as_at_date = $remote_object->{last_update_date};
+    if($as_at_date && $as_at_date =~ /^(\d{4})-(\d\d)-(\d\d)T(\d\d):(\d\d):(\d\d)$/) {
+        $as_at_date = DateTime->new(
+            year       => $1,
+            month      => $2,
+            day        => $3,
+            hour       => $4,
+            minute     => $5,
+            second     => $6,
+            time_zone  => 'UTC',
+        );
+    }
+    $object->create_or_update($as_at_date);
 
     return 1;
 }
