@@ -41,12 +41,22 @@ sub deserialise {
     my($serialised_data) = @_;
 
     my $data = decode_json($serialised_data);
+
+    $self->_prepare_deserialised_data_for_db($data);
+
     foreach my $field (@{$self->_DB_FIELDS}) {
         $self->$field($data->{$field});
     }
     $self->_set_guid($data->{guid});
 
     return;
+}
+
+sub _prepare_deserialised_data_for_db {
+    my $self = shift;
+    my($data) = @_;
+
+    return $data;
 }
 
 sub view_data {
