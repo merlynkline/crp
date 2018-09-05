@@ -15,7 +15,7 @@ use constant {
 
 has '+_db_record' => (handles => _DB_FIELDS);
 
-has page_set    => (is => 'ro', lazy => 1, builder => '_build_page_set', init_arg => undef);
+has page_set    => (is => 'ro', lazy => 1, builder => '_build_page_set', init_arg => undef, handles => {remove_all_pages_silently => 'clear_silently'});
 
 override view_data => sub {
     my $self = shift;

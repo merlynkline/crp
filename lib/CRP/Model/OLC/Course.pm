@@ -100,13 +100,13 @@ sub page_id_from_page_index {
     return $module_page;
 }
 
-sub remove_all_pages_and_modules {
+sub remove_all_pages_and_modules_silently {
     my $self = shift;
 
     foreach my $module (@{$self->module_set->all}) {
-        $module->remove_all_pages;
+        $module->remove_all_pages_silently;
     }
-    $self->module_set->clear;
+    $self->module_set->clear_silently;
 }
 
 sub _module_page_from_page_index {
