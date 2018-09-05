@@ -32,12 +32,28 @@ sub add_child {
     my($id) = @_;
 
     return if $self->includes_id($id);
+    $self->_add_id($id);
+    $self->_touch_parent;
+    return;
+}
+
+sub add_child_silently {
+    my $self = shift;
+    my($id) = @_;
+
+    return if $self->includes_id($id);
+    $self->_add_id($id);
+}
+
+sub _add_id {
+    my $self = shift;
+    my($id) = @_;
+
     $self->_resultset->create({
         $self->_child_id_column   => $id,
         $self->_parent_id_column  => $self->_parent_id,
         order                     => $self->max_order + 1,
     });
-    $self->_touch_parent;
     push @{$self->_ids}, $id;
 }
 
@@ -103,6 +119,18 @@ sub delete {
     $self->_touch_parent;
 
     splice @{$self->_ids}, $index, 1;
+}
+
+sub clear {
+    my $self = shift;
+
+    foreach my $id (@{$self->_ids}) {
+        $self->_resultset->find({$self->_parent_id_column => $self->_parent_id, $self->_child_id_column => $id})->delete;
+    }
+    splice @{$self->_ids};
+    $self->_clear_cache;
+
+    return;
 }
 
 sub _resultset {
