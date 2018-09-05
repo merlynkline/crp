@@ -121,7 +121,7 @@ sub delete {
     splice @{$self->_ids}, $index, 1;
 }
 
-sub clear {
+sub clear_silently {
     my $self = shift;
 
     foreach my $id (@{$self->_ids}) {
