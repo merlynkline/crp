@@ -10,6 +10,7 @@ use List::Util;
 
 use CRP::Model::OLC::Course;
 use CRP::Model::OLC::CourseSet;
+use CRP::Model::OLC::Module;
 use CRP::Model::OLC::Page;
 use CRP::Model::OLC::Component;
 use CRP::Model::OLC::Student;
@@ -119,7 +120,22 @@ sub remote_update {
 
     my $update_count = $c->_update_object_if_required($remote_course, 'course');
 
-    $c->render(text => encode_json({update_count => $update_count}));
+    my $course = CRP::Model::OLC::Course->new(guid => $course_guid, dbh => $c->crp->model);
+    my $old_module_count = $course->module_count;
+    my $old_page_count   = $course->page_count;
+
+    $course->remove_all_pages_and_modules_silently;
+    $c->_add_pages_and_modules_from_remote($course, $remote_course);
+
+    my $results = {
+        update_count     => $update_count,
+        old_module_count => $old_module_count,
+        old_page_count   => $old_page_count,
+        new_module_count => $course->module_count,
+        new_page_count   => $course->page_count,
+    };
+
+    $c->render(text => encode_json($results));
 }
 
 my $OBJECT_CONFIG = {
@@ -159,8 +175,6 @@ sub _update_object_from_remote {
 
     my $serialised_data = $c->_fetch_remote_data('object_definition', {guid => $remote_object->{guid}, type => $type});
 
-use Data::Dumper; warn Dumper($serialised_data);
-
     if($object) {
         $object->deserialise($serialised_data);
     }
@@ -170,7 +184,6 @@ use Data::Dumper; warn Dumper($serialised_data);
         $object = $class->new(dbh => $c->crp->model, serialised_data => $serialised_data);
     }
 
-warn "Create: $type $remote_object->{guid}";
     my $as_at_date = $remote_object->{last_update_date};
     if($as_at_date && $as_at_date =~ /^(\d{4})-(\d\d)-(\d\d)T(\d\d):(\d\d):(\d\d)$/) {
         $as_at_date = DateTime->new(
@@ -218,6 +231,21 @@ sub _fetch_remote_data {
     return $data;
 }
 
+sub _add_pages_and_modules_from_remote {
+    my $c = shift;
+    my($course, $remote_course) = @_;
+
+    my $module_set = $course->module_set;
+    foreach my $remote_module(@{$remote_course->{modules}}) {
+        my $module = CRP::Model::OLC::Module->new(guid => $remote_module->{guid}, dbh => $c->crp->model);
+        my $page_set = $module->page_set;
+        foreach my $remote_page (@{$remote_module->{pages}}) {
+            my $page = CRP::Model::OLC::Page->new(guid => $remote_page->{guid}, dbh => $c->crp->model);
+            $page_set->add_page_silently($page->id);
+        }
+        $module_set->add_module_silently($module->id);
+    }
+}
 
 1;
 
