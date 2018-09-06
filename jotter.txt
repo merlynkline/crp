@@ -3,6 +3,36 @@
 **** New booking forms git-stashed
 
 
+- New approach to getting OLC live:
+    ~ Get the course description from remote
+    ~ Update/add any objects that need it. Most don't have IDs in (because they're in the link tables) but components are an exception
+    ~ Reconstruct the course from scratch: removing all pages from modules and all modules from the course, then reconstructing, should be easy enough. Components will be slightly more difficult.
+    ~ Get updates for any resources used in the course that are new/out of date
+        ~ Get thumbnails for videos
+    + Remove any orphaned components (might have happened anyway), pages, modules
+    + Remove any orphaned resources
+
+
+~ Get OLC out to live
+    ~ Add a UUID for each course/module/page/component
+    ~ Add a last_updated date for each course/module/page/component
+        ~ For normal editing/creation this is set automatically to sysdate
+        ~ Can also be set to a specific date when importing a course
+    + Make a means of reading and writing the last_update (mtime?) time for resource files (e.g. images, PDFs, videos etc used in the courses)
+    + Add webservice APIs protected by shared secrets, that can:
+        ~ Recover a list of courses for which updates can be requested
+        + Receive a data structure describing a course and return one describing, for that course, a comparison against the local copy of it saying which parts are new, missing, present but older and present but newer
+            + Include olc_course_module_link and olc_module_page_link with IDs as GUIDS
+        ~ Return the content of a course/module/page/component/resource
+    + Add an admin tool that uses the above APIs to query the status of a course on a remote server.
+        + If we have something that is newer than on the remote then complain
+        + If we have something that not present on the remote then delete it
+        + otherwise fetch and update anything that's new or newer
+            + Convert GUIDs to IDs
+            ~ Cater for guids and resources appearing more than once in the same course (i.e. don't fetch multiple times for the same update)
+        + How to handle huge resources (e.g. video)? May need to spawn an independent worker to track it? Fetch to temp files in case of interruption.
+
+
 + GDRP etc
     + Advice for instructors in FAQ
     + Clear out enquiry table records >2 years old
@@ -118,18 +148,6 @@
 
 + Online training courses OLC
     + Tests need to be composed of multiple questions - change data model to allow that
-    ~ How will we get courses out to live? Or will we just build them there?
-        ~ Add a UUID for each course/module/page/component
-        ~ Add a last_updated date for each course/module/page/component
-            ~ For normal editing/creation this is set automatically to sysdate
-            ~ Can also be set to a specific date when importing a course
-        + Make a means of reading and writing the last_update (mtime?) time for resource files (e.g. images, PDFs, videos etc used in the courses)
-        + Add webservice APIs protected by shared secrets, that can:
-            + Recover a list of courses for which updates can be requested
-            + Receive a data structure describing a course and return one describing, for that course, a comparison against the local copy of it saying which parts are new, missing, present but older and present but newer
-            + Return the content of a course/module/page/component/resource
-        + Add an admin tool that uses the above APIs to query the status of a course on a remote server. If we have something that is newer than or not present on the remote then complain, otherwise fetch and update anything that's newer. Cater for guids and resources appearing more than once in the same course (i.e. don't fetch multiple times for the same update)
-            + How to handle huge resources (e.g. video)? May need to spawn an independant worker to track it? Fetch to temp files in case of interruption.
     - Types of course
         - Members, e.g. instructors course, associated with a particular qualification. Logged-in users get access if they have the qualification (even if they haven't passed).
         - Visitors, e.g. parents course. Anyone can do these even if they don't have an account. Maybe also available to logged-in users?
@@ -1117,7 +1135,6 @@ Vultr setup:
     # su - postgres -c "createuser crp -SdR"
     # su - postgres -c "psql -U postgres -d postgres -c \"alter user crp with password 'cr12114';\""
     # su - postgres -c "psql -U postgres -c \"create database crp with owner = crp;\""
-    # # Create initial account like: su - postgres -c "psql -U crp -c \"insert into login (email) values ('sue@susanquayle.co.uk');\""
     # aptitude install cpanminus
     # aptitude install make
     # aptitude install gcc
@@ -1144,6 +1161,7 @@ Vultr setup:
         $ cd ssl
         $ scp merlyn@home.binary.co.uk:crp/ssl/kidsreflex.co.uk.crt .
         $ scp merlyn@home.binary.co.uk:crp/ssl/kidsreflex.co.uk.key .
+    # su - postgres -c "psql -U crp -c \"insert into login (email, password_hash, is_administrator) values ('sue@susanquayle.co.uk', '3800ae146dae50e2ea10f45020952391', true);\"" # Create initial account with password "Wordpass1" - change ASAP!
     # Get vultr to remove port 25 block
     # dpkg-reconfigure exim4-config
         - Set general type to internet site mail handled directly by SMTP, set domain to kidsreflex.co.uk, everything else default
