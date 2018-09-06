@@ -18,10 +18,11 @@ use constant {
 sub page_count {
     my $self = shift;
 
-    return
+    return (
         sum
         map { $_->page_set->count }
-        @{$self->all};
+        @{$self->all}
+    ) // 0;
 }
 
 sub _build_module_page_list {

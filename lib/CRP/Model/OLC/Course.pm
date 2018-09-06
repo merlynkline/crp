@@ -16,7 +16,10 @@ use constant {
 
 has '+_db_record' => (handles => _DB_FIELDS);
 
-has module_set    => (is => 'ro', lazy => 1, builder => '_build_module_set', init_arg => undef, handles => [qw(page_count)]);
+has module_set    => (is => 'ro', lazy => 1, builder => '_build_module_set', init_arg => undef, handles => {
+    page_count   => 'page_count',
+    module_count => 'count',
+});
 
 sub load_by_code {
     my $self = shift;
@@ -95,6 +98,15 @@ sub page_id_from_page_index {
     my $module_page = $self->_module_page_from_page_index($page_index);
     $module_page =~ s/^.+://;
     return $module_page;
+}
+
+sub remove_all_pages_and_modules_silently {
+    my $self = shift;
+
+    foreach my $module (@{$self->module_set->all}) {
+        $module->remove_all_pages_silently;
+    }
+    $self->module_set->clear_silently;
 }
 
 sub _module_page_from_page_index {

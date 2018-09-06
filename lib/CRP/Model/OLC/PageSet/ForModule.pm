@@ -4,7 +4,10 @@ use namespace::autoclean;
 
 extends 'CRP::Model::OLC::PageSet';
 
-with 'CRP::Model::DBICIDObjectSet::ChildrenOfParent', {-alias => {add_child => 'add_page'}};
+with 'CRP::Model::DBICIDObjectSet::ChildrenOfParent', {-alias => {
+    add_child          => 'add_page',
+    add_child_silently => 'add_page_silently',
+}};
 
 has module_id => (is => 'ro', required => 1);
 

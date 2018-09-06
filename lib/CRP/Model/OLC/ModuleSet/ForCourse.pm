@@ -4,7 +4,10 @@ use namespace::autoclean;
 
 extends 'CRP::Model::OLC::ModuleSet';
 
-with 'CRP::Model::DBICIDObjectSet::ChildrenOfParent', {-alias => {add_child => 'add_module'}};
+with 'CRP::Model::DBICIDObjectSet::ChildrenOfParent', {-alias => {
+    add_child          => 'add_module',
+    add_child_silently => 'add_module_silently',
+}};
 
 has course_id => (is => 'ro', required => 1);
 

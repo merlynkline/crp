@@ -30,4 +30,5 @@ requires "Text::Markdown";
 requires "Mojo::Role";
 requires "Data::GUID";
 requires "Video::FrameGrab";
+requires "File::Fetch";
 

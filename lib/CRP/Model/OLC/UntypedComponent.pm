@@ -2,6 +2,7 @@ package CRP::Model::OLC::UntypedComponent;
 use Moose;
 use namespace::autoclean;
 
+package CRP::Model::OLC::UntypedComponent;
 use Mojo::JSON qw(decode_json encode_json);
 
 extends 'CRP::Model::DBICIDObject';
@@ -24,6 +25,17 @@ sub _prepare_data_for_serialisation {
     my($data) = @_;
 
     $data->{olc_page_id} = $self->_db_record->page->guid;
+
+    return $data;
+}
+
+sub _prepare_deserialised_data_for_db {
+    my $self = shift;
+    my($data) = @_;
+
+    my $page = $self->dbh->resultset('OLCPage')->find({guid => $data->{olc_page_id}});
+    die "Can't find page with GUID $data->{olc_page_id}" unless $page;
+    $data->{olc_page_id} = $page->id;
 
     return $data;
 }

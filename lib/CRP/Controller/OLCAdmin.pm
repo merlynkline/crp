@@ -7,9 +7,12 @@ use Mojo::JSON qw(decode_json encode_json);
 
 use Try::Tiny;
 use List::Util;
+use File::Fetch;
+use File::Copy;
 
 use CRP::Model::OLC::Course;
 use CRP::Model::OLC::CourseSet;
+use CRP::Model::OLC::Module;
 use CRP::Model::OLC::Page;
 use CRP::Model::OLC::Component;
 use CRP::Model::OLC::Student;
@@ -112,14 +115,31 @@ sub remote_update {
     my $c = shift;
 
     my $course_guid = $c->param('guid');
-    my $resource_store = CRP::Model::OLC::ResourceStore->new(c => $c);
     my %guid_seen;
 
     my $remote_course = $c->_fetch_remote_data('course/state', {guid => $course_guid});
 
     my $update_count = $c->_update_object_if_required($remote_course, 'course');
 
-    $c->render(text => encode_json({update_count => $update_count}));
+    my $course = CRP::Model::OLC::Course->new(guid => $course_guid, dbh => $c->crp->model);
+    my $old_module_count = $course->module_count;
+    my $old_page_count   = $course->page_count;
+
+    $course->remove_all_pages_and_modules_silently;
+    $c->_add_pages_and_modules_from_remote($course, $remote_course);
+
+    my $resource_count = $c->_update_resources($remote_course);
+
+    my $results = {
+        update_count           => $update_count,
+        old_module_count       => $old_module_count,
+        old_page_count         => $old_page_count,
+        new_module_count       => $course->module_count,
+        new_page_count         => $course->page_count,
+        updated_resource_count => $resource_count,
+    };
+
+    $c->render(text => encode_json($results));
 }
 
 my $OBJECT_CONFIG = {
@@ -168,10 +188,27 @@ sub _update_object_from_remote {
         $object = $class->new(dbh => $c->crp->model, serialised_data => $serialised_data);
     }
 
-warn "Create: $type $remote_object->{guid}";
-    $object->create_or_update;
+    my $as_at_date = _get_remote_date($remote_object->{last_update_date});
+    $object->create_or_update($as_at_date);
 
     return 1;
+}
+
+sub _get_remote_date {
+    my($remote_date) = @_;
+
+    if($remote_date && $remote_date =~ /^(\d{4})-(\d\d)-(\d\d)T(\d\d):(\d\d):(\d\d)$/) {
+        $remote_date = DateTime->new(
+            year       => $1,
+            month      => $2,
+            day        => $3,
+            hour       => $4,
+            minute     => $5,
+            second     => $6,
+            time_zone  => 'UTC',
+        );
+    }
+    return $remote_date;
 }
 
 sub _is_older {
@@ -202,6 +239,65 @@ sub _fetch_remote_data {
     }
 
     return $data;
+}
+
+sub _add_pages_and_modules_from_remote {
+    my $c = shift;
+    my($course, $remote_course) = @_;
+
+    my $module_set = $course->module_set;
+    foreach my $remote_module(@{$remote_course->{modules}}) {
+        my $module = CRP::Model::OLC::Module->new(guid => $remote_module->{guid}, dbh => $c->crp->model);
+        my $page_set = $module->page_set;
+        foreach my $remote_page (@{$remote_module->{pages}}) {
+            my $page = CRP::Model::OLC::Page->new(guid => $remote_page->{guid}, dbh => $c->crp->model);
+            $page_set->add_page_silently($page->id);
+        }
+        $module_set->add_module_silently($module->id);
+    }
+}
+
+sub _update_resources {
+    my $c = shift;
+    my($remote_course) = @_;
+
+    my $counter = 0;
+    foreach my $remote_module(@{$remote_course->{modules}}) {
+        foreach my $remote_page (@{$remote_module->{pages}}) {
+            foreach my $remote_component (@{$remote_page->{components}}) {
+                foreach my $remote_resource (@{$remote_component->{resources}}) {
+                    $counter += $c->_create_or_update_resource_from_remote($remote_resource);
+                }
+            }
+        }
+    }
+
+    return $counter;
+}
+
+sub _create_or_update_resource_from_remote {
+    my $c = shift;
+    my($remote_resource) = @_;
+
+    my $resource_store = CRP::Model::OLC::ResourceStore->new(c => $c);
+    my($remote_type, $remote_last_update, $remote_name) = @$remote_resource{qw(type last_update name)};
+    my $resource = $resource_store->get_resource($remote_name, $remote_type);
+
+    return 0 if -f $resource->path_name && ! _is_older($resource->mtime, $remote_last_update, "resource: $remote_name");
+
+    my $url = $c->config->{API}->{urlbase} . 'resource';
+    my $query = {
+        name => $remote_name,
+        type => $remote_type,
+        key  => $c->config->{API}->{secret},
+    };
+    $url = $c->url_for($url)->query($query);
+    my $fetcher = File::Fetch->new(uri => $url);
+    my $path_name = $fetcher->fetch(to => '/tmp') or die "Couldn't fetch '$remote_type' resource '$remote_name': " . $fetcher->error;
+    move($path_name, $resource->path_name);
+    utime $resource->mtime->epoch, $resource->mtime->epoch, $resource->path_name;
+
+    return 1;
 }
 
 
