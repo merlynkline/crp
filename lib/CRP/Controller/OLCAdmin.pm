@@ -285,19 +285,29 @@ sub _create_or_update_resource_from_remote {
 
     return 0 if -f $resource->path_name && ! _is_older($resource->mtime, $remote_last_update, "resource: $remote_name");
 
-    my $url = $c->config->{API}->{urlbase} . 'resource';
+    $c->_fetch_resource($remote_name, $remote_type);
+    $c->_fetch_resource("$remote_name.thumb.jpg", 'file/video_thumb') if $remote_type eq 'file/video';
+
+    utime $resource->mtime->epoch, $resource->mtime->epoch, $resource->path_name;
+
+    return 1;
+}
+
+sub _fetch_resource {
+    my $c = shift;
+    my($remote_name, $remote_type) = @_;
+
+    my $url = $c->url_for($c->config->{API}->{urlbase} . 'resource');
     my $query = {
         name => $remote_name,
         type => $remote_type,
         key  => $c->config->{API}->{secret},
     };
-    $url = $c->url_for($url)->query($query);
-    my $fetcher = File::Fetch->new(uri => $url);
-    my $path_name = $fetcher->fetch(to => '/tmp') or die "Couldn't fetch '$remote_type' resource '$remote_name': " . $fetcher->error;
+    my $fetcher = File::Fetch->new(uri => $c->url_for($url)->query($query));
+    my $path_name = $fetcher->fetch(to => '/tmp') or die "Couldn't fetch '$query->{type}' resource '$remote_name': " . $fetcher->error;
+    my $resource_store = CRP::Model::OLC::ResourceStore->new(c => $c);
+    my $resource = $resource_store->get_resource($remote_name, $remote_type);
     move($path_name, $resource->path_name);
-    utime $resource->mtime->epoch, $resource->mtime->epoch, $resource->path_name;
-
-    return 1;
 }
 
 
