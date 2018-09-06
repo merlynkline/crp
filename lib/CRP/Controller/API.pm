@@ -51,6 +51,18 @@ my $OBJECT_CONFIG = {
 };
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+sub resource {
+    my $c = shift;
+
+    my $type = $c->param('type');
+    my $name = $c->param('name');
+
+    my $file = CRP::Model::OLC::ResourceStore->new(c => $c)->file_path_relative_to_static($name, $type);
+    my $asset = $c->app->static->file($file);
+    $c->reply->asset($asset);
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 sub object_definition {
     my $c = shift;
 
