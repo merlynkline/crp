@@ -981,8 +981,51 @@ session:
 
 #----------------------------------------------------------------------------
 
+ Data model notes
+ ----------------
+ - Tables
+     - audit
+     - course
+        - Instances of parent courses being advertised by instructors
+        - course_type_id gets details from course_type
+        - course_type.code controls choice of booking form and poster PDFs
+     - course_type
+        - Description of parent and instructor courses
+     - dbix_class_deploymenthandler_version
+     - enquiry
+     - instructor_qualification
+        - Instances of qualifications that have been or are being earned by instructors
+     - instructors_course
+        - Instances of instructor courses being advertised by instructor trainers
+        - course_type_id gets details from course_type
+     - login
+     - olc_component
+     - olc_course
+     - olc_course_module_link
+     - olc_module
+     - olc_module_page_link
+     - olc_page
+     - olc_student
+     - premium_authorisation
+     - premium_cookie_log
+     - professional
+        - Details of TCRP professionals that have pro qualifications
+     - profile
+     - qualification
+        - Details of qualifications that an instructor can earn
+        - olccodes link to on line courses that are associated witht he qualification
+     - session
+
+#----------------------------------------------------------------------------
+
  Workflow notes
  --------------
+
+ - Get olc video resources out to live server
+    # su - crp
+    $ cd crp
+    $ rsync -vzt merlyn@home.binary.co.uk:crp/public/olc/video-thumbs/uploaded/* public/olc/video-thumbs/uploaded
+    $ rsync -vtz merlyn@home.binary.co.uk:crp/videos/olc/uploaded/* videos/olc/uploaded
  - DB changes:
     + Modify lib/CRP/Model/Schema/Result/*
     + Update version number in lib/CRP/Model/Schema.pm
@@ -1161,6 +1204,11 @@ Vultr setup:
         $ cd ssl
         $ scp merlyn@home.binary.co.uk:crp/ssl/kidsreflex.co.uk.crt .
         $ scp merlyn@home.binary.co.uk:crp/ssl/kidsreflex.co.uk.key .
+        $ mkdir -p videos/olc/uploaded
+        $ mkdir -p public/olc/video-thumbs/uploaded
+        $ mkdir -p public/olc/images/uploaded
+        $ mkdir -p pdfs/olc/uploaded
+
     # su - postgres -c "psql -U crp -c \"insert into login (email, password_hash, is_administrator) values ('sue@susanquayle.co.uk', '3800ae146dae50e2ea10f45020952391', true);\"" # Create initial account with password "Wordpass1" - change ASAP!
     # Get vultr to remove port 25 block
     # dpkg-reconfigure exim4-config
