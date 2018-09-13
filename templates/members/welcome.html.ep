@@ -1,5 +1,8 @@
 %#<!DOCTYPE html>
-% layout 'member_default', page_id => 'members';
+%
+% my $can_put_on_courses = scalar @{stash('available_course_types')};
+%
+% layout 'member_default', page_id => 'members', cannot_put_on_courses => ! $can_put_on_courses;
 % title 'Control panel';
 % my $profile = stash('profile_record');
 % my $personal_url = url_for('crp.membersite.home', slug => $profile_record->web_page_slug)->to_abs;
@@ -32,6 +35,7 @@
 <table align="right">
     <tr>
         <td align="center" valign="top">
+            % if ($can_put_on_courses) {
             <table class="list1">
                 <tr>
                     <th colspan="2">Course summary</th>
@@ -40,6 +44,7 @@
                 %= $contact_row_block->('Advertised', stash('advertised_courses_count') || 'None');
                 %= $contact_row_block->('Past', stash('past_courses_count') || 'None');
             </table>
+            % }
             % if (stash 'is_administrator') {
             <span class="highlight-box">
                 You are an admin:
@@ -111,7 +116,7 @@
     </tr>
 </table>
 <div style="width: 620px">
-    % if(stash('draft_courses_count') + stash('advertised_courses_count') + stash('past_courses_count') == 0) {
+    % if($can_put_on_courses && stash('draft_courses_count') + stash('advertised_courses_count') + stash('past_courses_count') == 0) {
     <p>
     Welcome to the members area. This section of the site is exclusive to qualified instructors
     and provides you with all the support you need to run and advertise your courses.
@@ -127,6 +132,7 @@
         % }
     </table>
     % }
+ % if ($can_put_on_courses) {
     <p>
     % if(stash 'incomplete_profile') {
     <div class="member-option-highlight">
@@ -149,53 +155,53 @@
         <br />
         <a href="<%= url_for 'crp.members.profile' %>" class="standard-button">Profile</a>
     </div>
-</span>
+    % }
+    % if(stash('advertised_courses_count') == 0) {
+    <div class="member-option-highlight">
+        <div>Courses</div>
+        You don't have any courses advertised!
+        Add your courses to advertise them here and to get access to bespoke stationery
+        in the form of PDFs you can download and print.
+        To add and edit your courses use the <span>Courses</span> menu option or click
+        <br />
+        <br />
+        <a href="<%= url_for 'crp.members.courses' %>" class="standard-button">Courses</a>
+    </div>
+    % }
+    <div class="member-option-highlight">
+        <div>Documents</div>
+        Personalised bespoke stationery is available with all your details filled
+        in for you. Just download the PDFs and print them out.
+        Stationery specific to individual courses
+        is available through the <span>Courses</span> menu option. For other
+        documents use the <span>Documents</span> menu option or click
+        <br />
+        <br />
+        <a href="<%= url_for('crp.members.page', page => 'pdf') %>" class="standard-button">Documents</a>
+    </div>
+    <div class="member-option-highlight">
+        <div>Shop</div>
+        We have an ever-growing range of fun and useful things you may want or need.
+        These range from the Parent/Carer packs you need to run courses through
+        extra laminates and other teaching materials to merchandise for you to
+        use or sell. Use the <span>Shop</span> menu option to see what's available
+        or click
+        <br />
+        <br />
+        <a href="<%= url_for 'crp.members.page', page => 'shop' %>" class="standard-button">Shop</a>
+    </div>
+    <div class="member-option-highlight">
+        <div>Enquiries</div>
+        Parents and carers can register with us to be notified when courses start
+        in their area. You can find out if we have any enquiries in a particular
+        area, which is useful when planning courses. Use the <span>Enquiries</span>
+        menu option or click
+        <br />
+        <br />
+        <a href="<%= url_for 'crp.members.find_enquiries' %>" class="standard-button">Enquiries</a>
+    </div>
+    </p>
 % }
-% if(stash('advertised_courses_count') == 0) {
-<div class="member-option-highlight">
-    <div>Courses</div>
-    You don't have any courses advertised!
-    Add your courses to advertise them here and to get access to bespoke stationery
-    in the form of PDFs you can download and print.
-    To add and edit your courses use the <span>Courses</span> menu option or click
-    <br />
-    <br />
-    <a href="<%= url_for 'crp.members.courses' %>" class="standard-button">Courses</a>
-</div>
-% }
-<div class="member-option-highlight">
-    <div>Documents</div>
-    Personalised bespoke stationery is available with all your details filled
-    in for you. Just download the PDFs and print them out.
-    Stationery specific to individual courses
-    is available through the <span>Courses</span> menu option. For other
-    documents use the <span>Documents</span> menu option or click
-    <br />
-    <br />
-    <a href="<%= url_for('crp.members.page', page => 'pdf') %>" class="standard-button">Documents</a>
-</div>
-<div class="member-option-highlight">
-    <div>Shop</div>
-    We have an ever-growing range of fun and useful things you may want or need.
-    These range from the Parent/Carer packs you need to run courses through
-    extra laminates and other teaching materials to merchandise for you to
-    use or sell. Use the <span>Shop</span> menu option to see what's available
-    or click
-    <br />
-    <br />
-    <a href="<%= url_for 'crp.members.page', page => 'shop' %>" class="standard-button">Shop</a>
-</div>
-<div class="member-option-highlight">
-    <div>Enquiries</div>
-    Parents and carers can register with us to be notified when courses start
-    in their area. You can find out if we have any enquiries in a particular
-    area, which is useful when planning courses. Use the <span>Enquiries</span>
-    menu option or click
-    <br />
-    <br />
-    <a href="<%= url_for 'crp.members.find_enquiries' %>" class="standard-button">Enquiries</a>
-</div>
-</p>
 <br clear="left" />
 % if(@{stash('instructors_trained')}) {
 <table class="list1" style="width: 585px; margin: 0;">
@@ -213,6 +219,8 @@
     % }
 % }
 </table>
+% if ($can_put_on_courses) {
 Your personal web site is at <a href="<%= $personal_url %>"><%= $personal_url %></a>.
+% }
 </div>
 <br clear="all" />

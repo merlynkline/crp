@@ -250,6 +250,13 @@ sub welcome {
 sub set_password {
     my $c = shift;
 
+    my $profile = $c->crp->load_profile;
+    my $available_course_count = 0;
+    foreach my $qualification($profile->qualifications) {
+        $available_course_count += $qualification->qualification->course_types->count;
+    }
+    $c->stash('cannot_put_on_courses', $available_course_count == 0);
+
     if($c->req->method ne 'POST') {
         my $reason = '';
         $reason = 'NOT_SET' if ! $c->stash('login_record')->password_hash;

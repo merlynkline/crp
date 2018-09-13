@@ -18,6 +18,7 @@ sub welcome {
     $c->stash(draft_courses_count       => $profile->courses->get_draft_set->count);
     $c->stash(advertised_courses_count  => $profile->courses->get_advertised_set($days)->count);
     $c->stash(past_courses_count        => $profile->courses->get_past_set($days)->count);
+    $c->stash(available_course_types    => $c->_available_course_types($profile));
     $c->stash(is_administrator          => $profile->login->is_administrator);
     $c->stash(instructors_trained       => [ $c->crp->model('InstructorQualification')->search({trainer_id => $profile->instructor_id}, {order_by => 'passed_date'}) ]);
 }

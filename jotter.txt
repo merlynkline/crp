@@ -7,10 +7,16 @@
     ~ Get the course description from remote
     ~ Update/add any objects that need it. Most don't have IDs in (because they're in the link tables) but components are an exception
     ~ Reconstruct the course from scratch: removing all pages from modules and all modules from the course, then reconstructing, should be easy enough. Components will be slightly more difficult.
+        + Remove all components from each page and rebuild?
     ~ Get updates for any resources used in the course that are new/out of date
         ~ Get thumbnails for videos
     + Remove any orphaned components (might have happened anyway), pages, modules
     + Remove any orphaned resources
+
+~ Remove most menu items for olc-only users of tcrp system
++ Provide a help page for olc to say how to use it
++ After uploading a resource, if it had the same name as an existing one, offer to over write
++ Admin page to list all unused resources and offer to delete (some of) them
 
 
 ~ Get OLC out to live

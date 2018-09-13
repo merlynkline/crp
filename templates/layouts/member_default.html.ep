@@ -1,17 +1,29 @@
 %#<!DOCTYPE html>
 <%
+    my $can_put_on_courses = ! stash('cannot_put_on_courses');
+
     my $left_nav_menu = [
         ['members',   '/instructor',                'Home'],
-        ['courses',   'crp.members.courses',        'Courses'],
-        ['pdfs',      'crp.members.page:page:pdf',  'Documents'],
-        ['enquiries', 'crp.members.find_enquiries', 'Enquiries'],
-        ['calculator','crp.members.page:page:calc', 'Calculator'],
-        ['profile',   'crp.members.profile',        'Profile'],
-        ['password',  'crp.set_password',           'Password'],
-        ['shop',      'crp.members.page:page:shop', 'Shop'],
-        ['faqs',      'crp.members.faqs',           'Help/FAQs'],
+    ];
+    if($can_put_on_courses) {
+        push(@$left_nav_menu,
+            ['courses',   'crp.members.courses',        'Courses'],
+            ['pdfs',      'crp.members.page:page:pdf',  'Documents'],
+            ['enquiries', 'crp.members.find_enquiries', 'Enquiries'],
+            ['calculator','crp.members.page:page:calc', 'Calculator'],
+            ['profile',   'crp.members.profile',        'Profile'],
+        );
+    }
+    push(@$left_nav_menu, ['password',  'crp.set_password',           'Password']);
+    if($can_put_on_courses) {
+        push(@$left_nav_menu,
+            ['shop',      'crp.members.page:page:shop', 'Shop'],
+            ['faqs',      'crp.members.faqs',           'Help/FAQs'],
+        );
+    };
+    push(@$left_nav_menu,
         ['home',      '/',                          'Main site'],
         ['logout',    '/logout',                    'Log out'],
-    ];
+    );
 =%>
 %= include 'layouts/parts/main', left_nav_menu => $left_nav_menu, members_area => 1;
