@@ -1,0 +1,23 @@
+%#<!DOCTYPE html>
+% layout 'default', heading => "Taking online courses";
+% title "Taking online courses";
+<img src="<%= url_for '/images/Animals/Owl.jpg' %>" class="page-logo">
+<p>
+Online courses at kidsreflex are very easy to use. Each course may contain one or more modules, each of which may contain one or more pages. Each page shows you what you need to learn for that part of the course and may be made up of text, pictures, videos, downloadable documents and other materials. All you need to do is read the text on each page, and watch any videos that are shown, following any instructions you are given. Some pages might have questions on them that you need to answer and in some cases you might need to wait for your tutor check your answer before you can proceed. Once you have finished each page, just click the button at the bottom of the page to move on to the next one.
+</p>
+<p>
+At the top of every page is a simple control panel that shows you how you are getting on with the course and lets you move through it so you can review any pages you’ve already completed if you wish. The control panel looks like this:
+</p>
+<center><img src="<%= url_for '/images/olc-controls.png' %>"></center>
+<p>
+<p>
+The various parts of this control bar are as follows:
+</p>
+<ul>
+    <li><strong>Course title</strong> shows the title of the course you are working on. You can click this to go back to the start of the course. Many courses have an index on the first page which allows you to click through to any other page provided you have complete all the preceding pages.</li>
+    <li><strong>Module title</strong> shows the title of the module you are working in, You can click this to go back to the start of the module. Many modules have a clickable index at the start too.</li>
+    <li><strong>Page title</strong> shows the title of the current page.</li>
+    <li>Your name and email address are shown on the top right to confirm that you are logged in to the right account, along with a button that lets you log out when you are finished.</li>
+    <li>The progress bar shows where you are in the course. The green section on the left indicates how much of the course you have completed and the darker section within it shows where the current page is. Beside the bar are buttons that let you move through the course: <strong>[&lt;&lt;]</strong> takes you back to the beginning, <strong>[&lt;]</strong> takes you back to the previous page, <strong>[&gt;]</strong> takes you to the next page provided it is one you have looked at before, and <strong>[&gt;&gt;]</strong> takes you to the last page you have worked on, so you can continue from where you left off.</li>
+</ul>
+When you have completed the course, there will be an extra section in the control panel with a link to a page where you can download the certificate. You can still look at all the other pages so you can review the material at any time and see any new material that might be provided in updates after you have finished. 

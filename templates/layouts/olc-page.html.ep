@@ -42,6 +42,7 @@ function olcToggleModuleIdxContainer(moduleId) {
                             <strong><%= $student->{name} %></strong>
                             <div class="olc-nav-button"><span><a href="<%= url_for 'crp.olc.logout' %>">Log out</a></span></div><br />
                             <%= $student->{email} %><br />
+                            <a href="<%= url_for '/page/olchelp' %>" target="_blank"><img src="<%= url_for '/images/Buttons/help1.png' %>" style="width: 15px; height: 15px;"></a>
                             % if($include_nav_bar) {
                             <%= $nav_button->(1, $is_first_page, '<<'); =%>
                             <%= $nav_button->($page_index - 1, $is_first_page, '<'); =%>
