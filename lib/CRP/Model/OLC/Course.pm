@@ -100,11 +100,11 @@ sub page_id_from_page_index {
     return $module_page;
 }
 
-sub remove_all_pages_and_modules_silently {
+sub remove_all_components_pages_and_modules_silently {
     my $self = shift;
 
     foreach my $module (@{$self->module_set->all}) {
-        $module->remove_all_pages_silently;
+        $module->remove_all_components_and_pages_silently;
     }
     $self->module_set->clear_silently;
 }

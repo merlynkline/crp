@@ -13,7 +13,7 @@ use constant {
 
 has '+_db_record' => (handles => _DB_FIELDS);
 
-has component_set => (is => 'ro', lazy => 1, builder => '_build_component_set', init_arg => undef);
+has component_set => (is => 'ro', lazy => 1, builder => '_build_component_set', init_arg => undef, handles => {remove_all_components_silently => 'delete_all'});
 
 override view_data => sub {
     my $self = shift;

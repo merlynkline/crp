@@ -15,7 +15,7 @@ use constant {
 
 has '+_db_record' => (handles => _DB_FIELDS);
 
-has page_set    => (is => 'ro', lazy => 1, builder => '_build_page_set', init_arg => undef, handles => {remove_all_pages_silently => 'clear_silently'});
+has page_set    => (is => 'ro', lazy => 1, builder => '_build_page_set', init_arg => undef);
 
 override view_data => sub {
     my $self = shift;
@@ -50,6 +50,15 @@ sub has_page {
 
     my $page_id = $page->id;
     return List::Util::any {$_->id eq $page_id} @{$self->page_set->all};
+}
+
+sub remove_all_components_and_pages_silently {
+    my $self = shift;
+
+    foreach my $page (@{$self->page_set->all}) {
+        $page->remove_all_components_silently;
+    }
+    $self->page_set->clear_silently;
 }
 
 sub _build_page_set {
