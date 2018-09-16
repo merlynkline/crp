@@ -8,7 +8,7 @@
             <div class="field-extra-info">This is the main text of the question presented to the user.</div>
         </label>
         <div class="input-container">
-            %= text_field 'prompt', id => 'prompt', value => $component->{prompt}, maxlength => 50, size => 50;
+            %= text_field 'prompt', id => 'prompt', value => $component->{prompt}, maxlength => 500, size => 50;
             <%= include 'parts/error', field => 'prompt' %>
         </div>
 
