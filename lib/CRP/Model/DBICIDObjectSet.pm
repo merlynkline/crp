@@ -83,6 +83,18 @@ sub delete {
     $self->_clear_cache;
 }
 
+sub delete_all {
+    my $self = shift;
+
+    my @ids = @{$self->_ids};
+    foreach my $id (@ids) {
+        $self->_resultset->find($id)->delete;
+    }
+    $self->_clear_cache;
+
+    return;
+}
+
 __PACKAGE__->meta->make_immutable;
 
 1;

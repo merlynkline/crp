@@ -125,8 +125,8 @@ sub remote_update {
     my $old_module_count = $course->module_count;
     my $old_page_count   = $course->page_count;
 
-    $course->remove_all_pages_and_modules_silently;
-    $c->_add_pages_and_modules_from_remote($course, $remote_course);
+    $course->remove_all_components_pages_and_modules_silently;
+    $c->_add_components_pages_and_modules_from_remote($course, $remote_course);
 
     my $resource_count = $c->_update_resources($remote_course);
 
@@ -241,7 +241,7 @@ sub _fetch_remote_data {
     return $data;
 }
 
-sub _add_pages_and_modules_from_remote {
+sub _add_components_pages_and_modules_from_remote {
     my $c = shift;
     my($course, $remote_course) = @_;
 
@@ -251,6 +251,10 @@ sub _add_pages_and_modules_from_remote {
         my $page_set = $module->page_set;
         foreach my $remote_page (@{$remote_module->{pages}}) {
             my $page = CRP::Model::OLC::Page->new(guid => $remote_page->{guid}, dbh => $c->crp->model);
+            my $component_set = $page->component_set;
+            foreach my $remote_component (@{$remote_page->{components}}) {
+                $c->_update_object_from_remote(undef, $remote_component, 'component');
+            }
             $page_set->add_page_silently($page->id);
         }
         $module_set->add_module_silently($module->id);
