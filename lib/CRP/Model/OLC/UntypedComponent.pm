@@ -2,7 +2,6 @@ package CRP::Model::OLC::UntypedComponent;
 use Moose;
 use namespace::autoclean;
 
-package CRP::Model::OLC::UntypedComponent;
 use Mojo::JSON qw(decode_json encode_json);
 
 extends 'CRP::Model::DBICIDObject';
