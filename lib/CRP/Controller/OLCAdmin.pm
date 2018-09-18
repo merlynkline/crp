@@ -256,8 +256,10 @@ sub _add_components_pages_and_modules_from_remote {
             try { $page = CRP::Model::OLC::Page->new(guid => $remote_page->{guid}, dbh => $c->crp->model); };
             $page = $c->_update_object_from_remote($page, $remote_page, 'page');
             my $component_set = $page->component_set;
-            foreach my $remote_component (@{$remote_page->{components}}) {
-                $c->_update_object_from_remote(undef, $remote_component, 'component');
+            if(@{$component_set->all} == 0) {
+                foreach my $remote_component (@{$remote_page->{components}}) {
+                    $c->_update_object_from_remote(undef, $remote_component, 'component');
+                }
             }
             $page_set->add_page_silently($page->id);
         }
