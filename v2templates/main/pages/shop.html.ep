@@ -4,6 +4,7 @@
 %
 % my $products = [
 %   {
+%       unavailable => 1,
 %       button_id   => 'KUN8BJHHL94VW',
 %       price       => '22.50',
 %       title       => 'Plush Mouse toy',
@@ -82,6 +83,7 @@ click any **View Cart** button when you've finished or to change your order.
 <table>
     % foreach my $product (@$products) {
     %   next unless $product->{button_id};
+    %   next if $product->{unavailable};
     %= include 'main/parts/shop_code', product => $product;
     % }
 </table>
