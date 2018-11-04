@@ -1,0 +1,19 @@
+%#<!DOCTYPE html>
+% layout 'member_default', heading => 'Admin: Overwrite uploaded file', page_id => 'admin';
+%= include 'o_l_c_admin/component/editor/parts/page_start', component_name => 'component';
+%= form_for 'crp.olcadmin.component.do_overwrite' => (method => 'POST') => begin
+
+<div class="display-box" style="padding: 8px;">
+    <p>Your uploaded file has been renamed to '<strong><%= $actual_name %></strong>' because there is already a file called '<%= $requested_name %>'.</p>
+    <p>You can choose to do one of:
+    <table>
+        <tr><td nowrap><a href="<%= url_for('crp.olcadmin.page.edit')->query(page_id => $olc_page_id, module_id => $olc_module_id, course_id => $olc_course_id, component_id => $olc_component_id) %>" class="standard-button">Keep both</a>&nbsp;</td><td>Keep the old file as well as keeping this new one with the name '<%= $actual_name %>', so you can use the two different files in different places.</td></tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr><td><%= submit_button 'Overwrite' %>&nbsp;</td><td>Overwrite the old file with this new one, keeping the name '<%= $requested_name %>', so this new file will appear wherever the old file is already in use.</td></tr>
+    </table>
+    </p>
+    <img src="<%= url_for '/images/Plants/LavenderHorizontal2.png' %>" style="display: block; margin: 0 auto;" />
+</div>
+
+
+% end
