@@ -191,7 +191,7 @@ sub _update_object_from_remote {
     my $as_at_date = _get_remote_date($remote_object->{last_update_date});
     $object->create_or_update($as_at_date);
 
-    return 1;
+    return $object;
 }
 
 sub _get_remote_date {
@@ -247,13 +247,19 @@ sub _add_components_pages_and_modules_from_remote {
 
     my $module_set = $course->module_set;
     foreach my $remote_module(@{$remote_course->{modules}}) {
-        my $module = CRP::Model::OLC::Module->new(guid => $remote_module->{guid}, dbh => $c->crp->model);
+        my $module;
+        try { $module = CRP::Model::OLC::Module->new(guid => $remote_module->{guid}, dbh => $c->crp->model) };
+        $module = $c->_update_object_from_remote($module, $remote_module, 'module');
         my $page_set = $module->page_set;
         foreach my $remote_page (@{$remote_module->{pages}}) {
-            my $page = CRP::Model::OLC::Page->new(guid => $remote_page->{guid}, dbh => $c->crp->model);
+            my $page;
+            try { $page = CRP::Model::OLC::Page->new(guid => $remote_page->{guid}, dbh => $c->crp->model); };
+            $page = $c->_update_object_from_remote($page, $remote_page, 'page');
             my $component_set = $page->component_set;
-            foreach my $remote_component (@{$remote_page->{components}}) {
-                $c->_update_object_from_remote(undef, $remote_component, 'component');
+            if(@{$component_set->all} == 0) {
+                foreach my $remote_component (@{$remote_page->{components}}) {
+                    $c->_update_object_from_remote(undef, $remote_component, 'component');
+                }
             }
             $page_set->add_page_silently($page->id);
         }
