@@ -1,0 +1,19 @@
+{
+    version => 1,
+    filename => 'Quick Reference guide',
+    items => [
+        {
+            action  => 'text',
+            text    => 'Printed with permission by [% name %] [% email %]',
+            x       => 404,
+            y       => 27,
+            size    => 8,
+            align   => 'right',
+            page    => 'all',
+        },
+    ],
+    repeats => [
+        { x_offset =>   0, y_offset => 0 },
+        { x_offset => 421, y_offset => 0 },
+    ]
+}
