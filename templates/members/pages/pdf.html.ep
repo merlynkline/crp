@@ -63,8 +63,8 @@ in order to view and print them.
 % $pdf->('members/feedback_form', "Generic feedback form for your trainees to fill in");
 % $pdf->('members/feedback_form_A5', "Generic feedback form in A5 format for A4 paper");
 % $pdf->('members/Gift voucher log', "Log sheet to manage gift vouchers");
-% $pdf->('members/MYMOP_Initial', "MYMOP initial data collection form");
-% $pdf->('members/MYMOP_Follow_up', "MYMOP follow up collection form");
+%# $pdf->('members/MYMOP_Initial', "MYMOP initial data collection form");
+%# $pdf->('members/MYMOP_Follow_up', "MYMOP follow up collection form");
 % $pdf->('members/Invoice', "Blank, numbered invoice");
 
 % if($quals{'TCRP-AN'}) {
@@ -81,6 +81,8 @@ in order to view and print them.
 
 <div class="pdf-separator">Other<br />documents</div>
 
-% $pdf->('membership_certificate', "Your current membership certificate");
+%# $pdf->('membership_certificate', "Your current membership certificate");
 % $pdf->('members/IDCard', "Identity cards suitable for Avery C32011, C32016, and similar card stock");
-
+% $pdf->('members/Quick Reference (single sided)', 'Quick Reference Guide for single-sided printing only');
+% $pdf->('members/Quick Reference (double sided)', 'Quick Reference Guide for double-sided printing only');
+% $pdf->('members/QuickRef ProtocolsA4', 'Quick Reference Guide protocol sheets');
