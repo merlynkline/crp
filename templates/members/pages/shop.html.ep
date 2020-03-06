@@ -87,7 +87,10 @@ change your order.
 </p></p>
 <p>
 <table>
-    % $standard_item->('GBZ5DAZ4S6WEE', [], '£22.50', "Plush Mouse toy", 329, 374, '/images/Photos/MouseToy.jpg', "Handmade plush Mouse toy with solar plexus reflex. Approximately 19cm high, not including ears!");
+    %# $standard_item->('GBZ5DAZ4S6WEE', [], '£22.50', "Plush Mouse toy", 329, 374, '/images/Photos/MouseToy.jpg', "Handmade plush Mouse toy with solar plexus reflex. Approximately 19cm high, not including ears!");
+    % $standard_item->('FV7LP86EVE45U', [], '£8.50', "Book - The Mouse's House", 300, 210, '/images/Books/TMH800.jpg', "Hardback copy of the book that started it all - The Mouse's House.");
+    % $standard_item->('BMDNWZ87CYLMA', [], '£8.50', "Book - Mouse's Best Day Ever", 300, 210, '/images/Books/MBDE800.jpg', "Hardback copy of the second book - Mouse's Best Day Ever.");
+    % $standard_item->('ZNANRDHFZ8BV4', [], '£8.50', "Book - Mouse And The Storm", 300, 210, '/images/Books/MATS800.jpg', "Hardback copy of the third book - Mouse And The Storm. This one has hand reflexology.");
     % $standard_item->('BBRFSJEDVLNNL', ['TCRP', 'TCRP-REFLEX'], '£15.00', "Parent/Carer's pack", 400, 208, '/images/Photos/ParentPack.JPG', "Everything you need for one parent or carer on one of your courses. Includes a complete set of protocol handouts, a certificate for you to give out on completion and a copy of the book, The Mouse's House.");
     % $standard_item->('ABHQLP6JMLEG4', ['TCRP-AN'], '£15.00', "Additional Needs Parent/Carer's pack", 400, 208, '/images/Photos/ANParentPack.JPG', "Everything you need for one parent or carer on one of your Additional Needs courses. Includes a complete set of protocol handouts, a certificate for you to give out on completion and a copy of the book, Mouse and the Storm.");
     % $standard_item->('5ADBUNCF24AD8', ['INST-TRAIN-AN'], '£100.00', "Instructor AN Instructor pack", 400, 243, '/images/Photos/ANInstructorPack.jpg', "Everything you need to train an existing TCRP instructor to be a TCRP AN Instructor. Includes a complete set of protocol handouts, teaching posters, training manual, spare parent certificates and a copy of the book, Mouse and the Storm.");
