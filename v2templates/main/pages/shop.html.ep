@@ -4,6 +4,22 @@
 %
 % my $products = [
 %   {
+%       unavailable => 0,
+%       button_id   => 'B2GPW2LAHPUS4',
+%       price       => '11.99',
+%       title       => 'Signed book: Mouse and the Yule Log Ball',
+%       images      => ['Photos/Shop/MYLB.jpg'],
+%       description => 'Mouse is fast asleep in her cosy nest dreaming of spring. Meanwhile all her friends are making preparations to celebrate the Solstice, the longest night of the year. Join Mouse and all her friends for a magical Winter Solstice in this lovely Christmas story from award winning children\'s reflexologist and author Susan Quayle. One story in three parts, to give your child a different reflexology treatment over the Christmas holiday; one for Christmas Eve, Christmas Day and Boxing Day</p><p class="extra-info">A signed copy of the book - Mouse and the Yule Log Ball</p>',
+%   },
+%   {
+%       unavailable => 0,
+%       button_id   => 'NGXPXYVZ5ZVTY',
+%       price       => '16.99',
+%       title       => 'Signed book and bundle: Mouse and the Yule Log Ball',
+%       images      => ['Photos/Shop/MYLBBundle.jpg'],
+%       description => 'The lovely book Mouse and the Yule Log Ball (see above) bundled with a collection of specially made themed extras including stickers, bookmarks, seasonal greetings cards and affirmation cards. This is a very limited production made available on a first come, first served basis.</p><p class="extra-info">A signed copy of the book - Mouse and the Yule Log Ball - bundled with lots of extras</p>',
+%   },
+%   {
 %       unavailable => 1,
 %       button_id   => 'KUN8BJHHL94VW',
 %       price       => '22.50',
@@ -37,14 +53,14 @@
 %       price       => '11.99',
 %       title       => 'Signed book: Mouse\'s Best Day Ever',
 %       images      => ['Books/MBDE800.jpg'],
-%       description => 'Mouse and Mole head to Squirrel\'s tree for tea, but as the weather turns stormy they have to find shelter. Will the rain and wind dampen their day? Join them as they find fun and laughter and have the best day ever.</p><p class="extra-info">A signed copy - Mouse\'s Best Day Ever.',
+%       description => 'Mouse and Mole head to Squirrel\'s tree for tea, but as the weather turns stormy they have to find shelter. Will the rain and wind dampen their day? Join them as they find fun and laughter and have the best day ever.</p><p class="extra-info">A signed copy of the book - Mouse\'s Best Day Ever.',
 %   },
 %   {
 %       button_id   => 'JRUTDTZKFPKCN',
 %       price       => '11.99',
 %       title       => 'Signed book: Mouse and the Storm',
 %       images      => ['Books/MATS800.jpg'],
-%       description => 'Mouse and her animal friends are rudely disrupted from the comfort of their homes by a big storm! Waking up far away, together they must find their way back home, despite feeling scared and lost.</p><p class="extra-info">Signed book - Mouse and the Storm. This book contains hand reflexology',
+%       description => 'Mouse and her animal friends are rudely disrupted from the comfort of their homes by a big storm! Waking up far away, together they must find their way back home, despite feeling scared and lost.</p><p class="extra-info">A signed copy of the book - Mouse and the Storm. This book contains hand reflexology',
 %   },
 %   {
 %       button_id   => '9GSSC6H699BAS',
