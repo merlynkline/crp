@@ -3,14 +3,15 @@
     my $left_nav_menu = [
         ['home',      '/',                    'Home'],
         ['parents',   '/page/parents',        'Parents'],
-        ['pro',       '/page/professionals',  'Professionals'],
+#        ['pro',       '/page/professionals',  'Professionals'],
         ['tutors',    'crp.instructors',      'Instructors'],
-        ['reflex',    '/page/reflexologists', 'Reflexologists'],
+#        ['reflex',    '/page/reflexologists', 'Reflexologists'],
 #        ['press',     '/page/press',          'Press'],
         ['aboutme',   '/page/aboutme',        'About me'],
         ['books',     '/page/books',          'Books'],
         ['shop',      '/page/shop',           'Shop'],
         ['contact',   '/page/contact',        'Contact'],
+        ['affirm',    '/page/affirm',         'Affirmations'],
     ];
     if(stash 'logged_in') {
         push @$left_nav_menu, ['members',   '/instructor',     'Members'];

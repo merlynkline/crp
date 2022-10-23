@@ -28,13 +28,6 @@
 %       description => 'Plush Mouse toy with solar plexus reflex. Approximately 19cm high, not including ears!</p><p class="extra-info">Handmade in Cornwall by a mum, supporting our ethos of working with mums in business',
 %   },
 %   {
-%       button_id   => 'WAKNLYT42EKBN',
-%       price       => '5.00',
-%       title       => 'Felt Mouse Finger Puppet',
-%       images      => ['Photos/Shop/FingerMouse1.jpg'],
-%       description => 'Handmade Finger Puppet of Mouse complete with solar plexus pink swirl, pink ears and tail.',
-%   },
-%   {
 %       button_id   => '75USYZV2VQBAW',
 %       price       => '12.99',
 %       title       => 'Pair of Soft Foam Feet',

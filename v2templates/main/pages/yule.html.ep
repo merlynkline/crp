@@ -1,0 +1,36 @@
+%#<!DOCTYPE html>
+% layout 'default', heading => "Mouse and the Yule Log Ball", description => "An interactive children's reflexology book by Susan Quayle";
+% title "Mouse and the Yule Log Bal";
+%
+% my $products = [
+%   {
+%       button_id   => 'WAKNLYT42EKBN',
+%       price       => '5.00',
+%       title       => 'Mouse and the Yule Log Ball',
+%       images      => ['Photos/Shop/FingerMouse1.jpg'],
+%       description => 'The book.',
+%   },
+% ];
+<script src="<%= url_for '/js/ScrollBox.js' %>"></script>
+<p markdown="yes" class="page-intro">
+<%== stash('description') %>
+</p>
+
+<p markdown="yes">
+%= markdown begin
+The exciting new book.
+
+To order, just click the **Add to Cart** button for each item you want and
+click any **View Cart** button when you've finished or to change your order.
+% end
+</p>
+
+<p>
+<table>
+    % foreach my $product (@$products) {
+    %   next unless $product->{button_id};
+    %   next if $product->{unavailable};
+    %= include 'main/parts/shop_code', product => $product;
+    % }
+</table>
+</p>
