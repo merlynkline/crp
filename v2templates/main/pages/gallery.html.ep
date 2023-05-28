@@ -37,7 +37,6 @@
 %    "Course21-360.jpg",
 %    "Course23-360.jpg",
 %    "Course16-360.jpg",
-%    "Course3.jpg",
 % ];
 <div style="width: 1%; margin: 0 auto;">
 %= include 'main/parts/loves_button'
