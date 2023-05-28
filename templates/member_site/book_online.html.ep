@@ -89,16 +89,12 @@ if you prefer.
     <div class="input-container">
         %= text_field '080_postcode', id => '080_postcode', size => 8;
     </div>
-    <label>How would you like to pay?</label>
+    <label>Please pay at time of booking to secure your place</label>
     <div class="input-container" style="margin-top: 0">
         &nbsp;&nbsp;PayPal
         %= radio_button '090_pay' => 'PayPal', id => '090_pay_paypal';
         &nbsp;&nbsp;BACS
         %= radio_button '090_pay' => 'BACS', id => '091_pay_bacs';
-        &nbsp;&nbsp;Cheque
-        %= radio_button '090_pay' => 'Cheque', id => '092_pay_cheque';
-        &nbsp;&nbsp;Cash
-        %= radio_button '090_pay' => 'Cash', id => '093_pay_cash';
     </div>
 
     <br clear="left" /><br /><strong>About your child</strong><br />

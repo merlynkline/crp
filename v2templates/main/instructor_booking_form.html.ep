@@ -30,16 +30,19 @@ soon as possible to confirm your place on a course. We are really looking forwar
 to meeting you and welcoming you to the exciting and empowering world of The
 Children&apos;s Reflexology Programme!
 
-The three-day course is open to everyone. In particular, you do not need to be a
+This course offers 'Life Time Access' and can be completed in your own time, as quickly
+as twelve weeks or as long as it takes you. This applies if you are a reflexologist or
+not a reflexologist.
+The three-day, in person, course is open to everyone. In particular, you do not need to be a
 qualified reflexologist, nor any other type of therapist, in order to do this course.
-There is also an occasional CPD-approved
-[two-day course for qualified relexologists only](<%= url_for 'crp.page', page => 'reflexologists' %>).
-Qualified reflexologists are also welcome to attend the last two days of the
+There is also a CPD-approved
+[two-day, in person, course for qualified relexologists only](<%= url_for 'crp.page', page => 'reflexologists' %>).
+Qualified reflexologists are also welcome to attend the last day of the
 three-day non-reflexologist&apos;s course, which have identical
 content and delivery, for the price of the two-day course. Please indicate on the booking
 form if you wish to do this.
 
-The fee for the course is £595 or £495 for the two-day reflexologist&apos;s course.
+The fee for the course is £ for the two-day reflexologist&apos;s course.
 This includes all your tuition and training materials, access to all our on-line
 facilities and enough teaching materials to run at least one course earning £300 or more.
 You will be required to pay a non-refundable deposit of £100 to

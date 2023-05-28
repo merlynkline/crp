@@ -40,7 +40,7 @@
         
         {
             action  => 'text',
-            text    => 'At [% venue %] with [% name %].',
+            text    => 'At [% venue %] with [% name %] starting [% date %].',
             x       => 297.64,
             y       => 382,
             size    => 16,
@@ -48,7 +48,7 @@
         },
         {
             action  => 'text',
-            text    => '[% course_duration %] starting [% date %] at [% time %] for [% session_duration %] - [% price %]',
+            text    => '[% course_duration %] at [% time %] for [% session_duration %] - [% price %]',
             x       => 297.64,
             y       => 366,
             size    => 12,
