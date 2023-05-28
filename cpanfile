@@ -24,7 +24,7 @@ requires "DBD::Pg";
 requires "Imager::File::JPEG";
 requires "IO::Socket::SSL";
 requires "IO::Compress::Gzip";
-requires "Crypt::LE";
+requires "Crypt::LE", "0.38";
 requires "Mojolicious::Plugin::ReCAPTCHAv2";
 requires "Text::Markdown";
 requires "Mojo::Role";

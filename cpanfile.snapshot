@@ -311,19 +311,12 @@ DISTRIBUTIONS
       ExtUtils::MakeMaker 6.30
       Math::BigInt 1.997
       Test::More 0.90
-  Cpanel-JSON-XS-3.0239
-    pathname: R/RU/RURBAN/Cpanel-JSON-XS-3.0239.tar.gz
+  Crypt-LE-0.38
+    pathname: L/LE/LEADER/Crypt-LE-0.38.tar.gz
     provides:
-      Cpanel::JSON::XS 3.0239
-    requirements:
-      ExtUtils::MakeMaker 0
-      Pod::Text 2.08
-  Crypt-LE-0.28
-    pathname: L/LE/LEADER/Crypt-LE-0.28.tar.gz
-    provides:
-      Crypt::LE 0.28
-      Crypt::LE::Challenge::Simple 0.28
-      Crypt::LE::Complete::Simple 0.28
+      Crypt::LE 0.38
+      Crypt::LE::Challenge::Simple 0.38
+      Crypt::LE::Complete::Simple 0.38
     requirements:
       Convert::ASN1 0.2
       Crypt::OpenSSL::Bignum 0.06
@@ -332,6 +325,7 @@ DISTRIBUTIONS
       Encode 0
       ExtUtils::MakeMaker 0
       File::Temp 0
+      Getopt::Long 2.33
       HTTP::Tiny 0.042
       IO::File 1.13
       IO::Socket::SSL 1.42
@@ -339,8 +333,9 @@ DISTRIBUTIONS
       Log::Log4perl 1.27
       MIME::Base64 3.11
       Module::Load 0.28
-      Net::SSLeay 1.49
+      Net::SSLeay 1.55
       Scalar::Util 0
+      Storable 2.51
       Test::More 0
       Time::Piece 1.27
       Time::Seconds 0
@@ -352,6 +347,26 @@ DISTRIBUTIONS
     requirements:
       ExtUtils::MakeMaker 0
       perl 5.006002
+  Crypt-OpenSSL-Guess-0.11
+    pathname: A/AK/AKIYM/Crypt-OpenSSL-Guess-0.11.tar.gz
+    provides:
+      Crypt::OpenSSL::Guess 0.11
+    requirements:
+      Config 0
+      Exporter 5.57
+      ExtUtils::MakeMaker 6.64
+      File::Spec 0
+      Symbol 0
+      perl 5.008001
+  Crypt-OpenSSL-RSA-0.31
+    pathname: T/TO/TODDR/Crypt-OpenSSL-RSA-0.31.tar.gz
+    provides:
+      Crypt::OpenSSL::RSA 0.31
+    requirements:
+      Crypt::OpenSSL::Random 0
+      ExtUtils::MakeMaker 0
+      Test::More 0
+      perl 5.006
   Crypt-OpenSSL-Random-0.11
     pathname: R/RU/RURBAN/Crypt-OpenSSL-Random-0.11.tar.gz
     provides:
@@ -862,7 +877,6 @@ DISTRIBUTIONS
       Class::Accessor::Grouped 0
       DBD::SQLite 1.11
       DBIx::Class 0.07005
-      Data::UUID 0
       ExtUtils::MakeMaker 6.42
       perl 5.008001
   DBIx-Connector-0.56
@@ -1852,18 +1866,6 @@ DISTRIBUTIONS
       perl 5.006
       strict 0
       warnings 0
-  File-Slurp-9999.19
-    pathname: U/UR/URI/File-Slurp-9999.19.tar.gz
-    provides:
-      File::Slurp 9999.19
-      FileSlurp_12 9999.13
-    requirements:
-      Carp 0
-      Exporter 0
-      ExtUtils::MakeMaker 0
-      Fcntl 0
-      POSIX 0
-      perl 5.004
   File-Which-1.22
     pathname: P/PL/PLICEASE/File-Which-1.22.tar.gz
     provides:
@@ -2223,7 +2225,6 @@ DISTRIBUTIONS
       JSON::MaybeXS 1.003009
     requirements:
       Carp 0
-      Cpanel::JSON::XS 2.3310
       ExtUtils::CBuilder 0.27
       ExtUtils::MakeMaker 0
       File::Spec 0
@@ -3377,7 +3378,7 @@ DISTRIBUTIONS
       Moose::Meta::Attribute::Custom::Trait::ENV 0.02
       MooseX::Attribute::ENV 0.02
     requirements:
-      ExtUtils::MakeMaker 7.1002
+      ExtUtils::MakeMaker 7.34
       Moose 0.48
       Test::More 0
       perl 5.008006
@@ -4028,17 +4029,6 @@ DISTRIBUTIONS
       Sub::Identify 0.03
       Test::Simple 0.61
       perl v5.6.2
-  Scalar-List-Utils-1.49
-    pathname: P/PE/PEVANS/Scalar-List-Utils-1.49.tar.gz
-    provides:
-      List::Util 1.49
-      List::Util::XS 1.49
-      Scalar::Util 1.49
-      Sub::Util 1.49
-    requirements:
-      ExtUtils::MakeMaker 0
-      Test::More 0
-      perl 5.006
   Scope-Guard-0.21
     pathname: C/CH/CHOCOLATE/Scope-Guard-0.21.tar.gz
     provides:
@@ -4128,10 +4118,10 @@ DISTRIBUTIONS
       strict 0
       version 0.83
       warnings 0
-  String-CamelCase-0.03
-    pathname: H/HI/HIO/String-CamelCase-0.03.tar.gz
+  String-CamelCase-0.04
+    pathname: H/HI/HIO/String-CamelCase-0.04.tar.gz
     provides:
-      String::CamelCase undef
+      String::CamelCase 0.04
     requirements:
       ExtUtils::MakeMaker 0
       Test::More 0
