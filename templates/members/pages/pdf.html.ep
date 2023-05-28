@@ -41,7 +41,7 @@ in order to view and print them.
 % $pdf->('ads/Poster - dreaming baby', "General purose  poster with photo of dreaming baby");
 % $pdf->('ads/Small general descriptive', "General purpose flyer with descriptive text");
 % $pdf->('ads/Small general pictorial', "General purpose flyer with pictures rather than text");
-% $pdf->('ads/Roll-up-banner-small-1', "Roller banner, 2m tall and 85cm wide (also fits 80 cm wide). Warning: large file (about 8MB)");
+% $pdf->('ads/Roll-up-banner-small-1', "Roller banner, 2m tall and 85cm wide (also fits 80 cm wide)");
 % $pdf->('members/Presentation', "Notes for a presentation to tell people about The Children's Reflexology Programme");
 % $pdf->('members/Business cards', "Business cards suitable for Avery C32011, C32016, and similar card stock");
 % $pdf->('members/QR Business cards', "Alternate business cards suitable for Avery C32011, C32016, and similar card stock");
@@ -63,8 +63,6 @@ in order to view and print them.
 % $pdf->('members/feedback_form', "Generic feedback form for your trainees to fill in");
 % $pdf->('members/feedback_form_A5', "Generic feedback form in A5 format for A4 paper");
 % $pdf->('members/Gift voucher log', "Log sheet to manage gift vouchers");
-%# $pdf->('members/MYMOP_Initial', "MYMOP initial data collection form");
-%# $pdf->('members/MYMOP_Follow_up', "MYMOP follow up collection form");
 % $pdf->('members/Invoice', "Blank, numbered invoice");
 
 % if($quals{'TCRP-AN'}) {
@@ -74,7 +72,7 @@ in order to view and print them.
 % $pdf->('ads/Poster - pictorial general AN', "General purpose Additional Needs poster with pictures rather than text");
 % $pdf->('ads/A3 Poster - pictorial general AN', "A3 version of general purpose Additional Needs pictorial poster");
 % $pdf->('ads/Small general descriptive-AN', "General purpose Additional Needs flyer with descriptive text");
-% $pdf->('ads/Roll-up-banner-small-1-AN', "Additional Needs roller banner, 2mx85cm (also fits 80 cm wide). Warning: large file (about 8MB)");
+% $pdf->('ads/Roll-up-banner-small-1-AN', "Additional Needs roller banner, 2mx85cm (also fits 80 cm wide)");
 % $pdf->('members/booking_form-TCRPAN', "Generic Additional Needs booking form for your trainees to fill in");
 % $pdf->('members/mencap', "Mental Capacity decision form and letter");
 % }
