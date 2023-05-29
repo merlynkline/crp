@@ -275,6 +275,9 @@ sub _available_course_types {
 
     return [] unless @course_types;
 
+    my %found_types;
+    @course_types = grep { ++$found_types{$_->abbreviation} == 1 } @course_types;
+
     my @trainee_qualifications = grep { $_->is_trainee } $profile->qualifications;
 
     return \@course_types unless @trainee_qualifications;

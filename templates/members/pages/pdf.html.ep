@@ -3,8 +3,26 @@
 % title 'Personalised stationery';
 % my $profile = stash('profile_record');
 % my %quals = map { $_->qualification->code => 1 } $profile->qualifications->get_passed_set;
+%
+%
+% my $should_display = sub {
+%   my($required_qualifications) = @_;
+%   return 1 unless $required_qualifications;
+%   foreach my $required_qualification (@$required_qualifications) {
+%       return 1 if $quals{ $required_qualification}
+%   }
+%   return undef;
+% };
+%
+% my $separator = sub {
+%   my($caption, $required_qualifications) = @_;
+%   return unless $should_display->($required_qualifications);
+<div class="pdf-separator"><%== $caption %></div>
+% };
+%
 % my $pdf = sub {
-%   my($pdf_file, $pdf_caption) = @_;
+%   my($pdf_file, $pdf_caption, $required_qualifications) = @_;
+%   return unless $should_display->($required_qualifications);
 %=  include "members/parts/course_doc", name => $pdf_file, caption => $pdf_caption;
 % };
 <h1>Download personalised stationery</h1>
@@ -28,7 +46,7 @@ are in PDF format so you may need to install a free version of
 in order to view and print them.
 </p>
 
-<div class="pdf-separator">Advertising<br />and<br />marketing</div>
+% $separator->("Advertising and marketing");
 
 % $pdf->('ads/DL flyer general', "Three-to-a-sheet flyer, good for mailing");
 % $pdf->('ads/Tall flyer general', "Larger version of the three-to-a-sheet flyer");
@@ -48,36 +66,30 @@ in order to view and print them.
 % $pdf->('members/Notepaper', "Headed notepaper");
 % $pdf->('members/Compliments', "Compliments slips");
 % $pdf->('members/Gift voucher', "Gift vouchers");
-% if($quals{'TCRP-EY-PRO'}) {
-% $pdf->('pro/EYSalesLetter', "Early Years Professional sales letter and leaflet");
-% }
+% $pdf->('pro/EYSalesLetter', "Early Years Professional sales letter and leaflet", [qw{TCRP-EY-PRO}]);
 
-<div class="pdf-separator">Course<br />administration</div>
+% $separator->("Course administration");
 
 % $pdf->('members/booking_form', "Generic booking form for your trainees to fill in");
 % $pdf->('members/booking_form_A5', "Generic booking form in A5 format for A4 paper");
-% if($quals{'TCRP-AN-PRO'} || $quals{'TCRP-EY-PRO'}) {
-% $pdf->('pro/booking_form', "Generic booking form for professional courses");
-% }
+% $pdf->('pro/booking_form', "Generic booking form for professional courses", [qw{TCRP-AN-PRO TCRP-EY-PRO}]);
 % $pdf->('members/register', "Generic register to check in trainees to each session");
 % $pdf->('members/feedback_form', "Generic feedback form for your trainees to fill in");
 % $pdf->('members/feedback_form_A5', "Generic feedback form in A5 format for A4 paper");
 % $pdf->('members/Gift voucher log', "Log sheet to manage gift vouchers");
 % $pdf->('members/Invoice', "Blank, numbered invoice");
 
-% if($quals{'TCRP-AN'}) {
-<div class="pdf-separator">Additional<br />Needs specific<br />documents</div>
+% $separator->("Additional Needs specific documents", [qw{TCRP-AN TCRP-AN-OL}]);
 
-% $pdf->('ads/Poster - descriptive general-AN', "General purpose Additional Needs text poster");
-% $pdf->('ads/Poster - pictorial general AN', "General purpose Additional Needs poster with pictures rather than text");
-% $pdf->('ads/A3 Poster - pictorial general AN', "A3 version of general purpose Additional Needs pictorial poster");
-% $pdf->('ads/Small general descriptive-AN', "General purpose Additional Needs flyer with descriptive text");
-% $pdf->('ads/Roll-up-banner-small-1-AN', "Additional Needs roller banner, 2mx85cm (also fits 80 cm wide)");
-% $pdf->('members/booking_form-TCRPAN', "Generic Additional Needs booking form for your trainees to fill in");
-% $pdf->('members/mencap', "Mental Capacity decision form and letter");
-% }
+% $pdf->('ads/Poster - descriptive general-AN', "General purpose Additional Needs text poster", [qw{TCRP-AN TCRP-AN-OL}]);
+% $pdf->('ads/Poster - pictorial general AN', "General purpose Additional Needs poster with pictures rather than text", [qw{TCRP-AN TCRP-AN-OL}]);
+% $pdf->('ads/A3 Poster - pictorial general AN', "A3 version of general purpose Additional Needs pictorial poster", [qw{TCRP-AN TCRP-AN-OL}]);
+% $pdf->('ads/Small general descriptive-AN', "General purpose Additional Needs flyer with descriptive text", [qw{TCRP-AN TCRP-AN-OL}]);
+% $pdf->('ads/Roll-up-banner-small-1-AN', "Additional Needs roller banner, 2mx85cm (also fits 80 cm wide)", [qw{TCRP-AN TCRP-AN-OL}]);
+% $pdf->('members/booking_form-TCRPAN', "Generic Additional Needs booking form for your trainees to fill in", [qw{TCRP-AN TCRP-AN-OL}]);
+% $pdf->('members/mencap', "Mental Capacity decision form and letter", [qw{TCRP-AN TCRP-AN-OL}]);
 
-<div class="pdf-separator">Other<br />documents</div>
+% $separator->("Other documents");
 
 %# $pdf->('membership_certificate', "Your current membership certificate");
 % $pdf->('members/IDCard', "Identity cards suitable for Avery C32011, C32016, and similar card stock");
