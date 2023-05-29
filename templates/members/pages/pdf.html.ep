@@ -70,6 +70,7 @@ in order to view and print them.
 
 % $separator->("Course administration");
 
+% $pdf->('members/Carer certificate', "Certificate for parents and carers who complete a course");
 % $pdf->('members/booking_form', "Generic booking form for your trainees to fill in");
 % $pdf->('members/booking_form_A5', "Generic booking form in A5 format for A4 paper");
 % $pdf->('pro/booking_form', "Generic booking form for professional courses", [qw{TCRP-AN-PRO TCRP-EY-PRO}]);
