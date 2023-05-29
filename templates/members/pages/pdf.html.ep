@@ -70,7 +70,7 @@ in order to view and print them.
 
 % $separator->("Course administration");
 
-% $pdf->('members/Carer certificate', "Certificate for parents and carers who complete a course");
+% $pdf->('members/Carer certificate', "Certificate for parents and carers who complete a standard course", [qw{TCRP-OL}]);
 % $pdf->('members/booking_form', "Generic booking form for your trainees to fill in");
 % $pdf->('members/booking_form_A5', "Generic booking form in A5 format for A4 paper");
 % $pdf->('pro/booking_form', "Generic booking form for professional courses", [qw{TCRP-AN-PRO TCRP-EY-PRO}]);
@@ -82,6 +82,7 @@ in order to view and print them.
 
 % $separator->("Additional Needs specific documents", [qw{TCRP-AN TCRP-AN-OL}]);
 
+% $pdf->('members/AN Carer certificate', "Certificate for parents and carers who complete an Additional Needs course", [qw{TCRP-AN}]);
 % $pdf->('ads/Poster - descriptive general-AN', "General purpose Additional Needs text poster", [qw{TCRP-AN TCRP-AN-OL}]);
 % $pdf->('ads/Poster - pictorial general AN', "General purpose Additional Needs poster with pictures rather than text", [qw{TCRP-AN TCRP-AN-OL}]);
 % $pdf->('ads/A3 Poster - pictorial general AN', "A3 version of general purpose Additional Needs pictorial poster", [qw{TCRP-AN TCRP-AN-OL}]);

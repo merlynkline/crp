@@ -1,0 +1,23 @@
+{
+    version => 1,
+    filename => 'AN Carer certificate',
+    items => [
+        {
+            action  => 'text',
+            align   => 'center',
+            text    => "Printed with permission by [% name %] [% email %]\nDo not copy or distribute",
+            x       => 450,
+            y       => 30,
+            size    => 7,
+        },
+        {
+            action  => 'qrcode_signature',
+            text1   => "Electronic signature: [% signature %]",
+            text2   => "[% signature_url %]",
+            x       => 254,
+            y       => 70,
+            size    => 7,
+            align   => 'left',
+        },
+    ]
+}
