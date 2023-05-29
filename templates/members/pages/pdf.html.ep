@@ -49,7 +49,7 @@ in order to view and print them.
 % $separator->("Advertising and marketing");
 
 % $pdf->('ads/DL flyer general', "Three-to-a-sheet flyer, good for mailing");
-% $pdf->('ads/Tall flyer general', "Larger version of the three-to-a-sheet flyer");
+%# $pdf->('ads/Tall flyer general', "Larger version of the three-to-a-sheet flyer");
 % $pdf->('ads/Poster - descriptive general', "General purpose poster with descriptive text");
 % $pdf->('ads/A3 Poster - descriptive general', "A3 version of general purpose text poster");
 % $pdf->('ads/Poster - pictorial general', "General purpose poster with pictures rather than text");
@@ -88,6 +88,22 @@ in order to view and print them.
 % $pdf->('ads/Roll-up-banner-small-1-AN', "Additional Needs roller banner, 2mx85cm (also fits 80 cm wide)", [qw{TCRP-AN TCRP-AN-OL}]);
 % $pdf->('members/booking_form-TCRPAN', "Generic Additional Needs booking form for your trainees to fill in", [qw{TCRP-AN TCRP-AN-OL}]);
 % $pdf->('members/mencap', "Mental Capacity decision form and letter", [qw{TCRP-AN TCRP-AN-OL}]);
+
+% $separator->("Protocol Handouts (Version 2 animals)", [qw{TCRP-AN TCRP-OL}]);
+
+% $pdf->('members/ProtocolHandoutsV2/Allergies', "Allergies protocol handout", [qw{TCRP-OL}]);
+% $pdf->('members/ProtocolHandoutsV2/Asthma', "Asthma protocol handout", [qw{TCRP-OL}]);
+% $pdf->('members/ProtocolHandoutsV2/Colic and Migraine', "Colic and Migraine protocol handout", [qw{TCRP-OL}]);
+% $pdf->('members/ProtocolHandoutsV2/Coughs and Colds', "Coughs and Colds protocol handout", [qw{TCRP-OL}]);
+% $pdf->('members/ProtocolHandoutsV2/Digestive Disorders', "Digestive Disorders protocol handout", [qw{TCRP-OL}]);
+% $pdf->('members/ProtocolHandoutsV2/Ear Ache', "Ear Ache protocol handout", [qw{TCRP-OL}]);
+% $pdf->('members/ProtocolHandoutsV2/Enuresis', "Enuresis protocol handout", [qw{TCRP-OL}]);
+% $pdf->('members/ProtocolHandoutsV2/Mouses Best Day Ever', "Mouses Best Day Ever protocol handout", [qw{TCRP-OL}]);
+% $pdf->('members/ProtocolHandoutsV2/Post Immunisation', "Post Immunisation protocol handout", [qw{TCRP-OL}]);
+% $pdf->('members/ProtocolHandoutsV2/Pre Immunisation', "Pre Immunisation protocol handout", [qw{TCRP-OL}]);
+% $pdf->('members/ProtocolHandoutsV2/Reflux', "Reflux protocol handout", [qw{TCRP-OL}]);
+% $pdf->('members/ProtocolHandoutsV2/Tantrums', "Tantrums protocol handout", [qw{TCRP-OL}]);
+% $pdf->('members/ProtocolHandoutsV2/Teeth', "Teeth protocol handout", [qw{TCRP-OL}]);
 
 % $separator->("Other documents");
 
