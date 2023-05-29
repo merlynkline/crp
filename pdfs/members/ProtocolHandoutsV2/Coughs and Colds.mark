@@ -1,6 +1,6 @@
 {
     version => 1,
-    filename => 'Quick Reference guide',
+    filename => 'Coughs and Colds protocol',
     items => [
         {
             action  => 'text',

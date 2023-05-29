@@ -1,6 +1,6 @@
 {
     version => 1,
-    filename => 'Quick Reference guide',
+    filename => 'Allergies protocol',
     items => [
         {
             action  => 'text',

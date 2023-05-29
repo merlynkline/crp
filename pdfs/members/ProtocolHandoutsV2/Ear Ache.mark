@@ -1,6 +1,6 @@
 {
     version => 1,
-    filename => 'Quick Reference guide',
+    filename => 'Ear Ache protocol',
     items => [
         {
             action  => 'text',

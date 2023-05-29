@@ -1,6 +1,6 @@
 {
     version => 1,
-    filename => 'Quick Reference guide',
+    filename => 'Colic and Migraine protocol',
     items => [
         {
             action  => 'text',

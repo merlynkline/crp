@@ -1,6 +1,6 @@
 {
     version => 1,
-    filename => 'Quick Reference guide',
+    filename => 'Digestive Disorders protocol',
     items => [
         {
             action  => 'text',
