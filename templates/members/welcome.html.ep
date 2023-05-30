@@ -90,20 +90,20 @@
                                 <%= $qualification->is_trainee ? '(Trainee)' : '' %>
                                 <br />
                                 Tutor: <a href="<%= $url %>"><%= $qualification->trainer->profile->name %></a>
-                                % my $olc_count = scalar @{$qualification->qualification->olc_courses};
-                                % if($olc_count) {
-                                    <br />
-                                    Online tuition:
-                                    % if($olc_count > 1) {
-                                    <br /><ul style="padding: 0 0 0 16px; margin: 0; overflow: hidden;";>
-                                    % }
-                                        % foreach my $olc_course (@{$qualification->qualification->olc_courses}) {
-                                        <% if($olc_count > 1) { %><li><span style="position: relative; left: -6px;"><% } %><a href="<%= url_for 'crp.olc.completed', course_id => $olc_course->id, slug => 'kidsreflex' %>"><%= $olc_course->title // '(Untitled)' %></a><% if($olc_count > 1) { %></span></li><% } %>
-                                        % }
-                                    % if($olc_count > 1) {
-                                    </ul>
-                                    % }
-                                % }
+%#                                % my $olc_count = scalar @{$qualification->qualification->olc_courses};
+%#                                % if($olc_count) {
+%#                                    <br />
+%#                                    Online tuition:
+%#                                    % if($olc_count > 1) {
+%#                                    <br /><ul style="padding: 0 0 0 16px; margin: 0; overflow: hidden;";>
+%#                                    % }
+%#                                        % foreach my $olc_course (@{$qualification->qualification->olc_courses}) {
+%#                                        <% if($olc_count > 1) { %><li><span style="position: relative; left: -6px;"><% } %><a href="<%= url_for 'crp.olc.completed', course_id => $olc_course->id, slug => 'kidsreflex' %>"><%= $olc_course->title // '(Untitled)' %></a><% if($olc_count > 1) { %></span></li><% } %>
+%#                                        % }
+%#                                    % if($olc_count > 1) {
+%#                                    </ul>
+%#                                    % }
+%#                                % }
                             </div>
                         </td>
                     </tr>
@@ -124,14 +124,14 @@
     see what's there. Some of the more frequently used features are highlighted below.
     </p>
     % }
-    % if(@olc_courses) {
-    <table class="list1" style="width: 585px; margin: 0;">
-        <tr><th colspan="3">Online tuition you have access to</th></tr>
-        % foreach my $olc_course (@olc_courses) {
-        <tr><td><a href="<%= url_for 'crp.olc.completed', course_id => $olc_course->id, slug => 'kidsreflex' %>"><%= $olc_course->title // '(Untitled)' %></a></td></tr>
-        % }
-    </table>
-    % }
+%#    % if(@olc_courses) {
+%#    <table class="list1" style="width: 585px; margin: 0;">
+%#        <tr><th colspan="3">Online tuition you have access to</th></tr>
+%#        % foreach my $olc_course (@olc_courses) {
+%#        <tr><td><a href="<%= url_for 'crp.olc.completed', course_id => $olc_course->id, slug => 'kidsreflex' %>"><%= $olc_course->title // '(Untitled)' %></a></td></tr>
+%#        % }
+%#    </table>
+%#    % }
  % if ($can_put_on_courses) {
     <p>
     % if(stash 'incomplete_profile') {
