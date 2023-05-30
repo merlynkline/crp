@@ -110,7 +110,7 @@ in order to view and print them.
 % $separator->("Other documents");
 
 %# $pdf->('membership_certificate', "Your current membership certificate");
-% $pdf->('members/Teaching Posters V2', "Teaching posters", [qw{TCRP-OL}]);
+% $pdf->('members/Teaching Posters V2', "Teaching posters (print the pages you need)", [qw{TCRP-OL}]);
 % $pdf->('members/IDCard', "Identity cards suitable for Avery C32011, C32016, and similar card stock");
 % $pdf->('members/Quick Reference (single sided)', 'Quick Reference Guide for single-sided printing only');
 % $pdf->('members/Quick Reference (double sided)', 'Quick Reference Guide for double-sided printing only');
