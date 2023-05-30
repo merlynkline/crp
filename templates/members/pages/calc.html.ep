@@ -40,7 +40,7 @@
         var numWeeks    = getValue('numweeks', 1);
         var coursePrice = getValue('courseprice', 0);
         var totalIncome = coursePrice * numStudents;
-        var packCost    = <%= config('prices')->{parent_pack} %> * numStudents;
+        var packCost    = getValue('costbook', 0) * numStudents;
         var totalCost   = packCost
                         + ((getValue('costtravel', 0) + getValue('costrent', 0)) * numWeeks)
                         + getValue('costadvert', 0);
@@ -75,9 +75,10 @@ to see how the figures are affected.
                 %= $input_field->({id => 'courseprice',    label => 'Price of course: £', value => int config('prices')->{course}});
 
                 <br clear="left"><strong>Costs</strong><br />
-                %= $input_field->({id => 'costtravel',  label => 'Travel to and from venue, per week: £', value => int config('prices')->{week_travel}});
-                %= $input_field->({id => 'costrent',    label => 'Cost of renting venue, per week: £', value => int config('prices')->{week_rent}}),
-                %= $input_field->({id => 'costadvert',  label => 'Cost of advertising course: £', value => int config('prices')->{advertising}}),
+                %= $input_field->({id => 'costbook',    label => 'Book or parent/carer pack (if included): £',      value => int config('prices')->{parent_pack}});
+                %= $input_field->({id => 'costtravel',  label => 'Travel to and from venue, per week: £',           value => int config('prices')->{week_travel}});
+                %= $input_field->({id => 'costrent',    label => 'Cost of renting venue, per week: £',              value => int config('prices')->{week_rent}}),
+                %= $input_field->({id => 'costadvert',  label => 'Cost of advertising & printing materials etc: £', value => int config('prices')->{advertising}}),
             </fieldset>
         </td>
         <td width="50%" valign="top">
@@ -88,7 +89,7 @@ to see how the figures are affected.
                 %= $output_field->({id => 'totalincome',  label => 'Total course income: £'});
 
                 <br clear="left"><strong>Costs</strong><br />
-                %= $output_field->({id => 'costpacks',  label => 'Parent/carer packs (@£' . config('prices')->{parent_pack} . '): £'});
+                %= $output_field->({id => 'costpacks',  label => 'Books or parent/carer packs : £'});
                 %= $output_field->({id => 'totalcost',  label => 'Total course cost: £'});
 
                 <br clear="left"><strong>Gross profit</strong><br />
