@@ -1,0 +1,15 @@
+{
+    version => 1,
+    filename => 'Teaching Posters',
+    items => [
+        {
+            action  => 'text',
+            text    => "Printed with permission by [% name %] [% email %]\nDo not copy or distribute",
+            x       => 680,
+            y       => 41,
+            size    => 8,
+            align   => 'right',
+            page    => 'all',
+        },
+    ],
+}
