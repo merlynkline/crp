@@ -91,7 +91,7 @@ in order to view and print them.
 % $pdf->('members/booking_form-TCRPAN', "Generic Additional Needs booking form for your trainees to fill in", [qw{TCRP-AN TCRP-AN-OL}]);
 % $pdf->('members/mencap', "Mental Capacity decision form and letter", [qw{TCRP-AN TCRP-AN-OL}]);
 
-% $separator->("Protocol Handouts (Version 2 animals)", [qw{TCRP-AN TCRP-OL}]);
+% $separator->("Protocol handouts", [qw{TCRP-AN TCRP-OL}]);
 
 % $pdf->('members/ProtocolHandoutsV2/Allergies', "Allergies protocol handout", [qw{TCRP-OL}]);
 % $pdf->('members/ProtocolHandoutsV2/Asthma', "Asthma protocol handout", [qw{TCRP-OL}]);
